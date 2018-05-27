@@ -1,2 +1,2 @@
-# DecorationsFabricatorMod
-A decorations fabricator for Subnautica.
+# Decorations Fabricator Mod
+A decorations fabricator for Subnautica...
