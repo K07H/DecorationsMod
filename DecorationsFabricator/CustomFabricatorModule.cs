@@ -130,9 +130,7 @@
             // Create a new TechType for the Lab Container 4
             LabContainer4TechType = TechTypePatcher.AddTechType(LabContainer4ID, GetFriendlyWord("LabContainer4Name"), GetFriendlyWord("LabContainer4Description"), true);
             // Add the new TechType to the buildables
-            CraftDataPatcher.customBuildables.Add(LabContainer4TechType);
-            // Add the new TechType to the group of Interior Module buildables
-            CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, LabContainer4TechType);
+            CraftDataPatcher.customEquipmentTypes.Add(LabContainer4TechType, EquipmentType.Hand);
             // Set the buildable prefab
             CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(LabContainer4ID, $"WorldEntities/Doodads/Debris/Wrecks/Decoration/{LabContainer4ID}", LabContainer4TechType, GetLabContainer4Prefab));
             // Set the custom sprite for the Habitat Builder Tool menu
@@ -204,7 +202,7 @@
 
             // Add the new Craft Tree and link it to the new CraftTree Type
             CraftTreePatcher.CustomTrees[DecorationsTreeType] = customTreeRootNode;
-
+            
             // Create a recipe for the new TechType
             var customFabRecipe = new TechDataHelper()
             {
@@ -530,44 +528,29 @@
             GameObject prefab = GameObject.Instantiate(originalPrefab);
             GameObject model = prefab.FindChild("biodome_lab_containers_tube_02");
 
-            Utility.AddBasicComponents(ref prefab, LabContainer4ID);
+            // Set TechTag
+            prefab.AddComponent<TechTag>().type = LabContainer4TechType;
+            
+            // Add sky applier
+            var skyApplier = prefab.AddComponent<SkyApplier>();
+            skyApplier.anchorSky = Skies.Custom;
+            skyApplier.dynamic = false;
+            skyApplier.emissiveFromPower = false;
+            
+            // Add box collider
+            var collider = prefab.AddComponent<BoxCollider>();
+            collider.size = new Vector3(0.43f, 0.25f, 0.07f);
 
-            var constructable = prefab.AddComponent<Constructable>();
-            constructable.allowedOnWall = false;
-            constructable.allowedOnGround = true;
-            constructable.allowedInSub = true;
-            constructable.allowedInBase = true;
-            constructable.allowedOnCeiling = false;
-            constructable.allowedOutside = false;
-            constructable.techType = LabContainer4TechType;
-            constructable.model = model;
+            // We can pick this item
+            var pickupable = prefab.AddComponent<Pickupable>();
+            pickupable.isPickupable = true;
+            pickupable.randomizeRotationWhenDropped = true;
 
             var pickPrefab = prefab.AddComponent<PickPrefab>();
             pickPrefab.destroyOnPicked = false;
             pickPrefab.pickTech = LabContainer4TechType;
 
-            var bounds = prefab.AddComponent<ConstructableBounds>();
-
-            var skyApplier = prefab.AddComponent<SkyApplier>();
-            skyApplier.anchorSky = Skies.Custom;
-            skyApplier.dynamic = false;
-            skyApplier.emissiveFromPower = false;
-            /*
-            var labContainer4Component = prefab.AddComponent<LabContainer4>();
-            warpCannonComponent.Init();
-            warpCannonComponent.mainCollider = warpCannon.AddComponent<BoxCollider>();
-            warpCannonComponent.ikAimRightArm = true;
-            warpCannonComponent.useLeftAimTargetOnPlayer = true;
-            */
-            var collider = prefab.AddComponent<BoxCollider>();
-            collider.size = new Vector3(0.43f, 0.25f, 0.07f);
-            
-            var pickupable = prefab.AddComponent<Pickupable>();
-            pickupable.isPickupable = true;
-            pickupable.randomizeRotationWhenDropped = true;
-
-            prefab.AddComponent<TechTag>().type = LabContainer4TechType;
-
+            // We can place this item
             var placeTool = prefab.AddComponent<PlaceTool>();
             placeTool.allowedInBase = true;
             placeTool.allowedOnBase = true;
@@ -579,19 +562,10 @@
             placeTool.allowedOutside = false;
             placeTool.rotationEnabled = true;
 
+            // Add large world entity and set cell level
             var largeWorldEntity = prefab.AddComponent<LargeWorldEntity>();
             largeWorldEntity.cellLevel = LargeWorldEntity.CellLevel.Near;
-
-            /*
-            var worldForces = prefab.AddComponent<WorldForces>();
-            worldForces.handleGravity = true;
-            worldForces.handleDrag = true;
-            worldForces.aboveWaterGravity = 9.81f;
-            worldForces.underwaterGravity = 1f;
-            worldForces.aboveWaterDrag = 0.1f;
-            worldForces.underwaterDrag = 1f;
-            */
-
+            
             // Add fabricating animation
             var fabricating = model.AddComponent<VFXFabricating>();
 
