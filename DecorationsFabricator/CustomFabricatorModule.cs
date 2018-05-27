@@ -48,11 +48,11 @@
             {
                 case "DecorationsFabricatorName":
                     if (UserLanguage == RegionAndLanguageHelper.CountryCode.FR)
-                        return "Fabricateur de Décorations";
+                        return "Fabricateur de décorations";
                     else if (UserLanguage == RegionAndLanguageHelper.CountryCode.ES)
-                        return "Fabricador de Decoraciones";
+                        return "Fabricador de decoraciones";
                     else
-                        return "Decorations Fabricator";
+                        return "Decorations fabricator";
                 case "DecorationsFabricatorDescription":
                     if (UserLanguage == RegionAndLanguageHelper.CountryCode.FR)
                         return "Un fabricateur permettant de produire des objets décoratifs.";
@@ -64,18 +64,18 @@
                     return "Posters";
                 case "LabElements":
                     if (UserLanguage == RegionAndLanguageHelper.CountryCode.FR)
-                        return "Éléments de Laboratoire";
+                        return "Éléments de laboratoire";
                     else if (UserLanguage == RegionAndLanguageHelper.CountryCode.ES)
-                        return "Elementos de Laboratorio";
+                        return "Elementos de laboratorio";
                     else
-                        return "Laboratory Elements";
+                        return "Laboratory elements";
                 case "GlassContainers":
                     if (UserLanguage == RegionAndLanguageHelper.CountryCode.FR)
-                        return "Récipients en Verre Inutiles";
+                        return "Conteneur d'échantillons inutiles";
                     else if (UserLanguage == RegionAndLanguageHelper.CountryCode.ES)
-                        return "Envases de Vidrio Inútiles";
+                        return "Contenedor de muestra inútiles";
                     else
-                        return "Useless Glass Containers";
+                        return "Useless glass containers";
                 case "Caps":
                     if (UserLanguage == RegionAndLanguageHelper.CountryCode.FR)
                         return "Casquettes";
@@ -530,16 +530,10 @@
 
             // Set TechTag
             prefab.AddComponent<TechTag>().type = LabContainer4TechType;
-            
-            // Add sky applier
-            var skyApplier = prefab.AddComponent<SkyApplier>();
-            skyApplier.anchorSky = Skies.Custom;
-            skyApplier.dynamic = false;
-            skyApplier.emissiveFromPower = false;
-            
+
             // Add box collider
             var collider = prefab.AddComponent<BoxCollider>();
-            collider.size = new Vector3(0.43f, 0.25f, 0.07f);
+            collider.size = new Vector3(0.35f, 0.5f, 0.35f);
 
             // Detroy immediate rigid body
             var rb = prefab.GetComponent<Rigidbody>();
@@ -549,10 +543,6 @@
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = true;
             pickupable.randomizeRotationWhenDropped = true;
-
-            var pickPrefab = prefab.AddComponent<PickPrefab>();
-            pickPrefab.destroyOnPicked = false;
-            pickPrefab.pickTech = LabContainer4TechType;
 
             // We can place this item
             var placeTool = prefab.AddComponent<PlaceTool>();
@@ -565,23 +555,13 @@
             placeTool.allowedOnWalls = false;
             placeTool.allowedOutside = false;
             placeTool.rotationEnabled = true;
-            placeTool.dropTime = 0.5f;
-            placeTool.drawTime = 0.5f;
             placeTool.enabled = true;
             placeTool.hasAnimations = false;
             placeTool.hasBashAnimation = false;
             placeTool.hasFirstUseAnimation = false;
-            placeTool.holsterTime = 0.5f;
-            placeTool.ikAimRightArm = true;
             placeTool.mainCollider = collider;
             placeTool.pickupable = pickupable;
-            placeTool.reloadMode = PlayerTool.ReloadMode.None;
-            placeTool.socket = PlayerTool.Socket.RightHand;
 
-            // Add large world entity and set cell level
-            var largeWorldEntity = prefab.AddComponent<LargeWorldEntity>();
-            largeWorldEntity.cellLevel = LargeWorldEntity.CellLevel.Near;
-            
             // Add fabricating animation
             var fabricating = model.AddComponent<VFXFabricating>();
 
