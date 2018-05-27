@@ -1,0 +1,11 @@
+{
+  "Id": "DecorationsFabricator",
+  "DisplayName": "DecorationsFabricator",
+  "Author": "Mangem0rt",
+  "Version": "1.0.0",
+  "Requires": [ ],
+  "Enable": true,
+  "AssemblyName": "DecorationsFabricator.dll",
+  "EntryMethod": "DecorationsFabricator.QPatch.Patch",
+  "Config": {}
+}
