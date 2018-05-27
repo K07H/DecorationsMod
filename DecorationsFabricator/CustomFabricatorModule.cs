@@ -541,6 +541,10 @@
             var collider = prefab.AddComponent<BoxCollider>();
             collider.size = new Vector3(0.43f, 0.25f, 0.07f);
 
+            // Detroy immediate rigid body
+            var rb = prefab.GetComponent<Rigidbody>();
+            MonoBehaviour.DestroyImmediate(rb);
+
             // We can pick this item
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = true;
@@ -561,6 +565,18 @@
             placeTool.allowedOnWalls = false;
             placeTool.allowedOutside = false;
             placeTool.rotationEnabled = true;
+            placeTool.dropTime = 0.5f;
+            placeTool.drawTime = 0.5f;
+            placeTool.enabled = true;
+            placeTool.hasAnimations = false;
+            placeTool.hasBashAnimation = false;
+            placeTool.hasFirstUseAnimation = false;
+            placeTool.holsterTime = 0.5f;
+            placeTool.ikAimRightArm = true;
+            placeTool.mainCollider = collider;
+            placeTool.pickupable = pickupable;
+            placeTool.reloadMode = PlayerTool.ReloadMode.None;
+            placeTool.socket = PlayerTool.Socket.RightHand;
 
             // Add large world entity and set cell level
             var largeWorldEntity = prefab.AddComponent<LargeWorldEntity>();
@@ -575,6 +591,10 @@
             fabricating.posOffset = new Vector3(0f, 0f, 0.04f);
             fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricating.scaleFactor = 1f;
+
+            // Dont destroy GameObject on load
+            var gameObj = new GameObject();
+            UnityEngine.Object.DontDestroyOnLoad(gameObj);
 
             return prefab;
         }
