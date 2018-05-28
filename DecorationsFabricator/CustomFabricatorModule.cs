@@ -10,8 +10,10 @@
     {
         public static CraftTree.Type DecorationsTreeType { get; private set; }
         public static TechType DecorationsFabTechType { get; private set; }
+
         public static TechType LabContainer4TechType { get; private set; }
-        
+        public static TechType SmallEmperorLeviathanTechType { get; private set; }
+
         public static GameObject OriginalPosterObject { get; set; }
         public static GameObject OriginalPosterAuroraObject { get; set; }
         public static GameObject OriginalPosterExosuit1Object { get; set; }
@@ -30,6 +32,8 @@
         public static GameObject OriginalArcadeGorgetoyObject { get; set; }
         public static GameObject OriginalToyCarObject { get; set; }
         public static GameObject OriginalLuggageBagObject { get; set; }
+        
+        public static GameObject SmallEmperorLeviathanObject { get; set; }
 
         // Get language.
         private static RegionAndLanguageHelper.CountryCode UserLanguage = RegionAndLanguageHelper.GetCountryCode();
@@ -37,8 +41,9 @@
         // This name will be used as both the new TechType of the buildable fabricator and the CraftTree Type for the custom crafting tree.
         public const string DecorationsFabID = "DecorationsFabricator";
 
-        // This name will be used as the new TechType of the Lab Container 4
+        // These names will be used as new TechTypes IDs
         public const string LabContainer4ID = "LabContainer4";
+        public const string SmallEmperorID = "EmeperorLeviathanDoll";
 
         #region Friendly names function
 
@@ -111,6 +116,20 @@
                         return "Un contenedor de muestra cilíndrico largo, probablemente inútil.";
                     else
                         return "A long cylindrical sample container, probably useless.";
+                case "SmallEmperorName":
+                    if (UserLanguage == RegionAndLanguageHelper.CountryCode.FR)
+                        return "Poupée d'empereur léviathan";
+                    else if (UserLanguage == RegionAndLanguageHelper.CountryCode.ES)
+                        return "Muñeca de leviatán emperador";
+                    else
+                        return "Emperor leviathan doll";
+                case "SmallEmperorDescription":
+                    if (UserLanguage == RegionAndLanguageHelper.CountryCode.FR)
+                        return "Cette poupée d'empereur léviathan a été créée à partir des observations faites sur 4546B.";
+                    else if (UserLanguage == RegionAndLanguageHelper.CountryCode.ES)
+                        return "Esta muñeca de emperador leviatán fue creada a partir de observaciones hechas en 4546B.";
+                    else
+                        return "This emperor leviathan doll was created from observations made on 4546B.";
                 default:
                     return "?";
             }
@@ -120,6 +139,7 @@
 
         // Load AssetBundles (they must only be loaded once).
         private static AssetBundle Assets = AssetBundle.LoadFromFile(@"./QMods/DecorationsFabricator/Assets/decorations.assets");
+        private static AssetBundle SmallEmperorLeviathanAssets = AssetBundle.LoadFromFile(@"./QMods/DecorationsFabricator/Assets/smallemperorleviathan.assets");
 
         public static void Patch()
         {
@@ -147,6 +167,34 @@
             };
             // Associate recipe to the new TechType
             CraftDataPatcher.customTechData[LabContainer4TechType] = LabContainer4Recipe;
+
+            #endregion
+
+            #region Small Emperor Leviathan
+
+            SmallEmperorLeviathanObject = SmallEmperorLeviathanAssets.LoadAsset<GameObject>("emperorleviathan");
+            // Create a new TechType for the small Emperor Leviathan
+            SmallEmperorLeviathanTechType = TechTypePatcher.AddTechType(SmallEmperorID, GetFriendlyWord("SmallEmperorName"), GetFriendlyWord("SmallEmperorDescription"), true);
+            // Add the new TechType to the buildables
+            CraftDataPatcher.customEquipmentTypes.Add(SmallEmperorLeviathanTechType, EquipmentType.Hand);
+            // Set the buildable prefab
+            CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(SmallEmperorID, $"WorldEntities/Doodads/Debris/Wrecks/Decoration/{SmallEmperorID}", SmallEmperorLeviathanTechType, GetSmallEmperorPrefab));
+            // Set the custom sprite for the Habitat Builder Tool menu
+            CustomSpriteHandler.customSprites.Add(new CustomSprite(SmallEmperorLeviathanTechType, SmallEmperorLeviathanAssets.LoadAsset<Sprite>("emperoricon")));
+            // Create a recipe for the new TechType
+            var SmallEmperorLeviathanRecipe = new TechDataHelper()
+            {
+                _craftAmount = 1,
+                _ingredients = new List<IngredientHelper>(new IngredientHelper[3]
+                    {
+                        new IngredientHelper(TechType.Titanium, 1),
+                        new IngredientHelper(TechType.FiberMesh, 1),
+                        new IngredientHelper(TechType.Silicone, 1),
+                    }),
+                _techType = SmallEmperorLeviathanTechType
+            };
+            // Associate recipe to the new TechType
+            CraftDataPatcher.customTechData[SmallEmperorLeviathanTechType] = SmallEmperorLeviathanRecipe;
 
             #endregion
 
@@ -268,7 +316,8 @@
             var toysTab = rootNode.AddTabNode("Toys", GetFriendlyWord("Toys"), SpriteManager.Get(TechType.ArcadeGorgetoy));
             toysTab.AddCraftingNode(TechType.StarshipSouvenir,
                                     TechType.ArcadeGorgetoy,
-                                    TechType.ToyCar);
+                                    TechType.ToyCar,
+                                    SmallEmperorLeviathanTechType);
 
             var accessoriesTab = rootNode.AddTabNode("Accessories", GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));
             accessoriesTab.AddCraftingNode(TechType.LuggageBag);
@@ -579,6 +628,91 @@
             return prefab;
         }
 
+        public static GameObject GetSmallEmperorPrefab()
+        {
+            GameObject originalPrefab = SmallEmperorLeviathanObject;
+            GameObject prefab = GameObject.Instantiate(originalPrefab);
+            
+            // Set IDs
+            prefab.name = SmallEmperorID;
+            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            if (prefabId != null)
+            {
+                prefabId.ClassId = SmallEmperorID;
+                prefabId.name = GetFriendlyWord("SmallEmperorName");
+            }
+            else
+            {
+                Logger.Log("--------> NULL prefab identifier! Creating one...", null);
+                prefabId = prefab.AddComponent<PrefabIdentifier>();
+                prefabId.ClassId = SmallEmperorID;
+                prefabId.name = GetFriendlyWord("SmallEmperorName");
+            }
+
+            // Set TechTag
+            prefab.AddComponent<TechTag>().type = SmallEmperorLeviathanTechType;
+            
+            // Add rigid body
+            var rb = prefab.AddComponent<Rigidbody>();
+            rb.mass = 20;
+            rb.drag = 0;
+            rb.angularDrag = 0.05f;
+            rb.useGravity = false;
+            rb.isKinematic = true;
+            rb.interpolation = RigidbodyInterpolation.None;
+            rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
+            rb.constraints = RigidbodyConstraints.None;
+
+            // Add box collider
+            var collider = prefab.AddComponent<BoxCollider>();
+            collider.size = new Vector3(2f, 1f, 1f);
+
+            var cbounds = prefab.AddComponent<ConstructableBounds>();
+
+            // We can pick this item
+            var pickupable = prefab.AddComponent<Pickupable>();
+            pickupable.isPickupable = true;
+            pickupable.randomizeRotationWhenDropped = true;
+
+            // Add sky applier
+            var skyApplier = prefab.AddComponent<SkyApplier>();
+
+            skyApplier.anchorSky = Skies.BaseInterior;
+            skyApplier.dynamic = false;
+            skyApplier.emissiveFromPower = false;
+
+            // We can place this item
+            var placeTool = prefab.AddComponent<PlaceTool>();
+            placeTool.allowedInBase = true;
+            placeTool.allowedOnBase = true;
+            placeTool.allowedOnCeiling = false;
+            placeTool.allowedOnConstructable = true;
+            placeTool.allowedOnGround = true;
+            placeTool.allowedOnRigidBody = false;
+            placeTool.allowedOnWalls = false;
+            placeTool.allowedOutside = false;
+            placeTool.rotationEnabled = true;
+            placeTool.enabled = true;
+            placeTool.hasAnimations = false;
+            placeTool.hasBashAnimation = false;
+            placeTool.hasFirstUseAnimation = false;
+            placeTool.mainCollider = collider;
+            placeTool.pickupable = pickupable;
+            placeTool.bleederDamage = 3;
+            placeTool.drawTime = 0.5f;
+            placeTool.dropTime = 1;
+            placeTool.holsterTime = 0.35f;
+
+            var lwe = prefab.AddComponent<LargeWorldEntity>();
+            lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
+            
+            // Dont destroy GameObject on load
+            //var gameObj = new GameObject();
+            //UnityEngine.Object.DontDestroyOnLoad(gameObj);
+
+            return prefab;
+        }
+
         public static GameObject GetLabEquipment1Prefab()
         {
             GameObject originalPrefab = OriginalLabEquipment1Object;
@@ -740,7 +874,7 @@
 
             return prefab;
         }
-
+        
         public static GameObject GetPrefab()
         {
             // The standard Fabricator is the base to this new item

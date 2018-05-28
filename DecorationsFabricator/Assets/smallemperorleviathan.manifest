@@ -1,0 +1,43 @@
+ManifestFileVersion: 0
+CRC: 634165691
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f6b20d9d39d929aa1a534c1421ca661e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 993603fa575e7f616ed4aead158acd87
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/emperorleviathan.fbm/Leviathan_01_01_spec.png
+- Assets/emperorleviathan.fbm/Leviathan_01_01_illum.png
+- Assets/emperorleviathan.fbm/Leviathan_01_02_illum.png
+- Assets/emperorleviathan.fbm/Leviathan_01_02.png
+- Assets/emperorleviathan.fbm/Leviathan_01_02_normal.png
+- Assets/emperorleviathan.fbm/Leviathan_01_01_normal.png
+- Assets/emperoricon.png
+- Assets/Materials/Leviathan_01_02.mat
+- Assets/emperorleviathan.fbx
+- Assets/emperorleviathan.fbm/leviathan_01_01.png
+- Assets/Materials/leviathan_01_01.mat
+- Assets/emperorleviathan.fbm/Leviathan_01_02_spec.png
+Dependencies: []
