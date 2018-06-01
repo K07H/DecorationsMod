@@ -1,0 +1,101 @@
+ManifestFileVersion: 0
+CRC: 1796283217
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c82bb6eb4f9f6558502a67d935977f88
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f177e0b6540ef5245082db732f4c8033
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/ghostleviathan.prefab
+- Assets/leviathans.fbm/Sea_Dragon_01_02_normal.png
+- Assets/leviathans.fbm/Sea_Dragon_01_01_normal.png
+- Assets/Materials/Ghost_Leviathan_inside.mat
+- Assets/discoverylabcart.fbm/discovery_lab_cart_01_normal.png
+- Assets/emperorleviathan.fbm/Leviathan_01_01_spec.png
+- Assets/circuitbox1.png
+- Assets/computer1.png
+- Assets/circuitbox3.png
+- Assets/leviathans.fbm/Ghost_Leviathan_shell_illum.png
+- Assets/Materials/Sea_Dragon_01_eyeball.mat
+- Assets/leviathans.fbm/Sea_Dragon_01_01_spec.png
+- Assets/leviathans.fbm/Reaper_Leviathan_illum.png
+- Assets/labcarticon.png
+- Assets/leviathans.fbm/Ghost_Leviathan_shell_spec.png
+- Assets/Materials/Sea_Dragon_01_02.mat
+- Assets/emperoricon.png
+- Assets/labtubeicon.png
+- Assets/computer2.png
+- Assets/Materials/Ghost_Leviathan_shell.mat
+- Assets/leviathans.fbx
+- Assets/seaemperor.prefab
+- Assets/Materials/discovery_lab_cart_01.mat
+- Assets/emperorleviathan.fbm/Leviathan_01_01_illum.png
+- Assets/fabricator_icon_purple.png
+- Assets/leviathans.fbm/Ghost_Leviathan_shell.png
+- Assets/emperorleviathan.fbm/Leviathan_01_02_illum.png
+- Assets/leviathans.fbm/Ghost_Leviathan_inside_spec.png
+- Assets/computer3.png
+- Assets/leviathans.fbm/Sea_Dragon_01_eyeball.png
+- Assets/reaperleviathan.prefab
+- Assets/leviathans.fbm/Reaper_Leviathan.png
+- Assets/discoverylabcart.fbm/discovery_lab_cart_01.png
+- Assets/seadragon.prefab
+- Assets/leviathans.fbm/Ghost_Leviathan_inside_illum.png
+- Assets/leviathans.fbm/Ghost_Leviathan_inside.png
+- Assets/submarine_fabricator_purple.png
+- Assets/leviathans.fbm/Sea_Dragon_01_01.png
+- Assets/labcontainer4.png
+- Assets/leviathans.fbm/Reaper_Leviathan_spec.png
+- Assets/emperorleviathan.fbm/Leviathan_01_02.png
+- Assets/leviathans.fbm/Sea_Dragon_01_01_illum.png
+- Assets/emperorleviathan.fbm/Leviathan_01_02_normal.png
+- Assets/emperorleviathan.fbm/Leviathan_01_01_normal.png
+- Assets/leviathans.fbm/Reaper_Leviathan_normal.png
+- Assets/Materials/Leviathan_01_02.mat
+- Assets/emperorleviathan.fbx
+- Assets/leviathans.fbm/Sea_Dragon_01_eyeball_normal.png
+- Assets/emperorleviathan.fbm/leviathan_01_01.png
+- Assets/leviathans.fbm/noise_tile_06.png
+- Assets/leviathans.fbm/Sea_Dragon_01_02.png
+- Assets/leviathans.fbm/Ghost_Leviathan_shell_normal.png
+- Assets/labshelves.png
+- Assets/Materials/Sea_Dragon_01_01.mat
+- Assets/Materials/leviathan_01_01.mat
+- Assets/specimenanalyzer.png
+- Assets/emperorleviathan.fbm/Leviathan_01_02_spec.png
+- Assets/Materials/Reaper_Leviathan.mat
+- Assets/leviathans.fbm/Sea_Dragon_01_eyeball_spec.png
+- Assets/leviathans.fbm/Ghost_Leviathan_inside_normal.png
+- Assets/circuitbox2.png
+- Assets/leviathans.fbm/Sea_Dragon_01_02_illum.png
+Dependencies: []

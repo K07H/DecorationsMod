@@ -8,6 +8,7 @@
         public static void Patch()
         {
             // Retrieve original game objects
+            /*
             DecorationsFabricatorModule.OriginalToyCarObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/Goldglove_car_02");
             DecorationsFabricatorModule.OriginalPosterObject = Resources.Load<GameObject>("WorldEntities/Environment/Wrecks/Poster");
             DecorationsFabricatorModule.OriginalPosterAuroraObject = Resources.Load<GameObject>("WorldEntities/Environment/Wrecks/poster_aurora");
@@ -26,8 +27,11 @@
             DecorationsFabricatorModule.OriginalStarshipSouvenirObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir");
             DecorationsFabricatorModule.OriginalArcadeGorgetoyObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_arcade_gorgetoy_01");
             DecorationsFabricatorModule.OriginalLuggageBagObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/docking_luggage_01_bag4");
+            */
 
+            Logger.Log("Initializing Decorations Fabricator mod.", null);
             DecorationsFabricatorModule.Patch();
+            Logger.Log("Decorations Fabricator mod initialized successfully.", null);
         }
     }
 }

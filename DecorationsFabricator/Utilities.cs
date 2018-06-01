@@ -14,7 +14,7 @@ namespace DecorationsFabricator
         }
     }
 
-    public static class RegionAndLanguageHelper
+    public static class RegionHelper
     {
         #region Constants
         private const int GEO_FRIENDLYNAME = 8;
