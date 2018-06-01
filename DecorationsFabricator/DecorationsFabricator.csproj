@@ -97,7 +97,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\SMLHelper\SMLHelper\SMLHelper.csproj">
       <Project>{418502dd-372d-4ef9-8021-b262552dfede}</Project>
