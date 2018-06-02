@@ -66,3 +66,5 @@ DecorationsFabricator/bin/Release/Assets/decorationassets.assets
 DecorationsFabricator/bin/Release/Assets/decorationassets.manifest
 DecorationsFabricator/bin/Release/SMLHelper.pdb
 DecorationsFabricator/obj/Release/DecorationsFabricator.csprojAssemblyReference.cache
+DecorationsFabricator/Assets/old_decorationassets.manifest
+DecorationsFabricator/Assets/old_decorationassets.assets

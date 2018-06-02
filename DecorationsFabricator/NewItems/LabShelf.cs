@@ -99,7 +99,7 @@ namespace DecorationsFabricator.NewItems
                 placeTool.pickupable = pickupable;
 
                 // Set item occupies 4 slots
-                CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(2, 2);
+                CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(3, 3);
 
                 // Add the new TechType to the hand-equipments
                 CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);

@@ -12,7 +12,7 @@ namespace DecorationsFabricator.NewItems
     {
         public SeaEmperorDoll() // Feeds abstract class
         {
-            this.ClassID = "SeaEmeperorDoll";
+            this.ClassID = "SeaEmperorDoll";
             this.ResourcePath = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("seaemperor");
@@ -54,10 +54,11 @@ namespace DecorationsFabricator.NewItems
                 
                 // Add rigid body
                 var rb = this.GameObject.AddComponent<Rigidbody>();
+                rb.mass = 10;
 
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
-                collider.size = new Vector3(2.0f, 0.5f, 0.5f);
+                collider.size = new Vector3(0.8f, 0.5f, 0.5f);
                 
                 // Add large world entity
                 this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;

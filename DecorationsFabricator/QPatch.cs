@@ -1,10 +1,7 @@
 ﻿namespace DecorationsFabricator
 {
-    using UnityEngine;
-
     public class QPatch
     {
-
         public static void Patch()
         {
             // Retrieve original game objects

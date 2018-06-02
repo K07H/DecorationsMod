@@ -264,7 +264,7 @@ namespace DecorationsFabricator
                     if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
                         return "Cette poupée d'empereur léviathan a été créée à partir des observations faites sur 4546B.";
                     else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
-                        return "Esta muñeca de emperador leviatán fue creada a partir de observaciones hechas en 4546B.";
+                        return "Esta muñeca emperador leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else
                         return "This emperor leviathan doll was created from observations made on 4546B.";
                 case "MarlaCatName":
@@ -304,6 +304,55 @@ namespace DecorationsFabricator
                         return "Un objeto inusual.";
                     else
                         return "An unusual item.";
+                case "LeviathanDolls":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Poupées de léviathans";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Muñecas Leviatán";
+                    else
+                        return "Leviathan dolls";
+                case "GhostLeviathanDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Poupée de léviathan fantôme";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Fantasma leviatán muñeca";
+                    else
+                        return "Ghost leviathan doll";
+                case "GhostLeviathanDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Cette poupée de léviathan fantôme a été créée à partir des observations faites sur 4546B.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Esta muñeca fantasma leviatán fue creada a partir de observaciones hechas en 4546B.";
+                    else
+                        return "This ghost leviathan doll was created from observations made on 4546B.";
+                case "ReaperLeviathanDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Poupée de faucheur léviathan";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Segador leviatán muñeca";
+                    else
+                        return "Reaper leviathan doll";
+                case "ReaperLeviathanDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Cette poupée de faucheur léviathan a été créée à partir des observations faites sur 4546B.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Esta muñeca segador leviatán fue creada a partir de observaciones hechas en 4546B.";
+                    else
+                        return "This reaper leviathan doll was created from observations made on 4546B.";
+                case "SeaDragonDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Poupée de dragon des mers léviathan";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Dragon marino leviatán muñeca";
+                    else
+                        return "Sea dragon leviathan doll";
+                case "SeaDragonDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Cette poupée de dragon des mers léviathan a été créée à partir des observations faites sur 4546B.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Esta muñeca dragon marino leviatán fue creada a partir de observaciones hechas en 4546B.";
+                    else
+                        return "This sea dragon leviathan doll was created from observations made on 4546B.";
                 default:
                     return "?";
             }

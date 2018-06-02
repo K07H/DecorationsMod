@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1796283217
+CRC: 673984772
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c82bb6eb4f9f6558502a67d935977f88
+    Hash: bac9d5d0cb3434666c52c424e500334c
   TypeTreeHash:
     serializedVersion: 2
     Hash: f177e0b6540ef5245082db732f4c8033
@@ -36,7 +36,6 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/ghostleviathan.prefab
 - Assets/leviathans.fbm/Sea_Dragon_01_02_normal.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_normal.png
 - Assets/Materials/Ghost_Leviathan_inside.mat
@@ -55,6 +54,7 @@ Assets:
 - Assets/emperoricon.png
 - Assets/labtubeicon.png
 - Assets/computer2.png
+- Assets/seadragonicon.png
 - Assets/Materials/Ghost_Leviathan_shell.mat
 - Assets/leviathans.fbx
 - Assets/seaemperor.prefab
@@ -66,7 +66,7 @@ Assets:
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_spec.png
 - Assets/computer3.png
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball.png
-- Assets/reaperleviathan.prefab
+- Assets/ReaperLeviathan.prefab
 - Assets/leviathans.fbm/Reaper_Leviathan.png
 - Assets/discoverylabcart.fbm/discovery_lab_cart_01.png
 - Assets/seadragon.prefab
@@ -79,11 +79,13 @@ Assets:
 - Assets/emperorleviathan.fbm/Leviathan_01_02.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_illum.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02_normal.png
+- Assets/reaperleviathanicon.png
 - Assets/emperorleviathan.fbm/Leviathan_01_01_normal.png
 - Assets/leviathans.fbm/Reaper_Leviathan_normal.png
 - Assets/Materials/Leviathan_01_02.mat
 - Assets/emperorleviathan.fbx
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball_normal.png
+- Assets/ghostleviathan.prefab
 - Assets/emperorleviathan.fbm/leviathan_01_01.png
 - Assets/leviathans.fbm/noise_tile_06.png
 - Assets/leviathans.fbm/Sea_Dragon_01_02.png
@@ -94,6 +96,7 @@ Assets:
 - Assets/specimenanalyzer.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02_spec.png
 - Assets/Materials/Reaper_Leviathan.mat
+- Assets/ghostleviathanicon.png
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball_spec.png
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_normal.png
 - Assets/circuitbox2.png

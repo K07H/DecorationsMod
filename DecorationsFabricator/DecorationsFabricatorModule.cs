@@ -174,10 +174,12 @@
             if (!ItemTypeSwitcher.JackSepticEye_asBuildable)
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "JackSepticEyeDoll"));
 
-            var faunaTab = rootNode.AddTabNode("Fauna", LanguageHelper.GetFriendlyWord("Fauna"), AssetsHelper.Assets.LoadAsset<Sprite>("emperoricon"));
-            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaEmeperorDoll"));
+            var faunaTab = rootNode.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
+            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReaperLeviathanDoll"));
             faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GhostLeviathanDoll"));
-            
+            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaDragonDoll"));
+            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll"));
+
             var accessoriesTab = rootNode.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));
             accessoriesTab.AddCraftingNode(TechType.LuggageBag);
 
@@ -204,9 +206,9 @@
 
             // All this was necessary because the PowerRelay wasn't being instantiated
             var ghost = fabricator.GetComponent<GhostCrafter>();
-            var crafter = ghost.GetComponent<Crafter>();
             var powerRelay = new PowerRelay();
-
+            // Ignore any errors you see about this fabricator not having a power relay in its parent. It does and it works.
+            
             FieldInfo fieldInfo = typeof(GhostCrafter).GetField("powerRelay", BindingFlags.NonPublic | BindingFlags.Instance);
             fieldInfo.SetValue(ghost, powerRelay);
 
