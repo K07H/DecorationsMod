@@ -51,8 +51,18 @@ namespace DecorationsFabricator.NewItems
 
                 // Add prefab identifier
                 this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
-                
-                // Add rigid body
+
+                // Delete rigid body to prevent bug
+                var rb = this.GameObject.GetComponents<Rigidbody>();
+                foreach (Rigidbody tmpRB in rb)
+                {
+                    GameObject.DestroyImmediate(tmpRB);
+                }
+                rb = this.GameObject.GetComponentsInChildren<Rigidbody>();
+                foreach (Rigidbody tmpRB in rb)
+                {
+                    GameObject.DestroyImmediate(tmpRB);
+                }
                 /*
                 var rb = this.GameObject.AddComponent<Rigidbody>();
                 rb.mass = 10;

@@ -40,9 +40,22 @@ namespace DecorationsFabricator.NewItems
                 // Set TechTag
                 this.GameObject.AddComponent<TechTag>().type = this.TechType;
 
-                // Remove rigid body to prevent bugs
-                var rb = this.GameObject.GetComponent<Rigidbody>();
-                GameObject.DestroyImmediate(rb);
+                // Remove Cube object to prevent physics bug
+                var cube = this.GameObject.FindChild("Cube");
+                if (cube != null)
+                    GameObject.DestroyImmediate(cube);
+
+                // Remove rigid body to prevent physics bugs
+                var rb = this.GameObject.GetComponents<Rigidbody>();
+                foreach (Rigidbody tmpRB in rb)
+                {
+                    GameObject.DestroyImmediate(tmpRB);
+                }
+                rb = this.GameObject.GetComponentsInChildren<Rigidbody>();
+                foreach (Rigidbody tmpRB in rb)
+                {
+                    GameObject.DestroyImmediate(tmpRB);
+                }
 
                 var lwe = this.GameObject.GetComponent<LargeWorldEntity>();
                 if (lwe != null)
