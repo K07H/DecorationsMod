@@ -353,6 +353,34 @@ namespace DecorationsFabricator
                         return "Esta muñeca dragon marino leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else
                         return "This sea dragon leviathan doll was created from observations made on 4546B.";
+                case "SeaTreaderDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Poupée de pèlerin des mers léviathan";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Caminante marino leviatán muñeca";
+                    else
+                        return "Sea treader leviathan doll";
+                case "SeaTreaderDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Cette poupée de pèlerin des mers léviathan a été créée à partir des observations faites sur 4546B.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Esta muñeca caminante marino leviatán fue creada a partir de observaciones hechas en 4546B.";
+                    else
+                        return "This sea treader leviathan doll was created from observations made on 4546B.";
+                case "ReefBackDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Poupée de reefback léviathan";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Portarrecifes leviatán muñeca";
+                    else
+                        return "Reefback leviathan doll";
+                case "ReefBackDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Cette poupée de reefback léviathan a été créée à partir des observations faites sur 4546B.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Esta muñeca portarrecifes leviatán fue creada a partir de observaciones hechas en 4546B.";
+                    else
+                        return "This reefback leviathan doll was created from observations made on 4546B.";
                 default:
                     return "?";
             }

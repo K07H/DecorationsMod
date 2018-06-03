@@ -40,16 +40,25 @@ namespace DecorationsFabricator.NewItems
                 // Set TechTag
                 this.GameObject.AddComponent<TechTag>().type = this.TechType;
 
-                // Customize rigid body
+                // Remove rigid body to prevent bugs
                 var rb = this.GameObject.GetComponent<Rigidbody>();
+                GameObject.DestroyImmediate(rb);
+
+                var lwe = this.GameObject.GetComponent<LargeWorldEntity>();
+                if (lwe != null)
+                    GameObject.DestroyImmediate(lwe);
+
+                /*
                 rb.detectCollisions = true;
                 rb.constraints = RigidbodyConstraints.FreezePosition;
                 rb.isKinematic = false;
                 rb.mass = 60;
                 rb.useGravity = true;
                 rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
+                */
 
                 // Add world forces
+                /*
                 var forces = this.GameObject.AddComponent<WorldForces>();
                 forces.useRigidbody = rb;
                 forces.handleGravity = true;
@@ -58,6 +67,7 @@ namespace DecorationsFabricator.NewItems
                 forces.underwaterGravity = 1;
                 forces.aboveWaterDrag = 0.1f;
                 forces.underwaterDrag = 1;
+                */
 
                 // Add box collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
@@ -75,7 +85,7 @@ namespace DecorationsFabricator.NewItems
                 placeTool.allowedOnCeiling = false;
                 placeTool.allowedOnConstructable = true;
                 placeTool.allowedOnGround = true;
-                placeTool.allowedOnRigidBody = false;
+                placeTool.allowedOnRigidBody = true;
                 placeTool.allowedOnWalls = false;
                 placeTool.allowedOutside = false;
                 placeTool.rotationEnabled = true;

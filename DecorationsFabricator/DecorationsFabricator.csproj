@@ -70,7 +70,9 @@
     <Compile Include="NewItems\Marki1.cs" />
     <Compile Include="NewItems\Marki2.cs" />
     <Compile Include="NewItems\ReaperLeviathanDoll.cs" />
+    <Compile Include="NewItems\ReefBackDoll.cs" />
     <Compile Include="NewItems\SeaDragonDoll.cs" />
+    <Compile Include="NewItems\SeaTreaderDoll.cs" />
     <Compile Include="NewItems\SpecimenAnalyzer.cs" />
     <Compile Include="ExistingItems\StarshipSouvenir.cs" />
     <Compile Include="ExistingItems\ToyCar.cs" />

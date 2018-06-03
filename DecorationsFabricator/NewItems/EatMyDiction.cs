@@ -76,7 +76,7 @@ namespace DecorationsFabricator.NewItems
                 placeTool.allowedOnCeiling = false;
                 placeTool.allowedOnConstructable = true;
                 placeTool.allowedOnGround = true;
-                placeTool.allowedOnRigidBody = false;
+                placeTool.allowedOnRigidBody = true;
                 placeTool.allowedOnWalls = false;
                 placeTool.allowedOutside = false;
                 placeTool.rotationEnabled = true;

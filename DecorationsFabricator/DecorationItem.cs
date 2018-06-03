@@ -42,6 +42,45 @@ namespace DecorationsFabricator
         {
             if (this.IsRegistered == false)
             {
+                // Update PlaceTool parameters
+                var placeTool = this.GameObject.GetComponent<PlaceTool>();
+                if (placeTool != null)
+                {
+                    if (this.TechType == TechType.Poster ||
+                        this.TechType == TechType.PosterAurora ||
+                        this.TechType == TechType.PosterExoSuit1 ||
+                        this.TechType == TechType.PosterExoSuit2 ||
+                        this.TechType == TechType.PosterKitty)
+                    {
+                        placeTool.allowedInBase = true;
+                        placeTool.allowedOnBase = true;
+                        placeTool.allowedOnCeiling = false;
+                        placeTool.allowedOnConstructable = true;
+                        placeTool.allowedOnGround = false;
+                        placeTool.allowedOnRigidBody = true;
+                        placeTool.allowedOnWalls = true;
+                        placeTool.allowedOutside = false;
+                        placeTool.rotationEnabled = true;
+                        placeTool.enabled = true;
+                        placeTool.hasAnimations = false;
+                        placeTool.hasBashAnimation = false;
+                        placeTool.hasFirstUseAnimation = false;
+                    }
+                    else
+                    {
+                        placeTool.allowedInBase = true;
+                        placeTool.allowedOnBase = true;
+                        placeTool.allowedOnCeiling = false;
+                        placeTool.allowedOnConstructable = true;
+                        placeTool.allowedOnGround = true;
+                        placeTool.allowedOnRigidBody = true;
+                        placeTool.allowedOnWalls = false;
+                        placeTool.allowedOutside = false;
+                        placeTool.rotationEnabled = true;
+                        placeTool.enabled = true;
+                    }
+                }
+
                 // Set the buildable prefab
                 CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
 

@@ -8,18 +8,18 @@ using UnityEngine;
 
 namespace DecorationsFabricator.NewItems
 {
-    public class GhostLeviathanDoll : DecorationItem
+    public class ReefBackDoll : DecorationItem
     {
-        public GhostLeviathanDoll()
+        public ReefBackDoll() // Feeds abstract class
         {
-            this.ClassID = "GhostLeviathanDoll";
+            this.ClassID = "ReefBackDoll";
             this.ResourcePath = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("ghostleviathan");
+            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("reefbackleviathan");
 
             this.TechType = TechTypePatcher.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("GhostLeviathanDollName"),
-                                                        LanguageHelper.GetFriendlyWord("GhostLeviathanDollDescription"),
+                                                        LanguageHelper.GetFriendlyWord("ReefBackDollName"),
+                                                        LanguageHelper.GetFriendlyWord("ReefBackDollDescription"),
                                                         true);
 
             this.Recipe = new TechDataHelper()
@@ -39,24 +39,9 @@ namespace DecorationsFabricator.NewItems
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("model");
-                /*
-                GameObject ghostLeviathanSubModel = model.FindChild("Ghost_Leviathan_anim");
-                GameObject ghostLeviathanSubSubModel = ghostLeviathanSubModel.FindChild("Ghost_Leviathan_geo");
-                */
-
-                // Scale
-                model.transform.localScale *= 0.47f;
-
-                // Rotate
-                model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x, model.transform.localEulerAngles.y + -25.0f, model.transform.localEulerAngles.z);
-
-                // Merge submeshes
-                /*
-                Mesh mesh = ghostLeviathanSubSubModel.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                mesh.SetTriangles(mesh.triangles, 0);
-                mesh.subMeshCount = 1;
-                */
+                // Scale model
+                GameObject reefbackModel = this.GameObject.FindChild("Pivot");
+                reefbackModel.transform.localScale *= 0.5f;
 
                 // Set tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
@@ -73,14 +58,30 @@ namespace DecorationsFabricator.NewItems
 
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
-                collider.size = new Vector3(0.7f, 0.08f, 0.08f);
-                collider.center = new Vector3(collider.center.x - 0.15f, collider.center.y + 0.1f, collider.center.z);
+                collider.size = new Vector3(0.8f, 0.5f, 0.5f);
 
                 // Add large world entity
                 this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
-                
-                // Add sky applier
+
+                // Set proper shaders (for crafting animation)
+                Shader marmosetUber = Shader.Find("MarmosetUBER");
                 var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                if (renderers.Length > 0)
+                {
+                    foreach (Renderer rend in renderers)
+                    {
+                        rend.material.shader = marmosetUber;
+                        if (rend.materials.Length > 0)
+                        {
+                            foreach (Material tmpMat in rend.materials)
+                            {
+                                tmpMat.shader = marmosetUber;
+                            }
+                        }
+                    }
+                }
+
+                // Add sky applier
                 var applier = this.GameObject.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
@@ -133,7 +134,7 @@ namespace DecorationsFabricator.NewItems
                 CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, GetPrefab));
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("ghostleviathanicon")));
+                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("reefbackicon")));
 
                 // Associate recipe to the new TechType
                 CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
@@ -150,8 +151,8 @@ namespace DecorationsFabricator.NewItems
             var fabricatingA = prefab.AddComponent<VFXFabricating>();
             fabricatingA.localMinY = -0.2f;
             fabricatingA.localMaxY = 0.6f;
-            fabricatingA.posOffset = new Vector3(0.22f, -0.03f, 0.15f);
-            fabricatingA.eulerOffset = new Vector3(0f, 20f, 0f);
+            fabricatingA.posOffset = new Vector3(0.08f, 0f, 0.04f);
+            fabricatingA.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricatingA.scaleFactor = 1f;
 
             return prefab;

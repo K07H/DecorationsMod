@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 673984772
+CRC: 374874785
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bac9d5d0cb3434666c52c424e500334c
+    Hash: 2f75fb84ce37d623189741916fa28aed
   TypeTreeHash:
     serializedVersion: 2
     Hash: f177e0b6540ef5245082db732f4c8033
@@ -36,12 +36,15 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/seatreader.fbm/Sea_Treader_01_01_normal.png
 - Assets/leviathans.fbm/Sea_Dragon_01_02_normal.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_normal.png
 - Assets/Materials/Ghost_Leviathan_inside.mat
 - Assets/discoverylabcart.fbm/discovery_lab_cart_01_normal.png
+- Assets/seatreader.fbm/Sea_Treader_01_02_spec.png
 - Assets/emperorleviathan.fbm/Leviathan_01_01_spec.png
 - Assets/circuitbox1.png
+- Assets/seatreader.fbm/Sea_Treader_01_02_normal.png
 - Assets/computer1.png
 - Assets/circuitbox3.png
 - Assets/leviathans.fbm/Ghost_Leviathan_shell_illum.png
@@ -50,14 +53,20 @@ Assets:
 - Assets/leviathans.fbm/Reaper_Leviathan_illum.png
 - Assets/labcarticon.png
 - Assets/leviathans.fbm/Ghost_Leviathan_shell_spec.png
+- Assets/reefback.fbm/Reefback_01_02.png
 - Assets/Materials/Sea_Dragon_01_02.mat
 - Assets/emperoricon.png
 - Assets/labtubeicon.png
 - Assets/computer2.png
 - Assets/seadragonicon.png
+- Assets/reefback.fbm/Reefback_coral_flat.png
 - Assets/Materials/Ghost_Leviathan_shell.mat
 - Assets/leviathans.fbx
+- Assets/reefback.fbx
 - Assets/seaemperor.prefab
+- Assets/Materials/Reefback_reef_tile.mat
+- Assets/seatreaderleviathan.prefab
+- Assets/reefback.fbm/Reefback_01_02_spec.png
 - Assets/Materials/discovery_lab_cart_01.mat
 - Assets/emperorleviathan.fbm/Leviathan_01_01_illum.png
 - Assets/fabricator_icon_purple.png
@@ -66,37 +75,68 @@ Assets:
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_spec.png
 - Assets/computer3.png
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball.png
+- Assets/reefback.fbm/Reefback_01_01_illum.png
 - Assets/ReaperLeviathan.prefab
+- Assets/reefback.fbm/Coral_reef_red_seaweed_03.png
+- Assets/Materials/coral_reef_grass_07.mat
 - Assets/leviathans.fbm/Reaper_Leviathan.png
+- Assets/seatreader.fbm/Sea_Treader_01_01.png
 - Assets/discoverylabcart.fbm/discovery_lab_cart_01.png
+- Assets/reefbackleviathan.prefab
+- Assets/seatreader.fbm/Sea_Treader_01_01_spec.png
+- Assets/reefback.fbm/Reefback_reef_tile_normal.png
+- Assets/Materials/Coral_reef_red_seaweed_03.mat
 - Assets/seadragon.prefab
+- Assets/seatreader.fbm/Sea_Treader_01_02_illum.png
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_illum.png
+- Assets/seatreader.fbx
+- Assets/seatreadericon.png
 - Assets/leviathans.fbm/Ghost_Leviathan_inside.png
 - Assets/submarine_fabricator_purple.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01.png
 - Assets/labcontainer4.png
 - Assets/leviathans.fbm/Reaper_Leviathan_spec.png
+- Assets/Materials/Reefback_01_02.mat
+- Assets/reefback.fbm/Reefback_01_01.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_illum.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02_normal.png
+- Assets/reefback.fbm/coral_reef_grass_07.png
 - Assets/reaperleviathanicon.png
+- Assets/reefbackicon.png
+- Assets/reefback.fbm/Reefback_01_01_normal.png
 - Assets/emperorleviathan.fbm/Leviathan_01_01_normal.png
+- Assets/Materials/coral_reef_grass_04.mat
 - Assets/leviathans.fbm/Reaper_Leviathan_normal.png
 - Assets/Materials/Leviathan_01_02.mat
+- Assets/reefback.fbm/Reefback_01_02_illum.png
 - Assets/emperorleviathan.fbx
+- Assets/seatreader.fbm/Sea_Treader_01_02.png
+- Assets/Materials/Sea_Treader_01_02.mat
+- Assets/seatreader.fbm/Sea_Treader_01_01_illum.png
+- Assets/Materials/Reefback_01_01.mat
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball_normal.png
+- Assets/reefback.fbm/coral_reef_grass_04_normal.png
 - Assets/ghostleviathan.prefab
 - Assets/emperorleviathan.fbm/leviathan_01_01.png
 - Assets/leviathans.fbm/noise_tile_06.png
 - Assets/leviathans.fbm/Sea_Dragon_01_02.png
 - Assets/leviathans.fbm/Ghost_Leviathan_shell_normal.png
+- Assets/reefback.fbm/coral_reef_grass_04.png
 - Assets/labshelves.png
+- Assets/Materials/Sea_Treader_01_01.mat
+- Assets/reefback.fbm/Reefback_coral_flat_normal.png
 - Assets/Materials/Sea_Dragon_01_01.mat
 - Assets/Materials/leviathan_01_01.mat
 - Assets/specimenanalyzer.png
+- Assets/reefback.fbm/Coral_reef_red_seaweed_03_normal.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02_spec.png
 - Assets/Materials/Reaper_Leviathan.mat
+- Assets/Materials/Reefback_coral_flat.mat
+- Assets/reefback.fbm/coral_reef_grass_07_normal.png
 - Assets/ghostleviathanicon.png
+- Assets/reefback.fbm/Reefback_reef_tile.png
+- Assets/reefback.fbm/Reefback_01_02_normal.png
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball_spec.png
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_normal.png
 - Assets/circuitbox2.png

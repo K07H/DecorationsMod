@@ -43,11 +43,13 @@ namespace DecorationsFabricator.NewItems
                 
                 // Update TechTag
                 this.GameObject.GetComponent<TechTag>().type = this.TechType;
-                
-                // Get rigid body
+
+                // Remove rigid body to prevent bugs
                 var rb = this.GameObject.GetComponent<Rigidbody>();
+                GameObject.DestroyImmediate(rb);
 
                 // Add world forces
+                /*
                 var forces = this.GameObject.AddComponent<WorldForces>();
                 forces.useRigidbody = rb;
                 forces.handleGravity = true;
@@ -56,6 +58,7 @@ namespace DecorationsFabricator.NewItems
                 forces.underwaterGravity = 1;
                 forces.aboveWaterDrag = 0.1f;
                 forces.underwaterDrag = 1;
+                */
 
                 // Get box collider
                 var collider = cube.GetComponent<BoxCollider>();
@@ -73,7 +76,7 @@ namespace DecorationsFabricator.NewItems
                 placeTool.allowedOnCeiling = false;
                 placeTool.allowedOnConstructable = true;
                 placeTool.allowedOnGround = true;
-                placeTool.allowedOnRigidBody = false;
+                placeTool.allowedOnRigidBody = true;
                 placeTool.allowedOnWalls = true;
                 placeTool.allowedOutside = false;
                 placeTool.rotationEnabled = true;

@@ -175,6 +175,8 @@
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "JackSepticEyeDoll"));
 
             var faunaTab = rootNode.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
+            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"));
+            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll"));
             faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReaperLeviathanDoll"));
             faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GhostLeviathanDoll"));
             faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaDragonDoll"));

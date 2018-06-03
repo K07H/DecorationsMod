@@ -53,15 +53,17 @@ namespace DecorationsFabricator.NewItems
                 this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
                 
                 // Add rigid body
+                /*
                 var rb = this.GameObject.AddComponent<Rigidbody>();
                 rb.mass = 10;
+                */
 
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
-                collider.size = new Vector3(0.8f, 0.5f, 0.5f);
+                collider.size = new Vector3(0.5f, 0.5f, 0.4f);
                 
                 // Add large world entity
-                this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                //this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
@@ -80,6 +82,7 @@ namespace DecorationsFabricator.NewItems
                 applier.renderers = new Renderer[] { rend };
                 applier.anchorSky = Skies.Auto;
 
+                /*
                 // Add world forces
                 var forces = this.GameObject.AddComponent<WorldForces>();
                 forces.useRigidbody = rb;
@@ -89,6 +92,7 @@ namespace DecorationsFabricator.NewItems
                 forces.underwaterGravity = 1;
                 forces.aboveWaterDrag = 0.1f;
                 forces.underwaterDrag = 1;
+                */
 
                 // We can pick this item
                 var pickupable = this.GameObject.AddComponent<Pickupable>();
@@ -102,7 +106,7 @@ namespace DecorationsFabricator.NewItems
                 placeTool.allowedOnCeiling = false;
                 placeTool.allowedOnConstructable = true;
                 placeTool.allowedOnGround = true;
-                placeTool.allowedOnRigidBody = false;
+                placeTool.allowedOnRigidBody = true;
                 placeTool.allowedOnWalls = false;
                 placeTool.allowedOutside = false;
                 placeTool.rotationEnabled = true;
