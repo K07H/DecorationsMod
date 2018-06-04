@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DecorationsFabricator
 {
     public static class DecorationItemsHelper
     {
+        /// <summary>
+        /// Returns decoration item TechType giving the list of decoration items and the item's classID.
+        /// </summary>
         public static TechType getTechType(List<DecorationItem> decorationItems, string classID)
         {
             foreach (DecorationItem item in decorationItems)

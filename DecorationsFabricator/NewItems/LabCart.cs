@@ -1,9 +1,6 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DecorationsFabricator.NewItems
@@ -60,28 +57,7 @@ namespace DecorationsFabricator.NewItems
                 var lwe = this.GameObject.GetComponent<LargeWorldEntity>();
                 if (lwe != null)
                     GameObject.DestroyImmediate(lwe);
-
-                /*
-                rb.detectCollisions = true;
-                rb.constraints = RigidbodyConstraints.FreezePosition;
-                rb.isKinematic = false;
-                rb.mass = 60;
-                rb.useGravity = true;
-                rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-                */
-
-                // Add world forces
-                /*
-                var forces = this.GameObject.AddComponent<WorldForces>();
-                forces.useRigidbody = rb;
-                forces.handleGravity = true;
-                forces.handleDrag = true;
-                forces.aboveWaterGravity = 9.81f;
-                forces.underwaterGravity = 1;
-                forces.aboveWaterDrag = 0.1f;
-                forces.underwaterDrag = 1;
-                */
-
+                
                 // Add box collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.7f, 0.5f, 0.4f);

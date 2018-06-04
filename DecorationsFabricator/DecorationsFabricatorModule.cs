@@ -1,22 +1,33 @@
-﻿namespace DecorationsFabricator
-{
-    using System.Collections.Generic;
-    using SMLHelper;
-    using SMLHelper.Patchers;
-    using UnityEngine;
-    using System.Reflection;
-    using System.Linq;
-    using System;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Linq;
+using SMLHelper;
+using SMLHelper.Patchers;
+using UnityEngine;
 
-    public static class ItemTypeSwitcher
+namespace DecorationsFabricator
+{
+    public static class ConfigSwitcher
     {
+        // Following settings are automatically initialized when retrieving config.
+
+        // If true you'll be able to place following items:
+        // coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, reactor rod and deplated reactor rod
+        public static bool EnablePlaceItems = true;
+
+        // If "true", you'll be able to build/craft the following items:
+        // specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll
+        public static bool EnableSpecialItems = true;
+
         // If true: Item will be available as a buildable (in habitat builder menu).
         // If false: Item will be available as a craftable (in decorations fabricator).
-
         public static bool SpecimenAnalyzer_asBuildable = true;
         public static bool MarkiDoll1_asBuildable = true;
         public static bool MarkiDoll2_asBuildable = true;
         public static bool JackSepticEye_asBuildable = true;
+        public static bool EatMyDiction_asBuidable = true;
     }
 
     public class DecorationsFabricatorModule
@@ -29,13 +40,61 @@
         
         public static void Patch()
         {
+            // Get config file path
+            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+            UriBuilder uri = new UriBuilder(codeBase);
+            string path = Uri.UnescapeDataString(uri.Path);
+            string currentDir = Path.GetDirectoryName(path);
+            string configFilePath = currentDir + "/Config.txt";
+
+            Logger.Log("Loading configuration from \"" + configFilePath + "\"...", null);
+            
+            // Retrieve config
+            if (File.Exists(configFilePath))
+            {
+                string configFile = File.ReadAllText(configFilePath);
+                string[] configLines = configFile.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                foreach (string configStr in configLines)
+                {
+                    if (!configStr.StartsWith("#") && configStr.Contains("="))
+                    {
+                        string[] configElem = configStr.Split("=".ToCharArray(), StringSplitOptions.None);
+                        if (configElem != null && configElem.Length == 2)
+                        {
+                            string configKey = configElem[0].Trim();
+                            bool configValue = (configElem[1].Trim().CompareTo("true") == 0);
+
+                            if (configKey.CompareTo("enablePlaceItems") == 0)
+                                ConfigSwitcher.EnablePlaceItems = configValue;
+                            else if (configKey.CompareTo("enableSpecialItems") == 0)
+                                ConfigSwitcher.EnableSpecialItems = configValue;
+                            else if (configKey.CompareTo("asBuildable_SpecimenAnalyzer") == 0)
+                                ConfigSwitcher.SpecimenAnalyzer_asBuildable = configValue;
+                            else if (configKey.CompareTo("asBuildable_MarkiplierDoll1") == 0)
+                                ConfigSwitcher.MarkiDoll1_asBuildable = configValue;
+                            else if (configKey.CompareTo("asBuildable_MarkiplierDoll2") == 0)
+                                ConfigSwitcher.MarkiDoll2_asBuildable = configValue;
+                            else if (configKey.CompareTo("asBuildable_JackSepticEyeDoll") == 0)
+                                ConfigSwitcher.JackSepticEye_asBuildable = configValue;
+                            else if (configKey.CompareTo("asBuildable_EatMyDictionDoll") == 0)
+                                ConfigSwitcher.EatMyDiction_asBuidable = configValue;
+                        }
+                    }
+                }
+            }
+            else
+                Logger.Log("Warning: Cannot find config file, default options will be set.");
+
             Logger.Log("Registering items...", null);
 
             // Register all items
             List<DecorationItem> decorationItems = RegisterDecorationItems();
 
+            Logger.Log("Making some existing items placeable...", null);
+
             // Make some existing items placeable/pickupable
-            PlaceToolItems.MakeItemsPlaceable();
+            if (ConfigSwitcher.EnablePlaceItems)
+                PlaceToolItems.MakeItemsPlaceable();
 
             Logger.Log("Creating craft tree...", null);
 
@@ -57,10 +116,10 @@
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[4]
                     {
-                        new IngredientHelper(TechType.Titanium, 2),
+                        new IngredientHelper(TechType.Titanium, 1),
                         new IngredientHelper(TechType.ComputerChip, 1),
                         new IngredientHelper(TechType.Diamond, 1),
-                        new IngredientHelper(TechType.Lead, 1),
+                        new IngredientHelper(TechType.Magnetite, 1)
                     }),
                 _techType = DecorationsFabTechType
             };
@@ -86,10 +145,10 @@
             List<DecorationItem> result = new List<DecorationItem>();
 
             // Get the list of modified existing items
-            var existingItems = from t in Assembly.GetExecutingAssembly().GetTypes()
-                    where t.IsClass && t.Namespace == "DecorationsFabricator.ExistingItems"
-                    select t;
-
+            var existingItems = from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() 
+                                where t.IsClass && t.Namespace == "DecorationsFabricator.ExistingItems" 
+                                select t;
+            
             // Register modified existing items
             foreach (Type existingItemType in existingItems)
             {
@@ -97,18 +156,31 @@
                 existingItem.RegisterItem();
                 result.Add(existingItem);
             }
-
+            
             // Get the list of new items
-            var newItems = from t in Assembly.GetExecutingAssembly().GetTypes()
-                                where t.IsClass && t.Namespace == "DecorationsFabricator.NewItems"
+            var newItems = from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() 
+                           where t.IsClass && t.Namespace == "DecorationsFabricator.NewItems" 
                            select t;
 
             // Register new items
             foreach (Type newItemType in newItems)
             {
                 DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
-                newItem.RegisterItem();
-                result.Add(newItem);
+
+                if (ConfigSwitcher.EnableSpecialItems)
+                {
+                    newItem.RegisterItem();
+                    result.Add(newItem);
+                }
+                else
+                {
+                    // If we reach here decoration items from habitat builder are disabled
+                    if (!newItem.IsHabitatBuilder)
+                    {
+                        newItem.RegisterItem();
+                        result.Add(newItem);
+                    }
+                }
             }
 
             return result;
@@ -142,8 +214,7 @@
             furnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabShelf"),
                                           DecorationItemsHelper.getTechType(decorationItems, "LabCart"),
                                           DecorationItemsHelper.getTechType(decorationItems, "DecorationLabTube"));
-
-            if (!ItemTypeSwitcher.SpecimenAnalyzer_asBuildable)
+            if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable)
                 labEquipmentTab.AddCraftingNode(TechType.SpecimenAnalyzer);
 
             var electronicsTab = rootNode.AddTabNode("Electronics", LanguageHelper.GetFriendlyWord("Electronics"), AssetsHelper.Assets.LoadAsset<Sprite>("computer3"));
@@ -165,14 +236,15 @@
             var toysTab = rootNode.AddTabNode("Toys", LanguageHelper.GetFriendlyWord("Toys"), SpriteManager.Get(TechType.ArcadeGorgetoy));
             toysTab.AddCraftingNode(TechType.StarshipSouvenir,
                                     TechType.ArcadeGorgetoy,
-                                    TechType.ToyCar,
-                                    DecorationItemsHelper.getTechType(decorationItems, "MarlaCat"));
-            if (!ItemTypeSwitcher.MarkiDoll1_asBuildable)
+                                    TechType.ToyCar);
+            if (!ConfigSwitcher.MarkiDoll1_asBuildable)
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarkiDoll1"));
-            if (!ItemTypeSwitcher.MarkiDoll2_asBuildable)
+            if (!ConfigSwitcher.MarkiDoll2_asBuildable)
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarkiDoll2"));
-            if (!ItemTypeSwitcher.JackSepticEye_asBuildable)
+            if (!ConfigSwitcher.JackSepticEye_asBuildable)
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "JackSepticEyeDoll"));
+            if (!ConfigSwitcher.EatMyDiction_asBuidable)
+                toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarlaCat"));
 
             var faunaTab = rootNode.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
             faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"));
@@ -226,14 +298,10 @@
             constructible.techType = DecorationsFabTechType; // This was necessary to correctly associate the recipe at building time
 
             // Set the custom texture
-            var coloredTexture = AssetsHelper.Assets.LoadAsset<Texture2D>("submarine_fabricator_purple");
-
-            var skinnedMeshRenderer = prefab.GetComponentInChildren<SkinnedMeshRenderer>();
+            Texture2D coloredTexture = AssetsHelper.Assets.LoadAsset<Texture2D>("submarine_fabricator_purple");
+            SkinnedMeshRenderer skinnedMeshRenderer = prefab.GetComponentInChildren<SkinnedMeshRenderer>();
             skinnedMeshRenderer.material.mainTexture = coloredTexture;
-
-            // Add a slight purple tint to the material for added effect
-            skinnedMeshRenderer.material.color = new Color(0.87f, 0.8f, 0.95f);
-
+            
             return prefab;
         }
     }

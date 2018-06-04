@@ -1,9 +1,5 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DecorationsFabricator
@@ -17,6 +13,9 @@ namespace DecorationsFabricator
 
         // This is used to know if we already registered our item in the game
         public bool IsRegistered = false;
+
+        // This is used to know if item appears in habitat builder menu
+        public bool IsHabitatBuilder = false;
 
         // The item class ID
         public string ClassID { get; set; }
@@ -46,39 +45,33 @@ namespace DecorationsFabricator
                 var placeTool = this.GameObject.GetComponent<PlaceTool>();
                 if (placeTool != null)
                 {
+                    placeTool.enabled = true;
+                    placeTool.allowedInBase = true;
+                    placeTool.allowedOnBase = true;
+                    placeTool.allowedOnCeiling = false;
+                    placeTool.allowedOnConstructable = true;
+                    placeTool.allowedOnRigidBody = true;
+                    placeTool.allowedOutside = false;
+                    placeTool.rotationEnabled = true;
+                    
                     if (this.TechType == TechType.Poster ||
                         this.TechType == TechType.PosterAurora ||
                         this.TechType == TechType.PosterExoSuit1 ||
                         this.TechType == TechType.PosterExoSuit2 ||
                         this.TechType == TechType.PosterKitty)
                     {
-                        placeTool.allowedInBase = true;
-                        placeTool.allowedOnBase = true;
-                        placeTool.allowedOnCeiling = false;
-                        placeTool.allowedOnConstructable = true;
                         placeTool.allowedOnGround = false;
-                        placeTool.allowedOnRigidBody = true;
                         placeTool.allowedOnWalls = true;
-                        placeTool.allowedOutside = false;
-                        placeTool.rotationEnabled = true;
-                        placeTool.enabled = true;
                         placeTool.hasAnimations = false;
                         placeTool.hasBashAnimation = false;
                         placeTool.hasFirstUseAnimation = false;
                     }
                     else
                     {
-                        placeTool.allowedInBase = true;
-                        placeTool.allowedOnBase = true;
-                        placeTool.allowedOnCeiling = false;
-                        placeTool.allowedOnConstructable = true;
                         placeTool.allowedOnGround = true;
-                        placeTool.allowedOnRigidBody = true;
                         placeTool.allowedOnWalls = false;
-                        placeTool.allowedOutside = false;
-                        placeTool.rotationEnabled = true;
-                        placeTool.enabled = true;
                     }
+
                 }
 
                 // Set the buildable prefab

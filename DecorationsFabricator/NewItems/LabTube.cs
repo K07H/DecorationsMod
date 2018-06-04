@@ -1,12 +1,7 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
-
-
 
 namespace DecorationsFabricator.NewItems
 {
@@ -56,27 +51,7 @@ namespace DecorationsFabricator.NewItems
                 // Remove rigid body to prevent bugs
                 var rb = this.GameObject.GetComponent<Rigidbody>();
                 GameObject.DestroyImmediate(rb);
-
-                /*
-                rb.useGravity = false;
-                rb.isKinematic = true;
-                rb.detectCollisions = false;
-                rb.mass = 80;
-                rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-                rb.constraints = RigidbodyConstraints.FreezePosition;
-                */
-                // Add world forces
-                /*
-                var forces = this.GameObject.AddComponent<WorldForces>();
-                forces.useRigidbody = rb;
-                forces.handleGravity = true;
-                forces.handleDrag = true;
-                forces.aboveWaterGravity = 9.81f;
-                forces.underwaterGravity = 1;
-                forces.aboveWaterDrag = 0.1f;
-                forces.underwaterDrag = 1;
-                */
-
+                
                 // Add box collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.5f, 2.5f, 0.5f);

@@ -1,9 +1,6 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DecorationsFabricator.NewItems
@@ -25,10 +22,9 @@ namespace DecorationsFabricator.NewItems
             this.Recipe = new TechDataHelper()
             {
                 _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[3]
+                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
                     {
-                        new IngredientHelper(TechType.ComputerChip, 1),
-                        new IngredientHelper(TechType.WiringKit, 1),
+                        new IngredientHelper(TechType.CopperWire, 1),
                         new IngredientHelper(TechType.Glass, 1)
                     }),
                 _techType = this.TechType
@@ -48,21 +44,8 @@ namespace DecorationsFabricator.NewItems
                 var rb = this.GameObject.GetComponent<Rigidbody>();
                 GameObject.DestroyImmediate(rb);
 
-                // Add world forces
-                /*
-                var forces = this.GameObject.AddComponent<WorldForces>();
-                forces.useRigidbody = rb;
-                forces.handleGravity = true;
-                forces.handleDrag = true;
-                forces.aboveWaterGravity = 9.81f;
-                forces.underwaterGravity = 1;
-                forces.aboveWaterDrag = 0.1f;
-                forces.underwaterDrag = 1;
-                */
-
                 // Get box collider
                 var collider = cube.GetComponent<BoxCollider>();
-                //collider.size = new Vector3(0.35f, 0.5f, 0.35f);
 
                 // We can pick this item
                 var pickupable = this.GameObject.AddComponent<Pickupable>();

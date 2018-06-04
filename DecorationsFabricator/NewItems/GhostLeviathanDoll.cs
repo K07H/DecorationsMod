@@ -1,9 +1,6 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DecorationsFabricator.NewItems
@@ -40,37 +37,20 @@ namespace DecorationsFabricator.NewItems
             if (this.IsRegistered == false)
             {
                 GameObject model = this.GameObject.FindChild("model");
-                /*
-                GameObject ghostLeviathanSubModel = model.FindChild("Ghost_Leviathan_anim");
-                GameObject ghostLeviathanSubSubModel = ghostLeviathanSubModel.FindChild("Ghost_Leviathan_geo");
-                */
 
                 // Scale
                 model.transform.localScale *= 0.47f;
 
                 // Rotate
                 model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x, model.transform.localEulerAngles.y + -25.0f, model.transform.localEulerAngles.z);
-
-                // Merge submeshes
-                /*
-                Mesh mesh = ghostLeviathanSubSubModel.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                mesh.SetTriangles(mesh.triangles, 0);
-                mesh.subMeshCount = 1;
-                */
-
+                
                 // Set tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
                 this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
-
-                // Add rigid body
-                /*
-                var rb = this.GameObject.AddComponent<Rigidbody>();
-                rb.mass = 10;
-                */
-
+                
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.7f, 0.08f, 0.08f);
@@ -84,19 +64,7 @@ namespace DecorationsFabricator.NewItems
                 var applier = this.GameObject.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
-
-                // Add world forces
-                /*
-                var forces = this.GameObject.AddComponent<WorldForces>();
-                forces.useRigidbody = rb;
-                forces.handleGravity = true;
-                forces.handleDrag = true;
-                forces.aboveWaterGravity = 9.81f;
-                forces.underwaterGravity = 1;
-                forces.aboveWaterDrag = 0.1f;
-                forces.underwaterDrag = 1;
-                */
-
+                
                 // We can pick this item
                 var pickupable = this.GameObject.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;

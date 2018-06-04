@@ -1,9 +1,6 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DecorationsFabricator.NewItems
@@ -17,11 +14,14 @@ namespace DecorationsFabricator.NewItems
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
-            if (ItemTypeSwitcher.MarkiDoll2_asBuildable)
+            if (ConfigSwitcher.MarkiDoll2_asBuildable)
+            {
                 this.TechType = TechTypePatcher.AddTechType(this.ClassID,
                                                             LanguageHelper.GetFriendlyWord("MarkiDollName"),
                                                             LanguageHelper.GetFriendlyWord("MarkiDollDescription"),
                                                             true);
+                this.IsHabitatBuilder = true;
+            }
             else
                 this.TechType = TechType.Marki2;
 
@@ -41,28 +41,53 @@ namespace DecorationsFabricator.NewItems
         {
             if (this.IsRegistered == false)
             {
-                if (ItemTypeSwitcher.MarkiDoll2_asBuildable)
+                if (ConfigSwitcher.MarkiDoll2_asBuildable)
                 {
                     // Add new TechType to the buildables
                     CraftDataPatcher.customBuildables.Add(this.TechType);
                     CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                    // Set the buildable prefab
+                    CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
                 }
                 else
                 {
+                    // Retrieve collider
+                    GameObject model = this.GameObject.FindChild("Marki_03");
+                    Collider collider = model.GetComponentInChildren<Collider>();
+
+                    // We can pick this item
+                    var pickupable = this.GameObject.AddComponent<Pickupable>();
+                    pickupable.isPickupable = true;
+                    pickupable.randomizeRotationWhenDropped = true;
+
+                    // We can place this item
+                    var placeTool = this.GameObject.AddComponent<PlaceTool>();
+                    placeTool.allowedInBase = true;
+                    placeTool.allowedOnBase = true;
+                    placeTool.allowedOnCeiling = false;
+                    placeTool.allowedOnConstructable = true;
+                    placeTool.allowedOnGround = true;
+                    placeTool.allowedOnRigidBody = true;
+                    placeTool.allowedOnWalls = false;
+                    placeTool.allowedOutside = false;
+                    placeTool.rotationEnabled = true;
+                    placeTool.enabled = true;
+                    placeTool.hasAnimations = false;
+                    placeTool.hasBashAnimation = false;
+                    placeTool.hasFirstUseAnimation = false;
+                    placeTool.mainCollider = collider;
+                    placeTool.pickupable = pickupable;
+
                     // Add the new TechType to the hand-equipments
                     CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
-                }
-
-                // Set the buildable prefab
-                if (ItemTypeSwitcher.MarkiDoll2_asBuildable)
-                    CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
-                else
+                    // Set the buildable prefab
                     CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
-
+                }
+                
                 // Set the custom icon
                 CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, SpriteManager.Get(TechType.Marki2)));
 
-                if (ItemTypeSwitcher.MarkiDoll2_asBuildable)
+                if (ConfigSwitcher.MarkiDoll2_asBuildable)
                 {
                     // Associate recipe to the new TechType
                     CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
@@ -78,35 +103,8 @@ namespace DecorationsFabricator.NewItems
 
             prefab.name = this.ClassID;
 
-            if (!ItemTypeSwitcher.MarkiDoll2_asBuildable)
+            if (!ConfigSwitcher.MarkiDoll2_asBuildable)
             {
-                // Retrieve collider
-                GameObject model = prefab.FindChild("Marki_03");
-                Collider collider = model.GetComponentInChildren<Collider>();
-
-                // We can pick this item
-                var pickupable = prefab.AddComponent<Pickupable>();
-                pickupable.isPickupable = true;
-                pickupable.randomizeRotationWhenDropped = true;
-
-                // We can place this item
-                var placeTool = prefab.AddComponent<PlaceTool>();
-                placeTool.allowedInBase = true;
-                placeTool.allowedOnBase = true;
-                placeTool.allowedOnCeiling = false;
-                placeTool.allowedOnConstructable = true;
-                placeTool.allowedOnGround = true;
-                placeTool.allowedOnRigidBody = true;
-                placeTool.allowedOnWalls = false;
-                placeTool.allowedOutside = false;
-                placeTool.rotationEnabled = true;
-                placeTool.enabled = true;
-                placeTool.hasAnimations = false;
-                placeTool.hasBashAnimation = false;
-                placeTool.hasFirstUseAnimation = false;
-                placeTool.mainCollider = collider;
-                placeTool.pickupable = pickupable;
-
                 // Add fabricating animation
                 var fabricating = prefab.FindChild("Marki_03").AddComponent<VFXFabricating>();
                 fabricating.localMinY = -0.1f;

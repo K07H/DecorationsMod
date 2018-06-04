@@ -16,26 +16,20 @@ namespace DecorationsFabricator
 
     public static class RegionHelper
     {
-        #region Constants
         private const int GEO_FRIENDLYNAME = 8;
-        #endregion
 
-        #region Private Enums
         private enum GeoClass : int
         {
             Nation = 16,
             Region = 14
         };
-        #endregion
 
-        #region Public Enums
         public enum CountryCode
         {
             EN = 0,
             FR = 1,
             ES = 2
         };
-        #endregion
 
         #region Win32 Declarations
         [DllImport("kernel32.dll", ExactSpelling = true, CallingConvention = CallingConvention.StdCall, SetLastError = true)]
@@ -47,14 +41,13 @@ namespace DecorationsFabricator
         [DllImport("kernel32.dll")]
         private static extern int GetGeoInfo(int geoid, int geoType, StringBuilder lpGeoData, int cchData, int langid);
         #endregion
-
-        #region Public Methods
+        
         /// <summary>
-        /// Returns machine country code.
+        /// Returns country code.
         /// </summary>
         public static CountryCode GetCountryCode()
         {
-            int geoId = GetUserGeoID(GeoClass.Nation); ;
+            int geoId = GetUserGeoID(GeoClass.Nation);
             int lcid = GetUserDefaultLCID();
             StringBuilder locationBuffer = new StringBuilder(100);
             GetGeoInfo(geoId, GEO_FRIENDLYNAME, locationBuffer, locationBuffer.Capacity, lcid);
@@ -73,6 +66,5 @@ namespace DecorationsFabricator
             }
             return CountryCode.EN;
         }
-        #endregion
     }
 }

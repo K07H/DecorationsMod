@@ -1,9 +1,6 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DecorationsFabricator.NewItems
@@ -49,13 +46,7 @@ namespace DecorationsFabricator.NewItems
 
                 // Add prefab identifier
                 this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
-
-                // Add rigid body
-                /*
-                var rb = this.GameObject.AddComponent<Rigidbody>();
-                rb.mass = 10;
-                */
-
+                
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.8f, 0.5f, 0.5f);
@@ -79,19 +70,7 @@ namespace DecorationsFabricator.NewItems
                 var applier = this.GameObject.AddComponent<SkyApplier>();
                 applier.renderers = new Renderer[] { rend };
                 applier.anchorSky = Skies.Auto;
-
-                // Add world forces
-                /*
-                var forces = this.GameObject.AddComponent<WorldForces>();
-                forces.useRigidbody = rb;
-                forces.handleGravity = true;
-                forces.handleDrag = true;
-                forces.aboveWaterGravity = 9.81f;
-                forces.underwaterGravity = 1;
-                forces.aboveWaterDrag = 0.1f;
-                forces.underwaterDrag = 1;
-                */
-
+                
                 // We can pick this item
                 var pickupable = this.GameObject.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;

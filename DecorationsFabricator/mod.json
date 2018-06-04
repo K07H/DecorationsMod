@@ -1,8 +1,8 @@
 {
   "Id": "DecorationsFabricator",
   "DisplayName": "DecorationsFabricator",
-  "Author": "Mangem0rt",
-  "Version": "1.0.0",
+  "Author": "DuckFat",
+  "Version": "1.0.3",
   "Requires": [ ],
   "Enable": true,
   "AssemblyName": "DecorationsFabricator.dll",

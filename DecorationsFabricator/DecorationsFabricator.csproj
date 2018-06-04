@@ -11,6 +11,7 @@
     <AssemblyName>DecorationsFabricator</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +38,7 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
@@ -97,6 +99,9 @@
     <None Include="Assets\decorationassets.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Config.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="mod.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -110,6 +115,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsFabricator\" /Y
+xcopy "$(TargetDir)mod.json" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsFabricator\" /Y
+xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsFabricator\" /Y
 xcopy "$(TargetDir)SMLHelper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\" /Y
 xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsFabricator\Assets\" /Y
 xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsFabricator\Assets\" /Y

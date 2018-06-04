@@ -1,9 +1,6 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DecorationsFabricator.NewItems
@@ -28,7 +25,7 @@ namespace DecorationsFabricator.NewItems
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
                     {
                         new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.CopperWire, 1)
+                        new IngredientHelper(TechType.Copper, 1)
                     }),
                 _techType = this.TechType
             };
@@ -38,30 +35,20 @@ namespace DecorationsFabricator.NewItems
         {
             if (this.IsRegistered == false)
             {
+                // Remove Cube object to prevent physics bugs
                 GameObject cube = this.GameObject.FindChild("Cube");
+                GameObject.DestroyImmediate(cube);
 
                 // Update TechTag
                 this.GameObject.GetComponent<TechTag>().type = this.TechType;
 
-                // Remove rigid body to prevent bugs
+                // Remove rigid body to prevent physics bugs
                 var rb = this.GameObject.GetComponent<Rigidbody>();
                 GameObject.DestroyImmediate(rb);
-
-                // Add world forces
-                /*
-                var forces = this.GameObject.AddComponent<WorldForces>();
-                forces.useRigidbody = rb;
-                forces.handleGravity = true;
-                forces.handleDrag = true;
-                forces.aboveWaterGravity = 9.81f;
-                forces.underwaterGravity = 1;
-                forces.aboveWaterDrag = 0.1f;
-                forces.underwaterDrag = 1;
-                */
-
+                
                 // Get box collider
-                var collider = cube.GetComponent<BoxCollider>();
-                //collider.size = new Vector3(0.35f, 0.5f, 0.35f);
+                var collider = this.GameObject.AddComponent<BoxCollider>();
+                collider.size = new Vector3(0.6f, 0.6f, 0.08f);
 
                 // We can pick this item
                 var pickupable = this.GameObject.AddComponent<Pickupable>();

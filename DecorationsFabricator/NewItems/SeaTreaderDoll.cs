@@ -1,9 +1,6 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DecorationsFabricator.NewItems
@@ -39,29 +36,25 @@ namespace DecorationsFabricator.NewItems
         {
             if (this.IsRegistered == false)
             {
-                GameObject treaderModel = this.GameObject.FindChild("Sea_Treader");
-                GameObject treaderSubModel = treaderModel.FindChild("Sea_Treader_Geo");
-                GameObject treaderSubSubModel1 = treaderSubModel.FindChild("Sea_Treader 1");
-                GameObject treaderSubSubModel2 = treaderSubModel.FindChild("Sea_Treader_LOD1");
-                GameObject treaderSubSubModel3 = treaderSubModel.FindChild("Sea_Treader_LOD2");
-                GameObject treaderSubSubModel4 = treaderSubModel.FindChild("Sea_Treader_LOD3");
-
                 // Scale model
+                GameObject treaderModel = this.GameObject.FindChild("Sea_Treader");
                 treaderModel.transform.localScale *= 0.8f;
 
                 // Merge submeshes
-                Mesh treaderMesh1 = treaderSubSubModel1.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                treaderMesh1.SetTriangles(treaderMesh1.triangles, 0);
-                treaderMesh1.subMeshCount = 1;
-                Mesh treaderMesh2 = treaderSubSubModel2.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                treaderMesh2.SetTriangles(treaderMesh2.triangles, 0);
-                treaderMesh2.subMeshCount = 1;
-                Mesh treaderMesh3 = treaderSubSubModel3.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                treaderMesh3.SetTriangles(treaderMesh3.triangles, 0);
-                treaderMesh3.subMeshCount = 1;
-                Mesh treaderMesh4 = treaderSubSubModel4.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                treaderMesh4.SetTriangles(treaderMesh4.triangles, 0);
-                treaderMesh4.subMeshCount = 1;
+                GameObject treaderSubModel = treaderModel.FindChild("Sea_Treader_Geo");
+                List<GameObject> subModels = new List<GameObject>(new GameObject[4]
+                    {
+                        treaderSubModel.FindChild("Sea_Treader 1"),
+                        treaderSubModel.FindChild("Sea_Treader_LOD1"),
+                        treaderSubModel.FindChild("Sea_Treader_LOD2"),
+                        treaderSubModel.FindChild("Sea_Treader_LOD3")
+                    });
+                foreach (GameObject subModel in subModels)
+                {
+                    Mesh treaderMesh = subModel.GetComponent<SkinnedMeshRenderer>().sharedMesh;
+                    treaderMesh.SetTriangles(treaderMesh.triangles, 0);
+                    treaderMesh.subMeshCount = 1;
+                }
                 
                 // Set tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
@@ -69,13 +62,7 @@ namespace DecorationsFabricator.NewItems
 
                 // Add prefab identifier
                 this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
-
-                // Add rigid body
-                /*
-                var rb = this.GameObject.AddComponent<Rigidbody>();
-                rb.mass = 10;
-                */
-
+                
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.8f, 0.5f, 0.5f);
@@ -105,19 +92,7 @@ namespace DecorationsFabricator.NewItems
                 var applier = this.GameObject.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
-
-                // Add world forces
-                /*
-                var forces = this.GameObject.AddComponent<WorldForces>();
-                forces.useRigidbody = rb;
-                forces.handleGravity = true;
-                forces.handleDrag = true;
-                forces.aboveWaterGravity = 9.81f;
-                forces.underwaterGravity = 1;
-                forces.aboveWaterDrag = 0.1f;
-                forces.underwaterDrag = 1;
-                */
-
+                
                 // We can pick this item
                 var pickupable = this.GameObject.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;

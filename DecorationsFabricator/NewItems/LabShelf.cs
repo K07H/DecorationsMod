@@ -1,9 +1,6 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DecorationsFabricator.NewItems
@@ -55,25 +52,6 @@ namespace DecorationsFabricator.NewItems
                 // Remove rigid body to prevent bugs
                 var rb = this.GameObject.GetComponent<Rigidbody>();
                 GameObject.DestroyImmediate(rb);
-                /*
-                rb.detectCollisions = false;
-                rb.constraints = RigidbodyConstraints.None;
-                rb.isKinematic = true;
-                rb.mass = 60;
-                rb.useGravity = false;
-                rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-                */
-                // Add world forces
-                /*
-                var forces = this.GameObject.AddComponent<WorldForces>();
-                forces.useRigidbody = rb;
-                forces.handleGravity = true;
-                forces.handleDrag = true;
-                forces.aboveWaterGravity = 9.81f;
-                forces.underwaterGravity = 1;
-                forces.aboveWaterDrag = 0.1f;
-                forces.underwaterDrag = 1;
-                */
 
                 // Add box collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
@@ -124,7 +102,6 @@ namespace DecorationsFabricator.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
-            //GameObject model = prefab.FindChild("biodome_lab_shelf_01");
 
             // Add fabricating animation
             var fabricating = prefab.AddComponent<VFXFabricating>();
