@@ -78,7 +78,8 @@ namespace DecorationsFabricator
                 CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
 
                 // Associate new recipe
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                if (this.Recipe != null)
+                    CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
 
                 this.IsRegistered = true;
             }

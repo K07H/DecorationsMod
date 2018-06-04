@@ -154,9 +154,10 @@ namespace DecorationsFabricator
             {
                 DecorationItem existingItem = (DecorationItem)(Activator.CreateInstance(existingItemType));
                 existingItem.RegisterItem();
+                KnownTechPatcher.unlockedAtStart.Add(existingItem.TechType);
                 result.Add(existingItem);
             }
-            
+
             // Get the list of new items
             var newItems = from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() 
                            where t.IsClass && t.Namespace == "DecorationsFabricator.NewItems" 
@@ -256,6 +257,7 @@ namespace DecorationsFabricator
 
             var accessoriesTab = rootNode.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));
             accessoriesTab.AddCraftingNode(TechType.LuggageBag);
+            accessoriesTab.AddCraftingNode(TechType.NutrientBlock);
 
             return rootNode;
         }

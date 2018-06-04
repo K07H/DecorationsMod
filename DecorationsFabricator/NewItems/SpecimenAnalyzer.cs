@@ -27,8 +27,11 @@ namespace DecorationsFabricator.NewItems
                 this.IsHabitatBuilder = true;
             }
             else
+            {
                 this.TechType = TechType.SpecimenAnalyzer;
-            
+                KnownTechPatcher.unlockedAtStart.Add(this.TechType);
+            }
+
             this.Recipe = new TechDataHelper()
             {
                 _craftAmount = 1,

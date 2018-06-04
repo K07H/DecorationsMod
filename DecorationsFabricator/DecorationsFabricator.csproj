@@ -50,6 +50,7 @@
     <Compile Include="ExistingItems\ArcadeGorgetoy.cs" />
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
+    <Compile Include="NewItems\NutrientBlock.cs" />
     <Compile Include="NewItems\EatMyDiction.cs" />
     <Compile Include="ExistingItems\LabContainer1.cs" />
     <Compile Include="ExistingItems\LabContainer2.cs" />

@@ -23,9 +23,12 @@ namespace DecorationsFabricator.NewItems
                 this.IsHabitatBuilder = true;
             }
             else
+            {
                 this.TechType = TechType.EatMyDiction;
+                KnownTechPatcher.unlockedAtStart.Add(this.TechType);
+            }
 
-            this.Recipe = new TechDataHelper()
+                this.Recipe = new TechDataHelper()
             {
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[1]
@@ -49,31 +52,6 @@ namespace DecorationsFabricator.NewItems
                 }
                 else
                 {
-                    /*
-                    // Add TechTag
-                    TechTag techTag = this.GameObject.AddComponent<TechTag>();
-                    techTag.name = LanguageHelper.GetFriendlyWord("MarlaCatName");
-                    techTag.type = this.TechType;
-
-                    // Add rigid body
-                    var rb = this.GameObject.AddComponent<Rigidbody>();
-                    rb.mass = 10;
-                    rb.isKinematic = false;
-                    rb.detectCollisions = true;
-                    rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-                    rb.constraints = RigidbodyConstraints.FreezePosition;
-
-                    // Add world forces
-                    var forces = this.GameObject.AddComponent<WorldForces>();
-                    forces.useRigidbody = rb;
-                    forces.handleGravity = true;
-                    forces.handleDrag = true;
-                    forces.aboveWaterGravity = 9.81f;
-                    forces.underwaterGravity = 1;
-                    forces.aboveWaterDrag = 0.1f;
-                    forces.underwaterDrag = 1;
-                    */
-
                     // Add box collider
                     var collider = this.GameObject.AddComponent<BoxCollider>();
                     collider.size = new Vector3(0.5f, 0.5f, 0.5f);
