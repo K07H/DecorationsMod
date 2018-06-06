@@ -1,5 +1,5 @@
-# Decorations Fabricator Mod
-A decorations fabricator for Subnautica...
+# Decorations Mod
+A decorations mod for Subnautica...
 
 
 Requires QMods and SMLHelper.
