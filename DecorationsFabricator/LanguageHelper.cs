@@ -124,11 +124,11 @@
                         return "Tubular shelves for storing samples.";
                 case "LabCartName":
                     if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
-                        return "Chariot de laboratoire";
+                        return "Chariot de laboratoire (non-fonctionnel)";
                     else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
-                        return "Carro de laboratorio";
+                        return "Carro de laboratorio (no-funcional)";
                     else
-                        return "Lab cart";
+                        return "Lab cart (non-functional)";
                 case "LabCartDescription":
                     if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
                         return "Un chariot à échantillons de laboratoire.";
@@ -376,6 +376,48 @@
                         return "Esta muñeca portarrecifes leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else
                         return "This reefback leviathan doll was created from observations made on 4546B.";
+                case "CuddleFishDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Poupée de câlineur";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Muñeca pez monada";
+                    else
+                        return "Cuddlefish doll";
+                case "CuddleFishDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Cette poupée de câlineur a été créée à partir des observations faites sur 4546B.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Esta muñeca pez monada fue creada a partir de observaciones hechas en 4546B.";
+                    else
+                        return "This cuddlefish doll was created from observations made on 4546B.";
+                case "ReactorLampName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Lampe";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Lámpara";
+                    else
+                        return "Lamp";
+                case "ReactorLampDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Une lampe faite à partir d'un conteneur de barre de réacteur. Manipuler avec précaution.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una lámpara hecha de un contenedor de barra de reactor. Manipule con cuidado.";
+                    else
+                        return "A lamp made from a reactor rod container. Handle with care.";
+                case "SeamothDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Poupée de seamoth";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Muñeca seamoth";
+                    else
+                        return "Seamoth doll";
+                case "SeamothDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Une miniature décorative du seamoth.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una miniatura decorativa de seamoth.";
+                    else
+                        return "A decorative miniature of the seamoth.";
                 default:
                     return "?";
             }

@@ -184,6 +184,17 @@ namespace DecorationsFabricator
                 }
             }
 
+            // Register lamp tooltip
+            LanguagePatcher.customLines.Add("ToggleLamp", "Adjust light range" + Environment.NewLine + 
+                                                          "(Hold 'I' to change intensity)" + Environment.NewLine +
+                                                          "(Hold 'R' to change red levels)" + Environment.NewLine +
+                                                          "(Hold 'G' to change green levels)" + Environment.NewLine +
+                                                          "(Hold 'B' to change blue levels)" + Environment.NewLine +
+                                                          "(Hold 'E' to change rod color)");
+
+            // Register seamoth doll tooltip
+            LanguagePatcher.customLines.Add("SwitchSeamothModel", "Switch model");
+
             return result;
         }
 
@@ -227,17 +238,25 @@ namespace DecorationsFabricator
 
             var circuitBoxesTab = electronicsTab.AddTabNode("CircuitBoxes", LanguageHelper.GetFriendlyWord("CircuitBoxes"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox3"));
             circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1"),
+                                            DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1b"),
                                             DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2"),
-                                            DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3"));
-
-            var capsTab = rootNode.AddTabNode("Caps", LanguageHelper.GetFriendlyWord("Caps"), SpriteManager.Get(TechType.Cap2));
-            capsTab.AddCraftingNode(TechType.Cap1,
-                                    TechType.Cap2);
+                                            DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2b"),
+                                            DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2c"),
+                                            DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2d"),
+                                            DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3"),
+                                            DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3b"),
+                                            DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3c"),
+                                            DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3d"));
+            
+            var caps = rootNode.AddTabNode("Caps", LanguageHelper.GetFriendlyWord("Caps"), SpriteManager.Get(TechType.Cap1));
+            caps.AddCraftingNode(TechType.Cap1,
+                                 TechType.Cap2);
 
             var toysTab = rootNode.AddTabNode("Toys", LanguageHelper.GetFriendlyWord("Toys"), SpriteManager.Get(TechType.ArcadeGorgetoy));
             toysTab.AddCraftingNode(TechType.StarshipSouvenir,
                                     TechType.ArcadeGorgetoy,
-                                    TechType.ToyCar);
+                                    TechType.ToyCar,
+                                    DecorationItemsHelper.getTechType(decorationItems, "CuddleFishDoll"));
             if (!ConfigSwitcher.MarkiDoll1_asBuildable)
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarkiDoll1"));
             if (!ConfigSwitcher.MarkiDoll2_asBuildable)
@@ -248,17 +267,17 @@ namespace DecorationsFabricator
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarlaCat"));
 
             var faunaTab = rootNode.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
-            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"));
-            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll"));
-            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReaperLeviathanDoll"));
-            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GhostLeviathanDoll"));
-            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaDragonDoll"));
-            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll"));
-
+            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "ReaperLeviathanDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "GhostLeviathanDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "SeaDragonDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll"));
+            
             var accessoriesTab = rootNode.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));
-            accessoriesTab.AddCraftingNode(TechType.LuggageBag);
-            accessoriesTab.AddCraftingNode(TechType.NutrientBlock);
-
+            accessoriesTab.AddCraftingNode(TechType.LuggageBag,
+                                           TechType.NutrientBlock);
+            
             return rootNode;
         }
         

@@ -2,7 +2,7 @@
   "Id": "DecorationsFabricator",
   "DisplayName": "DecorationsFabricator",
   "Author": "DuckFat",
-  "Version": "1.0.4",
+  "Version": "1.0.6",
   "Requires": [ ],
   "Enable": true,
   "AssemblyName": "DecorationsFabricator.dll",

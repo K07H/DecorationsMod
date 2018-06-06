@@ -50,6 +50,16 @@
     <Compile Include="ExistingItems\ArcadeGorgetoy.cs" />
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
+    <Compile Include="NewItems\SeamothDoll.cs" />
+    <Compile Include="ReactorLampBrightness.cs" />
+    <Compile Include="NewItems\CircuitBox1b.cs" />
+    <Compile Include="NewItems\CircuitBox2b.cs" />
+    <Compile Include="NewItems\CircuitBox2c.cs" />
+    <Compile Include="NewItems\CircuitBox2d.cs" />
+    <Compile Include="NewItems\CircuitBox3b.cs" />
+    <Compile Include="NewItems\CircuitBox3c.cs" />
+    <Compile Include="NewItems\CircuitBox3d.cs" />
+    <Compile Include="NewItems\CuddleFishDoll.cs" />
     <Compile Include="NewItems\NutrientBlock.cs" />
     <Compile Include="NewItems\EatMyDiction.cs" />
     <Compile Include="ExistingItems\LabContainer1.cs" />
@@ -73,6 +83,7 @@
     <Compile Include="NewItems\Marki1.cs" />
     <Compile Include="NewItems\Marki2.cs" />
     <Compile Include="NewItems\ReaperLeviathanDoll.cs" />
+    <Compile Include="NewItems\ReactorLamp.cs" />
     <Compile Include="NewItems\ReefBackDoll.cs" />
     <Compile Include="NewItems\SeaDragonDoll.cs" />
     <Compile Include="NewItems\SeaTreaderDoll.cs" />
@@ -91,6 +102,7 @@
     <Compile Include="PlaceToolItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QPatch.cs" />
+    <Compile Include="SeamothDollControler.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,10 +113,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="Config.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="mod.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

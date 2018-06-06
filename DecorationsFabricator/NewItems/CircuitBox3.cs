@@ -37,41 +37,50 @@ namespace DecorationsFabricator.NewItems
             {
                 // Remove Cube object to prevent physics bugs
                 GameObject cube = this.GameObject.FindChild("Cube");
-                GameObject.DestroyImmediate(cube);
-
-                // Update TechTag
-                this.GameObject.GetComponent<TechTag>().type = this.TechType;
-
+                if (cube != null)
+                    GameObject.DestroyImmediate(cube);
+                
                 // Remove rigid body to prevent physics bugs
                 var rb = this.GameObject.GetComponent<Rigidbody>();
-                GameObject.DestroyImmediate(rb);
-                
+                if (rb != null)
+                    GameObject.DestroyImmediate(rb);
+
                 // Get box collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = this.GameObject.GetComponent<BoxCollider>();
+                if (collider == null)
+                    collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.6f, 0.6f, 0.08f);
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
-                pickupable.isPickupable = true;
-                pickupable.randomizeRotationWhenDropped = true;
+                var pickupable = this.GameObject.GetComponent<Pickupable>();
+                if (pickupable == null)
+                {
+                    pickupable = this.GameObject.AddComponent<Pickupable>();
+                    pickupable.isPickupable = true;
+                    pickupable.randomizeRotationWhenDropped = true;
+                }
 
                 // We can place this item
-                var placeTool = this.GameObject.AddComponent<PlaceTool>();
-                placeTool.allowedInBase = true;
-                placeTool.allowedOnBase = true;
-                placeTool.allowedOnCeiling = false;
-                placeTool.allowedOnConstructable = true;
-                placeTool.allowedOnGround = true;
-                placeTool.allowedOnRigidBody = true;
-                placeTool.allowedOnWalls = true;
-                placeTool.allowedOutside = false;
-                placeTool.rotationEnabled = true;
-                placeTool.enabled = true;
-                placeTool.hasAnimations = false;
-                placeTool.hasBashAnimation = false;
-                placeTool.hasFirstUseAnimation = false;
-                placeTool.mainCollider = collider;
-                placeTool.pickupable = pickupable;
+                var placeTool = this.GameObject.GetComponent<PlaceTool>();
+                if (placeTool == null)
+                {
+                    placeTool = this.GameObject.AddComponent<PlaceTool>();
+                    placeTool.allowedInBase = true;
+                    placeTool.allowedOnBase = true;
+                    placeTool.allowedOnCeiling = false;
+                    placeTool.allowedOnConstructable = true;
+                    placeTool.allowedOnGround = true;
+                    placeTool.allowedOnRigidBody = true;
+                    placeTool.allowedOnWalls = true;
+                    placeTool.allowedOutside = false;
+                    placeTool.rotationEnabled = true;
+                    placeTool.enabled = true;
+                    placeTool.hasAnimations = false;
+                    placeTool.hasBashAnimation = false;
+                    placeTool.hasFirstUseAnimation = false;
+                    placeTool.mainCollider = collider;
+                    placeTool.pickupable = pickupable;
+                }
 
                 // Add the new TechType to the hand-equipments
                 CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
@@ -93,12 +102,15 @@ namespace DecorationsFabricator.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
+            // Update TechTag
+            prefab.GetComponent<TechTag>().type = this.TechType;
+            
             // Add fabricating animation
             var fabricating = prefab.AddComponent<VFXFabricating>();
-            fabricating.localMinY = -0.2f;
-            fabricating.localMaxY = 0.9f;
-            fabricating.posOffset = new Vector3(-0.16f, 0.125f, 0.04f);
-            fabricating.eulerOffset = new Vector3(0f, 0f, 180f);
+            fabricating.localMinY = -0.46f;
+            fabricating.localMaxY = 0.5f;
+            fabricating.posOffset = new Vector3(0.16f, 0.46f, 0.04f);
+            fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricating.scaleFactor = 0.6f;
 
             return prefab;

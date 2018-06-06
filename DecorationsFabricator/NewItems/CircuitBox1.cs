@@ -36,25 +36,26 @@ namespace DecorationsFabricator.NewItems
             if (this.IsRegistered == false)
             {
                 GameObject cube = this.GameObject.FindChild("Cube");
-
-                // Update TechTag
-                this.GameObject.GetComponent<TechTag>().type = this.TechType;
-
+                
                 // Remove rigid body to prevent bugs
                 var rb = this.GameObject.GetComponent<Rigidbody>();
-                GameObject.DestroyImmediate(rb);
+                if (rb != null)
+                    GameObject.DestroyImmediate(rb);
                 
                 // Get box collider
                 var collider = cube.GetComponent<BoxCollider>();
-                //collider.size = new Vector3(0.35f, 0.5f, 0.35f);
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = this.GameObject.GetComponent<Pickupable>();
+                if (pickupable == null)
+                    pickupable = this.GameObject.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                var placeTool = this.GameObject.AddComponent<PlaceTool>();
+                var placeTool = this.GameObject.GetComponent<PlaceTool>();
+                if (placeTool == null)
+                    placeTool = this.GameObject.AddComponent<PlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = true;
                 placeTool.allowedOnCeiling = false;
@@ -90,6 +91,9 @@ namespace DecorationsFabricator.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
+
+            // Update TechTag
+            prefab.GetComponent<TechTag>().type = this.TechType;
 
             // Add fabricating animation
             var fabricating = prefab.AddComponent<VFXFabricating>();

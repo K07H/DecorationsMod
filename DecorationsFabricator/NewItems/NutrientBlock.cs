@@ -22,9 +22,6 @@ namespace DecorationsFabricator.NewItems
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[4]
                     {
-                        /* new IngredientHelper(TechType.JellyPlant, 1),
-                        new IngredientHelper(TechType.KooshChunk, 1),
-                        new IngredientHelper(TechType.CreepvinePiece, 1), */
                         new IngredientHelper(TechType.Melon, 1),
                         new IngredientHelper(TechType.HangingFruit, 1),
                         new IngredientHelper(TechType.PurpleVegetable, 1),
@@ -81,11 +78,15 @@ namespace DecorationsFabricator.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
+            // Translate
+            GameObject model = this.GameObject.FindChild("Nutrient_block");
+            model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.06f, model.transform.localPosition.z);
+
             // Add fabricating animation
             var fabricating = prefab.FindChild("Nutrient_block").AddComponent<VFXFabricating>();
-            fabricating.localMinY = -0.1f;
+            fabricating.localMinY = -0.2f;
             fabricating.localMaxY = 0.4f;
-            fabricating.posOffset = new Vector3(0f, 0.1f, 0.04f);
+            fabricating.posOffset = new Vector3(0f, 0.12f, 0.04f);
             fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricating.scaleFactor = 0.8f;
 
