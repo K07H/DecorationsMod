@@ -41,6 +41,7 @@ namespace DecorationsFabricator
 
         public void OnHandHover(GUIHand hand)
         {
+            if (!enabled)
                 return;
 
             var reticle = HandReticle.main;
