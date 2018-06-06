@@ -1,11 +1,11 @@
 {
-  "Id": "DecorationsFabricator",
-  "DisplayName": "DecorationsFabricator",
+  "Id": "DecorationsMod",
+  "DisplayName": "DecorationsMod",
   "Author": "DuckFat",
-  "Version": "1.0.6",
+  "Version": "1.0.7",
   "Requires": [ ],
   "Enable": true,
-  "AssemblyName": "DecorationsFabricator.dll",
-  "EntryMethod": "DecorationsFabricator.QPatch.Patch",
+  "AssemblyName": "DecorationsMod.dll",
+  "EntryMethod": "DecorationsMod.QPatch.Patch",
   "Config": {}
 }

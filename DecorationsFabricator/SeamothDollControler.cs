@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace DecorationsFabricator
+namespace DecorationsMod
 {
     public class SeamothDollControler : HandTarget, IHandTarget
     {

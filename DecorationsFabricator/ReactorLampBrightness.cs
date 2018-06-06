@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 
-namespace DecorationsFabricator
+namespace DecorationsMod
 {
     public class ReactorLampBrightness : HandTarget, IHandTarget
     {

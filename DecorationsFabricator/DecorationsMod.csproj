@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DecorationsMod</RootNamespace>
+    <AssemblyName>DecorationsMod</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssetsHelper.cs" />
+    <Compile Include="DecorationsFabricatorModule.cs" />
+    <Compile Include="DecorationItem.cs" />
+    <Compile Include="ExistingItems\ArcadeGorgetoy.cs" />
+    <Compile Include="ExistingItems\Cap1.cs" />
+    <Compile Include="ExistingItems\Cap2.cs" />
+    <Compile Include="NewItems\SeamothDoll.cs" />
+    <Compile Include="ReactorLampBrightness.cs" />
+    <Compile Include="NewItems\CircuitBox1b.cs" />
+    <Compile Include="NewItems\CircuitBox2b.cs" />
+    <Compile Include="NewItems\CircuitBox2c.cs" />
+    <Compile Include="NewItems\CircuitBox2d.cs" />
+    <Compile Include="NewItems\CircuitBox3b.cs" />
+    <Compile Include="NewItems\CircuitBox3c.cs" />
+    <Compile Include="NewItems\CircuitBox3d.cs" />
+    <Compile Include="NewItems\CuddleFishDoll.cs" />
+    <Compile Include="NewItems\NutrientBlock.cs" />
+    <Compile Include="NewItems\EatMyDiction.cs" />
+    <Compile Include="ExistingItems\LabContainer1.cs" />
+    <Compile Include="ExistingItems\LabContainer2.cs" />
+    <Compile Include="ExistingItems\LabContainer3.cs" />
+    <Compile Include="ExistingItems\LabEquipment1.cs" />
+    <Compile Include="ExistingItems\LabEquipment2.cs" />
+    <Compile Include="ExistingItems\LabEquipment3.cs" />
+    <Compile Include="ExistingItems\LuggageBag.cs" />
+    <Compile Include="ExistingItems\PosterAurora.cs" />
+    <Compile Include="ExistingItems\PosterExosuit1.cs" />
+    <Compile Include="ExistingItems\PosterExosuit2.cs" />
+    <Compile Include="ExistingItems\PosterKitty.cs" />
+    <Compile Include="ExistingItems\PosterNS2.cs" />
+    <Compile Include="NewItems\CircuitBox1.cs" />
+    <Compile Include="NewItems\CircuitBox2.cs" />
+    <Compile Include="NewItems\CircuitBox3.cs" />
+    <Compile Include="NewItems\GhostLeviathanDoll.cs" />
+    <Compile Include="NewItems\JackSepticEye.cs" />
+    <Compile Include="NewItems\LabShelf.cs" />
+    <Compile Include="NewItems\Marki1.cs" />
+    <Compile Include="NewItems\Marki2.cs" />
+    <Compile Include="NewItems\ReaperLeviathanDoll.cs" />
+    <Compile Include="NewItems\ReactorLamp.cs" />
+    <Compile Include="NewItems\ReefBackDoll.cs" />
+    <Compile Include="NewItems\SeaDragonDoll.cs" />
+    <Compile Include="NewItems\SeaTreaderDoll.cs" />
+    <Compile Include="NewItems\SpecimenAnalyzer.cs" />
+    <Compile Include="ExistingItems\StarshipSouvenir.cs" />
+    <Compile Include="ExistingItems\ToyCar.cs" />
+    <Compile Include="LanguageHelper.cs" />
+    <Compile Include="NewItems\LabCart.cs" />
+    <Compile Include="NewItems\LabContainer4.cs" />
+    <Compile Include="NewItems\LabTube.cs" />
+    <Compile Include="NewItems\SeaEmperorDoll.cs" />
+    <Compile Include="DecorationItemsHelper.cs" />
+    <Compile Include="NewItems\WallMonitor1.cs" />
+    <Compile Include="NewItems\WallMonitor2.cs" />
+    <Compile Include="NewItems\WallMonitor3.cs" />
+    <Compile Include="PlaceToolItems.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QPatch.cs" />
+    <Compile Include="SeamothDollControler.cs" />
+    <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\decorationassets.assets">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\decorationassets.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Config.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="mod.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SMLHelper\SMLHelper\SMLHelper.csproj">
+      <Project>{418502dd-372d-4ef9-8021-b262552dfede}</Project>
+      <Name>SMLHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+xcopy "$(TargetDir)mod.json" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+xcopy "$(TargetDir)SMLHelper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\" /Y
+xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

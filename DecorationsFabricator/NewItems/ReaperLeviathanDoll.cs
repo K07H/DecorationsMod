@@ -3,7 +3,7 @@ using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DecorationsFabricator.NewItems
+namespace DecorationsMod.NewItems
 {
     public class ReaperLeviathanDoll : DecorationItem
     {

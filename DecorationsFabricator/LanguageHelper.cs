@@ -1,4 +1,4 @@
-﻿namespace DecorationsFabricator
+﻿namespace DecorationsMod
 {
     public static class LanguageHelper
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DecorationsFabricator.ExistingItems
+namespace DecorationsMod.ExistingItems
 {
     public class Cap2 : DecorationItem
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace DecorationsFabricator.NewItems
+namespace DecorationsMod.NewItems
 {
     public class CircuitBox2c : DecorationItem
     {

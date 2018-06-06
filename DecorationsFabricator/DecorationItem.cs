@@ -2,7 +2,7 @@
 using SMLHelper.Patchers;
 using UnityEngine;
 
-namespace DecorationsFabricator
+namespace DecorationsMod
 {
     public abstract class DecorationItem
     {

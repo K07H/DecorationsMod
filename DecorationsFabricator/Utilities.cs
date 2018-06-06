@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace DecorationsFabricator
+namespace DecorationsMod
 {
     internal static class Logger
     {
@@ -10,7 +10,7 @@ namespace DecorationsFabricator
         {
             if (args != null && args.Length > 0)
                 text = string.Format(text, args);
-            Console.WriteLine($"[DecorationsFabricatorMod] {text}");
+            Console.WriteLine($"[DecorationsMod] {text}");
         }
     }
 

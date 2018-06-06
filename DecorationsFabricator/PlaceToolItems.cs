@@ -2,7 +2,7 @@
 using SMLHelper.Patchers;
 using System.Collections.Generic;
 
-namespace DecorationsFabricator
+namespace DecorationsMod
 {
     public static class PlaceToolItems
     {

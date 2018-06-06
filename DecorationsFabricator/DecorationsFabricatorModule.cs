@@ -7,7 +7,7 @@ using SMLHelper;
 using SMLHelper.Patchers;
 using UnityEngine;
 
-namespace DecorationsFabricator
+namespace DecorationsMod
 {
     public static class ConfigSwitcher
     {
@@ -146,7 +146,7 @@ namespace DecorationsFabricator
 
             // Get the list of modified existing items
             var existingItems = from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() 
-                                where t.IsClass && t.Namespace == "DecorationsFabricator.ExistingItems" 
+                                where t.IsClass && t.Namespace == "DecorationsMod.ExistingItems" 
                                 select t;
             
             // Register modified existing items
@@ -160,7 +160,7 @@ namespace DecorationsFabricator
 
             // Get the list of new items
             var newItems = from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() 
-                           where t.IsClass && t.Namespace == "DecorationsFabricator.NewItems" 
+                           where t.IsClass && t.Namespace == "DecorationsMod.NewItems" 
                            select t;
 
             // Register new items
