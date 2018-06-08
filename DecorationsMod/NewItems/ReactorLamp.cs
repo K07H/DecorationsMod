@@ -47,16 +47,7 @@ namespace DecorationsMod.NewItems
 
                 // Move model
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.1f, model.transform.localPosition.z);
-
-                // Add rigid body
-                /*
-                var rb = this.GameObject.AddComponent<Rigidbody>();
-                rb.isKinematic = true;
-                rb.detectCollisions = false;
-                rb.useGravity = true;
-                rb.mass = 10;
-                */
-
+                
                 // Add prefab identifier
                 var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
@@ -102,10 +93,6 @@ namespace DecorationsMod.NewItems
                 var skyapplier = this.GameObject.AddComponent<SkyApplier>();
                 skyapplier.renderers = this.GameObject.GetComponentsInChildren<Renderer>();
                 skyapplier.anchorSky = Skies.Auto;
-
-                // Add world forces
-                //var forces = this.GameObject.AddComponent<WorldForces>();
-                //forces.useRigidbody = rb;
                 
                 // Add contructable
                 var constructible = this.GameObject.AddComponent<Constructable>();

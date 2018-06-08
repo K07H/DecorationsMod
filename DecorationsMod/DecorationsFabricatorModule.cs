@@ -152,9 +152,13 @@ namespace DecorationsMod
             // Register modified existing items
             foreach (Type existingItemType in existingItems)
             {
+                // Get item
                 DecorationItem existingItem = (DecorationItem)(Activator.CreateInstance(existingItemType));
+                // Register item
                 existingItem.RegisterItem();
+                // Unlock item at game start
                 KnownTechPatcher.unlockedAtStart.Add(existingItem.TechType);
+                // Store item in the list
                 result.Add(existingItem);
             }
 
@@ -190,7 +194,7 @@ namespace DecorationsMod
                                                           "(Hold 'R' to change red levels)" + Environment.NewLine +
                                                           "(Hold 'G' to change green levels)" + Environment.NewLine +
                                                           "(Hold 'B' to change blue levels)" + Environment.NewLine +
-                                                          "(Hold 'E' to change rod color)");
+                                                          "(Hold 'E' to change rod color)" + Environment.NewLine);
 
             // Register seamoth doll tooltip
             LanguagePatcher.customLines.Add("SwitchSeamothModel", "Switch model");

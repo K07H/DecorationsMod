@@ -56,19 +56,50 @@ namespace DecorationsMod.NewItems
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
-                var rend = this.GameObject.GetComponentInChildren<Renderer>();
-                rend.material.shader = marmosetUber;
-                if (rend.materials.Length > 0)
+                Texture normal1 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Dragon_01_01_normal");
+                Texture normal2 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Dragon_01_02_normal");
+                Texture spec1 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Dragon_01_01_spec");
+                Texture spec2 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Dragon_01_02_spec");
+                Texture illum1 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Dragon_01_01_illum");
+                Texture illum2 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Dragon_01_02_illum");
+                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                if (renderers.Length > 0)
                 {
-                    foreach (Material tmpMat in rend.materials)
+                    foreach (Renderer rend in renderers)
                     {
-                        tmpMat.shader = marmosetUber;
+                        if (rend.materials.Length > 0)
+                        {
+                            foreach (Material tmpMat in rend.materials)
+                            {
+                                tmpMat.shader = marmosetUber;
+                                if (tmpMat.name.CompareTo("Sea_Dragon_01_01 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal1);
+                                    tmpMat.SetTexture("_SpecTex", spec1);
+                                    tmpMat.SetTexture("_Illum", illum1);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                                else if (tmpMat.name.CompareTo("Sea_Dragon_01_02 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal2);
+                                    tmpMat.SetTexture("_SpecTex", spec2);
+                                    tmpMat.SetTexture("_Illum", illum2);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+                                    
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                            }
+                        }
                     }
                 }
 
                 // Add sky applier
                 var applier = this.GameObject.AddComponent<SkyApplier>();
-                applier.renderers = new Renderer[] { rend };
+                applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
                 
                 // We can pick this item
@@ -124,7 +155,7 @@ namespace DecorationsMod.NewItems
             var fabricatingA = prefab.AddComponent<VFXFabricating>();
             fabricatingA.localMinY = -0.2f;
             fabricatingA.localMaxY = 0.9f;
-            fabricatingA.posOffset = new Vector3(0.2f, 0f, 0.04f);
+            fabricatingA.posOffset = new Vector3(0.2f, 0f, 0.1f);
             fabricatingA.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricatingA.scaleFactor = 1f;
 

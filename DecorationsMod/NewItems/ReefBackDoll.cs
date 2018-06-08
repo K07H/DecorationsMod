@@ -56,17 +56,64 @@ namespace DecorationsMod.NewItems
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
+                Texture normal1 = AssetsHelper.Assets.LoadAsset<Texture>("coral_reef_grass_04_normal");
+                Texture normal2 = AssetsHelper.Assets.LoadAsset<Texture>("Coral_reef_red_seaweed_03_normal");
+                Texture normal3 = AssetsHelper.Assets.LoadAsset<Texture>("Reefback_coral_flat_normal");
+                Texture normal4 = AssetsHelper.Assets.LoadAsset<Texture>("Reefback_reef_tile_normal");
+                Texture normal5 = AssetsHelper.Assets.LoadAsset<Texture>("Reefback_01_01_normal");
+                Texture illum5 = AssetsHelper.Assets.LoadAsset<Texture>("Reefback_01_01_illum");
+                Texture normal6 = AssetsHelper.Assets.LoadAsset<Texture>("Reefback_01_02_normal");
+                Texture spec6 = AssetsHelper.Assets.LoadAsset<Texture>("Reefback_01_02_spec");
+                Texture illum6 = AssetsHelper.Assets.LoadAsset<Texture>("Reefback_01_02_illum");
                 var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
                     {
-                        rend.material.shader = marmosetUber;
                         if (rend.materials.Length > 0)
                         {
                             foreach (Material tmpMat in rend.materials)
                             {
                                 tmpMat.shader = marmosetUber;
+                                if (tmpMat.name.CompareTo("coral_reef_grass_04 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal1);
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                }
+                                else if (tmpMat.name.CompareTo("Coral_reef_red_seaweed_03 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal2);
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                }
+                                else if (tmpMat.name.CompareTo("Reefback_coral_flat (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal3);
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                }
+                                else if (tmpMat.name.CompareTo("Reefback_reef_tile (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal4);
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                }
+                                else if (tmpMat.name.CompareTo("Reefback_01_01 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal5);
+                                    tmpMat.SetTexture("_Illum", illum5);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                                else if (tmpMat.name.CompareTo("Reefback_01_02 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal6);
+                                    tmpMat.SetTexture("_SpecTex", spec6);
+                                    tmpMat.SetTexture("_Illum", illum6);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
                             }
                         }
                     }

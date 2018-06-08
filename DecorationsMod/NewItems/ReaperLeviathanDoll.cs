@@ -56,19 +56,37 @@ namespace DecorationsMod.NewItems
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
-                var rend = this.GameObject.GetComponentInChildren<Renderer>();
-                rend.material.shader = marmosetUber;
-                if (rend.materials.Length > 0)
+                Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("Reaper_Leviathan_normal");
+                Texture spec = AssetsHelper.Assets.LoadAsset<Texture>("Reaper_Leviathan_spec");
+                Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("Reaper_Leviathan_illum");
+                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                if (renderers.Length > 0)
                 {
-                    foreach (Material tmpMat in rend.materials)
+                    foreach (Renderer rend in renderers)
                     {
-                        tmpMat.shader = marmosetUber;
+                        if (rend.materials.Length > 0)
+                        {
+                            foreach (Material tmpMat in rend.materials)
+                            {
+                                tmpMat.shader = marmosetUber;
+                                if (tmpMat.name.CompareTo("Reaper_Leviathan (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal);
+                                    tmpMat.SetTexture("_SpecTex", spec);
+                                    tmpMat.SetTexture("_Illum", illum);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                            }
+                        }
                     }
                 }
 
                 // Add sky applier
                 var applier = this.GameObject.AddComponent<SkyApplier>();
-                applier.renderers = new Renderer[] { rend };
+                applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
                 
                 // We can pick this item

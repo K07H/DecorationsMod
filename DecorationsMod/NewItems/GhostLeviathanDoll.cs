@@ -56,15 +56,57 @@ namespace DecorationsMod.NewItems
                 collider.size = new Vector3(0.7f, 0.08f, 0.08f);
                 collider.center = new Vector3(collider.center.x - 0.15f, collider.center.y + 0.1f, collider.center.z);
 
+                // Set proper shaders (for crafting animation)
+                Shader marmosetUber = Shader.Find("MarmosetUBER");
+                Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("Ghost_Leviathan_inside_normal");
+                Texture spec = AssetsHelper.Assets.LoadAsset<Texture>("Ghost_Leviathan_inside_spec");
+                Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("Ghost_Leviathan_inside_illum");
+                Texture normal2 = AssetsHelper.Assets.LoadAsset<Texture>("Ghost_Leviathan_shell_normal");
+                Texture spec2 = AssetsHelper.Assets.LoadAsset<Texture>("Ghost_Leviathan_shell_spec");
+                Texture illum2 = AssetsHelper.Assets.LoadAsset<Texture>("OLD_Ghost_Leviathan_shell_illum");
+                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                if (renderers.Length > 0)
+                {
+                    foreach (Renderer rend in renderers)
+                    {
+                        if (rend.materials.Length > 0)
+                        {
+                            foreach (Material tmpMat in rend.materials)
+                            {
+                                if (tmpMat.name.CompareTo("Ghost_Leviathan_inside (Instance)") == 0)
+                                {
+                                    tmpMat.shader = marmosetUber;
+                                    tmpMat.SetTexture("_BumpMap", normal);
+                                    tmpMat.SetTexture("_SpecTex", spec);
+                                    tmpMat.SetTexture("_Illum", illum);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                                else if (tmpMat.name.CompareTo("Ghost_Leviathan_shell_test (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal2);
+                                    tmpMat.SetTexture("_SpecTex", spec2);
+                                    tmpMat.SetTexture("_Illum", illum2);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                            }
+                        }
+                    }
+                }
+
                 // Add large world entity
                 this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
                 
                 // Add sky applier
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
                 var applier = this.GameObject.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
-                
+
                 // We can pick this item
                 var pickupable = this.GameObject.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
@@ -118,7 +160,7 @@ namespace DecorationsMod.NewItems
             var fabricatingA = prefab.AddComponent<VFXFabricating>();
             fabricatingA.localMinY = -0.2f;
             fabricatingA.localMaxY = 0.6f;
-            fabricatingA.posOffset = new Vector3(0.22f, -0.03f, 0.15f);
+            fabricatingA.posOffset = new Vector3(0.22f, -0.03f, 0.12f);
             fabricatingA.eulerOffset = new Vector3(0f, 20f, 0f);
             fabricatingA.scaleFactor = 1f;
 

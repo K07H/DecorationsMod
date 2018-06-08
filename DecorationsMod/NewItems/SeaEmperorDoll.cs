@@ -57,22 +57,53 @@ namespace DecorationsMod.NewItems
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.5f, 0.5f, 0.4f);
-                
+
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
-                var rend = this.GameObject.GetComponentInChildren<Renderer>();
-                rend.material.shader = marmosetUber;
-                if (rend.materials.Length > 0)
+                Texture normal1 = AssetsHelper.Assets.LoadAsset<Texture>("Leviathan_01_01_normal");
+                Texture normal2 = AssetsHelper.Assets.LoadAsset<Texture>("Leviathan_01_02_normal");
+                Texture spec1 = AssetsHelper.Assets.LoadAsset<Texture>("Leviathan_01_01_spec");
+                Texture spec2 = AssetsHelper.Assets.LoadAsset<Texture>("Leviathan_01_02_spec");
+                Texture illum1 = AssetsHelper.Assets.LoadAsset<Texture>("Leviathan_01_01_illum");
+                Texture illum2 = AssetsHelper.Assets.LoadAsset<Texture>("Leviathan_01_02_illum");
+                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                if (renderers.Length > 0)
                 {
-                    foreach (Material tmpMat in rend.materials)
+                    foreach (Renderer rend in renderers)
                     {
-                        tmpMat.shader = marmosetUber;
+                        if (rend.materials.Length > 0)
+                        {
+                            foreach (Material tmpMat in rend.materials)
+                            {
+                                tmpMat.shader = marmosetUber;
+                                if (tmpMat.name.CompareTo("leviathan_01_01 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal1);
+                                    tmpMat.SetTexture("_SpecTex", spec1);
+                                    tmpMat.SetTexture("_Illum", illum1);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                                else if (tmpMat.name.CompareTo("Leviathan_01_02 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal2);
+                                    tmpMat.SetTexture("_SpecTex", spec2);
+                                    tmpMat.SetTexture("_Illum", illum2);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                            }
+                        }
                     }
                 }
 
                 // Add sky applier
                 var applier = this.GameObject.AddComponent<SkyApplier>();
-                applier.renderers = new Renderer[] { rend };
+                applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item

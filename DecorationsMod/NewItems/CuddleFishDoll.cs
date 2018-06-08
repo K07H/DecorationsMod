@@ -45,9 +45,10 @@ namespace DecorationsMod.NewItems
                 model.transform.localScale *= 1.8f;
 
                 // Move model
-                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.35f, model.transform.localPosition.z);
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.22f, model.transform.localPosition.z);
                 
                 // Destroy animation related
+                /*
                 GameObject submodel = model.FindChild("model");
                 GameObject subsubmodel = submodel.FindChild("cute_fish_anims");
                 GameObject subsubsubmodel = subsubmodel.FindChild("Cute_fish_geo1");
@@ -81,6 +82,7 @@ namespace DecorationsMod.NewItems
                     cuddlefishMesh.SetTriangles(cuddlefishMesh.triangles, 0);
                     cuddlefishMesh.subMeshCount = 1;
                 }
+                */
                 
                 // Set tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
@@ -101,20 +103,30 @@ namespace DecorationsMod.NewItems
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
-                Renderer[] renderers = new Renderer[3]
+                Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("Cute_fish_normal");
+                Texture spec = AssetsHelper.Assets.LoadAsset<Texture>("Cute_fish_spec");
+                Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("Cute_fish_illum");
+                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                if (renderers.Length > 0)
                 {
-                    subsubsubmodel.GetComponent<SkinnedMeshRenderer>(),
-                    subsubsubmodel.FindChild("qute_fish_eye_L").GetComponent<SkinnedMeshRenderer>(),
-                    subsubsubmodel.FindChild("qute_fish_eye_R").GetComponent<SkinnedMeshRenderer>()
-                };
-                foreach (Renderer rend in renderers)
-                {
-                    rend.material.shader = marmosetUber;
-                    if (rend.materials.Length > 0)
+                    foreach (Renderer rend in renderers)
                     {
-                        foreach (Material tmpMat in rend.materials)
+                        if (rend.materials.Length > 0)
                         {
-                            tmpMat.shader = marmosetUber;
+                            foreach (Material tmpMat in rend.materials)
+                            {
+                                tmpMat.shader = marmosetUber;
+                                if (tmpMat.name.CompareTo("Cute_fish (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal);
+                                    tmpMat.SetTexture("_SpecTex", spec);
+                                    tmpMat.SetTexture("_Illum", illum);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                            }
                         }
                     }
                 }

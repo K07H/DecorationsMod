@@ -418,6 +418,20 @@
                         return "Una miniatura decorativa de seamoth.";
                     else
                         return "A decorative miniature of the seamoth.";
+                case "ExosuitDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Poupée de combinaison PRAWN";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Muñeca traje PRAWN";
+                    else
+                        return "PRAWN suit doll";
+                case "ExosuitDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Une miniature décorative de la combinaison PRAWN.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una miniatura decorativa de traje PRAWN.";
+                    else
+                        return "A decorative miniature of the PRAWN suit.";
                 default:
                     return "?";
             }

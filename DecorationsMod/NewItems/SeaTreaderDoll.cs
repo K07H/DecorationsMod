@@ -41,21 +41,13 @@ namespace DecorationsMod.NewItems
                 treaderModel.transform.localScale *= 0.8f;
 
                 // Merge submeshes
-                GameObject treaderSubModel = treaderModel.FindChild("Sea_Treader_Geo");
-                List<GameObject> subModels = new List<GameObject>(new GameObject[4]
-                    {
-                        treaderSubModel.FindChild("Sea_Treader 1"),
-                        treaderSubModel.FindChild("Sea_Treader_LOD1"),
-                        treaderSubModel.FindChild("Sea_Treader_LOD2"),
-                        treaderSubModel.FindChild("Sea_Treader_LOD3")
-                    });
-                foreach (GameObject subModel in subModels)
-                {
-                    Mesh treaderMesh = subModel.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                    treaderMesh.SetTriangles(treaderMesh.triangles, 0);
-                    treaderMesh.subMeshCount = 1;
-                }
-                
+                /*
+                GameObject treaderSubModel = treaderModel.FindChild("Sea_Treader_Geo").FindChild("Sea_Treader 1");
+                Mesh treaderMesh = treaderSubModel.GetComponent<SkinnedMeshRenderer>().sharedMesh;
+                treaderMesh.SetTriangles(treaderMesh.triangles, 0);
+                treaderMesh.subMeshCount = 1;
+                */
+
                 // Set tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
                 techTag.type = this.TechType;
@@ -69,20 +61,45 @@ namespace DecorationsMod.NewItems
 
                 // Add large world entity
                 this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
-
+                
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
+                Texture normal1 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Treader_01_01_normal");
+                Texture normal2 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Treader_01_02_normal");
+                Texture spec1 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Treader_01_01_spec");
+                Texture spec2 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Treader_01_02_spec");
+                Texture illum1 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Treader_01_01_illum");
+                Texture illum2 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Treader_01_02_illum");
                 var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
                     {
-                        rend.material.shader = marmosetUber;
                         if (rend.materials.Length > 0)
                         {
                             foreach (Material tmpMat in rend.materials)
                             {
                                 tmpMat.shader = marmosetUber;
+                                if (tmpMat.name.CompareTo("Sea_Treader_01_01 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal1);
+                                    tmpMat.SetTexture("_SpecTex", spec1);
+                                    tmpMat.SetTexture("_Illum", illum1);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
+                                else if (tmpMat.name.CompareTo("Sea_Treader_01_02 (Instance)") == 0)
+                                {
+                                    tmpMat.SetTexture("_BumpMap", normal2);
+                                    tmpMat.SetTexture("_SpecTex", spec2);
+                                    tmpMat.SetTexture("_Illum", illum2);
+                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+
+                                    tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                    tmpMat.EnableKeyword("MARMO_EMISSION");
+                                }
                             }
                         }
                     }
