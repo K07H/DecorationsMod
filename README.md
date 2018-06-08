@@ -47,6 +47,7 @@ Requires QModManager and SMLHelper.<br>
     Stalker tooth<br>
     Computer chip<br>
     Wiring kits<br>
+    All types of egg<br>
 
 ### Additional information:<br>
 All items can be rotated and placed in any base or cyclops.<br>
