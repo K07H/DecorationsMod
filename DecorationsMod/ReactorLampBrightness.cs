@@ -25,7 +25,7 @@ namespace DecorationsMod
                     return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_blue");
                 case "nuclear_reactor_rod_illum_blue":
                     return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum");
-                case "nuclear_reactor_rod_illum_cyan":
+                case "nuclear_reactor_rod_illum":
                     return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green");
                 default:
                     return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");

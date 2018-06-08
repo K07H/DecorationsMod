@@ -30,7 +30,16 @@ namespace DecorationsMod
             placeTool.hasAnimations = false;
             placeTool.hasBashAnimation = false;
             placeTool.hasFirstUseAnimation = false;
+            // Associate pickupable
             placeTool.pickupable = pickupable;
+            // Try get collider
+            if (collider == null)
+            {
+                collider = item.GetComponent<Collider>();
+                if (collider == null)
+                    collider = item.GetComponentInChildren<Collider>();
+            }
+            // Associate collider
             if (collider != null)
                 placeTool.mainCollider = collider;
 
