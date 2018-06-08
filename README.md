@@ -53,7 +53,7 @@ All items can be rotated and placed in any base or cyclops.<br>
 Inside the DecorationsMod folder you will find the file Config.txt which contains few options that you can modify.<br>
 
 ### News & updates:<br>
-June 8, 2018: Updated to version 1.0.8 (see changelog for more details).<br>
+June 8, 2018: Updated to version 1.0.8.<br>
 June 6, 2018: Updated to version 1.0.7.<br>
 June 5, 2018: Updated to version 1.0.5.<br>
 June 4, 2018: Updated to version 1.0.4.<br>
