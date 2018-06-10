@@ -84,9 +84,8 @@ namespace DecorationsMod.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             
-            prefab.name = this.ClassID;
-
             // Add rigid body
+            /*
             var rb = prefab.AddComponent<Rigidbody>();
             rb.useGravity = true;
             rb.isKinematic = false;
@@ -94,6 +93,7 @@ namespace DecorationsMod.NewItems
             rb.mass = 80;
             rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
             rb.constraints = RigidbodyConstraints.FreezePosition;
+            */
 
             if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable)
             {
@@ -138,6 +138,8 @@ namespace DecorationsMod.NewItems
             }
             else
             {
+                prefab.name = this.ClassID;
+
                 // Update TechTag
                 var techTag = prefab.GetComponent<TechTag>();
                 if (techTag == null)

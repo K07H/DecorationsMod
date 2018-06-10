@@ -22,7 +22,8 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("ForkLiftDollDescription"),
                                                         true);
 
-            this.IsHabitatBuilder = true;
+            if (ConfigSwitcher.Forklift_asBuidable)
+                this.IsHabitatBuilder = true;
 
             this.Recipe = new TechDataHelper()
             {
@@ -30,7 +31,7 @@ namespace DecorationsMod.NewItems
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[3]
                     {
                         new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.FiberMesh, 1),
+                        new IngredientHelper(TechType.Glass, 1),
                         new IngredientHelper(TechType.Silicone, 1)
                     }),
                 _techType = this.TechType
@@ -45,7 +46,7 @@ namespace DecorationsMod.NewItems
                 GameObject model = this.GameObject.FindChild("forklift");
 
                 // Scale model
-                model.transform.localScale *= 4.0f;
+                model.transform.localScale *= 5.0f;
 
                 // Move model
                 //model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.1f, model.transform.localPosition.z);
@@ -95,30 +96,67 @@ namespace DecorationsMod.NewItems
                 skyapplier.renderers = renderers;
                 skyapplier.anchorSky = Skies.Auto;
 
-                // Add contructable
-                var constructible = this.GameObject.AddComponent<Constructable>();
-                constructible.allowedInBase = true;
-                constructible.allowedInSub = true;
-                constructible.allowedOutside = true;
-                constructible.allowedOnCeiling = false;
-                constructible.allowedOnGround = true;
-                constructible.allowedOnConstructables = true;
-                constructible.controlModelState = true;
-                constructible.deconstructionAllowed = true;
-                constructible.rotationEnabled = false;
-                constructible.model = model;
-                constructible.techType = this.TechType;
-                constructible.enabled = true;
+                if (ConfigSwitcher.Forklift_asBuidable)
+                {
+                    // Add contructable
+                    var constructible = this.GameObject.AddComponent<Constructable>();
+                    constructible.allowedInBase = true;
+                    constructible.allowedInSub = true;
+                    constructible.allowedOutside = true;
+                    constructible.allowedOnCeiling = false;
+                    constructible.allowedOnGround = true;
+                    constructible.allowedOnConstructables = true;
+                    constructible.controlModelState = true;
+                    constructible.deconstructionAllowed = true;
+                    constructible.rotationEnabled = false;
+                    constructible.model = model;
+                    constructible.techType = this.TechType;
+                    constructible.enabled = true;
 
-                // Add constructable bounds
-                var bounds = this.GameObject.AddComponent<ConstructableBounds>();
-                
-                // Add new TechType to the buildables
-                CraftDataPatcher.customBuildables.Add(this.TechType);
-                CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                    // Add constructable bounds
+                    var bounds = this.GameObject.AddComponent<ConstructableBounds>();
+
+                    // Add new TechType to the buildables
+                    CraftDataPatcher.customBuildables.Add(this.TechType);
+                    CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                }
+                else
+                {
+                    // We can pick this item
+                    var pickupable = this.GameObject.AddComponent<Pickupable>();
+                    pickupable.isPickupable = true;
+                    pickupable.randomizeRotationWhenDropped = true;
+
+                    // We can place this item
+                    var placeTool = this.GameObject.AddComponent<PlaceTool>();
+                    placeTool.allowedInBase = true;
+                    placeTool.allowedOnBase = true;
+                    placeTool.allowedOnCeiling = false;
+                    placeTool.allowedOnConstructable = true;
+                    placeTool.allowedOnGround = true;
+                    placeTool.allowedOnRigidBody = true;
+                    placeTool.allowedOnWalls = false;
+                    placeTool.allowedOutside = false;
+                    placeTool.rotationEnabled = true;
+                    placeTool.enabled = true;
+                    placeTool.hasAnimations = false;
+                    placeTool.hasBashAnimation = false;
+                    placeTool.hasFirstUseAnimation = false;
+                    placeTool.mainCollider = collider;
+                    placeTool.pickupable = pickupable;
+                    placeTool.drawTime = 0.5f;
+                    placeTool.dropTime = 1;
+                    placeTool.holsterTime = 0.35f;
+
+                    // Set item occupies 4 slots
+                    CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(2, 2);
+
+                    // Add the new TechType to Hand Equipment type.
+                    CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                }
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
 
                 // Set the custom sprite
                 CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("forklifticon")));
@@ -134,13 +172,16 @@ namespace DecorationsMod.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
-            // Add fabricating animation
-            var fabricatingA = prefab.AddComponent<VFXFabricating>();
-            fabricatingA.localMinY = -0.2f;
-            fabricatingA.localMaxY = 0.7f;
-            fabricatingA.posOffset = new Vector3(0f, 0f, 0f);
-            fabricatingA.eulerOffset = new Vector3(0f, 0f, 0f);
-            fabricatingA.scaleFactor = 1f;
+            if (!ConfigSwitcher.Forklift_asBuidable)
+            {
+                // Add fabricating animation
+                var fabricatingA = prefab.AddComponent<VFXFabricating>();
+                fabricatingA.localMinY = -0.2f;
+                fabricatingA.localMaxY = 0.7f;
+                fabricatingA.posOffset = new Vector3(0f, 0f, 0f);
+                fabricatingA.eulerOffset = new Vector3(0f, 0f, 0f);
+                fabricatingA.scaleFactor = 1f;
+            }
 
             return prefab;
         }

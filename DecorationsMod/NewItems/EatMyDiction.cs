@@ -75,9 +75,7 @@ namespace DecorationsMod.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject model = prefab.FindChild("Eatmydiction");
-
-            prefab.name = this.ClassID;
-
+            
             if (!ConfigSwitcher.EatMyDiction_asBuidable)
             {
                 // Add box collider
@@ -117,6 +115,8 @@ namespace DecorationsMod.NewItems
             }
             else
             {
+                prefab.name = this.ClassID;
+
                 // Update TechTag
                 var techTag = prefab.GetComponent<TechTag>();
                 if (techTag == null)

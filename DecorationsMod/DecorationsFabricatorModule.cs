@@ -19,6 +19,7 @@ namespace DecorationsMod
 
         // If "true", you'll be able to build/craft the following items:
         // specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll
+        // lamp, seamoth doll, exosuit doll, forklift doll
         public static bool EnableSpecialItems = true;
 
         // If true: Item will be available as a buildable (in habitat builder menu).
@@ -28,6 +29,7 @@ namespace DecorationsMod
         public static bool MarkiDoll2_asBuildable = true;
         public static bool JackSepticEye_asBuildable = true;
         public static bool EatMyDiction_asBuidable = true;
+        public static bool Forklift_asBuidable = false;
     }
 
     public class DecorationsFabricatorModule
@@ -78,6 +80,8 @@ namespace DecorationsMod
                                 ConfigSwitcher.JackSepticEye_asBuildable = configValue;
                             else if (configKey.CompareTo("asBuildable_EatMyDictionDoll") == 0)
                                 ConfigSwitcher.EatMyDiction_asBuidable = configValue;
+                            else if (configKey.CompareTo("asBuildable_ForkliftToy") == 0)
+                                ConfigSwitcher.Forklift_asBuidable = configValue;
                         }
                     }
                 }
@@ -186,15 +190,19 @@ namespace DecorationsMod
             }
 
             // Register lamp tooltip
-            LanguagePatcher.customLines.Add("ToggleLamp", "Left-click to adjust light range" + Environment.NewLine + 
-                                                          "Hold 'I' and left-click to change intensity" + Environment.NewLine +
-                                                          "Hold 'R' and left-click to change red levels" + Environment.NewLine +
-                                                          "Hold 'G' and left-click to change green levels" + Environment.NewLine +
-                                                          "Hold 'B' and left-click to change blue levels" + Environment.NewLine +
-                                                          "Hold 'E' and left-click to change rod color" + Environment.NewLine);
+            LanguagePatcher.customLines.Add("ToggleLamp", "Click to adjust light range, or:" + Environment.NewLine +
+                                                          "Hold 'E' and click to change neon tube color" + Environment.NewLine +
+                                                          "Hold 'I' and click to change intensity" + Environment.NewLine +
+                                                          "Hold 'R' and click to change red levels" + Environment.NewLine +
+                                                          "Hold 'G' and click to change green levels" + Environment.NewLine +
+                                                          "Hold 'B' and click to change blue levels" + Environment.NewLine);
 
             // Register seamoth doll tooltip
             LanguagePatcher.customLines.Add("SwitchSeamothModel", "Switch model");
+
+            // Register exosuit doll tooltip
+            LanguagePatcher.customLines.Add("SwitchExosuitModel", "Click to switch left arm model," + Environment.NewLine +
+                                                                  "or hold 'E' and click to change right arm model" + Environment.NewLine);
 
             return result;
         }
@@ -256,8 +264,10 @@ namespace DecorationsMod
             var toysTab = rootNode.AddTabNode("Toys", LanguageHelper.GetFriendlyWord("Toys"), SpriteManager.Get(TechType.ArcadeGorgetoy));
             toysTab.AddCraftingNode(TechType.StarshipSouvenir,
                                     TechType.ArcadeGorgetoy,
-                                    TechType.ToyCar,
-                                    DecorationItemsHelper.getTechType(decorationItems, "CuddleFishDoll"));
+                                    TechType.ToyCar);
+            if (!ConfigSwitcher.Forklift_asBuidable)
+                toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ForkLiftDoll"));
+            toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CuddleFishDoll"));
             if (!ConfigSwitcher.MarkiDoll1_asBuildable)
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarkiDoll1"));
             if (!ConfigSwitcher.MarkiDoll2_asBuildable)
@@ -266,6 +276,7 @@ namespace DecorationsMod
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "JackSepticEyeDoll"));
             if (!ConfigSwitcher.EatMyDiction_asBuidable)
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarlaCat"));
+            
 
             var faunaTab = rootNode.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
             faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"),

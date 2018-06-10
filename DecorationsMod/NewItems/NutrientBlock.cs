@@ -20,12 +20,15 @@ namespace DecorationsMod.NewItems
             this.Recipe = new TechDataHelper()
             {
                 _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[4]
+                _ingredients = new List<IngredientHelper>(new IngredientHelper[7]
                     {
                         new IngredientHelper(TechType.Melon, 1),
                         new IngredientHelper(TechType.HangingFruit, 1),
                         new IngredientHelper(TechType.PurpleVegetable, 1),
-                        new IngredientHelper(TechType.BulboTreePiece, 1)
+                        new IngredientHelper(TechType.BulboTreePiece, 1),
+                        new IngredientHelper(TechType.CreepvinePiece, 1),
+                        new IngredientHelper(TechType.JellyPlant, 1),
+                        new IngredientHelper(TechType.KooshChunk, 1)
                     }),
                 _techType = this.TechType
             };

@@ -4,12 +4,14 @@ enablePlaceItems=true
 
 # If "true", you'll be able to build/craft the following items:
 # specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll
+# lamp, seamoth doll, exosuit doll
 enableSpecialItems=true
 
-# If "true",  you'll be able to build specified item (with the habitat builder).
-# If "false", you'll be able to craft specified item (with the decorations fabricator).
+# If "true",  item will be added to the habitat builder menu.
+# If "false", item will be added to the decorations fabricator.
 asBuildable_SpecimenAnalyzer=true
 asBuildable_MarkiplierDoll1=true
 asBuildable_MarkiplierDoll2=true
 asBuildable_JackSepticEyeDoll=true
 asBuildable_EatMyDictionDoll=true
+asBuildable_ForkliftToy=false

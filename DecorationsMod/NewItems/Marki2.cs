@@ -76,9 +76,7 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
-
-            prefab.name = this.ClassID;
-
+            
             if (!ConfigSwitcher.MarkiDoll2_asBuildable)
             {
                 // Retrieve collider
@@ -118,6 +116,8 @@ namespace DecorationsMod.NewItems
             }
             else
             {
+                prefab.name = this.ClassID;
+
                 // Update TechTag
                 var techTag = prefab.GetComponent<TechTag>();
                 if (techTag == null)

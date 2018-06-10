@@ -74,7 +74,7 @@ namespace DecorationsMod.NewItems
                 Texture normalTexture = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_normal");
                 Texture specTexture = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_spec");
                 Texture illumTexture = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
-                Logger.Log("DEBUG B");
+
                 List<Renderer> renderers = new List<Renderer>();
                 this.GameObject.GetComponentsInChildren<Renderer>(renderers);
                 foreach (Renderer renderer in renderers)
@@ -148,17 +148,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetPrefab()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
-            
-            // Add fabricating animation
-            var fabricating = prefab.AddComponent<VFXFabricating>();
-            fabricating.localMinY = -0.1f;
-            fabricating.localMaxY = 0.7f;
-            fabricating.posOffset = new Vector3(0f, 0f, 0.04f);
-            fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
-            fabricating.scaleFactor = 1.0f;
-
-            return prefab;
+            return GameObject.Instantiate(this.GameObject);
         }
     }
 }

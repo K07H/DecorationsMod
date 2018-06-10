@@ -123,5 +123,18 @@ namespace DecorationsMod
             computerchipModel.transform.localPosition = new Vector3(computerchipModel.transform.localPosition.x, computerchipModel.transform.localPosition.y + 0.02f, computerchipModel.transform.localPosition.z);
         }
     }
+
+    public class DetroyCube_PT : PlaceTool
+    {
+        public override void OnPlace()
+        {
+            base.OnPlace();
+
+            // Translate
+            GameObject cube = this.gameObject.FindChild("Cube");
+            if (cube != null)
+                GameObject.DestroyImmediate(cube);
+        }
+    }
 }
 

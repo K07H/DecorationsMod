@@ -56,6 +56,8 @@ namespace DecorationsMod.NewItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject cube = prefab.FindChild("Cube");
 
+            prefab.name = this.ClassID;
+
             // Update TechTag
             prefab.GetComponent<TechTag>().type = this.TechType;
 

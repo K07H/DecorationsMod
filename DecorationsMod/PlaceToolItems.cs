@@ -178,6 +178,20 @@ namespace DecorationsMod
             // Eggs
             MakeEggsPlaceable();
 
+            // Precursor
+            GameObject ionCrystal = Resources.Load<GameObject>("WorldEntities/Natural/PrecursorIonCrystal");
+            MakeItemPlaceable(TechType.PrecursorIonCrystal, ionCrystal);
+            GameObject purpleKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Purple");
+            MakeItemPlaceable(TechType.PrecursorKey_Purple, purpleKey);
+            GameObject orangeKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Orange");
+            MakeItemPlaceable(TechType.PrecursorKey_Orange, orangeKey);
+            GameObject blueKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Blue");
+            MakeItemPlaceable(TechType.PrecursorKey_Blue, blueKey);
+            GameObject redKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Red");
+            MakeItemPlaceable(TechType.PrecursorKey_Red, redKey);
+            GameObject whiteKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_White");
+            MakeItemPlaceable(TechType.PrecursorKey_White, whiteKey);
+
             // Others
             GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/Natural/stalkertooth");
             stalkertooth.AddComponent<StalkerTooth_PT>();

@@ -52,6 +52,8 @@
     <Compile Include="ExistingItems\ArcadeGorgetoy.cs" />
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
+    <Compile Include="ExosuitDollControler.cs" />
+    <Compile Include="NewItems\ExosuitDoll.cs" />
     <Compile Include="NewItems\ForkLiftDoll.cs" />
     <Compile Include="NewItems\SeamothDoll.cs" />
     <Compile Include="ReactorLampBrightness.cs" />

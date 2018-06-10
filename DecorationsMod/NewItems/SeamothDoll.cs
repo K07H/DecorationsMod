@@ -59,7 +59,7 @@ namespace DecorationsMod.NewItems
 
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
-                collider.size = new Vector3(0.4f, 0.3f, 0.5f);
+                collider.size = new Vector3(0.2f, 0.2f, 0.2f);
                 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
@@ -209,17 +209,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetPrefab()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
-
-            // Add fabricating animation
-            var fabricatingA = prefab.AddComponent<VFXFabricating>();
-            fabricatingA.localMinY = -0.2f;
-            fabricatingA.localMaxY = 0.8f;
-            fabricatingA.posOffset = new Vector3(0f, 0f, 0.04f);
-            fabricatingA.eulerOffset = new Vector3(0f, 0f, 0f);
-            fabricatingA.scaleFactor = 1f;
-
-            return prefab;
+            return GameObject.Instantiate(this.GameObject);
         }
     }
 }

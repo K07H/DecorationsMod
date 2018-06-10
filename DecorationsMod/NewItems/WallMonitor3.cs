@@ -54,7 +54,8 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
-            GameObject cube = prefab.FindChild("Cube");
+
+            prefab.name = this.ClassID;
 
             // Update TechTag
             prefab.GetComponent<TechTag>().type = this.TechType;
@@ -64,6 +65,7 @@ namespace DecorationsMod.NewItems
             GameObject.DestroyImmediate(rb);
 
             // Get box collider
+            GameObject cube = prefab.FindChild("Cube");
             var collider = cube.GetComponent<BoxCollider>();
 
             // We can pick this item
