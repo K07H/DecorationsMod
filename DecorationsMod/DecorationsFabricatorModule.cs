@@ -86,19 +86,16 @@ namespace DecorationsMod
                 Logger.Log("Warning: Cannot find config file, default options will be set.");
 
             Logger.Log("Registering items...", null);
-
-            // Register all items
+            
             List<DecorationItem> decorationItems = RegisterDecorationItems();
 
-            Logger.Log("Making some existing items placeable...", null);
+            Logger.Log("Making some existing items positionable/pickupable...", null);
 
-            // Make some existing items placeable/pickupable
             if (ConfigSwitcher.EnablePlaceItems)
                 PlaceToolItems.MakeItemsPlaceable();
 
             Logger.Log("Creating craft tree...", null);
-
-            // Create new CraftTree Type
+            
             CustomCraftTreeRoot customTreeRootNode = CreateCustomTree(out CraftTree.Type craftType, decorationItems);
             DecorationsTreeType = craftType;
 
@@ -189,12 +186,12 @@ namespace DecorationsMod
             }
 
             // Register lamp tooltip
-            LanguagePatcher.customLines.Add("ToggleLamp", "Adjust light range" + Environment.NewLine + 
-                                                          "(Hold 'I' to change intensity)" + Environment.NewLine +
-                                                          "(Hold 'R' to change red levels)" + Environment.NewLine +
-                                                          "(Hold 'G' to change green levels)" + Environment.NewLine +
-                                                          "(Hold 'B' to change blue levels)" + Environment.NewLine +
-                                                          "(Hold 'E' to change rod color)" + Environment.NewLine);
+            LanguagePatcher.customLines.Add("ToggleLamp", "Left-click to adjust light range" + Environment.NewLine + 
+                                                          "Hold 'I' and left-click to change intensity" + Environment.NewLine +
+                                                          "Hold 'R' and left-click to change red levels" + Environment.NewLine +
+                                                          "Hold 'G' and left-click to change green levels" + Environment.NewLine +
+                                                          "Hold 'B' and left-click to change blue levels" + Environment.NewLine +
+                                                          "Hold 'E' and left-click to change rod color" + Environment.NewLine);
 
             // Register seamoth doll tooltip
             LanguagePatcher.customLines.Add("SwitchSeamothModel", "Switch model");

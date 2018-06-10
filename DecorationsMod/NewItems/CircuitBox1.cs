@@ -35,43 +35,6 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                GameObject cube = this.GameObject.FindChild("Cube");
-                
-                // Remove rigid body to prevent bugs
-                var rb = this.GameObject.GetComponent<Rigidbody>();
-                if (rb != null)
-                    GameObject.DestroyImmediate(rb);
-                
-                // Get box collider
-                var collider = cube.GetComponent<BoxCollider>();
-
-                // We can pick this item
-                var pickupable = this.GameObject.GetComponent<Pickupable>();
-                if (pickupable == null)
-                    pickupable = this.GameObject.AddComponent<Pickupable>();
-                pickupable.isPickupable = true;
-                pickupable.randomizeRotationWhenDropped = true;
-
-                // We can place this item
-                var placeTool = this.GameObject.GetComponent<PlaceTool>();
-                if (placeTool == null)
-                    placeTool = this.GameObject.AddComponent<PlaceTool>();
-                placeTool.allowedInBase = true;
-                placeTool.allowedOnBase = true;
-                placeTool.allowedOnCeiling = false;
-                placeTool.allowedOnConstructable = true;
-                placeTool.allowedOnGround = true;
-                placeTool.allowedOnRigidBody = true;
-                placeTool.allowedOnWalls = true;
-                placeTool.allowedOutside = false;
-                placeTool.rotationEnabled = true;
-                placeTool.enabled = true;
-                placeTool.hasAnimations = false;
-                placeTool.hasBashAnimation = false;
-                placeTool.hasFirstUseAnimation = false;
-                placeTool.mainCollider = collider;
-                placeTool.pickupable = pickupable;
-
                 // Add the new TechType to the hand-equipments
                 CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
 
@@ -94,6 +57,42 @@ namespace DecorationsMod.NewItems
 
             // Update TechTag
             prefab.GetComponent<TechTag>().type = this.TechType;
+            
+            // Remove rigid body to prevent bugs
+            var rb = prefab.GetComponent<Rigidbody>();
+            if (rb != null)
+                GameObject.DestroyImmediate(rb);
+
+            // Get box collider
+            GameObject cube = prefab.FindChild("Cube");
+            var collider = cube.GetComponent<BoxCollider>();
+
+            // We can pick this item
+            var pickupable = prefab.GetComponent<Pickupable>();
+            if (pickupable == null)
+                pickupable = prefab.AddComponent<Pickupable>();
+            pickupable.isPickupable = true;
+            pickupable.randomizeRotationWhenDropped = true;
+
+            // We can place this item
+            var placeTool = prefab.GetComponent<PlaceTool>();
+            if (placeTool == null)
+                placeTool = prefab.AddComponent<PlaceTool>();
+            placeTool.allowedInBase = true;
+            placeTool.allowedOnBase = true;
+            placeTool.allowedOnCeiling = false;
+            placeTool.allowedOnConstructable = true;
+            placeTool.allowedOnGround = true;
+            placeTool.allowedOnRigidBody = true;
+            placeTool.allowedOnWalls = true;
+            placeTool.allowedOutside = false;
+            placeTool.rotationEnabled = true;
+            placeTool.enabled = true;
+            placeTool.hasAnimations = false;
+            placeTool.hasBashAnimation = false;
+            placeTool.hasFirstUseAnimation = false;
+            placeTool.mainCollider = collider;
+            placeTool.pickupable = pickupable;
 
             // Add fabricating animation
             var fabricating = prefab.AddComponent<VFXFabricating>();

@@ -2,7 +2,7 @@
   "Id": "DecorationsMod",
   "DisplayName": "DecorationsMod",
   "Author": "DuckFat",
-  "Version": "1.0.7",
+  "Version": "1.0.9",
   "Requires": [ ],
   "Enable": true,
   "AssemblyName": "DecorationsMod.dll",

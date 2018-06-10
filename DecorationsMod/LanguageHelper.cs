@@ -399,11 +399,11 @@
                         return "Lamp";
                 case "ReactorLampDescription":
                     if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
-                        return "Une lampe faite à partir d'un conteneur de barre de réacteur. Manipuler avec précaution.";
+                        return "Une lampe customisable.";
                     else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
-                        return "Una lámpara hecha de un contenedor de barra de reactor. Manipule con cuidado.";
+                        return "Una lámpara personalizable.";
                     else
-                        return "A lamp made from a reactor rod container. Handle with care.";
+                        return "A customizable lamp.";
                 case "SeamothDollName":
                     if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
                         return "Poupée de seamoth";
@@ -432,6 +432,20 @@
                         return "Una miniatura decorativa de traje PRAWN.";
                     else
                         return "A decorative miniature of the PRAWN suit.";
+                case "ForkLiftDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Chariot élévateur (non-fonctionnel)";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Carretilla elevadora (no funcionales)";
+                    else
+                        return "Forklift (non-functional)";
+                case "ForkLiftDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un chariot élévateur décoratif.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una carretilla elevadora decorativa.";
+                    else
+                        return "A decorative forklift.";
                 default:
                     return "?";
             }

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3556456501
+CRC: 3642038692
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 843dd22d5bb0c9c8fb072b631df47469
+    Hash: a06cb052807b5cf9a65c029f210683eb
   TypeTreeHash:
     serializedVersion: 2
     Hash: 4af2f1c2307037de016e8f44f3f09356
@@ -36,20 +36,26 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/robotarm.fbm/biodome_Robot_Arm_wall_normal.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_indoor.png
 - Assets/seamoth.fbm/seamoth_storage_02.png
 - Assets/Materials/Submersible_SeaMoth_Glass_interior.mat
 - Assets/seatreader.fbm/Sea_Treader_01_01_normal.png
+- Assets/forklift.fbx
 - Assets/seamoth.fbm/Submersible_SeaMoth_indoor_illum.png
+- Assets/Materials/exosuit_01_fp.mat
 - Assets/circuitbox2b.png
 - Assets/leviathans.fbm/Sea_Dragon_01_02_normal.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_yellow.png
+- Assets/Materials/Exosuit_grappling_arm.mat
 - Assets/seamoth.fbm/power_cell_01_spec.png
 - Assets/circuitbox3d.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_normal.png
 - Assets/cutefish.fbx
 - Assets/Materials/Ghost_Leviathan_inside.mat
+- Assets/robotarm.fbm/biodome_Robot_Arm_illum.png
 - Assets/seatreader.fbm/Sea_Treader_01_02_spec.png
+- Assets/robotarm.fbm/biodome_Robot_Arm_normal.png
 - Assets/emperorleviathan.fbm/Leviathan_01_01_spec.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_indoor_normal.png
 - Assets/circuitbox1.png
@@ -60,12 +66,14 @@ Assets:
 - Assets/circuitbox3b.png
 - Assets/seamoth.fbm/power_cell_01.png
 - Assets/seamoth.fbm/seamoth_torpedo_01_hatch_01_normal.png
+- Assets/robotarm.fbm/biodome_Robot_Arm.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_blue.png
 - Assets/leviathans.fbm/OLD_Ghost_Leviathan_shell_illum.png
 - Assets/seamoth.fbm/power_cell_01_normal.png
 - Assets/circuitbox3.png
 - Assets/Materials/Sea_Dragon_01_eyeball.mat
 - Assets/leviathans.fbm/Sea_Dragon_01_01_spec.png
+- Assets/reactorrod_white.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum.png
 - Assets/leviathans.fbm/Reaper_Leviathan_illum.png
 - Assets/labcarticon.png
@@ -73,6 +81,7 @@ Assets:
 - Assets/reefback.fbm/Reefback_01_02.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_illum.png
 - Assets/Materials/Sea_Dragon_01_02.mat
+- Assets/robotarm.fbm/biodome_Robot_Arm_wall.png
 - Assets/cutefish.fbm/Cute_fish_illum.png
 - Assets/emperoricon.png
 - Assets/seamoth.fbm/seamoth_storage_01.png
@@ -80,9 +89,12 @@ Assets:
 - Assets/seamoth.fbm/seamoth_torpedo_01.png
 - Assets/labtubeicon.png
 - Assets/ghostleviathan.prefab
+- Assets/forklifticon.png
 - Assets/computer2.png
+- Assets/Materials/exosuit_storage_01.mat
 - Assets/Materials/seamoth_storage_02.mat
 - Assets/seadragonicon.png
+- Assets/Materials/exosuit_cabin_01_glass.mat
 - Assets/seamoth.fbm/seamoth_power_cell_slot_01_spec.png
 - Assets/reefback.fbm/Reefback_coral_flat.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod.png
@@ -110,7 +122,9 @@ Assets:
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_spec.png
 - Assets/computer3.png
 - Assets/circuitbox3c.png
+- Assets/Materials/biodome_Robot_Arm_wall.mat
 - Assets/seamoth.fbm/Submersible_SeaMoth_colorsMask.png
+- Assets/prawnsuit.fbx
 - Assets/seamoth.fbm/seamoth_power_cell_slot_01.png
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_Glass.png
@@ -124,6 +138,7 @@ Assets:
 - Assets/seamoth.fbm/seamoth_torpedo_01_spec.png
 - Assets/seamoth.fbm/seamoth_storage_02_normal.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_normal.png
+- Assets/Materials/submarine_engine_power_cells_01.mat
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_red.png
 - Assets/leviathans.fbm/Reaper_Leviathan.png
 - Assets/seamoth.fbm/seamoth_storage_01_normal.png
@@ -133,6 +148,7 @@ Assets:
 - Assets/seatreader.fbm/Sea_Treader_01_01_spec.png
 - Assets/reefback.fbm/Reefback_reef_tile_normal.png
 - Assets/Materials/Coral_reef_red_seaweed_03.mat
+- Assets/Materials/generic_forklift.mat
 - Assets/seadragon.prefab
 - Assets/seatreader.fbm/Sea_Treader_01_02_illum.png
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_illum.png
@@ -142,7 +158,8 @@ Assets:
 - Assets/submarine_fabricator_purple.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01.png
 - Assets/labcontainer4.png
-- Assets/nuclearreactorrod_yellow.prefab
+- Assets/nuclearreactorrod_white.prefab
+- Assets/Materials/biodome_Robot_Arm.mat
 - Assets/leviathans.fbm/Reaper_Leviathan_spec.png
 - Assets/Materials/Reefback_01_02.mat
 - Assets/cutefish.fbm/Cute_fish_spec.png
@@ -163,8 +180,9 @@ Assets:
 - Assets/emperorleviathan.fbm/Leviathan_01_01_normal.png
 - Assets/Materials/coral_reef_grass_04.mat
 - Assets/seamoth.fbm/Submersible_SeaMoth.png
-- Assets/reactorrod_yellow.png
+- Assets/Materials/seamoth_upgrade_slots_01.mat
 - Assets/leviathans.fbm/Reaper_Leviathan_normal.png
+- Assets/forklift.fbm/generic_forklift_illum.png
 - Assets/Materials/Leviathan_01_02.mat
 - Assets/reefback.fbm/Reefback_01_02_illum.png
 - Assets/seamoth.fbm/seamoth_torpedo_01_hatch_01.png
@@ -173,20 +191,28 @@ Assets:
 - Assets/Materials/Sea_Treader_01_02.mat
 - Assets/seamoth.fbm/seamoth_power_cell_slot_01_normal.png
 - Assets/seatreader.fbm/Sea_Treader_01_01_illum.png
+- Assets/Materials/exosuit_01.mat
 - Assets/Materials/Reefback_01_01.mat
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball_normal.png
 - Assets/reefback.fbm/coral_reef_grass_04_normal.png
 - Assets/Materials/seamoth_torpedo_01_hatch_01.mat
 - Assets/reactorrod.fbx
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_orange.png
+- Assets/reactorrod.fbm/nuclear_reactor_rod_illum_white.png
 - Assets/emperorleviathan.fbm/leviathan_01_01.png
+- Assets/prawnsuitdoll.prefab
+- Assets/Materials/Exosuit_Arm_Propulsion_Cannon.mat
+- Assets/Materials/nuclear_reactor_rod_white.mat
 - Assets/leviathans.fbm/noise_tile_06.png
+- Assets/forklift.fbm/generic_forklift.png
 - Assets/Materials/seamoth_power_cell_slot_01.mat
-- Assets/Materials/nuclear_reactor_rod_yellow.mat
 - Assets/leviathans.fbm/Sea_Dragon_01_02.png
+- Assets/labrobotarm.prefab
 - Assets/reactorrod.fbm/nuclear_reactor_rod_spec.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_green.png
+- Assets/forkliftdoll.prefab
 - Assets/leviathans.fbm/Ghost_Leviathan_shell_normal.png
+- Assets/Materials/exosuit_01_glass.mat
 - Assets/reefback.fbm/coral_reef_grass_04.png
 - Assets/labshelves.png
 - Assets/Materials/Sea_Treader_01_01.mat
@@ -194,10 +220,13 @@ Assets:
 - Assets/reefback.fbm/Reefback_coral_flat_normal.png
 - Assets/Materials/Sea_Dragon_01_01.mat
 - Assets/Materials/Ghost_Leviathan_shell_test.mat
+- Assets/robotarm.fbx
 - Assets/cutefish.fbm/Cute_fish_normal.png
 - Assets/Materials/leviathan_01_01.mat
 - Assets/reactorrod.fbm/nuclear_reactor_rod_normal.png
 - Assets/specimenanalyzer.png
+- Assets/Materials/Exosuit_torpedo_launcher_arm.mat
+- Assets/forklift.fbm/generic_forklift_normal.png
 - Assets/circuitbox2c.png
 - Assets/reefback.fbm/Coral_reef_red_seaweed_03_normal.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02_spec.png

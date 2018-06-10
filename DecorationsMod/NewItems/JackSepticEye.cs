@@ -53,33 +53,6 @@ namespace DecorationsMod.NewItems
                 }
                 else
                 {
-                    // Retrieve collider
-                    GameObject model = this.GameObject.FindChild("jacksepticeye");
-                    Collider collider = model.GetComponentInChildren<Collider>();
-
-                    // We can pick this item
-                    var pickupable = this.GameObject.AddComponent<Pickupable>();
-                    pickupable.isPickupable = true;
-                    pickupable.randomizeRotationWhenDropped = true;
-
-                    // We can place this item
-                    var placeTool = this.GameObject.AddComponent<PlaceTool>();
-                    placeTool.allowedInBase = true;
-                    placeTool.allowedOnBase = true;
-                    placeTool.allowedOnCeiling = false;
-                    placeTool.allowedOnConstructable = true;
-                    placeTool.allowedOnGround = true;
-                    placeTool.allowedOnRigidBody = true;
-                    placeTool.allowedOnWalls = false;
-                    placeTool.allowedOutside = false;
-                    placeTool.rotationEnabled = true;
-                    placeTool.enabled = true;
-                    placeTool.hasAnimations = false;
-                    placeTool.hasBashAnimation = false;
-                    placeTool.hasFirstUseAnimation = false;
-                    placeTool.mainCollider = collider;
-                    placeTool.pickupable = pickupable;
-
                     // Add the new TechType to the hand-equipments
                     CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
                     CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
@@ -106,6 +79,33 @@ namespace DecorationsMod.NewItems
 
             if (!ConfigSwitcher.JackSepticEye_asBuildable)
             {
+                // Retrieve collider
+                GameObject model = prefab.FindChild("jacksepticeye");
+                Collider collider = model.GetComponentInChildren<Collider>();
+
+                // We can pick this item
+                var pickupable = prefab.AddComponent<Pickupable>();
+                pickupable.isPickupable = true;
+                pickupable.randomizeRotationWhenDropped = true;
+
+                // We can place this item
+                var placeTool = prefab.AddComponent<PlaceTool>();
+                placeTool.allowedInBase = true;
+                placeTool.allowedOnBase = true;
+                placeTool.allowedOnCeiling = false;
+                placeTool.allowedOnConstructable = true;
+                placeTool.allowedOnGround = true;
+                placeTool.allowedOnRigidBody = true;
+                placeTool.allowedOnWalls = false;
+                placeTool.allowedOutside = false;
+                placeTool.rotationEnabled = true;
+                placeTool.enabled = true;
+                placeTool.hasAnimations = false;
+                placeTool.hasBashAnimation = false;
+                placeTool.hasFirstUseAnimation = false;
+                placeTool.mainCollider = collider;
+                placeTool.pickupable = pickupable;
+
                 // Add fabricating animation
                 var fabricating = prefab.FindChild("jacksepticeye").AddComponent<VFXFabricating>();
                 fabricating.localMinY = -0.1f;
@@ -113,6 +113,15 @@ namespace DecorationsMod.NewItems
                 fabricating.posOffset = new Vector3(0f, 0f, 0.04f);
                 fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
                 fabricating.scaleFactor = 1f;
+            }
+            else
+            {
+                // Update TechTag
+                var techTag = prefab.GetComponent<TechTag>();
+                if (techTag == null)
+                    if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
+                        techTag = prefab.AddComponent<TechTag>();
+                techTag.type = this.TechType;
             }
             
             return prefab;

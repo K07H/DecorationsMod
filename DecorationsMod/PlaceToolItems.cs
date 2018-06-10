@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using SMLHelper.Patchers;
-using System.Collections.Generic;
 
 namespace DecorationsMod
 {
@@ -32,6 +31,7 @@ namespace DecorationsMod
             placeTool.hasFirstUseAnimation = false;
             // Associate pickupable
             placeTool.pickupable = pickupable;
+
             // Try get collider
             if (collider == null)
             {
@@ -89,8 +89,7 @@ namespace DecorationsMod
             MakeItemPlaceable(TechType.SandsharkEgg, egg13);
             MakeItemPlaceable(TechType.SandsharkEggUndiscovered, egg13);
             GameObject egg14 = Resources.Load<GameObject>("WorldEntities/Eggs/ShockerEgg");
-            GameObject egg14Model = egg14.FindChild("Creatures_eggs_10");
-            egg14Model.transform.localPosition = new Vector3(egg14Model.transform.localPosition.x, egg14Model.transform.localPosition.y + 0.05f, egg14Model.transform.localPosition.z);
+            egg14.AddComponent<Egg14_PT>();
             MakeItemPlaceable(TechType.ShockerEgg, egg14);
             MakeItemPlaceable(TechType.ShockerEggUndiscovered, egg14);
             GameObject egg15 = Resources.Load<GameObject>("WorldEntities/Eggs/SpadefishEgg");
@@ -101,41 +100,8 @@ namespace DecorationsMod
             MakeItemPlaceable(TechType.StalkerEggUndiscovered, egg16);
         }
 
-        public static void MakeItemsPlaceable()
+        public static void MakeSnacksPlaceable()
         {
-            // Chimicals
-            GameObject bleach = Resources.Load<GameObject>("WorldEntities/Natural/bleach");
-            GameObject bleachModel = bleach.FindChild("model");
-            bleachModel.transform.localPosition = new Vector3(bleachModel.transform.localPosition.x, bleachModel.transform.localPosition.y + 0.15f, bleachModel.transform.localPosition.z);
-            MakeItemPlaceable(TechType.Bleach, bleach);
-            GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Natural/lubricant");
-            GameObject lubricantModel = lubricant.FindChild("model");
-            lubricantModel.transform.localPosition = new Vector3(lubricantModel.transform.localPosition.x, lubricantModel.transform.localPosition.y + 0.15f, lubricantModel.transform.localPosition.z);
-            MakeItemPlaceable(TechType.Lubricant, lubricant);
-            GameObject polyaniline = Resources.Load<GameObject>("WorldEntities/Natural/polyaniline");
-            MakeItemPlaceable(TechType.Polyaniline, polyaniline);
-            GameObject benzene = Resources.Load<GameObject>("WorldEntities/Natural/benzene");
-            MakeItemPlaceable(TechType.Benzene, benzene);
-            GameObject hydrochloricacid = Resources.Load<GameObject>("WorldEntities/Natural/hydrochloricacid");
-            MakeItemPlaceable(TechType.HydrochloricAcid, hydrochloricacid);
-            GameObject hatchingenzymes = Resources.Load<GameObject>("WorldEntities/Natural/HatchingEnzymes");
-            MakeItemPlaceable(TechType.HatchingEnzymes, hatchingenzymes);
-
-            // Food & water
-            GameObject coffee = Resources.Load<GameObject>("WorldEntities/Food/Coffee");
-            MakeItemPlaceable(TechType.Coffee, coffee);
-            GameObject bigfilteredwater = Resources.Load<GameObject>("WorldEntities/Food/BigFilteredWater");
-            MakeItemPlaceable(TechType.BigFilteredWater, bigfilteredwater);
-            GameObject disinfectedwater = Resources.Load<GameObject>("WorldEntities/Food/DisinfectedWater");
-            GameObject disinfectedwaterModel = disinfectedwater.FindChild("model");
-            disinfectedwaterModel.transform.localPosition = new Vector3(disinfectedwaterModel.transform.localPosition.x, disinfectedwaterModel.transform.localPosition.y + 0.17f, disinfectedwaterModel.transform.localPosition.z);
-            MakeItemPlaceable(TechType.DisinfectedWater, disinfectedwater);
-            GameObject filteredwater = Resources.Load<GameObject>("WorldEntities/Food/FilteredWater");
-            GameObject filteredwaterModel = filteredwater.FindChild("model");
-            filteredwaterModel.transform.localPosition = new Vector3(filteredwaterModel.transform.localPosition.x, filteredwaterModel.transform.localPosition.y + 0.155f, filteredwaterModel.transform.localPosition.z);
-            MakeItemPlaceable(TechType.FilteredWater, filteredwater);
-
-            // Snacks
             GameObject snack1 = Resources.Load<GameObject>("WorldEntities/Food/Snack1");
             BoxCollider snack1Collider = snack1.AddComponent<BoxCollider>();
             snack1Collider.size = new Vector3(0.17f, 0.18f, 0.8f);
@@ -163,19 +129,50 @@ namespace DecorationsMod
             TechType tmpTechType = snack2TechTag.type;
             snack2TechTag.type = snack3TechTag.type;
             snack3TechTag.type = tmpTechType;
+        }
+
+        public static void MakeItemsPlaceable()
+        {
+            // Chimicals
+            GameObject bleach = Resources.Load<GameObject>("WorldEntities/Natural/bleach");
+            bleach.AddComponent<Bleach_PT>();
+            MakeItemPlaceable(TechType.Bleach, bleach);
+            GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Natural/lubricant");
+            lubricant.AddComponent<Lubricant_PT>();
+            MakeItemPlaceable(TechType.Lubricant, lubricant);
+            GameObject polyaniline = Resources.Load<GameObject>("WorldEntities/Natural/polyaniline");
+            MakeItemPlaceable(TechType.Polyaniline, polyaniline);
+            GameObject benzene = Resources.Load<GameObject>("WorldEntities/Natural/benzene");
+            MakeItemPlaceable(TechType.Benzene, benzene);
+            GameObject hydrochloricacid = Resources.Load<GameObject>("WorldEntities/Natural/hydrochloricacid");
+            MakeItemPlaceable(TechType.HydrochloricAcid, hydrochloricacid);
+            GameObject hatchingenzymes = Resources.Load<GameObject>("WorldEntities/Natural/HatchingEnzymes");
+            MakeItemPlaceable(TechType.HatchingEnzymes, hatchingenzymes);
+
+            // Food & water
+            GameObject coffee = Resources.Load<GameObject>("WorldEntities/Food/Coffee");
+            MakeItemPlaceable(TechType.Coffee, coffee);
+            GameObject bigfilteredwater = Resources.Load<GameObject>("WorldEntities/Food/BigFilteredWater");
+            MakeItemPlaceable(TechType.BigFilteredWater, bigfilteredwater);
+            GameObject disinfectedwater = Resources.Load<GameObject>("WorldEntities/Food/DisinfectedWater");
+            disinfectedwater.AddComponent<DisinfectedWater_PT>();
+            MakeItemPlaceable(TechType.DisinfectedWater, disinfectedwater);
+            GameObject filteredwater = Resources.Load<GameObject>("WorldEntities/Food/FilteredWater");
+            filteredwater.AddComponent<FilteredWater_PT>();
+            MakeItemPlaceable(TechType.FilteredWater, filteredwater);
+
+            // Snacks
+            MakeSnacksPlaceable();
             
             // Electronics
             GameObject wiringkit = Resources.Load<GameObject>("WorldEntities/Natural/wiringkit");
-            GameObject wiringkitModel = wiringkit.FindChild("model");
-            wiringkitModel.transform.localPosition = new Vector3(wiringkitModel.transform.localPosition.x, wiringkitModel.transform.localPosition.y + 0.03f, wiringkitModel.transform.localPosition.z);
+            wiringkit.AddComponent<WiringKit_PT>();
             MakeItemPlaceable(TechType.WiringKit, wiringkit);
             GameObject advancedwiringkit = Resources.Load<GameObject>("WorldEntities/Natural/advancedwiringkit");
-            GameObject advancedwiringkitModel = advancedwiringkit.FindChild("model");
-            advancedwiringkitModel.transform.localPosition = new Vector3(advancedwiringkitModel.transform.localPosition.x, advancedwiringkitModel.transform.localPosition.y + 0.03f, advancedwiringkitModel.transform.localPosition.z);
+            advancedwiringkit.AddComponent<AdvancedWiringKit_PT>();
             MakeItemPlaceable(TechType.AdvancedWiringKit, advancedwiringkit);
             GameObject computerchip = Resources.Load<GameObject>("WorldEntities/Natural/computerchip");
-            GameObject computerchipModel = computerchip.FindChild("model");
-            computerchipModel.transform.localPosition = new Vector3(computerchipModel.transform.localPosition.x, computerchipModel.transform.localPosition.y + 0.02f, computerchipModel.transform.localPosition.z);
+            computerchip.AddComponent<ComputerChip_PT>();
             MakeItemPlaceable(TechType.ComputerChip, computerchip);
 
             // Eggs
@@ -183,9 +180,7 @@ namespace DecorationsMod
 
             // Others
             GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/Natural/stalkertooth");
-            GameObject stalkertoothModel = stalkertooth.FindChild("shark_tooth");
-            stalkertoothModel.transform.localEulerAngles = new Vector3(stalkertoothModel.transform.localEulerAngles.x, stalkertoothModel.transform.localEulerAngles.y, stalkertoothModel.transform.localEulerAngles.z + -45.0f);
-            stalkertoothModel.transform.localPosition = new Vector3(stalkertoothModel.transform.localPosition.x, stalkertoothModel.transform.localPosition.y - 0.08f, stalkertoothModel.transform.localPosition.z);
+            stalkertooth.AddComponent<StalkerTooth_PT>();
             MakeItemPlaceable(TechType.StalkerTooth, stalkertooth);
             GameObject firstaidkit = Resources.Load<GameObject>("WorldEntities/Natural/firstaidkit");
             MakeItemPlaceable(TechType.FirstAidKit, firstaidkit);

@@ -12,7 +12,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "ReactorLamp";
             this.ResourcePath = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("nuclearreactorrod_yellow");
+            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("nuclearreactorrod_white");
 
             this.TechType = TechTypePatcher.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ReactorLampName"),
@@ -26,10 +26,11 @@ namespace DecorationsMod.NewItems
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[4]
                     {
-                        new IngredientHelper(TechType.PrecursorIonCrystal, 1),
-                        new IngredientHelper(TechType.Lead, 1),
+                        new IngredientHelper(TechType.ComputerChip, 1),
+                        new IngredientHelper(TechType.Glass, 1),
                         new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.Glass, 1)
+                        new IngredientHelper(TechType.Diamond, 1)
+                        
                     }),
                 _techType = this.TechType
             };
@@ -47,7 +48,11 @@ namespace DecorationsMod.NewItems
 
                 // Move model
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.1f, model.transform.localPosition.z);
-                
+
+                // Disable light at start
+                var reactorRodLight = this.GameObject.GetComponentInChildren<Light>();
+                reactorRodLight.enabled = false;
+
                 // Add prefab identifier
                 var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
@@ -66,8 +71,10 @@ namespace DecorationsMod.NewItems
 
                 // Set proper shaders (for crafting animation)
                 Shader shader = Shader.Find("MarmosetUBER");
-                Texture illumTexture = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");
-
+                Texture normalTexture = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_normal");
+                Texture specTexture = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_spec");
+                Texture illumTexture = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
+                Logger.Log("DEBUG B");
                 List<Renderer> renderers = new List<Renderer>();
                 this.GameObject.GetComponentsInChildren<Renderer>(renderers);
                 foreach (Renderer renderer in renderers)
@@ -76,8 +83,14 @@ namespace DecorationsMod.NewItems
                     {
                         // Associate MarmosetUBER shader
                         renderer.sharedMaterial.shader = shader;
+                        
+                        // Update normal map
+                        renderer.sharedMaterial.SetTexture("_BumpMap", normalTexture);
 
-                        // Update the emission map
+                        // Update spec map
+                        renderer.sharedMaterial.SetTexture("_SpecTex", specTexture);
+
+                        // Update emission map
                         renderer.sharedMaterial.SetTexture("_Illum", illumTexture);
 
                         // Increase emission map strength
@@ -85,6 +98,7 @@ namespace DecorationsMod.NewItems
                         renderer.sharedMaterial.SetFloat("_GlowStrength", 1.5f);
 
                         // Enable emission
+                        renderer.sharedMaterial.EnableKeyword("MARMO_NORMALMAP");
                         renderer.sharedMaterial.EnableKeyword("MARMO_EMISSION");
                     }
                 }
@@ -95,7 +109,7 @@ namespace DecorationsMod.NewItems
                 skyapplier.anchorSky = Skies.Auto;
                 
                 // Add contructable
-                var constructible = this.GameObject.AddComponent<Constructable>();
+                var constructible = this.GameObject.AddComponent<Lamp_C>();
                 constructible.allowedInBase = true;
                 constructible.allowedInSub = true;
                 constructible.allowedOutside = true;
@@ -123,7 +137,7 @@ namespace DecorationsMod.NewItems
                 CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
                 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("reactorrod_yellow")));
+                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("reactorrod_white")));
 
                 // Associate recipe to the new TechType
                 CraftDataPatcher.customTechData[this.TechType] = this.Recipe;

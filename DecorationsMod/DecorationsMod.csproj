@@ -45,11 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssetsHelper.cs" />
+    <Compile Include="CustomConstructables.cs" />
+    <Compile Include="CustomPlaceTools.cs" />
     <Compile Include="DecorationsFabricatorModule.cs" />
     <Compile Include="DecorationItem.cs" />
     <Compile Include="ExistingItems\ArcadeGorgetoy.cs" />
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
+    <Compile Include="NewItems\ForkLiftDoll.cs" />
     <Compile Include="NewItems\SeamothDoll.cs" />
     <Compile Include="ReactorLampBrightness.cs" />
     <Compile Include="NewItems\CircuitBox1b.cs" />

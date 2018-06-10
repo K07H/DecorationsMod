@@ -35,53 +35,6 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                // Remove Cube object to prevent physics
-                GameObject cube = this.GameObject.FindChild("Cube");
-                if (cube != null)
-                    GameObject.DestroyImmediate(cube);
-
-                // Remove rigid body to prevent physics bugs
-                var rb = this.GameObject.GetComponent<Rigidbody>();
-                if (rb != null)
-                    GameObject.DestroyImmediate(rb);
-
-                // Get box collider
-                var collider = this.GameObject.GetComponent<BoxCollider>();
-                if (collider == null)
-                    collider = this.GameObject.AddComponent<BoxCollider>();
-                collider.size = new Vector3(0.7f, 0.2f, 0.08f);
-
-                // We can pick this item
-                var pickupable = this.GameObject.GetComponent<Pickupable>();
-                if (pickupable == null)
-                {
-                    pickupable = this.GameObject.AddComponent<Pickupable>();
-                    pickupable.isPickupable = true;
-                    pickupable.randomizeRotationWhenDropped = true;
-                }
-
-                // We can place this item
-                var placeTool = this.GameObject.GetComponent<PlaceTool>();
-                if (placeTool == null)
-                {
-                    placeTool = this.GameObject.AddComponent<PlaceTool>();
-                    placeTool.allowedInBase = true;
-                    placeTool.allowedOnBase = true;
-                    placeTool.allowedOnCeiling = false;
-                    placeTool.allowedOnConstructable = true;
-                    placeTool.allowedOnGround = true;
-                    placeTool.allowedOnRigidBody = true;
-                    placeTool.allowedOnWalls = true;
-                    placeTool.allowedOutside = false;
-                    placeTool.rotationEnabled = true;
-                    placeTool.enabled = true;
-                    placeTool.hasAnimations = false;
-                    placeTool.hasBashAnimation = false;
-                    placeTool.hasFirstUseAnimation = false;
-                    placeTool.mainCollider = collider;
-                    placeTool.pickupable = pickupable;
-                }
-
                 // Add the new TechType to the hand-equipments
                 CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
 
@@ -108,7 +61,54 @@ namespace DecorationsMod.NewItems
             // Horizontal flip
             GameObject model = prefab.FindChild("Starship_circuit_box_01_02");
             model.transform.localScale = new Vector3(model.transform.localScale.x * -1.0f, model.transform.localScale.y, model.transform.localScale.z);
-            
+
+            // Remove Cube object to prevent physics
+            GameObject cube = prefab.FindChild("Cube");
+            if (cube != null)
+                GameObject.DestroyImmediate(cube);
+
+            // Remove rigid body to prevent physics bugs
+            var rb = prefab.GetComponent<Rigidbody>();
+            if (rb != null)
+                GameObject.DestroyImmediate(rb);
+
+            // Get box collider
+            var collider = prefab.GetComponent<BoxCollider>();
+            if (collider == null)
+                collider = prefab.AddComponent<BoxCollider>();
+            collider.size = new Vector3(0.7f, 0.2f, 0.08f);
+
+            // We can pick this item
+            var pickupable = prefab.GetComponent<Pickupable>();
+            if (pickupable == null)
+            {
+                pickupable = prefab.AddComponent<Pickupable>();
+                pickupable.isPickupable = true;
+                pickupable.randomizeRotationWhenDropped = true;
+            }
+
+            // We can place this item
+            var placeTool = prefab.GetComponent<PlaceTool>();
+            if (placeTool == null)
+            {
+                placeTool = prefab.AddComponent<PlaceTool>();
+                placeTool.allowedInBase = true;
+                placeTool.allowedOnBase = true;
+                placeTool.allowedOnCeiling = false;
+                placeTool.allowedOnConstructable = true;
+                placeTool.allowedOnGround = true;
+                placeTool.allowedOnRigidBody = true;
+                placeTool.allowedOnWalls = true;
+                placeTool.allowedOutside = false;
+                placeTool.rotationEnabled = true;
+                placeTool.enabled = true;
+                placeTool.hasAnimations = false;
+                placeTool.hasBashAnimation = false;
+                placeTool.hasFirstUseAnimation = false;
+                placeTool.mainCollider = collider;
+                placeTool.pickupable = pickupable;
+            }
+
             // Add fabricating animation
             var fabricating = prefab.AddComponent<VFXFabricating>();
             fabricating.localMinY = -0.2f;

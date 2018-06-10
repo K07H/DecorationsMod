@@ -47,43 +47,6 @@ namespace DecorationsMod.NewItems
                 // Move model
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.22f, model.transform.localPosition.z);
                 
-                // Destroy animation related
-                /*
-                GameObject submodel = model.FindChild("model");
-                GameObject subsubmodel = submodel.FindChild("cute_fish_anims");
-                GameObject subsubsubmodel = subsubmodel.FindChild("Cute_fish_geo1");
-
-                var animator = subsubmodel.GetComponent<Animator>();
-                var animateByVelocity = subsubmodel.GetComponent<AnimateByVelocity>();
-                var onPlayerCinematic = subsubmodel.GetComponent<OnPlayerCinematicModeEndForward>();
-                if (animator != null)
-                    GameObject.DestroyImmediate(animator);
-                if (animateByVelocity != null)
-                    GameObject.DestroyImmediate(animateByVelocity);
-                if (onPlayerCinematic != null)
-                    GameObject.DestroyImmediate(onPlayerCinematic);
-
-                // Merge submeshes
-                Mesh cuddlefishSubMesh1 = subsubsubmodel.FindChild("qute_fish_eye_L").GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                if (cuddlefishSubMesh1 != null)
-                {
-                    cuddlefishSubMesh1.SetTriangles(cuddlefishSubMesh1.triangles, 0);
-                    cuddlefishSubMesh1.subMeshCount = 1;
-                }
-                Mesh cuddlefishSubMesh2 = subsubsubmodel.FindChild("qute_fish_eye_R").GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                if (cuddlefishSubMesh2 != null)
-                {
-                    cuddlefishSubMesh2.SetTriangles(cuddlefishSubMesh2.triangles, 0);
-                    cuddlefishSubMesh2.subMeshCount = 1;
-                }
-                Mesh cuddlefishMesh = subsubsubmodel.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                if (cuddlefishMesh != null)
-                {
-                    cuddlefishMesh.SetTriangles(cuddlefishMesh.triangles, 0);
-                    cuddlefishMesh.subMeshCount = 1;
-                }
-                */
-                
                 // Set tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
                 techTag.type = this.TechType;
@@ -188,12 +151,14 @@ namespace DecorationsMod.NewItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             // Add fabricating animation
+            /*
             var fabricatingA = prefab.AddComponent<VFXFabricating>();
             fabricatingA.localMinY = -0.2f;
             fabricatingA.localMaxY = 0.8f;
             fabricatingA.posOffset = new Vector3(0f, 0f, 0.04f);
             fabricatingA.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricatingA.scaleFactor = 0.8f;
+            */
 
             return prefab;
         }

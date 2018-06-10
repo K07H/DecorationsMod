@@ -13,6 +13,8 @@ namespace DecorationsMod
         {
             switch (current.name)
             {
+                case "nuclear_reactor_rod_illum_white":
+                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");
                 case "nuclear_reactor_rod_illum_yellow":
                     return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_orange");
                 case "nuclear_reactor_rod_illum_orange":
@@ -28,7 +30,7 @@ namespace DecorationsMod
                 case "nuclear_reactor_rod_illum":
                     return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green");
                 default:
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");
+                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
             }
         }
 
