@@ -230,7 +230,7 @@ namespace DecorationsMod
             analyzersTab.AddCraftingNode(TechType.LabEquipment1,
                                          TechType.LabEquipment2,
                                          TechType.LabEquipment3);
-
+            
             var furnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("labcarticon"));
             furnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabShelf"),
                                           DecorationItemsHelper.getTechType(decorationItems, "LabCart"),
@@ -238,14 +238,14 @@ namespace DecorationsMod
             if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable)
                 labEquipmentTab.AddCraftingNode(TechType.SpecimenAnalyzer);
 
-            var electronicsTab = rootNode.AddTabNode("Electronics", LanguageHelper.GetFriendlyWord("Electronics"), AssetsHelper.Assets.LoadAsset<Sprite>("computer3"));
-
-            var wallMonitorsTab = electronicsTab.AddTabNode("WallMonitors", LanguageHelper.GetFriendlyWord("WallMonitors"), AssetsHelper.Assets.LoadAsset<Sprite>("computer3"));
+            labEquipmentTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabRobotArm"));
+            
+            var wallMonitorsTab = rootNode.AddTabNode("WallMonitors", LanguageHelper.GetFriendlyWord("WallMonitors"), AssetsHelper.Assets.LoadAsset<Sprite>("computer3"));
             wallMonitorsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WallMonitor1"),
                                             DecorationItemsHelper.getTechType(decorationItems, "WallMonitor2"),
                                             DecorationItemsHelper.getTechType(decorationItems, "WallMonitor3"));
 
-            var circuitBoxesTab = electronicsTab.AddTabNode("CircuitBoxes", LanguageHelper.GetFriendlyWord("CircuitBoxes"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox3"));
+            var circuitBoxesTab = rootNode.AddTabNode("CircuitBoxes", LanguageHelper.GetFriendlyWord("CircuitBoxes"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox3"));
             circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1"),
                                             DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1b"),
                                             DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2"),
@@ -256,10 +256,19 @@ namespace DecorationsMod
                                             DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3b"),
                                             DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3c"),
                                             DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3d"));
-            
-            var caps = rootNode.AddTabNode("Caps", LanguageHelper.GetFriendlyWord("Caps"), SpriteManager.Get(TechType.Cap1));
-            caps.AddCraftingNode(TechType.Cap1,
-                                 TechType.Cap2);
+
+            var barKitchenTab = rootNode.AddTabNode("DrinksAndFood", LanguageHelper.GetFriendlyWord("DrinksAndFood"), AssetsHelper.Assets.LoadAsset<Sprite>("barbottle05icon"));
+            barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarCup1"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarCup2"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarNapkins"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarBottle1"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarBottle2"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarBottle3"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarBottle4"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarBottle5"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarFood1"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarFood2"),
+                                          TechType.NutrientBlock);
 
             var toysTab = rootNode.AddTabNode("Toys", LanguageHelper.GetFriendlyWord("Toys"), SpriteManager.Get(TechType.ArcadeGorgetoy));
             toysTab.AddCraftingNode(TechType.StarshipSouvenir,
@@ -277,7 +286,6 @@ namespace DecorationsMod
             if (!ConfigSwitcher.EatMyDiction_asBuidable)
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarlaCat"));
             
-
             var faunaTab = rootNode.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
             faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"),
                                      DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll"),
@@ -288,7 +296,8 @@ namespace DecorationsMod
             
             var accessoriesTab = rootNode.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));
             accessoriesTab.AddCraftingNode(TechType.LuggageBag,
-                                           TechType.NutrientBlock);
+                                           TechType.Cap1,
+                                           TechType.Cap2);
             
             return rootNode;
         }

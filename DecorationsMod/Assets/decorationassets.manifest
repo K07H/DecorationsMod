@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2621827322
+CRC: 2525201108
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4038cc3df9a2c23ee8bd3ca879a48c01
+    Hash: e5a5ab16dee63743c12415e8d6f7c1f4
   TypeTreeHash:
     serializedVersion: 2
     Hash: 4af2f1c2307037de016e8f44f3f09356
@@ -38,6 +38,8 @@ ClassTypes:
 Assets:
 - Assets/robotarm.fbm/biodome_Robot_Arm_wall_normal.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_indoor.png
+- Assets/barbottle03.prefab
+- Assets/barbottle04icon.png
 - Assets/prawnsuit.fbm/exosuit_01_illum.png
 - Assets/seamoth.fbm/seamoth_storage_02.png
 - Assets/Materials/Submersible_SeaMoth_Glass_interior.mat
@@ -51,6 +53,7 @@ Assets:
 - Assets/circuitbox2b.png
 - Assets/leviathans.fbm/Sea_Dragon_01_02_normal.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_yellow.png
+- Assets/barfood01.prefab
 - Assets/Materials/Exosuit_grappling_arm.mat
 - Assets/seamoth.fbm/power_cell_01_spec.png
 - Assets/circuitbox3d.png
@@ -64,6 +67,7 @@ Assets:
 - Assets/robotarm.fbm/biodome_Robot_Arm_normal.png
 - Assets/emperorleviathan.fbm/Leviathan_01_01_spec.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_indoor_normal.png
+- Assets/barbottle05.prefab
 - Assets/circuitbox1.png
 - Assets/seamoth.fbm/power_cell_01_illum.png
 - Assets/seamoth.fbm/seamoth_torpedo_01_normal.png
@@ -75,6 +79,7 @@ Assets:
 - Assets/robotarm.fbm/biodome_Robot_Arm.png
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_blue.png
+- Assets/barnapkinsicon.png
 - Assets/prawnsuit.fbm/exosuit_01_glass_normal.png
 - Assets/leviathans.fbm/OLD_Ghost_Leviathan_shell_illum.png
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon_colorMask.png
@@ -82,19 +87,24 @@ Assets:
 - Assets/circuitbox3.png
 - Assets/Materials/Sea_Dragon_01_eyeball.mat
 - Assets/leviathans.fbm/Sea_Dragon_01_01_spec.png
+- Assets/Materials/docking_bar_bottles_02.mat
 - Assets/reactorrod_white.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum.png
 - Assets/leviathans.fbm/Reaper_Leviathan_illum.png
 - Assets/labcarticon.png
+- Assets/barfood01icon.png
 - Assets/leviathans.fbm/Ghost_Leviathan_shell_spec.png
 - Assets/reefback.fbm/Reefback_01_02.png
+- Assets/Materials/docking_bar_bottles_01.mat
 - Assets/seamoth.fbm/Submersible_SeaMoth_illum.png
 - Assets/prawnsuit.fbm/exosuit_01_fp.png
 - Assets/Materials/Sea_Dragon_01_02.mat
 - Assets/robotarm.fbm/biodome_Robot_Arm_wall.png
 - Assets/cutefish.fbm/Cute_fish_illum.png
+- Assets/drinksandfood.fbm/docking_bar_bottles_01_normal.png
 - Assets/emperoricon.png
 - Assets/seamoth.fbm/seamoth_storage_01.png
+- Assets/drinksandfood.fbm/docking_food_01_normal.png
 - Assets/cutefish.fbm/Cute_fish.png
 - Assets/seamoth.fbm/seamoth_torpedo_01.png
 - Assets/labtubeicon.png
@@ -104,6 +114,7 @@ Assets:
 - Assets/Materials/exosuit_storage_01.mat
 - Assets/Materials/seamoth_storage_02.mat
 - Assets/seadragonicon.png
+- Assets/Materials/docking_food_01.mat
 - Assets/Materials/exosuit_cabin_01_glass.mat
 - Assets/seamoth.fbm/seamoth_power_cell_slot_01_spec.png
 - Assets/reefback.fbm/Reefback_coral_flat.png
@@ -124,10 +135,13 @@ Assets:
 - Assets/fabricator_icon_purple.png
 - Assets/circuitbox2d.png
 - Assets/leviathans.fbm/Ghost_Leviathan_shell.png
+- Assets/barbottle05icon.png
 - Assets/seamothpuppet.prefab
+- Assets/barbottle04.prefab
 - Assets/prawnsuit.fbm/Exosuit_torpedo_launcher_arm.png
 - Assets/Materials/seamoth_torpedo_01.mat
 - Assets/seamoth.fbm/seamoth_storage_02_illum.png
+- Assets/barbottle03icon.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02_illum.png
 - Assets/seamoth.fbm/seamoth_upgrade_slots_01_illum.png
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_spec.png
@@ -137,6 +151,7 @@ Assets:
 - Assets/seamoth.fbm/Submersible_SeaMoth_colorsMask.png
 - Assets/prawnsuit.fbx
 - Assets/seamoth.fbm/seamoth_power_cell_slot_01.png
+- Assets/barfood02icon.png
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_Glass.png
 - Assets/reefback.fbm/Reefback_01_01_illum.png
@@ -164,6 +179,7 @@ Assets:
 - Assets/Materials/generic_forklift.mat
 - Assets/seadragon.prefab
 - Assets/seatreader.fbm/Sea_Treader_01_02_illum.png
+- Assets/drinksandfood.fbm/docking_bar_bottles_02.png
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_illum.png
 - Assets/prawnsuit.fbm/submarine_engine_power_cells_01.png
 - Assets/prawnsuit.fbm/Exosuit_grappling_arm.png
@@ -176,20 +192,26 @@ Assets:
 - Assets/nuclearreactorrod_white.prefab
 - Assets/prawnsuit.fbm/submarine_engine_power_cells_01_spec.png
 - Assets/Materials/biodome_Robot_Arm.mat
+- Assets/barnapkins.prefab
 - Assets/leviathans.fbm/Reaper_Leviathan_spec.png
 - Assets/Materials/Reefback_01_02.mat
 - Assets/cutefish.fbm/Cute_fish_spec.png
 - Assets/reefback.fbm/Reefback_01_01.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02.png
+- Assets/barbottle01icon.png
 - Assets/prawnsuit.fbm/submarine_engine_power_cells_01_normal.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_spec.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_purple.png
+- Assets/robotarmicon.png
 - Assets/cuddlefishicon.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_illum.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02_normal.png
 - Assets/reefback.fbm/coral_reef_grass_07.png
 - Assets/seamoth.fbm/seamoth_upgrade_slots_01_normal.png
+- Assets/barbottle02icon.png
+- Assets/barbottle02.prefab
 - Assets/seamoth.fbx
+- Assets/barcup02.prefab
 - Assets/reaperleviathanicon.png
 - Assets/prawnsuit.fbm/exosuit_01_spec.png
 - Assets/Materials/power_cell_01.mat
@@ -218,16 +240,20 @@ Assets:
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball_normal.png
 - Assets/reefback.fbm/coral_reef_grass_04_normal.png
 - Assets/Materials/seamoth_torpedo_01_hatch_01.mat
+- Assets/barcup02icon.png
 - Assets/reactorrod.fbx
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_orange.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_white.png
+- Assets/barfood02.prefab
 - Assets/emperorleviathan.fbm/leviathan_01_01.png
 - Assets/prawnsuitdoll.prefab
 - Assets/Materials/Exosuit_Arm_Propulsion_Cannon.mat
 - Assets/Materials/nuclear_reactor_rod_white.mat
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon_illum.png
+- Assets/drinksandfood.fbm/docking_bar_bottles_01.png
 - Assets/leviathans.fbm/noise_tile_06.png
 - Assets/forklift.fbm/generic_forklift.png
+- Assets/barbottle01.prefab
 - Assets/Materials/seamoth_power_cell_slot_01.mat
 - Assets/leviathans.fbm/Sea_Dragon_01_02.png
 - Assets/labrobotarm.prefab
@@ -237,6 +263,7 @@ Assets:
 - Assets/forkliftdoll.prefab
 - Assets/leviathans.fbm/Ghost_Leviathan_shell_normal.png
 - Assets/prawnsuit.fbm/exosuit_storage_01_colorMask.png
+- Assets/drinksandfood.fbm/docking_food_01.png
 - Assets/Materials/exosuit_01_glass.mat
 - Assets/reefback.fbm/coral_reef_grass_04.png
 - Assets/labshelves.png
@@ -252,6 +279,7 @@ Assets:
 - Assets/specimenanalyzer.png
 - Assets/Materials/Exosuit_torpedo_launcher_arm.mat
 - Assets/prawnsuit.fbm/exosuit_01_normal.png
+- Assets/barcup01icon.png
 - Assets/forklift.fbm/generic_forklift_normal.png
 - Assets/circuitbox2c.png
 - Assets/reefback.fbm/Coral_reef_red_seaweed_03_normal.png
@@ -270,4 +298,5 @@ Assets:
 - Assets/leviathans.fbm/Ghost_Leviathan_inside_normal.png
 - Assets/circuitbox2.png
 - Assets/leviathans.fbm/Sea_Dragon_01_02_illum.png
+- Assets/barcup01.prefab
 Dependencies: []

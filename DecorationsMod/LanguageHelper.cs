@@ -52,13 +52,6 @@
                         return "Muebles de laboratorio";
                     else
                         return "Lab furnitures";
-                case "Electronics":
-                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
-                        return "Composants électroniques";
-                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
-                        return "Componentes electronicos";
-                    else
-                        return "Electronic components";
                 case "WallMonitors":
                     if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
                         return "Ordinateurs muraux";
@@ -446,6 +439,111 @@
                         return "Una carretilla elevadora decorativa.";
                     else
                         return "A decorative forklift.";
+                case "DrinksAndFood":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Boissons & nourriture";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Bebidas & comida";
+                    else
+                        return "Drinks & food";
+                case "BarBottleName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Bouteille de bar";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Botella de bar";
+                    else
+                        return "Bar bottle";
+                case "BarBottleDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Une bouteille contenant un délicieux breuvage.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una botella que contiene una deliciosa bebida.";
+                    else
+                        return "A bottle containing a delicious beverage.";
+                case "BarCup2Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Gobelet";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Taza";
+                    else
+                        return "Cup";
+                case "BarCup2Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un gobelet fait de titane.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una taza hecha de titanio.";
+                    else
+                        return "A cup made of titanium.";
+                case "BarCup1Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Petit gobelet";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Pequeña taza";
+                    else
+                        return "Small cup";
+                case "BarCup1Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un petit gobelet fait de titane.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una pequeña taza hecha de titanio.";
+                    else
+                        return "A small cup made of titanium.";
+                case "BarFood1Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Petit plat";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Plato pequeño";
+                    else
+                        return "Small meal";
+                case "BarFood1Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un plat à base de poisson.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un plato hecho de pescado.";
+                    else
+                        return "A meal made of fish.";
+                case "BarFood2Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Plateau repas";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Bandeja de comida";
+                    else
+                        return "Meal tray";
+                case "BarFood2Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un repas complet et équilibré.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una comida completa y equilibrada.";
+                    else
+                        return "A complete and balanced meal.";
+                case "BarNapkinsName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Serviettes de table";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Servilletas";
+                    else
+                        return "Napkins";
+                case "BarNapkinsDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Des serviettes de table en maille de fibre.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Servilletas en malla de fibra.";
+                    else
+                        return "Napkins made of fiber mesh.";
+                case "LabRobotArmName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Bras robot (non-fonctionnel)";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "brazo robótico (no funcional)";
+                    else
+                        return "Robot arm (non-functional)";
+                case "LabRobotArmDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un bras robot de laboratoire (non-fonctionnel).";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un brazo robótico de laboratorio (no funcional).";
+                    else
+                        return "A laboratory robot arm (non-functional).";
                 default:
                     return "?";
             }

@@ -136,5 +136,41 @@ namespace DecorationsMod
                 GameObject.DestroyImmediate(cube);
         }
     }
+
+    public class OrangeKey_PT : PlaceTool
+    {
+        public override void OnPlace()
+        {
+            base.OnPlace();
+
+            // Translate
+            GameObject computerchipModel = this.gameObject.FindChild("Model");
+            computerchipModel.transform.localPosition = new Vector3(computerchipModel.transform.localPosition.x, computerchipModel.transform.localPosition.y + 0.01f, computerchipModel.transform.localPosition.z);
+        }
+    }
+
+    public class BlueKey_PT : PlaceTool
+    {
+        public override void OnPlace()
+        {
+            base.OnPlace();
+
+            // Translate
+            GameObject computerchipModel = this.gameObject.FindChild("Model");
+            computerchipModel.transform.localPosition = new Vector3(computerchipModel.transform.localPosition.x, computerchipModel.transform.localPosition.y + 0.01f, computerchipModel.transform.localPosition.z);
+        }
+    }
+
+    public class PurpleKey_PT : PlaceTool
+    {
+        public override void OnPlace()
+        {
+            base.OnPlace();
+
+            // Translate
+            GameObject computerchipModel = this.gameObject.FindChild("Model");
+            computerchipModel.transform.localPosition = new Vector3(computerchipModel.transform.localPosition.x, computerchipModel.transform.localPosition.y + 0.01f, computerchipModel.transform.localPosition.z);
+        }
+    }
 }
 

@@ -151,7 +151,7 @@ namespace DecorationsMod.NewItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             // Add fabricating animation
-            /*
+            /* I disabled crafting animation for this one because it doesn't look good.
             var fabricatingA = prefab.AddComponent<VFXFabricating>();
             fabricatingA.localMinY = -0.2f;
             fabricatingA.localMaxY = 0.8f;

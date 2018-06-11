@@ -182,10 +182,13 @@ namespace DecorationsMod
             GameObject ionCrystal = Resources.Load<GameObject>("WorldEntities/Natural/PrecursorIonCrystal");
             MakeItemPlaceable(TechType.PrecursorIonCrystal, ionCrystal);
             GameObject purpleKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Purple");
+            purpleKey.AddComponent<PurpleKey_PT>();
             MakeItemPlaceable(TechType.PrecursorKey_Purple, purpleKey);
             GameObject orangeKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Orange");
+            orangeKey.AddComponent<OrangeKey_PT>();
             MakeItemPlaceable(TechType.PrecursorKey_Orange, orangeKey);
             GameObject blueKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Blue");
+            blueKey.AddComponent<BlueKey_PT>();
             MakeItemPlaceable(TechType.PrecursorKey_Blue, blueKey);
             GameObject redKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Red");
             MakeItemPlaceable(TechType.PrecursorKey_Red, redKey);
