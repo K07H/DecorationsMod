@@ -51,7 +51,7 @@ Requires QModManager and SMLHelper.<br>
     Stalker tooth<br>
     Computer chip<br>
     Wiring kits<br>
-    Precursor tablets<br>
+    Precursor crystals<br>
     All types of egg<br>
     All precursor tablets<br>
 
