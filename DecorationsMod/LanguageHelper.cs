@@ -66,13 +66,6 @@
                         return "Cajas de circuitos";
                     else
                         return "Circuits boxes";
-                case "Caps":
-                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
-                        return "Casquettes";
-                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
-                        return "Gorras";
-                    else
-                        return "Caps";
                 case "Toys":
                     if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
                         return "Jouets";

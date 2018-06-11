@@ -84,17 +84,6 @@ namespace DecorationsMod.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             
-            // Add rigid body
-            /*
-            var rb = prefab.AddComponent<Rigidbody>();
-            rb.useGravity = true;
-            rb.isKinematic = false;
-            rb.detectCollisions = true;
-            rb.mass = 80;
-            rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-            rb.constraints = RigidbodyConstraints.FreezePosition;
-            */
-
             if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable)
             {
                 // Remove "Constructable" possibility
@@ -151,7 +140,7 @@ namespace DecorationsMod.NewItems
                 var constructible = prefab.GetComponent<Constructable>();
                 constructible.allowedOnWall = false;
                 constructible.allowedInBase = true;
-                constructible.allowedInSub = true; // This is the important one
+                constructible.allowedInSub = true;
                 constructible.allowedOutside = false;
                 constructible.allowedOnCeiling = false;
                 constructible.allowedOnGround = true;
@@ -159,7 +148,7 @@ namespace DecorationsMod.NewItems
                 constructible.deconstructionAllowed = true;
                 constructible.controlModelState = true;
                 constructible.enabled = true;
-                constructible.techType = this.TechType; // This was necessary to correctly associate the recipe at building time
+                constructible.techType = this.TechType;
 
                 // Update prefab identifier
                 var prefabId = prefab.GetComponent<PrefabIdentifier>();

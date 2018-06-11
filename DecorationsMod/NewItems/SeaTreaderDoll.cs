@@ -39,15 +39,7 @@ namespace DecorationsMod.NewItems
                 // Scale model
                 GameObject treaderModel = this.GameObject.FindChild("Sea_Treader");
                 treaderModel.transform.localScale *= 0.8f;
-
-                // Merge submeshes
-                /*
-                GameObject treaderSubModel = treaderModel.FindChild("Sea_Treader_Geo").FindChild("Sea_Treader 1");
-                Mesh treaderMesh = treaderSubModel.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                treaderMesh.SetTriangles(treaderMesh.triangles, 0);
-                treaderMesh.subMeshCount = 1;
-                */
-
+                
                 // Set tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
                 techTag.type = this.TechType;
