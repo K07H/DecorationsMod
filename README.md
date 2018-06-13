@@ -68,6 +68,7 @@ June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Special thanks:<br>
 @UnknownWorlds<br>
+@AHK1221<br>
 @PrimeSonic<br>
 <br>
 <br>
