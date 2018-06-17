@@ -66,7 +66,7 @@ namespace DecorationsMod.NewItems
                 // Add box collider
                 var collider = this.GameObject.AddComponent<SphereCollider>();
                 collider.radius = 0.05f;
-                //collider.size = new Vector3(0.05f, 0.05f, 0.05f);
+                collider.center = new Vector3(collider.center.x, collider.center.y + 0.01f, collider.center.z);
 
                 // Set proper shaders (for crafting animation)
                 Shader shader = Shader.Find("MarmosetUBER");

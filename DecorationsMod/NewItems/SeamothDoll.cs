@@ -61,7 +61,8 @@ namespace DecorationsMod.NewItems
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.2f, 0.2f, 0.2f);
-                
+                collider.center = new Vector3(collider.center.x, collider.center.y + 0.01f, collider.center.z);
+
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal1 = AssetsHelper.Assets.LoadAsset<Texture>("power_cell_01_normal");
