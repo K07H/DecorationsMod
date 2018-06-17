@@ -7,7 +7,7 @@ Requires QModManager and SMLHelper.<br>
 2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/39<br>
 
 ### Installation instructions:
-1) Download archive.<br>
+1) Download one of the 2 archives *(either high-quality textures or low-quality)*.<br>
 2) Extract it.<br>
 3) Move folder **DecorationsMod** inside "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods*" directory.<br>
 
@@ -18,13 +18,14 @@ Requires QModManager and SMLHelper.<br>
     3 different lab equipments<br>
     3 different lab furnitures<br>
     1 laboratory robot arm<br>
-    3 different computers<br>
+    3 different computers (you can edit their label by clicking on them)<br>
     10 different circuit boxes<br>
+    6 different office supplies<br>
     5 different bottles<br>
     2 different cups<br>
     3 different dishes<br>
-    5 different toys<br>
-    6 different leviathan dolls<br>
+    4 different toys<br>
+    7 different leviathan dolls<br>
     3 different accessories<br>
 **It will add the following buildable decorative items in the "Miscellaneous" section of habitat builder:**<br>
     EatMyDiction doll<br>
@@ -34,6 +35,9 @@ Requires QModManager and SMLHelper.<br>
     Specimen Analyzer<br>
     Seamoth doll (you can change model by clicking on it).<br>
     PRAWN suit doll (you can change model by clicking on it).<br>
+    Forklift toy (you can change size by clicking on it).<br>
+    3 different cargo crates (you can change size by clicking on it).<br>
+    4 different sofas (you can rest by clicking on them like regular benches).<br>
 **It will add following item in the "Exterior modules" section of the habitat builder:**<br>
     Lamp (you can change color/range/brightness by clicking on it).<br>
 **And you will be able to place following items where you want:**<br>
@@ -60,6 +64,7 @@ All items can be rotated and placed in any base or cyclops.<br>
 Inside the DecorationsMod folder you will find the file Config.txt which contains few options that you can modify.<br>
 
 ### News & updates:<br>
+June 17, 2018: Updated to version 1.2.0.<br>
 June 11, 2018: Updated to version 1.1.0.<br>
 June 8, 2018:  Updated to version 1.0.8.<br>
 June 6, 2018:  Updated to version 1.0.7.<br>
