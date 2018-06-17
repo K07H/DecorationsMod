@@ -1,77 +1,281 @@
-DecorationsFabricatorName: 
-DecorationsFabricatorDescription: 
-Posters: 
-LabElements: 
-GlassContainers: 
-NonFunctionalAnalyzers: 
-LabFurnitures: 
-WallMonitors: 
-CircuitBoxes: 
-DrinksAndFood: 
-Toys: 
-LeviathanDolls: 
-Accessories: 
-LabContainer4Name: 
-LabContainer4Description: 
-LabTubeName: 
-LabTubeDescription: 
-LabCartName: 
-LabCartDescription: 
-LabShelfName: 
-LabShelfDescription: 
-WallMonitor1Name: 
-WallMonitor1Description: 
-WallMonitor2Name: 
-WallMonitor2Description: 
-WallMonitor3Name: 
-WallMonitor3Description: 
-CircuitBox1Name: 
-CircuitBox1Description: 
-CircuitBox2Name: 
-CircuitBox2Description: 
-CircuitBox3Name: 
-CircuitBox3Description: 
-SpecimenAnalyzerName: 
-SpecimenAnalyzerDescription: 
-SmallEmperorName: 
-SmallEmperorDescription: 
-MarlaCatName: 
-MarlaCatDescription: 
-MarkiDollName: 
-MarkiDollDescription: 
-JackSepticEyeName: 
-JackSepticEyeDescription: 
-GhostLeviathanDollName: 
-GhostLeviathanDollDescription: 
-ReaperLeviathanDollName: 
-ReaperLeviathanDollDescription: 
-SeaDragonDollName: 
-SeaDragonDollDescription: 
-SeaTreaderDollName: 
-SeaTreaderDollDescription: 
-ReefBackDollName: 
-ReefBackDollDescription: 
-CuddleFishDollName: 
-CuddleFishDollDescription: 
-ReactorLampName: 
-ReactorLampDescription: 
-SeamothDollName: 
-SeamothDollDescription: 
-ExosuitDollName: 
-ExosuitDollDescription: 
-ForkLiftDollName: 
-ForkLiftDollDescription: 
-BarBottleName: 
-BarBottleDescription: 
-BarCup2Name: 
-BarCup2Description: 
-BarCup1Name: 
-BarCup1Description: 
-BarFood1Name: 
-BarFood1Description: 
-BarFood2Name: 
-BarFood2Description: 
-BarNapkinsName: 
-BarNapkinsDescription: 
-LabRobotArmName: 
-LabRobotArmDescription: 
+Posters:
+Posters
+
+Lab Elements:
+Laboratory elements
+
+Glass Containers:
+Useless glass containers
+
+Non Functional Analyzers:
+Non-functional analyzers
+
+Lab Furnitures:
+Lab furnitures
+
+Wall Monitors:
+Wall computers
+
+Circuit Boxes:
+Circuits boxes
+
+Indoor Stuff:
+Indoor elements
+
+Toys:
+Toys
+
+Leviathan Dolls:
+Leviathan dolls
+
+Accessories:
+Accessories
+
+Adjust Item Size:
+Click to adjust size
+
+Decorations Fabricator Name:
+Decorations fabricator
+Decorations Fabricator Description:
+A fabricator to produce decoration items.
+
+Cylindrical Lab Container Name:
+Inverted cylindrical sample container
+Cylindrical Lab Container Description:
+An inverted cylindrical sample container, probably useless.
+
+Lab Tube Name:
+Tubular laboratory shelves (non-functional)
+Lab Tube Description:
+Tubular shelves for storing samples.
+
+Lab Cart Name:
+Lab cart (non-functional)
+Lab Cart Description:
+A laboratory sample cart.
+
+Lab Shelf Name:
+Laboratory shelves (non-functional)
+Lab Shelf Description:
+Shelves for storing samples.
+
+Wall Monitor Small Name:
+Wall monitor
+Wall Monitor Small Description:
+A wall monitor (must be connected to a server to work).
+
+Wall Monitor Medium Name:
+Simple wall computer
+Wall Monitor Medium Description:
+A small, simple wall-mounted computer (must be connected to a server to function).
+
+Wall Monitor Big Name:
+Wall computer
+Wall Monitor Big Description:
+A powerful wall-mounted computer (must be connected to a server to function).
+
+Circuit Box Name:
+Circuits box
+Circuit Box Description:
+A simple circuit box (allows powering of electrical devices).
+
+Connectivity Relay Name:
+Connectivity relay
+Connectivity Relay Description:
+A relay for the interconnection of equipment.
+
+Hight Voltage Electrical Relay Name:
+High voltage electrical relay
+Hight Voltage Electrical Relay Description:
+A component allowing the transport of large amounts of energy.
+
+Specimen Analyzer Name:
+Specimen analyzer
+Specimen Analyzer Description:
+Study specimens to deduce patterns of manufacture.
+
+Sea Emperor Doll Name:
+Emperor leviathan doll
+Sea Emperor Doll Description:
+This emperor leviathan doll was created from observations made on 4546B.
+
+Marla Cat Name:
+Marla
+Marla Cat Description:
+Eat My Diction's cat.
+
+Marki Doll Name:
+An unusual doll
+Marki Doll Description:
+An unusual doll.
+
+JackSepticEye Name:
+Jack's Septic Tank
+JackSepticEye Description:
+An unusual item.
+
+Ghost Leviathan Doll Name:
+Ghost leviathan doll
+Ghost Leviathan Doll Description:
+This ghost leviathan doll was created from observations made on 4546B.
+
+Reaper Leviathan Doll Name:
+Reaper leviathan doll
+Reaper Leviathan Doll Description:
+This reaper leviathan doll was created from observations made on 4546B.
+
+Sea Dragon Doll Name:
+Sea dragon leviathan doll
+Sea Dragon Doll Description:
+This sea dragon leviathan doll was created from observations made on 4546B.
+
+Sea Treader Doll Name:
+Sea treader leviathan doll
+Sea Treader Doll Description:
+This sea treader leviathan doll was created from observations made on 4546B.
+
+Reefback Doll Name:
+Reefback leviathan doll
+Reefback Doll Description:
+This reefback leviathan doll was created from observations made on 4546B.
+
+CuddleFish Doll Name:
+Cuddlefish doll
+CuddleFish Doll Description:
+This cuddlefish doll was created from observations made on 4546B.
+
+Seamoth Doll Name:
+Seamoth doll
+Seamoth Doll Description:
+A decorative miniature of the seamoth.
+
+Exosuit Doll Name:
+PRAWN suit doll
+Exosuit Doll Description:
+A decorative miniature of the PRAWN suit.
+
+Fork Lift Doll Name:
+Forklift (non-functional)
+Fork Lift Doll Description:
+A decorative forklift.
+
+Drinks And Food:
+Drinks & food
+
+Bar Bottle Name:
+Bar bottle
+Bar Bottle Description:
+A bottle containing a delicious beverage.
+
+Bar Cup Name:
+Cup
+Bar Cup Description:
+A cup made of titanium.
+
+Bar Cup Small Name:
+Small cup
+Bar Cup Small Description:
+A small cup made of titanium.
+
+Bar Food Small Name:
+Small meal
+Bar Food Small Description:
+A meal made of fish.
+
+Bar Food Big Name:
+Meal tray
+Bar Food Big Description:
+A complete and balanced meal.
+
+Bar Napkins Name:
+Napkins
+Bar Napkins Description:
+Napkins made of fiber mesh.
+
+Lab Robot Arm Name:
+Robot arm (non-functional)
+Lab Robot Arm Description:
+A laboratory robot arm (non-functional).
+
+Reaper Skull Doll Name:
+Reaper leviathan skull
+Reaper Skull Doll Description:
+A replica of a reaper leviathan skull.
+
+Lamp Name:
+Lamp
+Lamp Description:
+A customizable lamp.
+Lamp Tooltip:
+Click to adjust light range, or:
+Hold 'E' and click to change neon tube color
+Hold 'I' and click to change intensity
+Hold 'R' and click to change red levels
+Hold 'G' and click to change green levels
+Hold 'B' and click to change blue levels
+
+Switch Seamoth Model:
+Switch model
+Switch Exosuit Model Tooltip:
+Click to change left arm model, or:
+Hold 'E' and click to change right arm model
+
+Cargo Crate Small Name:
+Reinforced cargo crate
+Cargo Crate Small Description:
+A reinforced cargo crate made for the transport of goods.
+
+Cargo Crate Big Name:
+Cargo crate
+Cargo Crate Big Description:
+A cargo crate made for the transport of goods.
+
+Cargo Crate Damaged Name:
+Damaged cargo crate
+Cargo Crate Damaged Description:
+An unusable damaged cargo crate.
+
+Folder Name:
+Documents
+Folder Description:
+A folder containing various documents.
+
+Clipboard Name:
+Clipboard
+Clipboard Description:
+A clipboard containing various documents.
+
+Pen Name:
+Pen
+Pen Description:
+An Alterra pen.
+
+Pen Holder Name:
+Pen holder
+Pen Holder Description:
+An Alterra pen holder.
+
+Paper Trash Name:
+Crumpled papers
+Paper Trash Description:
+Unnecessary documents.
+
+Sofa Small Name:
+Small bench (decorative and functional)
+Sofa Small Description:
+A small bench: Aesthetic and practical to rest.
+
+Sofa Medium Name:
+Medium bench (decorative and functional)
+Sofa Medium Description:
+A medium bench: Aesthetic and practical to rest.
+
+Sofa Big Name:
+Long bench (decorative and functional)
+Sofa Big Description:
+A long bench: Aesthetic and practical to rest.
+
+Sofa Corner Name:
+Small bench angle (decorative and functional)
+Sofa Corner Description:
+A small bench angle: Aesthetic and practical to rest.
