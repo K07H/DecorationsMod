@@ -70,8 +70,6 @@ namespace DecorationsMod
                     return CountryCode.FR;
                 else if (countryCode.CompareTo("es") == 0)
                     return CountryCode.ES;
-                else
-                    return CountryCode.EN;
             }
             return CountryCode.EN;
         }
