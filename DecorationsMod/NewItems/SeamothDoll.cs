@@ -1,4 +1,5 @@
-﻿using SMLHelper;
+﻿using DecorationsMod.Controllers;
+using SMLHelper;
 using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
@@ -209,7 +210,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetPrefab()
         {
-            return GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            prefab.name = this.ClassID;
+            return prefab;
         }
     }
 }

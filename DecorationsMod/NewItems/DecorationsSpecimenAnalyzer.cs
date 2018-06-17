@@ -5,32 +5,23 @@ using UnityEngine;
 
 namespace DecorationsMod.NewItems
 {
-    public class SpecimenAnalyzer : DecorationItem
+    public class DecorationsSpecimenAnalyzer : DecorationItem
     {
-        public SpecimenAnalyzer() // Feeds abstract class
+        public DecorationsSpecimenAnalyzer() // Feeds abstract class
         {
-            if (ConfigSwitcher.SpecimenAnalyzer_asBuildable)
-                this.ClassID = "DecorationSpecimenAnalyzer";
-            else
-                this.ClassID = "c9bdcc4d-a8c6-43c0-8f7a-f86841cd4493";
+            this.ClassID = "DecorationsSpecimenAnalyzer"; // c9bdcc4d-a8c6-43c0-8f7a-f86841cd4493
 
             this.ResourcePath = "Submarine/Build/SpecimenAnalyzer";
             
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
+            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+                                                        LanguageHelper.GetFriendlyWord("SpecimenAnalyzerName"),
+                                                        LanguageHelper.GetFriendlyWord("SpecimenAnalyzerDescription"),
+                                                        true);
+
             if (ConfigSwitcher.SpecimenAnalyzer_asBuildable)
-            {
-                this.TechType = TechTypePatcher.AddTechType(this.ClassID,
-                                                            LanguageHelper.GetFriendlyWord("SpecimenAnalyzerName"),
-                                                            LanguageHelper.GetFriendlyWord("SpecimenAnalyzerDescription"),
-                                                            true);
                 this.IsHabitatBuilder = true;
-            }
-            else
-            {
-                this.TechType = TechType.SpecimenAnalyzer;
-                KnownTechPatcher.unlockedAtStart.Add(this.TechType);
-            }
 
             this.Recipe = new TechDataHelper()
             {
@@ -54,27 +45,24 @@ namespace DecorationsMod.NewItems
                     // Add to the custom buidables
                     CraftDataPatcher.customBuildables.Add(this.TechType);
                     CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
-
-                    // Set the buildable prefab
-                    CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
                 }
                 else
                 {
+                    // Set item occupies 4 slots
+                    CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(2, 2);
+
                     // Add the new TechType to the hand-equipments
                     CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
-
-                    // Set the buildable prefab
-                    CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
                 }
-                
+
+                // Set the buildable prefab
+                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+
                 // Set the custom icon
                 CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("specimenanalyzer")));
-
-                if (ConfigSwitcher.SpecimenAnalyzer_asBuildable)
-                {
-                    // Associate recipe to the new TechType
-                    CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
-                }
+                
+                // Associate recipe to the new TechType
+                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
 
                 this.IsRegistered = true;
             }
@@ -83,16 +71,38 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
-            
+
+            prefab.name = this.ClassID;
+
+            // Update TechTag
+            var techTag = prefab.GetComponent<TechTag>();
+            if (techTag == null)
+                if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
+                    techTag = prefab.AddComponent<TechTag>();
+            techTag.type = this.TechType;
+
+            // Update prefab ID
+            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            if (prefabId == null)
+                if ((prefabId = prefab.GetComponentInChildren<PrefabIdentifier>()) == null)
+                    prefabId = prefab.AddComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
+
             if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable)
             {
                 // Remove "Constructable" possibility
                 Constructable construct = prefab.GetComponent<Constructable>();
                 GameObject.DestroyImmediate(construct);
-
-                // Retrieve collider
-                GameObject basic = prefab.FindChild("logic").FindChild("base");
-                Collider collider = basic.GetComponent<Collider>();
+                
+                // Disable colliders to prevent physics bug in Cyclops, and add a small one so we can
+                // pick the Specimen Analyzer.
+                Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
+                foreach (Collider coll in colliders)
+                {
+                    coll.enabled = false;
+                }
+                SphereCollider newCollider = prefab.AddComponent<SphereCollider>();
+                newCollider.radius = 0.9f;
 
                 // We can pick this item
                 var pickupable = prefab.AddComponent<Pickupable>();
@@ -114,7 +124,7 @@ namespace DecorationsMod.NewItems
                 placeTool.hasAnimations = false;
                 placeTool.hasBashAnimation = false;
                 placeTool.hasFirstUseAnimation = false;
-                placeTool.mainCollider = collider;
+                placeTool.mainCollider = newCollider;
                 placeTool.pickupable = pickupable;
 
                 // Add fabricating animation
@@ -127,15 +137,6 @@ namespace DecorationsMod.NewItems
             }
             else
             {
-                prefab.name = this.ClassID;
-
-                // Update TechTag
-                var techTag = prefab.GetComponent<TechTag>();
-                if (techTag == null)
-                    if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
-                        techTag = prefab.AddComponent<TechTag>();
-                techTag.type = this.TechType;
-
                 // Set as constructible
                 var constructible = prefab.GetComponent<Constructable>();
                 constructible.allowedOnWall = false;
@@ -149,12 +150,6 @@ namespace DecorationsMod.NewItems
                 constructible.controlModelState = true;
                 constructible.enabled = true;
                 constructible.techType = this.TechType;
-
-                // Update prefab identifier
-                var prefabId = prefab.GetComponent<PrefabIdentifier>();
-                prefabId.ClassId = this.ClassID;
-                prefabId.name = LanguageHelper.GetFriendlyWord("SpecimenAnalyzerName");
-                prefabId.enabled = true;
             }
 
             return prefab;

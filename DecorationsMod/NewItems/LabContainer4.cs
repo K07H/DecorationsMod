@@ -56,12 +56,21 @@ namespace DecorationsMod.NewItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject model = prefab.FindChild("biodome_lab_containers_tube_02");
 
+            prefab.name = this.ClassID;
+
             // Update TechTag
             var techTag = prefab.GetComponent<TechTag>();
             if (techTag == null)
                 if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
                     techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
+
+            // Update prefab ID
+            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            if (prefabId == null)
+                if ((prefabId = prefab.GetComponentInChildren<PrefabIdentifier>()) == null)
+                    prefabId = prefab.AddComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
 
             // Get rigid body
             var rb = prefab.GetComponent<Rigidbody>();

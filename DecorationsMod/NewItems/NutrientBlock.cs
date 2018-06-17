@@ -9,7 +9,7 @@ namespace DecorationsMod.NewItems
     {
         public NutrientBlock() // Feeds abstract class
         {
-            this.ClassID = "CustomNutrientBlock";
+            this.ClassID = "30373750-1292-4034-9797-387cf576d150";
             this.ResourcePath = "WorldEntities/Food/NutrientBlock";
 
             this.TechType = TechType.NutrientBlock;
@@ -54,6 +54,22 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
+
+            prefab.name = this.ClassID;
+
+            // Update TechTag
+            var techTag = prefab.GetComponent<TechTag>();
+            if (techTag == null)
+                if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
+                    techTag = prefab.AddComponent<TechTag>();
+            techTag.type = this.TechType;
+
+            // Update prefab ID
+            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            if (prefabId == null)
+                if ((prefabId = prefab.GetComponentInChildren<PrefabIdentifier>()) == null)
+                    prefabId = prefab.AddComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
 
             // Retrieve collider
             Collider collider = prefab.GetComponent<BoxCollider>();

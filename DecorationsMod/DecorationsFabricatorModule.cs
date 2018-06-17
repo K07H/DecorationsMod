@@ -29,7 +29,11 @@ namespace DecorationsMod
         public static bool MarkiDoll2_asBuildable = true;
         public static bool JackSepticEye_asBuildable = true;
         public static bool EatMyDiction_asBuidable = true;
-        public static bool Forklift_asBuidable = false;
+        public static bool Forklift_asBuidable = true;
+        public static bool SofaStr1_asBuidable = true;
+        public static bool SofaStr2_asBuidable = true;
+        public static bool SofaStr3_asBuidable = true;
+        public static bool SofaCorner2_asBuidable = true;
     }
 
     public class DecorationsFabricatorModule
@@ -64,7 +68,8 @@ namespace DecorationsMod
                         if (configElem != null && configElem.Length == 2)
                         {
                             string configKey = configElem[0].Trim();
-                            bool configValue = (configElem[1].Trim().CompareTo("true") == 0);
+                            string configValueStr = configElem[1].Trim();
+                            bool configValue = (configValueStr.CompareTo("true") == 0);
 
                             if (configKey.CompareTo("enablePlaceItems") == 0)
                                 ConfigSwitcher.EnablePlaceItems = configValue;
@@ -82,6 +87,24 @@ namespace DecorationsMod
                                 ConfigSwitcher.EatMyDiction_asBuidable = configValue;
                             else if (configKey.CompareTo("asBuildable_ForkliftToy") == 0)
                                 ConfigSwitcher.Forklift_asBuidable = configValue;
+                            else if (configKey.CompareTo("asBuildable_Sofa1") == 0)
+                                ConfigSwitcher.SofaStr1_asBuidable = configValue;
+                            else if (configKey.CompareTo("asBuildable_Sofa2") == 0)
+                                ConfigSwitcher.SofaStr2_asBuidable = configValue;
+                            else if (configKey.CompareTo("asBuildable_Sofa3") == 0)
+                                ConfigSwitcher.SofaStr3_asBuidable = configValue;
+                            else if (configKey.CompareTo("asBuildable_SofaCorner") == 0)
+                                ConfigSwitcher.SofaCorner2_asBuidable = configValue;
+                            else if (configKey.CompareTo("language") == 0)
+                            {
+                                if (configValueStr.CompareTo("fr") == 0)
+                                    LanguageHelper.UserLanguage = RegionHelper.CountryCode.FR;
+                                else if (configValueStr.CompareTo("es") == 0)
+                                    LanguageHelper.UserLanguage = RegionHelper.CountryCode.ES;
+                                else if (configValueStr.CompareTo("en") == 0)
+                                    LanguageHelper.UserLanguage = RegionHelper.CountryCode.EN;
+                                // else, do nothing (uses default language from Windows)
+                            }
                         }
                     }
                 }
@@ -91,7 +114,7 @@ namespace DecorationsMod
 
             Logger.Log("Registering items...", null);
             
-            List<DecorationItem> decorationItems = RegisterDecorationItems();
+            List<IDecorationItem> decorationItems = RegisterDecorationItems();
 
             Logger.Log("Making some existing items positionable/pickupable...", null);
 
@@ -141,9 +164,9 @@ namespace DecorationsMod
             CraftDataPatcher.customTechData[DecorationsFabTechType] = customFabRecipe;
         }
 
-        private static List<DecorationItem> RegisterDecorationItems()
+        private static List<IDecorationItem> RegisterDecorationItems()
         {
-            List<DecorationItem> result = new List<DecorationItem>();
+            List<IDecorationItem> result = new List<IDecorationItem>();
 
             // Get the list of modified existing items
             var existingItems = from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() 
@@ -172,7 +195,7 @@ namespace DecorationsMod
             foreach (Type newItemType in newItems)
             {
                 DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
-
+                
                 if (ConfigSwitcher.EnableSpecialItems)
                 {
                     newItem.RegisterItem();
@@ -190,27 +213,28 @@ namespace DecorationsMod
             }
 
             // Register lamp tooltip
-            LanguagePatcher.customLines.Add("ToggleLamp", "Click to adjust light range, or:" + Environment.NewLine +
-                                                          "Hold 'E' and click to change neon tube color" + Environment.NewLine +
-                                                          "Hold 'I' and click to change intensity" + Environment.NewLine +
-                                                          "Hold 'R' and click to change red levels" + Environment.NewLine +
-                                                          "Hold 'G' and click to change green levels" + Environment.NewLine +
-                                                          "Hold 'B' and click to change blue levels" + Environment.NewLine);
+            LanguagePatcher.customLines.Add("ToggleLamp", LanguageHelper.GetFriendlyWord("LampTooltip"));
 
             // Register seamoth doll tooltip
-            LanguagePatcher.customLines.Add("SwitchSeamothModel", "Switch model");
+            LanguagePatcher.customLines.Add("SwitchSeamothModel", LanguageHelper.GetFriendlyWord("SwitchSeamothModel"));
 
             // Register exosuit doll tooltip
-            LanguagePatcher.customLines.Add("SwitchExosuitModel", "Click to switch left arm model," + Environment.NewLine +
-                                                                  "or hold 'E' and click to change right arm model" + Environment.NewLine);
+            LanguagePatcher.customLines.Add("SwitchExosuitModel", LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
+
+            // Register cargo boxes tooltip
+            LanguagePatcher.customLines.Add("AdjustCargoBoxSize", LanguageHelper.GetFriendlyWord("AdjustItemSize"));
+
+            // Register forklift tooltip
+            LanguagePatcher.customLines.Add("AdjustForkliftSize", LanguageHelper.GetFriendlyWord("AdjustItemSize"));
 
             return result;
         }
 
-        private static CustomCraftTreeRoot CreateCustomTree(out CraftTree.Type craftType, List<DecorationItem> decorationItems)
+        private static CustomCraftTreeRoot CreateCustomTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems)
         {
             var rootNode = CraftTreeTypePatcher.CreateCustomCraftTreeAndType(DecorationsFabID, out craftType);
 
+            // Posters
             var postersTab = rootNode.AddTabNode("Posters", LanguageHelper.GetFriendlyWord("Posters"), SpriteManager.Get(TechType.PosterKitty));
             postersTab.AddCraftingNode(TechType.PosterAurora,
                                        TechType.PosterExoSuit1,
@@ -218,33 +242,40 @@ namespace DecorationsMod
                                        TechType.PosterKitty,
                                        TechType.Poster);
 
+            // Lab elements root Node
             var labEquipmentTab = rootNode.AddTabNode("LabElements", LanguageHelper.GetFriendlyWord("LabElements"), SpriteManager.Get(TechType.LabEquipment1));
 
+            // Lab elements -> Useless glass containers Tab
             var glassContainersTab = labEquipmentTab.AddTabNode("GlassContainers", LanguageHelper.GetFriendlyWord("GlassContainers"), SpriteManager.Get(TechType.LabContainer2));
             glassContainersTab.AddCraftingNode(TechType.LabContainer,
                                                TechType.LabContainer2,
                                                TechType.LabContainer3,
                                                DecorationItemsHelper.getTechType(decorationItems, "LabContainer4"));
 
+            // Lab elements -> Equipments Tab
             var analyzersTab = labEquipmentTab.AddTabNode("NonFunctionalAnalyzers", LanguageHelper.GetFriendlyWord("NonFunctionalAnalyzers"), SpriteManager.Get(TechType.LabEquipment3));
             analyzersTab.AddCraftingNode(TechType.LabEquipment1,
                                          TechType.LabEquipment2,
                                          TechType.LabEquipment3);
             
-            var furnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("labcarticon"));
-            furnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabShelf"),
+            // Lab elements -> Furnitures Tab
+            var labFurnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("labcarticon"));
+            labFurnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabShelf"),
                                           DecorationItemsHelper.getTechType(decorationItems, "LabCart"),
                                           DecorationItemsHelper.getTechType(decorationItems, "DecorationLabTube"));
-            if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable)
-                labEquipmentTab.AddCraftingNode(TechType.SpecimenAnalyzer);
 
+            // Lab elements items
+            if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable)
+                labEquipmentTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationsSpecimenAnalyzer"));
             labEquipmentTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabRobotArm"));
             
+            // Wall monitors
             var wallMonitorsTab = rootNode.AddTabNode("WallMonitors", LanguageHelper.GetFriendlyWord("WallMonitors"), AssetsHelper.Assets.LoadAsset<Sprite>("computer3"));
             wallMonitorsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WallMonitor1"),
                                             DecorationItemsHelper.getTechType(decorationItems, "WallMonitor2"),
                                             DecorationItemsHelper.getTechType(decorationItems, "WallMonitor3"));
 
+            // Circuit boxes
             var circuitBoxesTab = rootNode.AddTabNode("CircuitBoxes", LanguageHelper.GetFriendlyWord("CircuitBoxes"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox3"));
             circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1"),
                                             DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1b"),
@@ -257,6 +288,24 @@ namespace DecorationsMod
                                             DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3c"),
                                             DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3d"));
 
+            // Indoor stuff
+            var indoorStuffTab = rootNode.AddTabNode("IndoorStuff", LanguageHelper.GetFriendlyWord("IndoorStuff"), AssetsHelper.Assets.LoadAsset<Sprite>("clipboardicon"));
+            indoorStuffTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "Folder1"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "Folder3"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "Clipboard"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "PaperTrash"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "Pen"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "PenHolder"));
+            if (!ConfigSwitcher.SofaStr1_asBuidable)
+                indoorStuffTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr1"));
+            if (!ConfigSwitcher.SofaStr2_asBuidable)
+                indoorStuffTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr2"));
+            if (!ConfigSwitcher.SofaStr3_asBuidable)
+                indoorStuffTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr3"));
+            if (!ConfigSwitcher.SofaCorner2_asBuidable)
+                indoorStuffTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaCorner2"));
+            
+            // Drinks & food
             var barKitchenTab = rootNode.AddTabNode("DrinksAndFood", LanguageHelper.GetFriendlyWord("DrinksAndFood"), AssetsHelper.Assets.LoadAsset<Sprite>("barbottle05icon"));
             barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarCup1"),
                                           DecorationItemsHelper.getTechType(decorationItems, "BarCup2"),
@@ -270,6 +319,7 @@ namespace DecorationsMod
                                           DecorationItemsHelper.getTechType(decorationItems, "BarFood2"),
                                           TechType.NutrientBlock);
 
+            // Toys
             var toysTab = rootNode.AddTabNode("Toys", LanguageHelper.GetFriendlyWord("Toys"), SpriteManager.Get(TechType.ArcadeGorgetoy));
             toysTab.AddCraftingNode(TechType.StarshipSouvenir,
                                     TechType.ArcadeGorgetoy,
@@ -286,14 +336,17 @@ namespace DecorationsMod
             if (!ConfigSwitcher.EatMyDiction_asBuidable)
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarlaCat"));
             
+            // Leviathan dolls
             var faunaTab = rootNode.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
             faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"),
                                      DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll"),
                                      DecorationItemsHelper.getTechType(decorationItems, "ReaperLeviathanDoll"),
                                      DecorationItemsHelper.getTechType(decorationItems, "GhostLeviathanDoll"),
                                      DecorationItemsHelper.getTechType(decorationItems, "SeaDragonDoll"),
-                                     DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll"));
+                                     DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "ReaperSkullDoll"));
             
+            // Accessories
             var accessoriesTab = rootNode.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));
             accessoriesTab.AddCraftingNode(TechType.LuggageBag,
                                            TechType.Cap1,
@@ -327,7 +380,7 @@ namespace DecorationsMod
             
             FieldInfo fieldInfo = typeof(GhostCrafter).GetField("powerRelay", BindingFlags.NonPublic | BindingFlags.Instance);
             fieldInfo.SetValue(ghost, powerRelay);
-
+            
             // Set where this can be built
             var constructible = prefab.GetComponent<Constructable>();
             constructible.allowedInBase = true;

@@ -55,8 +55,21 @@ namespace DecorationsMod.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
+            prefab.name = this.ClassID;
+
             // Update TechTag
-            prefab.GetComponent<TechTag>().type = this.TechType;
+            var techTag = prefab.GetComponent<TechTag>();
+            if (techTag == null)
+                if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
+                    techTag = prefab.AddComponent<TechTag>();
+            techTag.type = this.TechType;
+
+            // Update prefab ID
+            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            if (prefabId == null)
+                if ((prefabId = prefab.GetComponentInChildren<PrefabIdentifier>()) == null)
+                    prefabId = prefab.AddComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
 
             // Remove Cube object to prevent physics bugs
             GameObject cube = prefab.FindChild("Cube");
@@ -77,33 +90,29 @@ namespace DecorationsMod.NewItems
             // We can pick this item
             var pickupable = prefab.GetComponent<Pickupable>();
             if (pickupable == null)
-            {
                 pickupable = prefab.AddComponent<Pickupable>();
-                pickupable.isPickupable = true;
-                pickupable.randomizeRotationWhenDropped = true;
-            }
+            pickupable.isPickupable = true;
+            pickupable.randomizeRotationWhenDropped = true;
 
             // We can place this item
             var placeTool = prefab.GetComponent<PlaceTool>();
             if (placeTool == null)
-            {
                 placeTool = prefab.AddComponent<PlaceTool>();
-                placeTool.allowedInBase = true;
-                placeTool.allowedOnBase = true;
-                placeTool.allowedOnCeiling = false;
-                placeTool.allowedOnConstructable = true;
-                placeTool.allowedOnGround = true;
-                placeTool.allowedOnRigidBody = true;
-                placeTool.allowedOnWalls = true;
-                placeTool.allowedOutside = false;
-                placeTool.rotationEnabled = true;
-                placeTool.enabled = true;
-                placeTool.hasAnimations = false;
-                placeTool.hasBashAnimation = false;
-                placeTool.hasFirstUseAnimation = false;
-                placeTool.mainCollider = collider;
-                placeTool.pickupable = pickupable;
-            }
+            placeTool.allowedInBase = true;
+            placeTool.allowedOnBase = true;
+            placeTool.allowedOnCeiling = false;
+            placeTool.allowedOnConstructable = true;
+            placeTool.allowedOnGround = true;
+            placeTool.allowedOnRigidBody = true;
+            placeTool.allowedOnWalls = true;
+            placeTool.allowedOutside = false;
+            placeTool.rotationEnabled = true;
+            placeTool.enabled = true;
+            placeTool.hasAnimations = false;
+            placeTool.hasBashAnimation = false;
+            placeTool.hasFirstUseAnimation = false;
+            placeTool.mainCollider = collider;
+            placeTool.pickupable = pickupable;
 
             // Add fabricating animation
             var fabricating = prefab.AddComponent<VFXFabricating>();

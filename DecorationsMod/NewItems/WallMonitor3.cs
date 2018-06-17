@@ -1,4 +1,5 @@
-﻿using SMLHelper;
+﻿using DecorationsMod.Fixers;
+using SMLHelper;
 using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,16 @@ namespace DecorationsMod.NewItems
 {
     public class WallMonitor3 : DecorationItem
     {
+        public GameObject SignObject = null;
+
         public WallMonitor3() // Feeds abstract class
         {
             this.ClassID = "WallMonitor3"; //cb612e1b-d57a-44f5-a043-a886eb17e5a6
             this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/wall_monitor_01_03";
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+
+            this.SignObject = Resources.Load<GameObject>("Submarine/Build/Sign");
 
             this.TechType = TechTypePatcher.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("WallMonitor3Name"),
@@ -54,11 +59,23 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject signPrefab = GameObject.Instantiate(this.SignObject);
 
             prefab.name = this.ClassID;
 
             // Update TechTag
-            prefab.GetComponent<TechTag>().type = this.TechType;
+            var techTag = prefab.GetComponent<TechTag>();
+            if (techTag == null)
+                if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
+                    techTag = prefab.AddComponent<TechTag>();
+            techTag.type = this.TechType;
+
+            // Update prefab identifier
+            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            if (prefabId == null)
+                if ((prefabId = prefab.GetComponentInChildren<PrefabIdentifier>()) == null)
+                    prefabId = prefab.AddComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
 
             // Remove rigid body to prevent bugs
             var rb = prefab.GetComponent<Rigidbody>();
@@ -90,6 +107,33 @@ namespace DecorationsMod.NewItems
             placeTool.hasFirstUseAnimation = false;
             placeTool.mainCollider = collider;
             placeTool.pickupable = pickupable;
+
+            // Add editable label
+            signPrefab.transform.parent = prefab.transform;
+            signPrefab.transform.localPosition = new Vector3(0f, 0.25f, 0.096f);
+            signPrefab.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            signPrefab.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+            signPrefab.SetActive(true);
+            var ssf = prefab.AddComponent<SignSetupFixer>();
+
+            // Hide "no signal" material
+            Material screenMaterial = AssetsHelper.Assets.LoadAsset<Material>("new_wall_monitor_screen_material");
+            screenMaterial.shader = Shader.Find("MarmosetUBER");
+            MeshRenderer[] renderers = prefab.GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer rend in renderers)
+            {
+                if (rend.name.CompareTo("Starship_wall_monitor_01_03") == 0)
+                {
+                    Material[] tmp = rend.materials;
+                    if (tmp.Length >= 2)
+                    {
+                        if (tmp[0].name.CompareTo("Starship_wall_monitor_01_screen (Instance)") == 0)
+                            rend.materials = new Material[] { screenMaterial, tmp[1] };
+                        else if (tmp[1].name.CompareTo("Starship_wall_monitor_01_screen (Instance)") == 0)
+                            rend.materials = new Material[] { tmp[0], screenMaterial };
+                    }
+                }
+            }
 
             // Add fabricating animation
             var fabricating = prefab.AddComponent<VFXFabricating>();

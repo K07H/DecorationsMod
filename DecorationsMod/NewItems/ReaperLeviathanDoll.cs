@@ -138,6 +138,8 @@ namespace DecorationsMod.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
+            prefab.name = this.ClassID;
+
             // Add fabricating animation
             var fabricatingA = prefab.AddComponent<VFXFabricating>();
             fabricatingA.localMinY = -0.2f;

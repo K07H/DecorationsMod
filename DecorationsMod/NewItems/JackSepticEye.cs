@@ -14,19 +14,13 @@ namespace DecorationsMod.NewItems
             
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
+            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+                                                        LanguageHelper.GetFriendlyWord("JackSepticEyeName"),
+                                                        LanguageHelper.GetFriendlyWord("JackSepticEyeDescription"),
+                                                        true);
+
             if (ConfigSwitcher.JackSepticEye_asBuildable)
-            {
-                this.TechType = TechTypePatcher.AddTechType(this.ClassID,
-                                                            LanguageHelper.GetFriendlyWord("JackSepticEyeName"),
-                                                            LanguageHelper.GetFriendlyWord("JackSepticEyeDescription"),
-                                                            true);
                 this.IsHabitatBuilder = true;
-            }
-            else
-            {
-                this.TechType = TechType.JackSepticEye;
-                KnownTechPatcher.unlockedAtStart.Add(this.TechType);
-            }
 
             this.Recipe = new TechDataHelper()
             {
@@ -49,24 +43,22 @@ namespace DecorationsMod.NewItems
                     // Add the new TechType to the buildables
                     CraftDataPatcher.customBuildables.Add(this.TechType);
                     CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
-                    CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
                 }
                 else
                 {
                     // Add the new TechType to the hand-equipments
                     CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
-                    CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
                 }
-                
+
+                // Set the custom prefab
+                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+
                 // Set the custom icon
                 CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, SpriteManager.Get(TechType.JackSepticEye)));
-
-                if (ConfigSwitcher.JackSepticEye_asBuildable)
-                {
-                    // Associate recipe to the new TechType
-                    CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
-                }
-
+                
+                // Associate recipe to the new TechType
+                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                
                 this.IsRegistered = true;
             }
         }
@@ -74,7 +66,23 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
-            
+
+            prefab.name = this.ClassID;
+
+            // Update TechTag
+            var techTag = prefab.GetComponent<TechTag>();
+            if (techTag == null)
+                if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
+                    techTag = prefab.AddComponent<TechTag>();
+            techTag.type = this.TechType;
+
+            // Update prefab ID
+            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            if (prefabId == null)
+                if ((prefabId = prefab.GetComponentInChildren<PrefabIdentifier>()) == null)
+                    prefabId = prefab.AddComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
+
             if (!ConfigSwitcher.JackSepticEye_asBuildable)
             {
                 // Retrieve collider
@@ -111,17 +119,6 @@ namespace DecorationsMod.NewItems
                 fabricating.posOffset = new Vector3(0f, 0f, 0.04f);
                 fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
                 fabricating.scaleFactor = 1f;
-            }
-            else
-            {
-                prefab.name = this.ClassID;
-
-                // Update TechTag
-                var techTag = prefab.GetComponent<TechTag>();
-                if (techTag == null)
-                    if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
-                        techTag = prefab.AddComponent<TechTag>();
-                techTag.type = this.TechType;
             }
             
             return prefab;

@@ -59,12 +59,21 @@ namespace DecorationsMod.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
+            prefab.name = this.ClassID;
+
             // Update TechTag
             var techTag = prefab.GetComponent<TechTag>();
             if (techTag == null)
                 if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
                     techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
+
+            // Update prefab ID
+            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            if (prefabId == null)
+                if ((prefabId = prefab.GetComponentInChildren<PrefabIdentifier>()) == null)
+                    prefabId = prefab.AddComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
 
             // Delete the "Capsule" item as it conflicts with PlaceTool
             // when you hold it while swimming (see https://www.youtube.com/watch?v=mGCpK4Z8yQM)

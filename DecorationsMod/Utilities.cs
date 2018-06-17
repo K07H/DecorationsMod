@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -11,6 +12,14 @@ namespace DecorationsMod
             if (args != null && args.Length > 0)
                 text = string.Format(text, args);
             Console.WriteLine($"[DecorationsMod] {text}");
+        }
+    }
+
+    internal static class FilesHelper
+    {
+        public static string GetSaveFolderPath()
+        {
+            return Path.Combine(Path.Combine(@".\SNAppData\SavedGames\", Utils.GetSavegameDir()), "DecorationsMod");
         }
     }
 

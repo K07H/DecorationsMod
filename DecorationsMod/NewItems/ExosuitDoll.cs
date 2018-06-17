@@ -1,4 +1,5 @@
-﻿using SMLHelper;
+﻿using DecorationsMod.Controllers;
+using SMLHelper;
 using SMLHelper.Patchers;
 using System;
 using System.Collections.Generic;
@@ -289,7 +290,7 @@ namespace DecorationsMod.NewItems
                 // Add constructable bounds
                 var bounds = this.GameObject.AddComponent<ConstructableBounds>();
                 
-                // Add lights/model controler
+                // Add model controler
                 var exosuitDollControler = this.GameObject.AddComponent<ExosuitDollControler>();
 
                 #region Disable right arms (except hand arm)
@@ -391,7 +392,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetPrefab()
         {
-            return GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            prefab.name = this.ClassID;
+            return prefab;
         }
     }
 }

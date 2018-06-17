@@ -4,7 +4,18 @@ using UnityEngine;
 
 namespace DecorationsMod
 {
-    public abstract class DecorationItem
+    public interface IDecorationItem
+    {
+        // Property signatures
+        string ClassID { get; set; }
+        TechType TechType { get; set; }
+
+        // Method signatures
+        GameObject GetPrefab();
+        void RegisterItem();
+    }
+
+    public abstract class DecorationItem : IDecorationItem
     {
         #region Attributes
 

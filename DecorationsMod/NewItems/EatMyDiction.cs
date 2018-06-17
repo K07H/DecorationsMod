@@ -14,21 +14,15 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
-            if (ConfigSwitcher.EatMyDiction_asBuidable)
-            {
-                this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("MarlaCatName"),
                                                         LanguageHelper.GetFriendlyWord("MarlaCatDescription"),
                                                         true);
-                this.IsHabitatBuilder = true;
-            }
-            else
-            {
-                this.TechType = TechType.EatMyDiction;
-                KnownTechPatcher.unlockedAtStart.Add(this.TechType);
-            }
 
-                this.Recipe = new TechDataHelper()
+            if (ConfigSwitcher.EatMyDiction_asBuidable)
+                this.IsHabitatBuilder = true;
+
+            this.Recipe = new TechDataHelper()
             {
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[1]
@@ -48,24 +42,21 @@ namespace DecorationsMod.NewItems
                     // Add the new TechType to the buildables
                     CraftDataPatcher.customBuildables.Add(this.TechType);
                     CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
-                    CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
                 }
                 else
                 {
                     // Add the new TechType to the hand-equipments
                     CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
-                    // Set the buildable prefab
-                    CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
                 }
-                
+
+                // Set the custom prefab
+                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+
                 // Set the custom sprite
                 CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, SpriteManager.Get(TechType.EatMyDiction)));
                 
-                if (ConfigSwitcher.EatMyDiction_asBuidable)
-                {
-                    // Associate recipe to the new TechType
-                    CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
-                }
+                // Associate recipe to the new TechType
+                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
                 
                 this.IsRegistered = true;
             }
@@ -75,7 +66,23 @@ namespace DecorationsMod.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject model = prefab.FindChild("Eatmydiction");
-            
+
+            prefab.name = this.ClassID;
+
+            // Update TechTag
+            var techTag = prefab.GetComponent<TechTag>();
+            if (techTag == null)
+                if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
+                    techTag = prefab.AddComponent<TechTag>();
+            techTag.type = this.TechType;
+
+            // Update prefab ID
+            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            if (prefabId == null)
+                if ((prefabId = prefab.GetComponentInChildren<PrefabIdentifier>()) == null)
+                    prefabId = prefab.AddComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
+
             if (!ConfigSwitcher.EatMyDiction_asBuidable)
             {
                 // Add box collider
@@ -112,17 +119,6 @@ namespace DecorationsMod.NewItems
                 fabricating.posOffset = new Vector3(0f, 0f, 0.04f);
                 fabricating.eulerOffset = new Vector3(-90f, 0f, 0f);
                 fabricating.scaleFactor = 0.1f;
-            }
-            else
-            {
-                prefab.name = this.ClassID;
-
-                // Update TechTag
-                var techTag = prefab.GetComponent<TechTag>();
-                if (techTag == null)
-                    if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
-                        techTag = prefab.AddComponent<TechTag>();
-                techTag.type = this.TechType;
             }
 
             return prefab;

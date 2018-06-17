@@ -1,6 +1,7 @@
 ﻿using SMLHelper;
 using SMLHelper.Patchers;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -58,38 +59,37 @@ namespace DecorationsMod.NewItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject model = prefab.FindChild("discovery_lab_cart_01");
 
-            // Update TechTag
-            var techTag = prefab.GetComponent<TechTag>();
-            if (techTag == null)
-                if ((techTag = prefab.GetComponentInChildren<TechTag>()) == null)
-                    techTag = prefab.AddComponent<TechTag>();
+            prefab.name = this.ClassID;
+
+            GameObject cube = prefab.FindChild("Cube");
+            GameObject.DestroyImmediate(cube);
+
+            // Set TechTag
+            var techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
-            // Remove Cube object to prevent physics bug
-            var cube = prefab.FindChild("Cube");
-            if (cube != null)
-                GameObject.DestroyImmediate(cube);
+            // Set prefab identifier
+            prefab.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
-            // Remove rigid body to prevent physics bugs
-            var rb = prefab.GetComponents<Rigidbody>();
-            foreach (Rigidbody tmpRB in rb)
-            {
-                GameObject.DestroyImmediate(tmpRB);
-            }
-            rb = prefab.GetComponentsInChildren<Rigidbody>();
-            foreach (Rigidbody tmpRB in rb)
-            {
-                GameObject.DestroyImmediate(tmpRB);
-            }
+            // Set large world entity
+            prefab.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
-            var lwe = prefab.GetComponent<LargeWorldEntity>();
-            if (lwe != null)
-                GameObject.DestroyImmediate(lwe);
+            // Set proper shaders
+            var rend = prefab.GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in rend)
+            {
+                renderer.material.shader = Shader.Find("MarmosetUBER");
+            }
 
             // Add box collider
             var collider = prefab.AddComponent<BoxCollider>();
-            collider.size = new Vector3(0.7f, 0.5f, 0.4f);
-
+            collider.size = new Vector3(1.1f, 0.9f, 0.6f);
+            
+            // Set sky applier
+            var applier = prefab.AddComponent<SkyApplier>();
+            applier.renderers = rend;
+            applier.anchorSky = Skies.Auto;
+            
             // We can pick this item
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = true;

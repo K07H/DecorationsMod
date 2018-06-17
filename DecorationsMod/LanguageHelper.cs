@@ -1,4 +1,6 @@
-﻿namespace DecorationsMod
+﻿using System;
+
+namespace DecorationsMod
 {
     public static class LanguageHelper
     {
@@ -66,6 +68,13 @@
                         return "Cajas de circuitos";
                     else
                         return "Circuits boxes";
+                case "IndoorStuff":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Éléments d'intérieur";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Elementos interiores";
+                    else
+                        return "Indoor elements";
                 case "Toys":
                     if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
                         return "Jouets";
@@ -527,7 +536,7 @@
                     if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
                         return "Bras robot (non-fonctionnel)";
                     else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
-                        return "brazo robótico (no funcional)";
+                        return "Brazo robótico (no funcional)";
                     else
                         return "Robot arm (non-functional)";
                 case "LabRobotArmDescription":
@@ -537,6 +546,248 @@
                         return "Un brazo robótico de laboratorio (no funcional).";
                     else
                         return "A laboratory robot arm (non-functional).";
+                case "ReaperSkullDollName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Crâne de faucheur léviathan";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Cráneo de segador leviatán";
+                    else
+                        return "Reaper leviathan skull";
+                case "ReaperSkullDollDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Une réplique de crâne d'un faucheur léviathan.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una réplica del cráneo de un segador leviatán.";
+                    else
+                        return "A replica of a reaper leviathan skull.";
+                case "LampTooltip":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Cliquez pour ajuster la portée, ou :" + Environment.NewLine +
+                               "Maintenez 'E' et cliquez pour changer la couleur du néon" + Environment.NewLine +
+                               "Maintenez 'I' et cliquez pour changer l'intensité" + Environment.NewLine +
+                               "Maintenez 'R' et cliquez pour changer le niveau de rouge" + Environment.NewLine +
+                               "Maintenez 'G' et cliquez pour changer le niveau de vert" + Environment.NewLine +
+                               "Maintenez 'B' et cliquez pour changer le niveau de bleu" + Environment.NewLine;
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Haga clic para ajustar el alcance, o:" + Environment.NewLine +
+                               "Mantenga 'E' y haga clic para cambiar el color del neón" + Environment.NewLine +
+                               "Mantenga 'I' y haga clic para cambiar la intensidad" + Environment.NewLine +
+                               "Mantenga 'R' y haga clic para cambiar los niveles rojos" + Environment.NewLine +
+                               "Mantenga 'G' y haga clic para cambiar los niveles verdes" + Environment.NewLine +
+                               "Mantenga 'B' y haga clic para cambiar los niveles azules" + Environment.NewLine;
+                    else
+                        return "Click to adjust light range, or:" + Environment.NewLine +
+                               "Hold 'E' and click to change neon tube color" + Environment.NewLine +
+                               "Hold 'I' and click to change intensity" + Environment.NewLine +
+                               "Hold 'R' and click to change red levels" + Environment.NewLine +
+                               "Hold 'G' and click to change green levels" + Environment.NewLine +
+                               "Hold 'B' and click to change blue levels" + Environment.NewLine;
+                case "SwitchSeamothModel":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Changer le modèle";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Cambiar el modelo";
+                    else
+                        return "Switch model";
+                case "SwitchExosuitModel":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Cliquez pour changer le modèle de bras gauche, ou:" + Environment.NewLine +
+                               "Maintenez 'E' et cliquez pour change le modèle de bras droit" + Environment.NewLine;
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Haga clic para cambiar el modelo de brazo izquierdo, o:" + Environment.NewLine +
+                               "Mantenga 'E' y haga clic para cambiar el modelo de brazo derecho" + Environment.NewLine;
+                    else
+                        return "Click to change left arm model, or:" + Environment.NewLine +
+                               "Hold 'E' and click to change right arm model" + Environment.NewLine;
+                case "AdjustItemSize":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Cliquez pour modifier la taille";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Haga clic para cambiar el tamaño";
+                    else
+                        return "Click to adjust size";
+                case "CargoBox1aName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Caisse de chargement renforcée";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Caja de carga reforzada";
+                    else
+                        return "Reinforced cargo crate";
+                case "CargoBox1aDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Une caisse de chargement renforcée permettant le transport des marchandises.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una caja de carga reforzada que permite el transporte de mercancías.";
+                    else
+                        return "A reinforced cargo crate made for the transport of goods.";
+                case "CargoBox1bName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Caisse de chargement";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Caja de carga";
+                    else
+                        return "Cargo crate";
+                case "CargoBox1bDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Une caisse de chargement permettant le transport des marchandises.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una caja de carga que permite el transporte de mercancías.";
+                    else
+                        return "A cargo crate made for the transport of goods.";
+                case "CargoBox1DmgName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Caisse de chargement endommagée";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Caja de carga dañada";
+                    else
+                        return "Damaged cargo crate";
+                case "CargoBox1DmgDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Une caisse de chargement en piteux état.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una caja de carga en mal estado.";
+                    else
+                        return "An unusable damaged cargo crate.";
+                case "Folder1Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Documents";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Documentos";
+                    else
+                        return "Documents";
+                case "Folder1Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un dossier contenant divers documents.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Una carpeta que contiene varios documentos.";
+                    else
+                        return "A folder containing various documents.";
+                case "ClipboardName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Presse-papiers";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Portapapeles";
+                    else
+                        return "Clipboard";
+                case "ClipboardDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un presse-papiers contenant divers documents.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un portapapeles que contiene varios documentos.";
+                    else
+                        return "A clipboard containing various documents.";
+                case "PenName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Stylo";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Lápice";
+                    else
+                        return "Pen";
+                case "PenDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un stylo Alterra.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un lápice Alterra.";
+                    else
+                        return "An Alterra pen.";
+                case "PenHolderName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Porte-stylo";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Portalápices";
+                    else
+                        return "Pen holder";
+                case "PenHolderDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un porte-stylo Alterra.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un portalápices Alterra.";
+                    else
+                        return "An Alterra pen holder.";
+                case "PaperTrashName":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Papiers froissés";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Papeles arrugados";
+                    else
+                        return "Crumpled papers";
+                case "PaperTrashDescription":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Des documents inutiles.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Documentos innecesarios";
+                    else
+                        return "Unnecessary documents.";
+                case "SofaStr1Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Petit banc (décoratif et fonctionnel)";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Pequeño banco (decorativo y funcional)";
+                    else
+                        return "Small bench (decorative and functional)";
+                case "SofaStr1Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un petit banc : Esthétique et pratique pour se reposer.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un pequeño banco: Estético y práctico para un descanso.";
+                    else
+                        return "A small bench: Aesthetic and practical to rest.";
+                case "SofaStr2Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Banc moyen (décoratif et fonctionnel)";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Mediano banco (decorativo y funcional)";
+                    else
+                        return "Medium bench (decorative and functional)";
+                case "SofaStr2Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un banc moyen : Esthétique et pratique pour se reposer.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un mediano banco: Estético y práctico para un descanso.";
+                    else
+                        return "A medium bench: Aesthetic and practical to rest.";
+                case "SofaStr3Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Banc large (décoratif et fonctionnel)";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Banco grande (decorativo y funcional)";
+                    else
+                        return "Long bench (decorative and functional)";
+                case "SofaStr3Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un banc large : Esthétique et pratique pour se reposer.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un grande banco: Estético y práctico para un descanso.";
+                    else
+                        return "A long bench: Aesthetic and practical to rest.";
+                case "SofaCorner1Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Petit angle de banc (décoratif et fonctionnel)";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Pequeño ángulo de banco (decorativo y funcional)";
+                    else
+                        return "Small bench angle (decorative and functional)";
+                case "SofaCorner1Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un petit angle de banc : Esthétique et pratique pour se reposer.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un pequeño ángulo de banco: Estético y práctico para un descanso.";
+                    else
+                        return "A small bench angle: Aesthetic and practical to rest.";
+                case "SofaCorner2Name":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Angle de banc (décoratif et fonctionnel)";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Ángulo de banco (decorativo y funcional)";
+                    else
+                        return "Bench angle (decorative and functional)";
+                case "SofaCorner2Description":
+                    if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.FR)
+                        return "Un angle de banc : Esthétique et pratique pour se reposer.";
+                    else if (LanguageHelper.UserLanguage == RegionHelper.CountryCode.ES)
+                        return "Un ángulo de banco: Estético y práctico para un descanso.";
+                    else
+                        return "A bench angle: Aesthetic and practical to rest.";
                 default:
                     return "?";
             }
