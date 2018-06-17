@@ -12,6 +12,8 @@ namespace DecorationsMod
             if (pickupable == null)
                 pickupable = item.AddComponent<Pickupable>();
 
+            
+
             // We can place this item
             var placeTool = item.GetComponent<PlaceTool>();
             if (placeTool == null)
@@ -31,7 +33,6 @@ namespace DecorationsMod
             placeTool.hasFirstUseAnimation = false;
             // Associate pickupable
             placeTool.pickupable = pickupable;
-
             // Try get collider
             if (collider == null)
             {
@@ -51,53 +52,53 @@ namespace DecorationsMod
         {
             GameObject egg1 = Resources.Load<GameObject>("WorldEntities/Eggs/BonesharkEgg");
             MakeItemPlaceable(TechType.BonesharkEgg, egg1);
-            MakeItemPlaceable(TechType.BonesharkEggUndiscovered, egg1);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.BonesharkEggUndiscovered, EquipmentType.Hand);
             GameObject egg2 = Resources.Load<GameObject>("WorldEntities/Eggs/CrabsnakeEgg");
             MakeItemPlaceable(TechType.CrabsnakeEgg, egg2);
-            MakeItemPlaceable(TechType.CrabsnakeEggUndiscovered, egg2);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.CrabsnakeEggUndiscovered, EquipmentType.Hand);
             GameObject egg3 = Resources.Load<GameObject>("WorldEntities/Eggs/CrabSquidEgg");
             MakeItemPlaceable(TechType.CrabsquidEgg, egg3);
-            MakeItemPlaceable(TechType.CrabsquidEggUndiscovered, egg3);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.CrabsquidEggUndiscovered, EquipmentType.Hand);
             GameObject egg4 = Resources.Load<GameObject>("WorldEntities/Eggs/CrashEgg");
             MakeItemPlaceable(TechType.CrashEgg, egg4);
-            MakeItemPlaceable(TechType.CrashEggUndiscovered, egg4);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.CrashEggUndiscovered, EquipmentType.Hand);
             GameObject egg5 = Resources.Load<GameObject>("WorldEntities/Eggs/CuteEgg");
             MakeItemPlaceable(TechType.CutefishEgg, egg5);
-            MakeItemPlaceable(TechType.CutefishEggUndiscovered, egg5);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.CutefishEggUndiscovered, EquipmentType.Hand);
             GameObject egg6 = Resources.Load<GameObject>("WorldEntities/Eggs/GasopodEgg");
             MakeItemPlaceable(TechType.GasopodEgg, egg6);
-            MakeItemPlaceable(TechType.GasopodEggUndiscovered, egg6);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.GasopodEggUndiscovered, EquipmentType.Hand);
             GameObject egg7 = Resources.Load<GameObject>("WorldEntities/Eggs/JellyrayEgg");
             MakeItemPlaceable(TechType.JellyrayEgg, egg7);
-            MakeItemPlaceable(TechType.JellyrayEggUndiscovered, egg7);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.JellyrayEggUndiscovered, EquipmentType.Hand);
             GameObject egg8 = Resources.Load<GameObject>("WorldEntities/Eggs/JumperEgg");
             MakeItemPlaceable(TechType.JumperEgg, egg8);
-            MakeItemPlaceable(TechType.JumperEggUndiscovered, egg8);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.JumperEggUndiscovered, EquipmentType.Hand);
             GameObject egg9 = Resources.Load<GameObject>("WorldEntities/Eggs/LavaLizardEgg");
             MakeItemPlaceable(TechType.LavaLizardEgg, egg9);
-            MakeItemPlaceable(TechType.LavaLizardEggUndiscovered, egg9);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.LavaLizardEggUndiscovered, EquipmentType.Hand);
             GameObject egg10 = Resources.Load<GameObject>("WorldEntities/Eggs/MesmerEgg");
             MakeItemPlaceable(TechType.MesmerEgg, egg10);
-            MakeItemPlaceable(TechType.MesmerEggUndiscovered, egg10);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.MesmerEggUndiscovered, EquipmentType.Hand);
             GameObject egg11 = Resources.Load<GameObject>("WorldEntities/Eggs/RabbitRayEgg");
             MakeItemPlaceable(TechType.RabbitrayEgg, egg11);
-            MakeItemPlaceable(TechType.RabbitrayEggUndiscovered, egg11);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.RabbitrayEggUndiscovered, EquipmentType.Hand);
             GameObject egg12 = Resources.Load<GameObject>("WorldEntities/Eggs/ReefbackEgg");
             MakeItemPlaceable(TechType.ReefbackEgg, egg12);
-            MakeItemPlaceable(TechType.ReefbackEggUndiscovered, egg12);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.ReefbackEggUndiscovered, EquipmentType.Hand);
             GameObject egg13 = Resources.Load<GameObject>("WorldEntities/Eggs/SandsharkEgg");
             MakeItemPlaceable(TechType.SandsharkEgg, egg13);
-            MakeItemPlaceable(TechType.SandsharkEggUndiscovered, egg13);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.SandsharkEggUndiscovered, EquipmentType.Hand);
             GameObject egg14 = Resources.Load<GameObject>("WorldEntities/Eggs/ShockerEgg");
             egg14.AddComponent<Egg14_PT>();
             MakeItemPlaceable(TechType.ShockerEgg, egg14);
-            MakeItemPlaceable(TechType.ShockerEggUndiscovered, egg14);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.ShockerEggUndiscovered, EquipmentType.Hand);
             GameObject egg15 = Resources.Load<GameObject>("WorldEntities/Eggs/SpadefishEgg");
             MakeItemPlaceable(TechType.SpadefishEgg, egg15);
-            MakeItemPlaceable(TechType.SpadefishEggUndiscovered, egg15);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.SpadefishEggUndiscovered, EquipmentType.Hand);
             GameObject egg16 = Resources.Load<GameObject>("WorldEntities/Eggs/StalkerEgg");
             MakeItemPlaceable(TechType.StalkerEgg, egg16);
-            MakeItemPlaceable(TechType.StalkerEggUndiscovered, egg16);
+            CraftDataPatcher.customEquipmentTypes.Add(TechType.StalkerEggUndiscovered, EquipmentType.Hand);
         }
 
         public static void MakeSnacksPlaceable()

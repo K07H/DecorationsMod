@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("DecorationsMod")]
 [assembly: AssemblyDescription("A Subnautica mod that adds a lot of decorations.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DuckFat")]
+[assembly: AssemblyCompany("DuckFat (OSubMarin)")]
 [assembly: AssemblyProduct("DecorationsMod")]
 [assembly: AssemblyCopyright("Copyright © 2018")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.0.0")]
-[assembly: AssemblyFileVersion("1.2.0.0")]
+[assembly: AssemblyVersion("1.2.1.0")]
+[assembly: AssemblyFileVersion("1.2.1.0")]
