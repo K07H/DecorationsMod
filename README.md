@@ -64,6 +64,7 @@ All items can be rotated and placed in any base or cyclops.<br>
 Inside the DecorationsMod folder you will find the file Config.txt which contains few options that you can modify.<br>
 
 ### News & updates:<br>
+June 17, 2018: Updated to version 1.2.1.<br>
 June 17, 2018: Updated to version 1.2.0.<br>
 June 11, 2018: Updated to version 1.1.0.<br>
 June 8, 2018:  Updated to version 1.0.8.<br>
@@ -72,9 +73,10 @@ June 5, 2018:  Updated to version 1.0.5.<br>
 June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Special thanks:<br>
-@UnknownWorlds<br>
-@AHK1221<br>
-@PrimeSonic<br>
+@UnknownWorlds (for creating this awesome game and letting us do mods)<br>
+@AHK1221 (for helping me to get into Subnautica modding)<br>
+@PrimeSonic (for helping me to get into Subnautica modding)<br>
+@Paladyne (for the Türkçe translation)<br>
 <br>
 <br>
 <br>
