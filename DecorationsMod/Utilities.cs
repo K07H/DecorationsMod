@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -37,7 +38,8 @@ namespace DecorationsMod
         {
             EN = 0,
             FR = 1,
-            ES = 2
+            ES = 2,
+            TR = 3
         };
 
         #region Win32 Declarations
@@ -50,7 +52,7 @@ namespace DecorationsMod
         [DllImport("kernel32.dll")]
         private static extern int GetGeoInfo(int geoid, int geoType, StringBuilder lpGeoData, int cchData, int langid);
         #endregion
-        
+
         /// <summary>
         /// Returns country code.
         /// </summary>
@@ -62,7 +64,6 @@ namespace DecorationsMod
             GetGeoInfo(geoId, GEO_FRIENDLYNAME, locationBuffer, locationBuffer.Capacity, lcid);
 
             string countryCode = locationBuffer.ToString().Trim();
-
             if (countryCode.Length > 1)
             {
                 countryCode = countryCode.Substring(0, 2).ToLowerInvariant();
@@ -70,6 +71,8 @@ namespace DecorationsMod
                     return CountryCode.FR;
                 else if (countryCode.CompareTo("es") == 0)
                     return CountryCode.ES;
+                else if (countryCode.CompareTo("tr") == 0)
+                    return CountryCode.TR;
             }
             return CountryCode.EN;
         }

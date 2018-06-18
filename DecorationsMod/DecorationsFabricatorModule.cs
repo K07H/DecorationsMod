@@ -101,9 +101,11 @@ namespace DecorationsMod
                                     LanguageHelper.UserLanguage = RegionHelper.CountryCode.FR;
                                 else if (configValueStr.CompareTo("es") == 0)
                                     LanguageHelper.UserLanguage = RegionHelper.CountryCode.ES;
+                                else if (configValueStr.CompareTo("tr") == 0)
+                                    LanguageHelper.UserLanguage = RegionHelper.CountryCode.TR;
                                 else if (configValueStr.CompareTo("en") == 0)
                                     LanguageHelper.UserLanguage = RegionHelper.CountryCode.EN;
-                                // else, do nothing (uses default language from Windows)
+                                // else, do nothing (uses default language from Windows current Culture)
                             }
                         }
                     }

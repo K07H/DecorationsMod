@@ -1,9 +1,9 @@
 {
   "Id": "DecorationsMod",
   "DisplayName": "DecorationsMod",
-  "Author": "DuckFat",
-  "Version": "1.2.1",
-  "Requires": [ ],
+  "Author": "OSubMarin",
+  "Version": "1.2.2",
+  "Requires": [ "SMLHelper.dll" ],
   "Enable": true,
   "AssemblyName": "DecorationsMod.dll",
   "EntryMethod": "DecorationsMod.QPatch.Patch",

@@ -1,5 +1,5 @@
 # Modify this to override default language.
-# Possible values: "fr" for French, "en" for English, "es" for Spanish and "auto" for default language.
+# Possible values: "fr" for French, "en" for English, "es" for Spanish, "tr" for Turkish and "auto" for default language.
 language=auto
 
 # If "true" you'll be able to place following items:

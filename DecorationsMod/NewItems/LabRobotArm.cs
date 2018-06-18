@@ -94,6 +94,7 @@ namespace DecorationsMod.NewItems
                     applier = this.GameObject.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
+                //applier.UpdateSkyIfNecessary();
 
                 // We can pick this item
                 var pickupable = this.GameObject.AddComponent<Pickupable>();
