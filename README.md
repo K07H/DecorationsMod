@@ -78,9 +78,9 @@ Will be added in next update: Türkçe (TR)<br>
 Feel free to propose new translations for this mod. You can find the up-to-date [template here](https://raw.githubusercontent.com/K07H/DecorationsMod/master/translation_template.txt).<br>
 
 ### Special thanks:<br>
-@UnknownWorlds (for creating this awesome game and letting us do mods)<br>
-@AHK1221 (for helping me to get into Subnautica modding)<br>
-@PrimeSonic (for helping me to get into Subnautica modding)<br>
+@[UnknownWorlds](https://unknownworlds.com/subnautica/) (for creating this awesome game and letting us do mods)<br>
+@[AHK1221](https://github.com/ahk1221/) (for helping me to get into Subnautica modding)<br>
+@[PrimeSonic](https://github.com/PrimeSonic/) (for helping me to get into Subnautica modding)<br>
 @Revan (mod tester)<br>
 @Paladyne (for the Türkçe translation)<br>
 <br>
