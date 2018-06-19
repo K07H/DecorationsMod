@@ -1,4 +1,5 @@
-﻿using SMLHelper;
+﻿using DecorationsMod.Controllers;
+using SMLHelper;
 using SMLHelper.Patchers;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,7 @@ namespace DecorationsMod.NewItems
                 // Set collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.3f, 0.5f, 0.7f);
-
+                
                 // Set large world entity
                 var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
@@ -75,7 +76,6 @@ namespace DecorationsMod.NewItems
                         {
                             tmpMat.SetTexture("_BumpMap", normal);
                             tmpMat.SetTexture("_Illum", illum);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
 
                             tmpMat.EnableKeyword("MARMO_NORMALMAP");
                             tmpMat.EnableKeyword("MARMO_EMISSION");
@@ -94,8 +94,7 @@ namespace DecorationsMod.NewItems
                     applier = this.GameObject.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
-                //applier.UpdateSkyIfNecessary();
-
+                
                 // We can pick this item
                 var pickupable = this.GameObject.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
@@ -121,7 +120,7 @@ namespace DecorationsMod.NewItems
                 placeTool.drawTime = 0.5f;
                 placeTool.dropTime = 1;
                 placeTool.holsterTime = 0.35f;
-
+                
                 // Add the new TechType to Hand Equipment type.
                 CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
 

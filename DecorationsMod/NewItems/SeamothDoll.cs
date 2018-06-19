@@ -100,7 +100,7 @@ namespace DecorationsMod.NewItems
                                         tmpMat.SetTexture("_BumpMap", normal1);
                                         tmpMat.SetTexture("_SpecTex", spec1);
                                         tmpMat.SetTexture("_Illum", illum1);
-                                        tmpMat.SetFloat("_EmissionLM", 1.0f);
+                                        tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
@@ -110,7 +110,7 @@ namespace DecorationsMod.NewItems
                                         tmpMat.SetTexture("_BumpMap", normal2);
                                         tmpMat.SetTexture("_SpecTex", spec2);
                                         tmpMat.SetTexture("_Illum", illum2);
-                                        tmpMat.SetFloat("_EmissionLM", 1.0f);
+                                        tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
@@ -119,7 +119,7 @@ namespace DecorationsMod.NewItems
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal3);
                                         tmpMat.SetTexture("_Illum", illum3);
-                                        tmpMat.SetFloat("_EmissionLM", 1.0f);
+                                        tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
@@ -134,7 +134,7 @@ namespace DecorationsMod.NewItems
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal5);
                                         tmpMat.SetTexture("_Illum", illum5);
-                                        tmpMat.SetFloat("_EmissionLM", 1.0f);
+                                        tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
@@ -190,7 +190,7 @@ namespace DecorationsMod.NewItems
                 var bounds = this.GameObject.AddComponent<ConstructableBounds>();
                 
                 // Add lights/model controler
-                var seamothDollControler = this.GameObject.AddComponent<SeamothDollControler>();
+                var seamothDollControler = this.GameObject.AddComponent<SeamothDollController>();
 
                 // Add new TechType to the buildables
                 CraftDataPatcher.customBuildables.Add(this.TechType);

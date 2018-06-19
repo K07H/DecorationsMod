@@ -116,7 +116,7 @@ namespace DecorationsMod.NewItems
                             tmpMat.SetTexture("_ColorMask", colorMask);
                             tmpMat.SetTexture("_SpecTex", spec);
                             tmpMat.SetTexture("_Illum", illum);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                             // Enable color mask
                             tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
@@ -134,7 +134,7 @@ namespace DecorationsMod.NewItems
                         {
                             tmpMat.SetTexture("_BumpMap", normal2);
                             tmpMat.SetTexture("_Illum", illum2);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
                             
                             // Enable normal map
                             tmpMat.EnableKeyword("MARMO_NORMALMAP");
@@ -146,7 +146,7 @@ namespace DecorationsMod.NewItems
                             tmpMat.SetTexture("_BumpMap", normal3);
                             tmpMat.SetTexture("_ColorMask", colorMask3);
                             tmpMat.SetTexture("_Illum", illum3);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                             // Enable color mask
                             tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
@@ -160,7 +160,7 @@ namespace DecorationsMod.NewItems
                             tmpMat.SetTexture("_BumpMap", normal4);
                             tmpMat.SetTexture("_ColorMask", colorMask4);
                             tmpMat.SetTexture("_Illum", illum4);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                             // Enable color mask
                             tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
@@ -180,7 +180,7 @@ namespace DecorationsMod.NewItems
                             tmpMat.SetTexture("_BumpMap", normal6);
                             tmpMat.SetTexture("_ColorMask", colorMask6);
                             tmpMat.SetTexture("_Illum", illum6);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                             // Enable color mask
                             tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
@@ -194,7 +194,7 @@ namespace DecorationsMod.NewItems
                             tmpMat.SetTexture("_BumpMap", normal7);
                             tmpMat.SetTexture("_ColorMask", colorMask7);
                             tmpMat.SetTexture("_Illum", illum7);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                             // Enable color mask
                             tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
@@ -208,7 +208,7 @@ namespace DecorationsMod.NewItems
                             tmpMat.SetTexture("_BumpMap", normal8);
                             tmpMat.SetTexture("_SpecTex", spec8);
                             tmpMat.SetTexture("_Illum", illum8);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
                             
                             // Enable specular
                             tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
@@ -223,7 +223,7 @@ namespace DecorationsMod.NewItems
                         {
                             tmpMat.SetTexture("_BumpMap", normal9);
                             tmpMat.SetTexture("_SpecTex", spec9);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
                             
                             // Enable specular
                             tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
@@ -237,7 +237,7 @@ namespace DecorationsMod.NewItems
                             tmpMat.SetTexture("_BumpMap", normal10);
                             tmpMat.SetTexture("_SpecTex", spec10);
                             tmpMat.SetTexture("_Illum", illum10);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
                             
                             // Enable specular
                             tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
@@ -253,7 +253,7 @@ namespace DecorationsMod.NewItems
                             tmpMat.SetTexture("_BumpMap", normal11);
                             tmpMat.SetTexture("_SpecTex", spec11);
                             tmpMat.SetTexture("_Illum", illum11);
-                            tmpMat.SetFloat("_EmissionLM", 1.0f);
+                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
                             // Enable specular
                             tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
@@ -291,7 +291,7 @@ namespace DecorationsMod.NewItems
                 var bounds = this.GameObject.AddComponent<ConstructableBounds>();
                 
                 // Add model controler
-                var exosuitDollControler = this.GameObject.AddComponent<ExosuitDollControler>();
+                var exosuitDollControler = this.GameObject.AddComponent<ExosuitDollController>();
 
                 #region Disable right arms (except hand arm)
 

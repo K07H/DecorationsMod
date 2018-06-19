@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DecorationsMod.Controllers
 {
-    public class SeamothDollControler : HandTarget, IHandTarget, IProtoEventListener
+    public class SeamothDollController : HandTarget, IHandTarget, IProtoEventListener
     {
         public void OnHandClick(GUIHand hand)
         {

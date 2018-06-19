@@ -54,7 +54,7 @@
     <Compile Include="ExistingItems\ArcadeGorgetoy.cs" />
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
-    <Compile Include="Controllers\ExosuitDollControler.cs" />
+    <Compile Include="Controllers\ExosuitDollController.cs" />
     <Compile Include="Fixers\SignSetupFixer.cs" />
     <Compile Include="NewItems\BarBottle1.cs" />
     <Compile Include="NewItems\BarBottle2.cs" />
@@ -135,7 +135,7 @@
     <Compile Include="PlaceToolItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QPatch.cs" />
-    <Compile Include="Controllers\SeamothDollControler.cs" />
+    <Compile Include="Controllers\SeamothDollController.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>

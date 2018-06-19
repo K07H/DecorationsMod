@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DecorationsMod.Controllers
 {
-    public class ExosuitDollControler : HandTarget, IHandTarget, IProtoEventListener
+    public class ExosuitDollController : HandTarget, IHandTarget, IProtoEventListener
     {
         public void OnHandClick(GUIHand hand)
         {

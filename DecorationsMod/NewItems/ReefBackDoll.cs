@@ -99,7 +99,7 @@ namespace DecorationsMod.NewItems
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal5);
                                     tmpMat.SetTexture("_Illum", illum5);
-                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+                                    tmpMat.SetFloat("_EmissionLM", 0.8f); // Set always visible
 
                                     tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                     tmpMat.EnableKeyword("MARMO_EMISSION");
@@ -109,7 +109,7 @@ namespace DecorationsMod.NewItems
                                     tmpMat.SetTexture("_BumpMap", normal6);
                                     tmpMat.SetTexture("_SpecTex", spec6);
                                     tmpMat.SetTexture("_Illum", illum6);
-                                    tmpMat.SetFloat("_EmissionLM", 1.0f);
+                                    tmpMat.SetFloat("_EmissionLM", 0.8f); // Set always visible
 
                                     tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                     tmpMat.EnableKeyword("MARMO_EMISSION");
