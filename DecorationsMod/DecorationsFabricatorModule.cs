@@ -13,13 +13,14 @@ namespace DecorationsMod
     {
         // Following settings are automatically initialized when retrieving config.
 
-        // If true you'll be able to place following items:
-        // coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, reactor rod and deplated reactor rod
+        // If "true" you'll be able to place following items:
+        // coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, 
+        // water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth, first aid kit
         public static bool EnablePlaceItems = true;
 
         // If "true", you'll be able to build/craft the following items:
         // specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll
-        // lamp, seamoth doll, exosuit doll, forklift doll
+        // lamp, seamoth doll, exosuit doll, forklift, cargo crates, sofas
         public static bool EnableSpecialItems = true;
 
         // If true: Item will be available as a buildable (in habitat builder menu).
@@ -40,7 +41,8 @@ namespace DecorationsMod
     {
         public static CraftTree.Type DecorationsTreeType { get; private set; }
         public static TechType DecorationsFabTechType { get; private set; }
-
+        public static GameObject OriginalFabricator = Resources.Load<GameObject>("Submarine/Build/Fabricator");
+        
         // This name will be used as both the new TechType of the buildable fabricator and the CraftTree Type for the custom crafting tree.
         public const string DecorationsFabID = "DecorationsFabricator";
         
@@ -136,7 +138,7 @@ namespace DecorationsMod
                                                                  LanguageHelper.GetFriendlyWord("DecorationsFabricatorDescription"),
                                                                  true);
             
-            // Create a recipe for the new TechType
+            // Create a recipe for the decorations fabricator
             var customFabRecipe = new TechDataHelper()
             {
                 _craftAmount = 1,
@@ -150,16 +152,14 @@ namespace DecorationsMod
                 _techType = DecorationsFabTechType
             };
 
-            // Add the new TechType to the buildables
+            // Add new TechType to the buildables (Interior Module group)
             CraftDataPatcher.customBuildables.Add(DecorationsFabTechType);
-
-            // Add the new TechType to the group of Interior Module buildables
             CraftDataPatcher.AddToCustomGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, DecorationsFabTechType);
 
-            // Set the buildable prefab
+            // Set buildable prefab
             CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(DecorationsFabID, $"Submarine/Build/{DecorationsFabID}", DecorationsFabTechType, GetPrefab));
 
-            // Set the custom sprite for the Habitat Builder Tool menu
+            // Set custom sprite for the Habitat Builder Tool menu
             CustomSpriteHandler.customSprites.Add(new CustomSprite(DecorationsFabTechType, AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_purple")));
 
             // Associate recipe to the new TechType
@@ -171,7 +171,7 @@ namespace DecorationsMod
             List<IDecorationItem> result = new List<IDecorationItem>();
 
             // Get the list of modified existing items
-            var existingItems = from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() 
+            var existingItems = from t in Assembly.GetExecutingAssembly().GetTypes() 
                                 where t.IsClass && t.Namespace == "DecorationsMod.ExistingItems" 
                                 select t;
             
@@ -189,7 +189,7 @@ namespace DecorationsMod
             }
 
             // Get the list of new items
-            var newItems = from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() 
+            var newItems = from t in Assembly.GetExecutingAssembly().GetTypes() 
                            where t.IsClass && t.Namespace == "DecorationsMod.NewItems" 
                            select t;
 
@@ -216,16 +216,12 @@ namespace DecorationsMod
 
             // Register lamp tooltip
             LanguagePatcher.customLines.Add("ToggleLamp", LanguageHelper.GetFriendlyWord("LampTooltip"));
-
             // Register seamoth doll tooltip
             LanguagePatcher.customLines.Add("SwitchSeamothModel", LanguageHelper.GetFriendlyWord("SwitchSeamothModel"));
-
             // Register exosuit doll tooltip
             LanguagePatcher.customLines.Add("SwitchExosuitModel", LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
-
             // Register cargo boxes tooltip
             LanguagePatcher.customLines.Add("AdjustCargoBoxSize", LanguageHelper.GetFriendlyWord("AdjustItemSize"));
-
             // Register forklift tooltip
             LanguagePatcher.customLines.Add("AdjustForkliftSize", LanguageHelper.GetFriendlyWord("AdjustItemSize"));
 
@@ -359,40 +355,40 @@ namespace DecorationsMod
         
         public static GameObject GetPrefab()
         {
-            // The standard Fabricator is the base to this new item
-            GameObject originalPrefab = Resources.Load<GameObject>("Submarine/Build/Fabricator");
-            GameObject prefab = GameObject.Instantiate(originalPrefab);
+            // Instanciate fabricator
+            GameObject prefab = GameObject.Instantiate(OriginalFabricator);
 
             prefab.name = DecorationsFabID;
 
+            // Update prefab ID
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = DecorationsFabID;
             prefabId.name = LanguageHelper.GetFriendlyWord("DecorationsFabricatorName");
 
+            // Update tech tag
             var techTag = prefab.GetComponent<TechTag>();
             techTag.type = DecorationsFabTechType;
-
+            
+            // Associate craft tree to the fabricator
             var fabricator = prefab.GetComponent<Fabricator>();
-            fabricator.craftTree = DecorationsTreeType; // This is how the custom craft tree is associated to the fabricator
+            fabricator.craftTree = DecorationsTreeType;
 
-            // All this was necessary because the PowerRelay wasn't being instantiated
             var ghost = fabricator.GetComponent<GhostCrafter>();
             var powerRelay = new PowerRelay();
             // Ignore any errors you see about this fabricator not having a power relay in its parent. It does and it works.
-            
             FieldInfo fieldInfo = typeof(GhostCrafter).GetField("powerRelay", BindingFlags.NonPublic | BindingFlags.Instance);
             fieldInfo.SetValue(ghost, powerRelay);
             
-            // Set where this can be built
+            // Set where it can be built
             var constructible = prefab.GetComponent<Constructable>();
             constructible.allowedInBase = true;
-            constructible.allowedInSub = true; // This is the important one
+            constructible.allowedInSub = true;
             constructible.allowedOutside = false;
             constructible.allowedOnCeiling = false;
             constructible.allowedOnGround = false;
             constructible.allowedOnConstructables = false;
             constructible.controlModelState = true;
-            constructible.techType = DecorationsFabTechType; // This was necessary to correctly associate the recipe at building time
+            constructible.techType = DecorationsFabTechType;
 
             // Set the custom texture
             Texture2D coloredTexture = AssetsHelper.Assets.LoadAsset<Texture2D>("submarine_fabricator_purple");
