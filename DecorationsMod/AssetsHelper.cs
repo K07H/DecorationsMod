@@ -6,5 +6,6 @@ namespace DecorationsMod
     {
         // Load AssetBundles (they must only be loaded once).
         public static AssetBundle Assets = AssetBundle.LoadFromFile(@"./QMods/DecorationsMod/Assets/decorationassets.assets");
+        public static AssetBundle MagnetAssets = AssetBundle.LoadFromFile(@"./QMods/DecorationsMod/Assets/postermagnet.assets");
     }
 }

@@ -1014,6 +1014,46 @@ namespace DecorationsMod
                         return "Açılı bir oturak: Estetik ve dinlenmek için kullanışlı.";
                     else
                         return "A bench angle: Aesthetic and practical to rest.";
+                case "CustomPictureFrameName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cadre photo personnalisable";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Marco de fotos personalizables";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Özelleştirilebilir fotoğraf çerçevesi";
+                    else
+                        return "Customizable picture frame";
+                case "CustomPictureFrameDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un cadre mural personnalisable, où vous pouvez envoyer une photo issue des galeries de PDA compatibles.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Marco de pared personalizables, puede cargar la imagen deseada desde las galerías de imágenes de una PDA compatible.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "PDA'nın fotoğraf albümünden istenilen görselin eklenebildiği, duvara asılan çerçevedir.";
+                    else
+                        return "Wall-mounted customizable frame, upload desired image from compatible PDA photo galleries.";
+                case "CustomPictureFrameTooltip":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cliquez pour placer une image, ou:" + Environment.NewLine +
+                               "Maintenez 'E' et cliquez pour ajuster la taille" + Environment.NewLine +
+                               "Maintenez 'R' et cliquez pour tourner le cadre photo" + Environment.NewLine +
+                               "Maintenez 'F' et cliquez pour changer de cadre" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Haga clic para establecer la imagen o:" + Environment.NewLine +
+                               "Mantenga 'E' y haga clic para ajustar el tamaño" + Environment.NewLine +
+                               "Mantenga 'R' y haga clic para girar el marco de la imagen" + Environment.NewLine +
+                               "Mantenga 'F' y haga clic para cambiar el marco" + Environment.NewLine;
+
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Görüntüyü ayarla için tıklayın veya:" + Environment.NewLine +
+                               "'E' tuşunu basılı tutun ve boyutu ayarlamak için tıklayın" + Environment.NewLine +
+                               "'R' tuşunu basılı tutun ve resim çerçevesini döndürmek için tıklayın" + Environment.NewLine +
+                               "'F' tuşunu basılı tutun ve çerçeveyi değiştirmek için tıklayın" + Environment.NewLine;
+                    else
+                        return "Click to set picture, or:" + Environment.NewLine +
+                               "Hold 'E' and click to adjust size" + Environment.NewLine +
+                               "Hold 'R' and click to rotate picture frame" + Environment.NewLine +
+                               "Hold 'F' and click to change frame border" + Environment.NewLine;
                 default:
                     return "?";
             }

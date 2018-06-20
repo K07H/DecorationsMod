@@ -3,7 +3,7 @@
   "DisplayName": "DecorationsMod",
   "Author": "OSubMarin",
   "Version": "1.2.2",
-  "Requires": [ "SMLHelper.dll" ],
+  "Requires": [ "0Harmony.dll", "SMLHelper.dll" ],
   "Enable": true,
   "AssemblyName": "DecorationsMod.dll",
   "EntryMethod": "DecorationsMod.QPatch.Patch",

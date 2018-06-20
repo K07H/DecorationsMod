@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=1.0.9.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
@@ -46,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AssetsHelper.cs" />
     <Compile Include="Controllers\CargoBoxController.cs" />
+    <Compile Include="Controllers\CustomPictureFrameController.cs" />
     <Compile Include="Controllers\ForkliftController.cs" />
     <Compile Include="CustomConstructables.cs" />
     <Compile Include="CustomPlaceTools.cs" />
@@ -70,6 +75,7 @@
     <Compile Include="NewItems\CargoBox01b.cs" />
     <Compile Include="NewItems\CargoBox01_damaged.cs" />
     <Compile Include="NewItems\Clipboard.cs" />
+    <Compile Include="NewItems\CustomPictureFrame.cs" />
     <Compile Include="NewItems\ExosuitDoll.cs" />
     <Compile Include="NewItems\Folder1.cs" />
     <Compile Include="NewItems\Folder3.cs" />
@@ -148,6 +154,12 @@
     <Content Include="Config.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Assets\postermagnet.assets">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\postermagnet.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="mod.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -166,6 +178,8 @@ xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Su
 xcopy "$(TargetDir)SMLHelper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\" /Y
 xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
 xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\postermagnet.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\postermagnet.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -6,6 +6,7 @@ using System.Linq;
 using SMLHelper;
 using SMLHelper.Patchers;
 using UnityEngine;
+using Harmony;
 
 namespace DecorationsMod
 {
@@ -42,12 +43,16 @@ namespace DecorationsMod
         public static CraftTree.Type DecorationsTreeType { get; private set; }
         public static TechType DecorationsFabTechType { get; private set; }
         public static GameObject OriginalFabricator = Resources.Load<GameObject>("Submarine/Build/Fabricator");
-        
+        public static HarmonyInstance HarmonyInstance = null;
+
         // This name will be used as both the new TechType of the buildable fabricator and the CraftTree Type for the custom crafting tree.
         public const string DecorationsFabID = "DecorationsFabricator";
         
         public static void Patch()
         {
+            // Initialize harmony instance
+            HarmonyInstance = HarmonyInstance.Create("com.osubmarin.decorationsmod");
+
             // Get config file path
             string codeBase = Assembly.GetExecutingAssembly().CodeBase;
             UriBuilder uri = new UriBuilder(codeBase);

@@ -112,7 +112,6 @@ namespace DecorationsMod.NewItems
             newsofaPrefab.transform.localScale = new Vector3(3.48f, 3.48f, 3.48f);
             newsofaPrefab.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
             newsofaPrefab.SetActive(true);
-            //var bsf = prefab.AddComponent<BenchSetupFixer>();
 
             // Get bench
             var bench = prefab.GetComponent<Bench>();
@@ -205,8 +204,8 @@ namespace DecorationsMod.NewItems
                 var fabricatingA = prefab.AddComponent<VFXFabricating>();
                 fabricatingA.localMinY = -0.2f;
                 fabricatingA.localMaxY = 0.7f;
-                fabricatingA.posOffset = new Vector3(0f, 0f, 0.15f);
-                fabricatingA.eulerOffset = new Vector3(0f, 0f, 0f);
+                fabricatingA.posOffset = new Vector3(0.0f, 0.0f, 0.15f);
+                fabricatingA.eulerOffset = new Vector3(0.0f, 0.0f, 0.0f);
                 fabricatingA.scaleFactor = 0.4f;
             }
 

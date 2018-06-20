@@ -77,24 +77,24 @@ namespace DecorationsMod.NewItems
 
             prefab.name = this.ClassID;
 
-            // Retrieve model node
-            GameObject model = prefab.FindChild("model");
-
-            // Scale
-            model.transform.localScale *= 0.3f;
+            // Modify tech tag
+            var techTag = prefab.GetComponent<TechTag>();
+            techTag.type = this.TechType;
 
             // Modify prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
+            // Retrieve model node
+            GameObject model = prefab.FindChild("model");
+
+            // Scale
+            model.transform.localScale *= 0.3f;
+            
             // Add large world entity
             var lwe = prefab.AddComponent<LargeWorldEntity>();
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
-
-            // Modify tech tag
-            var techTag = prefab.GetComponent<TechTag>();
-            techTag.type = this.TechType;
-
+            
             // Modify box colliders
             var collider = prefab.FindChild("Collider").GetComponent<BoxCollider>();
             collider.size = new Vector3(0.85f, 0.43f, 0.85f);
@@ -108,11 +108,10 @@ namespace DecorationsMod.NewItems
                 rend.enabled = false;
             }
             newsofaPrefab.transform.parent = prefab.transform;
-            newsofaPrefab.transform.localPosition = new Vector3(0, 0f, 0);
+            newsofaPrefab.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             newsofaPrefab.transform.localScale = new Vector3(3.48f, 3.48f, 3.48f);
-            newsofaPrefab.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+            newsofaPrefab.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
             newsofaPrefab.SetActive(true);
-            //var bsf = prefab.AddComponent<BenchSetupFixer>();
 
             // Get bench
             var bench = prefab.GetComponent<Bench>();

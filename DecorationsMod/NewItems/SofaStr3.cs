@@ -80,10 +80,7 @@ namespace DecorationsMod.NewItems
 
             // Retrieve model node
             GameObject model = prefab.FindChild("model");
-
-            // Scale
-            //model.transform.localScale *= 1f;
-
+            
             // Modify prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
@@ -109,11 +106,10 @@ namespace DecorationsMod.NewItems
                 rend.enabled = false;
             }
             newsofaPrefab.transform.parent = prefab.transform;
-            newsofaPrefab.transform.localPosition = new Vector3(0, 0f, 0);
+            newsofaPrefab.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             newsofaPrefab.transform.localScale = new Vector3(3.48f, 3.48f, 3.48f);
-            newsofaPrefab.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
+            newsofaPrefab.transform.localEulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
             newsofaPrefab.SetActive(true);
-            //var bsf = prefab.AddComponent<BenchSetupFixer>();
 
             // Get bench
             var bench = prefab.GetComponent<Bench>();
