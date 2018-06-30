@@ -45,11 +45,8 @@ namespace DecorationsMod.NewItems
                 // Retrieve model node
                 GameObject model = this.GameObject.FindChild("prawnsuit");
 
-                // Scale model
-                this.GameObject.transform.localScale *= 4.0f;
-
                 // Move model
-                //model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.1f, model.transform.localPosition.z);
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y - 0.002f, model.transform.localPosition.z);
 
                 // Add prefab identifier
                 var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
@@ -64,9 +61,10 @@ namespace DecorationsMod.NewItems
                 techTag.type = this.TechType;
 
                 // Add box collider
-                var collider = this.GameObject.AddComponent<SphereCollider>();
-                collider.radius = 0.05f;
-                collider.center = new Vector3(collider.center.x, collider.center.y + 0.01f, collider.center.z);
+                var collider = this.GameObject.AddComponent<BoxCollider>();
+                //collider.radius = 0.0375f;
+                collider.size = new Vector3(0.04f, 0.115f, 0.04f);
+                collider.center = new Vector3(collider.center.x, collider.center.y + 0.0575f, collider.center.z);
 
                 // Set proper shaders (for crafting animation)
                 Shader shader = Shader.Find("MarmosetUBER");
@@ -289,7 +287,8 @@ namespace DecorationsMod.NewItems
 
                 // Add constructable bounds
                 var bounds = this.GameObject.AddComponent<ConstructableBounds>();
-                
+                bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.002f, bounds.bounds.position.z);
+
                 // Add model controler
                 var exosuitDollControler = this.GameObject.AddComponent<ExosuitDollController>();
 
@@ -393,7 +392,10 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
+
             prefab.name = this.ClassID;
+            prefab.transform.localScale *= 4.0f; // Scale prefab
+            
             return prefab;
         }
     }

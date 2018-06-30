@@ -74,7 +74,7 @@ namespace DecorationsMod.Controllers
         {
             if (!__instance.enabled)
                 return;
-            if (__instance.gameObject.name.CompareTo("CustomPictureFrame(Clone)") == 0)
+            if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)"))
                 HandReticle.main.SetInteractText(LanguageHelper.GetFriendlyWord("CustomPictureFrameTooltip"));
             // else, we are in regular PictureFrame
             return;
@@ -84,7 +84,7 @@ namespace DecorationsMod.Controllers
         {
             if (!__instance.enabled)
                 return true;
-            if (__instance.gameObject.name.CompareTo("CustomPictureFrame(Clone)") == 0)
+            if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)"))
             {
                 if (Input.GetKey(KeyCode.R))
                 {
@@ -127,32 +127,11 @@ namespace DecorationsMod.Controllers
                     var constructableBounds = __instance.gameObject.GetComponent<ConstructableBounds>();
                     constructableBounds.bounds.extents = new Vector3(constructableBounds.bounds.extents.y, constructableBounds.bounds.extents.x, constructableBounds.bounds.extents.z);
                     
-                    // Retrieve picture state enum values
-                    /*
-                    Type StateEnum = typeof(PictureFrame).GetNestedType("State", BindingFlags.NonPublic | BindingFlags.Instance);
-                    FieldInfo[] fields = StateEnum.GetFields();
-                    object noneEnumValue = 0;
-                    object fullEnumValue = 2;
-                    foreach (var field in fields)
-                    {
-                        if (field.Name.Equals("value__"))
-                            continue;
-                        if (field.Name.CompareTo("None") == 0)
-                            noneEnumValue = field.GetRawConstantValue();
-                        if (field.Name.CompareTo("Full") == 0)
-                            fullEnumValue = field.GetRawConstantValue();
-                    }
-                    */
-
                     // Refresh picture
                     Type PictureFrameType = typeof(PictureFrame);
-                    //FieldInfo current = PictureFrameType.GetField("current", BindingFlags.NonPublic | BindingFlags.Instance);
-                    //object currentEnumValue = current.GetValue(__instance);
                     MethodInfo SetStateMethod = PictureFrameType.GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
                     SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.NoneEnumValue });
-                    //currentEnumValue = current.GetValue(__instance);
                     SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.FullEnumValue });
-                    //currentEnumValue = current.GetValue(__instance);
 
                     return false;
                 }
@@ -199,12 +178,12 @@ namespace DecorationsMod.Controllers
                     CustomPictureFrameController cpfController = __instance.gameObject.GetComponent<CustomPictureFrameController>();
 
                     // CustomPictureFrame scale ratio step
-                    float scaleRatio = 1.25f;
+                    float scaleRatio = 1.2f;
 
                     // Minimum CustomPictureFrame size = normal size / minSizeRatio
                     float minSizeRatio = 4.0f;
 
-                    if (model.transform.localScale.x >= 1.9f)
+                    if (model.transform.localScale.x >= 3.0f)
                     {
                         // Set minimum size
                         model.transform.localScale = new Vector3((1.0f / minSizeRatio), (1.0f / minSizeRatio), (1.0f / minSizeRatio));
@@ -230,30 +209,15 @@ namespace DecorationsMod.Controllers
                         __instance.imageRenderer.transform.localScale *= scaleRatio;
                         __instance.imageRenderer.transform.localPosition = new Vector3(__instance.imageRenderer.transform.localPosition.x, __instance.imageRenderer.transform.localPosition.y, __instance.imageRenderer.transform.localPosition.z * scaleRatio);
                     }
-
-                    // Retrieve picture state enum values
-                    Type StateEnum = typeof(PictureFrame).GetNestedType("State", BindingFlags.NonPublic | BindingFlags.Instance);
-                    FieldInfo[] fields = StateEnum.GetFields();
-                    object noneEnumValue = 0;
-                    object fullEnumValue = 2;
-                    foreach (var field in fields)
-                    {
-                        if (field.Name.Equals("value__"))
-                            continue;
-                        if (field.Name.CompareTo("None") == 0)
-                            noneEnumValue = field.GetRawConstantValue();
-                        if (field.Name.CompareTo("Full") == 0)
-                            fullEnumValue = field.GetRawConstantValue();
-                    }
-
+                    
                     // Refresh picture
                     Type PictureFrameType = typeof(PictureFrame);
                     FieldInfo current = PictureFrameType.GetField("current", BindingFlags.NonPublic | BindingFlags.Instance);
                     object currentEnumValue = current.GetValue(__instance);
                     MethodInfo SetStateMethod = PictureFrameType.GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
-                    SetStateMethod.Invoke(__instance, new object[] { noneEnumValue });
+                    SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.NoneEnumValue });
                     currentEnumValue = current.GetValue(__instance);
-                    SetStateMethod.Invoke(__instance, new object[] { fullEnumValue });
+                    SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.FullEnumValue });
                     currentEnumValue = current.GetValue(__instance);
 
                     return false;
@@ -269,13 +233,14 @@ namespace DecorationsMod.Controllers
         public Vector3 OriginColliderSize = Vector3.zero;
         public Vector3 OriginImageRendererScale = Vector3.zero;
         public Vector3 OriginConstructableBoundsExtents = Vector3.zero;
-
         
-    
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
             // Retrieve save file
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
+            if (id == null)
+                return;
+
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "custompictureframe_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
@@ -395,19 +360,20 @@ namespace DecorationsMod.Controllers
                     
                     // Refresh picture
                     Type PictureFrameType = typeof(PictureFrame);
-                    //FieldInfo current = PictureFrameType.GetField("current", BindingFlags.NonPublic | BindingFlags.Instance);
-                    //object currentEnumValue = current.GetValue(pf);
                     MethodInfo SetStateMethod = PictureFrameType.GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
                     SetStateMethod.Invoke(pf, new object[] { PictureFrameEnumHelper.NoneEnumValue });
-                    //currentEnumValue = current.GetValue(pf);
                     SetStateMethod.Invoke(pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
-                    //currentEnumValue = current.GetValue(pf);
                 }
             }
         }
 
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
+            // Retrieve prefab unique ID
+            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
+            if (id == null)
+                return;
+            
             // Get saves folder and create it if it doesn't exist
             string saveFolder = FilesHelper.GetSaveFolderPath();
             if (!Directory.Exists(saveFolder))
@@ -464,7 +430,6 @@ namespace DecorationsMod.Controllers
             //pf.imageRenderer.transform.localScale
             
             // Save state to file
-            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             File.WriteAllText(Path.Combine(saveFolder, "custompictureframe_" + id.Id + ".txt"), saveData);
         }
     }

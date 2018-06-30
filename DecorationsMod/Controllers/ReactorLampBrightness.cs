@@ -7,28 +7,40 @@ namespace DecorationsMod.Controllers
 {
     public class ReactorLampBrightness : HandTarget, IHandTarget, IProtoEventListener
     {
+        private Texture yellow = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");
+        private Texture orange = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_orange");
+        private Texture red = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_red");
+        private Texture pink = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_pink");
+        private Texture purple = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_purple");
+        private Texture blue = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_blue");
+        private Texture cyan = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum");
+        private Texture green = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green");
+        private Texture white = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
+
         public Texture GetNextEmissionMap(Texture current)
         {
             switch (current.name)
             {
                 case "nuclear_reactor_rod_illum_white":
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");
+                    return yellow;
                 case "nuclear_reactor_rod_illum_yellow":
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_orange");
+                    return orange;
                 case "nuclear_reactor_rod_illum_orange":
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_red");
+                    return red;
                 case "nuclear_reactor_rod_illum_red":
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_pink");
+                    return pink;
                 case "nuclear_reactor_rod_illum_pink":
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_purple");
+                    return purple;
                 case "nuclear_reactor_rod_illum_purple":
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_blue");
+                    return blue;
                 case "nuclear_reactor_rod_illum_blue":
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum");
+                    return cyan;
                 case "nuclear_reactor_rod_illum":
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green");
+                    return green;
+                case "nuclear_reactor_rod_illum_green":
+                    return white;
                 default:
-                    return AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
+                    return white;
             }
         }
 
@@ -97,7 +109,7 @@ namespace DecorationsMod.Controllers
             }
             else // Adjust range
             {
-                if (reactorRodLight.range > 60.0f)
+                if (reactorRodLight.range > 80.0f)
                 {
                     Renderer[] renderers = GetComponentsInChildren<Renderer>();
                     foreach (Renderer renderer in renderers)
@@ -134,15 +146,28 @@ namespace DecorationsMod.Controllers
         
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
+#if DEBUG_LAMP
+            Logger.Log("DEBUG: Entering onProtoSerialize for ReactorLampBrightness name=[" + this.gameObject.name + "]");
+#endif
+            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
+            if (id == null)
+                if ((id = this.gameObject.GetComponent<PrefabIdentifier>()) == null)
+                    return;
+
             string saveFolder = FilesHelper.GetSaveFolderPath();
             if (!Directory.Exists(saveFolder))
                 Directory.CreateDirectory(saveFolder);
 
+            string range = "1";
+            string intensity = "1";
             var reactorRodLight = this.gameObject.GetComponentInChildren<Light>();
 
-            string range = Convert.ToString(reactorRodLight.range);
-            string intesity = Convert.ToString(reactorRodLight.intensity);
-            
+            if (reactorRodLight != null)
+            {
+                range = Convert.ToString(reactorRodLight.range);
+                intensity = Convert.ToString(reactorRodLight.intensity);
+            }
+
             string rodColor = "0";
             Renderer[] renderers = this.gameObject.GetComponentsInChildren<Renderer>();
             Texture current = null;
@@ -187,14 +212,20 @@ namespace DecorationsMod.Controllers
                         break;
                 }
             }
+#if DEBUG_LAMP
+            else
+                Logger.Log("DEBUG: Error, Cannot find current texture.");
+
+            if (reactorRodLight == null || reactorRodLight.color == null)
+                Logger.Log("DEBUG: Error, RodLight is NULL.");
+#endif
 
             string red = Convert.ToString(reactorRodLight.color.r);
             string green = Convert.ToString(reactorRodLight.color.g);
             string blue = Convert.ToString(reactorRodLight.color.b);
 
-            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             File.WriteAllText(Path.Combine(saveFolder, "reactorlamp_" + id.Id + ".txt"), range + Environment.NewLine +
-                intesity + Environment.NewLine +
+                intensity + Environment.NewLine +
                 rodColor + Environment.NewLine +
                 red + Environment.NewLine +
                 green + Environment.NewLine +
@@ -203,7 +234,13 @@ namespace DecorationsMod.Controllers
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
+#if DEBUG_LAMP
+            Logger.Log("Entering onProtoDeserialize for ReactorLampBrightness name=[" + this.gameObject.name + "]");
+#endif
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
+            if (id == null)
+                return;
+
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "reactorlamp_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
@@ -221,44 +258,37 @@ namespace DecorationsMod.Controllers
 
                 string rawState = File.ReadAllText(filePath);
                 string[] state = rawState.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                if (state.Length == 6)
+                if (state != null && state.Length == 6)
                 {
                     reactorRodLight.range = float.Parse(state[0], CultureInfo.InvariantCulture.NumberFormat);
                     reactorRodLight.intensity = float.Parse(state[1], CultureInfo.InvariantCulture.NumberFormat);
                     switch (state[2])
                     {
+                        case "0": // White
+                            renderer.material.SetTexture("_Illum", white); break;
                         case "1": // Yellow
-                            renderer.material.SetTexture("_Illum", AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow"));
-                            break;
+                            renderer.material.SetTexture("_Illum", yellow); break;
                         case "2": // Orange
-                            renderer.material.SetTexture("_Illum", AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_orange"));
-                            break;
+                            renderer.material.SetTexture("_Illum", orange); break;
                         case "3": // Red
-                            renderer.material.SetTexture("_Illum", AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_red"));
-                            break;
+                            renderer.material.SetTexture("_Illum", red); break;
                         case "4": // Pink
-                            renderer.material.SetTexture("_Illum", AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_pink"));
-                            break;
+                            renderer.material.SetTexture("_Illum", pink); break;
                         case "5": // Purple
-                            renderer.material.SetTexture("_Illum", AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_purple"));
-                            break;
+                            renderer.material.SetTexture("_Illum", purple); break;
                         case "6": // Blue
-                            renderer.material.SetTexture("_Illum", AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_blue"));
-                            break;
+                            renderer.material.SetTexture("_Illum", blue); break;
                         case "7": // Cyan
-                            renderer.material.SetTexture("_Illum", AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum"));
-                            break;
+                            renderer.material.SetTexture("_Illum", cyan); break;
                         case "8": // Green
-                            renderer.material.SetTexture("_Illum", AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green"));
-                            break;
-                        default: // White
-                            renderer.material.SetTexture("_Illum", AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white"));
-                            break;
+                            renderer.material.SetTexture("_Illum", green); break;
+                        default: // Default (White)
+                            renderer.material.SetTexture("_Illum", white); break;
                     }
-                    float red = float.Parse(state[3], CultureInfo.InvariantCulture.NumberFormat);
-                    float green = float.Parse(state[4], CultureInfo.InvariantCulture.NumberFormat);
-                    float blue = float.Parse(state[5], CultureInfo.InvariantCulture.NumberFormat);
-                    reactorRodLight.color = new Color(red, green, blue);
+                    float Cred = float.Parse(state[3], CultureInfo.InvariantCulture.NumberFormat);
+                    float Cgreen = float.Parse(state[4], CultureInfo.InvariantCulture.NumberFormat);
+                    float Cblue = float.Parse(state[5], CultureInfo.InvariantCulture.NumberFormat);
+                    reactorRodLight.color = new Color(Cred, Cgreen, Cblue);
                 }
             }
         }

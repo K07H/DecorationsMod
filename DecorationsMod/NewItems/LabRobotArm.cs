@@ -56,7 +56,7 @@ namespace DecorationsMod.NewItems
                 // Set collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.3f, 0.5f, 0.7f);
-                
+
                 // Set large world entity
                 var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;

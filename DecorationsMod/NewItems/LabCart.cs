@@ -1,4 +1,5 @@
-﻿using SMLHelper;
+﻿using DecorationsMod.Fixers;
+using SMLHelper;
 using SMLHelper.Patchers;
 using System.Collections.Generic;
 using System.Reflection;
@@ -63,40 +64,65 @@ namespace DecorationsMod.NewItems
 
             GameObject cube = prefab.FindChild("Cube");
             GameObject.DestroyImmediate(cube);
-
+            
             // Set TechTag
-            var techTag = prefab.AddComponent<TechTag>();
+            TechTag techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
-            // Set prefab identifier
-            prefab.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+            // Update prefab identifier
+            PrefabIdentifier prefabId = prefab.GetComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
 
-            // Set large world entity
-            prefab.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+            // Update rigid body
+            Rigidbody rb = prefab.GetComponent<Rigidbody>();
+            rb.mass = 0.3f;
+            rb.drag = 1.0f;
+            rb.angularDrag = 1.0f;
+            rb.useGravity = false;
+            rb.isKinematic = false;
+            rb.detectCollisions = true;
+            rb.interpolation = RigidbodyInterpolation.None;
+            rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
+            rb.constraints = RigidbodyConstraints.None;
+
+            // Add world forces
+            WorldForces worldForces = prefab.AddComponent<WorldForces>();
+            worldForces.handleGravity = true;
+            worldForces.aboveWaterGravity = 9.81f;
+            worldForces.underwaterGravity = 1.0f;
+            worldForces.handleDrag = true;
+            worldForces.aboveWaterDrag = 0.0f;
+            worldForces.underwaterDrag = 10.0f;
+            worldForces.useRigidbody = rb;
+
+            // Update large world entity
+            LargeWorldEntity lwe = prefab.GetComponent<LargeWorldEntity>();
+            lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
             // Set proper shaders
-            var rend = prefab.GetComponentsInChildren<Renderer>();
+            Renderer[] rend = prefab.GetComponentsInChildren<Renderer>();
             foreach (Renderer renderer in rend)
             {
                 renderer.material.shader = Shader.Find("MarmosetUBER");
             }
 
             // Add box collider
-            var collider = prefab.AddComponent<BoxCollider>();
-            collider.size = new Vector3(1.1f, 0.9f, 0.6f);
-            
-            // Set sky applier
-            var applier = prefab.AddComponent<SkyApplier>();
+            BoxCollider collider = prefab.AddComponent<BoxCollider>();
+            collider.size = new Vector3(1.026103f, 1.241069f, 0.6288151f);
+            collider.center = new Vector3(0.005f, 0.616f, 0.001f);
+
+            // Update sky applier
+            SkyApplier applier = prefab.GetComponent<SkyApplier>();
             applier.renderers = rend;
             applier.anchorSky = Skies.Auto;
-            
+
             // We can pick this item
-            var pickupable = prefab.AddComponent<Pickupable>();
+            Pickupable pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = true;
             pickupable.randomizeRotationWhenDropped = true;
 
             // We can place this item
-            var placeTool = prefab.AddComponent<PlaceTool>();
+            PlaceTool placeTool = prefab.AddComponent<PlaceTool>();
             placeTool.allowedInBase = true;
             placeTool.allowedOnBase = true;
             placeTool.allowedOnCeiling = false;
@@ -114,13 +140,13 @@ namespace DecorationsMod.NewItems
             placeTool.pickupable = pickupable;
 
             // Add fabricating animation
-            var fabricating = model.AddComponent<VFXFabricating>();
+            VFXFabricating fabricating = model.AddComponent<VFXFabricating>();
             fabricating.localMinY = -0.1f;
             fabricating.localMaxY = 0.9f;
             fabricating.posOffset = new Vector3(0f, 0f, 0.04f);
             fabricating.eulerOffset = new Vector3(-90f, 0f, 0f);
             fabricating.scaleFactor = 0.5f;
-
+            
             return prefab;
         }
     }

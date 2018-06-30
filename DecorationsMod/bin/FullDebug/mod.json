@@ -1,0 +1,11 @@
+{
+  "Id": "DecorationsMod",
+  "DisplayName": "DecorationsMod",
+  "Author": "OSubMarin",
+  "Version": "1.2.2",
+  "Requires": [ "0Harmony.dll", "SMLHelper.dll" ],
+  "Enable": true,
+  "AssemblyName": "DecorationsMod.dll",
+  "EntryMethod": "DecorationsMod.QPatch.Patch",
+  "Config": {}
+}
