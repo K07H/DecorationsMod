@@ -72,8 +72,7 @@ namespace DecorationsMod.NewItems
             prefabId.ClassId = this.ClassID;
 
             // Retrieve collider
-            GameObject child = prefab.FindChild("Nutrient_block");
-            Collider collider = child.GetComponent<BoxCollider>();
+            Collider collider = prefab.GetComponent<BoxCollider>();
 
             // We can pick this item
             var pickupable = prefab.GetComponent<Pickupable>();

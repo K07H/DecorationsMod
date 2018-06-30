@@ -7,18 +7,6 @@ namespace DecorationsMod
     {
         public static CountryCode UserLanguage = RegionHelper.GetCountryCode();
 
-        public static string GetFriendlyGrowingTooltip(int progress)
-        {
-            if (UserLanguage == CountryCode.FR)
-                return "Croissance : " + progress + "%";
-            else if (UserLanguage == CountryCode.ES)
-                return "Crecimiento: " + progress + "%";
-            else if (UserLanguage == CountryCode.TR)
-                return "Büyüme: " + progress + "%";
-            else
-                return "Growth: " + progress + "%";
-        }
-
         public static string GetFriendlyWord(string word)
         {
             switch (word)
@@ -41,24 +29,6 @@ namespace DecorationsMod
                         return "Dekorasyon eşyaları üretmek için bir üretici.";
                     else
                         return "A fabricator to produce decoration items.";
-                case "FloraFabricatorName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Fabricateur de graînes";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Fabricador de semillas";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Tohum Üreticisi";
-                    else
-                        return "Seeds fabricator";
-                case "FloraFabricatorDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un fabricateur permettant de produire des graînes.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un Fabricador para producir semillas.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Tohum üretmek için bir üretici.";
-                    else
-                        return "A fabricator to produce seeds.";
                 case "Posters":
                     if (UserLanguage == CountryCode.TR)
                         return "Posterler";
@@ -118,33 +88,15 @@ namespace DecorationsMod
                         return "Sigorta";
                     else
                         return "Circuits boxes";
-                case "Electronics":
+                case "IndoorStuff":
                     if (UserLanguage == CountryCode.FR)
-                        return "Électronique";
+                        return "Éléments d'intérieur";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Electrónica";
+                        return "Elementos interiores";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Elektronik";
+                        return "İç eşyalar";
                     else
-                        return "Electronics";
-                case "CircuitBoxTab1":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Relais de connectivité";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Relés de conectividad";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Bağlantı Röleleri";
-                    else
-                        return "Connectivity relays";
-                case "CircuitBoxTab2":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Relais électrique haute tension";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Relés eléctricos de alta tensión";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Yüksek voltajlı elektrik röleleri";
-                    else
-                        return "High voltage electrical relays";
+                        return "Indoor elements";
                 case "Toys":
                     if (UserLanguage == CountryCode.FR)
                         return "Jouets";
@@ -163,78 +115,6 @@ namespace DecorationsMod
                         return "Aksesuarlar";
                     else
                         return "Accessories";
-                case "FloraTab":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Flore alien";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Flora alienígena";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı florası";
-                    else
-                        return "Alien flora";
-                case "PlantAirTab":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plantes";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Plantas";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Bitkiler";
-                    else
-                        return "Plants";
-                case "TreeAirTab":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Arbres";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Árboles";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Ağaçlar";
-                    else
-                        return "Trees";
-                case "TropicalPlantTab":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plantes tropicales";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Plantas tropicales";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Tropik bitkiler";
-                    else
-                        return "Tropical plants";
-                case "PlantWaterTab":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plantes aquatiques";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Plantas acuáticas";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Su bitkileri";
-                    else
-                        return "Aquatic plants";
-                case "TreeWaterTab":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Arbres aquatiques";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Árboles acuáticos";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Su ağaçları";
-                    else
-                        return "Aquatic trees";
-                case "CoralWaterTab":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Coraux";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Corales";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Mercanlar";
-                    else
-                        return "Corals";
-                case "AmphibiousPlantsTab":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plantes amphibies";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Plantas anfibias";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Amfibi bitkiler";
-                    else
-                        return "Amphibious plants";
                 case "LabContainer4Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Conteneur d'échantillons cylindrique inversé";
@@ -482,9 +362,9 @@ namespace DecorationsMod
                         return "An unusual doll.";
                 case "JackSepticEyeName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Conteneur de JackSepticEye";
+                        return "Fosse sceptique de Jack";
                     else if (UserLanguage == CountryCode.ES)
-                        return "JackSepticEye Tanque";
+                        return "Tanque de JackSeptic";
                     else if (UserLanguage == CountryCode.TR)
                         return "JackSepticEye Tüpü";
                     else
@@ -635,13 +515,13 @@ namespace DecorationsMod
                         return "A customizable lamp.";
                 case "SeamothDollName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Jouet Seamoth";
+                        return "Poupée de seamoth";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Juguete Seamoth";
+                        return "Muñeca seamoth";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Seamoth oyuncağı";
+                        return "Seamoth Oyuncağı";
                     else
-                        return "Seamoth toy";
+                        return "Seamoth doll";
                 case "SeamothDollDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Une miniature décorative du seamoth.";
@@ -653,13 +533,13 @@ namespace DecorationsMod
                         return "A decorative miniature of the seamoth.";
                 case "ExosuitDollName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Jouet combinaison PRAWN";
+                        return "Poupée de combinaison PRAWN";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Juguete traje PRAWN";
+                        return "Muñeca traje PRAWN";
                     else if (UserLanguage == CountryCode.TR)
                         return "Suban giysi oyuncağı";
                     else
-                        return "PRAWN suit toy";
+                        return "PRAWN suit doll";
                 case "ExosuitDollDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Une miniature décorative de la combinaison PRAWN.";
@@ -887,7 +767,7 @@ namespace DecorationsMod
                                "Mantenga 'E' y haga clic para cambiar el modelo de brazo derecho" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.TR)
                         return "Sol kol modelini değiştirmek için sol tıklayın," + Environment.NewLine +
-                               "Sağ kol modelini değiştirmek için 'E' tuşuna basarken sol tıklayın" + Environment.NewLine;
+                               "Sağ kol modelini değiştirmek için 'E' tuşuna basarken sol tıklayın." + Environment.NewLine;
                     else
                         return "Click to change left arm model, or:" + Environment.NewLine +
                                "Hold 'E' and click to change right arm model" + Environment.NewLine;
@@ -1163,475 +1043,17 @@ namespace DecorationsMod
                                "Mantenga 'E' y haga clic para ajustar el tamaño" + Environment.NewLine +
                                "Mantenga 'R' y haga clic para girar el marco de la imagen" + Environment.NewLine +
                                "Mantenga 'F' y haga clic para cambiar el marco" + Environment.NewLine;
+
                     else if (UserLanguage == CountryCode.TR)
-                        return "Görüntüyü ayarlamak için tıklayın veya:" + Environment.NewLine +
-                               "Boyutu ayarlamak için 'E' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
-                               "Fotoğraf çerçevesini çevirmek için 'R' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
-                               "Çerçeveyi değiştirmek için 'F' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine;
+                        return "Görüntüyü ayarla için tıklayın veya:" + Environment.NewLine +
+                               "'E' tuşunu basılı tutun ve boyutu ayarlamak için tıklayın" + Environment.NewLine +
+                               "'R' tuşunu basılı tutun ve resim çerçevesini döndürmek için tıklayın" + Environment.NewLine +
+                               "'F' tuşunu basılı tutun ve çerçeveyi değiştirmek için tıklayın" + Environment.NewLine;
                     else
                         return "Click to set picture, or:" + Environment.NewLine +
                                "Hold 'E' and click to adjust size" + Environment.NewLine +
                                "Hold 'R' and click to rotate picture frame" + Environment.NewLine +
                                "Hold 'F' and click to change frame border" + Environment.NewLine;
-                case "LandTree1Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien vivace";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Árbol alienígena perenne";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Çok yıllık uzaylı ağacı";
-                    else
-                        return "Perennial alien tree";
-                case "LandTree1Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Une variété d'arbre terrestre alien aux propriétés intéréssantes.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una variedad de árbol terrestre alienígena con propiedades interesantes.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "İlginç özelliklere sahip uzaylı kara ağacı.";
-                    else
-                        return "An alien land tree variety with interesting properties.";
-                case "JungleTree1Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien (A)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Árbol alienígena (A)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı ağacı (A)";
-                    else
-                        return "Alien tree (A)";
-                case "JungleTree1Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen alpha d'une variété d'arbre terrestre alien.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Muestra alfa de una variedad de árbol terrestre alienígena.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara ağacının alfa örneği.";
-                    else
-                        return "Alpha specimen of an alien land tree variety.";
-                case "JungleTree2Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien (B)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Árbol alienígena (B)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı ağacı (B)";
-                    else
-                        return "Alien tree (B)";
-                case "JungleTree2Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen bêta d'une variété d'arbre terrestre alien.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Beta espécimen de una variedad de árbol terrestre alienígena.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara ağacının beta örneği.";
-                    else
-                        return "Beta specimen of an alien land tree variety.";
-                case "LandPlant1Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plante alien bioluminescente (A)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Planta alienígena bioluminiscente (A)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Biyolüminesan uzaylı bitkisi (A)";
-                    else
-                        return "Bioluminescent alien plant (A)";
-                case "LandPlant1Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen alpha d'une variété de plante terrestre alien aux propriétés intéressantes.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen alfa de una variedad de plantas terrestres alienígenas con propiedades interesantes.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "İlginç özelliklere sahip uzaylı kara ağacının alfa örneği.";
-                    else
-                        return "Alpha specimen of an alien land plant variety with interesting properties.";
-                case "LandPlant2Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plante alien bioluminescente (B)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Planta alienígena bioluminiscente (B)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Biyolüminesan uzaylı bitkisi (B)";
-                    else
-                        return "Bioluminescent alien plant (B)";
-                case "LandPlant2Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen bêta d'une variété de plante terrestre alien aux propriétés intéressantes.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Beta espécimen alfa de una variedad de plantas terrestres alienígenas con propiedades interesantes.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "İlginç özelliklere sahip uzaylı kara ağacının beta örneği.";
-                    else
-                        return "Beta specimen of an alien land plant variety with interesting properties.";
-                case "LandPlant3Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen de plante terrestre alien (A)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen de planta terrestre alienígena (A)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara bitkisi örneği (A)";
-                    else
-                        return "Specimen of alien land plant (A)";
-                case "LandPlant3Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire alpha de plante terrestre alien.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen vulgar alfa de planta terrestre alienígena.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara bitkisinin kaba bir alfa örneği.";
-                    else
-                        return "Alpha specimen of a vulgar alien land plant.";
-                case "LandPlant4Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen de plante terrestre alien (B)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen de planta terrestre alienígena (B)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara bitkisi örneği (B)";
-                    else
-                        return "Specimen of alien land plant (B)";
-                case "LandPlant4Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire bêta de plante terrestre alien.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Especie Vulgar beta de planta terrestre alienígena.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara bitkisinin kaba bir beta örneği.";
-                    else
-                        return "Beta specimen of a vulgar alien land plant.";
-                case "LandPlant5Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen de plante terrestre alien (C)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen de planta terrestre alienígena (C)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara bitkisi örneği (C)";
-                    else
-                        return "Specimen of alien land plant (C)";
-                case "LandPlant5Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire thêta de plante terrestre alien.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen theta de vulgar planta terrestre alienígena.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara bitkisinin teta örneği.";
-                    else
-                        return "Theta specimen of a vulgar alien land plant.";
-                case "TropicalPlantName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Une plante alien tropicale";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una planta alienígena tropical";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Tropik bir uzaylı bitki";
-                    else
-                        return "A tropical alien plant";
-                case "TropicalPlantDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire de plante alien tropicale.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen de vulgar planta alienígena tropical.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Tropikal uzaylı bitkisinin örneği.";
-                    else
-                        return "Specimen of a vulgar tropical alien plant.";
-                case "TropicalTreeName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un arbre alien tropical";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un árbol alienígena tropical";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Tropik bir uzaylı ağacı";
-                    else
-                        return "A tropical alien tree";
-                case "TropicalTreeDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire d'arbre alien tropicale.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen de vulgar árbol alienígena tropical.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Tropikal uzaylı bitkisinin örneği.";
-                    else
-                        return "Specimen of a vulgar tropical alien tree.";
-                case "FernName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Fougère";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Helecho";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Eğreltiotu";
-                    else
-                        return "Fern";
-                case "FernDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Une fougère standard.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un helecho estándar.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Standart eğrelti.";
-                    else
-                        return "A standard fern.";
-                case "CrabClawKelpName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Algue pince de crabe";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Alga Garra Cangrejo";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Pençe Yosunu";
-                    else
-                        return "Crab Claw Kelp";
-                case "CrabClawKelpDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Une espèce d'algues à pointe bleue qui tend à pousser à l'intérieur ou à proximité de bassins de saumure acide sur le fond de l'océan.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una especie de alga con punta azul que tiende a crecer en o cerca de piscinas de salmuera ácida en el suelo oceánico.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Okyanus tabanında, asidik tuz havuzlarında ya da yakınlarında büyüyen mavi uçlu bir yosun türüdür.";
-                    else
-                        return "A blue-tipped kelp species which tends to grow in or near to acidic brine pools on the ocean floor.";
-                case "PyroCoralName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Corail de feu";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Coral Flamígero";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Ateş Mercanı";
-                    else
-                        return "Pyrocoral";
-                case "PyroCoralDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Cette espèce de corail est différente des autres rencontrées sur 4546B dans la mesure où elle s'appuie sur le flux de magma plutôt que sur le courant d'eau pour la fournir en nutriments.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Alga Garra Cangrejo";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "4546B gezegeninde karşılaşılan türlerden farklı olarak, bu mercan, besin maddelerini su yerine magma akışı üzerinden saılamaktadır.";
-                    else
-                        return "This coral species is unlike any other encountered on 4546B. It relies on magma flow rather than water current to deliver nutrients.";
-                case "CoveTreeName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Arbre de crique géant";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Árbol Gigante de la Ensenada";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Pençe Yosunu";
-                    else
-                        return "Dev Kovuk Ağacı";
-                case "CoveTreeDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Clone réalisé par prélèvement sur un grand arbre rencontré dans une caverne profonde (le seul de son genre observé sur la planète). Peut être planté sur terre et sous l'eau.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Clon hecho de un vasto árbol encontrado en una profunda ensenada (el único de su tipo encontrado en el planeta). Se puede plantar en tierra y bajo el agua.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Örnekleme ile yapılan klon: Derin bir kovukta yaşayan büyük bir ağaçtır (ve gezegende türünün tek örneğidir). Karada ve su altında ekilebilir.";
-                    else
-                        return "Clone made from a vast tree encountered in a deep cove (the only one of its kind encountered on the planet). Can be planted on land and under water.";
-                case "DisplayCoveTreeEggs":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Afficher/masquer les oeufs";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Mostrar/ocultar huevos";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Yumurtaları göster/sakla";
-                    else
-                        return "Show/hide eggs";
-                case "FloatingStoneName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Gousse d'ancrage";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Orbe anclado";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Deniz Mayını";
-                    else
-                        return "Anchor Pod";
-                case "FloatingStoneDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Ces étranges végétaux sont de grandes sphères membraneuses, gonflées de gaz, ancrées au fond marin par leur système racinaire.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Esta inusual especie de flora consisten en extensas y esféricas membranas llenas de gas, ancladas al lecho marino con su sistema de raíces.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Bu eşsiz bitki türleri, küresel, gaz dolu zar ve ona bağlı, deniz tabanına uzanan kökten oluşmaktadır.";
-                    else
-                        return "This unusual flora specimen consist of a large, spherical, gas-filled membrane, anchored to the sea floor by its root system.";
-                case "GreenReedsName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Roseaux tachetés";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Carrizo moteado";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Benekli sazlık";
-                    else
-                        return "Spotted reeds";
-                case "GreenReedsDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un spécimen de roseaux alien.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un espécimen de juncos alienígenas.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Yabancı sazlıkların bir örneği.";
-                    else
-                        return "A specimen of alien reeds.";
-                case "BrineLilyName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Nénuphar de mer";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Salnúfar";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Tuz Zambağı";
-                    else
-                        return "Brine Lily";
-                case "BrineLilyDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Ces plantes, qui peuvent rappeler le nénuphar, ont évolué de manière à tirer parti de la densité relative des bassins de saumure acide que l’on rencontre près du plancher océanique, et flotter à leur surface.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Estas plantas parecidas a nenúfares han evolucionado para tomar ventaja de la relativa densidad de las piscinas de salmuera ácida encontradas cerca del lecho marino para flotar a salvo en su superficie.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Bu zambak benzeri bitkiler, okyanus tabanında, sudan daha yoğun asidik tuz havuzlarında yüzer halde bulunmaktadırlar.";
-                    else
-                        return "These lily-like plants have evolved to take advantage of the relative density of the acidic brine pools encountered near the ocean floor to float safely on the surface.";
-                case "LostRiverPlantName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plante de rivière perdue";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Planta de río perdida";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Kayıp nehir bitkisi";
-                    else
-                        return "Lost river plant";
-                case "LostRiverPlantDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un curieux spécimen de plante trouvée dans la rivière perdue.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un curioso espécimen de planta encontrado en el río perdido.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Kayıp nehirde ilginç bir bitki örneği bulundu.";
-                    else
-                        return "A curious plant specimen found in the lost river.";
-                case "PlantMiddle11Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Algues translucides alien";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Algas translúcidas alienígenas";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Yarı saydam yabancı algler";
-                    else
-                        return "Translucent alien algae";
-                case "PlantMiddle11Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Une variété de grandes algues alien translucides.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una variedad de grandes algas translúcidas alienígenas.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Büyük saydam yabancı alg türleri.";
-                    else
-                        return "A variety of large translucent alien algae.";
-                case "SmallDeco3Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Champignons décoratifs alien";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Setas decorativas alienígenas";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Yabancı dekoratif mantar";
-                    else
-                        return "Alien decorative mushrooms";
-                case "SmallDeco3Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Une variétée décorative de petits champignons alien. Peut être plantée sur terre et sous l'eau.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una variedad decorativa de pequeños hongos alienígenas. Se puede plantar en tierra y bajo el agua.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Küçük uzaylı mantarların dekoratif çeşitliliği. Karada ve su altında ekilebilir.";
-                    else
-                        return "A decorative variety of small alien mushrooms. Can be planted on land and under water.";
-                case "BrownCoralTubesName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Tubes de Corail d'argile";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Tubos de coral embarrados";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Toprak mercanı boruları";
-                    else
-                        return "Earthen coral tubes";
-                case "AlienFloraSampleDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Échantillon de flore extraterrestre.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Muestra de flora alienígena.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Yabancı bitki örneği.";
-                    else
-                        return "Alien flora sample.";
-                case "BlueCoralTubes1Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Tubes de corail d'argile bleu";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Tubos de coral azul embarrados";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Mavi toprak mercanı boruları";
-                    else
-                        return "Blue earthen coral tubes";
-                case "SmallDeco10Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Pomme de pin violette";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Piña morada";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Mor çam kozalağını";
-                    else
-                        return "Purple pinecone";
-                case "SmallDeco10Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un spécimen alien de pomme de pin violette.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un espécimen alienígena de piña morada.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Mor çam kozalak bir yabancı örnek.";
-                    else
-                        return "An alien specimen of purple pine cone.";
-                case "SmallDeco11Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plante corail jaune";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Planta de coral amarillo";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Sarı mercan bitkisi";
-                    else
-                        return "Yellow coral plant";
-                case "SmallDeco13Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plante corail verte";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Planta de coral verde";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Yeşil mercan bitkisi";
-                    else
-                        return "Green coral plant";
-                case "SmallDeco14Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plante corail bleu";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Planta de coral azul";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Mavi mercan bitkisi";
-                    else
-                        return "Blue coral plant";
-                case "SmallDeco15RedName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plante corail rouge";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Planta de coral rojo";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Kırmızı mercan bitkisi";
-                    else
-                        return "Red coral plant";
-                case "SmallDeco17PurpleName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Plante corail violette";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Planta de coral púrpura";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Mor mercan bitkisi";
-                    else
-                        return "Purple coral plant";
                 default:
                     return "?";
             }

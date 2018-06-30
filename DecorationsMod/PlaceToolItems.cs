@@ -11,7 +11,9 @@ namespace DecorationsMod
             var pickupable = item.GetComponent<Pickupable>();
             if (pickupable == null)
                 pickupable = item.AddComponent<Pickupable>();
+
             
+
             // We can place this item
             var placeTool = item.GetComponent<PlaceTool>();
             if (placeTool == null)
@@ -132,8 +134,6 @@ namespace DecorationsMod
 
         public static void MakeItemsPlaceable()
         {
-            Logger.Log("Making some existing items positionable/pickupable...");
-
             // Chimicals
             GameObject bleach = Resources.Load<GameObject>("WorldEntities/Natural/bleach");
             bleach.AddComponent<Bleach_PT>();

@@ -18,10 +18,10 @@ namespace DecorationsMod.Controllers
                 return;
             
             BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
-            if (model.transform.localScale.y > 10.0f)
+            if (model.transform.localScale.y > 35.0f)
             {
-                model.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                collider.size = new Vector3(0.05f, 0.064f, 0.04f);
+                model.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
+                collider.size = new Vector3(0.2f, 0.2f, 0.2f);
             }
             else
             {
@@ -42,10 +42,6 @@ namespace DecorationsMod.Controllers
         
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
-            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null)
-                return;
-
             string saveFolder = FilesHelper.GetSaveFolderPath();
             if (!Directory.Exists(saveFolder))
                 Directory.CreateDirectory(saveFolder);
@@ -55,15 +51,13 @@ namespace DecorationsMod.Controllers
             BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
             size += Environment.NewLine + Convert.ToString(collider.size.y);
 
+            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             File.WriteAllText(Path.Combine(saveFolder, "forklift_" + id.Id + ".txt"), size);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null)
-                return;
-
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "forklift_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
@@ -72,17 +66,12 @@ namespace DecorationsMod.Controllers
                 if (sizes.Length == 2)
                 {
                     GameObject model = this.gameObject.FindChild("forklift");
-                    if (model != null)
-                    {
-                        float size = float.Parse(sizes[0], CultureInfo.InvariantCulture.NumberFormat);
-                        model.transform.localScale = new Vector3(size, size, size);
-                    }
                     BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
-                    if (collider != null)
-                    {
-                        float colliderSize = float.Parse(sizes[1], CultureInfo.InvariantCulture.NumberFormat);
-                        collider.size = new Vector3(colliderSize, colliderSize, colliderSize);
-                    }
+
+                    float size = float.Parse(sizes[0], CultureInfo.InvariantCulture.NumberFormat);
+                    model.transform.localScale = new Vector3(size, size, size);
+                    float colliderSize = float.Parse(sizes[1], CultureInfo.InvariantCulture.NumberFormat);
+                    collider.size = new Vector3(colliderSize, colliderSize, colliderSize);
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace DecorationsMod.Fixers
         {
             foreach (Transform current in this.gameObject.transform)
             {
-                if (current.name.StartsWith("Sign(Clone)"))
+                if (current.name.CompareTo("Sign(Clone)") == 0)
                     GameObject.DestroyImmediate(current.gameObject);
             }
         }

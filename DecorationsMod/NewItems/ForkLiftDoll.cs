@@ -8,9 +8,6 @@ namespace DecorationsMod.NewItems
 {
     public class ForkLiftDoll : DecorationItem
     {
-        private Texture normal = null;
-        private Texture illum = null;
-
         public ForkLiftDoll()
         {
             // Feed DecortionItem interface
@@ -44,9 +41,6 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                normal = AssetsHelper.Assets.LoadAsset<Texture>("generic_forklift_normal");
-                illum = AssetsHelper.Assets.LoadAsset<Texture>("generic_forklift_illum");
-
                 if (ConfigSwitcher.Forklift_asBuidable)
                 {
                     // Add new TechType to the buildables
@@ -91,18 +85,22 @@ namespace DecorationsMod.NewItems
 
             // Retrieve model node
             GameObject model = prefab.FindChild("forklift");
-            
+
+            // Scale model
+            model.transform.localScale *= 5.0f;
+
             // Add large world entity
             var lwe = prefab.AddComponent<LargeWorldEntity>();
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
             
             // Add box collider
             var collider = prefab.AddComponent<BoxCollider>();
-            collider.size = new Vector3(0.05f, 0.064f, 0.04f);
-            collider.center = new Vector3(collider.center.x, collider.center.y + 0.032f, collider.center.z);
+            collider.size = new Vector3(0.2f, 0.2f, 0.2f);
 
             // Set proper shaders (for crafting animation)
             Shader shader = Shader.Find("MarmosetUBER");
+            Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("generic_forklift_normal");
+            Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("generic_forklift_illum");
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
             foreach (Renderer renderer in renderers)
             {
@@ -147,7 +145,6 @@ namespace DecorationsMod.NewItems
 
                 // Add constructable bounds
                 var bounds = prefab.AddComponent<ConstructableBounds>();
-                bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.003f, bounds.bounds.position.z);
 
                 // Add forklift controller
                 var forkliftController = prefab.AddComponent<ForkliftController>();
@@ -189,9 +186,6 @@ namespace DecorationsMod.NewItems
                 fabricatingA.scaleFactor = 1f;
             }
 
-            // Scale prefab
-            prefab.transform.localScale *= 5.0f;
-            
             return prefab;
         }
     }

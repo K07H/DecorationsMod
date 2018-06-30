@@ -316,10 +316,6 @@ namespace DecorationsMod.Controllers
         // Save seamoth doll state
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
-            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null)
-                return;
-
             string saveFolder = FilesHelper.GetSaveFolderPath();
             if (!Directory.Exists(saveFolder))
                 Directory.CreateDirectory(saveFolder);
@@ -361,7 +357,8 @@ namespace DecorationsMod.Controllers
                 state += "3";
             else // Right hand arm
                 state += "4";
-            
+
+            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             File.WriteAllText(Path.Combine(saveFolder, "prawnsuitdoll_" + id.Id + ".txt"), state);
         }
 
@@ -369,9 +366,6 @@ namespace DecorationsMod.Controllers
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null)
-                return;
-
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "prawnsuitdoll_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {

@@ -39,10 +39,13 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                // Move model
+                // Scale model
                 GameObject model = this.GameObject.FindChild("Model");
-                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.032f, model.transform.localPosition.z);
+                model.transform.localScale *= 5f;
 
+                // Move model
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.2f, model.transform.localPosition.z);
+                
                 // Add prefab identifier
                 var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
@@ -57,8 +60,8 @@ namespace DecorationsMod.NewItems
 
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
-                collider.size = new Vector3(0.07f, 0.054f, 0.07f);
-                collider.center = new Vector3(collider.center.x, collider.center.y + 0.027f, collider.center.z);
+                collider.size = new Vector3(0.2f, 0.2f, 0.2f);
+                collider.center = new Vector3(collider.center.x, collider.center.y + 0.01f, collider.center.z);
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
@@ -163,34 +166,31 @@ namespace DecorationsMod.NewItems
                     }
                 }
 
-                // Add contructable
-                Constructable constructable = this.GameObject.AddComponent<Constructable>();
-                constructable.allowedInBase = true;
-                constructable.allowedInSub = true;
-                constructable.allowedOutside = false;
-                constructable.allowedOnCeiling = false;
-                constructable.allowedOnGround = true;
-                constructable.allowedOnConstructables = true;
-                constructable.controlModelState = true;
-                constructable.deconstructionAllowed = true;
-                constructable.rotationEnabled = true;
-                constructable.model = model;
-                constructable.techType = this.TechType;
-                constructable.enabled = true;
-                
-                // Add constructable bounds
-                ConstructableBounds bounds = this.GameObject.AddComponent<ConstructableBounds>();
-                bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.032f, bounds.bounds.position.z);
-
                 // Add sky applier
-                SkyApplier applier = this.GameObject.GetComponent<SkyApplier>();
-                if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
-                applier.renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var applier = this.GameObject.AddComponent<SkyApplier>();
+                applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
 
+                // Add contructable
+                var constructible = this.GameObject.AddComponent<Constructable>();
+                constructible.allowedInBase = true;
+                constructible.allowedInSub = true;
+                constructible.allowedOutside = false;
+                constructible.allowedOnCeiling = false;
+                constructible.allowedOnGround = true;
+                constructible.allowedOnConstructables = true;
+                constructible.controlModelState = true;
+                constructible.deconstructionAllowed = true;
+                constructible.rotationEnabled = true;
+                constructible.model = model;
+                constructible.techType = this.TechType;
+                constructible.enabled = true;
+
+                // Add constructable bounds
+                var bounds = this.GameObject.AddComponent<ConstructableBounds>();
+                
                 // Add lights/model controler
-                SeamothDollController controller = this.GameObject.AddComponent<SeamothDollController>();
+                var seamothDollControler = this.GameObject.AddComponent<SeamothDollController>();
 
                 // Add new TechType to the buildables
                 CraftDataPatcher.customBuildables.Add(this.TechType);
@@ -212,10 +212,7 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
-
             prefab.name = this.ClassID;
-            prefab.transform.localScale *= 5.0f;
-
             return prefab;
         }
     }

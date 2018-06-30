@@ -11,7 +11,7 @@ namespace DecorationsMod
             Logger.Log("Initializing Decorations mod.");
             try
             {
-                DecorationsMod.Patch();
+                DecorationsFabricatorModule.Patch();
             }
             catch (Exception e)
             {

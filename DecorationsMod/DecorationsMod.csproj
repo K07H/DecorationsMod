@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -28,35 +28,6 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugFlora|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugFlora\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_FLORA;DEBUG_FLORA_ENTRY;DEBUG_FLORA_ANIMATION;DEBUG_GROWNPLANT_FIXER</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FullDebug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\FullDebug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_FLORA;DEBUG_FLORA_ENTRY;DEBUG_FLORA_ANIMATION;DEBUG_FORKLIFT;DEBUG_LAMP;DEBUG_GROWNPLANT_FIXER;DEBUG_DROP_ITEM</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugItems|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugItems\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_FORKLIFT;DEBUG_LAMP</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
@@ -78,74 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssetsHelper.cs" />
-    <Compile Include="ConfigSwitcher.cs" />
     <Compile Include="Controllers\CargoBoxController.cs" />
-    <Compile Include="Controllers\CoveTree1Controller.cs" />
-    <Compile Include="Controllers\CustomFloraSerializer.cs" />
     <Compile Include="Controllers\CustomPictureFrameController.cs" />
     <Compile Include="Controllers\ForkliftController.cs" />
-    <Compile Include="Controllers\PlantMonoTransformController.cs" />
-    <Compile Include="Controllers\PlantGenericController.cs" />
-    <Compile Include="Controllers\LandTree1Controller.cs" />
     <Compile Include="CustomConstructables.cs" />
-    <Compile Include="CustomFabricator.cs" />
-    <Compile Include="CustomFlora.cs" />
     <Compile Include="CustomPlaceTools.cs" />
-    <Compile Include="DecorationsMod.cs" />
+    <Compile Include="DecorationsFabricatorModule.cs" />
     <Compile Include="DecorationItem.cs" />
     <Compile Include="ExistingItems\ArcadeGorgetoy.cs" />
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
     <Compile Include="Controllers\ExosuitDollController.cs" />
-    <Compile Include="Fixers\GrownPlantFixer.cs" />
-    <Compile Include="Fixers\InventoryFixer.cs" />
-    <Compile Include="Fixers\KnifeFixer.cs" />
-    <Compile Include="Fixers\LayerFixer.cs" />
     <Compile Include="Fixers\SignSetupFixer.cs" />
-    <Compile Include="FloraAquatic\BlueCoralTubes1.cs" />
-    <Compile Include="FloraAquatic\BrownCoralTubes1.cs" />
-    <Compile Include="FloraAquatic\BrownCoralTubes2.cs" />
-    <Compile Include="FloraAquatic\BrownCoralTubes3.cs" />
-    <Compile Include="FloraAquatic\FloatingStone1.cs" />
-    <Compile Include="FloraAquatic\PlantMiddle11.cs" />
-    <Compile Include="FloraAquatic\CoveTree1.cs" />
-    <Compile Include="FloraAquatic\CrabClawKelp2.cs" />
-    <Compile Include="FloraAquatic\CrabClawKelp1.cs" />
-    <Compile Include="FloraAquatic\CrabClawKelp3.cs" />
-    <Compile Include="FloraAquatic\GreenReeds1.cs" />
-    <Compile Include="FloraAquatic\GreenReeds6.cs" />
-    <Compile Include="FloraAquatic\LostRiverPlant2.cs" />
-    <Compile Include="FloraAquatic\LostRiverPlant4.cs" />
-    <Compile Include="FloraAquatic\PyroCoral1.cs" />
-    <Compile Include="FloraAquatic\PyroCoral2.cs" />
-    <Compile Include="FloraAquatic\PyroCoral3.cs" />
-    <Compile Include="FloraAquatic\SmallDeco10.cs" />
-    <Compile Include="FloraAquatic\SmallDeco11.cs" />
-    <Compile Include="FloraAquatic\SmallDeco13.cs" />
-    <Compile Include="FloraAquatic\SmallDeco14.cs" />
-    <Compile Include="FloraAquatic\SmallDeco15Red.cs" />
-    <Compile Include="FloraAquatic\SmallDeco17Purple.cs" />
-    <Compile Include="FloraAquatic\SmallDeco3.cs" />
-    <Compile Include="Flora\Fern2.cs" />
-    <Compile Include="Flora\Fern4.cs" />
-    <Compile Include="Flora\JungleTree1.cs" />
-    <Compile Include="Flora\JungleTree2.cs" />
-    <Compile Include="Flora\LandPlant2.cs" />
-    <Compile Include="Flora\LandPlant3.cs" />
-    <Compile Include="Flora\LandPlant4.cs" />
-    <Compile Include="Flora\LandPlant5.cs" />
-    <Compile Include="Flora\TropicalPlant10a.cs" />
-    <Compile Include="Flora\TropicalPlant10b.cs" />
-    <Compile Include="Flora\TropicalPlant1a.cs" />
-    <Compile Include="Flora\TropicalPlant1b.cs" />
-    <Compile Include="Flora\TropicalPlant2a.cs" />
-    <Compile Include="Flora\TropicalPlant2b.cs" />
-    <Compile Include="Flora\TropicalPlant3a.cs" />
-    <Compile Include="Flora\TropicalPlant3b.cs" />
-    <Compile Include="Flora\TropicalPlant6a.cs" />
-    <Compile Include="Flora\TropicalPlant6b.cs" />
-    <Compile Include="Flora\TropicalPlant7a.cs" />
-    <Compile Include="Flora\TropicalPlant7b.cs" />
     <Compile Include="NewItems\BarBottle1.cs" />
     <Compile Include="NewItems\BarBottle2.cs" />
     <Compile Include="NewItems\BarBottle3.cs" />
@@ -166,8 +81,6 @@
     <Compile Include="NewItems\Folder3.cs" />
     <Compile Include="NewItems\ForkLiftDoll.cs" />
     <Compile Include="NewItems\LabRobotArm.cs" />
-    <Compile Include="Flora\LandPlant1.cs" />
-    <Compile Include="Flora\LandTree1.cs" />
     <Compile Include="NewItems\NutrientBlock.cs" />
     <Compile Include="NewItems\PaperTrash.cs" />
     <Compile Include="NewItems\Pen.cs" />
@@ -241,6 +154,12 @@
     <Content Include="Config.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Assets\postermagnet.assets">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\postermagnet.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="mod.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -259,6 +178,8 @@ xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Su
 xcopy "$(TargetDir)SMLHelper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\" /Y
 xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
 xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\postermagnet.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\postermagnet.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -43,9 +43,12 @@ namespace DecorationsMod.NewItems
             {
                 // Retrieve model node
                 GameObject model = this.GameObject.FindChild("model");
-                
+
+                // Scale model
+                model.transform.localScale *= 1.5f;
+
                 // Move model
-                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y, model.transform.localPosition.z);
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.1f, model.transform.localPosition.z);
 
                 // Disable light at start
                 var reactorRodLight = this.GameObject.GetComponentInChildren<Light>();
@@ -65,8 +68,7 @@ namespace DecorationsMod.NewItems
 
                 // Add box collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
-                collider.size = new Vector3(0.2f, 0.36f, 0.2f);
-                collider.center = new Vector3(collider.center.x, collider.center.y + 0.18f, collider.center.z);
+                collider.size = new Vector3(0.2f, 0.35f, 0.2f);
 
                 // Set proper shaders (for crafting animation)
                 Shader shader = Shader.Find("MarmosetUBER");
@@ -124,7 +126,6 @@ namespace DecorationsMod.NewItems
 
                 // Add constructable bounds
                 var bounds = this.GameObject.AddComponent<ConstructableBounds>();
-                bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.003f, bounds.bounds.position.z);
 
                 // Add lamp brightness controler
                 var lampBrightness = this.GameObject.AddComponent<ReactorLampBrightness>();
@@ -149,11 +150,7 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
-
             prefab.name = this.ClassID;
-            // Scale prefab
-            prefab.transform.localScale *= 1.5f;
-
             return prefab;
         }
     }

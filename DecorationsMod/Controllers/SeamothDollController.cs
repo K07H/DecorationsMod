@@ -49,17 +49,14 @@ namespace DecorationsMod.Controllers
         // Save seamoth doll state
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
-            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null)
-                return;
-
             string saveFolder = FilesHelper.GetSaveFolderPath();
             if (!Directory.Exists(saveFolder))
                 Directory.CreateDirectory(saveFolder);
 
             GameObject model = this.gameObject.FindChild("Model").FindChild("Submersible_SeaMoth_extras").FindChild("Submersible_seaMoth_geo 1").FindChild("seaMoth_storage_01_L_geo");
             Renderer rend = model.GetComponent<Renderer>();
-            
+
+            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             File.WriteAllText(Path.Combine(saveFolder, "seamothdoll_" + id.Id + ".txt"), (rend.enabled ? "1" : "0"));
         }
 
@@ -67,9 +64,6 @@ namespace DecorationsMod.Controllers
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null)
-                return;
-
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "seamothdoll_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {

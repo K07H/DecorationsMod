@@ -44,10 +44,6 @@ namespace DecorationsMod.Controllers
 
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
-            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null)
-                return;
-
             string saveFolder = FilesHelper.GetSaveFolderPath();
             if (!Directory.Exists(saveFolder))
                 Directory.CreateDirectory(saveFolder);
@@ -62,16 +58,14 @@ namespace DecorationsMod.Controllers
             string size = Convert.ToString(model.transform.localScale.y);
             BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
             size += Environment.NewLine + Convert.ToString(collider.size.y);
-            
+
+            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             File.WriteAllText(Path.Combine(saveFolder, "cargocrate_" + id.Id + ".txt"), size);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null)
-                return;
-
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "cargocrate_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
