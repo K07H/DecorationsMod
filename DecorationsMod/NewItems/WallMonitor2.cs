@@ -10,6 +10,8 @@ namespace DecorationsMod.NewItems
     {
         public GameObject SignObject = null;
 
+        private Material screenMaterial = null;
+
         public WallMonitor2() // Feeds abstract class
         {
             this.ClassID = "WallMonitor2"; //6a5c9533-75e5-47c6-a16e-0f5f71e14f4f
@@ -40,6 +42,9 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
+                screenMaterial = AssetsHelper.Assets.LoadAsset<Material>("new_wall_monitor_screen_material");
+                screenMaterial.shader = Shader.Find("MarmosetUBER");
+
                 // Add the new TechType to the hand-equipments
                 CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
 
@@ -117,8 +122,6 @@ namespace DecorationsMod.NewItems
             var ssf = prefab.AddComponent<SignSetupFixer>();
 
             // Hide "no signal" material
-            Material screenMaterial = AssetsHelper.Assets.LoadAsset<Material>("new_wall_monitor_screen_material");
-            screenMaterial.shader = Shader.Find("MarmosetUBER");
             MeshRenderer[] renderers = prefab.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer rend in renderers)
             {

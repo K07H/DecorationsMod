@@ -9,6 +9,9 @@ namespace DecorationsMod.NewItems
     {
         public GameObject newsofa = null;
 
+        private Texture normal = null;
+        private Texture spec = null;
+
         public SofaCorner2()
         {
             // Feed DecortionItem interface
@@ -43,6 +46,9 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
+                normal = AssetsHelper.Assets.LoadAsset<Texture>("descent_bar_sofa_01_normal");
+                spec = AssetsHelper.Assets.LoadAsset<Texture>("descent_bar_sofa_01_spec");
+
                 if (ConfigSwitcher.SofaCorner2_asBuidable)
                 {
                     // Add new TechType to the buildables
@@ -121,8 +127,6 @@ namespace DecorationsMod.NewItems
 
             // Set proper shaders
             Shader shader = Shader.Find("MarmosetUBER");
-            Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("descent_bar_sofa_01_normal");
-            Texture spec = AssetsHelper.Assets.LoadAsset<Texture>("descent_bar_sofa_01_spec");
             renderers = prefab.GetComponentsInChildren<Renderer>();
             foreach (Renderer renderer in renderers)
             {

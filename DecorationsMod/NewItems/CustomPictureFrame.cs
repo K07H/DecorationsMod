@@ -16,6 +16,8 @@ namespace DecorationsMod.NewItems
         private Vector3 originConstructableBoundsExtents = Vector3.zero;
 
         private GameObject posterMagnetObj = null;
+        private Texture normal = null;
+        private Texture illum = null;
 
         public CustomPictureFrame()
         {
@@ -47,17 +49,19 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                posterMagnetObj = AssetsHelper.MagnetAssets.LoadAsset<GameObject>("poster_kitty");
-                
+                posterMagnetObj = AssetsHelper.Assets.LoadAsset<GameObject>("poster_kitty");
+                normal = AssetsHelper.Assets.LoadAsset<Texture>("poster_magnet_normal");
+                illum = AssetsHelper.Assets.LoadAsset<Texture>("poster_magnet_illum");
+
                 // Add new TechType to the buildables
                 CraftDataPatcher.customBuildables.Add(this.TechType);
                 CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
                 CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, DecorationItem.DefaultResourcePath + this.ClassID, this.TechType, this.GetPrefab));
-                
+
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, SpriteManager.Get(TechType.PictureFrame)));
+                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe")));
 
                 // Associate recipe to the new TechType
                 CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
@@ -66,12 +70,12 @@ namespace DecorationsMod.NewItems
                 var pictureFrameType = typeof(PictureFrame);
                 var onHandHoverMethod = pictureFrameType.GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
                 var postfix = typeof(PictureFramePatch).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
-                DecorationsFabricatorModule.HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(postfix));
+                DecorationsMod.HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(postfix));
                 
                 // Override OnHandClick
                 var onHandClickMethod = pictureFrameType.GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
                 var prefix = typeof(PictureFramePatch).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
-                DecorationsFabricatorModule.HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(prefix), null);
+                DecorationsMod.HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(prefix), null);
                 
                 this.IsRegistered = true;
             }
@@ -82,13 +86,10 @@ namespace DecorationsMod.NewItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject posterPrefab = GameObject.Instantiate(this.posterMagnetObj);
 
-            // Update poster border shader and normal/emission maps
+            // Update poster border shader, normal/emission maps, hide parts of the prefab
             GameObject posterModel = posterPrefab.FindChild("model").FindChild("poster_kitty");
             MeshRenderer posterRenderer = posterModel.GetComponent<MeshRenderer>();
             Shader marmosetUber = Shader.Find("MarmosetUBER");
-            Texture normal = AssetsHelper.MagnetAssets.LoadAsset<Texture>("poster_magnet_normal");
-            Texture illum = AssetsHelper.MagnetAssets.LoadAsset<Texture>("poster_magnet_illum");
-            posterPrefab.transform.parent = prefab.transform;
             foreach (Material tmpMat in posterRenderer.materials)
             {
                 tmpMat.shader = marmosetUber;
@@ -100,8 +101,7 @@ namespace DecorationsMod.NewItems
                     tmpMat.EnableKeyword("MARMO_EMISSION"); // Enable emission map
                 }
             }
-            
-            // Hide poster renderer
+            posterPrefab.transform.parent = prefab.transform;
             posterPrefab.transform.localPosition = new Vector3(0.0f, 0.27f, -0.002f);
             posterPrefab.transform.localScale = new Vector3(34.0f, 34.0f, 34.0f);
             posterPrefab.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);

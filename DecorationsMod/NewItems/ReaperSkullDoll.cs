@@ -47,7 +47,7 @@ namespace DecorationsMod.NewItems
                 // Add collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.3f, 0.6f, 0.4f);
-                
+
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("Lost_river_reaper_skeleton_skull_normal");
@@ -87,7 +87,7 @@ namespace DecorationsMod.NewItems
                 placeTool.allowedOnGround = true;
                 placeTool.allowedOnRigidBody = true;
                 placeTool.allowedOnWalls = false;
-                placeTool.allowedOutside = false;
+                placeTool.allowedOutside = true;
                 placeTool.rotationEnabled = true;
                 placeTool.enabled = true;
                 placeTool.hasAnimations = false;

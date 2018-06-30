@@ -110,6 +110,7 @@ namespace DecorationsMod.NewItems
                 placeTool.hasAnimations = false;
                 placeTool.hasBashAnimation = false;
                 placeTool.hasFirstUseAnimation = false;
+                placeTool.ghostModelPrefab = model;
                 placeTool.mainCollider = collider;
                 placeTool.pickupable = pickupable;
 
