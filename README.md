@@ -12,7 +12,7 @@ Requires QModManager and SMLHelper.<br>
 3) Move folder **DecorationsMod** inside "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods*" directory.<br>
 
 ### Description:
-**This mod adds a decoration fabricator allowing you to craft following items:**<br>
+**This mod will add a decoration fabricator allowing you to craft following items:**<br>
     5 different posters<br>
     4 different glass containers<br>
     3 different lab equipments<br>
@@ -20,13 +20,20 @@ Requires QModManager and SMLHelper.<br>
     1 laboratory robot arm<br>
     3 different computers (you can edit their label by clicking on them)<br>
     10 different circuit boxes<br>
-    6 different office supplies<br>
+    9 different accessories<br>
     5 different bottles<br>
     2 different cups<br>
     3 different dishes<br>
     4 different toys<br>
     7 different leviathan dolls<br>
-    3 different accessories<br>
+**It will add a seeds fabricator allowing you to craft following flora:**<br>
+    7 air plants<br>
+    7 air trees<br>
+    8 tropical plants<br>
+    5 water plants<br>
+    7 water trees<br>
+    5 corals<br>
+    7 amphibious plants<br>
 **It will add the following buildable decorative items in the "Miscellaneous" section of habitat builder:**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
@@ -38,6 +45,7 @@ Requires QModManager and SMLHelper.<br>
     Forklift toy (you can change size by clicking on it).<br>
     3 different cargo crates (you can change size by clicking on it).<br>
     4 different sofas (you can rest by clicking on them like regular benches).<br>
+    Customizable picture frame (you can change it's size, orientation and frame border style by clicking on it, and also set its content image from screenshot folder like regular picture frames).<br>
 **It will add following item in the "Exterior modules" section of the habitat builder:**<br>
     Lamp (you can change color/range/brightness by clicking on it).<br>
 **And you will be able to place following items where you want:**<br>
@@ -64,17 +72,17 @@ All items can be rotated and placed in any base or cyclops.<br>
 Inside the DecorationsMod folder you will find the file Config.txt which contains few options that you can modify.<br>
 
 ### News & updates:<br>
+June 30, 2018: Updated to version 1.3.0<br>
 June 17, 2018: Updated to version 1.2.1.<br>
-June 17, 2018: Updated to version 1.2.0.<br>
-June 11, 2018: Updated to version 1.1.0.<br>
+June 17, 2018: Updated to version 1.2.0<br>
+June 11, 2018: Updated to version 1.1.0<br>
 June 8, 2018:  Updated to version 1.0.8.<br>
 June 6, 2018:  Updated to version 1.0.7.<br>
 June 5, 2018:  Updated to version 1.0.5.<br>
 June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Translations:<br>
-Currently supported: Français (FR), English (EN) and Español (ES).<br>
-Will be added in next update: Türkçe (TR)<br>
+Currently supported: Français (FR), English (EN), Español (ES) and Türkçe (TR).<br>
 Feel free to propose new translations for this mod. You can find the up-to-date [template here](https://raw.githubusercontent.com/K07H/DecorationsMod/master/translation_template.txt).<br>
 
 ### Special thanks:<br>
