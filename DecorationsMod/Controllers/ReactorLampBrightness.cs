@@ -17,29 +17,44 @@ namespace DecorationsMod.Controllers
         private Texture green = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green");
         private Texture white = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
 
+        private bool isOn = true;
+        private float savedIntensity = -1.0f;
+        private float savedRange = -1.0f;
+        private Color savedGlowColor = Color.black;
+
         public Texture GetNextEmissionMap(Texture current)
         {
             switch (current.name)
             {
                 case "nuclear_reactor_rod_illum_white":
+                    ErrorMessage.AddDebug("Lamp: Center color updated (yellow)");
                     return yellow;
                 case "nuclear_reactor_rod_illum_yellow":
+                    ErrorMessage.AddDebug("Lamp: Center color updated (orange)");
                     return orange;
                 case "nuclear_reactor_rod_illum_orange":
+                    ErrorMessage.AddDebug("Lamp: Center color updated (red)");
                     return red;
                 case "nuclear_reactor_rod_illum_red":
+                    ErrorMessage.AddDebug("Lamp: Center color updated (pink)");
                     return pink;
                 case "nuclear_reactor_rod_illum_pink":
+                    ErrorMessage.AddDebug("Lamp: Center color updated (purple)");
                     return purple;
                 case "nuclear_reactor_rod_illum_purple":
+                    ErrorMessage.AddDebug("Lamp: Center color updated (blue)");
                     return blue;
                 case "nuclear_reactor_rod_illum_blue":
+                    ErrorMessage.AddDebug("Lamp: Center color updated (cyan)");
                     return cyan;
                 case "nuclear_reactor_rod_illum":
+                    ErrorMessage.AddDebug("Lamp: Center color updated (green)");
                     return green;
                 case "nuclear_reactor_rod_illum_green":
+                    ErrorMessage.AddDebug("Lamp: Center color updated (white)");
                     return white;
                 default:
+                    ErrorMessage.AddDebug("Lamp: Center color updated (white)");
                     return white;
             }
         }
@@ -48,43 +63,65 @@ namespace DecorationsMod.Controllers
         {
             if (!enabled) return;
 
-            var reactorRodLight = this.gameObject.GetComponentInChildren<Light>();
-            if (reactorRodLight == null) return;
+            Light reactorRodLight = this.gameObject.GetComponentInChildren<Light>();
+            if (reactorRodLight == null)
+                return;
 
-            // Adjust intensity
-            if (Input.GetKey(KeyCode.I))
+            Renderer[] renderers = this.gameObject.GetComponentsInChildren<Renderer>();
+            Renderer renderer = null;
+            foreach (Renderer rend in renderers)
             {
-                if (reactorRodLight.intensity > 3.0f)
+                if (rend.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
                 {
+                    renderer = rend;
+                    break;
+                }
+            }
+            if (renderer == null)
+                return;
+
+            if (Input.GetKey(KeyCode.F)) // Adjust range
+            {
+                if (reactorRodLight.range >= 80.0f)
+                    reactorRodLight.range = 0f;
+                else
+                    reactorRodLight.range += 3.0f;
+                ErrorMessage.AddDebug("Lamp: Light range updated (" + Math.Min(80, (int)reactorRodLight.range) + "/80)");
+            }
+            else if (Input.GetKey(KeyCode.I)) // Adjust intensity
+            {
+                //Renderer[] renderers = this.gameObject.GetComponentsInChildren<Renderer>();
+                if (reactorRodLight.intensity >= 2.5f)
                     reactorRodLight.intensity = 0f;
-                    Renderer[] renderers = this.gameObject.GetComponentsInChildren<Renderer>();
-                    foreach (Renderer renderer in renderers)
-                    {
-                        if (renderer.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
-                            renderer.material.DisableKeyword("MARMO_EMISSION"); // Disable emission
-                    }
-                }
-                else if (reactorRodLight.intensity == 0f)
-                {
-                    Renderer[] renderers = this.gameObject.GetComponentsInChildren<Renderer>();
-                    foreach (Renderer renderer in renderers)
-                    {
-                        if (renderer.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
-                            renderer.material.EnableKeyword("MARMO_EMISSION"); // Enable emission
-                    }
-                    reactorRodLight.intensity += 0.1f;
-                }
                 else
                     reactorRodLight.intensity += 0.1f;
+                ErrorMessage.AddDebug("Lamp: Light intensity updated (" + String.Format("{0:0.00}", (reactorRodLight.intensity / 2.5f)) + "/1)");
+            }
+            else if (Input.GetKey(KeyCode.T)) // Adjust reactor rod glow intensity
+            {
+                // Get current reactor rod glow intensity
+                Color glowColor = renderer.sharedMaterial.GetColor("_GlowColor");
+                if (glowColor.r >= 2.5f)
+                {
+                    renderer.material.DisableKeyword("MARMO_EMISSION"); // Disable emission
+                    renderer.sharedMaterial.SetColor("_GlowColor", new Color(0.0f, 0.0f, 0.0f, 1.0f)); // Reset glow intensity
+                    ErrorMessage.AddDebug("Lamp: Center intensity updated (" + String.Format("{0:0.00}", 0.0f) + "/1)");
+                }
+                else if (glowColor.r == 0.0f)
+                {
+                    renderer.sharedMaterial.SetColor("_GlowColor", new Color(0.1f, 0.1f, 0.1f, 1.0f));
+                    renderer.material.EnableKeyword("MARMO_EMISSION"); // Enable emission
+                    ErrorMessage.AddDebug("Lamp: Center intensity updated (" + String.Format("{0:0.00}", 0.04f) + "/1)");
+                }
+                else
+                {
+                    renderer.sharedMaterial.SetColor("_GlowColor", new Color(glowColor.r + 0.1f, glowColor.g + 0.1f, glowColor.b + 0.1f, 1.0f)); // Increase glow intensity
+                    ErrorMessage.AddDebug("Lamp: Center intensity updated (" + String.Format("{0:0.00}", (glowColor.r + 0.1f) / 2.5f) + "/1)");
+                }
             }
             else if (Input.GetKey(KeyCode.E)) // Adjust emission map
             {
-                Renderer[] renderers = this.gameObject.GetComponentsInChildren<Renderer>();
-                foreach (Renderer renderer in renderers)
-                {
-                    if (renderer.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
-                        renderer.material.SetTexture("_Illum", GetNextEmissionMap(renderer.material.GetTexture("_Illum")));
-                }
+                renderer.material.SetTexture("_Illum", GetNextEmissionMap(renderer.material.GetTexture("_Illum")));
             }
             else if (Input.GetKey(KeyCode.R)) // Adjust red levels
             {
@@ -92,6 +129,7 @@ namespace DecorationsMod.Controllers
                     reactorRodLight.color = new Color(0f, reactorRodLight.color.g, reactorRodLight.color.b);
                 else
                     reactorRodLight.color = new Color(reactorRodLight.color.r + 0.1f, reactorRodLight.color.g, reactorRodLight.color.b);
+                ErrorMessage.AddDebug("Lamp: Red levels updated (" + String.Format("{0:0.0}", reactorRodLight.color.r) + "/1)");
             }
             else if (Input.GetKey(KeyCode.G)) // Adjust green levels
             {
@@ -99,6 +137,7 @@ namespace DecorationsMod.Controllers
                     reactorRodLight.color = new Color(reactorRodLight.color.r, 0f, reactorRodLight.color.b);
                 else
                     reactorRodLight.color = new Color(reactorRodLight.color.r, reactorRodLight.color.g + 0.1f, reactorRodLight.color.b);
+                ErrorMessage.AddDebug("Lamp: Green levels updated (" + String.Format("{0:0.0}", reactorRodLight.color.g) + "/1)");
             }
             else if (Input.GetKey(KeyCode.B)) // Adjust blue levels
             {
@@ -106,32 +145,49 @@ namespace DecorationsMod.Controllers
                     reactorRodLight.color = new Color(reactorRodLight.color.r, reactorRodLight.color.g, 0f);
                 else
                     reactorRodLight.color = new Color(reactorRodLight.color.r, reactorRodLight.color.g, reactorRodLight.color.b + 0.1f);
+                ErrorMessage.AddDebug("Lamp: Blue levels updated (" + String.Format("{0:0.0}", reactorRodLight.color.b) + "/1)");
             }
-            else // Adjust range
+            else // ON/OFF
             {
-                if (reactorRodLight.range > 80.0f)
-                {
-                    Renderer[] renderers = GetComponentsInChildren<Renderer>();
-                    foreach (Renderer renderer in renderers)
-                    {
-                        if (renderer.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
-                            renderer.material.DisableKeyword("MARMO_EMISSION"); // Disable emission
-                    }
-                    reactorRodLight.range = 0f;
-                }
-                else if (reactorRodLight.range == 0f)
-                {
-                    Renderer[] renderers = GetComponentsInChildren<Renderer>();
-                    foreach (Renderer renderer in renderers)
-                    {
-                        if (renderer.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
-                            renderer.material.EnableKeyword("MARMO_EMISSION"); // Enable emission
-                    }
-                    reactorRodLight.range += 3.0f;
-                }
+                if (isOn)
+                    SwitchLampOff(renderer, reactorRodLight);
                 else
-                    reactorRodLight.range += 3.0f;
+                    SwitchLampOn(renderer, reactorRodLight);
             }
+        }
+
+        private void SwitchLampOff(Renderer renderer, Light reactorRodLight)
+        {
+            // Get current reactor rod intensity
+            savedGlowColor = renderer.sharedMaterial.GetColor("_GlowColor");
+            // Get current intensity
+            savedIntensity = reactorRodLight.intensity;
+            savedRange = reactorRodLight.range;
+
+            // Disable emission
+            renderer.material.DisableKeyword("MARMO_EMISSION");
+            // Disable reactor rod intensity
+            renderer.sharedMaterial.SetColor("_GlowColor", new Color(0.0f, 0.0f, 0.0f, 1.0f));
+            // Disable lamp itensity
+            reactorRodLight.intensity = 0.0f;
+            // Disable lamp range
+            reactorRodLight.range = 0.0f;
+
+            isOn = false;
+        }
+
+        private void SwitchLampOn(Renderer renderer, Light reactorRodLight)
+        {
+            // Restore reactor rod intensity
+            renderer.sharedMaterial.SetColor("_GlowColor", savedGlowColor);
+            // Enable emission
+            renderer.material.EnableKeyword("MARMO_EMISSION");
+            // Disable lamp itensity
+            reactorRodLight.intensity = savedIntensity;
+            // Disable lamp range
+            reactorRodLight.range = savedRange;
+
+            isOn = true;
         }
 
         public void OnHandHover(GUIHand hand)
@@ -158,78 +214,85 @@ namespace DecorationsMod.Controllers
             if (!Directory.Exists(saveFolder))
                 Directory.CreateDirectory(saveFolder);
 
-            string range = "1";
-            string intensity = "1";
-            var reactorRodLight = this.gameObject.GetComponentInChildren<Light>();
-
-            if (reactorRodLight != null)
-            {
-                range = Convert.ToString(reactorRodLight.range);
-                intensity = Convert.ToString(reactorRodLight.intensity);
-            }
-
-            string rodColor = "0";
+            Light reactorRodLight = this.gameObject.GetComponentInChildren<Light>();
             Renderer[] renderers = this.gameObject.GetComponentsInChildren<Renderer>();
-            Texture current = null;
-            foreach (Renderer renderer in renderers)
+            Renderer renderer = null;
+            foreach (Renderer rend in renderers)
             {
-                if (renderer.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
+                if (rend.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
                 {
-                    current = renderer.material.GetTexture("_Illum");
+                    renderer = rend;
                     break;
                 }
             }
-            if (current != null)
+            if (renderer != null && reactorRodLight != null)
             {
-                switch (current.name)
+                bool turnedOn = false;
+                if (!this.isOn)
                 {
-                    case "nuclear_reactor_rod_illum_yellow":
-                        rodColor = "1"; // Yellow
-                        break;
-                    case "nuclear_reactor_rod_illum_orange":
-                        rodColor = "2"; // Orange
-                        break;
-                    case "nuclear_reactor_rod_illum_red":
-                        rodColor = "3"; // Red
-                        break;
-                    case "nuclear_reactor_rod_illum_pink":
-                        rodColor = "4"; // Pink
-                        break;
-                    case "nuclear_reactor_rod_illum_purple":
-                        rodColor = "5"; // Purple
-                        break;
-                    case "nuclear_reactor_rod_illum_blue":
-                        rodColor = "6"; // Blue
-                        break;
-                    case "nuclear_reactor_rod_illum":
-                        rodColor = "7"; // Cyan
-                        break;
-                    case "nuclear_reactor_rod_illum_green":
-                        rodColor = "8"; // Green
-                        break;
-                    default:
-                        rodColor = "0"; // White
-                        break;
+                    SwitchLampOn(renderer, reactorRodLight);
+                    turnedOn = true;
                 }
+
+                string range = Convert.ToString(reactorRodLight.range);
+                string intensity = Convert.ToString(reactorRodLight.intensity);
+                
+                Texture current = renderer.material.GetTexture("_Illum");
+                Color currentGlow = renderer.material.GetColor("_GlowColor");
+                string rodColor = "0";
+                string glowColor = "0";
+                if (current != null)
+                {
+                    switch (current.name)
+                    {
+                        case "nuclear_reactor_rod_illum_yellow":
+                            rodColor = "1"; // Yellow
+                            break;
+                        case "nuclear_reactor_rod_illum_orange":
+                            rodColor = "2"; // Orange
+                            break;
+                        case "nuclear_reactor_rod_illum_red":
+                            rodColor = "3"; // Red
+                            break;
+                        case "nuclear_reactor_rod_illum_pink":
+                            rodColor = "4"; // Pink
+                            break;
+                        case "nuclear_reactor_rod_illum_purple":
+                            rodColor = "5"; // Purple
+                            break;
+                        case "nuclear_reactor_rod_illum_blue":
+                            rodColor = "6"; // Blue
+                            break;
+                        case "nuclear_reactor_rod_illum":
+                            rodColor = "7"; // Cyan
+                            break;
+                        case "nuclear_reactor_rod_illum_green":
+                            rodColor = "8"; // Green
+                            break;
+                        default:
+                            rodColor = "0"; // White
+                            break;
+                    }
+
+                    glowColor = Convert.ToString(currentGlow.r);
+                }
+
+                string red = Convert.ToString(reactorRodLight.color.r);
+                string green = Convert.ToString(reactorRodLight.color.g);
+                string blue = Convert.ToString(reactorRodLight.color.b);
+
+                File.WriteAllText(Path.Combine(saveFolder, "reactorlamp_" + id.Id + ".txt"), range + Environment.NewLine +
+                    intensity + Environment.NewLine +
+                    rodColor + Environment.NewLine +
+                    red + Environment.NewLine +
+                    green + Environment.NewLine +
+                    blue + Environment.NewLine +
+                    glowColor + Environment.NewLine +
+                    (this.isOn ? (turnedOn ? "0" : "1") : "0"));
+
+                if (turnedOn)
+                    SwitchLampOff(renderer, reactorRodLight);
             }
-#if DEBUG_LAMP
-            else
-                Logger.Log("DEBUG: Error, Cannot find current texture.");
-
-            if (reactorRodLight == null || reactorRodLight.color == null)
-                Logger.Log("DEBUG: Error, RodLight is NULL.");
-#endif
-
-            string red = Convert.ToString(reactorRodLight.color.r);
-            string green = Convert.ToString(reactorRodLight.color.g);
-            string blue = Convert.ToString(reactorRodLight.color.b);
-
-            File.WriteAllText(Path.Combine(saveFolder, "reactorlamp_" + id.Id + ".txt"), range + Environment.NewLine +
-                intensity + Environment.NewLine +
-                rodColor + Environment.NewLine +
-                red + Environment.NewLine +
-                green + Environment.NewLine +
-                blue);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -258,7 +321,7 @@ namespace DecorationsMod.Controllers
 
                 string rawState = File.ReadAllText(filePath);
                 string[] state = rawState.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                if (state != null && state.Length == 6)
+                if (state != null && state.Length == 8)
                 {
                     reactorRodLight.range = float.Parse(state[0], CultureInfo.InvariantCulture.NumberFormat);
                     reactorRodLight.intensity = float.Parse(state[1], CultureInfo.InvariantCulture.NumberFormat);
@@ -289,6 +352,10 @@ namespace DecorationsMod.Controllers
                     float Cgreen = float.Parse(state[4], CultureInfo.InvariantCulture.NumberFormat);
                     float Cblue = float.Parse(state[5], CultureInfo.InvariantCulture.NumberFormat);
                     reactorRodLight.color = new Color(Cred, Cgreen, Cblue);
+                    float Cglow = float.Parse(state[6], CultureInfo.InvariantCulture.NumberFormat);
+                    renderer.material.SetColor("_GlowColor", new Color(Cglow, Cglow, Cglow, 1.0f));
+                    if (state[7].CompareTo("0") == 0)
+                        SwitchLampOff(renderer, reactorRodLight);
                 }
             }
         }

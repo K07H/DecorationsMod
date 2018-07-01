@@ -842,33 +842,41 @@ namespace DecorationsMod
                         return "A replica of a reaper leviathan skull.";
                 case "LampTooltip":
                     if (UserLanguage == CountryCode.FR)
-                        return "Cliquez pour ajuster la portée, ou :" + Environment.NewLine +
-                               "Maintenez 'E' et cliquez pour changer la couleur du néon" + Environment.NewLine +
-                               "Maintenez 'I' et cliquez pour changer l'intensité" + Environment.NewLine +
-                               "Maintenez 'R' et cliquez pour changer le niveau de rouge" + Environment.NewLine +
-                               "Maintenez 'G' et cliquez pour changer le niveau de vert" + Environment.NewLine +
-                               "Maintenez 'B' et cliquez pour changer le niveau de bleu" + Environment.NewLine;
+                        return "Cliquez pour allumer/éteindre, ou :" + Environment.NewLine +
+                               "Maintenez 'R' et cliquez pour changer le niveau de rouge." + Environment.NewLine +
+                               "Maintenez 'G' et cliquez pour changer le niveau de vert." + Environment.NewLine +
+                               "Maintenez 'B' et cliquez pour changer le niveau de bleu." + Environment.NewLine +
+                               "Maintenez 'F' et cliquez pour changer la portée." + Environment.NewLine +
+                               "Maintenez 'I' et cliquez pour changer l'intensité." + Environment.NewLine +
+                               "Maintenez 'T' et cliquez pour changer l'intensité du néon." + Environment.NewLine +
+                               "Maintenez 'E' et cliquez pour changer la couleur du néon." + Environment.NewLine;
                     else if (UserLanguage == CountryCode.ES)
-                        return "Haga clic para ajustar el alcance, o:" + Environment.NewLine +
-                               "Mantenga 'E' y haga clic para cambiar el color del neón" + Environment.NewLine +
-                               "Mantenga 'I' y haga clic para cambiar la intensidad" + Environment.NewLine +
-                               "Mantenga 'R' y haga clic para cambiar los niveles rojos" + Environment.NewLine +
-                               "Mantenga 'G' y haga clic para cambiar los niveles verdes" + Environment.NewLine +
-                               "Mantenga 'B' y haga clic para cambiar los niveles azules" + Environment.NewLine;
+                        return "Haga clic para activar/desactivar, o:" + Environment.NewLine +
+                               "Mantenga 'R' y haga clic para cambiar los niveles rojos." + Environment.NewLine +
+                               "Mantenga 'G' y haga clic para cambiar los niveles verdes." + Environment.NewLine +
+                               "Mantenga 'B' y haga clic para cambiar los niveles azules." + Environment.NewLine +
+                               "Mantenga 'F' y haga clic para cambiar el alcance." + Environment.NewLine +
+                               "Mantenga 'I' y haga clic para cambiar la intensidad." + Environment.NewLine +
+                               "Mantenga 'I' y haga clic para cambiar la intensidad del neón." + Environment.NewLine +
+                               "Mantenga 'E' y haga clic para cambiar el color del neón." + Environment.NewLine;
                     else if (UserLanguage == CountryCode.TR)
-                        return "Işık menzilini değiştirmek için tıklayın, ya da:" + Environment.NewLine +
-                               "Neon tüp rengini değiştirmek için 'E' tuşuna basarken sol tıklayın." + Environment.NewLine +
-                               "Yoğunluğu değiştirmek için 'I' tuşuna basarken sol tıklayın." + Environment.NewLine +
+                        return "Açmak/kapatmak için tıklayın, ya da:" + Environment.NewLine +
                                "Kırmızı rengi değiştirmek için 'R' tuşuna basarken sol tıklayın." + Environment.NewLine +
                                "Yeşil rengi değiştirmek için 'G' tuşuna basarken sol tıklayın." + Environment.NewLine +
-                               "Mavi rengi değiştirmek için 'B' tuşuna basarken sol tıklayın." + Environment.NewLine;
+                               "Mavi rengi değiştirmek için 'B' tuşuna basarken sol tıklayın." + Environment.NewLine +
+                               "Aralığı değiştirmek için 'F' tuşuna basarken sol tıklayın." + Environment.NewLine +
+                               "Yoğunluğu değiştirmek için 'I' tuşuna basarken sol tıklayın." + Environment.NewLine +
+                               "Neon tüp yoğunluğu değiştirmek için 'T' tuşuna basarken sol tıklayın." + Environment.NewLine +
+                               "Neon tüp rengini değiştirmek için 'E' tuşuna basarken sol tıklayın." + Environment.NewLine;
                     else
-                        return "Click to adjust light range, or:" + Environment.NewLine +
-                               "Hold 'E' and click to change neon tube color" + Environment.NewLine +
-                               "Hold 'I' and click to change intensity" + Environment.NewLine +
-                               "Hold 'R' and click to change red levels" + Environment.NewLine +
-                               "Hold 'G' and click to change green levels" + Environment.NewLine +
-                               "Hold 'B' and click to change blue levels" + Environment.NewLine;
+                        return "Click to turn on/off, or:" + Environment.NewLine +
+                               "Hold 'R' and click to change red levels." + Environment.NewLine +
+                               "Hold 'G' and click to change green levels." + Environment.NewLine +
+                               "Hold 'B' and click to change blue levels." + Environment.NewLine +
+                               "Hold 'F' and click to adjust light range." + Environment.NewLine +
+                               "Hold 'I' and click to change intensity." + Environment.NewLine +
+                               "Hold 'T' and click to change neon tube intensity." + Environment.NewLine +
+                               "Hold 'E' and click to change neon tube color." + Environment.NewLine;
                 case "SwitchSeamothModel":
                     if (UserLanguage == CountryCode.FR)
                         return "Changer le modèle";

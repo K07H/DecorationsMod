@@ -93,7 +93,7 @@ namespace DecorationsMod.NewItems
                         renderer.sharedMaterial.SetTexture("_Illum", illumTexture);
 
                         // Increase emission map strength
-                        renderer.sharedMaterial.SetColor("_GlowColor", new Color(2.5f, 2.5f, 2.5f, 2.5f));
+                        renderer.sharedMaterial.SetColor("_GlowColor", new Color(2.5f, 2.5f, 2.5f, 1.0f));
                         renderer.sharedMaterial.SetFloat("_GlowStrength", 1.5f);
 
                         // Enable emission
@@ -112,9 +112,10 @@ namespace DecorationsMod.NewItems
                 constructible.allowedInBase = true;
                 constructible.allowedInSub = true;
                 constructible.allowedOutside = true;
-                constructible.allowedOnCeiling = false;
+                constructible.allowedOnCeiling = true;
                 constructible.allowedOnGround = true;
                 constructible.allowedOnConstructables = true;
+                constructible.allowedOnWall = true;
                 constructible.controlModelState = true;
                 constructible.deconstructionAllowed = true;
                 constructible.rotationEnabled = false;
