@@ -1,5 +1,5 @@
 # Decorations Mod for Subnautica
-## *Multilingual (EN/FR/ES)*
+## *Multilingual (EN/FR/ES/TR)*
 
 ### Prerequisites:
 Requires QModManager and SMLHelper.<br>
@@ -72,6 +72,7 @@ All items can be rotated and placed in any base or cyclops.<br>
 Inside the DecorationsMod folder you will find the file Config.txt which contains few options that you can modify.<br>
 
 ### News & updates:<br>
+July 1, 2018: Updated to version 1.3.1<br>
 June 30, 2018: Updated to version 1.3.0<br>
 June 17, 2018: Updated to version 1.2.1.<br>
 June 17, 2018: Updated to version 1.2.0<br>
@@ -83,7 +84,7 @@ June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Translations:<br>
 Currently supported: Français (FR), English (EN), Español (ES) and Türkçe (TR).<br>
-Feel free to propose new translations for this mod. You can find the up-to-date [template here](https://raw.githubusercontent.com/K07H/DecorationsMod/master/translation_template.txt).<br>
+Feel free to propose new translations for this mod. You can find the [template here](https://raw.githubusercontent.com/K07H/DecorationsMod/master/translation_template.txt).<br>
 
 ### Special thanks:<br>
 @[UnknownWorlds](https://unknownworlds.com/subnautica/) (for creating this awesome game and letting us do mods)<br>
