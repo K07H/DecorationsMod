@@ -16,7 +16,8 @@ Requires QModManager and SMLHelper.<br>
     5 different posters<br>
     4 different glass containers<br>
     3 different lab equipments<br>
-    3 different lab furnitures<br>
+    1 lab shelves (non-functional)<br>
+    1 tubular laboratory shelves (non-functional)<br>
     1 laboratory robot arm<br>
     3 different computers (you can edit their label by clicking on them)<br>
     10 different circuit boxes<br>
@@ -24,8 +25,10 @@ Requires QModManager and SMLHelper.<br>
     5 different bottles<br>
     2 different cups<br>
     3 different dishes<br>
+    7 different office supplies<br>
     4 different toys<br>
-    7 different leviathan dolls<br>
+    6 different leviathan dolls<br>
+    6 different skeletons parts<br>
 **It will add a seeds fabricator allowing you to craft following flora:**<br>
     7 air plants<br>
     7 air trees<br>
@@ -46,6 +49,9 @@ Requires QModManager and SMLHelper.<br>
     3 different cargo crates (you can change size by clicking on it).<br>
     4 different sofas (you can rest by clicking on them like regular benches).<br>
     Customizable picture frame (you can change it's size, orientation and frame border style by clicking on it, and also set its content image from screenshot folder like regular picture frames).<br>
+    Empty desk (functional).<br>
+    Decorative locker.<br>
+    Small bench (functional).<br>
 **It will add following item in the "Exterior modules" section of the habitat builder:**<br>
     Lamp (you can change color/range/brightness by clicking on it).<br>
 **And you will be able to place following items where you want:**<br>
@@ -84,7 +90,7 @@ June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Translations:<br>
 Currently supported: Français (FR), English (EN), Español (ES) and Türkçe (TR).<br>
-Feel free to propose new translations for this mod. You can find the up-to-date [template here](https://raw.githubusercontent.com/K07H/DecorationsMod/master/translation_template.txt).<br>
+Feel free to propose new translations for this mod. You can find the [template here](https://raw.githubusercontent.com/K07H/DecorationsMod/master/translation_template.txt).<br>
 
 ### Special thanks:<br>
 @[UnknownWorlds](https://unknownworlds.com/subnautica/) (for creating this awesome game and letting us do mods)<br>
