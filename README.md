@@ -16,19 +16,17 @@ Requires QModManager and SMLHelper.<br>
     5 different posters<br>
     4 different glass containers<br>
     3 different lab equipments<br>
-    1 lab shelves (non-functional)<br>
-    1 tubular laboratory shelves (non-functional)<br>
-    1 laboratory robot arm<br>
+    3 different lab furnitures<br>
     3 different computers (you can edit their label by clicking on them)<br>
     10 different circuit boxes<br>
-    9 different accessories<br>
     5 different bottles<br>
     2 different cups<br>
     3 different dishes<br>
     7 different office supplies<br>
-    4 different toys<br>
     6 different leviathan dolls<br>
     6 different skeletons parts<br>
+    3 different accessories<br>
+    4 different toys<br>
 **It will add a seeds fabricator allowing you to craft following flora:**<br>
     7 air plants<br>
     7 air trees<br>
