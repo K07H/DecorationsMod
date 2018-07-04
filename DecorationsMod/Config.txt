@@ -8,8 +8,9 @@ language=auto
 enablePlaceItems=true
 
 # If "true", you'll be able to build/craft the following items:
-# specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll
-# lamp, seamoth doll, exosuit doll, forklift, cargo crates, sofas, customizable picture frame
+# lab cart, specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll,
+# lamp, seamoth doll, exosuit doll, forklift, cargo crates, sofas, customizable picture frame, small bench,
+# and decorative locker.
 enableSpecialItems=true
 
 # If "true",  item will be added to the habitat builder menu.
@@ -20,10 +21,16 @@ asBuildable_MarkiplierDoll2=true
 asBuildable_JackSepticEyeDoll=true
 asBuildable_EatMyDictionDoll=true
 asBuildable_ForkliftToy=true
-asBuildable_Sofa1=true
-asBuildable_Sofa2=true
-asBuildable_Sofa3=true
+asBuildable_SofaSmall=true
+asBuildable_SofaMedium=true
+asBuildable_SofaBig=true
 asBuildable_SofaCorner=true
+asBuildable_LabCart=true
+asBuildable_EmptyDesk=true
+
+# This defines the resource used in new flora recipies.
+# Possible values: Existing tech type name (example: precursorioncrystal, salt, titanium, ...).
+flora_RecipiesResource=precursorioncrystal
 
 # Defines new flora configuration. Format is: growth-duration/health/bioreactor-charge
 config_LandTree=2400/200/500

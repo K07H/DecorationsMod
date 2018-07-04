@@ -31,7 +31,7 @@ namespace DecorationsMod.FloraAquatic
             {
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(TechType.PrecursorIonCrystal, 1)
+                    new IngredientHelper(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
                 _techType = this.TechType
             };
@@ -43,14 +43,14 @@ namespace DecorationsMod.FloraAquatic
         {
             if (this.IsRegistered == false)
             {
-                // Set item occupies 4 slots
+                // Set item occupies 1 slot
                 CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(1, 1);
 
                 // Add the new TechType to Harvest types
                 CraftDataPatcher.customHarvestTypeList.Add(this.TechType, HarvestType.DamageAlive);
                 CraftDataPatcher.customHarvestOutputList.Add(this.TechType, this.TechType);
 
-                // Change item background to normal (both land & water plant)
+                // Set item background to normal (both land & water plant)
                 // TODO: Replace with a call to SMLHelper when pull request gets released
                 DecorationsMod.CustomBackgroundTypes.Add(this.TechType, CraftData.BackgroundType.Normal);
 
@@ -141,9 +141,9 @@ namespace DecorationsMod.FloraAquatic
             plantable.pickupable = pickupable;
             plantable.model = prefab;
             plantable.modelEulerAngles = new Vector3(plantable.modelEulerAngles.x - 90.0f, plantable.modelEulerAngles.y, plantable.modelEulerAngles.z);
-            //plantable.linkedGrownPlant = new GrownPlant();
-            //plantable.linkedGrownPlant.seed = plantable;
-            //plantable.linkedGrownPlant.seedUID = "SmallDeco3";
+            plantable.linkedGrownPlant = new GrownPlant();
+            plantable.linkedGrownPlant.seed = plantable;
+            plantable.linkedGrownPlant.seedUID = "SmallDeco3";
 
             // Add generic plant controller
             PlantMonoTransformController plantMonoTransformController = prefab.AddComponent<PlantMonoTransformController>();

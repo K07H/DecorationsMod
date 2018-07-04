@@ -7,12 +7,15 @@ namespace DecorationsMod.NewItems
 {
     public class Marki1 : DecorationItem
     {
+        private GameObject marki2 = null;
+
         public Marki1()
         {
             this.ClassID = "MarkiDoll1"; // cb89366d-eac0-4011-8665-fafde75b215c
             this.ResourcePath = "Submarine/Build/Marki_01";
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.marki2 = Resources.Load<GameObject>("Submarine/Build/Marki_03");
 
             this.TechType = TechTypePatcher.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("MarkiDollName"),
@@ -67,6 +70,7 @@ namespace DecorationsMod.NewItems
         public override GameObject GetPrefab()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject model = prefab.FindChild("Marki_01");
 
             prefab.name = this.ClassID;
 
@@ -87,7 +91,6 @@ namespace DecorationsMod.NewItems
             if (!ConfigSwitcher.MarkiDoll1_asBuildable)
             {
                 // Retrieve collider
-                GameObject model = prefab.FindChild("Marki_01");
                 Collider collider = model.GetComponentInChildren<Collider>();
 
                 // We can pick this item
@@ -98,7 +101,7 @@ namespace DecorationsMod.NewItems
                 // We can place this item
                 var placeTool = prefab.AddComponent<PlaceTool>();
                 placeTool.allowedInBase = true;
-                placeTool.allowedOnBase = true;
+                placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
                 placeTool.allowedOnConstructable = true;
                 placeTool.allowedOnGround = true;
@@ -121,6 +124,12 @@ namespace DecorationsMod.NewItems
                 fabricating.posOffset = new Vector3(0f, 0f, 0.04f);
                 fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
                 fabricating.scaleFactor = 1f;
+            }
+            else
+            {
+                Constructable constructible = prefab.GetComponent<Constructable>();
+                constructible.controlModelState = true;
+                constructible.model = model;
             }
 
             return prefab;

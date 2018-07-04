@@ -39,7 +39,7 @@ namespace DecorationsMod.Flora
             {
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(TechType.PrecursorIonCrystal, 1)
+                    new IngredientHelper(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
                 _techType = this.TechType
             };
@@ -207,9 +207,9 @@ namespace DecorationsMod.Flora
             plantable.pickupable = pickupable;
             plantable.eatable = eatable;
             plantable.model = prefab;
-            //plantable.linkedGrownPlant = new GrownPlant();
-            //plantable.linkedGrownPlant.seed = plantable;
-            //plantable.linkedGrownPlant.seedUID = "LandTree1";
+            plantable.linkedGrownPlant = new GrownPlant();
+            plantable.linkedGrownPlant.seed = plantable;
+            plantable.linkedGrownPlant.seedUID = "LandTree1";
 
             LandTree1Controller landTree1Controller = prefab.AddComponent<LandTree1Controller>();
             landTree1Controller.GrowthDuration = Config.GrowthDuration;

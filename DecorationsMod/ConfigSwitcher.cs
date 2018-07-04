@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using System.Reflection;
 
@@ -36,6 +33,11 @@ namespace DecorationsMod
         public static bool SofaStr2_asBuidable = true;
         public static bool SofaStr3_asBuidable = true;
         public static bool SofaCorner2_asBuidable = true;
+        public static bool LabCart_asBuildable = true;
+        public static bool EmptyDesk_asBuildable = true;
+
+        // New flora recipies
+        public static TechType FloraRecipiesResource = TechType.PrecursorIonCrystal;
 
         // New flora default configuration
         public static CustomFlora config_LandTree1 = new CustomFlora(2400.0f, 200.0f, true, 3.0f, 6.0f, false, 500.0f);
@@ -150,14 +152,25 @@ namespace DecorationsMod
                                     ConfigSwitcher.EatMyDiction_asBuidable = configValue; break;
                                 case "asBuildable_ForkliftToy":
                                     ConfigSwitcher.Forklift_asBuidable = configValue; break;
-                                case "asBuildable_Sofa1":
+                                case "asBuildable_SofaSmall":
                                     ConfigSwitcher.SofaStr1_asBuidable = configValue; break;
-                                case "asBuildable_Sofa2":
+                                case "asBuildable_SofaMedium":
                                     ConfigSwitcher.SofaStr2_asBuidable = configValue; break;
-                                case "asBuildable_Sofa3":
+                                case "asBuildable_SofaBig":
                                     ConfigSwitcher.SofaStr3_asBuidable = configValue; break;
                                 case "asBuildable_SofaCorner":
                                     ConfigSwitcher.SofaCorner2_asBuidable = configValue; break;
+                                case "asBuildable_LabCart":
+                                    ConfigSwitcher.LabCart_asBuildable = configValue; break;
+                                case "asBuildable_EmptyDesk":
+                                    ConfigSwitcher.EmptyDesk_asBuildable = configValue; break;
+                                case "flora_RecipiesResource":
+                                    TechType tmpresource = TechType.None;
+                                    if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
+                                        ConfigSwitcher.FloraRecipiesResource = tmpresource;
+                                    else
+                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource type for flora recipies. Default resource will be set.");
+                                    break;
                                 case "config_LandTree":
                                     GetFloraConfig(ConfigSwitcher.config_LandTree1, configValueStr); break;
                                 case "config_JungleTreeA":
@@ -269,7 +282,7 @@ namespace DecorationsMod
                 }
             }
             else
-                Logger.Log("Warning: Cannot find config file, default options will be set.");
+                Logger.Log("Warning: Cannot find config file. Default options will be set.");
         }
     }
 }

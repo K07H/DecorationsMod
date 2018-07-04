@@ -156,15 +156,22 @@
     <Compile Include="NewItems\BarFood1.cs" />
     <Compile Include="NewItems\BarFood2.cs" />
     <Compile Include="NewItems\BarNapkins.cs" />
+    <Compile Include="NewItems\BenchSmall.cs" />
     <Compile Include="NewItems\CargoBox01a.cs" />
     <Compile Include="NewItems\CargoBox01b.cs" />
     <Compile Include="NewItems\CargoBox01_damaged.cs" />
     <Compile Include="NewItems\Clipboard.cs" />
     <Compile Include="NewItems\CustomPictureFrame.cs" />
+    <Compile Include="NewItems\DecorationsEmptyDesk.cs" />
+    <Compile Include="NewItems\DecorativeLocker.cs" />
+    <Compile Include="NewItems\DecorativePDA.cs" />
     <Compile Include="NewItems\ExosuitDoll.cs" />
     <Compile Include="NewItems\Folder1.cs" />
     <Compile Include="NewItems\Folder3.cs" />
     <Compile Include="NewItems\ForkLiftDoll.cs" />
+    <Compile Include="NewItems\GenericSkeleton1.cs" />
+    <Compile Include="NewItems\GenericSkeleton2.cs" />
+    <Compile Include="NewItems\GenericSkeleton3.cs" />
     <Compile Include="NewItems\LabRobotArm.cs" />
     <Compile Include="Flora\LandPlant1.cs" />
     <Compile Include="Flora\LandTree1.cs" />
@@ -172,7 +179,9 @@
     <Compile Include="NewItems\PaperTrash.cs" />
     <Compile Include="NewItems\Pen.cs" />
     <Compile Include="NewItems\PenHolder.cs" />
+    <Compile Include="NewItems\ReaperSkeletonDoll.cs" />
     <Compile Include="NewItems\ReaperSkullDoll.cs" />
+    <Compile Include="NewItems\SeaDragonSkeleton.cs" />
     <Compile Include="NewItems\SeamothDoll.cs" />
     <Compile Include="Controllers\ReactorLampBrightness.cs" />
     <Compile Include="NewItems\CircuitBox1b.cs" />
@@ -241,6 +250,8 @@
     <Content Include="Config.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Assets\decorationassets_lowquality.assets" />
+    <None Include="Assets\decorationassets_lowquality.manifest" />
     <None Include="mod.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

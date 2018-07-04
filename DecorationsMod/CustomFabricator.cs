@@ -82,14 +82,16 @@ namespace DecorationsMod
                                          TechType.LabEquipment2,
                                          TechType.LabEquipment3);
             // Lab elements -> Furnitures Tab
-            var labFurnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("labcarticon"));
-            labFurnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabShelf"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "LabCart"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "DecorationLabTube"));
+            //var labFurnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("labshelves"));
+            
             // Lab elements items
             if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable)
                 labEquipmentTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationsSpecimenAnalyzer"));
-            labEquipmentTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabRobotArm"));
+            if (!ConfigSwitcher.LabCart_asBuildable)
+                labEquipmentTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabCart"));
+            labEquipmentTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabShelf"),
+                                            DecorationItemsHelper.getTechType(decorationItems, "DecorationLabTube"),
+                                            DecorationItemsHelper.getTechType(decorationItems, "LabRobotArm"));
 
             // ELECTRONICS
             //var electronicsTab = rootNode.AddTabNode("Electronics", LanguageHelper.GetFriendlyWord("Electronics"), AssetsHelper.Assets.LoadAsset<Sprite>("computer3"));
@@ -127,6 +129,36 @@ namespace DecorationsMod
                                           DecorationItemsHelper.getTechType(decorationItems, "BarFood2"),
                                           TechType.NutrientBlock);
 
+            // OFFICE SUPPLIES
+            var officeSuppliesTab = rootNode.AddTabNode("OfficeSupplies", LanguageHelper.GetFriendlyWord("OfficeSupplies"), AssetsHelper.Assets.LoadAsset<Sprite>("clipboardicon"));
+            if (!ConfigSwitcher.EmptyDesk_asBuildable)
+                officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationsEmptyDesk"));
+            officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "Folder1"),
+                                              DecorationItemsHelper.getTechType(decorationItems, "Folder3"),
+                                              DecorationItemsHelper.getTechType(decorationItems, "Clipboard"),
+                                              DecorationItemsHelper.getTechType(decorationItems, "PaperTrash"),
+                                              DecorationItemsHelper.getTechType(decorationItems, "Pen"),
+                                              DecorationItemsHelper.getTechType(decorationItems, "PenHolder"),
+                                              DecorationItemsHelper.getTechType(decorationItems, "DecorativePDA"));
+
+            // LEVIATHAN DOLLS
+            var faunaTab = rootNode.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
+            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "ReaperLeviathanDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "GhostLeviathanDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "SeaDragonDoll"),
+                                     DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll"));
+
+            // SKELETONS
+            var skeletonsTab = rootNode.AddTabNode("SkeletonsParts", LanguageHelper.GetFriendlyWord("GenericSkeletonName"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperskullicon"));
+            skeletonsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton1"),
+                                         DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton2"),
+                                         DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton3"),
+                                         DecorationItemsHelper.getTechType(decorationItems, "ReaperSkullDoll"),
+                                         DecorationItemsHelper.getTechType(decorationItems, "ReaperSkeletonDoll"),
+                                         DecorationItemsHelper.getTechType(decorationItems, "SeaDragonSkeleton"));
+            
             // ACCESSORIES
             var accessoriesTab = rootNode.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));
             accessoriesTab.AddCraftingNode(TechType.LuggageBag);
@@ -139,23 +171,7 @@ namespace DecorationsMod
             if (!ConfigSwitcher.SofaCorner2_asBuidable)
                 accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaCorner2"));
             accessoriesTab.AddCraftingNode(TechType.Cap1,
-                                           TechType.Cap2,
-                                           DecorationItemsHelper.getTechType(decorationItems, "Folder1"),
-                                           DecorationItemsHelper.getTechType(decorationItems, "Folder3"),
-                                           DecorationItemsHelper.getTechType(decorationItems, "Clipboard"),
-                                           DecorationItemsHelper.getTechType(decorationItems, "PaperTrash"),
-                                           DecorationItemsHelper.getTechType(decorationItems, "Pen"),
-                                           DecorationItemsHelper.getTechType(decorationItems, "PenHolder"));
-
-            // LEVIATHAN DOLLS
-            var faunaTab = rootNode.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
-            faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"),
-                                     DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll"),
-                                     DecorationItemsHelper.getTechType(decorationItems, "ReaperLeviathanDoll"),
-                                     DecorationItemsHelper.getTechType(decorationItems, "GhostLeviathanDoll"),
-                                     DecorationItemsHelper.getTechType(decorationItems, "SeaDragonDoll"),
-                                     DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll"),
-                                     DecorationItemsHelper.getTechType(decorationItems, "ReaperSkullDoll"));
+                                           TechType.Cap2);
 
             // TOYS
             var toysTab = rootNode.AddTabNode("Toys", LanguageHelper.GetFriendlyWord("Toys"), SpriteManager.Get(TechType.ArcadeGorgetoy));

@@ -31,7 +31,7 @@ namespace DecorationsMod.FloraAquatic
             {
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(TechType.PrecursorIonCrystal, 1)
+                    new IngredientHelper(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
                 _techType = this.TechType
             };
@@ -88,7 +88,7 @@ namespace DecorationsMod.FloraAquatic
             // Adjust main collider
             SphereCollider collider = prefab.FindChild("collision").GetComponent<SphereCollider>();
             collider.center = new Vector3(-0.015f, 80.0f, 0.0f);
-            collider.radius = 5.4f;
+            collider.radius = 5.8f;
 
             // Shrink collider using radius
             collider.radius *= 0.001f;
@@ -147,9 +147,9 @@ namespace DecorationsMod.FloraAquatic
             plantable.size = Plantable.PlantSize.Large;
             plantable.pickupable = pickupable;
             plantable.model = prefab;
-            //plantable.linkedGrownPlant = new GrownPlant();
-            //plantable.linkedGrownPlant.seed = plantable;
-            //plantable.linkedGrownPlant.seedUID = "FloatingStone1";
+            plantable.linkedGrownPlant = new GrownPlant();
+            plantable.linkedGrownPlant.seed = plantable;
+            plantable.linkedGrownPlant.seedUID = "FloatingStone1";
 
             // Add generic plant controller
             PlantGenericController landPlant1Controller = prefab.AddComponent<PlantGenericController>();

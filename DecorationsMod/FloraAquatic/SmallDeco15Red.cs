@@ -32,7 +32,7 @@ namespace DecorationsMod.FloraAquatic
             {
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(TechType.PrecursorIonCrystal, 1)
+                    new IngredientHelper(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
                 _techType = this.TechType
             };
@@ -51,9 +51,9 @@ namespace DecorationsMod.FloraAquatic
                 CraftDataPatcher.customHarvestTypeList.Add(this.TechType, HarvestType.DamageAlive);
                 CraftDataPatcher.customHarvestOutputList.Add(this.TechType, this.TechType);
 
-                // Change item background to water-plant seed
+                // Set item background to normal (both land & water plant)
                 // TODO: Replace with a call to SMLHelper when pull request gets released
-                DecorationsMod.CustomBackgroundTypes.Add(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
+                DecorationsMod.CustomBackgroundTypes.Add(this.TechType, CraftData.BackgroundType.Normal);
 
                 // Set item bioreactor charge
                 // TODO: Replace with a call to SMLHelper when pull request gets released
@@ -145,9 +145,9 @@ namespace DecorationsMod.FloraAquatic
             plantable.size = Plantable.PlantSize.Large;
             plantable.pickupable = pickupable;
             plantable.model = prefab;
-            //plantable.linkedGrownPlant = new GrownPlant();
-            //plantable.linkedGrownPlant.seed = plantable;
-            //plantable.linkedGrownPlant.seedUID = "SmallDeco15Red";
+            plantable.linkedGrownPlant = new GrownPlant();
+            plantable.linkedGrownPlant.seed = plantable;
+            plantable.linkedGrownPlant.seedUID = "SmallDeco15Red";
 
             // Add generic plant controller
             PlantGenericController landPlant1Controller = prefab.AddComponent<PlantGenericController>();

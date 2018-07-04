@@ -22,10 +22,9 @@ namespace DecorationsMod.NewItems
             this.Recipe = new TechDataHelper()
             {
                 _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
+                _ingredients = new List<IngredientHelper>(new IngredientHelper[1]
                     {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.Silicone, 1)
+                        new IngredientHelper(TechType.Titanium, 1)
                     }),
                 _techType = this.TechType
             };
@@ -81,7 +80,7 @@ namespace DecorationsMod.NewItems
                 // We can place this item
                 var placeTool = this.GameObject.AddComponent<PlaceTool>();
                 placeTool.allowedInBase = true;
-                placeTool.allowedOnBase = true;
+                placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
                 placeTool.allowedOnConstructable = true;
                 placeTool.allowedOnGround = true;

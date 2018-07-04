@@ -65,18 +65,11 @@ namespace DecorationsMod.Controllers
             {
                 if (_plant.linkedGrownPlant != null)
                 {
+#if DEBUG_FLORA
+                    Logger.Log("DEBUG: PlantMonoTransformController.Update() Associating grown plant in gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+#endif
                     _grownPlant = _plant.linkedGrownPlant;
                     _grownPlant.seed = _plant;
-                }
-                else
-                {
-#if DEBUG_FLORA
-                    Logger.Log("DEBUG: PlantMonoTransformController.Update() Instantiating new grown plant in gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
-#endif
-                    GameObject newObject = UnityEngine.Object.Instantiate<GameObject>(_plant.model);
-                    _grownPlant = newObject.AddComponent<GrownPlant>();
-                    _grownPlant.seed = _plant;
-                    _plant.linkedGrownPlant = _grownPlant;
                 }
             }
             if (_grownPlant != null)

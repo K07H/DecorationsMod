@@ -90,7 +90,7 @@ namespace DecorationsMod.NewItems
                 // We can place this item
                 var placeTool = this.GameObject.AddComponent<PlaceTool>();
                 placeTool.allowedInBase = true;
-                placeTool.allowedOnBase = true;
+                placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
                 placeTool.allowedOnConstructable = true;
                 placeTool.allowedOnGround = true;

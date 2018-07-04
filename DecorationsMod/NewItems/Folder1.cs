@@ -15,7 +15,7 @@ namespace DecorationsMod.NewItems
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_folder1");
 
             this.TechType = TechTypePatcher.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("Folder1Name"),
+                                                        LanguageHelper.GetFriendlyWord("Folder1Name") + " (A)",
                                                         LanguageHelper.GetFriendlyWord("Folder1Description"),
                                                         true);
 
@@ -88,7 +88,7 @@ namespace DecorationsMod.NewItems
                 // We can place this item
                 var placeTool = this.GameObject.AddComponent<PlaceTool>();
                 placeTool.allowedInBase = true;
-                placeTool.allowedOnBase = true;
+                placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
                 placeTool.allowedOnConstructable = true;
                 placeTool.allowedOnGround = true;

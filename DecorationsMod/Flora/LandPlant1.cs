@@ -31,7 +31,7 @@ namespace DecorationsMod.Flora
             {
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(TechType.PrecursorIonCrystal, 1)
+                    new IngredientHelper(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
                 _techType = this.TechType
             };
@@ -76,17 +76,33 @@ namespace DecorationsMod.Flora
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             prefab.name = this.ClassID;
-
+            
             /* Debug
-            foreach (Transform tr in prefab.transform)
-            {
-                Logger.Log("DEBUG: TR name=[" + tr.name + "] type=[" + tr.GetType() + "]");
-            }
+            Logger.Log("DEBUG: MAIN-TR name=[" + prefab.transform.name + "] type=[" + prefab.transform.GetType() + "]");
             Component[] comps = prefab.GetComponents<Component>();
             foreach (Component comp in comps)
             {
-                Logger.Log("DEBUG: COMPONENT name=[" + comp.name + "] type=[" + comp.GetType() + "]");
-            }*/
+                Logger.Log("DEBUG: MAIN-COMPONENT name=[" + comp.name + "] type=[" + comp.GetType() + "]");
+            }
+            foreach (Transform tr in prefab.transform)
+            {
+                Logger.Log("DEBUG: SUB-TR name=[" + tr.name + "] type=[" + tr.GetType() + "]");
+                Component[] compsb = tr.GetComponents<Component>();
+                foreach (Component comp in compsb)
+                {
+                    Logger.Log("DEBUG: SUB-COMPONENT name=[" + comp.name + "] type=[" + comp.GetType() + "]");
+                }
+                foreach (Transform subtr in tr.transform)
+                {
+                    Logger.Log("DEBUG: SUB-SUB-TR name=[" + subtr.name + "] type=[" + subtr.GetType() + "]");
+                    Component[] compsc = subtr.GetComponents<Component>();
+                    foreach (Component comp in compsc)
+                    {
+                        Logger.Log("DEBUG: SUB-SUB-COMPONENT name=[" + comp.name + "] type=[" + comp.GetType() + "]");
+                    }
+                }
+            }
+            */
 
             // Update rigid body
             var rb = prefab.GetComponent<Rigidbody>();
@@ -146,9 +162,9 @@ namespace DecorationsMod.Flora
             plantable.size = Plantable.PlantSize.Large;
             plantable.pickupable = pickupable;
             plantable.model = prefab;
-            //plantable.linkedGrownPlant = new GrownPlant();
-            //plantable.linkedGrownPlant.seed = plantable;
-            //plantable.linkedGrownPlant.seedUID = "LandPlant1";
+            plantable.linkedGrownPlant = new GrownPlant();
+            plantable.linkedGrownPlant.seed = plantable;
+            plantable.linkedGrownPlant.seedUID = "LandPlant1";
 
             // Add generic plant controller
             PlantGenericController landPlant1Controller = prefab.AddComponent<PlantGenericController>();

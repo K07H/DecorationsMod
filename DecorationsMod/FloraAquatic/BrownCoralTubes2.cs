@@ -31,7 +31,7 @@ namespace DecorationsMod.FloraAquatic
             {
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(TechType.PrecursorIonCrystal, 1)
+                    new IngredientHelper(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
                 _techType = this.TechType
             };
@@ -43,7 +43,7 @@ namespace DecorationsMod.FloraAquatic
         {
             if (this.IsRegistered == false)
             {
-                // Set item occupies 4 slots
+                // Set item occupies 1 slot
                 CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(1, 1);
 
                 // Add the new TechType to Harvest types
@@ -156,9 +156,9 @@ namespace DecorationsMod.FloraAquatic
             plantable.size = Plantable.PlantSize.Small;
             plantable.pickupable = pickupable;
             plantable.model = prefab;
-            //plantable.linkedGrownPlant = new GrownPlant();
-            //plantable.linkedGrownPlant.seed = plantable;
-            //plantable.linkedGrownPlant.seedUID = "BrownCoralTubes2";
+            plantable.linkedGrownPlant = new GrownPlant();
+            plantable.linkedGrownPlant.seed = plantable;
+            plantable.linkedGrownPlant.seedUID = "BrownCoralTubes2";
 
             // Add generic plant controller
             PlantGenericController landPlant1Controller = prefab.AddComponent<PlantGenericController>();

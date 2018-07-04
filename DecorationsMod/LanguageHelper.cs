@@ -154,6 +154,15 @@ namespace DecorationsMod
                         return "Oyuncaklar";
                     else
                         return "Toys";
+                case "OfficeSupplies":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Fournitures de bureau";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Material de oficina";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Ofis malzemeleri";
+                    else
+                        return "Office supplies";
                 case "Accessories":
                     if (UserLanguage == CountryCode.FR)
                         return "Accessoires";
@@ -273,13 +282,13 @@ namespace DecorationsMod
                         return "Tubular shelves for storing samples.";
                 case "LabCartName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Chariot de laboratoire (non-fonctionnel)";
+                        return "Chariot de laboratoire";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Carro de laboratorio (no-funcional)";
+                        return "Carro de laboratorio";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Labatuvar arabası (yararsız)";
+                        return "Labatuvar arabası";
                     else
-                        return "Lab cart (non-functional)";
+                        return "Lab cart";
                 case "LabCartDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Un chariot à échantillons de laboratoire.";
@@ -1421,9 +1430,9 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.ES)
                         return "Árbol Gigante de la Ensenada";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Pençe Yosunu";
-                    else
                         return "Dev Kovuk Ağacı";
+                    else
+                        return "Giant Cove Tree";
                 case "CoveTreeDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Clone réalisé par prélèvement sur un grand arbre rencontré dans une caverne profonde (le seul de son genre observé sur la planète). Peut être planté sur terre et sous l'eau.";
@@ -1640,6 +1649,123 @@ namespace DecorationsMod
                         return "Mor mercan bitkisi";
                     else
                         return "Purple coral plant";
+                case "DecorationsEmptyDeskName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Bureau vide";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Escritorio vacío";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Boş masa";
+                    else
+                        return "Empty desk";
+                case "DecorationsEmptyDeskDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Plan de travail commun de vaisseau spatial.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una mesa de trabajo común para naves.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Sıradan uzay gemisi masası.";
+                    else
+                        return "Common starship work desk.";
+                case "BenchSmallName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Petit banc";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Banco pequeño";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Küçük oturak";
+                    else
+                        return "Small bench";
+                case "BenchSmallDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Simple appareil de relaxation en métal. Conserve l'énergie au repos.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una simple aplicación de metal para relajarse. Conserva la energía mientras descansas.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Basit metal eşya. Dinlenmeyi ve böylece enerji toplamayı sağlar.";
+                    else
+                        return "Simple metal relaxation appliance. Conserves energy when resting.";
+                case "DecorativePDAName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "PDA décoratif";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "PDA decorativo";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "PDA dekoratif";
+                    else
+                        return "Decorative PDA";
+                case "DecorativePDADescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un PDA purement décoratif.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un PDA puramente decorativo.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tamamen dekoratif bir PDA.";
+                    else
+                        return "A purely decorative PDA.";
+                case "GenericSkeletonName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Restes Squelettiques";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Restos Esqueléticos";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Iskelet Kalıntısı";
+                    else
+                        return "Skeletal Remains";
+                case "GenericSkeletonDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Les restes squelettiques d'un prédateur.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Los restos esqueléticos de un depredador.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bir yırtıcının iskelet kalıntıları.";
+                    else
+                        return "The skeletal remains of a predator.";
+                case "SeaDragonSkeletonName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Squelette de dragon des mers";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Esqueleto de dragón marino";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Deniz ejderhası iskeleti";
+                    else
+                        return "Sea dragon skeleton";
+                case "LeviathanSkeletonDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une reproduction miniature du squelette d'un prédateur de classe Léviathan.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una miniatura de un esqueleto de depredador de clase leviatán.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bir Leviathan sınıfı yırtıcı iskeletinin minyatürü.";
+                    else
+                        return "A miniature of a Leviathan class predator skeleton.";
+                case "ReaperSkeletonDollName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Squelette de Reaper Léviathan";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Esqueleto de Segador Leviatán";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tırpanlı Canavar i̇skeleti";
+                    else
+                        return "Leviathan Skeletal Remains";
+                case "DecorativeLockerName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Casier (non-fonctionnel)";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Taquilla (no-funcionales)";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dolap (yararsız)";
+                    else
+                        return "Locker (non-functional)";
+                case "DecorativeLockerDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un casier décoratif.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "A taquilla decorativa.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekoratif bir dolap.";
+                    else
+                        return "A decorative locker.";
                 default:
                     return "?";
             }

@@ -100,9 +100,9 @@ namespace DecorationsMod.NewItems
             // We can place this item
             var placeTool = prefab.AddComponent<PlaceTool>();
             placeTool.allowedInBase = true;
-            placeTool.allowedOnBase = true;
+            placeTool.allowedOnBase = false;
             placeTool.allowedOnCeiling = false;
-            placeTool.allowedOnConstructable = true;
+            placeTool.allowedOnConstructable = false;
             placeTool.allowedOnGround = true;
             placeTool.allowedOnRigidBody = true;
             placeTool.allowedOnWalls = false;

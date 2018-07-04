@@ -70,18 +70,11 @@ namespace DecorationsMod.Controllers
             {
                 if (_plant.linkedGrownPlant != null)
                 {
+#if DEBUG_FLORA
+                    Logger.Log("DEBUG: PlantGenericController.Update() Associating grown plant in gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+#endif
                     _grownPlant = _plant.linkedGrownPlant;
                     _grownPlant.seed = _plant;
-                }
-                else
-                {
-#if DEBUG_FLORA
-                    Logger.Log("DEBUG: PlantGenericController.Update() Instantiating new grown plant in gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
-#endif
-                    GameObject newObject = UnityEngine.Object.Instantiate<GameObject>(_plant.model);
-                    _grownPlant = newObject.AddComponent<GrownPlant>();
-                    _grownPlant.seed = _plant;
-                    _plant.linkedGrownPlant = _grownPlant;
                 }
             }
             if (_grownPlant != null)
@@ -147,13 +140,12 @@ namespace DecorationsMod.Controllers
                 else
                 {
                     // Animation
-                    float test = (float)(DayNightCycle.main.timePassed - _initTimeValue) / GrowthDuration;
-                    _progress = test + _passedProgress;
+                    _progress = ((float)(DayNightCycle.main.timePassed - _initTimeValue) / GrowthDuration) + _passedProgress;
 #if DEBUG_FLORA_ANIMATION
                     if (id != null)
-                        Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => rawProgress=[" + test + "] progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
+                        Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
                     else
-                        Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => rawProgress=[" + test + "] progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
+                        Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
 #endif
                     if (Utils.NearlyEqual(_grownPlant.gameObject.transform.localPosition.x, 5000.0f)
                         && Utils.NearlyEqual(_grownPlant.gameObject.transform.localPosition.z, 5000.0f))

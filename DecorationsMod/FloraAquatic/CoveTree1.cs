@@ -31,7 +31,7 @@ namespace DecorationsMod.FloraAquatic
             {
                 _craftAmount = 1,
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(TechType.PrecursorIonCrystal, 2)
+                    new IngredientHelper(ConfigSwitcher.FloraRecipiesResource, 2)
                 }),
                 _techType = this.TechType
             };
@@ -50,7 +50,7 @@ namespace DecorationsMod.FloraAquatic
                 CraftDataPatcher.customHarvestTypeList.Add(this.TechType, HarvestType.DamageAlive);
                 CraftDataPatcher.customHarvestOutputList.Add(this.TechType, this.TechType);
 
-                // Change item background to normal (we can plant cove tree both on land & water)
+                // Set item background to normal (both land & water plant)
                 // TODO: Replace with a call to SMLHelper when pull request gets released
                 DecorationsMod.CustomBackgroundTypes.Add(this.TechType, CraftData.BackgroundType.Normal);
 
@@ -152,9 +152,9 @@ namespace DecorationsMod.FloraAquatic
             plantable.size = Plantable.PlantSize.Large;
             plantable.pickupable = pickupable;
             plantable.model = prefab;
-            //plantable.linkedGrownPlant = new GrownPlant();
-            //plantable.linkedGrownPlant.seed = plantable;
-            //plantable.linkedGrownPlant.seedUID = "CoveTree1";
+            plantable.linkedGrownPlant = new GrownPlant();
+            plantable.linkedGrownPlant.seed = plantable;
+            plantable.linkedGrownPlant.seedUID = "CoveTree1";
 
             // Add cove tree controller (handles show/hide eggs capability)
             CoveTree1Controller coveTreeController = prefab.AddComponent<CoveTree1Controller>();

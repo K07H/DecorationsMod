@@ -9,8 +9,7 @@ namespace DecorationsMod.NewItems
     {
         public LabTube() // Feeds abstract class
         {
-            this.ClassID = "DecorationLabTube";
-
+            this.ClassID = "DecorationLabTube"; // a36047b0-1533-4718-8879-d6ba9229c978
             this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_tube_01";
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
@@ -100,9 +99,9 @@ namespace DecorationsMod.NewItems
             // We can place this item
             var placeTool = prefab.AddComponent<PlaceTool>();
             placeTool.allowedInBase = true;
-            placeTool.allowedOnBase = true;
+            placeTool.allowedOnBase = false;
             placeTool.allowedOnCeiling = false;
-            placeTool.allowedOnConstructable = true;
+            placeTool.allowedOnConstructable = false;
             placeTool.allowedOnGround = true;
             placeTool.allowedOnRigidBody = true;
             placeTool.allowedOnWalls = false;
