@@ -89,7 +89,7 @@ June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Translations:<br>
 Currently supported: Français (FR), English (EN), Español (ES) and Türkçe (TR).<br>
-Feel free to propose new translations for this mod. You can find the [template here](https://raw.githubusercontent.com/K07H/DecorationsMod/master/translation_template.txt).<br>
+Feel free to propose new translations for this mod. You can find the up-to-date [template here](https://github.com/K07H/DecorationsMod/blob/master/translation_template.docx?raw=true).<br>
 
 ### Special thanks:<br>
 @[UnknownWorlds](https://unknownworlds.com/subnautica/) (for creating this awesome game and letting us do mods)<br>
