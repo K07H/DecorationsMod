@@ -49,7 +49,6 @@ namespace DecorationsMod
             var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(giveResourceOnDamageMethod, null, new HarmonyMethod(giveResourceOnDamagePostfix));
             // Make plants undropable
-            //public static bool CanDropItemHere(Pickupable item, bool notify = false)
             var canDropItemHereMethod = typeof(Inventory).GetMethod("CanDropItemHere", BindingFlags.Public | BindingFlags.Static);
             var canDropItemHerePrefix = typeof(InventoryFixer).GetMethod("CanDropItemHere_Prefix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(canDropItemHereMethod, new HarmonyMethod(canDropItemHerePrefix), null);
@@ -57,10 +56,6 @@ namespace DecorationsMod
             var onHandHoverMethod = typeof(GrownPlant).GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
             var onHandHoverPostfix = typeof(GrownPlantFixer).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(onHandHoverPostfix));
-            // Fix DisableColliders method
-            /* var disableCollidersMethod = typeof(Pickupable).GetMethod("DisableColliders", BindingFlags.NonPublic | BindingFlags.Instance);
-            var prefix = typeof(LayerFixer).GetMethod("DisableColliders_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(disableCollidersMethod, new HarmonyMethod(prefix), null); */
         }
 
         private static List<IDecorationItem> RegisterDecorationItems()

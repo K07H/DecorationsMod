@@ -33,7 +33,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugFlora|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\DebugFlora\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_FLORA;DEBUG_FLORA_ENTRY;DEBUG_FLORA_ANIMATION;DEBUG_GROWNPLANT_FIXER</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DEBUG_FLORA;DEBUG_FLORA_ENTRY;DEBUG_FLORA_ANIMATION;DEBUG_GROWNPLANT_FIXER;DEBUG_COVE_TREE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FullDebug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\FullDebug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_FLORA;DEBUG_FLORA_ENTRY;DEBUG_FLORA_ANIMATION;DEBUG_FORKLIFT;DEBUG_LAMP;DEBUG_GROWNPLANT_FIXER;DEBUG_DROP_ITEM</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DEBUG_FLORA;DEBUG_FLORA_ENTRY;DEBUG_FLORA_ANIMATION;DEBUG_LAMP;DEBUG_GROWNPLANT_FIXER;DEBUG_COVE_TREE;DEBUG_DROP_ITEM;DEBUG_KNIFE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -52,7 +52,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugItems|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\DebugItems\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_FORKLIFT;DEBUG_LAMP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DEBUG_LAMP;DEBUG_KNIFE;DEBUG_DROP_ITEM</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -100,7 +100,6 @@
     <Compile Include="Fixers\GrownPlantFixer.cs" />
     <Compile Include="Fixers\InventoryFixer.cs" />
     <Compile Include="Fixers\KnifeFixer.cs" />
-    <Compile Include="Fixers\LayerFixer.cs" />
     <Compile Include="Fixers\SignSetupFixer.cs" />
     <Compile Include="FloraAquatic\BlueCoralTubes1.cs" />
     <Compile Include="FloraAquatic\BrownCoralTubes1.cs" />

@@ -36,7 +36,10 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 GameObject model = this.GameObject.FindChild("PDA");
-                
+
+                // Translate model
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.017f, model.transform.localPosition.z);
+
                 // Set tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
                 techTag.type = this.TechType;

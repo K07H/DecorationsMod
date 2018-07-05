@@ -89,8 +89,8 @@ namespace DecorationsMod.NewItems
 
             // Adjust collider
             BoxCollider collider = prefab.GetComponentInChildren<BoxCollider>();
-            collider.size = new Vector3(collider.size.x, collider.size.y - 0.02f, collider.size.z);
-            collider.center = new Vector3(collider.center.x, collider.center.y - 0.02f, collider.center.z);
+            collider.size = new Vector3(collider.size.x, collider.size.y - 0.022f, collider.size.z);
+            collider.center = new Vector3(collider.center.x, collider.center.y - 0.011f, collider.center.z);
 
             if (!ConfigSwitcher.EmptyDesk_asBuildable)
             {
