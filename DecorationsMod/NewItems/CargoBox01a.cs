@@ -134,7 +134,7 @@ namespace DecorationsMod.NewItems
                 rend.enabled = false;
             }
             container.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            container.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            container.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
             container.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
             container.SetActive(true);
 
@@ -147,6 +147,10 @@ namespace DecorationsMod.NewItems
             BoxCollider objectCollider = collider.GetComponent<BoxCollider>();
             objectCollider.isTrigger = false;
             objectCollider.enabled = false;
+
+            // Delete constructable bounds
+            ConstructableBounds cb = container.GetComponent<ConstructableBounds>();
+            GameObject.DestroyImmediate(cb);
 
             return prefab;
         }

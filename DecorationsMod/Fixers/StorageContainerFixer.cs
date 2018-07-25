@@ -19,7 +19,10 @@ namespace DecorationsMod.Fixers
                 PrefabIdentifier pid2 = parentGO.GetComponent<PrefabIdentifier>();
                 if (pid2 != null && (parentGO.name.StartsWith("CargoBox01_damaged") ||
                                      parentGO.name.StartsWith("CargoBox01a") ||
-                                     parentGO.name.StartsWith("CargoBox01b")))
+                                     parentGO.name.StartsWith("CargoBox01b") ||
+                                     parentGO.name.StartsWith("DecorativeLocker") ||
+                                     parentGO.name.StartsWith("DecorativeLockerClosed") ||
+                                     parentGO.name.StartsWith("DecorativeLockerDoor")))
                 {
 #if DEBUG_CARGO_CRATES
                     Logger.Log("DEBUG: OnProtoDeserializeObjectTree() storageConteiner Id=[" + pid2.Id + "] objName=[" + parentGO.name + "] nbItems=[" + (__instance.container != null ? Convert.ToString(__instance.container.count) : "null") + "]");
