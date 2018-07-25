@@ -13,20 +13,23 @@ namespace DecorationsMod.Controllers
             if (!enabled)
                 return;
 
-            GameObject model = this.gameObject.FindChild("forklift");
-            if (model == null)
-                return;
-            
-            BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
-            if (model.transform.localScale.y > 10.0f)
+            if (Input.GetKey(KeyCode.E))
             {
-                model.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                collider.size = new Vector3(0.05f, 0.064f, 0.04f);
-            }
-            else
-            {
-                model.transform.localScale *= 1.25f;
-                collider.size *= 1.25f;
+                GameObject model = this.gameObject.FindChild("forklift");
+                if (model == null)
+                    return;
+
+                BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
+                if (model.transform.localScale.y > 10.0f)
+                {
+                    model.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    collider.size = new Vector3(0.05f, 0.064f, 0.04f);
+                }
+                else
+                {
+                    model.transform.localScale *= 1.25f;
+                    collider.size *= 1.25f;
+                }
             }
         }
 

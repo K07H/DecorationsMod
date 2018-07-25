@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using UnityEngine;
 
 namespace DecorationsMod
 {
@@ -75,6 +76,26 @@ namespace DecorationsMod
                     return CountryCode.TR;
             }
             return CountryCode.EN;
+        }
+    }
+
+    public static class ImageUtils
+    {
+        // Scrapped from: https://github.com/RandyKnapp/SubnauticaModSystem/blob/master/SubnauticaModSystem/Common/Utility/ImageUtils.cs
+        public static Texture2D LoadTextureFromFile(string imageFilePath)
+        {
+            if (File.Exists(imageFilePath))
+            {
+                byte[] imageBytes = File.ReadAllBytes(imageFilePath);
+                Texture2D texture2D = new Texture2D(2, 2, TextureFormat.BC7, false);
+                if (texture2D.LoadImage(imageBytes))
+                    return texture2D;
+                else
+                    Logger.Log("ERROR: Image located at \"" + imageFilePath + "\" cannot not be loaded.");
+            }
+            else
+                Logger.Log("ERROR: Image located at \"" + imageFilePath + "\" has not been found.");
+            return null;
         }
     }
 }

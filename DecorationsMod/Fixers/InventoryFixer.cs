@@ -8,7 +8,7 @@ namespace DecorationsMod.Fixers
     [HarmonyPatch("CanDropItemHere")]
     public class InventoryFixer
     {
-        internal static readonly List<string> _plants = new List<string>(new string [46] {
+        internal static readonly List<string> _plants = new List<string>(new string[46] {
             "Fern2",
             "Fern4",
             "JungleTree1",
@@ -56,7 +56,7 @@ namespace DecorationsMod.Fixers
             "SmallDeco15Red",
             "SmallDeco17Purple"
         });
-        
+
         //public static bool CanDropItemHere(Pickupable item, bool notify = false)
         public static bool CanDropItemHere_Prefix(bool __result, Pickupable item, bool notify = false)
         {
@@ -112,6 +112,68 @@ namespace DecorationsMod.Fixers
 #endif
 
             // Return true to call original function
+            return true;
+        }
+        
+        public static bool AddOrSwap_Prefix(ref bool __result, InventoryItem itemA, Equipment equipmentB, string slotB)
+        {
+            if (itemA == null || !itemA.CanDrag(true) || equipmentB == null)
+                return true;
+            Pickupable item = itemA.item;
+            if (item == null)
+                return true;
+            TechType techType = item.GetTechType();
+            if (techType == TechType.Battery || techType == TechType.PrecursorIonBattery ||
+                techType == TechType.PowerCell || techType == TechType.PrecursorIonPowerCell)
+            {
+                IItemsContainer container = itemA.container;
+                if (container == null)
+                    return true;
+                Equipment equipment = container as Equipment;
+                bool flag = equipment != null;
+                string empty = string.Empty;
+                if (flag && !equipment.GetItemSlot(item, ref empty))
+                    return true;
+                EquipmentType equipmentType = CraftData.GetEquipmentType(techType);
+                if (string.IsNullOrEmpty(slotB))
+                    equipmentB.GetCompatibleSlot(equipmentType, out slotB);
+                if (string.IsNullOrEmpty(slotB))
+                    return true;
+                if (container == equipmentB && empty == slotB)
+                    return true;
+                EquipmentType slotBType = Equipment.GetSlotType(slotB);
+                if (slotBType != EquipmentType.BatteryCharger)
+                    return true;
+                else
+                {
+                    InventoryItem inventoryItem = equipmentB.RemoveItem(slotB, false, true);
+                    if (inventoryItem == null)
+                    {
+                        if (equipmentB.AddItem(slotB, itemA, false))
+                        {
+                            __result = true;
+                            return false;
+                        }
+                    }
+                    else if (equipmentB.AddItem(slotB, itemA, false))
+                    {
+                        if ((flag && equipment.AddItem(empty, inventoryItem, false)) || (!flag && container.AddItem(inventoryItem)))
+                        {
+                            __result = true;
+                            return false;
+                        }
+                        if (flag)
+                            equipment.AddItem(empty, itemA, true);
+                        else
+                            container.AddItem(itemA);
+                        equipmentB.AddItem(slotB, inventoryItem, true);
+                    }
+                    else
+                        equipmentB.AddItem(slotB, inventoryItem, true);
+                    __result = false;
+                    return false;
+                }
+            }
             return true;
         }
     }

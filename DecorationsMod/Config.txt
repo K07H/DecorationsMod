@@ -8,13 +8,16 @@ language=auto
 enablePlaceItems=true
 
 # If "true", you'll be able to build/craft the following items:
-# lab cart, specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll,
-# lamp, seamoth doll, exosuit doll, forklift, cargo crates, sofas, customizable picture frame, small bench,
-# and decorative locker.
+# lab cart, specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll, lamp, seamoth doll,
+# exosuit doll, forklift, cargo crates, sofas, customizable picture frame, small bench and additional lockers.
 enableSpecialItems=true
+
+# If "true", you'll be able to craft Nutrient Blocks using the decorations fabricator.
+enableNutrientBlock=true
 
 # If "true",  item will be added to the habitat builder menu.
 # If "false", item will be added to the decorations fabricator.
+# Be careful using this option (you may loose some of the items functionalities).
 asBuildable_SpecimenAnalyzer=true
 asBuildable_MarkiplierDoll1=true
 asBuildable_MarkiplierDoll2=true
@@ -29,7 +32,7 @@ asBuildable_LabCart=true
 asBuildable_EmptyDesk=true
 
 # This defines the resource used in new flora recipies.
-# Possible values: Existing tech type name (example: precursorioncrystal, salt, titanium, ...).
+# Possible values: An existing tech type name (example: salt).
 flora_RecipiesResource=precursorioncrystal
 
 # Defines new flora configuration. Format is: growth-duration/health/bioreactor-charge
@@ -79,3 +82,20 @@ config_CoralPlantGreen=1600/10/120
 config_CoralPlantBlue=1600/10/120
 config_CoralPlantRed=1600/10/120
 config_CoralPlantPurple=1600/10/120
+
+# If "true", all existing air seeds will be added to the seeds fabricator.
+addRegularAirSeeds=true
+# If "true", all existing water seeds will be added to the seeds fabricator.
+addRegularWaterSeeds=true
+
+# If "true", cove trees bellow 100m depth having eggs displayed will spawn Juvenile Ghost Leviatan after a certain amount of time.
+GhostLeviatan_enable=false
+# Defines spawned juvenile ghost leviatan health points.
+GhostLeviatan_health=2000
+# Defines the number of juvenile ghost leviatan that spawns before eggs disappears.
+GhostLeviatan_maxSpawns=2
+# Defines the minimum number of seconds to wait before the first leviatan spawns.
+GhostLeviatan_timeBeforeFirstSpawn=1200
+# This is the ratio applied to the duration between two leviatans spawns. Set it close to 0 if you want fast spawn rate (for example,
+# 0.01 will be around 10seconds), or set it to a high value if you want low spawn rate (for example, 3.0 will be around 45minutes).
+GhostLeviatan_spawnTimeRatio=1.0

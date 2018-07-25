@@ -12,6 +12,7 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		DebugFlora|Any CPU = DebugFlora|Any CPU
 		DebugItems|Any CPU = DebugItems|Any CPU
+		DebugVehicles|Any CPU = DebugVehicles|Any CPU
 		FullDebug|Any CPU = FullDebug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
@@ -22,6 +23,8 @@ Global
 		{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}.DebugFlora|Any CPU.Build.0 = DebugFlora|Any CPU
 		{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}.DebugItems|Any CPU.ActiveCfg = DebugItems|Any CPU
 		{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}.DebugItems|Any CPU.Build.0 = DebugItems|Any CPU
+		{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}.DebugVehicles|Any CPU.ActiveCfg = DebugVehicles|Any CPU
+		{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}.DebugVehicles|Any CPU.Build.0 = DebugVehicles|Any CPU
 		{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}.FullDebug|Any CPU.ActiveCfg = FullDebug|Any CPU
 		{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}.FullDebug|Any CPU.Build.0 = FullDebug|Any CPU
 		{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -32,6 +35,8 @@ Global
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugFlora|Any CPU.Build.0 = DebugFlora|Any CPU
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugItems|Any CPU.ActiveCfg = DebugItems|Any CPU
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugItems|Any CPU.Build.0 = DebugItems|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugVehicles|Any CPU.ActiveCfg = DebugVehicles|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugVehicles|Any CPU.Build.0 = DebugVehicles|Any CPU
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.FullDebug|Any CPU.ActiveCfg = FullDebug|Any CPU
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.FullDebug|Any CPU.Build.0 = FullDebug|Any CPU
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU

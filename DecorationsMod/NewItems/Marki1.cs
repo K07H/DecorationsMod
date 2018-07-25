@@ -7,15 +7,12 @@ namespace DecorationsMod.NewItems
 {
     public class Marki1 : DecorationItem
     {
-        private GameObject marki2 = null;
-
         public Marki1()
         {
             this.ClassID = "MarkiDoll1"; // cb89366d-eac0-4011-8665-fafde75b215c
             this.ResourcePath = "Submarine/Build/Marki_01";
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
-            this.marki2 = Resources.Load<GameObject>("Submarine/Build/Marki_03");
 
             this.TechType = TechTypePatcher.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("MarkiDollName"),

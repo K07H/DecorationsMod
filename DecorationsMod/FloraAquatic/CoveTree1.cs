@@ -159,6 +159,10 @@ namespace DecorationsMod.FloraAquatic
             // Add cove tree controller (handles show/hide eggs capability)
             CoveTree1Controller coveTreeController = prefab.AddComponent<CoveTree1Controller>();
 
+            // Add ghost leviatan spawner
+            if (ConfigSwitcher.GhostLeviatan_enable)
+                prefab.AddComponent<GhostLeviatanSpawner>();
+
             // Add generic plant controller (handles animation)
             PlantGenericController plantGenericController = prefab.AddComponent<PlantGenericController>();
             plantGenericController.GrowthDuration = Config.GrowthDuration;

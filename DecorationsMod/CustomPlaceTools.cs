@@ -445,5 +445,141 @@ namespace DecorationsMod
 
         public void OnProtoSerialize(ProtobufSerializer serializer) { }
     }
+
+    public class Battery_PT : PlaceTool, IProtoEventListener
+    {
+        [SerializeField]
+        public bool HasBeenPlaced = false;
+
+        public override void OnPlace()
+        {
+            base.OnPlace();
+
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject model = this.gameObject.FindChild("model");
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.069f, model.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoDeserialize(ProtobufSerializer serializer)
+        {
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject model = this.gameObject.FindChild("model");
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.069f, model.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoSerialize(ProtobufSerializer serializer) { }
+    }
+
+    public class PowerCell_PT : PlaceTool, IProtoEventListener
+    {
+        [SerializeField]
+        public bool HasBeenPlaced = false;
+
+        public override void OnPlace()
+        {
+            base.OnPlace();
+
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject model = this.gameObject.FindChild("engine_power_cell_01");
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.138f, model.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoDeserialize(ProtobufSerializer serializer)
+        {
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject model = this.gameObject.FindChild("engine_power_cell_01");
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.138f, model.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoSerialize(ProtobufSerializer serializer) { }
+    }
+
+    public class IonBattery_PT : PlaceTool, IProtoEventListener
+    {
+        [SerializeField]
+        public bool HasBeenPlaced = false;
+
+        public override void OnPlace()
+        {
+            base.OnPlace();
+
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject model = this.gameObject.FindChild("model");
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.069f, model.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoDeserialize(ProtobufSerializer serializer)
+        {
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject model = this.gameObject.FindChild("model");
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.069f, model.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoSerialize(ProtobufSerializer serializer) { }
+    }
+
+    public class IonPowerCell_PT : PlaceTool, IProtoEventListener
+    {
+        [SerializeField]
+        public bool HasBeenPlaced = false;
+
+        public override void OnPlace()
+        {
+            base.OnPlace();
+
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject model = this.gameObject.FindChild("engine_power_cell_ion");
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.138f, model.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoDeserialize(ProtobufSerializer serializer)
+        {
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject model = this.gameObject.FindChild("engine_power_cell_ion");
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.138f, model.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoSerialize(ProtobufSerializer serializer) { }
+    }
 }
 

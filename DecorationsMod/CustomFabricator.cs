@@ -70,20 +70,29 @@ namespace DecorationsMod
 
             // LAB ELEMENTS
             var labEquipmentTab = rootNode.AddTabNode("LabElements", LanguageHelper.GetFriendlyWord("LabElements"), SpriteManager.Get(TechType.LabEquipment1));
-            // Lab elements -> Useless glass containers Tab
-            var glassContainersTab = labEquipmentTab.AddTabNode("GlassContainers", LanguageHelper.GetFriendlyWord("GlassContainers"), SpriteManager.Get(TechType.LabContainer2));
-            glassContainersTab.AddCraftingNode(TechType.LabContainer,
-                                               TechType.LabContainer2,
-                                               TechType.LabContainer3,
-                                               DecorationItemsHelper.getTechType(decorationItems, "LabContainer4"));
+            
             // Lab elements -> Equipments Tab
             var analyzersTab = labEquipmentTab.AddTabNode("NonFunctionalAnalyzers", LanguageHelper.GetFriendlyWord("NonFunctionalAnalyzers"), SpriteManager.Get(TechType.LabEquipment3));
             analyzersTab.AddCraftingNode(TechType.LabEquipment1,
                                          TechType.LabEquipment2,
                                          TechType.LabEquipment3);
+
+            // Lab elements -> Open glass containers Tab
+            var openedGlassConteinersTab = labEquipmentTab.AddTabNode("OpenedGlassContainers", LanguageHelper.GetFriendlyWord("OpenedGlassContainers"), new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/labcontaineropen2.png")));
+            openedGlassConteinersTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen3"),
+                                                     DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen2"),
+                                                     DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen1"));
+
+            // Lab elements -> Glass containers Tab
+            var glassContainersTab = labEquipmentTab.AddTabNode("GlassContainers", LanguageHelper.GetFriendlyWord("GlassContainers"), SpriteManager.Get(TechType.LabContainer2));
+            glassContainersTab.AddCraftingNode(TechType.LabContainer,
+                                               TechType.LabContainer2,
+                                               TechType.LabContainer3,
+                                               DecorationItemsHelper.getTechType(decorationItems, "LabContainer4"));
+
             // Lab elements -> Furnitures Tab
             //var labFurnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("labshelves"));
-            
+
             // Lab elements items
             if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable)
                 labEquipmentTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationsSpecimenAnalyzer"));
@@ -126,8 +135,9 @@ namespace DecorationsMod
                                           DecorationItemsHelper.getTechType(decorationItems, "BarBottle4"),
                                           DecorationItemsHelper.getTechType(decorationItems, "BarBottle5"),
                                           DecorationItemsHelper.getTechType(decorationItems, "BarFood1"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "BarFood2"),
-                                          TechType.NutrientBlock);
+                                          DecorationItemsHelper.getTechType(decorationItems, "BarFood2"));
+            if (ConfigSwitcher.EnableNutrientBlock)
+                barKitchenTab.AddCraftingNode(TechType.NutrientBlock);
 
             // OFFICE SUPPLIES
             var officeSuppliesTab = rootNode.AddTabNode("OfficeSupplies", LanguageHelper.GetFriendlyWord("OfficeSupplies"), AssetsHelper.Assets.LoadAsset<Sprite>("clipboardicon"));
@@ -316,6 +326,72 @@ namespace DecorationsMod
                                              DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant7b"),
                                              DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant10a"),
                                              DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant10b"));
+
+            // Existing air seeds from the game
+            if (ConfigSwitcher.EnableRegularAirSeeds)
+            {
+                var regularAirSeedsTab = rootNode.AddTabNode("RegularAirSeedsTab", LanguageHelper.GetFriendlyWord("RegularAirSeedsTab"), SpriteManager.Get(TechType.BulboTreePiece));
+                
+                var edibleRegularAirTab = regularAirSeedsTab.AddTabNode("EdibleRegularAirTab", LanguageHelper.GetFriendlyWord("EdibleRegularAirTab"), SpriteManager.Get(TechType.MelonSeed));
+                edibleRegularAirTab.AddCraftingNode(TechType.BulboTreePiece,
+                                                    TechType.PurpleVegetable,
+                                                    TechType.HangingFruit,
+                                                    TechType.MelonSeed);
+
+                var decorativeBigAirTab = regularAirSeedsTab.AddTabNode("DecorativeBigAirTab", LanguageHelper.GetFriendlyWord("DecorativeBigAirTab"), SpriteManager.Get(TechType.OrangePetalsPlantSeed));
+                decorativeBigAirTab.AddCraftingNode(TechType.FernPalmSeed,
+                                                    TechType.OrangePetalsPlantSeed,
+                                                    TechType.PurpleVasePlantSeed,
+                                                    TechType.OrangeMushroomSpore);
+
+                var decorativeSmallAirTab = regularAirSeedsTab.AddTabNode("DecorativeSmallAirTab", LanguageHelper.GetFriendlyWord("DecorativeSmallAirTab"), SpriteManager.Get(TechType.PinkFlowerSeed));
+                decorativeSmallAirTab.AddCraftingNode(TechType.PinkMushroomSpore,
+                                                    TechType.PurpleRattleSpore,
+                                                    TechType.PinkFlowerSeed);
+            }
+
+            // Existing water seeds from the game
+            if (ConfigSwitcher.EnableRegularWaterSeeds)
+            {
+                var regularWaterSeedsTab = rootNode.AddTabNode("RegularWaterSeedsTab", LanguageHelper.GetFriendlyWord("RegularWaterSeedsTab"), SpriteManager.Get(TechType.CreepvineSeedCluster));
+
+                var decorativeMediumWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeMediumWaterTab", LanguageHelper.GetFriendlyWord("DecorativeMediumWaterTab"), SpriteManager.Get(TechType.SeaCrownSeed));
+                decorativeMediumWaterTab.AddCraftingNode(TechType.GabeSFeatherSeed,
+                                                         TechType.RedGreenTentacleSeed,
+                                                         TechType.SeaCrownSeed,
+                                                         TechType.ShellGrassSeed);
+
+                var decorativeBushesWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeBushesWaterTab", LanguageHelper.GetFriendlyWord("DecorativeBushesWaterTab"), SpriteManager.Get(TechType.PurpleStalkSeed));
+                decorativeBushesWaterTab.AddCraftingNode(TechType.PurpleBranchesSeed,
+                                                         TechType.RedRollPlantSeed,
+                                                         TechType.RedBushSeed,
+                                                         TechType.PurpleStalkSeed,
+                                                         TechType.SpottedLeavesPlantSeed);
+
+                var regularSmallWaterTab = regularWaterSeedsTab.AddTabNode("RegularSmallWaterTab", LanguageHelper.GetFriendlyWord("RegularSmallWaterTab"), SpriteManager.Get(TechType.AcidMushroomSpore));
+                regularSmallWaterTab.AddCraftingNode(TechType.AcidMushroomSpore,
+                                                     TechType.WhiteMushroomSpore,
+                                                     TechType.JellyPlantSeed,
+                                                     TechType.SmallFanSeed,
+                                                     TechType.PurpleFanSeed,
+                                                     TechType.PurpleTentacleSeed);
+
+                var decorativeBigWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeBigWaterTab", LanguageHelper.GetFriendlyWord("DecorativeBigWaterTab"), SpriteManager.Get(TechType.MembrainTreeSeed));
+                decorativeBigWaterTab.AddCraftingNode(TechType.BluePalmSeed,
+                                                      TechType.EyesPlantSeed,
+                                                      TechType.MembrainTreeSeed,
+                                                      TechType.RedConePlantSeed,
+                                                      TechType.RedBasketPlantSeed,
+                                                      TechType.SnakeMushroomSpore,
+                                                      TechType.SpikePlantSeed);
+
+                var functionalBigWaterTab = regularWaterSeedsTab.AddTabNode("FunctionalBigWaterTab", LanguageHelper.GetFriendlyWord("FunctionalBigWaterTab"), SpriteManager.Get(TechType.CreepvineSeedCluster));
+                functionalBigWaterTab.AddCraftingNode(TechType.CreepvinePiece,
+                                                      TechType.CreepvineSeedCluster,
+                                                      TechType.BloodOil,
+                                                      TechType.PurpleBrainCoralPiece,
+                                                      TechType.KooshChunk);
+            }
 
             // Plant Water
             var plantWaterTab = rootNode.AddTabNode("PlantWaterTab", LanguageHelper.GetFriendlyWord("PlantWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("spottedreedsicon"));

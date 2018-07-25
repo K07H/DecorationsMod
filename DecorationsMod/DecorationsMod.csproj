@@ -52,12 +52,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugItems|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\DebugItems\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_LAMP;DEBUG_KNIFE;DEBUG_DROP_ITEM</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DEBUG_LAMP;DEBUG_KNIFE;DEBUG_DROP_ITEM;DEBUG_CARGO_CRATES</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugVehicles|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugVehicles\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=1.0.9.1, Culture=neutral, processorArchitecture=MSIL">
@@ -84,6 +93,8 @@
     <Compile Include="Controllers\CustomFloraSerializer.cs" />
     <Compile Include="Controllers\CustomPictureFrameController.cs" />
     <Compile Include="Controllers\ForkliftController.cs" />
+    <Compile Include="Controllers\GhostLeviatanSpawner.cs" />
+    <Compile Include="Controllers\DecorativeLockerController.cs" />
     <Compile Include="Controllers\PlantMonoTransformController.cs" />
     <Compile Include="Controllers\PlantGenericController.cs" />
     <Compile Include="Controllers\LandTree1Controller.cs" />
@@ -97,10 +108,13 @@
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
     <Compile Include="Controllers\ExosuitDollController.cs" />
+    <Compile Include="Fixers\EquipmentFixer.cs" />
     <Compile Include="Fixers\GrownPlantFixer.cs" />
     <Compile Include="Fixers\InventoryFixer.cs" />
     <Compile Include="Fixers\KnifeFixer.cs" />
     <Compile Include="Fixers\SignSetupFixer.cs" />
+    <Compile Include="Fixers\StorageContainerFixer.cs" />
+    <Compile Include="Fixers\uGUI_EquipmentFixer.cs" />
     <Compile Include="FloraAquatic\BlueCoralTubes1.cs" />
     <Compile Include="FloraAquatic\BrownCoralTubes1.cs" />
     <Compile Include="FloraAquatic\BrownCoralTubes2.cs" />
@@ -155,6 +169,7 @@
     <Compile Include="NewItems\BarFood1.cs" />
     <Compile Include="NewItems\BarFood2.cs" />
     <Compile Include="NewItems\BarNapkins.cs" />
+    <Compile Include="NewItems\BenchMedium.cs" />
     <Compile Include="NewItems\BenchSmall.cs" />
     <Compile Include="NewItems\CargoBox01a.cs" />
     <Compile Include="NewItems\CargoBox01b.cs" />
@@ -163,6 +178,8 @@
     <Compile Include="NewItems\CustomPictureFrame.cs" />
     <Compile Include="NewItems\DecorationsEmptyDesk.cs" />
     <Compile Include="NewItems\DecorativeLocker.cs" />
+    <Compile Include="NewItems\DecorativeLockerClosed.cs" />
+    <Compile Include="NewItems\DecorativeLockerDoor.cs" />
     <Compile Include="NewItems\DecorativePDA.cs" />
     <Compile Include="NewItems\ExosuitDoll.cs" />
     <Compile Include="NewItems\Folder1.cs" />
@@ -171,9 +188,13 @@
     <Compile Include="NewItems\GenericSkeleton1.cs" />
     <Compile Include="NewItems\GenericSkeleton2.cs" />
     <Compile Include="NewItems\GenericSkeleton3.cs" />
+    <Compile Include="NewItems\LabContainerOpen1.cs" />
+    <Compile Include="NewItems\LabContainerOpen2.cs" />
+    <Compile Include="NewItems\LabContainerOpen3.cs" />
     <Compile Include="NewItems\LabRobotArm.cs" />
     <Compile Include="Flora\LandPlant1.cs" />
     <Compile Include="Flora\LandTree1.cs" />
+    <Compile Include="NewItems\ALongPlanter.cs" />
     <Compile Include="NewItems\NutrientBlock.cs" />
     <Compile Include="NewItems\PaperTrash.cs" />
     <Compile Include="NewItems\Pen.cs" />
@@ -246,6 +267,30 @@
     <None Include="Assets\decorationassets.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Assets\benchmediumicon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\benchsmallicon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\decorativelockerclosedicon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\decorativelockerdooricon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\labcontaineropen1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\labcontaineropen2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\labcontaineropen3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\longplanterbox.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Config.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -269,6 +314,15 @@ xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Su
 xcopy "$(TargetDir)SMLHelper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\" /Y
 xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
 xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\decorativelockerclosedicon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\decorativelockerdooricon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\benchmediumicon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\benchsmallicon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\labcontaineropen1.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\labcontaineropen2.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\labcontaineropen3.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\longplanterbox.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

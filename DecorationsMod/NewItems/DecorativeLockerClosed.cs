@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace DecorationsMod.NewItems
 {
-    public class DecorativeLocker : DecorationItem
+    public class DecorativeLockerClosed : DecorationItem
     {
         private GameObject CargoCrateContainer = null;
 
-        public DecorativeLocker() // Feeds abstract class
+        public DecorativeLockerClosed() // Feeds abstract class
         {
-            this.ClassID = "DecorativeLocker"; // bca9b19c-616d-4948-8742-9bb6f4296dc3
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/submarine_locker_04_open";
+            this.ClassID = "DecorativeLockerClosed"; // cd34fecd-794c-4a0c-8012-dd81b77f2840
+            this.ResourcePath = "Submarine/Build/submarine_locker_04";
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
@@ -52,7 +52,7 @@ namespace DecorationsMod.NewItems
                 CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
 
                 // Set the custom icon
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("decorativelockericon")));
+                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/decorativelockerclosedicon.png")))); //AssetsHelper.Assets.LoadAsset<Sprite>("decorativelockericon")));
 
                 // Associate recipe to the new TechType
                 CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
@@ -103,7 +103,7 @@ namespace DecorationsMod.NewItems
             // Remove rigid body
             Rigidbody rb = prefab.GetComponent<Rigidbody>();
             GameObject.DestroyImmediate(rb);
-            
+
             // Add collider
             BoxCollider collider = model.AddComponent<BoxCollider>();
             collider.size = new Vector3(0.4f, 2.0f, 0.5f);

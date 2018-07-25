@@ -21,6 +21,9 @@ namespace DecorationsMod
         // lamp, seamoth doll, exosuit doll, forklift, cargo crates, sofas
         public static bool EnableSpecialItems = true;
 
+        // If "true", player will be able to craft Nutrient Blocks from the decorations fabricator.
+        public static bool EnableNutrientBlock = true;
+
         // If true: Item will be available as a buildable (in habitat builder menu).
         // If false: Item will be available as a craftable (in decorations fabricator).
         public static bool SpecimenAnalyzer_asBuildable = true;
@@ -87,9 +90,20 @@ namespace DecorationsMod
         public static CustomFlora config_SmallDeco15Red = new CustomFlora(1600.0f, 10.0f, true, 0.0f, 0.0f, false, 120.0f);
         public static CustomFlora config_SmallDeco17Purple = new CustomFlora(1600.0f, 10.0f, true, 0.0f, 0.0f, false, 120.0f);
 
-        #endregion
+        // Add existing game seeds to the seeds fabricator, default config
+        public static bool EnableRegularAirSeeds = true;
+        public static bool EnableRegularWaterSeeds = true;
 
-        // Utility function to parse configuration element.
+        // Ghost leviathans (spawned from Cove Trees) default config
+        public static bool GhostLeviatan_enable = true;
+        public static int GhostLeviatan_maxSpawns = 2;
+        public static float GhostLeviatan_timeBeforeFirstSpawn = 3600f;
+        public static float GhostLeviatan_spawnTimeRatio = 1f;
+        public static float GhostLeviatan_health = 100f;
+
+        #endregion
+        
+        // Utility function to parse flora configuration element.
         private static bool GetFloraConfig(CustomFlora customFlora, string configStr)
         {
             bool success = true;
@@ -140,6 +154,8 @@ namespace DecorationsMod
                                     ConfigSwitcher.EnablePlaceItems = configValue; break;
                                 case "enableSpecialItems":
                                     ConfigSwitcher.EnableSpecialItems = configValue; break;
+                                case "enableNutrientBlock":
+                                    ConfigSwitcher.EnableNutrientBlock = configValue; break;
                                 case "asBuildable_SpecimenAnalyzer":
                                     ConfigSwitcher.SpecimenAnalyzer_asBuildable = configValue; break;
                                 case "asBuildable_MarkiplierDoll1":
@@ -263,6 +279,20 @@ namespace DecorationsMod
                                     GetFloraConfig(ConfigSwitcher.config_SmallDeco15Red, configValueStr); break;
                                 case "config_CoralPlantPurple":
                                     GetFloraConfig(ConfigSwitcher.config_SmallDeco17Purple, configValueStr); break;
+                                case "addRegularAirSeeds":
+                                    ConfigSwitcher.EnableRegularAirSeeds = configValue; break;
+                                case "addRegularWaterSeeds":
+                                    ConfigSwitcher.EnableRegularWaterSeeds = configValue; break;
+                                case "GhostLeviatan_enable":
+                                    GhostLeviatan_enable = configValue; break;
+                                case "GhostLeviatan_maxSpawns":
+                                    int.TryParse(configValueStr, out ConfigSwitcher.GhostLeviatan_maxSpawns); break;
+                                case "GhostLeviatan_timeBeforeFirstSpawn":
+                                    float.TryParse(configValueStr, out ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn); break;
+                                case "GhostLeviatan_spawnTimeRatio":
+                                    float.TryParse(configValueStr, out ConfigSwitcher.GhostLeviatan_spawnTimeRatio); break;
+                                case "GhostLeviatan_health":
+                                    float.TryParse(configValueStr, out ConfigSwitcher.GhostLeviatan_health); break;
                                 case "language":
                                     if (configValueStr.CompareTo("fr") == 0)
                                         LanguageHelper.UserLanguage = RegionHelper.CountryCode.FR;

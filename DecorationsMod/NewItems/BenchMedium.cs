@@ -5,18 +5,18 @@ using UnityEngine;
 
 namespace DecorationsMod.NewItems
 {
-    public class BenchSmall : DecorationItem
+    public class BenchMedium : DecorationItem
     {
-        public BenchSmall()
+        public BenchMedium()
         {
             // Feed DecortionItem interface
-            this.ClassID = "BenchSmall";
+            this.ClassID = "BenchMedium";
             this.ResourcePath = "Submarine/Build/Bench";
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
             this.TechType = TechTypePatcher.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("BenchSmallName"),
+                                                        LanguageHelper.GetFriendlyWord("BenchMediumName"),
                                                         LanguageHelper.GetFriendlyWord("BenchDescription"),
                                                         true);
 
@@ -45,7 +45,7 @@ namespace DecorationsMod.NewItems
                 CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, DecorationItem.DefaultResourcePath + this.ClassID, this.TechType, this.GetPrefab));
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/benchsmallicon.png")))); //AssetsHelper.Assets.LoadAsset<Sprite>("benchsmallicon")));
+                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/benchmediumicon.png"))));
 
                 // Associate recipe to the new TechType
                 CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
@@ -77,17 +77,17 @@ namespace DecorationsMod.NewItems
 
             // Modify box colliders
             var collider = prefab.FindChild("Collider").GetComponent<BoxCollider>();
-            collider.size = new Vector3(collider.size.x * 0.3f, collider.size.y, collider.size.z);
+            collider.size = new Vector3(collider.size.x * 0.6f, collider.size.y, collider.size.z);
             var builderTrigger = prefab.FindChild("Builder Trigger").GetComponent<BoxCollider>();
-            builderTrigger.size = new Vector3(builderTrigger.size.x * 0.3f, builderTrigger.size.y, builderTrigger.size.z);
-            
+            builderTrigger.size = new Vector3(builderTrigger.size.x * 0.6f, builderTrigger.size.y, builderTrigger.size.z);
+
             // Move bench parts
             GameObject benchStart = model.FindChild("Bench_01_start");
-            benchStart.transform.localPosition = new Vector3(-0.001f, benchStart.transform.localPosition.y, benchStart.transform.localPosition.z);
-            benchStart.transform.localScale = new Vector3(99.7f, 99.7f, 99.7f);
+            benchStart.transform.localPosition = new Vector3(-0.408f, benchStart.transform.localPosition.y, benchStart.transform.localPosition.z);
             GameObject benchEnd = model.FindChild("Bench_01_end");
-            benchEnd.transform.localPosition = new Vector3(0.001f, benchEnd.transform.localPosition.y, benchEnd.transform.localPosition.z);
-            benchEnd.transform.localScale = new Vector3(99.8f, 99.8f, 99.8f);
+            benchEnd.transform.localPosition = new Vector3(0.408f, benchEnd.transform.localPosition.y, benchEnd.transform.localPosition.z);
+            GameObject benchTile = model.FindChild("Bench_01_tile");
+            benchTile.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f); //new Vector3(99.7f, 99.7f, 99.7f);
 
             // Update sky applier
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
@@ -114,8 +114,8 @@ namespace DecorationsMod.NewItems
             var constructableBounds = prefab.GetComponent<ConstructableBounds>();
             constructableBounds.bounds = new OrientedBounds(new Vector3(constructableBounds.bounds.position.x, constructableBounds.bounds.position.y, constructableBounds.bounds.position.z),
                 new Quaternion(constructableBounds.bounds.rotation.x, constructableBounds.bounds.rotation.y, constructableBounds.bounds.rotation.z, constructableBounds.bounds.rotation.w),
-                new Vector3(constructableBounds.bounds.extents.x * 0.3f, constructableBounds.bounds.extents.y, constructableBounds.bounds.extents.z));
-            
+                new Vector3(constructableBounds.bounds.extents.x * 0.6f, constructableBounds.bounds.extents.y, constructableBounds.bounds.extents.z));
+
             return prefab;
         }
     }

@@ -75,13 +75,22 @@ namespace DecorationsMod
                         return "Laboratory elements";
                 case "GlassContainers":
                     if (UserLanguage == CountryCode.FR)
-                        return "Conteneur d'échantillons inutiles";
+                        return "Conteneurs d'échantillons inutiles";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Contenedor de muestra inútiles";
+                        return "Contenedores de muestra inútiles";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yararsız cam kavanoz";
+                        return "Yararsız cam kavanozlar";
                     else
                         return "Useless glass containers";
+                case "OpenedGlassContainers":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Conteneurs d'échantillons inutiles ouverts";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Contenedor de muestra inútiles abiertos";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yararsız açık örnek kaplar";
+                    else
+                        return "Useless open glass containers";
                 case "NonFunctionalAnalyzers":
                     if (UserLanguage == CountryCode.FR)
                         return "Analyseurs non-fonctionnels";
@@ -262,6 +271,42 @@ namespace DecorationsMod
                         return "Ters çevrilmiş bir örnek kavanozu, muhtemelen yararsız.";
                     else
                         return "An inverted cylindrical sample container, probably useless.";
+                case "SmallLabContainerOpenName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Petit conteneur d'échantillons (ouvert)";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Contenedor de muestra pequeño (abierto)";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Küçük örnek kabı (açık)";
+                    else
+                        return "Small sample container (open)";
+                case "MediumLabContainerOpenName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Conteneur d'échantillons (ouvert)";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Contenedor de muestra (abierto)";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Numune kabı (açık)";
+                    else
+                        return "Sample container (open)";
+                case "LargeLabContainerOpenName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Grand conteneur d'échantillons (ouvert)";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Contenedor de muestra grande (abierto)";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Büyük örnek kabı (açık)";
+                    else
+                        return "Large sample container (open)";
+                case "LabContainerOpenDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un conteneur d'échantillons ouvert, probablement inutile.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un contenedor de muestra abierto, probablemente inútil.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Açık bir örnek kap, muhtemelen işe yaramaz.";
+                    else
+                        return "An open sample container, probably useless.";
                 case "LabTubeName":
                     if (UserLanguage == CountryCode.FR)
                         return "Étagères tubulaires de laboratoire (non-fonctionnelles)";
@@ -908,15 +953,28 @@ namespace DecorationsMod
                     else
                         return "Click to change left arm model, or:" + Environment.NewLine +
                                "Hold 'E' and click to change right arm model" + Environment.NewLine;
-                case "AdjustItemSize":
+                case "AdjustForkliftSize":
                     if (UserLanguage == CountryCode.FR)
-                        return "Cliquez pour modifier la taille";
+                        return "Maintenez 'E' et cliquez pour modifier la taille";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Haga clic para cambiar el tamaño";
+                        return "Mantenga 'E' y haga clic para cambiar el tamaño";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Büyüklüğü ayarlamak için tıklayın";
+                        return "Büyüklüğü ayarlamak için 'E' tuşuna basarken sol tıklayın";
                     else
-                        return "Click to adjust size";
+                        return "Hold 'E' and click to adjust size";
+                case "AdjustCargoBoxSize":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cliquez pour accéder au stockage, ou:" + Environment.NewLine +
+                               "Maintenez 'E' et cliquez pour modifier la taille" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Haga clic para acceder al almacenamiento, o:" + Environment.NewLine +
+                               "Mantenga 'E' y haga clic para cambiar el tamaño" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Depolama alanına erişmek için tıklayın," + Environment.NewLine +
+                               "Büyüklüğü ayarlamak için 'E' tuşuna basarken sol tıklayın" + Environment.NewLine;
+                    else
+                        return "Click to access storage, or:" + Environment.NewLine + 
+                               "Hold 'E' and click to adjust size" + Environment.NewLine;
                 case "CargoBox1aName":
                     if (UserLanguage == CountryCode.FR)
                         return "Caisse de chargement renforcée";
@@ -1669,6 +1727,15 @@ namespace DecorationsMod
                         return "Common starship work desk.";
                 case "BenchSmallName":
                     if (UserLanguage == CountryCode.FR)
+                        return "Tout petit banc";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Banco muy pequeño";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Çok küçük tezgah";
+                    else
+                        return "Very small bench";
+                case "BenchMediumName":
+                    if (UserLanguage == CountryCode.FR)
                         return "Petit banc";
                     else if (UserLanguage == CountryCode.ES)
                         return "Banco pequeño";
@@ -1676,7 +1743,7 @@ namespace DecorationsMod
                         return "Küçük oturak";
                     else
                         return "Small bench";
-                case "BenchSmallDescription":
+                case "BenchDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Simple appareil de relaxation en métal. Conserve l'énergie au repos.";
                     else if (UserLanguage == CountryCode.ES)
@@ -1750,22 +1817,130 @@ namespace DecorationsMod
                         return "Leviathan Skeletal Remains";
                 case "DecorativeLockerName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Casier (non-fonctionnel)";
+                        return "Casier";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Taquilla (no-funcionales)";
+                        return "Armario";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Dolap (yararsız)";
+                        return "Dolap";
                     else
-                        return "Locker (non-functional)";
+                        return "Locker";
                 case "DecorativeLockerDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un casier décoratif.";
+                        return "Un casier de stockage.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "A taquilla decorativa.";
+                        return "Un armario de almacenamiento.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Dekoratif bir dolap.";
+                        return "Bir depolama dolabı.";
                     else
-                        return "A decorative locker.";
+                        return "A storage locker.";
+                case "RegularAirSeedsTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Plantes terrestres existantes";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Plantas terrestres existentes";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Mevcut karasal bitkiler";
+                    else
+                        return "Existing air plants";
+                case "EdibleRegularAirTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Plantes terrestres comestibles";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Plantas terrestres comestibles";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yenilebilir karasal bitkiler";
+                    else
+                        return "Edible air plants";
+                case "DecorativeBigAirTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Grandes plantes terrestres";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Grandes plantas terrestres";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Büyük karasal bitkiler";
+                    else
+                        return "Big air plants";
+                case "DecorativeSmallAirTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Petites plantes terrestres";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pequeñas plantas terrestres";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Küçük karasal bitkiler";
+                    else
+                        return "Small air plants";
+                case "RegularWaterSeedsTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Plantes aquatiques existantes";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Plantas acuáticas existentes";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Mevcut sucul bitkiler";
+                    else
+                        return "Existing aquatic plants";
+                case "DecorativeMediumWaterTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Plantes aquatiques décoratives";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Plantas acuáticas decorativas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekoratif sucul bitkiler";
+                    else
+                        return "Decorative aquatic plants";
+                case "DecorativeBushesWaterTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Buissons aquatiques";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Arbustos de agua";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Su çalıları";
+                    else
+                        return "Aquatic bushes";
+                case "RegularSmallWaterTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Petites plantes aquatiques";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pequeñas plantas acuáticas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Küçük sucul bitkiler";
+                    else
+                        return "Small aquatic plants";
+                case "DecorativeBigWaterTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Grandes plantes aquatiques";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Grandes plantas acuáticas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Büyük su bitkileri";
+                    else
+                        return "Big aquatic plants";
+                case "FunctionalBigWaterTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Plantes aquatiques diverses";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Varias plantas acuáticas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Çeşitli sucul bitkiler";
+                    else
+                        return "Diverse aquatic plants";
+                case "LongPlanterName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Longue jardinière";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Jardinera larga";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzun ekici";
+                    else
+                        return "Long planter";
+                case "LongPlanterDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une longue jardinière (fonctionnelle).";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una maceta larga (funcional).";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzun bir ekici (fonksiyonel).";
+                    else
+                        return "A long planter (functional).";
                 default:
                     return "?";
             }
