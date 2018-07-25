@@ -175,18 +175,21 @@ namespace DecorationsMod
             GameObject computerchip = Resources.Load<GameObject>("WorldEntities/Natural/computerchip");
             computerchip.AddComponent<ComputerChip_PT>();
             MakeItemPlaceable(TechType.ComputerChip, computerchip);
-            GameObject powercell = Resources.Load<GameObject>("WorldEntities/Tools/PowerCell");
-            powercell.AddComponent<PowerCell_PT>();
-            MakeItemPlaceable(TechType.PowerCell, powercell);
-            GameObject battery = Resources.Load<GameObject>("WorldEntities/Tools/Battery");
-            battery.AddComponent<Battery_PT>();
-            MakeItemPlaceable(TechType.Battery, battery);
-            GameObject ionpowercell = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonPowerCell");
-            ionpowercell.AddComponent<IonPowerCell_PT>();
-            MakeItemPlaceable(TechType.PrecursorIonPowerCell, ionpowercell);
-            GameObject ionbattery = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonBattery");
-            ionbattery.AddComponent<IonBattery_PT>();
-            MakeItemPlaceable(TechType.PrecursorIonBattery, ionbattery);
+            if (ConfigSwitcher.EnablePlaceBatteries)
+            {
+                GameObject powercell = Resources.Load<GameObject>("WorldEntities/Tools/PowerCell");
+                powercell.AddComponent<PowerCell_PT>();
+                MakeItemPlaceable(TechType.PowerCell, powercell);
+                GameObject battery = Resources.Load<GameObject>("WorldEntities/Tools/Battery");
+                battery.AddComponent<Battery_PT>();
+                MakeItemPlaceable(TechType.Battery, battery);
+                GameObject ionpowercell = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonPowerCell");
+                ionpowercell.AddComponent<IonPowerCell_PT>();
+                MakeItemPlaceable(TechType.PrecursorIonPowerCell, ionpowercell);
+                GameObject ionbattery = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonBattery");
+                ionbattery.AddComponent<IonBattery_PT>();
+                MakeItemPlaceable(TechType.PrecursorIonBattery, ionbattery);
+            }
 
             // Eggs
             MakeEggsPlaceable();

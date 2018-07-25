@@ -7,6 +7,10 @@ language=auto
 # water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth, first aid kit
 enablePlaceItems=true
 
+# If "true", you'll be able to place batteries, powercells, ion batteries and ion powercells where you want.
+# Attention: If you enable this option, you'll have to manually drag-n-drop batteries/power cells to the charger to equip them (left click won't work).
+enablePlaceBatteries=false
+
 # If "true", you'll be able to build/craft the following items:
 # lab cart, specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll, lamp, seamoth doll,
 # exosuit doll, forklift, cargo crates, sofas, customizable picture frame, small bench and additional lockers.

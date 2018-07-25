@@ -142,7 +142,7 @@ namespace DecorationsMod.Fixers
                 if (container == equipmentB && empty == slotB)
                     return true;
                 EquipmentType slotBType = Equipment.GetSlotType(slotB);
-                if (slotBType != EquipmentType.BatteryCharger)
+                if (slotBType != EquipmentType.BatteryCharger && slotBType != EquipmentType.PowerCellCharger)
                     return true;
                 else
                 {

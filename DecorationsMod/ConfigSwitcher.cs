@@ -16,6 +16,10 @@ namespace DecorationsMod
         // water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth, first aid kit
         public static bool EnablePlaceItems = true;
 
+        // If "true" player will be able to place batteries, powercells, ion batteries and ion powercells.
+        // Attention: If this option is enabled, you'll have to manually drag-n-drop batteries/power cells to the charger (left click won't work to equip).
+        public static bool EnablePlaceBatteries = false;
+
         // If "true", player will be able to build/craft the following items:
         // specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll
         // lamp, seamoth doll, exosuit doll, forklift, cargo crates, sofas
@@ -152,6 +156,8 @@ namespace DecorationsMod
                             {
                                 case "enablePlaceItems":
                                     ConfigSwitcher.EnablePlaceItems = configValue; break;
+                                case "enablePlaceBatteries":
+                                    ConfigSwitcher.EnablePlaceBatteries = configValue; break;
                                 case "enableSpecialItems":
                                     ConfigSwitcher.EnableSpecialItems = configValue; break;
                                 case "enableNutrientBlock":
