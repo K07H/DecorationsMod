@@ -87,7 +87,7 @@ You can display or hide the giant cove tree eggs by clicking on it (hidden by de
 Inside the DecorationsMod folder you will find the file Config.txt which contains few options that you can modify. For example there's an option allowing you to make giant cove trees spawns Juvenile Ghost Leviatans.<br>
 
 ### News & updates:<br>
-July 25, 2018: Updated to version 1.4.1.<br>
+July 25, 2018: Updated to version 1.4.2.<br>
 July 24, 2018: Updated to version 1.4.<br>
 July 4, 2018: Updated to version 1.3.2.<br>
 July 1, 2018: Updated to version 1.3.1.<br>
