@@ -8,7 +8,7 @@ language=auto
 enablePlaceItems=true
 
 # If "true", you'll be able to place batteries, powercells, ion batteries and ion powercells where you want.
-# Attention: If you enable this option, you'll have to manually drag-n-drop batteries/power cells to the charger to equip them (left click won't work).
+# Be careful using this option: if enabled, you'll have to manually drag-n-drop batteries/power cells to the charger (left click won't equip them).
 enablePlaceBatteries=false
 
 # If "true", you'll be able to build/craft the following items:
@@ -21,7 +21,7 @@ enableNutrientBlock=true
 
 # If "true",  item will be added to the habitat builder menu.
 # If "false", item will be added to the decorations fabricator.
-# Be careful using this option (you may loose some of the items functionalities).
+# Be careful using this option: you may loose some of the item functionalities by placing it in the decorations fabricator.
 asBuildable_SpecimenAnalyzer=true
 asBuildable_MarkiplierDoll1=true
 asBuildable_MarkiplierDoll2=true
