@@ -12,7 +12,7 @@ Requires QMods and SMLHelper.<br>
 3) Move folder **DecorationsMod** inside "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods*" directory.<br>
 
 ### Description:
-**This mod will add a decoration fabricator allowing you to craft following items:**<br>
+**This mod will add a decoration fabricator allowing you to craft following new items:**<br>
     5 different posters<br>
     7 different glass containers<br>
     3 different lab equipments<br>
@@ -35,7 +35,7 @@ Requires QMods and SMLHelper.<br>
     7 water trees<br>
     5 corals<br>
     7 amphibious plants<br>
-**It will add the following buildable decorative items in the "Miscellaneous" section of habitat builder:**<br>
+**It will add the following new items in the "Miscellaneous" section of habitat builder:**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
     Markiplier 1 doll<br>
@@ -50,11 +50,11 @@ Requires QMods and SMLHelper.<br>
     Empty desk<br>
     3 different lockers<br>
     2 different benches<br>
-**It will add following item in the "Exterior modules" section of the habitat builder:**<br>
+**It will add following new item in the "Exterior modules" section of the habitat builder:**<br>
     Lamp (customizable)<br>
-**It will add following item in the "Interior modules" section of the habitat builder:**<br>
+**It will add following new item in the "Interior modules" section of the habitat builder:**<br>
     Long planter (8x2)<br>
-**And you will be able to place following items where you want:**<br>
+**And you will be able to place following existing items where you want:**<br>
     Coffee cup<br>
     All snacks<br>
     Nutrient block<br>
