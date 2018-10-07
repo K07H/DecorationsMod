@@ -1,5 +1,5 @@
 Version 1.5
-Added: Deutsche translation (provided by Verodor).
+Added: Deutsch translation (provided by Verodor).
 Added: Russian translation (provided by Krotobosha).
 Added: Additional items are now buildable/placeable outside (using "allowBuildOuside" and "allowPlaceOutside" from the Config.txt file).
 Changed: Decorations fabricator and custom flora fabricator recipies (less advanced materials).
