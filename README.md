@@ -1,5 +1,5 @@
 # Decorations Mod for Subnautica
-## *Multilingual (EN/FR/ES/TR)*
+## *Multilingual (EN/FR/ES/TR/DE/RU)*
 
 ### Prerequisites:
 Requires QMods and SMLHelper.<br>
@@ -87,6 +87,7 @@ You can display or hide the giant cove tree eggs by clicking on it (hidden by de
 Inside the DecorationsMod folder you will find the file Config.txt which contains few options that you can modify. For example there's an option allowing you to make giant cove trees spawns Juvenile Ghost Leviatans.<br>
 
 ### News & updates:<br>
+October 7, 2018: Updated to version 1.5.0.<br>
 July 25, 2018: Updated to version 1.4.3.<br>
 July 24, 2018: Updated to version 1.4.<br>
 July 4, 2018: Updated to version 1.3.2.<br>
@@ -101,7 +102,7 @@ June 5, 2018:  Updated to version 1.0.5.<br>
 June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Translations:<br>
-Currently supported: Français (FR), English (EN), Español (ES) and Türkçe (TR).<br>
+Currently supported: Français (FR), English (EN), Español (ES), Türkçe (TR), Deutsch (DE) and Russian (RU).<br>
 Feel free to propose new translations for this mod. You can find the up-to-date [template here](https://github.com/K07H/DecorationsMod/blob/master/translation_template.docx?raw=true).<br>
 
 ### Special thanks:<br>
@@ -110,6 +111,8 @@ Feel free to propose new translations for this mod. You can find the up-to-date 
 @[PrimeSonic](https://github.com/PrimeSonic/) (for helping me to get into Subnautica modding)<br>
 @Revan (mod tester)<br>
 @Paladyne (for the Türkçe translation)<br>
+@Verodor (for the Deutsch translation)<br>
+@Krotobosha (for the Russian translation)<br>
 <br>
 <br>
 <br>
