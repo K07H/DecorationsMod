@@ -75,6 +75,7 @@ Requires QMods and SMLHelper.<br>
     Batteries/PowerCells and their ion versions<br>
 
 ### Additional information:<br>
+Inside the DecorationsMod folder you will find the file Config.txt which contains options that you can modify. You can check the list of available options [here](https://github.com/K07H/DecorationsMod/raw/master/DecorationsMod/Config.txt).<br>
 All items can be rotated and placed in any base or cyclops.<br>
 All new flora is compatible with bioreactors and only the land tree is edible.<br>
 You can change range, brightness and color of the lamp by clicking on it (max range is currently 60m).<br>
@@ -84,7 +85,6 @@ You can change cargo crates and forklift sizes by clicking on them.<br>
 You can change computers labels by clicking on them.<br>
 You can change the customizable picture frame size, orientation and frame border style by clicking on it, and also set its content image like regular picture frames (the window displaying images found in the screenshot folder appears).<br>
 You can display or hide the giant cove tree eggs by clicking on it (hidden by default).<br>
-Inside the DecorationsMod folder you will find the file Config.txt which contains few options that you can modify. For example there's an option allowing you to make giant cove trees spawns Juvenile Ghost Leviatans.<br>
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/raw/master/CHANGELOG.txt)<br>
