@@ -11,6 +11,12 @@ namespace DecorationsMod
         // They will be used only if Config.txt file has not been found.
         #region Settings
         
+        // If "true" player will be able to build most of the buildable-items provided by this mod outside bases.
+        public static bool AllowBuildOutside = false;
+
+        // If "true" player will be able to place most of the placeable-items provided by this mod outside bases.
+        public static bool AllowPlaceOutside = false;
+        
         // If "true" player will be able to place following items:
         // coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, 
         // water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth, first aid kit
@@ -154,6 +160,10 @@ namespace DecorationsMod
 
                             switch (configKey)
                             {
+                                case "allowBuildOutside":
+                                    ConfigSwitcher.AllowBuildOutside = configValue; break;
+                                case "allowPlaceOutside":
+                                    ConfigSwitcher.AllowPlaceOutside = configValue; break;
                                 case "enablePlaceItems":
                                     ConfigSwitcher.EnablePlaceItems = configValue; break;
                                 case "enablePlaceBatteries":
@@ -306,6 +316,10 @@ namespace DecorationsMod
                                         LanguageHelper.UserLanguage = RegionHelper.CountryCode.ES;
                                     else if (configValueStr.CompareTo("tr") == 0)
                                         LanguageHelper.UserLanguage = RegionHelper.CountryCode.TR;
+                                    else if (configValueStr.CompareTo("de") == 0)
+                                        LanguageHelper.UserLanguage = RegionHelper.CountryCode.DE;
+                                    else if (configValueStr.CompareTo("ru") == 0)
+                                        LanguageHelper.UserLanguage = RegionHelper.CountryCode.RU;
                                     else if (configValueStr.CompareTo("en") == 0)
                                         LanguageHelper.UserLanguage = RegionHelper.CountryCode.EN;
                                     // else, do nothing (uses default language from Windows current Culture)

@@ -123,7 +123,7 @@ namespace DecorationsMod.NewItems
             constructible.allowedOnWall = false;
             constructible.allowedInBase = true;
             constructible.allowedInSub = true;
-            constructible.allowedOutside = false;
+            constructible.allowedOutside = ConfigSwitcher.AllowBuildOutside;
             constructible.allowedOnCeiling = false;
             constructible.allowedOnGround = true;
             constructible.allowedOnConstructables = false;

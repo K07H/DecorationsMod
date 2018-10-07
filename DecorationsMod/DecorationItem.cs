@@ -62,7 +62,7 @@ namespace DecorationsMod
                     placeTool.allowedOnCeiling = false;
                     placeTool.allowedOnConstructable = true;
                     placeTool.allowedOnRigidBody = true;
-                    placeTool.allowedOutside = false;
+                    placeTool.allowedOutside = ConfigSwitcher.AllowPlaceOutside;
                     placeTool.rotationEnabled = true;
                     
                     if (this.TechType == TechType.Poster ||

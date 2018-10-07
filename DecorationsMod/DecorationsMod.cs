@@ -31,7 +31,7 @@ namespace DecorationsMod
             // 4) MAKE SOME EXISTING ITEMS PICKUPABLE & POSITIONABLE
             if (ConfigSwitcher.EnablePlaceItems)
                 PlaceToolItems.MakeItemsPlaceable();
-
+            
             // 5) REGISTER DECORATIONS FABRICATOR
             CustomFabricator.RegisterDecorationsFabricator(decorationItems);
 

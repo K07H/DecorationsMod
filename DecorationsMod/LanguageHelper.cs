@@ -15,6 +15,10 @@ namespace DecorationsMod
                 return "Crecimiento: " + progress + "%";
             else if (UserLanguage == CountryCode.TR)
                 return "Büyüme: " + progress + "%";
+            else if (UserLanguage == CountryCode.DE)
+                return "Wachstum:" + progress + "%";
+            else if (UserLanguage == CountryCode.RU)
+                return "Рост:" + progress + "%";
             else
                 return "Growth: " + progress + "%";
         }
@@ -30,6 +34,10 @@ namespace DecorationsMod
                         return "Fabricador de decoraciones";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dekorasyon Üreticisi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dekorationsfabrikator";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Изготовитель декораций";
                     else
                         return "Decorations fabricator";
                 case "DecorationsFabricatorDescription":
@@ -39,6 +47,10 @@ namespace DecorationsMod
                         return "Un Fabricador para producir artículos de decoración.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dekorasyon eşyaları üretmek için bir üretici.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Fabrikator, der zum Erstellen von Dekorationen dient.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Изготавливает декорации для украшения вашего будущего дома.";
                     else
                         return "A fabricator to produce decoration items.";
                 case "FloraFabricatorName":
@@ -48,6 +60,10 @@ namespace DecorationsMod
                         return "Fabricador de semillas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tohum Üreticisi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Samenfabrikator";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Изготовитель семян";
                     else
                         return "Seeds fabricator";
                 case "FloraFabricatorDescription":
@@ -57,11 +73,19 @@ namespace DecorationsMod
                         return "Un Fabricador para producir semillas.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tohum üretmek için bir üretici.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Fabrikator zum Erstellen von Saatgut.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Изготавливает семена для будущего их использования.";
                     else
                         return "A fabricator to produce seeds.";
                 case "Posters":
                     if (UserLanguage == CountryCode.TR)
                         return "Posterler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Poster";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Постеры";
                     else
                         return "Posters";
                 case "LabElements":
@@ -71,6 +95,10 @@ namespace DecorationsMod
                         return "Elementos de laboratorio";
                     else if (UserLanguage == CountryCode.TR)
                         return "Labaratuvar eşyaları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Laborelemente";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лабораторные элементы";
                     else
                         return "Laboratory elements";
                 case "GlassContainers":
@@ -80,6 +108,10 @@ namespace DecorationsMod
                         return "Contenedores de muestra inútiles";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yararsız cam kavanozlar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Glasbehälter (ohne Funktion)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Стеклянные контейнеры";
                     else
                         return "Useless glass containers";
                 case "OpenedGlassContainers":
@@ -89,6 +121,10 @@ namespace DecorationsMod
                         return "Contenedor de muestra inútiles abiertos";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yararsız açık örnek kaplar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Offener glasbehälter (ohne Funktion)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Открытые стеклянные контейнеры";
                     else
                         return "Useless open glass containers";
                 case "NonFunctionalAnalyzers":
@@ -98,6 +134,10 @@ namespace DecorationsMod
                         return "Analizadores no funcionales";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yararsız inceleyici";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Analysegeräte (ohne Funktion)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Не работающие анализаторы";
                     else
                         return "Non-functional analyzers";
                 case "LabFurnitures":
@@ -107,6 +147,10 @@ namespace DecorationsMod
                         return "Muebles de laboratorio";
                     else if (UserLanguage == CountryCode.TR)
                         return "Labaratuvar Eşyaları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Laborausstattung";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лабораторная мебель";
                     else
                         return "Lab furnitures";
                 case "WallMonitors":
@@ -116,6 +160,10 @@ namespace DecorationsMod
                         return "Computadoras de pared";
                     else if (UserLanguage == CountryCode.TR)
                         return "Duvar bilgisayarları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wandmonitore";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенные мониторы";
                     else
                         return "Wall computers";
                 case "CircuitBoxes":
@@ -125,6 +173,10 @@ namespace DecorationsMod
                         return "Cajas de circuitos";
                     else if (UserLanguage == CountryCode.TR)
                         return "Sigorta";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Schaltkästen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Узлы питания";
                     else
                         return "Circuits boxes";
                 case "Electronics":
@@ -134,6 +186,10 @@ namespace DecorationsMod
                         return "Electrónica";
                     else if (UserLanguage == CountryCode.TR)
                         return "Elektronik";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Elektrogeräte";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Электроника";
                     else
                         return "Electronics";
                 case "CircuitBoxTab1":
@@ -143,6 +199,10 @@ namespace DecorationsMod
                         return "Relés de conectividad";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bağlantı Röleleri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Verbindungsrelais";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Реле подключения";
                     else
                         return "Connectivity relays";
                 case "CircuitBoxTab2":
@@ -152,6 +212,10 @@ namespace DecorationsMod
                         return "Relés eléctricos de alta tensión";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yüksek voltajlı elektrik röleleri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Hochspannungsrelais";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Реле высоковольтные";
                     else
                         return "High voltage electrical relays";
                 case "Toys":
@@ -161,6 +225,10 @@ namespace DecorationsMod
                         return "Juguetes";
                     else if (UserLanguage == CountryCode.TR)
                         return "Oyuncaklar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Spielzeuge";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Игрушки";
                     else
                         return "Toys";
                 case "OfficeSupplies":
@@ -170,6 +238,10 @@ namespace DecorationsMod
                         return "Material de oficina";
                     else if (UserLanguage == CountryCode.TR)
                         return "Ofis malzemeleri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Bürobedarf";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Канцелярия";
                     else
                         return "Office supplies";
                 case "Accessories":
@@ -179,6 +251,10 @@ namespace DecorationsMod
                         return "Accesorios";
                     else if (UserLanguage == CountryCode.TR)
                         return "Aksesuarlar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Accessories";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Аксессуары";
                     else
                         return "Accessories";
                 case "FloraTab":
@@ -188,6 +264,10 @@ namespace DecorationsMod
                         return "Flora alienígena";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı florası";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Außerirdische Flora";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Флора пришельцев";
                     else
                         return "Alien flora";
                 case "PlantAirTab":
@@ -197,6 +277,10 @@ namespace DecorationsMod
                         return "Plantas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Pflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Растения";
                     else
                         return "Plants";
                 case "TreeAirTab":
@@ -206,6 +290,10 @@ namespace DecorationsMod
                         return "Árboles";
                     else if (UserLanguage == CountryCode.TR)
                         return "Ağaçlar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Bäume";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Деревья";
                     else
                         return "Trees";
                 case "TropicalPlantTab":
@@ -215,6 +303,10 @@ namespace DecorationsMod
                         return "Plantas tropicales";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tropik bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Tropische Pflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Тропические растения";
                     else
                         return "Tropical plants";
                 case "PlantWaterTab":
@@ -224,6 +316,10 @@ namespace DecorationsMod
                         return "Plantas acuáticas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Su bitkileri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Подводные растения";
                     else
                         return "Aquatic plants";
                 case "TreeWaterTab":
@@ -233,6 +329,10 @@ namespace DecorationsMod
                         return "Árboles acuáticos";
                     else if (UserLanguage == CountryCode.TR)
                         return "Su ağaçları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserbäume";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Подводные деревья";
                     else
                         return "Aquatic trees";
                 case "CoralWaterTab":
@@ -242,6 +342,10 @@ namespace DecorationsMod
                         return "Corales";
                     else if (UserLanguage == CountryCode.TR)
                         return "Mercanlar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Korallen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кораллы";
                     else
                         return "Corals";
                 case "AmphibiousPlantsTab":
@@ -251,6 +355,10 @@ namespace DecorationsMod
                         return "Plantas anfibias";
                     else if (UserLanguage == CountryCode.TR)
                         return "Amfibi bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Amphibische Pflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Растения Амфибии";
                     else
                         return "Amphibious plants";
                 case "LabContainer4Name":
@@ -260,6 +368,10 @@ namespace DecorationsMod
                         return "Contenedor de muestra cilíndrico invertido";
                     else if (UserLanguage == CountryCode.TR)
                         return "Ters örnek kavanozu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Umgekehrter zylindrischer Probenbehälter";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Стеклянный контейнер для образцов";
                     else
                         return "Inverted cylindrical sample container";
                 case "LabContainer4Description":
@@ -269,6 +381,10 @@ namespace DecorationsMod
                         return "Un contenedor de muestra cilíndrico invertido, probablemente inútil.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Ters çevrilmiş bir örnek kavanozu, muhtemelen yararsız.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein umgekehrter zylindrischer Probenbehälter, wahrscheinlich nutzlos.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Стеклянный контейнер для образцов, возможно бесполезен.";
                     else
                         return "An inverted cylindrical sample container, probably useless.";
                 case "SmallLabContainerOpenName":
@@ -278,6 +394,10 @@ namespace DecorationsMod
                         return "Contenedor de muestra pequeño (abierto)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük örnek kabı (açık)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kleiner Probenbehälter (offen)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Маленький контейнер для образцов (открытый)";
                     else
                         return "Small sample container (open)";
                 case "MediumLabContainerOpenName":
@@ -287,6 +407,10 @@ namespace DecorationsMod
                         return "Contenedor de muestra (abierto)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Numune kabı (açık)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Probenbehälter (offen)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Контейнер для образцов (открыт)";
                     else
                         return "Sample container (open)";
                 case "LargeLabContainerOpenName":
@@ -296,6 +420,10 @@ namespace DecorationsMod
                         return "Contenedor de muestra grande (abierto)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Büyük örnek kabı (açık)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Großer Probenbehälter (offen)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Большой контейнер для образцов (открытый)";
                     else
                         return "Large sample container (open)";
                 case "LabContainerOpenDescription":
@@ -305,6 +433,10 @@ namespace DecorationsMod
                         return "Un contenedor de muestra abierto, probablemente inútil.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Açık bir örnek kap, muhtemelen işe yaramaz.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein offener Probenbehälter, wahrscheinlich nutzlos.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Открытый контейнер для образцов, вероятно, бесполезен.";
                     else
                         return "An open sample container, probably useless.";
                 case "LabTubeName":
@@ -314,6 +446,10 @@ namespace DecorationsMod
                         return "Estantes tubulares de laboratorio (no funcionales)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Boru şeklinde raflar (yararsız)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Röhrenartiger Laborschrank (nicht funktional)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лабораторная полка";
                     else
                         return "Tubular laboratory shelves (non-functional)";
                 case "LabTubeDescription":
@@ -323,6 +459,10 @@ namespace DecorationsMod
                         return "Estantes tubulares para almacenar muestras.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Örnekleri depolamak için boru şeklinde raflar.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Schrank in Form einer Röhre zur Aufbewahrung von Proben.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративная лабораторная полка для образцов.";
                     else
                         return "Tubular shelves for storing samples.";
                 case "LabCartName":
@@ -332,6 +472,10 @@ namespace DecorationsMod
                         return "Carro de laboratorio";
                     else if (UserLanguage == CountryCode.TR)
                         return "Labatuvar arabası";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Laborwagen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лабораторный столик";
                     else
                         return "Lab cart";
                 case "LabCartDescription":
@@ -341,6 +485,10 @@ namespace DecorationsMod
                         return "Un carro de muestra de laboratorio.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bir örnek arabası.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Laborprobenwagen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный лабораторный столик для образцов и инструментов.";
                     else
                         return "A laboratory sample cart.";
                 case "LabShelfName":
@@ -350,6 +498,10 @@ namespace DecorationsMod
                         return "Estantes de laboratorio (no funcionales)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Labaratuvar rafı (yararsız)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Laborregale (nicht funktional)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лабораторный шкаф";
                     else
                         return "Laboratory shelves (non-functional)";
                 case "LabShelfDescription":
@@ -359,6 +511,10 @@ namespace DecorationsMod
                         return "Estantes para almacenar muestras.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Örnekleri depolamak için raf.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Regale für die Aufbewahrung von Proben.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный лабораторный шкаф для образцов.";
                     else
                         return "Shelves for storing samples.";
                 case "WallMonitor1Name":
@@ -368,6 +524,10 @@ namespace DecorationsMod
                         return "Monitor de pared";
                     else if (UserLanguage == CountryCode.TR)
                         return "Duvar monitörü";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wandmonitor";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенный монитор";
                     else
                         return "Wall monitor";
                 case "WallMonitor1Description":
@@ -377,6 +537,10 @@ namespace DecorationsMod
                         return "Un monitor de pared (debe estar conectado a un servidor para funcionar).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bir duvar monitörü (kullanılması için bir sunucuya bağlanılması gerekiyor).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Wandmonitor (muss mit einem Server verbunden sein, um zu funktionieren).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенный информационный монитор (можно подключить к серверу для работы).";
                     else
                         return "A wall monitor (must be connected to a server to work).";
                 case "WallMonitor2Name":
@@ -386,6 +550,10 @@ namespace DecorationsMod
                         return "Computadora de pared simple";
                     else if (UserLanguage == CountryCode.TR)
                         return "Basit duvar monitörü";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Simpler Wandcomputer";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенный портативный компьютер";
                     else
                         return "Simple wall computer";
                 case "WallMonitor2Description":
@@ -395,6 +563,10 @@ namespace DecorationsMod
                         return "Una computadora pequeña y sencilla montada en la pared (debe estar conectada a un servidor para funcionar).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük, basit duvara monte edilen bilgisayar (kullanılması için bir sunucuya bağlanılması gerekiyor).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein kleiner, einfacher an der Wand befestigter Computer (muss mit einem Server verbunden sein, um zu funktionieren).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенный портативный компьютер (можно подключить к серверу для работы).";
                     else
                         return "A small, simple wall-mounted computer (must be connected to a server to function).";
                 case "WallMonitor3Name":
@@ -404,6 +576,10 @@ namespace DecorationsMod
                         return "Computadora de pared";
                     else if (UserLanguage == CountryCode.TR)
                         return "Duvar bilgisayarı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wandcomputer";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенный компьютер";
                     else
                         return "Wall computer";
                 case "WallMonitor3Description":
@@ -413,6 +589,10 @@ namespace DecorationsMod
                         return "Una poderosa computadora montada en la pared (debe estar conectada a un servidor para funcionar).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Güçlü duvara monte edilen bilgisayar (kullanılması için bir sunucuya bağlanılması gerekiyor).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein leistungsfähiger an der Wand befestigter Computer (muss mit einem Server verbunden sein, um zu funktionieren).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенный компьютер (можно подключить к серверу для работы).";
                     else
                         return "A powerful wall-mounted computer (must be connected to a server to function).";
                 case "CircuitBox1Name":
@@ -422,6 +602,10 @@ namespace DecorationsMod
                         return "Caja de circuitos";
                     else if (UserLanguage == CountryCode.TR)
                         return "Sigorta";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Schaltkasten";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Блок цепи";
                     else
                         return "Circuits box";
                 case "CircuitBox1Description":
@@ -431,6 +615,10 @@ namespace DecorationsMod
                         return "Una caja de circuitos simple (permite la alimentación de dispositivos eléctricos).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Basit sigorta (elektrikli eşyalara güç iletimi sağlar).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein einfacher Schaltkasten (ermöglicht das Einschalten von elektrischen Geräten).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Коммутационный узел для подключения устройств, питающихся от сети.";
                     else
                         return "A simple circuit box (allows powering of electrical devices).";
                 case "CircuitBox2Name":
@@ -440,6 +628,10 @@ namespace DecorationsMod
                         return "Relé de conectividad";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bağlantı Rölesi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Verbindungsrelais";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Реле подключения";
                     else
                         return "Connectivity relay";
                 case "CircuitBox2Description":
@@ -449,6 +641,10 @@ namespace DecorationsMod
                         return "Un relevo para la interconexión de equipos.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Eşyaların ara iletişimi için röle.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Relais für die Verbindung von Geräten.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Реле для подключения оборудования от сети.";
                     else
                         return "A relay for the interconnection of equipment.";
                 case "CircuitBox3Name":
@@ -458,6 +654,10 @@ namespace DecorationsMod
                         return "Relé eléctrico de alta tensión";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yüksek voltajlı elektrik rölesi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Hochspannungsrelais";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Высоковольтное реле";
                     else
                         return "High voltage electrical relay";
                 case "CircuitBox3Description":
@@ -467,6 +667,10 @@ namespace DecorationsMod
                         return "Un componente que permite el transporte de grandes cantidades de energía.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Büyük enerjileri transfer etmek için kullanılan kutu.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein elektrisches Verbindungselement, das den Transport großer Energiemengen ermöglicht.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Реле выдерживающее большую нагрузку.";
                     else
                         return "A component allowing the transport of large amounts of energy.";
                 case "SpecimenAnalyzerName":
@@ -476,6 +680,10 @@ namespace DecorationsMod
                         return "Analizador de muestras";
                     else if (UserLanguage == CountryCode.TR)
                         return "Örnek İnceleyici";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Probenanalysator";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Анализатор образцов";
                     else
                         return "Specimen analyzer";
                 case "SpecimenAnalyzerDescription":
@@ -485,6 +693,10 @@ namespace DecorationsMod
                         return "Estudie especímenes para deducir patrones de fabricación.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Üretim kalıplarını anlamak için örnekler üzerinde çalışır.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Gerät zur Untersuchung von Proben, um Herstellungsmuster abzuleiten.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Позволяет изучать образцы для их выведения.";
                     else
                         return "Study specimens to deduce patterns of manufacture.";
                 case "SmallEmperorName":
@@ -494,6 +706,10 @@ namespace DecorationsMod
                         return "Muñeca de leviatán emperador";
                     else if (UserLanguage == CountryCode.TR)
                         return "Deniz İmparatoru oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Seeimperator-Puppe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кукла «Императора Левиафана»";
                     else
                         return "Emperor leviathan doll";
                 case "SmallEmperorDescription":
@@ -503,10 +719,17 @@ namespace DecorationsMod
                         return "Esta muñeca emperador leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu Deniz İmparatoru oyuncağı 4546B'deki gözlemlerle yapıldı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Seeimperator-Puppe wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Была создана для наблюдения в 4546B.";
                     else
                         return "This emperor leviathan doll was created from observations made on 4546B.";
                 case "MarlaCatName":
-                    return "Marla";
+                    if (UserLanguage == CountryCode.RU)
+                        return "Марла";
+                    else
+                        return "Marla";
                 case "MarlaCatDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Le chat de EatMyDiction.";
@@ -514,6 +737,10 @@ namespace DecorationsMod
                         return "El gato de Eat My Diction.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Eat My Diction'un kedisi.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Friss-meine-Aussprache-Katze.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Котенок для какой-о дикции.";
                     else
                         return "Eat My Diction's cat.";
                 case "MarkiDollName":
@@ -523,6 +750,10 @@ namespace DecorationsMod
                         return "Un muñeco inusual";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yararsız oyuncak";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine ungewöhnliche Puppe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Необычная кукла";
                     else
                         return "An unusual doll";
                 case "MarkiDollDescription":
@@ -532,6 +763,10 @@ namespace DecorationsMod
                         return "Un muñeco inusual.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yararsız bir oyuncak.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine ungewöhnliche Puppe.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Какая-то странная и необычная кукла.";
                     else
                         return "An unusual doll.";
                 case "JackSepticEyeName":
@@ -541,6 +776,10 @@ namespace DecorationsMod
                         return "JackSepticEye Tanque";
                     else if (UserLanguage == CountryCode.TR)
                         return "JackSepticEye Tüpü";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Jacks Klärgrube";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Маринованный глаз Джека";
                     else
                         return "Jack's Septic Tank";
                 case "JackSepticEyeDescription":
@@ -550,6 +789,10 @@ namespace DecorationsMod
                         return "Un objeto inusual.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yararsız bir eşya.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein ungewöhnlicher Gegenstand.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Какой-то странный предмет.";
                     else
                         return "An unusual item.";
                 case "LeviathanDolls":
@@ -559,6 +802,10 @@ namespace DecorationsMod
                         return "Muñecas Leviatán";
                     else if (UserLanguage == CountryCode.TR)
                         return "Canavar oyuncakları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Leviathan-Puppe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Куклы Левиафана";
                     else
                         return "Leviathan dolls";
                 case "GhostLeviathanDollName":
@@ -568,6 +815,10 @@ namespace DecorationsMod
                         return "Fantasma leviatán muñeca";
                     else if (UserLanguage == CountryCode.TR)
                         return "Hayalet canavar oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Puppe eines Phantom-Leviathans";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кукла Призрачного Левиафана";
                     else
                         return "Ghost leviathan doll";
                 case "GhostLeviathanDollDescription":
@@ -577,6 +828,10 @@ namespace DecorationsMod
                         return "Esta muñeca fantasma leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu hayalet canavar oyuncağı 4546B'deki gözlemlerle yapıldı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Puppe eines Phantom-Leviathans wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Была создана для наблюдения в 4546B.";
                     else
                         return "This ghost leviathan doll was created from observations made on 4546B.";
                 case "ReaperLeviathanDollName":
@@ -586,6 +841,10 @@ namespace DecorationsMod
                         return "Segador leviatán muñeca";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tırpanlı canavar oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Cheliceratops-Puppe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кукла Жнеца Левиафана";
                     else
                         return "Reaper leviathan doll";
                 case "ReaperLeviathanDollDescription":
@@ -595,6 +854,10 @@ namespace DecorationsMod
                         return "Esta muñeca segador leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu tırpanlı canavar oyuncağı 4546B'deki gözlemlerle yapıldı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Puppe eines Cheliceratops wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Была создана для наблюдения в 4546B.";
                     else
                         return "This reaper leviathan doll was created from observations made on 4546B.";
                 case "SeaDragonDollName":
@@ -604,6 +867,10 @@ namespace DecorationsMod
                         return "Dragon marino leviatán muñeca";
                     else if (UserLanguage == CountryCode.TR)
                         return "Deniz ejderhası oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Seedrachen-Puppe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кукла Морского Дракона Левиафана";
                     else
                         return "Sea dragon leviathan doll";
                 case "SeaDragonDollDescription":
@@ -613,6 +880,10 @@ namespace DecorationsMod
                         return "Esta muñeca dragon marino leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu deniz ejderhası oyuncağı 4546B'deki gözlemlerle yapıldı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Puppe eines Seedrachen wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Была создана для наблюдения в 4546B.";
                     else
                         return "This sea dragon leviathan doll was created from observations made on 4546B.";
                 case "SeaTreaderDollName":
@@ -622,6 +893,10 @@ namespace DecorationsMod
                         return "Caminante marino leviatán muñeca";
                     else if (UserLanguage == CountryCode.TR)
                         return "Deniz gezgini oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Seewanderer-Puppe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кукла Морского Топтуна";
                     else
                         return "Sea treader leviathan doll";
                 case "SeaTreaderDollDescription":
@@ -631,6 +906,10 @@ namespace DecorationsMod
                         return "Esta muñeca caminante marino leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu deniz gezgini oyuncağı 4546B'deki gözlemlerle yapıldı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Puppe eines Seewanderers wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Была создана для наблюдения в 4546B.";
                     else
                         return "This sea treader leviathan doll was created from observations made on 4546B.";
                 case "ReefBackDollName":
@@ -640,6 +919,10 @@ namespace DecorationsMod
                         return "Portarrecifes leviatán muñeca";
                     else if (UserLanguage == CountryCode.TR)
                         return "Resif devi oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Riffrücken-Puppe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кукла Рифоспина";
                     else
                         return "Reefback leviathan doll";
                 case "ReefBackDollDescription":
@@ -649,6 +932,10 @@ namespace DecorationsMod
                         return "Esta muñeca portarrecifes leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu resif devi oyuncağı 4546B'deki gözlemlerle yapıldı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Puppe eines Riffrückens wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Была создана для наблюдения в 4546B.";
                     else
                         return "This reefback leviathan doll was created from observations made on 4546B.";
                 case "CuddleFishDollName":
@@ -658,6 +945,10 @@ namespace DecorationsMod
                         return "Muñeca pez monada";
                     else if (UserLanguage == CountryCode.TR)
                         return "Sevimli balık oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Knuddelfisch-Puppe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кукла Ласки";
                     else
                         return "Cuddlefish doll";
                 case "CuddleFishDollDescription":
@@ -667,6 +958,10 @@ namespace DecorationsMod
                         return "Esta muñeca pez monada fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu sevimli balık oyuncağı 4546B'deki gözlemlerle yapıldı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Puppe eines Knuddelfischs wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Была создана для наблюдения в 4546B.";
                     else
                         return "This cuddlefish doll was created from observations made on 4546B.";
                 case "ReactorLampName":
@@ -676,6 +971,10 @@ namespace DecorationsMod
                         return "Lámpara";
                     else if (UserLanguage == CountryCode.TR)
                         return "Lamba";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Lampe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лампа";
                     else
                         return "Lamp";
                 case "ReactorLampDescription":
@@ -685,6 +984,10 @@ namespace DecorationsMod
                         return "Una lámpara personalizable.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Özelleştirilebilir lamba.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine anpassbare Lampe.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лампа с настройками.";
                     else
                         return "A customizable lamp.";
                 case "SeamothDollName":
@@ -694,6 +997,10 @@ namespace DecorationsMod
                         return "Juguete Seamoth";
                     else if (UserLanguage == CountryCode.TR)
                         return "Seamoth oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Seemotten-Spielzeug";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кукла Мотылька";
                     else
                         return "Seamoth toy";
                 case "SeamothDollDescription":
@@ -703,6 +1010,10 @@ namespace DecorationsMod
                         return "Una miniatura decorativa de seamoth.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Minyatür seamoth oyuncağı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine dekorative Miniatur der Seemotte";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративная кукла для интерьера.";
                     else
                         return "A decorative miniature of the seamoth.";
                 case "ExosuitDollName":
@@ -712,6 +1023,10 @@ namespace DecorationsMod
                         return "Juguete traje PRAWN";
                     else if (UserLanguage == CountryCode.TR)
                         return "Suban giysi oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Krebsanzug-Spielzeug";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кукла костюма КРАБ";
                     else
                         return "PRAWN suit toy";
                 case "ExosuitDollDescription":
@@ -721,6 +1036,10 @@ namespace DecorationsMod
                         return "Una miniatura decorativa de traje PRAWN.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Minyatür suban giysi oyuncağı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine dekorative Miniatur des Krebs-Anzuges.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративная кукла для интерьера.";
                     else
                         return "A decorative miniature of the PRAWN suit.";
                 case "ForkLiftDollName":
@@ -730,6 +1049,10 @@ namespace DecorationsMod
                         return "Carretilla elevadora (no funcionales)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Forklift (yararsız)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Gabelstapler (nicht funktional)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный погрузчик";
                     else
                         return "Forklift (non-functional)";
                 case "ForkLiftDollDescription":
@@ -739,6 +1062,10 @@ namespace DecorationsMod
                         return "Una carretilla elevadora decorativa.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dekoratif forklift.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein dekorativer Gabelstapler.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Техника для декорации.";
                     else
                         return "A decorative forklift.";
                 case "DrinksAndFood":
@@ -748,6 +1075,10 @@ namespace DecorationsMod
                         return "Bebidas & comida";
                     else if (UserLanguage == CountryCode.TR)
                         return "İçecek & Yiyecekler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Essen & Trinken";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Напитки и Еда";
                     else
                         return "Drinks & food";
                 case "BarBottleName":
@@ -757,6 +1088,10 @@ namespace DecorationsMod
                         return "Botella de bar";
                     else if (UserLanguage == CountryCode.TR)
                         return "Şişe";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Barflasche";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Бутылка из бара";
                     else
                         return "Bar bottle";
                 case "BarBottleDescription":
@@ -766,6 +1101,10 @@ namespace DecorationsMod
                         return "Una botella que contiene una deliciosa bebida.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Lezzetli bir içecek barındıran şişe.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Flasche mit einem leckeren Getränk.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Бутылка содержащий вкусный напиток.";
                     else
                         return "A bottle containing a delicious beverage.";
                 case "BarCup2Name":
@@ -775,6 +1114,10 @@ namespace DecorationsMod
                         return "Taza";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bardak";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Tasse";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кружка";
                     else
                         return "Cup";
                 case "BarCup2Description":
@@ -784,6 +1127,10 @@ namespace DecorationsMod
                         return "Una taza hecha de titanio.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Titanyum bardak.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Tasse aus Titanium.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кружка сделанная из Титана.";
                     else
                         return "A cup made of titanium.";
                 case "BarCup1Name":
@@ -793,6 +1140,10 @@ namespace DecorationsMod
                         return "Pequeña taza";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük bardak";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kleine Tasse";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Стопка";
                     else
                         return "Small cup";
                 case "BarCup1Description":
@@ -802,6 +1153,10 @@ namespace DecorationsMod
                         return "Una pequeña taza hecha de titanio.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük titanyum bardak.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine kleine Tasse aus Titanium.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Стопка сделанная из Титана.";
                     else
                         return "A small cup made of titanium.";
                 case "BarFood1Name":
@@ -811,6 +1166,10 @@ namespace DecorationsMod
                         return "Plato pequeño";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük yemek";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kleine Mahlzeit";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Малая порция еды";
                     else
                         return "Small meal";
                 case "BarFood1Description":
@@ -820,6 +1179,10 @@ namespace DecorationsMod
                         return "Un plato hecho de pescado.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Balıktan yapılmış bir yemek.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Mahlzeit aus Fisch.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Еда сделанная из рыбы.";
                     else
                         return "A meal made of fish.";
                 case "BarFood2Name":
@@ -829,6 +1192,10 @@ namespace DecorationsMod
                         return "Bandeja de comida";
                     else if (UserLanguage == CountryCode.TR)
                         return "1 tepsi yemek";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Tablett mit Essen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лоток с едой";
                     else
                         return "Meal tray";
                 case "BarFood2Description":
@@ -838,6 +1205,10 @@ namespace DecorationsMod
                         return "Una comida completa y equilibrada.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dengeli bir öğün.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine komplette und ausgewogene Mahlzeit.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Комплексный обеда для полноценного питания.";
                     else
                         return "A complete and balanced meal.";
                 case "BarNapkinsName":
@@ -847,6 +1218,10 @@ namespace DecorationsMod
                         return "Servilletas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Peçete";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Servietten";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Салфетки";
                     else
                         return "Napkins";
                 case "BarNapkinsDescription":
@@ -856,6 +1231,10 @@ namespace DecorationsMod
                         return "Servilletas en malla de fibra.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Fiber örgüden yapılmış peçete.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Servietten aus Fasergewebe.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Салфетки сделанные из микроволокон.";
                     else
                         return "Napkins made of fiber mesh.";
                 case "LabRobotArmName":
@@ -865,6 +1244,10 @@ namespace DecorationsMod
                         return "Brazo robótico (no funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yararsız Robot Kolu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Roboterarm (nicht funktional)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лабораторный робот";
                     else
                         return "Robot arm (non-functional)";
                 case "LabRobotArmDescription":
@@ -874,6 +1257,10 @@ namespace DecorationsMod
                         return "Un brazo robótico de laboratorio (no funcional).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Labaratuvar robotu kolu (yararsız).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Laborroboterarm (nicht funktionsfähig).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лабораторный робот для декорации и атмосферы вашего жилья.";
                     else
                         return "A laboratory robot arm (non-functional).";
                 case "ReaperSkullDollName":
@@ -883,6 +1270,10 @@ namespace DecorationsMod
                         return "Cráneo de segador leviatán";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tırpanlı canavar kafatası";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Cheliceratops-Schädel";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Череп Жнеца Левиафана";
                     else
                         return "Reaper leviathan skull";
                 case "ReaperSkullDollDescription":
@@ -892,6 +1283,10 @@ namespace DecorationsMod
                         return "Una réplica del cráneo de un segador leviatán.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tırpanlı canavar kafatasının bir replikası.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Replik von einem Cheliceratops-Schädel.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Инсталляция черепа одного из хищников.";
                     else
                         return "A replica of a reaper leviathan skull.";
                 case "LampTooltip":
@@ -922,6 +1317,24 @@ namespace DecorationsMod
                                "Yoğunluğu değiştirmek için 'I' tuşuna basarken sol tıklayın." + Environment.NewLine +
                                "Neon tüp yoğunluğu değiştirmek için 'T' tuşuna basarken sol tıklayın." + Environment.NewLine +
                                "Neon tüp rengini değiştirmek için 'E' tuşuna basarken sol tıklayın." + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Zum ein- oder auszuschalten klicken, oder:" + Environment.NewLine +
+                               "'R' drücken und klicken, um die Rotstufe zu ändern." + Environment.NewLine +
+                               "'G' drücken und klicken, um die Grünstufe zu ändern." + Environment.NewLine +
+                               "'B' drücken und klicken, um die Blaustufe zu ändern." + Environment.NewLine +
+                               "'F' drücken und klickenn Sie, um die Lichtstärke anzupassen." + Environment.NewLine +
+                               "'I' drücken und klicken, um die Intensität zu ändern." + Environment.NewLine +
+                               "'T' drücken und klicken, um die Intensität der Neonröhre zu ändern." + Environment.NewLine +
+                               "'E' drücken und klickenn Sie, um die Neonröhrenfarbe zu ändern." + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Нажмите, чтобы настроить:" + Environment.NewLine +
+                               "Удерживайте 'R' и выберете уровень красного." + Environment.NewLine +
+                               "Удерживайте 'G' и выберете уровень зеленого." + Environment.NewLine +
+                               "Удерживайте 'B' выберете уровень голубого." + Environment.NewLine +
+                               "Удерживайте 'F' выберете уровень яркости." + Environment.NewLine +
+                               "Удерживайте 'I' выберете уровень интенсивность цвета." + Environment.NewLine +
+                               "Удерживайте 'T' выберете уровень интенсивности неоновой трубки." + Environment.NewLine +
+                               "Удерживайте 'E' выберете и измените цвет неоновой трубки." + Environment.NewLine;
                     else
                         return "Click to turn on/off, or:" + Environment.NewLine +
                                "Hold 'R' and click to change red levels." + Environment.NewLine +
@@ -938,6 +1351,10 @@ namespace DecorationsMod
                         return "Cambiar el modelo";
                     else if (UserLanguage == CountryCode.TR)
                         return "Model değiştir";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Modell ändern";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Переключить модель";
                     else
                         return "Switch model";
                 case "SwitchExosuitModel":
@@ -950,6 +1367,12 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Sol kol modelini değiştirmek için sol tıklayın," + Environment.NewLine +
                                "Sağ kol modelini değiştirmek için 'E' tuşuna basarken sol tıklayın" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken, um das linke Armmodell zu ändern, oder:" + Environment.NewLine +
+                               "'E' drücken und klicken, um das rechte Armmodell zu wechseln." + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Нажмите, чтобы изменить:" + Environment.NewLine +
+                               "Удерживайте 'E' и выберите, чтобы изменить модель." + Environment.NewLine;
                     else
                         return "Click to change left arm model, or:" + Environment.NewLine +
                                "Hold 'E' and click to change right arm model" + Environment.NewLine;
@@ -960,6 +1383,10 @@ namespace DecorationsMod
                         return "Mantenga 'E' y haga clic para cambiar el tamaño";
                     else if (UserLanguage == CountryCode.TR)
                         return "Büyüklüğü ayarlamak için 'E' tuşuna basarken sol tıklayın";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "'E' drücken und klicken, um die Größe zu ändern";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Удерживайте 'E' и выберите, чтобы изменить размер";
                     else
                         return "Hold 'E' and click to adjust size";
                 case "AdjustCargoBoxSize":
@@ -972,6 +1399,12 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Depolama alanına erişmek için tıklayın," + Environment.NewLine +
                                "Büyüklüğü ayarlamak için 'E' tuşuna basarken sol tıklayın" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken Sie hier, um den Container zu öffnen, oder:" + Environment.NewLine +
+                               "'E' drücken und klicken, um die Größe zu ändern" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Нажмите здесь, чтобы открыть контейнер, или:" + Environment.NewLine +
+                               "Удерживайте 'E' и выберите, чтобы изменить размер" + Environment.NewLine;
                     else
                         return "Click to access storage, or:" + Environment.NewLine + 
                                "Hold 'E' and click to adjust size" + Environment.NewLine;
@@ -982,6 +1415,10 @@ namespace DecorationsMod
                         return "Caja de carga reforzada";
                     else if (UserLanguage == CountryCode.TR)
                         return "Güçlendirilimiş Kargo Kutusu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Verstärkte Frachtkiste";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Защищенный грузовой ящик";
                     else
                         return "Reinforced cargo crate";
                 case "CargoBox1aDescription":
@@ -991,6 +1428,10 @@ namespace DecorationsMod
                         return "Una caja de carga reforzada que permite el transporte de mercancías.";
                     else if (UserLanguage == CountryCode.TR)
                         return "İyi şeyleri taşımak için güçlendirilmiş kargo kutusu.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine durch Stahlplatten verstärkte Frachtkiste für den Transport von Gütern.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Используется для защиты груза от внешних воздействий.";
                     else
                         return "A reinforced cargo crate made for the transport of goods.";
                 case "CargoBox1bName":
@@ -1000,6 +1441,10 @@ namespace DecorationsMod
                         return "Caja de carga";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kargo Kutusu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Frachtkiste";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Грузовой ящик";
                     else
                         return "Cargo crate";
                 case "CargoBox1bDescription":
@@ -1009,6 +1454,10 @@ namespace DecorationsMod
                         return "Una caja de carga que permite el transporte de mercancías.";
                     else if (UserLanguage == CountryCode.TR)
                         return "İyi şeyleri taşımak için kargo kutusu.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Frachtkiste für den Transport von Gütern.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Используется для транспортировки грузов.";
                     else
                         return "A cargo crate made for the transport of goods.";
                 case "CargoBox1DmgName":
@@ -1018,6 +1467,10 @@ namespace DecorationsMod
                         return "Caja de carga dañada";
                     else if (UserLanguage == CountryCode.TR)
                         return "Hasarlı kargo kutusu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Beschädigte Frachtkiste";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Сломанный грузовой ящик";
                     else
                         return "Damaged cargo crate";
                 case "CargoBox1DmgDescription":
@@ -1027,6 +1480,10 @@ namespace DecorationsMod
                         return "Una caja de carga en mal estado.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kullanılamayan hasarlı kargo kutusu.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine unbrauchbar beschädigte Frachtkiste.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Поврежденный грузовой ящик.";
                     else
                         return "An unusable damaged cargo crate.";
                 case "Folder1Name":
@@ -1036,6 +1493,10 @@ namespace DecorationsMod
                         return "Documentos";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dosya";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dokumente";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Документы";
                     else
                         return "Documents";
                 case "Folder1Description":
@@ -1045,6 +1506,10 @@ namespace DecorationsMod
                         return "Una carpeta que contiene varios documentos.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Önemli dökümanlar içeren bir dosya.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Ordner mit verschiedenen Dokumenten.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Папка с какой-то очередной бюрократией.";
                     else
                         return "A folder containing various documents.";
                 case "ClipboardName":
@@ -1054,6 +1519,10 @@ namespace DecorationsMod
                         return "Portapapeles";
                     else if (UserLanguage == CountryCode.TR)
                         return "Klipli dosya";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Clipboard";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Планше";
                     else
                         return "Clipboard";
                 case "ClipboardDescription":
@@ -1063,6 +1532,10 @@ namespace DecorationsMod
                         return "Un portapapeles que contiene varios documentos.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Önemli dökümanlar içeren klipli dosya";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Clipboard mit eingeheftetem Dokument.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "И снова какая-то бумаг с бюрократией.";
                     else
                         return "A clipboard containing various documents.";
                 case "PenName":
@@ -1072,6 +1545,10 @@ namespace DecorationsMod
                         return "Lápice";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kalem";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Stift";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Ручка";
                     else
                         return "Pen";
                 case "PenDescription":
@@ -1081,6 +1558,10 @@ namespace DecorationsMod
                         return "Un lápice Alterra.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Alterra kalemi.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Alterra-Stift.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Первый раз в первый класс.";
                     else
                         return "An Alterra pen.";
                 case "PenHolderName":
@@ -1090,6 +1571,10 @@ namespace DecorationsMod
                         return "Portalápices";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kalem tutucu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Stifthalter";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Подставка для ручек";
                     else
                         return "Pen holder";
                 case "PenHolderDescription":
@@ -1099,6 +1584,10 @@ namespace DecorationsMod
                         return "Un portalápices Alterra.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Alterra kalem tutucu.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Alterra-Stifthalter.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Можно напихать всяких ручек и карандашей и засыпать все это скрепками.";
                     else
                         return "An Alterra pen holder.";
                 case "PaperTrashName":
@@ -1108,6 +1597,10 @@ namespace DecorationsMod
                         return "Papeles arrugados";
                     else if (UserLanguage == CountryCode.TR)
                         return "Buruşuk kağıt";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Zerknülltes Papier";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Мятая бумага";
                     else
                         return "Crumpled papers";
                 case "PaperTrashDescription":
@@ -1117,6 +1610,10 @@ namespace DecorationsMod
                         return "Documentos innecesarios";
                     else if (UserLanguage == CountryCode.TR)
                         return "Önemsiz dökümanlar.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Unwichtiger Papiermüll.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Видимо кому-то срочно приспичило по нужде.";
                     else
                         return "Unnecessary documents.";
                 case "SofaStr1Name":
@@ -1126,6 +1623,10 @@ namespace DecorationsMod
                         return "Pequeño banco (decorativo y funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük oturak (dekoratif ve işlevsel)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kleine Bank (dekorativ und funktional)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Малый диван";
                     else
                         return "Small bench (decorative and functional)";
                 case "SofaStr1Description":
@@ -1135,6 +1636,10 @@ namespace DecorationsMod
                         return "Un pequeño banco: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük bir oturak: Estetik ve dinlenmek için kullanışlı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine kleine Bank: Ästhetisch und praktisch zum Ausruhen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Очень удобное место для отдыха.";
                     else
                         return "A small bench: Aesthetic and practical to rest.";
                 case "SofaStr2Name":
@@ -1144,6 +1649,10 @@ namespace DecorationsMod
                         return "Mediano banco (decorativo y funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Orta boyutlu oturak (dekoratif ve işlevsel)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Mittelgroße Bank (dekorativ und funktional)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Средний диван";
                     else
                         return "Medium bench (decorative and functional)";
                 case "SofaStr2Description":
@@ -1153,6 +1662,10 @@ namespace DecorationsMod
                         return "Un mediano banco: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Orta boyutlu bir oturak: Estetik ve dinlenmek için kullanışlı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Bank mittlerer Größe: Ästhetisch und praktisch zum Ausruhen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Очень удобное место для отдыха.";
                     else
                         return "A medium bench: Aesthetic and practical to rest.";
                 case "SofaStr3Name":
@@ -1162,6 +1675,10 @@ namespace DecorationsMod
                         return "Banco grande (decorativo y funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzun oturak (dekoratif ve işlevsel)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Lange Bank (dekorativ und funktional)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Большой диван";
                     else
                         return "Long bench (decorative and functional)";
                 case "SofaStr3Description":
@@ -1171,26 +1688,12 @@ namespace DecorationsMod
                         return "Un grande banco: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzun bir oturak: Estetik ve dinlenmek için kullanışlı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine große Bank: Ästhetisch und praktisch zum Ausruhen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Очень удобное место для отдыха.";
                     else
                         return "A long bench: Aesthetic and practical to rest.";
-                case "SofaCorner1Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Petit angle de banc (décoratif et fonctionnel)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Pequeño ángulo de banco (decorativo y funcional)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Küçük açılı Oturak (dekoratif ve işlevsel)";
-                    else
-                        return "Small bench angle (decorative and functional)";
-                case "SofaCorner1Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un petit angle de banc : Esthétique et pratique pour se reposer.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un pequeño ángulo de banco: Estético y práctico para un descanso.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Küçük bir açılı oturak: Estetik ve dinlenmek için kullanışlı.";
-                    else
-                        return "A small bench angle: Aesthetic and practical to rest.";
                 case "SofaCorner2Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Angle de banc (décoratif et fonctionnel)";
@@ -1198,6 +1701,10 @@ namespace DecorationsMod
                         return "Ángulo de banco (decorativo y funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Açılı oturak (dekoratif ve işlevsel)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Bank-Eckelement (dekorativ und funktional)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Угловой диван";
                     else
                         return "Bench angle (decorative and functional)";
                 case "SofaCorner2Description":
@@ -1207,6 +1714,10 @@ namespace DecorationsMod
                         return "Un ángulo de banco: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Açılı bir oturak: Estetik ve dinlenmek için kullanışlı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Bankecke mit Winkel: Ästhetisch und praktisch zum Ausruhen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Очень удобное место для отдыха.";
                     else
                         return "A bench angle: Aesthetic and practical to rest.";
                 case "CustomPictureFrameName":
@@ -1216,6 +1727,10 @@ namespace DecorationsMod
                         return "Marco de fotos personalizables";
                     else if (UserLanguage == CountryCode.TR)
                         return "Özelleştirilebilir fotoğraf çerçevesi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Anpassbarer Bilderrahmen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Рамка для изображений";
                     else
                         return "Customizable picture frame";
                 case "CustomPictureFrameDescription":
@@ -1225,6 +1740,10 @@ namespace DecorationsMod
                         return "Marco de pared personalizables, puede cargar la imagen deseada desde las galerías de imágenes de una PDA compatible.";
                     else if (UserLanguage == CountryCode.TR)
                         return "PDA'nın fotoğraf albümünden istenilen görselin eklenebildiği, duvara asılan çerçevedir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein an der Wand befestigter, kundengerechter Rahmen. Laden Sie Ihr gewünschtes Bild von einer PDA-kompatiblen Fotogalerie hoch.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенная рамка для различных изображений и надписей.";
                     else
                         return "Wall-mounted customizable frame, upload desired image from compatible PDA photo galleries.";
                 case "CustomPictureFrameTooltip":
@@ -1243,6 +1762,16 @@ namespace DecorationsMod
                                "Boyutu ayarlamak için 'E' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
                                "Fotoğraf çerçevesini çevirmek için 'R' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
                                "Çerçeveyi değiştirmek için 'F' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken, um das Bild festzulegen, oder:" + Environment.NewLine +
+                               "'E' drücken und klicken, um die Größe anzupassen." + Environment.NewLine +
+                               "'R' drücken und klicken, um den Bilderrahmen zu drehen." + Environment.NewLine +
+                               "'F' drücken und klicken, um den Rahmen zu ändern." + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Нажмите, чтобы изменить:" + Environment.NewLine +
+                               "Удерживайте 'E' чтобы отрегулировать размер." + Environment.NewLine +
+                               "Удерживайте 'R' чтобы повернуть рамку." + Environment.NewLine +
+                               "Удерживайте 'F' чтобы изменить форму рамки." + Environment.NewLine;
                     else
                         return "Click to set picture, or:" + Environment.NewLine +
                                "Hold 'E' and click to adjust size" + Environment.NewLine +
@@ -1255,6 +1784,10 @@ namespace DecorationsMod
                         return "Árbol alienígena perenne";
                     else if (UserLanguage == CountryCode.TR)
                         return "Çok yıllık uzaylı ağacı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Beständiger Alien-Baum";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Многолетнее дерево";
                     else
                         return "Perennial alien tree";
                 case "LandTree1Description":
@@ -1264,6 +1797,10 @@ namespace DecorationsMod
                         return "Una variedad de árbol terrestre alienígena con propiedades interesantes.";
                     else if (UserLanguage == CountryCode.TR)
                         return "İlginç özelliklere sahip uzaylı kara ağacı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein außerirdischer Landbaum mit interessanten Eigenschaften.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Многолетнее инопланетное дерево.";
                     else
                         return "An alien land tree variety with interesting properties.";
                 case "JungleTree1Name":
@@ -1273,6 +1810,10 @@ namespace DecorationsMod
                         return "Árbol alienígena (A)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı ağacı (A)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Außerirdischer Baum (A)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Дерево Alpha";
                     else
                         return "Alien tree (A)";
                 case "JungleTree1Description":
@@ -1282,6 +1823,10 @@ namespace DecorationsMod
                         return "Muestra alfa de una variedad de árbol terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara ağacının alfa örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Alpha-Probe einer fremden Landbaumsorte.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Альфа-образец разновидности инопланетного дерева.";
                     else
                         return "Alpha specimen of an alien land tree variety.";
                 case "JungleTree2Name":
@@ -1291,6 +1836,10 @@ namespace DecorationsMod
                         return "Árbol alienígena (B)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı ağacı (B)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Außerirdischer Baum (B)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Дерево Beta";
                     else
                         return "Alien tree (B)";
                 case "JungleTree2Description":
@@ -1300,6 +1849,10 @@ namespace DecorationsMod
                         return "Beta espécimen de una variedad de árbol terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara ağacının beta örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Beta-Probe einer fremden Landbaumsorte.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Бета-образец разновидности инопланетного дерева.";
                     else
                         return "Beta specimen of an alien land tree variety.";
                 case "LandPlant1Name":
@@ -1309,6 +1862,10 @@ namespace DecorationsMod
                         return "Planta alienígena bioluminiscente (A)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Biyolüminesan uzaylı bitkisi (A)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Biolumineszente Alienpflanze (A)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Растение Alpha";
                     else
                         return "Bioluminescent alien plant (A)";
                 case "LandPlant1Description":
@@ -1318,6 +1875,10 @@ namespace DecorationsMod
                         return "Espécimen alfa de una variedad de plantas terrestres alienígenas con propiedades interesantes.";
                     else if (UserLanguage == CountryCode.TR)
                         return "İlginç özelliklere sahip uzaylı kara ağacının alfa örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Alpha-Probe einer fremden Landpflanzensorte mit interessanten Eigenschaften.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Альфа-образец разновидности инопланетного растения.";
                     else
                         return "Alpha specimen of an alien land plant variety with interesting properties.";
                 case "LandPlant2Name":
@@ -1327,6 +1888,10 @@ namespace DecorationsMod
                         return "Planta alienígena bioluminiscente (B)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Biyolüminesan uzaylı bitkisi (B)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Biolumineszente Alienpflanze (B)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Растение Бета";
                     else
                         return "Bioluminescent alien plant (B)";
                 case "LandPlant2Description":
@@ -1336,6 +1901,10 @@ namespace DecorationsMod
                         return "Beta espécimen alfa de una variedad de plantas terrestres alienígenas con propiedades interesantes.";
                     else if (UserLanguage == CountryCode.TR)
                         return "İlginç özelliklere sahip uzaylı kara ağacının beta örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Beta-Probe einer fremden Landpflanzensorte mit interessanten Eigenschaften.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Бета-образец разновидности инопланетного растения.";
                     else
                         return "Beta specimen of an alien land plant variety with interesting properties.";
                 case "LandPlant3Name":
@@ -1345,6 +1914,10 @@ namespace DecorationsMod
                         return "Espécimen de planta terrestre alienígena (A)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara bitkisi örneği (A)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Probe einer außerirdischen Landpflanze (A)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Растение Gamma";
                     else
                         return "Specimen of alien land plant (A)";
                 case "LandPlant3Description":
@@ -1354,6 +1927,10 @@ namespace DecorationsMod
                         return "Espécimen vulgar alfa de planta terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara bitkisinin kaba bir alfa örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Alpha-Probe einer gewöhnlichen außerirdischen Landpflanze.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Гамма-образец разновидности инопланетного растения.";
                     else
                         return "Alpha specimen of a vulgar alien land plant.";
                 case "LandPlant4Name":
@@ -1363,6 +1940,10 @@ namespace DecorationsMod
                         return "Espécimen de planta terrestre alienígena (B)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara bitkisi örneği (B)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Probe einer außerirdischen Landpflanze (B)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Растение Дельта";
                     else
                         return "Specimen of alien land plant (B)";
                 case "LandPlant4Description":
@@ -1372,6 +1953,10 @@ namespace DecorationsMod
                         return "Especie Vulgar beta de planta terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara bitkisinin kaba bir beta örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Beta-Probe einer gewöhnlichen außerirdischen Landpflanze.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Дельта-образец разновидности инопланетного растения.";
                     else
                         return "Beta specimen of a vulgar alien land plant.";
                 case "LandPlant5Name":
@@ -1381,6 +1966,10 @@ namespace DecorationsMod
                         return "Espécimen de planta terrestre alienígena (C)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara bitkisi örneği (C)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Probe einer außerirdischen Landpflanze (C)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Растение Эпсилон";
                     else
                         return "Specimen of alien land plant (C)";
                 case "LandPlant5Description":
@@ -1390,6 +1979,10 @@ namespace DecorationsMod
                         return "Espécimen theta de vulgar planta terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara bitkisinin teta örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Gamma-Probe einer gewöhnlichen außerirdischen Landpflanze.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Эпсилон-образец разновидности инопланетного растения.";
                     else
                         return "Theta specimen of a vulgar alien land plant.";
                 case "TropicalPlantName":
@@ -1399,6 +1992,10 @@ namespace DecorationsMod
                         return "Una planta alienígena tropical";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tropik bir uzaylı bitki";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Tropische Alienpflanze";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Тропический куст";
                     else
                         return "A tropical alien plant";
                 case "TropicalPlantDescription":
@@ -1408,6 +2005,10 @@ namespace DecorationsMod
                         return "Espécimen de vulgar planta alienígena tropical.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tropikal uzaylı bitkisinin örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Probe einer gewöhnlichen außerirdischen Tropenpflanze.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Образец инопланетного тропического куста.";
                     else
                         return "Specimen of a vulgar tropical alien plant.";
                 case "TropicalTreeName":
@@ -1417,6 +2018,10 @@ namespace DecorationsMod
                         return "Un árbol alienígena tropical";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tropik bir uzaylı ağacı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Tropischer Alienbaum";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Тропическое дерево";
                     else
                         return "A tropical alien tree";
                 case "TropicalTreeDescription":
@@ -1426,6 +2031,10 @@ namespace DecorationsMod
                         return "Espécimen de vulgar árbol alienígena tropical.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tropikal uzaylı bitkisinin örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Probe eines gewöhnlichen außerirdischen Tropenbaums.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Образец инопланетного тропического дерева.";
                     else
                         return "Specimen of a vulgar tropical alien tree.";
                 case "FernName":
@@ -1435,6 +2044,10 @@ namespace DecorationsMod
                         return "Helecho";
                     else if (UserLanguage == CountryCode.TR)
                         return "Eğreltiotu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Farn";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Папоротник";
                     else
                         return "Fern";
                 case "FernDescription":
@@ -1444,6 +2057,10 @@ namespace DecorationsMod
                         return "Un helecho estándar.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Standart eğrelti.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein außerirdischer Farn.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Обычный папоротник и даже не курится.";
                     else
                         return "A standard fern.";
                 case "CrabClawKelpName":
@@ -1453,6 +2070,10 @@ namespace DecorationsMod
                         return "Alga Garra Cangrejo";
                     else if (UserLanguage == CountryCode.TR)
                         return "Pençe Yosunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klauentang";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Клешня Краба";
                     else
                         return "Crab Claw Kelp";
                 case "CrabClawKelpDescription":
@@ -1462,6 +2083,10 @@ namespace DecorationsMod
                         return "Una especie de alga con punta azul que tiende a crecer en o cerca de piscinas de salmuera ácida en el suelo oceánico.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Okyanus tabanında, asidik tuz havuzlarında ya da yakınlarında büyüyen mavi uçlu bir yosun türüdür.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Blauspitzen-Seetangart, die dazu neigt, in oder in der Nähe von sauren Solebecken auf dem Meeresboden zu wachsen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Вид водорослей с голубыми наконечниками, которые имеют тенденцию расти вблизи кислых соляных бассейнов на дне океана.";
                     else
                         return "A blue-tipped kelp species which tends to grow in or near to acidic brine pools on the ocean floor.";
                 case "PyroCoralName":
@@ -1471,6 +2096,10 @@ namespace DecorationsMod
                         return "Coral Flamígero";
                     else if (UserLanguage == CountryCode.TR)
                         return "Ateş Mercanı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Feuerkoralle";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Магнетический коралл";
                     else
                         return "Pyrocoral";
                 case "PyroCoralDescription":
@@ -1480,6 +2109,10 @@ namespace DecorationsMod
                         return "Alga Garra Cangrejo";
                     else if (UserLanguage == CountryCode.TR)
                         return "4546B gezegeninde karşılaşılan türlerden farklı olarak, bu mercan, besin maddelerini su yerine magma akışı üzerinden saılamaktadır.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Korallenart ist anders als alle anderen auf 4546B. Sie filtert ihre Nährstoffe nicht aus dem Wasser, sondern benötigt dafür einen steten Magma-Fluss.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Этот вид кораллов отличается от других, встречающихся на 4546B. Он находится на потоках магмы, а не на потоках воды для доставки ему питательных веществ.";
                     else
                         return "This coral species is unlike any other encountered on 4546B. It relies on magma flow rather than water current to deliver nutrients.";
                 case "CoveTreeName":
@@ -1489,6 +2122,10 @@ namespace DecorationsMod
                         return "Árbol Gigante de la Ensenada";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dev Kovuk Ağacı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Lebensbaum";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Гигантское дерево Игло";
                     else
                         return "Giant Cove Tree";
                 case "CoveTreeDescription":
@@ -1498,6 +2135,10 @@ namespace DecorationsMod
                         return "Clon hecho de un vasto árbol encontrado en una profunda ensenada (el único de su tipo encontrado en el planeta). Se puede plantar en tierra y bajo el agua.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Örnekleme ile yapılan klon: Derin bir kovukta yaşayan büyük bir ağaçtır (ve gezegende türünün tek örneğidir). Karada ve su altında ekilebilir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klon aus einem riesigen Baum, der in einer tiefen Höhle angetroffen(das einzige bekannte Exemplar seiner Art auf dem Planeten). Kann zu Land und unter Wasser gepflanzt werden.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Клон, сделанный из огромного дерева, встреченного в глубокой бухте (единственная в своем роде, встречающаяся на планете). Может быть посажен на суше и под водой.";
                     else
                         return "Clone made from a vast tree encountered in a deep cove (the only one of its kind encountered on the planet). Can be planted on land and under water.";
                 case "DisplayCoveTreeEggs":
@@ -1507,6 +2148,10 @@ namespace DecorationsMod
                         return "Mostrar/ocultar huevos";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yumurtaları göster/sakla";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Zeige/Verstecke Eier";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Скрыть/Показать семена";
                     else
                         return "Show/hide eggs";
                 case "FloatingStoneName":
@@ -1516,6 +2161,10 @@ namespace DecorationsMod
                         return "Orbe anclado";
                     else if (UserLanguage == CountryCode.TR)
                         return "Deniz Mayını";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Leuchtglobus";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Плавающий камень";
                     else
                         return "Anchor Pod";
                 case "FloatingStoneDescription":
@@ -1525,6 +2174,10 @@ namespace DecorationsMod
                         return "Esta inusual especie de flora consisten en extensas y esféricas membranas llenas de gas, ancladas al lecho marino con su sistema de raíces.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu eşsiz bitki türleri, küresel, gaz dolu zar ve ona bağlı, deniz tabanına uzanan kökten oluşmaktadır.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese ungewöhnliche Pflanze besteht aus einer großen, kugelförmigen, gasgefüllten Membran, die mit ihrem Wurzelsystem am Meeresboden verankert ist.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Этот необычный образец флоры состоит из большой сферической газонаполненной мембраны, прикрепленной к морскому дну своей корневой системой.";
                     else
                         return "This unusual flora specimen consist of a large, spherical, gas-filled membrane, anchored to the sea floor by its root system.";
                 case "GreenReedsName":
@@ -1534,6 +2187,10 @@ namespace DecorationsMod
                         return "Carrizo moteado";
                     else if (UserLanguage == CountryCode.TR)
                         return "Benekli sazlık";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Gefleckte Schilfe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Пятнолистник";
                     else
                         return "Spotted reeds";
                 case "GreenReedsDescription":
@@ -1543,6 +2200,10 @@ namespace DecorationsMod
                         return "Un espécimen de juncos alienígenas.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yabancı sazlıkların bir örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Probe einer außerirdischen Schilfart.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Образец пятнистого тростника.";
                     else
                         return "A specimen of alien reeds.";
                 case "BrineLilyName":
@@ -1552,6 +2213,10 @@ namespace DecorationsMod
                         return "Salnúfar";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tuz Zambağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Salzseerose";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Раповая лилия";
                     else
                         return "Brine Lily";
                 case "BrineLilyDescription":
@@ -1561,6 +2226,10 @@ namespace DecorationsMod
                         return "Estas plantas parecidas a nenúfares han evolucionado para tomar ventaja de la relativa densidad de las piscinas de salmuera ácida encontradas cerca del lecho marino para flotar a salvo en su superficie.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu zambak benzeri bitkiler, okyanus tabanında, sudan daha yoğun asidik tuz havuzlarında yüzer halde bulunmaktadırlar.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese lilienartigen Pflanzen haben sich dahingehend entwickelt, dass sie die relative Dichte der in der Nähe des Meeresbodens anzutreffenden sauren Solebecken nutzen, um sicher auf der Oberfläche zu schwimmen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Эти лилии эволюционировали, чтобы воспользоваться относительной плотностью кислых бассейнов, встречающихся вблизи дна океана, чтобы безопасно плавать на поверхности.";
                     else
                         return "These lily-like plants have evolved to take advantage of the relative density of the acidic brine pools encountered near the ocean floor to float safely on the surface.";
                 case "LostRiverPlantName":
@@ -1570,6 +2239,10 @@ namespace DecorationsMod
                         return "Planta de río perdida";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kayıp nehir bitkisi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Tiefseepflanze";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Растение Потерянной реки";
                     else
                         return "Lost river plant";
                 case "LostRiverPlantDescription":
@@ -1579,6 +2252,10 @@ namespace DecorationsMod
                         return "Un curioso espécimen de planta encontrado en el río perdido.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kayıp nehirde ilginç bir bitki örneği bulundu.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein kurioses Pflanzenexemplar, das im verlorenen Fluss gefunden wurde.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Любопытный образец растения. Найден в русле потерянной реки.";
                     else
                         return "A curious plant specimen found in the lost river.";
                 case "PlantMiddle11Name":
@@ -1588,6 +2265,10 @@ namespace DecorationsMod
                         return "Algas translúcidas alienígenas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yarı saydam yabancı algler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Transluzente Alienalge";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Люмиэрии веселые";
                     else
                         return "Translucent alien algae";
                 case "PlantMiddle11Description":
@@ -1597,6 +2278,10 @@ namespace DecorationsMod
                         return "Una variedad de grandes algas translúcidas alienígenas.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Büyük saydam yabancı alg türleri.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Vielzahl von großen transluzenten außerirdischen Algen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Разнообразие крупных полупрозрачных чужеродных водорослей.";
                     else
                         return "A variety of large translucent alien algae.";
                 case "SmallDeco3Name":
@@ -1606,6 +2291,10 @@ namespace DecorationsMod
                         return "Setas decorativas alienígenas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yabancı dekoratif mantar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dekorative Alien-Pilze";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Фуксевидные грибы";
                     else
                         return "Alien decorative mushrooms";
                 case "SmallDeco3Description":
@@ -1615,6 +2304,10 @@ namespace DecorationsMod
                         return "Una variedad decorativa de pequeños hongos alienígenas. Se puede plantar en tierra y bajo el agua.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük uzaylı mantarların dekoratif çeşitliliği. Karada ve su altında ekilebilir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Vielzahl von dekorativen außerirdischen Pilzen. Kann zu Land und unter Wasser gepflanzt werden.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративное разнообразие маленьких чужеродных грибов. Могут быть посажены на суше и под водой.";
                     else
                         return "A decorative variety of small alien mushrooms. Can be planted on land and under water.";
                 case "BrownCoralTubesName":
@@ -1624,6 +2317,10 @@ namespace DecorationsMod
                         return "Tubos de coral embarrados";
                     else if (UserLanguage == CountryCode.TR)
                         return "Toprak mercanı boruları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Irdene Korallenröhren";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Коралловые трубы";
                     else
                         return "Earthen coral tubes";
                 case "AlienFloraSampleDescription":
@@ -1633,6 +2330,10 @@ namespace DecorationsMod
                         return "Muestra de flora alienígena.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yabancı bitki örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Außerirdische Flore-Probe.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Образец инопланетной флоры.";
                     else
                         return "Alien flora sample.";
                 case "BlueCoralTubes1Name":
@@ -1642,6 +2343,10 @@ namespace DecorationsMod
                         return "Tubos de coral azul embarrados";
                     else if (UserLanguage == CountryCode.TR)
                         return "Mavi toprak mercanı boruları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Blaue irdene Korallenröhren";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Трубчатый голубой коралл";
                     else
                         return "Blue earthen coral tubes";
                 case "SmallDeco10Name":
@@ -1651,6 +2356,10 @@ namespace DecorationsMod
                         return "Piña morada";
                     else if (UserLanguage == CountryCode.TR)
                         return "Mor çam kozalağını";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Lila Tannenzapfen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Фуксевидная шишка";
                     else
                         return "Purple pinecone";
                 case "SmallDeco10Description":
@@ -1660,6 +2369,10 @@ namespace DecorationsMod
                         return "Un espécimen alienígena de piña morada.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Mor çam kozalak bir yabancı örnek.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Außerirdische Probe eines lilanen, tannenzapfenähnlichen Gewächs.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Образец Фуксевидной Шишки.";
                     else
                         return "An alien specimen of purple pine cone.";
                 case "SmallDeco11Name":
@@ -1669,6 +2382,10 @@ namespace DecorationsMod
                         return "Planta de coral amarillo";
                     else if (UserLanguage == CountryCode.TR)
                         return "Sarı mercan bitkisi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Gelbe Koralle";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Желтый коралл";
                     else
                         return "Yellow coral plant";
                 case "SmallDeco13Name":
@@ -1678,6 +2395,10 @@ namespace DecorationsMod
                         return "Planta de coral verde";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yeşil mercan bitkisi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Grüne Koralle";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Зеленый коралл";
                     else
                         return "Green coral plant";
                 case "SmallDeco14Name":
@@ -1687,6 +2408,10 @@ namespace DecorationsMod
                         return "Planta de coral azul";
                     else if (UserLanguage == CountryCode.TR)
                         return "Mavi mercan bitkisi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Blaue Koralle";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Голубой коралл";
                     else
                         return "Blue coral plant";
                 case "SmallDeco15RedName":
@@ -1696,6 +2421,10 @@ namespace DecorationsMod
                         return "Planta de coral rojo";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kırmızı mercan bitkisi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Rote Koralle";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Красный коралл";
                     else
                         return "Red coral plant";
                 case "SmallDeco17PurpleName":
@@ -1705,6 +2434,10 @@ namespace DecorationsMod
                         return "Planta de coral púrpura";
                     else if (UserLanguage == CountryCode.TR)
                         return "Mor mercan bitkisi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Lila Koralle";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Фиолетовый коралл";
                     else
                         return "Purple coral plant";
                 case "DecorationsEmptyDeskName":
@@ -1714,6 +2447,10 @@ namespace DecorationsMod
                         return "Escritorio vacío";
                     else if (UserLanguage == CountryCode.TR)
                         return "Boş masa";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Leerer Tisch";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Пустой стол";
                     else
                         return "Empty desk";
                 case "DecorationsEmptyDeskDescription":
@@ -1723,6 +2460,10 @@ namespace DecorationsMod
                         return "Una mesa de trabajo común para naves.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Sıradan uzay gemisi masası.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Gewöhnlicher Raumschiff-Schreibtisch.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Обычное рабочее место.";
                     else
                         return "Common starship work desk.";
                 case "BenchSmallName":
@@ -1732,6 +2473,10 @@ namespace DecorationsMod
                         return "Banco muy pequeño";
                     else if (UserLanguage == CountryCode.TR)
                         return "Çok küçük tezgah";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Sehr kleine Bank";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Очень малая лавка";
                     else
                         return "Very small bench";
                 case "BenchMediumName":
@@ -1741,6 +2486,10 @@ namespace DecorationsMod
                         return "Banco pequeño";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük oturak";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kleine Bank";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Малая лавка";
                     else
                         return "Small bench";
                 case "BenchDescription":
@@ -1750,6 +2499,10 @@ namespace DecorationsMod
                         return "Una simple aplicación de metal para relajarse. Conserva la energía mientras descansas.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Basit metal eşya. Dinlenmeyi ve böylece enerji toplamayı sağlar.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Einfaches Metall-Entspannungsmobiliar. Spart Energie beim Ausruhen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Обычное место, где можно посидеть и восстановить силы.";
                     else
                         return "Simple metal relaxation appliance. Conserves energy when resting.";
                 case "DecorativePDAName":
@@ -1759,6 +2512,10 @@ namespace DecorationsMod
                         return "PDA decorativo";
                     else if (UserLanguage == CountryCode.TR)
                         return "PDA dekoratif";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dekoratives PDA";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный КПК";
                     else
                         return "Decorative PDA";
                 case "DecorativePDADescription":
@@ -1768,6 +2525,10 @@ namespace DecorationsMod
                         return "Un PDA puramente decorativo.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tamamen dekoratif bir PDA.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein PDA zu reinen Dekorationszwecken.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Просто для красивого вида.";
                     else
                         return "A purely decorative PDA.";
                 case "GenericSkeletonName":
@@ -1777,6 +2538,10 @@ namespace DecorationsMod
                         return "Restos Esqueléticos";
                     else if (UserLanguage == CountryCode.TR)
                         return "Iskelet Kalıntısı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Skelettüberreste";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Скелетные остатки";
                     else
                         return "Skeletal Remains";
                 case "GenericSkeletonDescription":
@@ -1786,6 +2551,10 @@ namespace DecorationsMod
                         return "Los restos esqueléticos de un depredador.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bir yırtıcının iskelet kalıntıları.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Die skelettierten Überreste eines Raubtiers.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Скелетные останки хищника.";
                     else
                         return "The skeletal remains of a predator.";
                 case "SeaDragonSkeletonName":
@@ -1795,6 +2564,10 @@ namespace DecorationsMod
                         return "Esqueleto de dragón marino";
                     else if (UserLanguage == CountryCode.TR)
                         return "Deniz ejderhası iskeleti";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Seedrachen-Skelett";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Скелет морского дракона";
                     else
                         return "Sea dragon skeleton";
                 case "LeviathanSkeletonDescription":
@@ -1804,6 +2577,10 @@ namespace DecorationsMod
                         return "Una miniatura de un esqueleto de depredador de clase leviatán.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bir Leviathan sınıfı yırtıcı iskeletinin minyatürü.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Miniatur eines Raubtierskeletts der Leviathan-Klasse.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Миниатюры скелета Левиафана.";
                     else
                         return "A miniature of a Leviathan class predator skeleton.";
                 case "ReaperSkeletonDollName":
@@ -1813,6 +2590,10 @@ namespace DecorationsMod
                         return "Esqueleto de Segador Leviatán";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tırpanlı Canavar i̇skeleti";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Cheliceratops-Skelett";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Скелет Жнеца";
                     else
                         return "Leviathan Skeletal Remains";
                 case "DecorativeLockerName":
@@ -1822,6 +2603,10 @@ namespace DecorationsMod
                         return "Armario";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dolap";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wandspind (nicht funktional)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Шкафчик";
                     else
                         return "Locker";
                 case "DecorativeLockerDescription":
@@ -1831,6 +2616,10 @@ namespace DecorationsMod
                         return "Un armario de almacenamiento.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bir depolama dolabı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein dekorativer Wandspind.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный шкафчик.";
                     else
                         return "A storage locker.";
                 case "RegularAirSeedsTab":
@@ -1840,6 +2629,10 @@ namespace DecorationsMod
                         return "Plantas terrestres existentes";
                     else if (UserLanguage == CountryCode.TR)
                         return "Mevcut karasal bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Bestehende terrestrische Pflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Существующие наземные растения";
                     else
                         return "Existing air plants";
                 case "EdibleRegularAirTab":
@@ -1849,6 +2642,10 @@ namespace DecorationsMod
                         return "Plantas terrestres comestibles";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yenilebilir karasal bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Essbare Landpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Съедобные наземные растения";
                     else
                         return "Edible air plants";
                 case "DecorativeBigAirTab":
@@ -1858,6 +2655,10 @@ namespace DecorationsMod
                         return "Grandes plantas terrestres";
                     else if (UserLanguage == CountryCode.TR)
                         return "Büyük karasal bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Große Landpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Крупные наземные растения";
                     else
                         return "Big air plants";
                 case "DecorativeSmallAirTab":
@@ -1867,6 +2668,10 @@ namespace DecorationsMod
                         return "Pequeñas plantas terrestres";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük karasal bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kleine Landpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Малые наземные растения";
                     else
                         return "Small air plants";
                 case "RegularWaterSeedsTab":
@@ -1876,6 +2681,10 @@ namespace DecorationsMod
                         return "Plantas acuáticas existentes";
                     else if (UserLanguage == CountryCode.TR)
                         return "Mevcut sucul bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Vorhandene Wasserpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Существующие водные растения";
                     else
                         return "Existing aquatic plants";
                 case "DecorativeMediumWaterTab":
@@ -1885,6 +2694,10 @@ namespace DecorationsMod
                         return "Plantas acuáticas decorativas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dekoratif sucul bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dekorative Wasserpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративные водные растения";
                     else
                         return "Decorative aquatic plants";
                 case "DecorativeBushesWaterTab":
@@ -1894,6 +2707,10 @@ namespace DecorationsMod
                         return "Arbustos de agua";
                     else if (UserLanguage == CountryCode.TR)
                         return "Su çalıları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Aquatische Büsche";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Водные кусты";
                     else
                         return "Aquatic bushes";
                 case "RegularSmallWaterTab":
@@ -1903,6 +2720,10 @@ namespace DecorationsMod
                         return "Pequeñas plantas acuáticas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük sucul bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kleine Wasserpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Малые водные растения";
                     else
                         return "Small aquatic plants";
                 case "DecorativeBigWaterTab":
@@ -1912,6 +2733,10 @@ namespace DecorationsMod
                         return "Grandes plantas acuáticas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Büyük su bitkileri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Große Wasserpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Крупные водные растения";
                     else
                         return "Big aquatic plants";
                 case "FunctionalBigWaterTab":
@@ -1921,6 +2746,10 @@ namespace DecorationsMod
                         return "Varias plantas acuáticas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Çeşitli sucul bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Verschiedene Wasserpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Различные водные растения";
                     else
                         return "Diverse aquatic plants";
                 case "LongPlanterName":
@@ -1930,6 +2759,10 @@ namespace DecorationsMod
                         return "Jardinera larga";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzun ekici";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Langer Pflanzer";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Долгожитель";
                     else
                         return "Long planter";
                 case "LongPlanterDescription":
@@ -1939,6 +2772,10 @@ namespace DecorationsMod
                         return "Una maceta larga (funcional).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzun bir ekici (fonksiyonel).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein langer Pflanzer (funktional).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Длинный плантатор (функциональный).";
                     else
                         return "A long planter (functional).";
                 default:

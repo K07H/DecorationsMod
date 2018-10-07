@@ -1,6 +1,13 @@
 # Modify this to override default language.
-# Possible values: "fr" for French, "en" for English, "es" for Spanish, "tr" for Turkish and "auto" for default language.
+# Possible values: "fr" for French, "en" for English, "es" for Spanish, "de" for Deutsch,
+# "tr" for Turkish, "ru" for Russian and "auto" for default language.
 language=auto
+
+# If "true", more items from this mod will be buildable outside bases.
+allowBuildOutside=false
+
+# If "true", more items from this mod will be placeable outside bases.
+allowPlaceOutside=false
 
 # If "true" you'll be able to place following items:
 # coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, 

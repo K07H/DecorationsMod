@@ -49,8 +49,8 @@ namespace DecorationsMod
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[4] {
                     new IngredientHelper(TechType.Titanium, 1),
                     new IngredientHelper(TechType.ComputerChip, 1),
-                    new IngredientHelper(TechType.Diamond, 1),
-                    new IngredientHelper(TechType.Magnetite, 1) }),
+                    new IngredientHelper(TechType.Silver, 1),
+                    new IngredientHelper(TechType.Quartz, 1) }),
                 _techType = DecorationsFabTechType
             };
             CraftDataPatcher.customTechData[DecorationsFabTechType] = customFabRecipe;
@@ -285,8 +285,8 @@ namespace DecorationsMod
                 _ingredients = new List<IngredientHelper>(new IngredientHelper[4] {
                     new IngredientHelper(TechType.Titanium, 1),
                     new IngredientHelper(TechType.ComputerChip, 1),
-                    new IngredientHelper(TechType.Kyanite, 1),
-                    new IngredientHelper(TechType.PrecursorIonCrystal, 1) }),
+                    new IngredientHelper(TechType.Silver, 1),
+                    new IngredientHelper(TechType.Magnetite, 1) }),
                 _techType = FloraFabTechType
             };
             CraftDataPatcher.customTechData[FloraFabTechType] = customFabRecipe;

@@ -99,7 +99,7 @@ namespace DecorationsMod.NewItems
             var constructible = prefab.GetComponent<Constructable>();
             constructible.allowedInBase = true;
             constructible.allowedInSub = true;
-            constructible.allowedOutside = false;
+            constructible.allowedOutside = ConfigSwitcher.AllowBuildOutside;
             constructible.allowedOnCeiling = false;
             constructible.allowedOnGround = true;
             constructible.allowedOnConstructables = false;

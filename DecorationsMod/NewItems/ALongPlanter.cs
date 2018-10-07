@@ -62,19 +62,26 @@ namespace DecorationsMod.NewItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             prefab.name = this.ClassID;
-            
+
             // Update TechTag
-            var techTag = prefab.GetComponent<TechTag>();
+            TechTag techTag = prefab.GetComponent<TechTag>();
             techTag.type = this.TechType;
 
             // Update prefab ID
-            var prefabId = prefab.GetComponent<PrefabIdentifier>();
+            PrefabIdentifier prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
             
             // Update StorageContainer
             StorageContainer sc = prefab.GetComponent<StorageContainer>();
             sc.height = 2;
-            
+
+            // Update constructable
+            if (ConfigSwitcher.AllowBuildOutside)
+            {
+                Constructable constructable = prefab.GetComponent<Constructable>();
+                constructable.allowedOutside = true;
+            }
+
             // Update constructable bounds
             ConstructableBounds bounds = prefab.GetComponent<ConstructableBounds>();
             bounds.bounds.extents = new Vector3(bounds.bounds.extents.x * 0.5f, bounds.bounds.extents.y, bounds.bounds.extents.z);

@@ -144,7 +144,7 @@ namespace DecorationsMod.Fixers
                 EquipmentType slotBType = Equipment.GetSlotType(slotB);
                 if (slotBType != EquipmentType.BatteryCharger && slotBType != EquipmentType.PowerCellCharger)
                     return true;
-                else
+                else // Else, we're trying to plug a battery or powercell to its charger
                 {
                     InventoryItem inventoryItem = equipmentB.RemoveItem(slotB, false, true);
                     if (inventoryItem == null)

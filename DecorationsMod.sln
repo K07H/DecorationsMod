@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecorationsMod", "DecorationsMod\DecorationsMod.csproj", "{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMLHelper", "..\SMLHelper\SMLHelper\SMLHelper.csproj", "{418502DD-372D-4EF9-8021-B262552DFEDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMLHelper", "..\SMLHelperV2\SMLHelper\SMLHelper.csproj", "{418502DD-372D-4EF9-8021-B262552DFEDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +31,14 @@ Global
 		{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugFlora|Any CPU.ActiveCfg = DebugFlora|Any CPU
-		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugFlora|Any CPU.Build.0 = DebugFlora|Any CPU
-		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugItems|Any CPU.ActiveCfg = DebugItems|Any CPU
-		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugItems|Any CPU.Build.0 = DebugItems|Any CPU
-		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugVehicles|Any CPU.ActiveCfg = DebugVehicles|Any CPU
-		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugVehicles|Any CPU.Build.0 = DebugVehicles|Any CPU
-		{418502DD-372D-4EF9-8021-B262552DFEDE}.FullDebug|Any CPU.ActiveCfg = FullDebug|Any CPU
-		{418502DD-372D-4EF9-8021-B262552DFEDE}.FullDebug|Any CPU.Build.0 = FullDebug|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugFlora|Any CPU.ActiveCfg = Debug|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugFlora|Any CPU.Build.0 = Debug|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugItems|Any CPU.ActiveCfg = Debug|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugItems|Any CPU.Build.0 = Debug|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugVehicles|Any CPU.ActiveCfg = Debug|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.DebugVehicles|Any CPU.Build.0 = Debug|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.FullDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{418502DD-372D-4EF9-8021-B262552DFEDE}.FullDebug|Any CPU.Build.0 = Debug|Any CPU
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{418502DD-372D-4EF9-8021-B262552DFEDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

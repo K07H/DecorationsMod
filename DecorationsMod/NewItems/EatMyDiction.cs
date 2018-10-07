@@ -103,7 +103,7 @@ namespace DecorationsMod.NewItems
                 placeTool.allowedOnGround = true;
                 placeTool.allowedOnRigidBody = true;
                 placeTool.allowedOnWalls = false;
-                placeTool.allowedOutside = false;
+                placeTool.allowedOutside = ConfigSwitcher.AllowPlaceOutside;
                 placeTool.rotationEnabled = true;
                 placeTool.enabled = true;
                 placeTool.hasAnimations = false;
@@ -119,6 +119,11 @@ namespace DecorationsMod.NewItems
                 fabricating.posOffset = new Vector3(0f, 0f, 0.04f);
                 fabricating.eulerOffset = new Vector3(-90f, 0f, 0f);
                 fabricating.scaleFactor = 0.1f;
+            }
+            else
+            {
+                Constructable constructible = prefab.GetComponent<Constructable>();
+                constructible.allowedOutside = ConfigSwitcher.AllowBuildOutside;
             }
 
             return prefab;

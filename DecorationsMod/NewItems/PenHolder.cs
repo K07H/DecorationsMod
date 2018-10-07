@@ -96,7 +96,7 @@ namespace DecorationsMod.NewItems
                 placeTool.allowedOnGround = true;
                 placeTool.allowedOnRigidBody = true;
                 placeTool.allowedOnWalls = false;
-                placeTool.allowedOutside = false;
+                placeTool.allowedOutside = ConfigSwitcher.AllowPlaceOutside;
                 placeTool.rotationEnabled = true;
                 placeTool.enabled = true;
                 placeTool.hasAnimations = false;

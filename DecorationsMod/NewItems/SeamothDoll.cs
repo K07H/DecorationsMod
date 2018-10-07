@@ -167,7 +167,7 @@ namespace DecorationsMod.NewItems
                 Constructable constructable = this.GameObject.AddComponent<Constructable>();
                 constructable.allowedInBase = true;
                 constructable.allowedInSub = true;
-                constructable.allowedOutside = false;
+                constructable.allowedOutside = true;
                 constructable.allowedOnCeiling = false;
                 constructable.allowedOnGround = true;
                 constructable.allowedOnConstructables = true;

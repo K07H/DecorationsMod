@@ -40,7 +40,9 @@ namespace DecorationsMod
             EN = 0,
             FR = 1,
             ES = 2,
-            TR = 3
+            TR = 3,
+            DE = 4,
+            RU = 5
         };
 
         #region Win32 Declarations
@@ -74,6 +76,10 @@ namespace DecorationsMod
                     return CountryCode.ES;
                 else if (countryCode.CompareTo("tr") == 0)
                     return CountryCode.TR;
+                else if (countryCode.CompareTo("de") == 0)
+                    return CountryCode.DE;
+                else if (countryCode.CompareTo("ru") == 0)
+                    return CountryCode.RU;
             }
             return CountryCode.EN;
         }
