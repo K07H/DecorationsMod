@@ -75,7 +75,7 @@ Requires QMods and SMLHelper.<br>
     Batteries/PowerCells and their ion versions<br>
 
 ### Additional information:<br>
-Inside the DecorationsMod folder you will find the file Config.txt which contains options that you can modify. You can check the list of available options [here](https://github.com/K07H/DecorationsMod/raw/master/DecorationsMod/Config.txt).<br>
+Inside the **DecorationsMod** folder you will find the file **Config.txt** which contains options that you can modify. You can check the list of available options [here](https://github.com/K07H/DecorationsMod/raw/master/DecorationsMod/Config.txt).<br>
 All items can be rotated and placed in any base or cyclops.<br>
 All new flora is compatible with bioreactors and only the land tree is edible.<br>
 You can change range, brightness and color of the lamp by clicking on it (max range is currently 60m).<br>
