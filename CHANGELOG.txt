@@ -1,0 +1,111 @@
+Version 1.5
+Added: Deutsche translation (provided by Verodor).
+Added: Russian translation (provided by Krotobosha).
+Added: Additional items are now buildable/placeable outside (using "allowBuildOuside" and "allowPlaceOutside" from the Config.txt file).
+Changed: Decorations fabricator and custom flora fabricator recipies (less advanced materials).
+Other: Built and tested with SML Helper V2 and latest Subnautica version (normal branch, not experimental).
+
+Version 1.4.3
+Fixed: Powercells and ion powercells can plug into the powercell charger (you'll have to drag-n-drop the powercell, left-click won't equip it).
+Modified: Positionable batteries, powercells, and their ion versions is now optional and set to disabled by default in Config.txt file.
+
+Version 1.4.2
+Added: A failsafe to prevent deconstructing lockers and cargo crates when they are not empty.
+Changed: You can now rotate lockers when building them.
+Fixed: Lockers models and colliders.
+
+Version 1.4.1
+Fixed: Lockers content is now properly set.
+Fixed: Batteries, power cells, and their ion versions should now correctly plug to their chargers (and they are still positionable), but you'll have to drag-n-drog them to the charger.
+Fixed: Planters and plants do not disappear anymore.
+Changed: Long planter (8x2) is now located in Interior Modules section of the habitat builder.
+
+Version 1.4
+Added: An option inside the Config.txt to make Cove Trees spawns Juvenile Ghost Leviatans (if eggs are displayed and the cove tree is bellow 100m depth).
+Added: An option inside the Config.txt file to remove Nutrient Block from the decorations fabricator.
+Added: Now all existing seeds from the game can also be crafted using the seeds fabricator (you can disable this option in Config.txt file).
+Added: Storage capability to cargo crates.
+Added: Storage capability to decorative lockers.
+Added: Batteries/power cells and their ion versions are now positionable.
+Modified: Changing forklift toy and cargo crates sizes now requires to hold 'E' key (+ click).
+Fixed: Decorative PDA is now properly visible on every tables/desks/counters.
+Fixed: Cargo crate colliders have been adjusted and they are now properly restored when loading saved game.
+Added: Two new lockers (functional), one medium bench (functional), three halved lab containers, one long planter (8x2, functional).
+
+Version 1.3.2
+Fixed: Floating stone colliding box.
+Fixed: Coral plants inventory background types.
+Fixed: Constructable model for Markiplier doll 1.
+Modified: Size of the specimen analyzer container is now 18 (3x6).
+Modified: You can now place stuff on the lab cart (lab cart is in habitat builder menu now).
+Added: Compatibility with future SML Helper (v2).
+Added: New item: Empty desk (functional), in "Miscellaneous" section of the habitat builder.
+Added: New item: Small bench (functional), in "Miscellaneous" section of the habitat builder.
+Added: New item: Decorative locker, in "Miscellaneous" section of the habitat builder.
+Added: New item: Decorative PDA, in "Office supplies" section of the decorations fabricator.
+Added: New items: 5 new skeletons, in "Skeletal Remains" section of the decorations fabricator.
+
+Version 1.3.1
+Fixed: Reaper leviathan doll emission map (in dark places).
+Modified: Lamp functions: Click -> ON/OFF, click+R -> red levels, click+G -> green levels, click+B -> blue levels, click+F -> light range, click+I -> light intensity, click+T -> lamp center intensity, click+E -> lamp center color
+Added: You can now place lamps everywhere (floor, walls, ceiling, on top of other objects, outside).
+Added: Lamp now displays its current configured values (when you modify them) in top left corner of the screen.
+
+Version 1.3
+Added: New functional flora (46 new seeds).
+Added: Customizable picture frame: You can change it's size, orientation and frame border style by clicking on it, and also set its content image like regular picture frames (the window displaying images found in the screenshot folder appears).
+Added: Türkçe translation.
+Modified: Max range of the Lamp item increased.
+Fixed: Lab robot arm lighting is no longer clearly visible in dark places.
+Modified: Optimized texture-loading.
+Other minor bug fixes and adjustements.
+Fixed: Collinding boxes of following items: Seamoth doll, PRAWN suit doll, Forklift and Lamp (so now you can easily place them on any table, shelf and so on).
+
+Version 1.2.1
+Fixed: Some existing items like water bottles, nutrient blocks and few others were not being placed correctly.
+
+Version 1.2
+Added: Following items: Reaper skull, cargo crates (customizable), pen, pen holder, clipboard, 2 folders, paper trash, sofas (functional).
+Added: Editable labels on computers.
+Added: Customizable sizes for the forklift and cargo crates.
+Fixed: Full compatibility with Autosort Lockers and Habitat Control Panel mods (because SMLHelper has been updated to version 1.7).
+Fixed: Seamoth and PRAWN suit dolls can be placed on tables.
+Added: Make customized items (seamoth doll, PRAWN suit doll, lamps, cargo crates, forklift toy) are restored accordingly with their last state when loading a saved game.
+Added: An option to override default language (in the Confix.txt file).
+Other minor bug fixes and adjustements.
+
+Version 1.1
+Added: 5 bottles, 2 cups, 2 dishes, napkins, forklift doll, robot arm, PRAWN suit doll (you can change its model by clicking on it)
+Added: You can now place following items: Ion crystals and all precursor tablets.
+Added: The possibility to download this mod with either High-Quality textures or Low-Quality textures.
+Fixed: Lamp color can now be white (new default color). Also, the inner tube of the lamp can now be green.
+Fixed: Decoration items should not conflict with some existing in-game items anymore.
+Other minor bug fixes and adjustements.
+
+Version 1.0.8
+Changed: Textures and meshes of every dolls is now HQ.
+Other minor bug fixes and adjustements.
+
+Version 1.0.7
+Changed: Name of the mod is now "Decorations Mod" instead of "Decorations Fabricator Mod", so make sure to delete the old folder called "DecorationsFabricator".
+Added: You can now place eggs where you want.
+
+Version 1.0.6
+Added: Seamoth doll in the habitat builder menu ("Miscellaneous" section). Also you can switch its model by clicking on it.
+Fixed: Cuddlefish position.
+Added: A lamp that you can build everywhere (you'll find it in the "Exterior modules" section of the habitat builder).
+Added: Possibility to change the lamp color, range and brightness by clicking on it.
+
+Version 1.0.5
+Fixed: Bug where reactor rods were not functional anymore.
+Fixed: Nutrient bar position.
+Added: Cuddlefish doll and 7 new circuit boxes.
+Added: You can now place following items where you want: Eggs, Snacks.
+
+Version 1.0.4
+Fixed: Items were not appearing in Survival and Hardcore modes.
+Fixed: Reactor rod position.
+Added: You can now place following items where you want: Bleach bottle, Lubricant bottle, Stalker tooth, Nutrient block, Water bottles, First aid kit, Wiring kit, Advanced wiring kit, Computer chip.
+
+Version 1.0.3
+Initial release on NexusMods.
