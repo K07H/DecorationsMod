@@ -122,7 +122,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Yararsız açık örnek kaplar";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Offener glasbehälter (ohne Funktion)";
+                        return "Offener Glasbehälter (ohne Funktion)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Открытые стеклянные контейнеры";
                     else
@@ -2630,7 +2630,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Mevcut karasal bitkiler";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Bestehende terrestrische Pflanzen";
+                        return "Terrestrische Pflanzen";
                     else if (UserLanguage == CountryCode.RU)
                         return "Существующие наземные растения";
                     else
@@ -2682,7 +2682,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Mevcut sucul bitkiler";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Vorhandene Wasserpflanzen";
+                        return "Wasserpflanzen";
                     else if (UserLanguage == CountryCode.RU)
                         return "Существующие водные растения";
                     else
@@ -2760,7 +2760,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzun ekici";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Langer Pflanzer";
+                        return "Langer Pflanzentopf";
                     else if (UserLanguage == CountryCode.RU)
                         return "Долгожитель";
                     else
@@ -2773,7 +2773,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzun bir ekici (fonksiyonel).";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Ein langer Pflanzer (funktional).";
+                        return "Ein langer Pflanzentopf (funktional).";
                     else if (UserLanguage == CountryCode.RU)
                         return "Длинный плантатор (функциональный).";
                     else
