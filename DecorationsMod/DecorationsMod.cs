@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
-using SMLHelper;
-using SMLHelper.Patchers;
 using Harmony;
 using DecorationsMod.Fixers;
+using SMLHelper.V2;
+using SMLHelper.V2.Handlers;
+using SMLHelper.V2.Crafting;
 
 namespace DecorationsMod
 {
@@ -41,9 +42,9 @@ namespace DecorationsMod
             // 7) HARMONY PATCHING
             Logger.Log("Patching with Harmony...");
             // Patch dictionaries
-            Utility.PatchDictionary(typeof(CraftData), "backgroundTypes", CustomBackgroundTypes);
-            Utility.PatchDictionary(typeof(CraftData), "harvestFinalCutBonusList", CustomFinalCutBonusList);
-            Utility.PatchDictionary(typeof(BaseBioReactor), "charge", CustomCharges);
+            PatchUtils.PatchDictionary(typeof(CraftData), "backgroundTypes", CustomBackgroundTypes);
+            PatchUtils.PatchDictionary(typeof(CraftData), "harvestFinalCutBonusList", CustomFinalCutBonusList);
+            PatchUtils.PatchDictionary(typeof(BaseBioReactor), "charge", CustomCharges);
             // Give salt when purple pinecone is cut
             var giveResourceOnDamageMethod = typeof(Knife).GetMethod("GiveResourceOnDamage", BindingFlags.NonPublic | BindingFlags.Instance);
             var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);
@@ -82,14 +83,11 @@ namespace DecorationsMod
         private static void RegisterRecipeForTechType(TechType techType, TechType resource, int resourceAmount = 1, int craftAmount = 1)
         {
             // Associate recipe to the new TechType
-            CraftDataPatcher.customTechData[techType] = new TechDataHelper()
+            var recipe = new TechData(new List<Ingredient>(1)
             {
-                _craftAmount = craftAmount,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(resource, resourceAmount)
-                }),
-                _techType = techType
-            };
+                new Ingredient(resource, resourceAmount)
+            });
+            CraftDataHandler.SetTechData(techType, recipe);
         }
 
         private static List<IDecorationItem> RegisterDecorationItems()
@@ -110,7 +108,7 @@ namespace DecorationsMod
                 // Register item
                 existingItem.RegisterItem();
                 // Unlock item at game start
-                KnownTechPatcher.unlockedAtStart.Add(existingItem.TechType);
+                KnownTechHandler.UnlockOnStart(existingItem.TechType);
                 // Store item in the list
                 result.Add(existingItem);
             }
@@ -213,17 +211,17 @@ namespace DecorationsMod
             }
 
             // Register lamp tooltip
-            LanguagePatcher.customLines.Add("ToggleLamp", LanguageHelper.GetFriendlyWord("LampTooltip"));
+            LanguageHandler.SetLanguageLine("ToggleLamp", LanguageHelper.GetFriendlyWord("LampTooltip"));
             // Register seamoth doll tooltip
-            LanguagePatcher.customLines.Add("SwitchSeamothModel", LanguageHelper.GetFriendlyWord("SwitchSeamothModel"));
+            LanguageHandler.SetLanguageLine("SwitchSeamothModel", LanguageHelper.GetFriendlyWord("SwitchSeamothModel"));
             // Register exosuit doll tooltip
-            LanguagePatcher.customLines.Add("SwitchExosuitModel", LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
+            LanguageHandler.SetLanguageLine("SwitchExosuitModel", LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
             // Register cargo boxes tooltip
-            LanguagePatcher.customLines.Add("AdjustCargoBoxSize", LanguageHelper.GetFriendlyWord("AdjustCargoBoxSize"));
+            LanguageHandler.SetLanguageLine("AdjustCargoBoxSize", LanguageHelper.GetFriendlyWord("AdjustCargoBoxSize"));
             // Register forklift tooltip
-            LanguagePatcher.customLines.Add("AdjustForkliftSize", LanguageHelper.GetFriendlyWord("AdjustForkliftSize"));
+            LanguageHandler.SetLanguageLine("AdjustForkliftSize", LanguageHelper.GetFriendlyWord("AdjustForkliftSize"));
             // Register cove tree tooltip
-            LanguagePatcher.customLines.Add("DisplayCoveTreeEggs", LanguageHelper.GetFriendlyWord("DisplayCoveTreeEggs"));
+            LanguageHandler.SetLanguageLine("DisplayCoveTreeEggs", LanguageHelper.GetFriendlyWord("DisplayCoveTreeEggs"));
 
             return result;
         }

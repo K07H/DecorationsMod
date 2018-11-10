@@ -1,8 +1,8 @@
 ﻿using DecorationsMod.Controllers;
-using SMLHelper;
-using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.NewItems
 {
@@ -17,22 +17,17 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("cargobox01a");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CargoBox1aName"),
                                                         LanguageHelper.GetFriendlyWord("CargoBox1aDescription"),
                                                         true);
 
             this.IsHabitatBuilder = true;
 
-            this.Recipe = new TechDataHelper()
-            {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1]
-                    {
-                        new IngredientHelper(TechType.Titanium, 2)
-                    }),
-                _techType = this.TechType
-            };
+            this.Recipe = new TechData(new List<Ingredient>(1) 
+                {
+                    new Ingredient(TechType.Titanium, 2)
+                });
         }
 
         public override void RegisterItem()
@@ -102,17 +97,17 @@ namespace DecorationsMod.NewItems
                 var cargoBoxController = this.GameObject.AddComponent<CargoBoxController>();
 
                 // Add new TechType to the buildables
-                CraftDataPatcher.customBuildables.Add(this.TechType);
-                CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                CraftDataHandler.AddBuildable(this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, GetPrefab));
+                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, GetPrefab));
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("cargobox01aicon")));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("cargobox01aicon"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

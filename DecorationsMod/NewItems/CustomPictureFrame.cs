@@ -1,10 +1,10 @@
 ﻿using DecorationsMod.Controllers;
 using Harmony;
-using SMLHelper;
-using SMLHelper.Patchers;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.NewItems
 {
@@ -26,23 +26,18 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CustomPictureFrameName"),
                                                         LanguageHelper.GetFriendlyWord("CustomPictureFrameDescription"),
                                                         true);
 
             this.IsHabitatBuilder = true;
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new TechData(new List<Ingredient>(2)
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
-                    {
-                        new IngredientHelper(TechType.CopperWire, 1),
-                        new IngredientHelper(TechType.Glass, 1)
-                    }),
-                _techType = this.TechType
-            };
+                new Ingredient(TechType.CopperWire, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
         }
 
         public override void RegisterItem()
@@ -54,17 +49,17 @@ namespace DecorationsMod.NewItems
                 illum = AssetsHelper.Assets.LoadAsset<Texture>("poster_magnet_illum");
 
                 // Add new TechType to the buildables
-                CraftDataPatcher.customBuildables.Add(this.TechType);
-                CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                CraftDataHandler.AddBuildable(this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, DecorationItem.DefaultResourcePath + this.ClassID, this.TechType, this.GetPrefab));
+                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, DecorationItem.DefaultResourcePath + this.ClassID, this.TechType, this.GetPrefab));
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe")));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
                 
                 // Override OnHandHover
                 var pictureFrameType = typeof(PictureFrame);

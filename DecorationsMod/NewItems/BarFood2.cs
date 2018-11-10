@@ -1,7 +1,7 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.NewItems
 {
@@ -14,23 +14,18 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barfood02");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BarFood2Name"),
                                                         LanguageHelper.GetFriendlyWord("BarFood2Description"),
                                                         true);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new TechData(new List<Ingredient>(4)
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[4]
-                    {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.DisinfectedWater, 1),
-                        new IngredientHelper(TechType.CuredReginald, 1),
-                        new IngredientHelper(TechType.Melon, 1)
-                    }),
-                _techType = this.TechType
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.DisinfectedWater, 1),
+                new Ingredient(TechType.CuredReginald, 1),
+                new Ingredient(TechType.Melon, 1)
+            });
         }
 
         public override void RegisterItem()
@@ -111,16 +106,16 @@ namespace DecorationsMod.NewItems
                 eatable.despawnDelay = 0;
 
                 // Add the new TechType to Hand Equipment type.
-                CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
+                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("barfood02icon")));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("barfood02icon"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

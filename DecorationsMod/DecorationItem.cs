@@ -1,6 +1,6 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using UnityEngine;
+﻿using UnityEngine;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod
 {
@@ -41,7 +41,7 @@ namespace DecorationsMod
         public TechType TechType { get; set; }
 
         // The item recipe
-        public TechDataHelper Recipe { get; set; }
+        public TechData Recipe { get; set; }
 
         #endregion
         #region Abstract and virtual methods
@@ -86,11 +86,11 @@ namespace DecorationsMod
                 }
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
+                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
 
                 // Associate new recipe
                 if (this.Recipe != null)
-                    CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                    CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

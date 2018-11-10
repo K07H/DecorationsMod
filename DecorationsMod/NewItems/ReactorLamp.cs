@@ -1,8 +1,8 @@
 ﻿using DecorationsMod.Controllers;
-using SMLHelper;
-using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.NewItems
 {
@@ -15,26 +15,20 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("nuclearreactorrod_white");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ReactorLampName"),
                                                         LanguageHelper.GetFriendlyWord("ReactorLampDescription"),
                                                         true);
 
             this.IsHabitatBuilder = true;
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new TechData(new List<Ingredient>(4)
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[4]
-                    {
-                        new IngredientHelper(TechType.ComputerChip, 1),
-                        new IngredientHelper(TechType.Glass, 1),
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.Diamond, 1)
-                        
-                    }),
-                _techType = this.TechType
-            };
+                new Ingredient(TechType.ComputerChip, 1),
+                new Ingredient(TechType.Glass, 1),
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Diamond, 1)
+            });
         }
 
         public override void RegisterItem()
@@ -131,17 +125,17 @@ namespace DecorationsMod.NewItems
                 var lampBrightness = this.GameObject.AddComponent<ReactorLampBrightness>();
 
                 // Add new TechType to the buildables
-                CraftDataPatcher.customBuildables.Add(this.TechType);
-                CraftDataPatcher.AddToCustomGroup(TechGroup.ExteriorModules, TechCategory.ExteriorOther, this.TechType);
+                CraftDataHandler.AddBuildable(this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorOther, this.TechType);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
                 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("reactorrod_white")));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("reactorrod_white"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

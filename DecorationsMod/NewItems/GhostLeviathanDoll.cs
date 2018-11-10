@@ -1,7 +1,7 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.NewItems
 {
@@ -14,22 +14,17 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("ghostleviathan");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("GhostLeviathanDollName"),
                                                         LanguageHelper.GetFriendlyWord("GhostLeviathanDollDescription"),
                                                         true);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new TechData(new List<Ingredient>(3)
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[3]
-                    {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.FiberMesh, 1),
-                        new IngredientHelper(TechType.Silicone, 1)
-                    }),
-                _techType = this.TechType
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.FiberMesh, 1),
+                new Ingredient(TechType.Silicone, 1)
+            });
         }
 
         public override void RegisterItem()
@@ -134,19 +129,19 @@ namespace DecorationsMod.NewItems
                 placeTool.holsterTime = 0.35f;
 
                 // Set item occupies 4 slots
-                CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(2, 2);
+                 CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Hand Equipment type.
-                CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, GetPrefab));
+                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, GetPrefab));
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("ghostleviathanicon")));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("ghostleviathanicon"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

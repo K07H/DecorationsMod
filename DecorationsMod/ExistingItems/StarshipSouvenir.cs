@@ -1,6 +1,6 @@
-﻿using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using SMLHelper.V2.Crafting;
 
 namespace DecorationsMod.ExistingItems
 {
@@ -15,16 +15,11 @@ namespace DecorationsMod.ExistingItems
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new TechData(new List<Ingredient>(2)
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
-                    {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.Glass, 1)
-                    }),
-                _techType = this.TechType
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
         }
 
         public override GameObject GetPrefab()

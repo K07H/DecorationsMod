@@ -1,7 +1,7 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.NewItems
 {
@@ -20,7 +20,7 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SofaCorner2Name"),
                                                         LanguageHelper.GetFriendlyWord("SofaCorner2Description"),
                                                         true);
@@ -30,16 +30,11 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.SofaCorner2_asBuidable)
                 this.IsHabitatBuilder = true;
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new TechData(new List<Ingredient>(2)
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
-                    {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.FiberMesh, 1)
-                    }),
-                _techType = this.TechType
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.FiberMesh, 1)
+            });
         }
 
         public override void RegisterItem()
@@ -52,26 +47,26 @@ namespace DecorationsMod.NewItems
                 if (ConfigSwitcher.SofaCorner2_asBuidable)
                 {
                     // Add new TechType to the buildables
-                    CraftDataPatcher.customBuildables.Add(this.TechType);
-                    CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                    CraftDataHandler.AddBuildable(this.TechType);
+                    CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
                 }
                 else
                 {
                     // Set item occupies 4 slots
-                    CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(2, 2);
+                     CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                     // Add the new TechType to Hand Equipment type.
-                    CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                    CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
                 }
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, DecorationItem.DefaultResourcePath + this.ClassID, this.TechType, this.GetPrefab));
+                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, DecorationItem.DefaultResourcePath + this.ClassID, this.TechType, this.GetPrefab));
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("sofacorner02icon")));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("sofacorner02icon"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

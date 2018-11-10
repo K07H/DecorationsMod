@@ -1,8 +1,8 @@
 ﻿using DecorationsMod.Controllers;
-using SMLHelper;
-using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.FloraAquatic
 {
@@ -22,19 +22,15 @@ namespace DecorationsMod.FloraAquatic
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LostRiverPlantName"),
                                                         LanguageHelper.GetFriendlyWord("LostRiverPlantDescription"),
                                                         true);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new TechData(new List<Ingredient>(1)
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(ConfigSwitcher.FloraRecipiesResource, 1)
-                }),
-                _techType = this.TechType
-            };
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+            });
 
             this.Config = ConfigSwitcher.config_LostRiverPlant4;
         }
@@ -44,11 +40,11 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Set item occupies 4 slots
-                CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(2, 2);
+                 CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                CraftDataPatcher.customHarvestTypeList.Add(this.TechType, HarvestType.DamageAlive);
-                CraftDataPatcher.customHarvestOutputList.Add(this.TechType, this.TechType);
+                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to water-plant seed
                 // TODO: Replace with a call to SMLHelper when pull request gets released
@@ -59,13 +55,13 @@ namespace DecorationsMod.FloraAquatic
                 DecorationsMod.CustomCharges.Add(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("lostriverplant5icon")));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("lostriverplant5icon"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

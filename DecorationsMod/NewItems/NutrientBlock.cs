@@ -1,7 +1,7 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.NewItems
 {
@@ -13,25 +13,20 @@ namespace DecorationsMod.NewItems
             this.ResourcePath = "WorldEntities/Food/NutrientBlock";
 
             this.TechType = TechType.NutrientBlock;
-            KnownTechPatcher.unlockedAtStart.Add(this.TechType);
+            KnownTechHandler.UnlockOnStart(this.TechType);
 
             this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new TechData(new List<Ingredient>(7)
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[7]
-                    {
-                        new IngredientHelper(TechType.Melon, 1),
-                        new IngredientHelper(TechType.HangingFruit, 1),
-                        new IngredientHelper(TechType.PurpleVegetable, 1),
-                        new IngredientHelper(TechType.BulboTreePiece, 1),
-                        new IngredientHelper(TechType.CreepvinePiece, 1),
-                        new IngredientHelper(TechType.JellyPlant, 1),
-                        new IngredientHelper(TechType.KooshChunk, 1)
-                    }),
-                _techType = this.TechType
-            };
+                new Ingredient(TechType.Melon, 1),
+                new Ingredient(TechType.HangingFruit, 1),
+                new Ingredient(TechType.PurpleVegetable, 1),
+                new Ingredient(TechType.BulboTreePiece, 1),
+                new Ingredient(TechType.CreepvinePiece, 1),
+                new Ingredient(TechType.JellyPlant, 1),
+                new Ingredient(TechType.KooshChunk, 1)
+            });
         }
 
         public override void RegisterItem()
@@ -39,13 +34,13 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Add the new TechType to the hand-equipments
-                CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
+                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
                 // Set the custom icon
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, SpriteManager.Get(TechType.NutrientBlock)));
+                SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.NutrientBlock));
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
