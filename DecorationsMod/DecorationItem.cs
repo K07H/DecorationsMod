@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
+using SMLHelper.V2.Assets;
 
 namespace DecorationsMod
 {
+    
     public interface IDecorationItem
     {
         // Property signatures
-        string ClassID { get; set; }
-        TechType TechType { get; set; }
+        string ClassID { get; }
+        TechType TechType { get; }
 
         // Method signatures
-        GameObject GetPrefab();
+        GameObject GetGameObject();
         void RegisterItem();
     }
-
-    public abstract class DecorationItem : IDecorationItem
+    
+    public abstract class DecorationItem : ModPrefab, IDecorationItem
     {
         #region Attributes
 
@@ -29,7 +31,7 @@ namespace DecorationsMod
         public bool IsHabitatBuilder = false;
 
         // The item class ID
-        public string ClassID { get; set; }
+        //public string ClassID { get; set; }
 
         // The item resource path
         public string ResourcePath { get; set; }
@@ -38,7 +40,7 @@ namespace DecorationsMod
         public GameObject GameObject { get; set; }
 
         // The item TechType
-        public TechType TechType { get; set; }
+        //public TechType TechType { get; set; }
 
         // The item recipe
         public TechData Recipe { get; set; }
@@ -46,7 +48,7 @@ namespace DecorationsMod
         #endregion
         #region Abstract and virtual methods
 
-        public abstract GameObject GetPrefab();
+        //public abstract GameObject GetGameObject();
 
         public virtual void RegisterItem()
         {
@@ -86,7 +88,7 @@ namespace DecorationsMod
                 }
 
                 // Set the buildable prefab
-                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
+                PrefabHandler.RegisterPrefab(new MyWrapperPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetGameObject));
 
                 // Associate new recipe
                 if (this.Recipe != null)

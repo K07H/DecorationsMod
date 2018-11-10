@@ -21,7 +21,7 @@ namespace DecorationsMod.ExistingItems
             });
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

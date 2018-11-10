@@ -104,7 +104,7 @@ namespace DecorationsMod.NewItems
                 CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set the buildable prefab
-                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, GetPrefab));
+                PrefabHandler.RegisterPrefab(new MyWrapperPrefab(this.ClassID, this.ResourcePath, this.TechType, GetGameObject));
 
                 // Set the custom sprite
                 SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("paper1icon"));
@@ -116,7 +116,7 @@ namespace DecorationsMod.NewItems
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

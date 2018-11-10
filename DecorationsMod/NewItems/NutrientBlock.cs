@@ -36,7 +36,7 @@ namespace DecorationsMod.NewItems
                 // Add the new TechType to the hand-equipments
                 CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
                 // Set the buildable prefab
-                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
+                PrefabHandler.RegisterPrefab(new MyWrapperPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetGameObject));
                 // Set the custom icon
                 SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.NutrientBlock));
                 // Associate recipe to the new TechType
@@ -46,7 +46,7 @@ namespace DecorationsMod.NewItems
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

@@ -76,7 +76,7 @@ namespace DecorationsMod.Flora
                 //Handlers.BaseBioReactorHandler.EditBioReactorCharge(this.TechType, 500.0f);
 
                 // Set the buildable prefab
-                SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                PrefabHandler.RegisterPrefab(new MyWrapperPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetGameObject));
 
                 // Set the custom sprite
                 SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("landtree1seedicon"));
@@ -88,7 +88,7 @@ namespace DecorationsMod.Flora
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject staticPrefab = GameObject.Instantiate(this.staticPart);

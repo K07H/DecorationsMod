@@ -37,7 +37,7 @@ namespace DecorationsMod
             CraftDataHandler.AddBuildable(DecorationsFabTechType);
             CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, DecorationsFabTechType);
             // Set buildable prefab
-            SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(DecorationsFabID, $"Submarine/Build/{DecorationsFabID}", DecorationsFabTechType, GetCustomFabPrefab));
+            PrefabHandler.RegisterPrefab(new MyWrapperPrefab(DecorationsFabID, $"Submarine/Build/{DecorationsFabID}", DecorationsFabTechType, GetCustomFabPrefab));
             // Set custom sprite for the Habitat Builder Tool menu
             SpriteHandler.RegisterSprite(DecorationsFabTechType, AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_purple"));
             // Create and associate recipe to the new TechType
@@ -270,7 +270,7 @@ namespace DecorationsMod
             CraftDataHandler.AddBuildable(FloraFabTechType);
             CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, FloraFabTechType);
             // Set buildable prefab
-            SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(FloraFabID, $"Submarine/Build/{FloraFabID}", FloraFabTechType, GetFloraFabPrefab));
+            PrefabHandler.RegisterPrefab(new MyWrapperPrefab(FloraFabID, $"Submarine/Build/{FloraFabID}", FloraFabTechType, GetFloraFabPrefab));
             // Set custom sprite for the Habitat Builder Tool menu
             SpriteHandler.RegisterSprite(FloraFabTechType, AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_green"));
             // Create and associate recipe to the new TechType
