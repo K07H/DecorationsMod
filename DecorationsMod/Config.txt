@@ -98,9 +98,9 @@ config_CoralPlantRed=1600/10/120
 config_CoralPlantPurple=1600/10/120
 
 # If "true", all existing air seeds will be added to the seeds fabricator.
-addRegularAirSeeds=true
+addRegularAirSeeds=false
 # If "true", all existing water seeds will be added to the seeds fabricator.
-addRegularWaterSeeds=true
+addRegularWaterSeeds=false
 
 # If "true", cove trees bellow 100m depth having eggs displayed will spawn Juvenile Ghost Leviatan after a certain amount of time.
 GhostLeviatan_enable=false
