@@ -99,7 +99,6 @@
     <Compile Include="Controllers\PlantGenericController.cs" />
     <Compile Include="Controllers\LandTree1Controller.cs" />
     <Compile Include="CustomConstructables.cs" />
-    <Compile Include="CustomFabricator.cs" />
     <Compile Include="CustomFlora.cs" />
     <Compile Include="CustomPlaceTools.cs" />
     <Compile Include="DecorationsMod.cs" />

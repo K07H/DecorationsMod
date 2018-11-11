@@ -15,16 +15,12 @@ namespace DecorationsMod
 
         public const string HandOverText = "UseDecorationsFabricator";
 
-        //private readonly ModdedItemsConfig ModdedItems = new ModdedItemsConfig();
-
         internal Fabricator_Decorations() : base(DecorationsFabID, $"{DecorationsFabID}PreFab")
         {
         }
 
         public void RegisterDecorationsFabricator(List<IDecorationItem> decorationItems)
         {
-            //ModdedItems.Initialize();
-
             // Create new Craft Tree Type
             ModCraftTreeRoot rootNode = CreateCustomTree(out CraftTree.Type craftType, decorationItems);
             this.TreeTypeID = craftType;
@@ -69,9 +65,6 @@ namespace DecorationsMod
 
         private ModCraftTreeRoot CreateCustomTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems)
         {
-            //if (!ModdedItems.IsInitialized)
-            //    ModdedItems.Initialize();
-
             ModCraftTreeRoot rootNode = CraftTreeHandler.CreateCustomCraftTreeAndType(DecorationsFabID, out craftType);
 
             // POSTERS
