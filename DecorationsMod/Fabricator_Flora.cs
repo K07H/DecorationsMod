@@ -67,18 +67,37 @@ namespace DecorationsMod
         {
             ModCraftTreeRoot rootNode = CraftTreeHandler.CreateCustomCraftTreeAndType(FloraFabID, out craftType);
 
+            ModCraftTreeTab plantAirTab = null;
+            ModCraftTreeTab treeAirTab = null;
+            ModCraftTreeTab tropicalPlantTab = null;
+            if (ConfigSwitcher.UseFlatScreenResolution)
+            {
+                // Additional tab
+                ModCraftTreeTab airSeedsTab = rootNode.AddTabNode("AirSeedsTab", LanguageHelper.GetFriendlyWord("AirSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("landtree1seedicon"));
+
+                // Plant Air
+                plantAirTab = airSeedsTab.AddTabNode("PlantAirTab", LanguageHelper.GetFriendlyWord("PlantAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("landplant1icon"));
+                // Tree Air
+                treeAirTab = airSeedsTab.AddTabNode("TreeAirTab", LanguageHelper.GetFriendlyWord("TreeAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("landtree1seedicon"));
+                // Tropical
+                tropicalPlantTab = airSeedsTab.AddTabNode("TropicalPlantTab", LanguageHelper.GetFriendlyWord("TropicalPlantTab"), AssetsHelper.Assets.LoadAsset<Sprite>("tropicalplant1bicon"));
+            }
+            else
+            {
+                // Plant Air
+                plantAirTab = rootNode.AddTabNode("PlantAirTab", LanguageHelper.GetFriendlyWord("PlantAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("landplant1icon"));
+                // Tree Air
+                treeAirTab = rootNode.AddTabNode("TreeAirTab", LanguageHelper.GetFriendlyWord("TreeAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("landtree1seedicon"));
+                // Tropical
+                tropicalPlantTab = rootNode.AddTabNode("TropicalPlantTab", LanguageHelper.GetFriendlyWord("TropicalPlantTab"), AssetsHelper.Assets.LoadAsset<Sprite>("tropicalplant1bicon"));
+            }
             // Plant Air
-            var plantAirTab = rootNode.AddTabNode("PlantAirTab", LanguageHelper.GetFriendlyWord("PlantAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("landplant1icon"));
             plantAirTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LandPlant1"),
                                         DecorationItemsHelper.getTechType(decorationItems, "LandPlant2"),
                                         DecorationItemsHelper.getTechType(decorationItems, "LandPlant3"),
                                         DecorationItemsHelper.getTechType(decorationItems, "LandPlant4"),
-                                        DecorationItemsHelper.getTechType(decorationItems, "LandPlant5"),
-                                        DecorationItemsHelper.getTechType(decorationItems, "Fern2"),
-                                        DecorationItemsHelper.getTechType(decorationItems, "Fern4"));
-
+                                        DecorationItemsHelper.getTechType(decorationItems, "LandPlant5"));
             // Tree Air
-            var treeAirTab = rootNode.AddTabNode("TreeAirTab", LanguageHelper.GetFriendlyWord("TreeAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("landtree1seedicon"));
             treeAirTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LandTree1"),
                                        DecorationItemsHelper.getTechType(decorationItems, "JungleTree1"),
                                        DecorationItemsHelper.getTechType(decorationItems, "JungleTree2"),
@@ -86,9 +105,7 @@ namespace DecorationsMod
                                        DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant3b"),
                                        DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant6a"),
                                        DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant6b"));
-
             // Tropical
-            var tropicalPlantTab = rootNode.AddTabNode("TropicalPlantTab", LanguageHelper.GetFriendlyWord("TropicalPlantTab"), AssetsHelper.Assets.LoadAsset<Sprite>("tropicalplant1bicon"));
             tropicalPlantTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant1a"),
                                              DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant1b"),
                                              DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant2a"),
@@ -96,7 +113,9 @@ namespace DecorationsMod
                                              DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant7a"),
                                              DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant7b"),
                                              DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant10a"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant10b"));
+                                             DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant10b"),
+                                             DecorationItemsHelper.getTechType(decorationItems, "Fern2"),
+                                             DecorationItemsHelper.getTechType(decorationItems, "Fern4"));
 
             // Existing air seeds from the game
             if (ConfigSwitcher.EnableRegularAirSeeds)
@@ -164,16 +183,32 @@ namespace DecorationsMod
                                                       TechType.KooshChunk);
             }
 
+            ModCraftTreeTab plantWaterTab = null;
+            ModCraftTreeTab treeWaterTab = null;
+            if (ConfigSwitcher.UseFlatScreenResolution)
+            {
+                // Additional tab
+                ModCraftTreeTab waterSeedsTab = rootNode.AddTabNode("WaterSeedsTab", LanguageHelper.GetFriendlyWord("WaterSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("floatingstone1icon"));
+
+                // Plant Water
+                plantWaterTab = waterSeedsTab.AddTabNode("PlantWaterTab", LanguageHelper.GetFriendlyWord("PlantWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("spottedreedsicon"));
+                // Tree Water
+                treeWaterTab = waterSeedsTab.AddTabNode("TreeWaterTab", LanguageHelper.GetFriendlyWord("TreeWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("floatingstone1icon"));
+            }
+            else
+            {
+                // Plant Water
+                plantWaterTab = rootNode.AddTabNode("PlantWaterTab", LanguageHelper.GetFriendlyWord("PlantWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("spottedreedsicon"));
+                // Tree Water
+                treeWaterTab = rootNode.AddTabNode("TreeWaterTab", LanguageHelper.GetFriendlyWord("TreeWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("floatingstone1icon"));
+            }
             // Plant Water
-            var plantWaterTab = rootNode.AddTabNode("PlantWaterTab", LanguageHelper.GetFriendlyWord("PlantWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("spottedreedsicon"));
             plantWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GreenReeds1"),
                                           DecorationItemsHelper.getTechType(decorationItems, "GreenReeds6"),
                                           DecorationItemsHelper.getTechType(decorationItems, "LostRiverPlant2"),
                                           DecorationItemsHelper.getTechType(decorationItems, "LostRiverPlant4"),
                                           DecorationItemsHelper.getTechType(decorationItems, "PlantMiddle11"));
-
             // Tree Water
-            var treeWaterTab = rootNode.AddTabNode("TreeWaterTab", LanguageHelper.GetFriendlyWord("TreeWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("floatingstone1icon"));
             treeWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp2"),
                                          DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp1"),
                                          DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp3"),
@@ -181,14 +216,6 @@ namespace DecorationsMod
                                          DecorationItemsHelper.getTechType(decorationItems, "PyroCoral2"),
                                          DecorationItemsHelper.getTechType(decorationItems, "PyroCoral3"),
                                          DecorationItemsHelper.getTechType(decorationItems, "FloatingStone1"));
-
-            // Coral Water
-            var coralWaterTab = rootNode.AddTabNode("CoralWaterTab", LanguageHelper.GetFriendlyWord("CoralWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("flora_smalldeco10icon"));
-            coralWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BrownCoralTubes1"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "BrownCoralTubes2"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "BrownCoralTubes3"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "BlueCoralTubes1"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "SmallDeco10"));
 
             // Amphibious plants
             var amphibiousPlantsTab = rootNode.AddTabNode("AmphibiousPlantsTab", LanguageHelper.GetFriendlyWord("AmphibiousPlantsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("covetreeicon"));
@@ -199,6 +226,14 @@ namespace DecorationsMod
                                                 DecorationItemsHelper.getTechType(decorationItems, "SmallDeco14"),
                                                 DecorationItemsHelper.getTechType(decorationItems, "SmallDeco15Red"),
                                                 DecorationItemsHelper.getTechType(decorationItems, "SmallDeco17Purple"));
+
+            // Coral Water
+            var coralWaterTab = rootNode.AddTabNode("CoralWaterTab", LanguageHelper.GetFriendlyWord("CoralWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("flora_smalldeco10icon"));
+            coralWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BrownCoralTubes1"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BrownCoralTubes2"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BrownCoralTubes3"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BlueCoralTubes1"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "SmallDeco10"));
 
             return rootNode;
         }

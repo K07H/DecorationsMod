@@ -3,6 +3,9 @@
 # "tr" for Turkish, "ru" for Russian and "auto" for default language.
 language=auto
 
+# Set to "true" if some items in Decorations Fabricator or Seeds Fabricator are not visible because they don't fit in screen.
+useFlatScreenResolution=false
+
 # If "true", more items from this mod will be buildable outside bases.
 allowBuildOutside=false
 
