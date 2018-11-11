@@ -1,8 +1,8 @@
 ﻿using DecorationsMod.Controllers;
+using SMLHelper;
+using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.Flora
 {
@@ -26,19 +26,22 @@ namespace DecorationsMod.Flora
         public LandTree1()
         {
             this.ClassID = "LandTree1"; // 1cc51be0-8ea9-4730-936f-23b562a9256f
-            this.ResourcePath = "WorldEntities/Doodads/Land/Land_tree_01";
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+ 
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Land/Land_tree_01");
             
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
-            
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LandTree1Name"),
                                                         LanguageHelper.GetFriendlyWord("LandTree1Description"),
                                                         true);
 
-            this.Recipe = new TechData(new List<Ingredient>(1)
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
-            });
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                }),
+            };
 
             this.Config = ConfigSwitcher.config_LandTree1;
         }
@@ -59,30 +62,30 @@ namespace DecorationsMod.Flora
                 spec2 = AssetsHelper.Assets.LoadAsset<Texture>("Land_tree_01_leaves_spec");
 
                 // Set item occupies 4 slots
-                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to air-plant seed
                 // TODO: Replace with a call to SMLHelper when pull request gets released
                 DecorationsMod.CustomBackgroundTypes.Add(this.TechType, CraftData.BackgroundType.PlantAirSeed);
-                //CraftDataHandler.EditBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
+                //SMLHelper.V2.Handlers.CraftDataHandler.EditBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
                 
                 // Set item bioreactor charge
                 // TODO: Replace with a call to SMLHelper when pull request gets released
                 DecorationsMod.CustomCharges.Add(this.TechType, this.Config.Charge);
-                //Handlers.BaseBioReactorHandler.EditBioReactorCharge(this.TechType, 500.0f);
+                //SMLHelper.V2.Handlers.BaseBioReactorHandler.EditBioReactorCharge(this.TechType, 500.0f);
 
                 // Set the buildable prefab
-                PrefabHandler.RegisterPrefab(new MyWrapperPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetGameObject));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("landtree1seedicon"));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("landtree1seedicon"));
 
                 // Associate recipe to the new TechType
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

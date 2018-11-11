@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SMLHelper.Patchers;
+using System.Collections.Generic;
 using UnityEngine;
-using SMLHelper.V2.Crafting;
 
 namespace DecorationsMod.ExistingItems
 {
@@ -9,17 +9,21 @@ namespace DecorationsMod.ExistingItems
         public LabEquipment2() // Feeds abstract class
         {
             this.ClassID = "9c5f22de-5049-48bb-ad1e-0d78c894210e";
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_02";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_02";
 
             this.TechType = TechType.LabEquipment2;
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechData(new List<Ingredient>(2)
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                new Ingredient(TechType.Titanium, 1),
-                new Ingredient(TechType.Glass, 1)
-            });
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
+                    {
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
+                    }),
+            };
         }
 
         public override GameObject GetGameObject()

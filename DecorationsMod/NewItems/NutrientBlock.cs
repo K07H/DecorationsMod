@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using SMLHelper;
+using SMLHelper.Patchers;
+using System.Collections.Generic;
 using UnityEngine;
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.NewItems
 {
@@ -10,23 +10,27 @@ namespace DecorationsMod.NewItems
         public NutrientBlock() // Feeds abstract class
         {
             this.ClassID = "30373750-1292-4034-9797-387cf576d150";
-            this.ResourcePath = "WorldEntities/Food/NutrientBlock";
+            this.PrefabFileName = "WorldEntities/Food/NutrientBlock";
 
             this.TechType = TechType.NutrientBlock;
-            KnownTechHandler.UnlockOnStart(this.TechType);
+            SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(this.TechType);
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechData(new List<Ingredient>(7)
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                new Ingredient(TechType.Melon, 1),
-                new Ingredient(TechType.HangingFruit, 1),
-                new Ingredient(TechType.PurpleVegetable, 1),
-                new Ingredient(TechType.BulboTreePiece, 1),
-                new Ingredient(TechType.CreepvinePiece, 1),
-                new Ingredient(TechType.JellyPlant, 1),
-                new Ingredient(TechType.KooshChunk, 1)
-            });
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[7]
+                    {
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Melon, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.HangingFruit, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.PurpleVegetable, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.BulboTreePiece, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.CreepvinePiece, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.JellyPlant, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.KooshChunk, 1)
+                    }),
+            };
         }
 
         public override void RegisterItem()
@@ -34,13 +38,13 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Add the new TechType to the hand-equipments
-                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
                 // Set the buildable prefab
-                PrefabHandler.RegisterPrefab(new MyWrapperPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetGameObject));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
                 // Set the custom icon
-                SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.NutrientBlock));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.NutrientBlock));
                 // Associate recipe to the new TechType
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

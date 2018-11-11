@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SMLHelper.Patchers;
+using System.Collections.Generic;
 using UnityEngine;
-using SMLHelper.V2.Crafting;
 
 namespace DecorationsMod.ExistingItems
 {
@@ -9,17 +9,21 @@ namespace DecorationsMod.ExistingItems
         public PosterAurora() // Feeds abstract class
         {
             this.ClassID = "876cbea4-b4bf-4311-8264-5118bfef291c";
-            this.ResourcePath = "WorldEntities/Environment/Wrecks/poster_aurora";
+            this.PrefabFileName = "WorldEntities/Environment/Wrecks/poster_aurora";
 
             this.TechType = TechType.PosterAurora;
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechData(new List<Ingredient>(2)
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                new Ingredient(TechType.Titanium, 1),
-                new Ingredient(TechType.FiberMesh, 1)
-            });
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
+                    {
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
+                    }),
+            };
         }
         
         public override GameObject GetGameObject()

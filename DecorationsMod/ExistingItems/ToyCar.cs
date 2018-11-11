@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SMLHelper.Patchers;
+using System.Collections.Generic;
 using UnityEngine;
-using SMLHelper.V2.Crafting;
 
 namespace DecorationsMod.ExistingItems
 {
@@ -9,18 +9,22 @@ namespace DecorationsMod.ExistingItems
         public ToyCar() // Feeds abstract class
         {
             this.ClassID = "dfabc84e-c4c5-45d9-8b01-ca0eaeeb8e65";
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/Goldglove_car_02";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/Goldglove_car_02";
 
             this.TechType = TechType.ToyCar;
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechData(new List<Ingredient>(3)
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                new Ingredient(TechType.Titanium, 1),
-                new Ingredient(TechType.Glass, 1),
-                new Ingredient(TechType.Silicone, 1)
-            });
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[3]
+                    {
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
+                    }),
+            };
         }
 
         public override GameObject GetGameObject()

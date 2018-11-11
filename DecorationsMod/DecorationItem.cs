@@ -1,15 +1,14 @@
-﻿using UnityEngine;
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-using SMLHelper.V2.Assets;
+﻿using SMLHelper;
+using SMLHelper.Patchers;
+using UnityEngine;
 
 namespace DecorationsMod
 {
-    
     public interface IDecorationItem
     {
         // Property signatures
         string ClassID { get; }
+        string PrefabFileName { get; }
         TechType TechType { get; }
 
         // Method signatures
@@ -17,8 +16,13 @@ namespace DecorationsMod
         void RegisterItem();
     }
     
-    public abstract class DecorationItem : ModPrefab, IDecorationItem
+    public abstract class DecorationItem : SMLHelper.V2.Assets.ModPrefab, IDecorationItem
     {
+        #region Constructor
+
+        public DecorationItem() : base("", "") { }
+
+        #endregion
         #region Attributes
 
         // This is used as the default path when we add a new resource to the game
@@ -29,21 +33,15 @@ namespace DecorationsMod
 
         // This is used to know if item appears in habitat builder menu
         public bool IsHabitatBuilder = false;
-
-        // The item class ID
-        //public string ClassID { get; set; }
-
+        
         // The item resource path
-        public string ResourcePath { get; set; }
+        //public string PrefabFileName { get; set; }
         
         // The item root GameObject
         public GameObject GameObject { get; set; }
-
-        // The item TechType
-        //public TechType TechType { get; set; }
-
+        
         // The item recipe
-        public TechData Recipe { get; set; }
+        public SMLHelper.V2.Crafting.TechData Recipe { get; set; }
 
         #endregion
         #region Abstract and virtual methods
@@ -88,11 +86,11 @@ namespace DecorationsMod
                 }
 
                 // Set the buildable prefab
-                PrefabHandler.RegisterPrefab(new MyWrapperPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetGameObject));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Associate new recipe
                 if (this.Recipe != null)
-                    CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

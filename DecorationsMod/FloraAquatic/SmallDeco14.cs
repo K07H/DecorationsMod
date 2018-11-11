@@ -1,8 +1,9 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
+using SMLHelper;
+using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.FloraAquatic
 {
@@ -18,19 +19,22 @@ namespace DecorationsMod.FloraAquatic
         public SmallDeco14()
         {
             this.ClassID = "SmallDeco14"; // c87e584c-7e38-4589-b408-8eca51f474c1
-            this.ResourcePath = "WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_14";
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_14");
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SmallDeco14Name"),
                                                         LanguageHelper.GetFriendlyWord("AlienFloraSampleDescription"),
                                                         true);
             
-            this.Recipe = new TechData(new List<Ingredient>(1)
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
-            });
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                }),
+            };
 
             this.Config = ConfigSwitcher.config_SmallDeco14;
         }
@@ -40,11 +44,11 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Set item occupies 4 slots
-                 CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Set item background to normal (both land & water plant)
                 // TODO: Replace with a call to SMLHelper when pull request gets released
@@ -59,13 +63,13 @@ namespace DecorationsMod.FloraAquatic
                 DecorationsMod.CustomFinalCutBonusList.Add(this.TechType, 1);
 
                 // Set the buildable prefab
-                PrefabHandler.RegisterPrefab(new MyWrapperPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetGameObject));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("flora_smalldeco14icon"));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("flora_smalldeco14icon"));
 
                 // Associate recipe to the new TechType
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

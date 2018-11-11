@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SMLHelper.Patchers;
+using System.Collections.Generic;
 using UnityEngine;
-using SMLHelper.V2.Crafting;
 
 namespace DecorationsMod.ExistingItems
 {
@@ -9,16 +9,20 @@ namespace DecorationsMod.ExistingItems
         public Cap2() // Feeds abstract class
         {
             this.ClassID = "3dc40631-2945-4109-acdc-823a9a0a8646";
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_03";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_03";
 
             this.TechType = TechType.Cap2;
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechData(new List<Ingredient>(1)
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                new Ingredient(TechType.FiberMesh, 1)
-            });
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
+                    {
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
+                    }),
+            };
         }
 
         public override GameObject GetGameObject()

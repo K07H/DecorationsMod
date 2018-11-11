@@ -260,7 +260,6 @@
     <Compile Include="QPatch.cs" />
     <Compile Include="Controllers\SeamothDollController.cs" />
     <Compile Include="Utilities.cs" />
-    <Compile Include="MyWrapperPrefab.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\decorationassets.assets">
@@ -303,7 +302,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SMLHelper\SMLHelper\SMLHelper.csproj">
+    <ProjectReference Include="..\..\SMLHelperV2\SMLHelper\SMLHelper.csproj">
       <Project>{418502dd-372d-4ef9-8021-b262552dfede}</Project>
       <Name>SMLHelper</Name>
     </ProjectReference>

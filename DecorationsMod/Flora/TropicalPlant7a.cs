@@ -1,8 +1,8 @@
 ﻿using DecorationsMod.Controllers;
+using SMLHelper;
+using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
 
 namespace DecorationsMod.Flora
 {
@@ -18,19 +18,22 @@ namespace DecorationsMod.Flora
         public TropicalPlant7a()
         {
             this.ClassID = "TropicalPlant7a"; // 7518da03-0e05-4d11-b154-8b192a9eab38
-            this.ResourcePath = "WorldEntities/Doodads/Land/Tropical Plant 7a";
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Land/Tropical Plant 7a");
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (E)",
                                                         LanguageHelper.GetFriendlyWord("TropicalPlantDescription"),
                                                         true);
 
-            this.Recipe = new TechData(new List<Ingredient>(1)
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
-            });
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                }),
+            };
 
             this.Config = ConfigSwitcher.config_TropicalPlantE;
         }
@@ -40,11 +43,11 @@ namespace DecorationsMod.Flora
             if (this.IsRegistered == false)
             {
                 // Set item occupies 4 slots
-                 CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to air-plant seed
                 // TODO: Replace with a call to SMLHelper when pull request gets released
@@ -55,13 +58,13 @@ namespace DecorationsMod.Flora
                 DecorationsMod.CustomCharges.Add(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-                PrefabHandler.RegisterPrefab(new MyWrapperPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetGameObject));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("tropicalplant7aicon"));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("tropicalplant7aicon"));
 
                 // Associate recipe to the new TechType
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
