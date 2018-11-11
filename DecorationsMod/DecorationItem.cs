@@ -32,9 +32,6 @@ namespace DecorationsMod
         // This is used to know if item appears in habitat builder menu
         public bool IsHabitatBuilder = false;
         
-        // The item resource path
-        //public string PrefabFileName { get; set; }
-        
         // The item root GameObject
         public GameObject GameObject { get; set; }
         

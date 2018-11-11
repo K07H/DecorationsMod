@@ -10,62 +10,77 @@ namespace DecorationsMod
     public class Fabricator_Decorations : ModPrefab
     {
         public CraftTree.Type TreeTypeID { get; private set; }
+        
+        public static GameObject OriginalFabricator = Resources.Load<GameObject>("Submarine/Build/Fabricator");
 
         public const string DecorationsFabID = "DecorationsFabricator";
 
         public const string HandOverText = "UseDecorationsFabricator";
 
-        internal Fabricator_Decorations() : base(DecorationsFabID, $"{DecorationsFabID}PreFab")
+        public bool IsRegistered = false;
+
+        public Texture2D ColoredTexture = null;
+        
+        public TechData Recipe = new TechData()
         {
+            craftAmount = 1,
+            Ingredients = new List<Ingredient>(new Ingredient[4]
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.ComputerChip, 1),
+                new Ingredient(TechType.Silver, 1),
+                new Ingredient(TechType.Quartz, 1)
+            })
+        };
+
+        internal Fabricator_Decorations() : base("", "")
+        {
+            this.ClassID = DecorationsFabID;
+            this.PrefabFileName = $"Submarine/Build/{DecorationsFabID}";
+            this.TechType = TechTypeHandler.AddTechType(DecorationsFabID,
+                    LanguageHelper.GetFriendlyWord("DecorationsFabricatorName"),
+                    LanguageHelper.GetFriendlyWord("DecorationsFabricatorDescription"),
+                    true);
         }
 
         public void RegisterDecorationsFabricator(List<IDecorationItem> decorationItems)
         {
-            // Create new Craft Tree Type
-            ModCraftTreeRoot rootNode = CreateCustomTree(out CraftTree.Type craftType, decorationItems);
-            this.TreeTypeID = craftType;
-
-            // Create a new TechType for new fabricator
-            this.TechType = TechTypeHandler.AddTechType(DecorationsFabID,
-                LanguageHelper.GetFriendlyWord("DecorationsFabricatorName"),
-                LanguageHelper.GetFriendlyWord("DecorationsFabricatorDescription"),
-                AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_purple"),
-                true);
-
-            // Create a Recipie for the new TechType
-            var customFabRecipe = new TechData()
+            if (this.IsRegistered == false)
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[4]
-                {
-                    new Ingredient(TechType.Titanium, 1),
-                    new Ingredient(TechType.ComputerChip, 1),
-                    new Ingredient(TechType.Silver, 1),
-                    new Ingredient(TechType.Quartz, 1)
-                })
-            };
+                // Create new Craft Tree Type
+                ModCraftTreeRoot rootNode = CreateCustomTree(out CraftTree.Type craftType, decorationItems);
+                this.TreeTypeID = craftType;
+                
+                // Add the new TechType to the buildables
+                CraftDataHandler.AddBuildable(this.TechType);
 
-            // Add the new TechType to the buildables
-            CraftDataHandler.AddBuildable(this.TechType);
+                // Add the new TechType to the group of Interior Module buildables
+                CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType);
+                
+                LanguageHandler.SetLanguageLine(HandOverText, LanguageHelper.GetFriendlyWord(HandOverText));
 
-            // Add the new TechType to the group of Interior Module buildables
-            CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType);
+                // Unlock at start
+                KnownTechHandler.UnlockOnStart(this.TechType);
 
-            LanguageHandler.SetLanguageLine(HandOverText, LanguageHelper.GetFriendlyWord(HandOverText));
+                // Set the buildable prefab
+                PrefabHandler.RegisterPrefab(this);
 
-            // Set the buildable prefab
-            PrefabHandler.RegisterPrefab(this);
+                // Register sprite
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_purple"));
 
-            // Associate the recipie to the new TechType
-            CraftDataHandler.SetTechData(this.TechType, customFabRecipe);
+                // Register texture
+                this.ColoredTexture = AssetsHelper.Assets.LoadAsset<Texture2D>("submarine_fabricator_purple");
 
-            // Unlock at start
-            KnownTechHandler.UnlockOnStart(this.TechType);
+                // Associate the recipie to the new TechType
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+                
+                this.IsRegistered = true;
+            }
         }
 
         private ModCraftTreeRoot CreateCustomTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems)
         {
-            ModCraftTreeRoot rootNode = CraftTreeHandler.CreateCustomCraftTreeAndType(DecorationsFabID, out craftType);
+            ModCraftTreeRoot rootNode = CraftTreeHandler.CreateCustomCraftTreeAndType(this.ClassID, out craftType);
 
             // POSTERS
             var postersTab = rootNode.AddTabNode("Posters", LanguageHelper.GetFriendlyWord("Posters"), SpriteManager.Get(TechType.PosterKitty));
@@ -230,18 +245,22 @@ namespace DecorationsMod
         public override GameObject GetGameObject()
         {
             // Instantiate CyclopsFabricator object
-            var fabricatorPrefab = GameObject.Instantiate(Resources.Load<GameObject>("Submarine/Build/Fabricator"));
-            
+            var fabricatorPrefab = GameObject.Instantiate(Fabricator_Decorations.OriginalFabricator);
+
             // Update prefab name
-            fabricatorPrefab.name = DecorationsFabID;
+            fabricatorPrefab.name = this.ClassID;
 
             // Add prefab ID
-            PrefabIdentifier prefabId = fabricatorPrefab.AddComponent<PrefabIdentifier>();
-            prefabId.ClassId = DecorationsFabID;
+            PrefabIdentifier prefabId = fabricatorPrefab.GetComponent<PrefabIdentifier>();
+            if (prefabId == null)
+                prefabId = fabricatorPrefab.AddComponent<PrefabIdentifier>();
+            prefabId.ClassId = this.ClassID;
             prefabId.name = LanguageHelper.GetFriendlyWord("DecorationsFabricatorName");
 
             // Add tech tag
-            TechTag techTag = fabricatorPrefab.AddComponent<TechTag>();
+            TechTag techTag = fabricatorPrefab.GetComponent<TechTag>();
+            if (techTag == null)
+                techTag = fabricatorPrefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
             
             // Associate custom craft tree to the fabricator
@@ -267,9 +286,8 @@ namespace DecorationsMod
             constructible.techType = this.TechType;
 
             // Set the custom texture
-            Texture2D coloredTexture = AssetsHelper.Assets.LoadAsset<Texture2D>("submarine_fabricator_purple");
             SkinnedMeshRenderer skinnedMeshRenderer = fabricatorPrefab.GetComponentInChildren<SkinnedMeshRenderer>();
-            skinnedMeshRenderer.material.mainTexture = coloredTexture;
+            skinnedMeshRenderer.material.mainTexture = this.ColoredTexture;
 
             return fabricatorPrefab;
         }

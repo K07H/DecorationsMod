@@ -303,7 +303,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SMLHelperV2\SMLHelper\SMLHelper.csproj">
+    <ProjectReference Include="..\..\SMLHelper\SMLHelper\SMLHelper.csproj">
       <Project>{418502dd-372d-4ef9-8021-b262552dfede}</Project>
       <Name>SMLHelper</Name>
     </ProjectReference>

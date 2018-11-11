@@ -28,12 +28,10 @@ namespace DecorationsMod
                 PlaceToolItems.MakeItemsPlaceable();
             
             // 5) REGISTER DECORATIONS FABRICATOR
-            //CustomFabricator.RegisterDecorationsFabricator(decorationItems);
             Fabricator_Decorations decorationsFabricator = new Fabricator_Decorations();
             decorationsFabricator.RegisterDecorationsFabricator(decorationItems);
 
             // 6) REGISTER FLORA FABRICATOR
-            //CustomFabricator.RegisterFloraFabricator(decorationItems);
             Fabricator_Flora floraFabricator = new Fabricator_Flora();
             floraFabricator.RegisterFloraFabricator(decorationItems);
 
@@ -162,6 +160,18 @@ namespace DecorationsMod
             // Register existing air seeds recipes
             if (ConfigSwitcher.EnableRegularAirSeeds)
             {
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.BulboTreePiece);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleVegetable);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.HangingFruit);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.MelonSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.FernPalmSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.OrangePetalsPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleVasePlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.OrangeMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PinkMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleRattleSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PinkFlowerSeed);
+
                 RegisterRecipeForTechType(TechType.BulboTreePiece, ConfigSwitcher.FloraRecipiesResource);
                 RegisterRecipeForTechType(TechType.PurpleVegetable, ConfigSwitcher.FloraRecipiesResource);
                 RegisterRecipeForTechType(TechType.HangingFruit, ConfigSwitcher.FloraRecipiesResource);
@@ -178,6 +188,34 @@ namespace DecorationsMod
             // Register existing water seeds recipes
             if (ConfigSwitcher.EnableRegularWaterSeeds)
             {
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.GabeSFeatherSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedGreenTentacleSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SeaCrownSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.ShellGrassSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleBranchesSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedRollPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedBushSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleStalkSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SpottedLeavesPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.AcidMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.WhiteMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.JellyPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SmallFanSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleFanSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleTentacleSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.BluePalmSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.EyesPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.MembrainTreeSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedConePlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedBasketPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SnakeMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SpikePlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.CreepvinePiece);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.CreepvineSeedCluster);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.BloodOil);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleBrainCoralPiece);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.KooshChunk);
+
                 RegisterRecipeForTechType(TechType.GabeSFeatherSeed, ConfigSwitcher.FloraRecipiesResource);
                 RegisterRecipeForTechType(TechType.RedGreenTentacleSeed, ConfigSwitcher.FloraRecipiesResource);
                 RegisterRecipeForTechType(TechType.SeaCrownSeed, ConfigSwitcher.FloraRecipiesResource);
