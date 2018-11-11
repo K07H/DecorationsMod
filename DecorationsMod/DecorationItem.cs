@@ -1,6 +1,4 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DecorationsMod
 {

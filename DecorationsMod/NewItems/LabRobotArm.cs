@@ -1,10 +1,4 @@
-﻿using DecorationsMod.Controllers;
-using SMLHelper;
-using SMLHelper.Patchers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-using SMLHelper;
-using SMLHelper.Patchers;
+﻿using DecorationsMod.Fixers;
 using Harmony;
-using DecorationsMod.Fixers;
+using SMLHelper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace DecorationsMod
 {
