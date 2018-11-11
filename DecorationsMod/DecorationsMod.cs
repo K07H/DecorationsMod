@@ -11,9 +11,6 @@ namespace DecorationsMod
     {
         // Harmony stuff
         internal static HarmonyInstance HarmonyInstance = null;
-        internal static Dictionary<TechType, CraftData.BackgroundType> CustomBackgroundTypes = new Dictionary<TechType, CraftData.BackgroundType>(TechTypeExtensions.sTechTypeComparer);
-        internal static Dictionary<TechType, float> CustomCharges = new Dictionary<TechType, float>(TechTypeExtensions.sTechTypeComparer);
-        internal static Dictionary<TechType, int> CustomFinalCutBonusList = new Dictionary<TechType, int>(TechTypeExtensions.sTechTypeComparer);
 
         public static void Patch()
         {
@@ -42,10 +39,6 @@ namespace DecorationsMod
 
             // 7) HARMONY PATCHING
             Logger.Log("Patching with Harmony...");
-            // Patch dictionaries
-            SMLHelper.V2.PatchUtils.PatchDictionary(typeof(CraftData), "backgroundTypes", CustomBackgroundTypes);
-            SMLHelper.V2.PatchUtils.PatchDictionary(typeof(CraftData), "harvestFinalCutBonusList", CustomFinalCutBonusList);
-            SMLHelper.V2.PatchUtils.PatchDictionary(typeof(BaseBioReactor), "charge", CustomCharges);
             // Give salt when purple pinecone is cut
             var giveResourceOnDamageMethod = typeof(Knife).GetMethod("GiveResourceOnDamage", BindingFlags.NonPublic | BindingFlags.Instance);
             var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);

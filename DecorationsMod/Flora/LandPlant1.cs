@@ -48,12 +48,10 @@ namespace DecorationsMod.Flora
                 SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to air-plant seed
-                // TODO: Replace with a call to SMLHelper when pull request gets released
-                DecorationsMod.CustomBackgroundTypes.Add(this.TechType, CraftData.BackgroundType.PlantAirSeed);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
 
                 // Set item bioreactor charge
-                // TODO: Replace with a call to SMLHelper when pull request gets released
-                DecorationsMod.CustomCharges.Add(this.TechType, this.Config.Charge);
+                SMLHelper.V2.Handlers.BioReactorHandler.SetBioReactorCharge(this.TechType, this.Config.Charge);
                 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);

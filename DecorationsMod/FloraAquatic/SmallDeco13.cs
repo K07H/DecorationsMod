@@ -48,16 +48,13 @@ namespace DecorationsMod.FloraAquatic
                 SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Set item background to normal (both land & water plant)
-                // TODO: Replace with a call to SMLHelper when pull request gets released
-                DecorationsMod.CustomBackgroundTypes.Add(this.TechType, CraftData.BackgroundType.Normal);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.Normal);
 
                 // Set item bioreactor charge
-                // TODO: Replace with a call to SMLHelper when pull request gets released
-                DecorationsMod.CustomCharges.Add(this.TechType, this.Config.Charge);
+                SMLHelper.V2.Handlers.BioReactorHandler.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Specify bonus on final cut
-                // TODO: Replace with a call to SMLHelper when pull request gets released
-                DecorationsMod.CustomFinalCutBonusList.Add(this.TechType, 1);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 1);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
