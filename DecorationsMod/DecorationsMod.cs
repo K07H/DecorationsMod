@@ -31,11 +31,15 @@ namespace DecorationsMod
                 PlaceToolItems.MakeItemsPlaceable();
             
             // 5) REGISTER DECORATIONS FABRICATOR
-            CustomFabricator.RegisterDecorationsFabricator(decorationItems);
+            //CustomFabricator.RegisterDecorationsFabricator(decorationItems);
+            Fabricator_Decorations decorationsFabricator = new Fabricator_Decorations();
+            decorationsFabricator.RegisterDecorationsFabricator(decorationItems);
 
             // 6) REGISTER FLORA FABRICATOR
-            CustomFabricator.RegisterFloraFabricator(decorationItems);
-            
+            //CustomFabricator.RegisterFloraFabricator(decorationItems);
+            Fabricator_Flora floraFabricator = new Fabricator_Flora();
+            floraFabricator.RegisterFloraFabricator(decorationItems);
+
             // 7) HARMONY PATCHING
             Logger.Log("Patching with Harmony...");
             // Patch dictionaries

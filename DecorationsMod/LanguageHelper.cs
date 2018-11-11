@@ -53,6 +53,19 @@ namespace DecorationsMod
                         return "Изготавливает декорации для украшения вашего будущего дома.";
                     else
                         return "A fabricator to produce decoration items.";
+                case "UseDecorationsFabricator":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Utiliser le fabricateur de décorations";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Utilizar el fabricador de decoraciones";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekorasyon Üreticisi kullanın";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dekorationsfabrikator verwenden";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Используйте Изготовитель декораций";
+                    else
+                        return "Use decorations fabricator";
                 case "FloraFabricatorName":
                     if (UserLanguage == CountryCode.FR)
                         return "Fabricateur de graînes";
@@ -79,6 +92,19 @@ namespace DecorationsMod
                         return "Изготавливает семена для будущего их использования.";
                     else
                         return "A fabricator to produce seeds.";
+                case "UseFloraFabricator":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Utiliser le fabricateur de graînes";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Utilizar el fabricador de semillas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tohum Üreticisi kullanın";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Samenfabrikator verwenden";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Используйте Изготовитель семян";
+                    else
+                        return "Use seeds fabricator";
                 case "Posters":
                     if (UserLanguage == CountryCode.TR)
                         return "Posterler";

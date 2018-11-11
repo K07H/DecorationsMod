@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace DecorationsMod
 {
+    /*
     public class CustomFabricator
     {
         // This is the original fabricator prefab.
@@ -472,4 +473,5 @@ namespace DecorationsMod
 
         #endregion
     }
+    */
 }

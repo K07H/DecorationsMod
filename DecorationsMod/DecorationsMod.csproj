@@ -108,6 +108,8 @@
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
     <Compile Include="Controllers\ExosuitDollController.cs" />
+    <Compile Include="Fabricator_Decorations.cs" />
+    <Compile Include="Fabricator_Flora.cs" />
     <Compile Include="Fixers\ConstructableFixer.cs" />
     <Compile Include="Fixers\EquipmentFixer.cs" />
     <Compile Include="Fixers\GrownPlantFixer.cs" />
