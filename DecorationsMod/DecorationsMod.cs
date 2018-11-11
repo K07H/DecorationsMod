@@ -1,6 +1,5 @@
 ﻿using DecorationsMod.Fixers;
 using Harmony;
-using SMLHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,9 +39,9 @@ namespace DecorationsMod
             // 7) HARMONY PATCHING
             Logger.Log("Patching with Harmony...");
             // Patch dictionaries
-            Utility.PatchDictionary(typeof(CraftData), "backgroundTypes", CustomBackgroundTypes);
-            Utility.PatchDictionary(typeof(CraftData), "harvestFinalCutBonusList", CustomFinalCutBonusList);
-            Utility.PatchDictionary(typeof(BaseBioReactor), "charge", CustomCharges);
+            SMLHelper.V2.PatchUtils.PatchDictionary(typeof(CraftData), "backgroundTypes", CustomBackgroundTypes);
+            SMLHelper.V2.PatchUtils.PatchDictionary(typeof(CraftData), "harvestFinalCutBonusList", CustomFinalCutBonusList);
+            SMLHelper.V2.PatchUtils.PatchDictionary(typeof(BaseBioReactor), "charge", CustomCharges);
             // Give salt when purple pinecone is cut
             var giveResourceOnDamageMethod = typeof(Knife).GetMethod("GiveResourceOnDamage", BindingFlags.NonPublic | BindingFlags.Instance);
             var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);

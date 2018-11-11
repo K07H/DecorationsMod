@@ -1,6 +1,4 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
@@ -23,7 +21,7 @@ namespace DecorationsMod
         public static void RegisterDecorationsFabricator(List<IDecorationItem> decorationItems)
         {
             Logger.Log("Creating decorations craft tree...");
-            CustomCraftTreeRoot customTreeRootNode = CreateCustomTree(out CraftTree.Type craftType, decorationItems);
+            SMLHelper.CustomCraftTreeRoot customTreeRootNode = CreateCustomTree(out CraftTree.Type craftType, decorationItems);
             DecorationsTreeType = craftType;
 
             Logger.Log("Registering decorations fabricator...");
@@ -36,7 +34,7 @@ namespace DecorationsMod
             SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(DecorationsFabTechType);
             SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, DecorationsFabTechType);
             // Set buildable prefab
-            CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(DecorationsFabID, $"Submarine/Build/{DecorationsFabID}", DecorationsFabTechType, GetCustomFabPrefab));
+            SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(DecorationsFabID, $"Submarine/Build/{DecorationsFabID}", DecorationsFabTechType, GetCustomFabPrefab));
             // Set custom sprite for the Habitat Builder Tool menu
             SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(DecorationsFabTechType, AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_purple"));
             // Create and associate recipe to the new TechType
@@ -52,9 +50,9 @@ namespace DecorationsMod
             SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(DecorationsFabTechType, customFabRecipe);
         }
 
-        private static CustomCraftTreeRoot CreateCustomTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems)
+        private static SMLHelper.CustomCraftTreeRoot CreateCustomTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems)
         {
-            var rootNode = CraftTreeTypePatcher.CreateCustomCraftTreeAndType(DecorationsFabID, out craftType);
+            var rootNode = SMLHelper.Patchers.CraftTreeTypePatcher.CreateCustomCraftTreeAndType(DecorationsFabID, out craftType);
 
             // POSTERS
             var postersTab = rootNode.AddTabNode("Posters", LanguageHelper.GetFriendlyWord("Posters"), SpriteManager.Get(TechType.PosterKitty));
@@ -258,7 +256,7 @@ namespace DecorationsMod
         public static void RegisterFloraFabricator(List<IDecorationItem> decorationItems)
         {
             Logger.Log("Creating flora craft tree...");
-            CustomCraftTreeRoot customTreeRootNode = CreateFloraTree(out CraftTree.Type craftType, decorationItems);
+            SMLHelper.CustomCraftTreeRoot customTreeRootNode = CreateFloraTree(out CraftTree.Type craftType, decorationItems);
             FloraTreeType = craftType;
 
             Logger.Log("Registering flora fabricator...");
@@ -271,7 +269,7 @@ namespace DecorationsMod
             SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(FloraFabTechType);
             SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, FloraFabTechType);
             // Set buildable prefab
-            CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(FloraFabID, $"Submarine/Build/{FloraFabID}", FloraFabTechType, GetFloraFabPrefab));
+            SMLHelper.CustomPrefabHandler.customPrefabs.Add(new SMLHelper.CustomPrefab(FloraFabID, $"Submarine/Build/{FloraFabID}", FloraFabTechType, GetFloraFabPrefab));
             // Set custom sprite for the Habitat Builder Tool menu
             SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(FloraFabTechType, AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_green"));
             // Create and associate recipe to the new TechType
@@ -287,9 +285,9 @@ namespace DecorationsMod
             SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(FloraFabTechType, customFabRecipe);
         }
 
-        private static CustomCraftTreeRoot CreateFloraTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems)
+        private static SMLHelper.CustomCraftTreeRoot CreateFloraTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems)
         {
-            var rootNode = CraftTreeTypePatcher.CreateCustomCraftTreeAndType(FloraFabID, out craftType);
+            var rootNode = SMLHelper.Patchers.CraftTreeTypePatcher.CreateCustomCraftTreeAndType(FloraFabID, out craftType);
             
             // Plant Air
             var plantAirTab = rootNode.AddTabNode("PlantAirTab", LanguageHelper.GetFriendlyWord("PlantAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("landplant1icon"));
