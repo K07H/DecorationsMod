@@ -71,37 +71,37 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony-1.2.0.1">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\0Harmony-1.2.0.1.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\0Harmony-1.2.0.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SMLHelper">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\SMLHelper.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\SMLHelper.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -323,20 +323,20 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-xcopy "$(TargetDir)mod.json" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-xcopy "$(TargetDir)SMLHelper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\" /Y
-xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\decorativelockerclosedicon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\decorativelockerdooricon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\benchmediumicon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\benchsmallicon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\labcontaineropen1.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\labcontaineropen2.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\labcontaineropen3.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\longplanterbox.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+    <PostBuildEvent>xcopy "$(TargetPath)" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+xcopy "$(TargetDir)mod.json" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+xcopy "$(TargetDir)Config.txt" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+xcopy "$(TargetDir)SMLHelper.dll" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\" /Y
+xcopy "$(TargetDir)Assets\decorationassets.assets" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\decorationassets.manifest" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\decorativelockerclosedicon.png" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\decorativelockerdooricon.png" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\benchmediumicon.png" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\benchsmallicon.png" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\labcontaineropen1.png" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\labcontaineropen2.png" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\labcontaineropen3.png" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
+xcopy "$(TargetDir)Assets\longplanterbox.png" "..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
 
 </PostBuildEvent>
   </PropertyGroup>
