@@ -191,7 +191,7 @@ DecorationsMod/bin/DebugVehicles/Assets/decorationassets.assets
 DecorationsMod/bin/DebugVehicles/Assets/decorationassets.manifest
 DecorationsMod/bin/DebugVehicles/Config.txt
 DecorationsMod/bin/DebugVehicles/DecorationsMod.dll
-DecorationsMod/bin/DebugVehicles/DecorationsMod.pdb
+DecorationsMod/bin/DebugVehicles/DecorationsMod.pdb1
 DecorationsMod/bin/DebugVehicles/iTween.dll
 DecorationsMod/bin/DebugVehicles/LibNoise.dll
 DecorationsMod/bin/DebugVehicles/LitJson.dll
@@ -281,3 +281,4 @@ DecorationsMod/bin/Release/Assets/labcontaineropen2.png
 DecorationsMod/bin/Release/Assets/labcontaineropen3.png
 DecorationsMod/bin/Release/Assets/longplanterbox.png
 DecorationsMod/obj/DebugVehicles/build.force
+.vs/
