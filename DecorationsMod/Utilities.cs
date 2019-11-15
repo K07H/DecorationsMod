@@ -20,7 +20,7 @@ namespace DecorationsMod
     {
         public static string GetSaveFolderPath()
         {
-            return Path.Combine(Path.Combine(@".\SNAppData\SavedGames\", Utils.GetSavegameDir()), "DecorationsMod");
+            return Path.Combine(Path.Combine(@".\SNAppData\SavedGames\", SaveLoadManager.main.GetCurrentSlot()), "DecorationsMod");
         }
     }
 
