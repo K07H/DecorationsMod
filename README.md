@@ -87,7 +87,9 @@ You can change the customizable picture frame size, orientation and frame border
 You can display or hide the giant cove tree eggs by clicking on it (hidden by default).<br>
 
 ### News & updates:<br>
-Development version (this branch): Version 1.6.0.<br>
+
+Development version (this branch): November 15, 2019: Version 1.6.1.<br>
+Development version (this branch): November 11, 2018: Version 1.6.0.<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/V2/CHANGELOG.txt?raw=true)<br>
 October 7, 2018: Updated to version 1.5.0.<br>
 July 25, 2018: Updated to version 1.4.3.<br>
@@ -111,6 +113,7 @@ Feel free to propose new translations for this mod. You can find the up-to-date 
 @[UnknownWorlds](https://unknownworlds.com/subnautica/) (for creating this awesome game and letting us do mods)<br>
 @[AHK1221](https://github.com/ahk1221/) (for helping me to get into Subnautica modding)<br>
 @[PrimeSonic](https://github.com/PrimeSonic/) (for helping me to get into Subnautica modding)<br>
+@[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018 update fix)<br>
 @Revan (for mod testing)<br>
 @Paladyne (for the Türkçe translation)<br>
 @Verodor (for the Deutsch translation)<br>
