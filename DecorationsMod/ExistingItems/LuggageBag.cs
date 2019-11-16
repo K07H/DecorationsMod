@@ -1,5 +1,4 @@
-﻿using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
@@ -9,25 +8,24 @@ namespace DecorationsMod.ExistingItems
         public LuggageBag() // Feeds abstract class
         {
             this.ClassID = "3616e7f3-5079-443d-85b4-9ad68fcbd924";
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/docking_luggage_01_bag4";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/docking_luggage_01_bag4";
 
             this.TechType = TechType.LuggageBag;
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
                     {
-                        new IngredientHelper(TechType.FiberMesh, 2),
-                        new IngredientHelper(TechType.Silicone, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 2),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

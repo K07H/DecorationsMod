@@ -1,6 +1,4 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -11,25 +9,24 @@ namespace DecorationsMod.NewItems
         {
             // Feed DecortionItem interface
             this.ClassID = "BenchSmall";
-            this.ResourcePath = "Submarine/Build/Bench";
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>("Submarine/Build/Bench");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BenchSmallName"),
                                                         LanguageHelper.GetFriendlyWord("BenchDescription"),
                                                         true);
 
             this.IsHabitatBuilder = true;
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
-                        new IngredientHelper(TechType.Titanium, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
@@ -38,23 +35,23 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Add new TechType to the buildables
-                CraftDataPatcher.customBuildables.Add(this.TechType);
-                CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, DecorationItem.DefaultResourcePath + this.ClassID, this.TechType, this.GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/benchsmallicon.png")))); //AssetsHelper.Assets.LoadAsset<Sprite>("benchsmallicon")));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/benchsmallicon.png"))); //AssetsHelper.Assets.LoadAsset<Sprite>("benchsmallicon"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

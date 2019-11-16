@@ -34,6 +34,9 @@ namespace DecorationsMod
         // If "true", player will be able to craft Nutrient Blocks from the decorations fabricator.
         public static bool EnableNutrientBlock = true;
 
+        // If "true", additionnal categories will be added to the fabricators to make all items fit in screen.
+        public static bool UseFlatScreenResolution = false;
+
         // If true: Item will be available as a buildable (in habitat builder menu).
         // If false: Item will be available as a craftable (in decorations fabricator).
         public static bool SpecimenAnalyzer_asBuildable = true;
@@ -172,6 +175,8 @@ namespace DecorationsMod
                                     ConfigSwitcher.EnableSpecialItems = configValue; break;
                                 case "enableNutrientBlock":
                                     ConfigSwitcher.EnableNutrientBlock = configValue; break;
+                                case "useFlatScreenResolution":
+                                    ConfigSwitcher.UseFlatScreenResolution = configValue; break;
                                 case "asBuildable_SpecimenAnalyzer":
                                     ConfigSwitcher.SpecimenAnalyzer_asBuildable = configValue; break;
                                 case "asBuildable_MarkiplierDoll1":

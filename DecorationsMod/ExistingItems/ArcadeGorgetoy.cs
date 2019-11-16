@@ -1,5 +1,4 @@
-﻿using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
@@ -9,24 +8,23 @@ namespace DecorationsMod.ExistingItems
         public ArcadeGorgetoy() // Feeds abstract class
         {
             this.ClassID = "7ea4a91e-80fc-43aa-8ce3-5d52bd19e278";
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_arcade_gorgetoy_01";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_arcade_gorgetoy_01";
 
             this.TechType = TechType.ArcadeGorgetoy;
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
-                        new IngredientHelper(TechType.FiberMesh, 2)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 2)
                     }),
-                _techType = this.TechType
             };
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

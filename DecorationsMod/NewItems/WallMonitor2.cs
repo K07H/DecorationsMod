@@ -1,6 +1,4 @@
 ﻿using DecorationsMod.Fixers;
-using SMLHelper;
-using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,26 +13,25 @@ namespace DecorationsMod.NewItems
         public WallMonitor2() // Feeds abstract class
         {
             this.ClassID = "WallMonitor2"; //6a5c9533-75e5-47c6-a16e-0f5f71e14f4f
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/wall_monitor_01_02";
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/wall_monitor_01_02");
 
             this.SignObject = Resources.Load<GameObject>("Submarine/Build/Sign");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("WallMonitor2Name"),
                                                         LanguageHelper.GetFriendlyWord("WallMonitor2Description"),
                                                         true);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
                     {
-                        new IngredientHelper(TechType.CopperWire, 1),
-                        new IngredientHelper(TechType.Glass, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.CopperWire, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
@@ -46,22 +43,22 @@ namespace DecorationsMod.NewItems
                 screenMaterial.shader = Shader.Find("MarmosetUBER");
 
                 // Add the new TechType to the hand-equipments
-                CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("computer2")));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("computer2"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject signPrefab = GameObject.Instantiate(this.SignObject);

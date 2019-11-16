@@ -1,5 +1,4 @@
-﻿using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
@@ -9,24 +8,23 @@ namespace DecorationsMod.ExistingItems
         public Cap1() // Feeds abstract class
         {
             this.ClassID = "5884d27a-8798-4f09-82ec-c7671a604504";
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_02";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_02";
 
             this.TechType = TechType.Cap1;
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
-                        new IngredientHelper(TechType.FiberMesh, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

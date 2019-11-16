@@ -1,5 +1,4 @@
-﻿using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
@@ -9,24 +8,23 @@ namespace DecorationsMod.ExistingItems
         public LabContainer3() // Feeds abstract class
         {
             this.ClassID = "7f601dd4-0645-414d-bb62-5b0b62985836";
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_tube_01";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_tube_01";
 
             this.TechType = TechType.LabContainer3;
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
-                        new IngredientHelper(TechType.Glass, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

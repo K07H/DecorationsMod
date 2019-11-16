@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-using SMLHelper;
-using SMLHelper.Patchers;
+﻿using DecorationsMod.Fixers;
 using Harmony;
-using DecorationsMod.Fixers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace DecorationsMod
 {
@@ -13,9 +11,6 @@ namespace DecorationsMod
     {
         // Harmony stuff
         internal static HarmonyInstance HarmonyInstance = null;
-        internal static Dictionary<TechType, CraftData.BackgroundType> CustomBackgroundTypes = new Dictionary<TechType, CraftData.BackgroundType>(TechTypeExtensions.sTechTypeComparer);
-        internal static Dictionary<TechType, float> CustomCharges = new Dictionary<TechType, float>(TechTypeExtensions.sTechTypeComparer);
-        internal static Dictionary<TechType, int> CustomFinalCutBonusList = new Dictionary<TechType, int>(TechTypeExtensions.sTechTypeComparer);
 
         public static void Patch()
         {
@@ -33,17 +28,15 @@ namespace DecorationsMod
                 PlaceToolItems.MakeItemsPlaceable();
             
             // 5) REGISTER DECORATIONS FABRICATOR
-            CustomFabricator.RegisterDecorationsFabricator(decorationItems);
+            Fabricator_Decorations decorationsFabricator = new Fabricator_Decorations();
+            decorationsFabricator.RegisterDecorationsFabricator(decorationItems);
 
             // 6) REGISTER FLORA FABRICATOR
-            CustomFabricator.RegisterFloraFabricator(decorationItems);
-            
+            Fabricator_Flora floraFabricator = new Fabricator_Flora();
+            floraFabricator.RegisterFloraFabricator(decorationItems);
+
             // 7) HARMONY PATCHING
             Logger.Log("Patching with Harmony...");
-            // Patch dictionaries
-            Utility.PatchDictionary(typeof(CraftData), "backgroundTypes", CustomBackgroundTypes);
-            Utility.PatchDictionary(typeof(CraftData), "harvestFinalCutBonusList", CustomFinalCutBonusList);
-            Utility.PatchDictionary(typeof(BaseBioReactor), "charge", CustomCharges);
             // Give salt when purple pinecone is cut
             var giveResourceOnDamageMethod = typeof(Knife).GetMethod("GiveResourceOnDamage", BindingFlags.NonPublic | BindingFlags.Instance);
             var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);
@@ -79,17 +72,17 @@ namespace DecorationsMod
             }
         }
 
-        private static void RegisterRecipeForTechType(TechType techType, TechType resource, int resourceAmount = 1, int craftAmount = 1)
+        private static void RegisterRecipeForTechType(TechType techType, TechType resource, int resourceAmount = 1, int craftingAmount = 1)
         {
             // Associate recipe to the new TechType
-            CraftDataPatcher.customTechData[techType] = new TechDataHelper()
+            var techTypeRecipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = craftAmount,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(resource, resourceAmount)
-                }),
-                _techType = techType
+                craftAmount = craftingAmount,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
+                    new SMLHelper.V2.Crafting.Ingredient(resource, resourceAmount)
+                })
             };
+            SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(techType, techTypeRecipe);
         }
 
         private static List<IDecorationItem> RegisterDecorationItems()
@@ -110,7 +103,7 @@ namespace DecorationsMod
                 // Register item
                 existingItem.RegisterItem();
                 // Unlock item at game start
-                KnownTechPatcher.unlockedAtStart.Add(existingItem.TechType);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(existingItem.TechType);
                 // Store item in the list
                 result.Add(existingItem);
             }
@@ -167,6 +160,18 @@ namespace DecorationsMod
             // Register existing air seeds recipes
             if (ConfigSwitcher.EnableRegularAirSeeds)
             {
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.BulboTreePiece);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleVegetable);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.HangingFruit);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.MelonSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.FernPalmSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.OrangePetalsPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleVasePlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.OrangeMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PinkMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleRattleSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PinkFlowerSeed);
+
                 RegisterRecipeForTechType(TechType.BulboTreePiece, ConfigSwitcher.FloraRecipiesResource);
                 RegisterRecipeForTechType(TechType.PurpleVegetable, ConfigSwitcher.FloraRecipiesResource);
                 RegisterRecipeForTechType(TechType.HangingFruit, ConfigSwitcher.FloraRecipiesResource);
@@ -183,6 +188,34 @@ namespace DecorationsMod
             // Register existing water seeds recipes
             if (ConfigSwitcher.EnableRegularWaterSeeds)
             {
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.GabeSFeatherSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedGreenTentacleSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SeaCrownSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.ShellGrassSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleBranchesSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedRollPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedBushSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleStalkSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SpottedLeavesPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.AcidMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.WhiteMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.JellyPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SmallFanSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleFanSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleTentacleSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.BluePalmSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.EyesPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.MembrainTreeSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedConePlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedBasketPlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SnakeMushroomSpore);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SpikePlantSeed);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.CreepvinePiece);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.CreepvineSeedCluster);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.BloodOil);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleBrainCoralPiece);
+                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.KooshChunk);
+
                 RegisterRecipeForTechType(TechType.GabeSFeatherSeed, ConfigSwitcher.FloraRecipiesResource);
                 RegisterRecipeForTechType(TechType.RedGreenTentacleSeed, ConfigSwitcher.FloraRecipiesResource);
                 RegisterRecipeForTechType(TechType.SeaCrownSeed, ConfigSwitcher.FloraRecipiesResource);
@@ -213,17 +246,17 @@ namespace DecorationsMod
             }
 
             // Register lamp tooltip
-            LanguagePatcher.customLines.Add("ToggleLamp", LanguageHelper.GetFriendlyWord("LampTooltip"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("ToggleLamp", LanguageHelper.GetFriendlyWord("LampTooltip"));
             // Register seamoth doll tooltip
-            LanguagePatcher.customLines.Add("SwitchSeamothModel", LanguageHelper.GetFriendlyWord("SwitchSeamothModel"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("SwitchSeamothModel", LanguageHelper.GetFriendlyWord("SwitchSeamothModel"));
             // Register exosuit doll tooltip
-            LanguagePatcher.customLines.Add("SwitchExosuitModel", LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("SwitchExosuitModel", LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
             // Register cargo boxes tooltip
-            LanguagePatcher.customLines.Add("AdjustCargoBoxSize", LanguageHelper.GetFriendlyWord("AdjustCargoBoxSize"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("AdjustCargoBoxSize", LanguageHelper.GetFriendlyWord("AdjustCargoBoxSize"));
             // Register forklift tooltip
-            LanguagePatcher.customLines.Add("AdjustForkliftSize", LanguageHelper.GetFriendlyWord("AdjustForkliftSize"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("AdjustForkliftSize", LanguageHelper.GetFriendlyWord("AdjustForkliftSize"));
             // Register cove tree tooltip
-            LanguagePatcher.customLines.Add("DisplayCoveTreeEggs", LanguageHelper.GetFriendlyWord("DisplayCoveTreeEggs"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("DisplayCoveTreeEggs", LanguageHelper.GetFriendlyWord("DisplayCoveTreeEggs"));
 
             return result;
         }

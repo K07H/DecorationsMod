@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace DecorationsMod.Controllers
+﻿namespace DecorationsMod.Controllers
 {
     public class DecorativeLockerController : HandTarget, IHandTarget
     {

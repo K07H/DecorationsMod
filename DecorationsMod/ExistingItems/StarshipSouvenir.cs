@@ -1,5 +1,4 @@
-﻿using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
@@ -9,25 +8,24 @@ namespace DecorationsMod.ExistingItems
         public StarshipSouvenir() // Feeds abstract class
         {
             this.ClassID = "c0d320d2-537e-4128-90ec-ab1466cfbbc3";
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir";
 
             this.TechType = TechType.StarshipSouvenir;
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
                     {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.Glass, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

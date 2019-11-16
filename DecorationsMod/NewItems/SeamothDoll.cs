@@ -1,6 +1,4 @@
 ﻿using DecorationsMod.Controllers;
-using SMLHelper;
-using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,27 +9,26 @@ namespace DecorationsMod.NewItems
         public SeamothDoll() // Feeds abstract class
         {
             this.ClassID = "SeamothDoll";
-            this.ResourcePath = DecorationItem.DefaultResourcePath + this.ClassID;
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("seamothpuppet");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SeamothDollName"),
                                                         LanguageHelper.GetFriendlyWord("SeamothDollDescription"),
                                                         true);
 
             this.IsHabitatBuilder = true;
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[3]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[3]
                     {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.Glass, 1),
-                        new IngredientHelper(TechType.Silicone, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
@@ -193,23 +190,23 @@ namespace DecorationsMod.NewItems
                 SeamothDollController controller = this.GameObject.AddComponent<SeamothDollController>();
 
                 // Add new TechType to the buildables
-                CraftDataPatcher.customBuildables.Add(this.TechType);
-                CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, SpriteManager.Get(TechType.Seamoth)));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.Seamoth));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

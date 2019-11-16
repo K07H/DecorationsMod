@@ -1,6 +1,4 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -11,24 +9,23 @@ namespace DecorationsMod.NewItems
         {
             this.ClassID = "LabContainerOpen3"; // 1faf2b57-ff4f-4ea5-a715-7cc5ff6aae60
 
-            this.ResourcePath = "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_open_03";
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_open_03");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SmallLabContainerOpenName"),
                                                         LanguageHelper.GetFriendlyWord("LabContainerOpenDescription"),
                                                         true);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
                     {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.Glass, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
@@ -37,22 +34,22 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Add the new TechType to the hand-equipments
-                CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/labcontaineropen3.png"))));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/labcontaineropen3.png")));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject model = prefab.FindChild("biodome_lab_containers_open_03");

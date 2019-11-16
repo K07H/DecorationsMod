@@ -1,7 +1,4 @@
 ﻿using DecorationsMod.Controllers;
-using DecorationsMod.Fixers;
-using SMLHelper;
-using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,22 +16,21 @@ namespace DecorationsMod.FloraAquatic
         public SmallDeco14()
         {
             this.ClassID = "SmallDeco14"; // c87e584c-7e38-4589-b408-8eca51f474c1
-            this.ResourcePath = "WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_14";
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_14");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SmallDeco14Name"),
                                                         LanguageHelper.GetFriendlyWord("AlienFloraSampleDescription"),
                                                         true);
             
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1] {
-                    new IngredientHelper(ConfigSwitcher.FloraRecipiesResource, 1)
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
-                _techType = this.TechType
             };
 
             this.Config = ConfigSwitcher.config_SmallDeco14;
@@ -45,38 +41,35 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Set item occupies 4 slots
-                CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(2, 2);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                CraftDataPatcher.customHarvestTypeList.Add(this.TechType, HarvestType.DamageAlive);
-                CraftDataPatcher.customHarvestOutputList.Add(this.TechType, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Set item background to normal (both land & water plant)
-                // TODO: Replace with a call to SMLHelper when pull request gets released
-                DecorationsMod.CustomBackgroundTypes.Add(this.TechType, CraftData.BackgroundType.Normal);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.Normal);
 
                 // Set item bioreactor charge
-                // TODO: Replace with a call to SMLHelper when pull request gets released
-                DecorationsMod.CustomCharges.Add(this.TechType, this.Config.Charge);
+                SMLHelper.V2.Handlers.BioReactorHandler.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Specify bonus on final cut
-                // TODO: Replace with a call to SMLHelper when pull request gets released
-                DecorationsMod.CustomFinalCutBonusList.Add(this.TechType, 1);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 1);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("flora_smalldeco14icon")));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("flora_smalldeco14icon"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

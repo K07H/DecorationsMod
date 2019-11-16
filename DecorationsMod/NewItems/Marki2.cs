@@ -1,6 +1,4 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -10,11 +8,11 @@ namespace DecorationsMod.NewItems
         public Marki2()
         {
             this.ClassID = "MarkiDoll2"; // ad5e149b-d35c-4b46-bb4e-b4c0a9c6e668
-            this.ResourcePath = "Submarine/Build/Marki_03";
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>("Submarine/Build/Marki_03");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("MarkiDollName"),
                                                         LanguageHelper.GetFriendlyWord("MarkiDollDescription"),
                                                         true);
@@ -22,15 +20,14 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.MarkiDoll2_asBuildable)
                 this.IsHabitatBuilder = true;
             
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[2]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
                     {
-                        new IngredientHelper(TechType.FiberMesh, 1),
-                        new IngredientHelper(TechType.Glass, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
@@ -41,29 +38,29 @@ namespace DecorationsMod.NewItems
                 if (ConfigSwitcher.MarkiDoll2_asBuildable)
                 {
                     // Add new TechType to the buildables
-                    CraftDataPatcher.customBuildables.Add(this.TechType);
-                    CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                    SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                    SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
                 }
                 else
                 {
                     // Add the new TechType to the hand-equipments
-                    CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
                 }
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom icon
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, SpriteManager.Get(TechType.Marki2)));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.Marki2));
                 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

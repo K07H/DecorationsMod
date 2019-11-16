@@ -1,6 +1,4 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -10,11 +8,11 @@ namespace DecorationsMod.NewItems
         public DecorationsSpecimenAnalyzer() // Feeds abstract class
         {
             this.ClassID = "DecorationsSpecimenAnalyzer"; // c9bdcc4d-a8c6-43c0-8f7a-f86841cd4493
-            this.ResourcePath = "Submarine/Build/SpecimenAnalyzer";
-            
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+ 
+            this.GameObject = Resources.Load<GameObject>("Submarine/Build/SpecimenAnalyzer");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SpecimenAnalyzerName"),
                                                         LanguageHelper.GetFriendlyWord("SpecimenAnalyzerDescription"),
                                                         true);
@@ -22,16 +20,15 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.SpecimenAnalyzer_asBuildable)
                 this.IsHabitatBuilder = true;
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[3]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[3]
                     {
-                        new IngredientHelper(TechType.WiringKit, 1),
-                        new IngredientHelper(TechType.ComputerChip, 1),
-                        new IngredientHelper(TechType.Titanium, 2)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.WiringKit, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.ComputerChip, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
                     }),
-                _techType = this.TechType
             };
         }
 
@@ -42,32 +39,32 @@ namespace DecorationsMod.NewItems
                 if (ConfigSwitcher.SpecimenAnalyzer_asBuildable)
                 {
                     // Add to the custom buidables
-                    CraftDataPatcher.customBuildables.Add(this.TechType);
-                    CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                    SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                    SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
                 }
                 else
                 {
                     // Set item occupies 4 slots
-                    CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(2, 2);
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                     // Add the new TechType to the hand-equipments
-                    CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
                 }
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom icon
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("specimenanalyzer")));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("specimenanalyzer"));
                 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

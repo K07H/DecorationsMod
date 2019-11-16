@@ -1,9 +1,4 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -14,25 +9,24 @@ namespace DecorationsMod.NewItems
         {
             this.ClassID = "ALongPlanter"; // 87f5d3e6-e00b-4cf3-be39-0a9c7e951b84
 
-            this.ResourcePath = "Submarine/Build/PlanterBox";
+            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
 
-            this.GameObject = Resources.Load<GameObject>(this.ResourcePath);
+            this.GameObject = Resources.Load<GameObject>("Submarine/Build/PlanterBox");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LongPlanterName"),
                                                         LanguageHelper.GetFriendlyWord("LongPlanterDescription"),
                                                         true);
 
             this.IsHabitatBuilder = true;
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[1]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
-                        new IngredientHelper(TechType.Titanium, 2)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
                     }),
-                _techType = this.TechType
             };
         }
 
@@ -41,23 +35,23 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Add to the custom buidables
-                CraftDataPatcher.customBuildables.Add(this.TechType);
-                CraftDataPatcher.AddToCustomGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, $"{DecorationItem.DefaultResourcePath}{this.ClassID}", this.TechType, this.GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom icon
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/longplanterbox.png"))));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, new Atlas.Sprite(ImageUtils.LoadTextureFromFile("./QMods/DecorationsMod/Assets/longplanterbox.png")));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

@@ -1,6 +1,4 @@
-﻿using SMLHelper;
-using SMLHelper.Patchers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -10,25 +8,24 @@ namespace DecorationsMod.NewItems
         public BarFood1() // Feeds abstract class
         {
             this.ClassID = "BarFood1";
-            this.ResourcePath = DecorationItem.DefaultResourcePath + this.ClassID;
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barfood01");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BarFood1Name"),
                                                         LanguageHelper.GetFriendlyWord("BarFood1Description"),
                                                         true);
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[3]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[3]
                     {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.CuredPeeper, 1),
-                        new IngredientHelper(TechType.HangingFruit, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.CuredPeeper, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.HangingFruit, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
@@ -110,22 +107,22 @@ namespace DecorationsMod.NewItems
                 eatable.despawnDelay = 0;
 
                 // Add the new TechType to Hand Equipment type.
-                CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("barfood01icon")));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("barfood01icon"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 

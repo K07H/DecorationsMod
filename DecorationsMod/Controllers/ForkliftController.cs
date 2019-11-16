@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.IO;
 using UnityEngine;
-using UWE;
 
 namespace DecorationsMod.Controllers
 {

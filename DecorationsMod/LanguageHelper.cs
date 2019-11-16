@@ -53,6 +53,19 @@ namespace DecorationsMod
                         return "Изготавливает декорации для украшения вашего будущего дома.";
                     else
                         return "A fabricator to produce decoration items.";
+                case "UseDecorationsFabricator":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Utiliser le fabricateur de décorations";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Utilizar el fabricador de decoraciones";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekorasyon Üreticisi kullanın";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dekorationsfabrikator verwenden";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Используйте Изготовитель декораций";
+                    else
+                        return "Use decorations fabricator";
                 case "FloraFabricatorName":
                     if (UserLanguage == CountryCode.FR)
                         return "Fabricateur de graînes";
@@ -79,6 +92,19 @@ namespace DecorationsMod
                         return "Изготавливает семена для будущего их использования.";
                     else
                         return "A fabricator to produce seeds.";
+                case "UseFloraFabricator":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Utiliser le fabricateur de graînes";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Utilizar el fabricador de semillas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tohum Üreticisi kullanın";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Samenfabrikator verwenden";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Используйте Изготовитель семян";
+                    else
+                        return "Use seeds fabricator";
                 case "Posters":
                     if (UserLanguage == CountryCode.TR)
                         return "Posterler";
@@ -257,6 +283,19 @@ namespace DecorationsMod
                         return "Аксессуары";
                     else
                         return "Accessories";
+                case "LeviathansTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Léviathans";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Leviatán";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Canavar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Leviathan";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Левиафана";
+                    else
+                        return "Leviathan";
                 case "FloraTab":
                     if (UserLanguage == CountryCode.FR)
                         return "Flore alien";
@@ -2348,7 +2387,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Трубчатый голубой коралл";
                     else
-                        return "Blue earthen coral tubes";
+                        return "Jordi's Tung (Blue earthen coral tubes)";
                 case "SmallDeco10Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Pomme de pin violette";
@@ -2622,15 +2661,28 @@ namespace DecorationsMod
                         return "Декоративный шкафчик.";
                     else
                         return "A storage locker.";
+                case "AirSeedsTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Plantes terrestres";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Plantas terrestres";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Mevcut karasal bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Terrestrische Pflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Наземные растения";
+                    else
+                        return "Air plants";
                 case "RegularAirSeedsTab":
                     if (UserLanguage == CountryCode.FR)
                         return "Plantes terrestres existantes";
                     else if (UserLanguage == CountryCode.ES)
                         return "Plantas terrestres existentes";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Mevcut karasal bitkiler";
+                        return "Karasal bitkiler";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Terrestrische Pflanzen";
+                        return "Bestehende terrestrische Pflanzen";
                     else if (UserLanguage == CountryCode.RU)
                         return "Существующие наземные растения";
                     else
@@ -2674,6 +2726,19 @@ namespace DecorationsMod
                         return "Малые наземные растения";
                     else
                         return "Small air plants";
+                case "WaterSeedsTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Plantes aquatiques";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Plantas acuáticas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Sucul bitkiler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserpflanzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Водные растения";
+                    else
+                        return "Aquatic plants";
                 case "RegularWaterSeedsTab":
                     if (UserLanguage == CountryCode.FR)
                         return "Plantes aquatiques existantes";
@@ -2682,7 +2747,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Mevcut sucul bitkiler";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Wasserpflanzen";
+                        return "Bestehende Wasserpflanzen";
                     else if (UserLanguage == CountryCode.RU)
                         return "Существующие водные растения";
                     else

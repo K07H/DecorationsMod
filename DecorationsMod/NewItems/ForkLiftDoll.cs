@@ -1,6 +1,4 @@
 ﻿using DecorationsMod.Controllers;
-using SMLHelper;
-using SMLHelper.Patchers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,11 +13,11 @@ namespace DecorationsMod.NewItems
         {
             // Feed DecortionItem interface
             this.ClassID = "ForkLiftDoll";
-            this.ResourcePath = DecorationItem.DefaultResourcePath + this.ClassID;
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("forkliftdoll");
 
-            this.TechType = TechTypePatcher.AddTechType(this.ClassID,
+            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ForkLiftDollName"),
                                                         LanguageHelper.GetFriendlyWord("ForkLiftDollDescription"),
                                                         true);
@@ -27,16 +25,15 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.Forklift_asBuidable)
                 this.IsHabitatBuilder = true;
 
-            this.Recipe = new TechDataHelper()
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
-                _craftAmount = 1,
-                _ingredients = new List<IngredientHelper>(new IngredientHelper[3]
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[3]
                     {
-                        new IngredientHelper(TechType.Titanium, 1),
-                        new IngredientHelper(TechType.Glass, 1),
-                        new IngredientHelper(TechType.Silicone, 1)
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
-                _techType = this.TechType
             };
         }
 
@@ -50,32 +47,32 @@ namespace DecorationsMod.NewItems
                 if (ConfigSwitcher.Forklift_asBuidable)
                 {
                     // Add new TechType to the buildables
-                    CraftDataPatcher.customBuildables.Add(this.TechType);
-                    CraftDataPatcher.AddToCustomGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                    SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                    SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
                 }
                 else
                 {
                     // Set item occupies 4 slots
-                    CraftDataPatcher.customItemSizes[this.TechType] = new Vector2int(2, 2);
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                     // Add the new TechType to Hand Equipment type.
-                    CraftDataPatcher.customEquipmentTypes.Add(this.TechType, EquipmentType.Hand);
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
                 }
 
                 // Set the buildable prefab
-                CustomPrefabHandler.customPrefabs.Add(new CustomPrefab(this.ClassID, this.ResourcePath, this.TechType, this.GetPrefab));
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                CustomSpriteHandler.customSprites.Add(new CustomSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("forklifticon")));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("forklifticon"));
 
                 // Associate recipe to the new TechType
-                CraftDataPatcher.customTechData[this.TechType] = this.Recipe;
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
         }
 
-        public override GameObject GetPrefab()
+        public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
