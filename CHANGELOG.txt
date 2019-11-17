@@ -1,5 +1,17 @@
-﻿Version 1.6
-Added: New item: Bar stool (model provided by Dygrekaiser).
+Version 1.6.3
+Fixed: Custom picture frames states were not restored correctly upon saved game reload.
+Fixed: Custom lamps states were not restored correctly upon saved game reload.
+Fixed: New item "Stool" is now working.
+
+Version 1.6.2
+Quick fix to version 1.6.1.
+
+Version 1.6.1
+Fixed: Subnautica update to Unity 2018 was breaking the save directory location.
+Other: Built with lastest SML Helper version (V2.3) and latest Subnautica version (normal branch, not experimental).
+
+Version 1.6.0
+Added: New item: Bar stool (model provided by Dygrekaiser/Jason).
 Modified: Include existing flora seeds in flora fabricator is now set to "false" by default in Config.txt file.
 Fixed: Existing flora seeds are now properly added to the flora fabricator (if associated option is set to "true" in Config.txt file).
 Added: Wide screen resolution option (all items should now fit in fabricators when using a wide screen resolution).
