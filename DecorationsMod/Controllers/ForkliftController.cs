@@ -46,7 +46,8 @@ namespace DecorationsMod.Controllers
         {
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             if (id == null)
-                return;
+                if ((id = GetComponent<PrefabIdentifier>()) == null)
+                    return;
 
             string saveFolder = FilesHelper.GetSaveFolderPath();
             if (!Directory.Exists(saveFolder))
@@ -64,7 +65,8 @@ namespace DecorationsMod.Controllers
         {
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             if (id == null)
-                return;
+                if ((id = GetComponent<PrefabIdentifier>()) == null)
+                    return;
 
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "forklift_" + id.Id + ".txt");
             if (File.Exists(filePath))

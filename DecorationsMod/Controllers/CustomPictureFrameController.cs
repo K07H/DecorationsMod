@@ -1,4 +1,5 @@
 ﻿using Harmony;
+using SMLHelper.V2.Utility;
 using System;
 using System.IO;
 using System.Reflection;
@@ -237,10 +238,11 @@ namespace DecorationsMod.Controllers
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
             // Retrieve save file
-            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
+            PrefabIdentifier id = GetComponent<PrefabIdentifier>();
             if (id == null)
-                return;
-
+                if ((id = GetComponentInParent<PrefabIdentifier>()) == null)
+                    return;
+            
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "custompictureframe_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
@@ -370,9 +372,10 @@ namespace DecorationsMod.Controllers
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
             // Retrieve prefab unique ID
-            PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
+            PrefabIdentifier id = GetComponent<PrefabIdentifier>();
             if (id == null)
-                return;
+                if ((id = GetComponentInParent<PrefabIdentifier>()) == null)
+                    return;
             
             // Get saves folder and create it if it doesn't exist
             string saveFolder = FilesHelper.GetSaveFolderPath();

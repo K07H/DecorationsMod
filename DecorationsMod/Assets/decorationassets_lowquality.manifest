@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3225851952
+CRC: 3860543224
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 83b242bbafa5bee6dc2646fb469b64c6
+    Hash: 5cfa08e47bdf155f49d1d41430ea0b2f
   TypeTreeHash:
     serializedVersion: 2
     Hash: cd277540342687dc8a74bb991958d6f5
@@ -320,6 +320,7 @@ Assets:
 - Assets/seamoth.fbm/Submersible_SeaMoth.png
 - Assets/reaperskeleton.fbm/Lost_river_reaper_skeleton_bones_normal.png
 - Assets/Materials/seamoth_upgrade_slots_01.mat
+- Assets/bar_stool.png
 - Assets/leviathans.fbm/Reaper_Leviathan_normal.png
 - Assets/flora.fbm/Land_tree_01_trunk.png
 - Assets/skulls.fbm/Lost_river_sea_dragon_skeleton_bones_normal.png
@@ -348,6 +349,7 @@ Assets:
 - Assets/lostriverplant4icon.png
 - Assets/Materials/seamoth_torpedo_01_hatch_01.mat
 - Assets/barcup02icon.png
+- Assets/bar_stool.fbx
 - Assets/cargobox01a.prefab
 - Assets/reactorrod.fbx
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_orange.png

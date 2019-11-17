@@ -1,4 +1,5 @@
 ﻿Version 1.6
+Added: New item: Bar stool (model provided by Dygrekaiser).
 Modified: Include existing flora seeds in flora fabricator is now set to "false" by default in Config.txt file.
 Fixed: Existing flora seeds are now properly added to the flora fabricator (if associated option is set to "true" in Config.txt file).
 Added: Wide screen resolution option (all items should now fit in fabricators when using a wide screen resolution).

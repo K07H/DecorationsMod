@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 465866632
+CRC: 3552658032
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 98dae2ec15cfd566129565bc9f923af2
+    Hash: 7bbbbeb239b45bfbd7f2c5ab2e88cd18
   TypeTreeHash:
     serializedVersion: 2
     Hash: cd277540342687dc8a74bb991958d6f5
@@ -51,6 +51,7 @@ Assets:
 - Assets/starshipcargo.fbm/Starship_cargo.png
 - Assets/prawnsuit.fbm/submarine_engine_power_cells_01_illum.png
 - Assets/seatreader.fbm/Sea_Treader_01_01_normal.png
+- Assets/Jason/Stool.fbx
 - Assets/prawnsuit.fbm/exosuit_storage_01_normal.png
 - Assets/reaperskull.prefab
 - Assets/docking_clerical_paper7.prefab
@@ -101,6 +102,7 @@ Assets:
 - Assets/barbottle05.prefab
 - Assets/circuitbox1.png
 - Assets/seamoth.fbm/power_cell_01_illum.png
+- Assets/Jason/Materials/Stool_Metal.mat
 - Assets/seamoth.fbm/seamoth_torpedo_01_normal.png
 - Assets/seatreader.fbm/Sea_Treader_01_02_normal.png
 - Assets/Lost_river_generic_skeleton_03.prefab
@@ -112,6 +114,7 @@ Assets:
 - Assets/robotarm.fbm/biodome_Robot_Arm.png
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_blue.png
+- Assets/bar_stool.png
 - Assets/Materials/Lost_river_reaper_skeleton_skull.mat
 - Assets/barnapkinsicon.png
 - Assets/prawnsuit.fbm/exosuit_01_glass_normal.png
@@ -137,6 +140,7 @@ Assets:
 - Assets/docking_clerical_clipboard1.prefab
 - Assets/Materials/Sea_Dragon_01_02.mat
 - Assets/robotarm.fbm/biodome_Robot_Arm_wall.png
+- Assets/Jason/Materials/Stool_Leather.mat
 - Assets/cutefish.fbm/Cute_fish_illum.png
 - Assets/drinksandfood.fbm/docking_bar_bottles_01_normal.png
 - Assets/emperoricon.png
@@ -182,6 +186,7 @@ Assets:
 - Assets/lostriverplant3icon.png
 - Assets/Materials/Submersible_SeaMoth_indoor.mat
 - Assets/docking_clerical_penholder.prefab
+- Assets/Jason/Materials/Stool_Metal_SpecularSmoothness.png
 - Assets/tropicalplant1aicon.png
 - Assets/circuitbox2d.png
 - Assets/leviathans.fbm/Ghost_Leviathan_shell.png
@@ -211,6 +216,7 @@ Assets:
 - Assets/seamoth.fbm/Submersible_SeaMoth_Glass.png
 - Assets/cargobox01aicon.png
 - Assets/skulls.fbm/Lost_river_sea_dragon_skeleton_bones.png
+- Assets/Jason/Materials/Stool_Metal_MetallicSmoothness.png
 - Assets/reefback.fbm/Reefback_01_01_illum.png
 - Assets/Materials/nuclear_reactor_rod_glass.mat
 - Assets/circuitbox1b.png
@@ -261,6 +267,7 @@ Assets:
 - Assets/tropicalplant2aicon.png
 - Assets/seatreadericon.png
 - Assets/docking_clerical_pen1.prefab
+- Assets/Jason/Materials/Stool_Leather_Normal.png
 - Assets/PDA.fbm/PDA_illum.png
 - Assets/Materials/new_wall_monitor_screen_material.mat
 - Assets/leviathans.fbm/Ghost_Leviathan_inside.png
@@ -274,6 +281,7 @@ Assets:
 - Assets/prawnsuit.fbm/submarine_engine_power_cells_01_spec.png
 - Assets/Materials/biodome_Robot_Arm.mat
 - Assets/barnapkins.prefab
+- Assets/Jason/Materials/Stool_Metal_Normal.png
 - Assets/leviathans.fbm/Reaper_Leviathan_spec.png
 - Assets/Materials/Reefback_01_02.mat
 - Assets/cutefish.fbm/Cute_fish_spec.png
@@ -286,6 +294,7 @@ Assets:
 - Assets/tropicalplant6aicon.png
 - Assets/pyrocoral3icon.png
 - Assets/tropicalplant3aicon.png
+- Assets/bar_stool.prefab
 - Assets/robotarmicon.png
 - Assets/DecorativePDA.prefab
 - Assets/decorativepdaicon.png
@@ -293,6 +302,7 @@ Assets:
 - Assets/landplant1icon.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_illum.png
 - Assets/jungletree1icon.png
+- Assets/Jason/Materials/Stool_Leather_AlbedoTransparency.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02_normal.png
 - Assets/reefback.fbm/coral_reef_grass_07.png
 - Assets/seamoth.fbm/seamoth_upgrade_slots_01_normal.png
@@ -329,6 +339,7 @@ Assets:
 - Assets/prawnsuit.fbm/exosuit_01.png
 - Assets/sofastr02icon.png
 - Assets/reefback.fbm/Reefback_01_02_illum.png
+- Assets/Jason/Materials/Stool_Leather_SpecularSmoothness.png
 - Assets/seamoth.fbm/seamoth_torpedo_01_hatch_01.png
 - Assets/jungletree2icon.png
 - Assets/flora_smalldeco11icon.png
@@ -363,6 +374,7 @@ Assets:
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon_illum.png
 - Assets/drinksandfood.fbm/docking_bar_bottles_01.png
 - Assets/leviathans.fbm/noise_tile_06.png
+- Assets/Jason/Materials/Stool_Metal_AlbedoTransparency.png
 - Assets/cargobox01bicon.png
 - Assets/PDA.fbm/PDA_normal.png
 - Assets/forklift.fbm/generic_forklift.png
@@ -383,6 +395,7 @@ Assets:
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_green.png
 - Assets/forkliftdoll.prefab
 - Assets/flora_bluecoraltubesicon.png
+- Assets/Jason/Materials/Stool_Leather_MetallicSmoothness.png
 - Assets/leviathans.fbm/Ghost_Leviathan_shell_normal.png
 - Assets/seadragonskeletonicon.png
 - Assets/prawnsuit.fbm/exosuit_storage_01_colorMask.png
