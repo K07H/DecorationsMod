@@ -87,7 +87,8 @@ You can change the customizable picture frame size, orientation and frame border
 You can display or hide the giant cove tree eggs by clicking on it (hidden by default).<br>
 
 ### News & updates:<br>
-Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/V2/CHANGELOG.txt?raw=true)<br>
+Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
+November 17, 2019: Updated to version 1.6.3.<br>
 November 15, 2019: Updated to version 1.6.2.<br>
 November 11, 2018: Updated to version 1.6.0.<br>
 October 7, 2018: Updated to version 1.5.0.<br>
