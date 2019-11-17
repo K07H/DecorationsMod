@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DecorationsMod.Fixers
 {
@@ -10,10 +11,21 @@ namespace DecorationsMod.Fixers
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
-            foreach (Transform current in this.gameObject.transform)
+            if (this.gameObject != null && this.gameObject.transform != null)
             {
-                if (current.name.StartsWith("Sign(Clone)"))
-                    GameObject.DestroyImmediate(current.gameObject);
+                try
+                {
+                    foreach (Transform current in this.gameObject.transform)
+                    {
+                        try
+                        {
+                            if (!string.IsNullOrEmpty(current.name) && current.name.StartsWith("Sign(Clone)") && current.gameObject != null)
+                                GameObject.DestroyImmediate(current.gameObject);
+                        }
+                        catch (Exception) { }
+                    }
+                }
+                catch (Exception) { }
             }
         }
     }

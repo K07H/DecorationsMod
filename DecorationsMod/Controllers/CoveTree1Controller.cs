@@ -40,7 +40,8 @@ namespace DecorationsMod.Controllers
             // Retrieve prefab unique ID
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             if (id == null)
-                return;
+                if ((id = GetComponent<PrefabIdentifier>()) == null)
+                    return;
 
 #if DEBUG_COVE_TREE
             Logger.Log("DEBUG: OnProtoSerialize covetree: Get save folder");
@@ -75,7 +76,8 @@ namespace DecorationsMod.Controllers
             // Retrieve prefab unique ID
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             if (id == null)
-                return;
+                if ((id = GetComponent<PrefabIdentifier>()) == null)
+                    return;
 
 #if DEBUG_COVE_TREE
             Logger.Log("DEBUG: OnProtoDeserialize covetree: Loading saved file");

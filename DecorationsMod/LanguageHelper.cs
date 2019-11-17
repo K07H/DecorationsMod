@@ -2843,6 +2843,32 @@ namespace DecorationsMod
                         return "Длинный плантатор (функциональный).";
                     else
                         return "A long planter (functional).";
+                case "BarStoolName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Tabouret";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Taburete";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tabure";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Hocker";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Стул";
+                    else
+                        return "Stool";
+                case "BarStoolDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un tabouret (fonctionnel).";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un taburete (funcional).";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bir tabure (fonksiyonel).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Hocker (funktional).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Стул (Функциональная).";
+                    else
+                        return "A stool (functional).";
                 default:
                     return "?";
             }

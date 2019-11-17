@@ -57,7 +57,10 @@ namespace DecorationsMod.Controllers
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null || this._storageContainer == null)
+            if (id == null)
+                if ((id = GetComponent<PrefabIdentifier>()) == null)
+                    return;
+            if (this._storageContainer == null)
                 return;
 #if DEBUG_CARGO_CRATES
             Logger.Log("DEBUG: Serialize(): PrefabID=[" + id.Id + "]");
@@ -87,7 +90,10 @@ namespace DecorationsMod.Controllers
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
-            if (id == null || this._storageContainer == null)
+            if (id == null)
+                if ((id = GetComponent<PrefabIdentifier>()) == null)
+                    return;
+            if (this._storageContainer == null)
                 return;
 #if DEBUG_CARGO_CRATES
             Logger.Log("DEBUG: Deserialize(): PrefabID=[" + id.Id + "]");

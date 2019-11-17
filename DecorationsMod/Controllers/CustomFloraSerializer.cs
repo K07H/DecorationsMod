@@ -10,7 +10,9 @@ namespace DecorationsMod.Controllers
         {
             PrefabIdentifier id = this.gameObject.GetComponent<PrefabIdentifier>();
             if (id == null)
-                return;
+                if ((id = GetComponent<PrefabIdentifier>()) == null)
+                    if ((id = GetComponentInParent<PrefabIdentifier>()) == null)
+                        return;
 
 #if DEBUG_FLORA
             Logger.Log("DEBUG: Entering onProtoSerialize for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
@@ -125,7 +127,10 @@ namespace DecorationsMod.Controllers
             PlantMonoTransformController plantMonoTransformController = this.gameObject.GetComponent<PlantMonoTransformController>();
             PrefabIdentifier id = this.gameObject.GetComponent<PrefabIdentifier>();
             if (id == null)
-                return;
+                if ((id = GetComponent<PrefabIdentifier>()) == null)
+                    if ((id = GetComponentInParent<PrefabIdentifier>()) == null)
+                        return;
+
 #if DEBUG_FLORA
             Logger.Log("DEBUG: Entering onProtoDeserialize for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
