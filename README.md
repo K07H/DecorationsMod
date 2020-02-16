@@ -4,7 +4,7 @@
 
 ### Prerequisites:
 Requires QMods and SMLHelper.<br>
-1) Install QMods: https://www.nexusmods.com/subnautica/mods/16<br>
+1) Install QMods: https://www.nexusmods.com/subnautica/mods/201<br>
 2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
 
 ### Installation instructions:
