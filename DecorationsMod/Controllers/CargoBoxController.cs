@@ -121,7 +121,7 @@ namespace DecorationsMod.Controllers
 #if DEBUG_CARGO_CRATES
                 Logger.Log("DEBUG: Deserialize() A");
 #endif
-                string tmpSize = File.ReadAllText(filePath).Replace(',', '.');
+                string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
                 string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (sizes.Length == 2)
                 {

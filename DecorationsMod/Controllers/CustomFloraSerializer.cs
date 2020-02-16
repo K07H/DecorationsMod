@@ -142,7 +142,7 @@ namespace DecorationsMod.Controllers
 #if DEBUG_FLORA
                 Logger.Log("DEBUG: Saved file found for gameobject name=[" + this.gameObject.name + "]");
 #endif
-                string rawState = File.ReadAllText(filePath).Replace(',', '.');
+                string rawState = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
                 string[] state = rawState.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
                 if (state.Length == 1)

@@ -250,7 +250,7 @@ namespace DecorationsMod.Controllers
                 GameObject model = this.gameObject.FindChild("mesh");
                 PictureFrame pf = this.gameObject.GetComponent<PictureFrame>();
 
-                string tmpSize = File.ReadAllText(filePath).Replace(',', '.');
+                string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
                 string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (sizes.Length == 10)
                 {

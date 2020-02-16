@@ -71,7 +71,7 @@ namespace DecorationsMod.Controllers
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "forklift_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
-                string tmpSize = File.ReadAllText(filePath).Replace(',', '.');
+                string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
                 string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (sizes.Length == 2)
                 {
