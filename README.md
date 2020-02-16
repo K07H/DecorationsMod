@@ -4,7 +4,7 @@
 ### Prerequisites:
 Requires QMods and SMLHelper.<br>
 1) Install QMods: https://www.nexusmods.com/subnautica/mods/16<br>
-2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/39<br>
+2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
 
 ### Installation instructions:
 1) Download one of the two ZIP archives [here](https://github.com/K07H/DecorationsMod/releases) *(either high-quality textures or low-quality)*.<br>
@@ -88,6 +88,7 @@ You can display or hide the giant cove tree eggs by clicking on it (hidden by de
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
+February 16, 2020: Updated to version 1.6.5.<br>
 November 17, 2019: Updated to version 1.6.3.<br>
 November 15, 2019: Updated to version 1.6.2.<br>
 November 11, 2018: Updated to version 1.6.0.<br>
@@ -117,7 +118,7 @@ Feel free to propose new translations for this mod. You can find the up-to-date 
 @Paladyne (for the Türkçe translation)<br>
 @Verodor (for the Deutsch translation)<br>
 @Krotobosha (for the Russian translation)<br>
-@[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018 update fix)<br>
+@[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018/2019 update fixes)<br>
 @Jason (for the 3D models)<br>
 <br>
 <br>
