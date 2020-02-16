@@ -1,6 +1,7 @@
 # Decorations Mod for Subnautica
 ## *Multilingual (EN/FR/ES/TR/DE/RU)*
-<br>
+
+<br><br>
 
 ### Prerequisites:
 Requires QMods and SMLHelper.<br>
@@ -11,6 +12,8 @@ Requires QMods and SMLHelper.<br>
 1) Download one of the two ZIP archives [here](https://github.com/K07H/DecorationsMod/releases) *(either high-quality textures or low-quality)*.<br>
 2) Extract it.<br>
 3) Move folder **DecorationsMod** inside "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods*" directory.<br>
+
+<br><br>
 
 ### Description:
 **This mod will add a decoration fabricator allowing you to craft following new items:**<br>
