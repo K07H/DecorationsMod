@@ -1,3 +1,13 @@
+Version 1.6.5
+Fixed: Cargo crates sizes now properly restores in every scenario (quit to menu or quit to desktop, starting or reloading, ...).
+Fixed: Cargo crates storage now properly restores in every scenario (quit to menu or quit to desktop, starting or reloading, ...).
+Fixed: Custom lockers storage now properly restores in every scenario (quit to menu or quit to desktop, starting or reloading, ...).
+Fixed: Stool texture was missing in v1.6.4.
+Changed: Nutrient block is now hidden from the decorations fabricator by default (to see it, you'll have to modify the line "enableNutrientBlock=false" in the "Config.txt" file).
+
+Version 1.6.4
+Fixed: Unity 2019 update.
+
 Version 1.6.3
 Fixed: Custom picture frames states were not restored correctly upon saved game reload.
 Fixed: Custom lamps states were not restored correctly upon saved game reload.
