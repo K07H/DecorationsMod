@@ -1,6 +1,7 @@
 ﻿using Harmony;
 using SMLHelper.V2.Utility;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
@@ -249,7 +250,7 @@ namespace DecorationsMod.Controllers
                 GameObject model = this.gameObject.FindChild("mesh");
                 PictureFrame pf = this.gameObject.GetComponent<PictureFrame>();
 
-                string tmpSize = File.ReadAllText(filePath);
+                string tmpSize = File.ReadAllText(filePath).Replace(',', '.');
                 string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (sizes.Length == 10)
                 {
@@ -258,9 +259,9 @@ namespace DecorationsMod.Controllers
                     if (eulerAngles.Length == 3)
                     {
                         Vector3 savedEulerAngles = new Vector3(OriginEulerAngles.x, OriginEulerAngles.y, OriginEulerAngles.z);
-                        float.TryParse(eulerAngles[0], out savedEulerAngles.x);
-                        float.TryParse(eulerAngles[1], out savedEulerAngles.y);
-                        float.TryParse(eulerAngles[2], out savedEulerAngles.z);
+                        float.TryParse(eulerAngles[0], NumberStyles.Float, CultureInfo.InvariantCulture, out savedEulerAngles.x);
+                        float.TryParse(eulerAngles[1], NumberStyles.Float, CultureInfo.InvariantCulture, out savedEulerAngles.y);
+                        float.TryParse(eulerAngles[2], NumberStyles.Float, CultureInfo.InvariantCulture, out savedEulerAngles.z);
                         model.transform.localEulerAngles = savedEulerAngles;
                     }
 
@@ -269,9 +270,9 @@ namespace DecorationsMod.Controllers
                     if (colliderSize.Length == 3)
                     {
                         Vector3 savedColliderSize = new Vector3(OriginColliderSize.x, OriginColliderSize.y, OriginColliderSize.z);
-                        float.TryParse(colliderSize[0], out savedColliderSize.x);
-                        float.TryParse(colliderSize[1], out savedColliderSize.y);
-                        float.TryParse(colliderSize[2], out savedColliderSize.z);
+                        float.TryParse(colliderSize[0], NumberStyles.Float, CultureInfo.InvariantCulture, out savedColliderSize.x);
+                        float.TryParse(colliderSize[1], NumberStyles.Float, CultureInfo.InvariantCulture, out savedColliderSize.y);
+                        float.TryParse(colliderSize[2], NumberStyles.Float, CultureInfo.InvariantCulture, out savedColliderSize.z);
                         GameObject trigger = this.gameObject.FindChild("Trigger");
                         BoxCollider collider = trigger.GetComponent<BoxCollider>();
                         collider.size = savedColliderSize;
@@ -282,9 +283,9 @@ namespace DecorationsMod.Controllers
                     if (imageRendererScale.Length == 3)
                     {
                         Vector3 savedImageRendererScale = new Vector3(OriginImageRendererScale.x, OriginImageRendererScale.y, OriginImageRendererScale.z);
-                        float.TryParse(imageRendererScale[0], out savedImageRendererScale.x);
-                        float.TryParse(imageRendererScale[1], out savedImageRendererScale.y);
-                        float.TryParse(imageRendererScale[2], out savedImageRendererScale.z);
+                        float.TryParse(imageRendererScale[0], NumberStyles.Float, CultureInfo.InvariantCulture, out savedImageRendererScale.x);
+                        float.TryParse(imageRendererScale[1], NumberStyles.Float, CultureInfo.InvariantCulture, out savedImageRendererScale.y);
+                        float.TryParse(imageRendererScale[2], NumberStyles.Float, CultureInfo.InvariantCulture, out savedImageRendererScale.z);
                         pf.imageRenderer.transform.localScale = savedImageRendererScale;
                     }
 
@@ -306,9 +307,9 @@ namespace DecorationsMod.Controllers
                     if (constructableBoundsExtents.Length == 3)
                     {
                         Vector3 savedConstructableBoundsExtents = new Vector3(OriginConstructableBoundsExtents.x, OriginConstructableBoundsExtents.y, OriginConstructableBoundsExtents.z);
-                        float.TryParse(constructableBoundsExtents[0], out savedConstructableBoundsExtents.x);
-                        float.TryParse(constructableBoundsExtents[1], out savedConstructableBoundsExtents.y);
-                        float.TryParse(constructableBoundsExtents[2], out savedConstructableBoundsExtents.z);
+                        float.TryParse(constructableBoundsExtents[0], NumberStyles.Float, CultureInfo.InvariantCulture, out savedConstructableBoundsExtents.x);
+                        float.TryParse(constructableBoundsExtents[1], NumberStyles.Float, CultureInfo.InvariantCulture, out savedConstructableBoundsExtents.y);
+                        float.TryParse(constructableBoundsExtents[2], NumberStyles.Float, CultureInfo.InvariantCulture, out savedConstructableBoundsExtents.z);
                         ConstructableBounds constructableBounds = this.gameObject.GetComponent<ConstructableBounds>();
                         constructableBounds.bounds.extents = savedConstructableBoundsExtents;
                     }
@@ -318,45 +319,45 @@ namespace DecorationsMod.Controllers
                     if (modelScale.Length == 3)
                     {
                         Vector3 updateModelScale = Vector3.zero;
-                        float.TryParse(modelScale[0], out updateModelScale.x);
-                        float.TryParse(modelScale[1], out updateModelScale.y);
-                        float.TryParse(modelScale[2], out updateModelScale.z);
+                        float.TryParse(modelScale[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updateModelScale.x);
+                        float.TryParse(modelScale[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updateModelScale.y);
+                        float.TryParse(modelScale[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updateModelScale.z);
                         model.transform.localScale = updateModelScale;
                     }
                     string[] posterMagnetPosition = sizes[6].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (posterMagnetPosition.Length == 3)
                     {
                         Vector3 updatePosterMagnetPosition = Vector3.zero;
-                        float.TryParse(posterMagnetPosition[0], out updatePosterMagnetPosition.x);
-                        float.TryParse(posterMagnetPosition[1], out updatePosterMagnetPosition.y);
-                        float.TryParse(posterMagnetPosition[2], out updatePosterMagnetPosition.z);
+                        float.TryParse(posterMagnetPosition[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetPosition.x);
+                        float.TryParse(posterMagnetPosition[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetPosition.y);
+                        float.TryParse(posterMagnetPosition[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetPosition.z);
                         posterMagnet.transform.localPosition = updatePosterMagnetPosition;
                     }
                     string[] posterMagnetModelPosition = sizes[7].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (posterMagnetModelPosition.Length == 3)
                     {
                         Vector3 updatePosterMagnetModelPosition = Vector3.zero;
-                        float.TryParse(posterMagnetModelPosition[0], out updatePosterMagnetModelPosition.x);
-                        float.TryParse(posterMagnetModelPosition[1], out updatePosterMagnetModelPosition.y);
-                        float.TryParse(posterMagnetModelPosition[2], out updatePosterMagnetModelPosition.z);
+                        float.TryParse(posterMagnetModelPosition[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelPosition.x);
+                        float.TryParse(posterMagnetModelPosition[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelPosition.y);
+                        float.TryParse(posterMagnetModelPosition[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelPosition.z);
                         posterMagnetModel.transform.localPosition = updatePosterMagnetModelPosition;
                     }
                     string[] posterMagnetModelScale = sizes[8].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (posterMagnetModelScale.Length == 3)
                     {
                         Vector3 updatePosterMagnetModelScale = Vector3.zero;
-                        float.TryParse(posterMagnetModelScale[0], out updatePosterMagnetModelScale.x);
-                        float.TryParse(posterMagnetModelScale[1], out updatePosterMagnetModelScale.y);
-                        float.TryParse(posterMagnetModelScale[2], out updatePosterMagnetModelScale.z);
+                        float.TryParse(posterMagnetModelScale[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelScale.x);
+                        float.TryParse(posterMagnetModelScale[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelScale.y);
+                        float.TryParse(posterMagnetModelScale[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelScale.z);
                         posterMagnetModel.transform.localScale = updatePosterMagnetModelScale;
                     }
                     string[] imageRendererPosition = sizes[9].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (imageRendererPosition.Length == 3)
                     {
                         Vector3 updateImageRendererPosition = Vector3.zero;
-                        float.TryParse(imageRendererPosition[0], out updateImageRendererPosition.x);
-                        float.TryParse(imageRendererPosition[1], out updateImageRendererPosition.y);
-                        float.TryParse(imageRendererPosition[2], out updateImageRendererPosition.z);
+                        float.TryParse(imageRendererPosition[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updateImageRendererPosition.x);
+                        float.TryParse(imageRendererPosition[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updateImageRendererPosition.y);
+                        float.TryParse(imageRendererPosition[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updateImageRendererPosition.z);
                         pf.imageRenderer.transform.localPosition = updateImageRendererPosition;
                     }
                     
@@ -431,7 +432,7 @@ namespace DecorationsMod.Controllers
             saveData += posterMagnetModel.transform.localScale.x + "|" + posterMagnetModel.transform.localScale.y + "|" + posterMagnetModel.transform.localScale.z + Environment.NewLine;
             saveData += pf.imageRenderer.transform.localPosition.x + "|" + pf.imageRenderer.transform.localPosition.y + "|" + pf.imageRenderer.transform.localPosition.z + Environment.NewLine;
             //pf.imageRenderer.transform.localScale
-            
+
             // Save state to file
             File.WriteAllText(Path.Combine(saveFolder, "custompictureframe_" + id.Id + ".txt"), saveData);
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 
@@ -123,11 +124,11 @@ namespace DecorationsMod
             string[] elems = configStr.Split("/".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             if (elems.Length == 3)
             {
-                if (!float.TryParse(elems[0], out customFlora.GrowthDuration))
+                if (!float.TryParse(elems[0], NumberStyles.Float, CultureInfo.InvariantCulture, out customFlora.GrowthDuration))
                     success = false;
-                if (!float.TryParse(elems[1], out customFlora.Health))
+                if (!float.TryParse(elems[1], NumberStyles.Float, CultureInfo.InvariantCulture, out customFlora.Health))
                     success = false;
-                if (!float.TryParse(elems[2], out customFlora.Charge))
+                if (!float.TryParse(elems[2], NumberStyles.Float, CultureInfo.InvariantCulture, out customFlora.Charge))
                     success = false;
             }
             return success;
@@ -309,11 +310,11 @@ namespace DecorationsMod
                                 case "GhostLeviatan_maxSpawns":
                                     int.TryParse(configValueStr, out ConfigSwitcher.GhostLeviatan_maxSpawns); break;
                                 case "GhostLeviatan_timeBeforeFirstSpawn":
-                                    float.TryParse(configValueStr, out ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn); break;
+                                    float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn); break;
                                 case "GhostLeviatan_spawnTimeRatio":
-                                    float.TryParse(configValueStr, out ConfigSwitcher.GhostLeviatan_spawnTimeRatio); break;
+                                    float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out ConfigSwitcher.GhostLeviatan_spawnTimeRatio); break;
                                 case "GhostLeviatan_health":
-                                    float.TryParse(configValueStr, out ConfigSwitcher.GhostLeviatan_health); break;
+                                    float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out ConfigSwitcher.GhostLeviatan_health); break;
                                 case "language":
                                     if (configValueStr.CompareTo("fr") == 0)
                                         LanguageHelper.UserLanguage = RegionHelper.CountryCode.FR;

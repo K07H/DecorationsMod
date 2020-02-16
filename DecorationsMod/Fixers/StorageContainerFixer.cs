@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.Fixers
 {
     public class StorageContainerFixer
     {
-        public static Dictionary<string, StorageContainer> _storages = new Dictionary<string, StorageContainer>();
+        public static Dictionary<string, Tuple<StorageContainer, bool>> _storages = new Dictionary<string, Tuple<StorageContainer, bool>>();
 
         public static void OnProtoDeserializeObjectTree_Postfix(StorageContainer __instance, ProtobufSerializer serializer)
         {
@@ -15,6 +16,9 @@ namespace DecorationsMod.Fixers
             PrefabIdentifier pid = __instance.gameObject.GetComponent<PrefabIdentifier>();
             if (pid != null && __instance.gameObject.transform.parent != null && __instance.gameObject.transform.parent.gameObject != null)
             {
+#if DEBUG_CARGO_CRATES
+                Logger.Log("DEBUG: OnProtoDeserializeObjectTree() storageConteiner Id=[" + pid.Id + "] objName=[" + __instance.gameObject.name + "] nbItems=[" + (__instance.container != null ? Convert.ToString(__instance.container.count) : "null") + "]");
+#endif
                 GameObject parentGO = __instance.gameObject.transform.parent.gameObject;
                 PrefabIdentifier pid2 = parentGO.GetComponent<PrefabIdentifier>();
                 if (pid2 != null && (parentGO.name.StartsWith("CargoBox01_damaged") ||
@@ -25,22 +29,33 @@ namespace DecorationsMod.Fixers
                                      parentGO.name.StartsWith("DecorativeLockerDoor")))
                 {
 #if DEBUG_CARGO_CRATES
-                    Logger.Log("DEBUG: OnProtoDeserializeObjectTree() storageConteiner Id=[" + pid2.Id + "] objName=[" + parentGO.name + "] nbItems=[" + (__instance.container != null ? Convert.ToString(__instance.container.count) : "null") + "]");
+                    Logger.Log("DEBUG: OnProtoDeserializeObjectTree() parent storageConteiner Id=[" + pid2.Id + "] objName=[" + parentGO.name + "] nbItems=[" + (__instance.container != null ? Convert.ToString(__instance.container.count) : "null") + "]");
 #endif
                     if (_storages.ContainsKey(pid2.Id))
                     {
+                        if (_storages[pid2.Id].Item2)
+                        {
 #if DEBUG_CARGO_CRATES
-                        Logger.Log("DEBUG: OnProtoDeserializeObjectTree() Transfering items...");
+                            Logger.Log("DEBUG: OnProtoDeserializeObjectTree() Setup A"); // Resetting
 #endif
-                        StorageHelper.TransferItems(__instance.storageRoot.gameObject, _storages[pid2.Id].container);
-                        GameObject.Destroy(__instance.gameObject);
+                            _storages[pid2.Id] = new Tuple<StorageContainer, bool>(__instance, false);
+                        }
+                        else
+                        {
+#if DEBUG_CARGO_CRATES
+                            Logger.Log("DEBUG: OnProtoDeserializeObjectTree() Setup B"); // Transfering
+#endif
+                            _storages[pid2.Id] = new Tuple<StorageContainer, bool>(_storages[pid2.Id].Item1, true);
+                            StorageHelper.TransferItems(__instance.storageRoot.gameObject, _storages[pid2.Id].Item1.container);
+                            GameObject.Destroy(__instance.gameObject);
+                        }
                     }
                     else
                     {
 #if DEBUG_CARGO_CRATES
-                        Logger.Log("DEBUG: OnProtoDeserializeObjectTree() Registering items...");
+                        Logger.Log("DEBUG: OnProtoDeserializeObjectTree() Setup C"); // Registering
 #endif
-                        _storages.Add(pid2.Id, __instance);
+                        _storages.Add(pid2.Id, new Tuple<StorageContainer, bool>(__instance, false));
                     }
                 }
             }

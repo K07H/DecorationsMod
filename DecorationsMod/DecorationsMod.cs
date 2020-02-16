@@ -22,7 +22,7 @@ namespace DecorationsMod
 
             // 3) REGISTER DECORATION ITEMS
             List<IDecorationItem> decorationItems = RegisterDecorationItems();
-
+            
             // 4) MAKE SOME EXISTING ITEMS PICKUPABLE & POSITIONABLE
             if (ConfigSwitcher.EnablePlaceItems)
                 PlaceToolItems.MakeItemsPlaceable();

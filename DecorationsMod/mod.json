@@ -2,7 +2,7 @@
   "Id": "DecorationsMod",
   "DisplayName": "DecorationsMod",
   "Author": "OSubMarin",
-  "Version": "1.6.0",
+  "Version": "1.6.5",
   "Requires": [ "0Harmony.dll", "SMLHelper.dll" ],
   "Enable": true,
   "AssemblyName": "DecorationsMod.dll",

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DecorationsMod.Fixers;
+using System;
 using System.Globalization;
 using System.IO;
 using UnityEngine;
@@ -12,7 +13,11 @@ namespace DecorationsMod.Controllers
         public override void Awake()
         {
             base.Awake();
-            this._storageContainer = this.gameObject.GetComponentInChildren<StorageContainer>();
+            StorageContainer sc;
+            try { sc = this.gameObject.GetComponentInChildren<StorageContainer>(); }
+            catch { sc = null; }
+            if (sc != null)
+                this._storageContainer = sc;
         }
 
         public void OnHandClick(GUIHand hand)
@@ -41,8 +46,19 @@ namespace DecorationsMod.Controllers
                     collider.size *= 1.248f;
                 }
             }
-            else if (this._storageContainer != null)
-                this._storageContainer.OnHandClick(hand);
+            else
+            {
+                if (this._storageContainer == null)
+                {
+                    StorageContainer sc;
+                    try { sc = this.gameObject.transform.parent.GetComponentInChildren<StorageContainer>(); }
+                    catch { sc = null; }
+                    if (sc != null)
+                        this._storageContainer = sc;
+                }
+                if (this._storageContainer != null)
+                    this._storageContainer.OnHandClick(hand);
+            }
         }
 
         public void OnHandHover(GUIHand hand)
@@ -59,9 +75,8 @@ namespace DecorationsMod.Controllers
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             if (id == null)
                 if ((id = GetComponent<PrefabIdentifier>()) == null)
-                    return;
-            if (this._storageContainer == null)
-                return;
+                    if ((id = this.gameObject.GetComponent<PrefabIdentifier>()) == null)
+                        return;
 #if DEBUG_CARGO_CRATES
             Logger.Log("DEBUG: Serialize(): PrefabID=[" + id.Id + "]");
 #endif
@@ -77,12 +92,12 @@ namespace DecorationsMod.Controllers
             if (model == null)
                 return;
             
-            string saveData = Convert.ToString(model.transform.localScale.y);
+            string saveData = Convert.ToString(model.transform.localScale.y, CultureInfo.InvariantCulture);
             BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
-            saveData += Environment.NewLine + Convert.ToString(collider.size.x) + "|" + Convert.ToString(collider.size.y) + "|" + Convert.ToString(collider.size.z);
+            saveData += Environment.NewLine + Convert.ToString(collider.size.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(collider.size.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(collider.size.z, CultureInfo.InvariantCulture);
 
 #if DEBUG_CARGO_CRATES
-            Logger.Log("DEBUG: Serialize(): Saving cargo crates nbItems=[" + _storageContainer.container.count + "] size=[" + Convert.ToString(model.transform.localScale.y) + "] collider x=[" + Convert.ToString(collider.size.x) + "] y=[" + Convert.ToString(collider.size.y) + "] z=[" + Convert.ToString(collider.size.z) + "].");
+            Logger.Log("DEBUG: Serialize(): Saving cargo crates nbItems=[" + _storageContainer?.container?.count + "] size=[" + Convert.ToString(model.transform.localScale.y, CultureInfo.InvariantCulture) + "] collider x=[" + Convert.ToString(collider.size.x, CultureInfo.InvariantCulture) + "] y=[" + Convert.ToString(collider.size.y, CultureInfo.InvariantCulture) + "] z=[" + Convert.ToString(collider.size.z, CultureInfo.InvariantCulture) + "].");
 #endif
             File.WriteAllText(Path.Combine(saveFolder, "cargocrate_" + id.Id + ".txt"), saveData);
         }
@@ -92,20 +107,27 @@ namespace DecorationsMod.Controllers
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             if (id == null)
                 if ((id = GetComponent<PrefabIdentifier>()) == null)
-                    return;
-            if (this._storageContainer == null)
-                return;
+                    if ((id = this.gameObject.GetComponent<PrefabIdentifier>()) == null)
+                        return;
 #if DEBUG_CARGO_CRATES
             Logger.Log("DEBUG: Deserialize(): PrefabID=[" + id.Id + "]");
 #endif
 
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "cargocrate_" + id.Id + ".txt");
+
             if (File.Exists(filePath))
             {
-                string tmpSize = File.ReadAllText(filePath);
+
+#if DEBUG_CARGO_CRATES
+                Logger.Log("DEBUG: Deserialize() A");
+#endif
+                string tmpSize = File.ReadAllText(filePath).Replace(',', '.');
                 string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (sizes.Length == 2)
                 {
+#if DEBUG_CARGO_CRATES
+                    Logger.Log("DEBUG: Deserialize() B");
+#endif
                     GameObject model = this.gameObject.FindChild("cargobox01_damaged");
                     if (model == null)
                         if ((model = this.gameObject.FindChild("cargobox01a")) == null)
@@ -115,21 +137,30 @@ namespace DecorationsMod.Controllers
 
                     BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
 
-                    float size = float.Parse(sizes[0], CultureInfo.InvariantCulture.NumberFormat);
+#if DEBUG_CARGO_CRATES
+                    Logger.Log("DEBUG: Deserialize() C");
+#endif
+                    float size = float.Parse(sizes[0], CultureInfo.InvariantCulture);
                     model.transform.localScale = new Vector3(size, size, size);
                     string[] colliderSizes = sizes[1].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (colliderSizes.Length == 3)
                     {
-                        float colliderSizeX = float.Parse(colliderSizes[0], CultureInfo.InvariantCulture.NumberFormat);
-                        float colliderSizeY = float.Parse(colliderSizes[1], CultureInfo.InvariantCulture.NumberFormat);
-                        float colliderSizeZ = float.Parse(colliderSizes[2], CultureInfo.InvariantCulture.NumberFormat);
+#if DEBUG_CARGO_CRATES
+                        Logger.Log("DEBUG: Deserialize() D");
+#endif
+                        float colliderSizeX = float.Parse(colliderSizes[0], CultureInfo.InvariantCulture);
+                        float colliderSizeY = float.Parse(colliderSizes[1], CultureInfo.InvariantCulture);
+                        float colliderSizeZ = float.Parse(colliderSizes[2], CultureInfo.InvariantCulture);
                         collider.size = new Vector3(colliderSizeX, colliderSizeY, colliderSizeZ);
                     }
                     else // Backward compatibility
                     {
                         float colliderSize;
-                        if (float.TryParse(sizes[1], out colliderSize))
+                        if (float.TryParse(sizes[1], NumberStyles.Float, CultureInfo.InvariantCulture, out colliderSize))
                             collider.size = new Vector3(colliderSize * 0.4583f, colliderSize, colliderSize * 0.5555f);
+#if DEBUG_CARGO_CRATES
+                        Logger.Log("DEBUG: Deserialize() E");
+#endif
                     }
                 }
             }

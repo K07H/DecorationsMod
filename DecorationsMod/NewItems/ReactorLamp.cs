@@ -46,6 +46,9 @@ namespace DecorationsMod.NewItems
 
                 // Disable light at start
                 var reactorRodLight = this.GameObject.GetComponentInChildren<Light>();
+                reactorRodLight.intensity = 1.0f;
+                reactorRodLight.range = 10.0f;
+                reactorRodLight.color = Color.white;
                 reactorRodLight.enabled = false;
 
                 // Add prefab identifier
@@ -79,23 +82,31 @@ namespace DecorationsMod.NewItems
                     {
                         // Associate MarmosetUBER shader
                         renderer.sharedMaterial.shader = shader;
-                        
+                        renderer.material.shader = shader;
+
                         // Update normal map
                         renderer.sharedMaterial.SetTexture("_BumpMap", normalTexture);
+                        renderer.material.SetTexture("_BumpMap", normalTexture);
 
                         // Update spec map
                         renderer.sharedMaterial.SetTexture("_SpecTex", specTexture);
+                        renderer.material.SetTexture("_SpecTex", specTexture);
 
                         // Update emission map
                         renderer.sharedMaterial.SetTexture("_Illum", illumTexture);
+                        renderer.material.SetTexture("_Illum", illumTexture);
 
                         // Increase emission map strength
-                        renderer.sharedMaterial.SetColor("_GlowColor", new Color(2.5f, 2.5f, 2.5f, 1.0f));
-                        renderer.sharedMaterial.SetFloat("_GlowStrength", 1.5f);
+                        renderer.sharedMaterial.SetColor("_GlowColor", Color.white);
+                        renderer.sharedMaterial.SetFloat("_GlowStrength", 1.0f);
+                        renderer.material.SetColor("_GlowColor", Color.white);
+                        renderer.material.SetFloat("_GlowStrength", 1.0f);
 
                         // Enable emission
                         renderer.sharedMaterial.EnableKeyword("MARMO_NORMALMAP");
                         renderer.sharedMaterial.EnableKeyword("MARMO_EMISSION");
+                        renderer.material.EnableKeyword("MARMO_NORMALMAP");
+                        renderer.material.EnableKeyword("MARMO_EMISSION");
                     }
                 }
 

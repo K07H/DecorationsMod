@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ namespace DecorationsMod.Controllers
                         Directory.CreateDirectory(saveFolder);
 
                     // Save custom flora state
-                    File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress));
+                    File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress, CultureInfo.InvariantCulture));
                 }
             }
             else
@@ -110,7 +111,7 @@ namespace DecorationsMod.Controllers
                             Directory.CreateDirectory(saveFolder);
 
                         // Save custom flora state
-                        File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress));
+                        File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress, CultureInfo.InvariantCulture));
                     }
                 }
 #if DEBUG_FLORA
@@ -141,13 +142,13 @@ namespace DecorationsMod.Controllers
 #if DEBUG_FLORA
                 Logger.Log("DEBUG: Saved file found for gameobject name=[" + this.gameObject.name + "]");
 #endif
-                string rawState = File.ReadAllText(filePath);
+                string rawState = File.ReadAllText(filePath).Replace(',', '.');
                 string[] state = rawState.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
                 if (state.Length == 1)
                 {
                     float passedProgress = 0.0f;
-                    if (float.TryParse(state[0], out passedProgress))
+                    if (float.TryParse(state[0], NumberStyles.Float, CultureInfo.InvariantCulture, out passedProgress))
                     {
                         if (landPlantController != null)
                         {

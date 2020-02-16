@@ -27,10 +27,10 @@ enablePlaceBatteries=false
 enableSpecialItems=true
 
 # If "true", you'll be able to craft Nutrient Blocks using the decorations fabricator.
-enableNutrientBlock=true
+enableNutrientBlock=false
 
-# If "true",  item will be added to the habitat builder menu.
-# If "false", item will be added to the decorations fabricator.
+# If "true",  item will be available through the habitat builder menu.
+# If "false", item will be available through the decorations fabricator.
 # Be careful using this option: you may loose some of the item functionalities by placing it in the decorations fabricator.
 asBuildable_SpecimenAnalyzer=true
 asBuildable_MarkiplierDoll1=true

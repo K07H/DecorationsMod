@@ -54,9 +54,9 @@ namespace DecorationsMod.Controllers
                 Directory.CreateDirectory(saveFolder);
 
             GameObject model = this.gameObject.FindChild("forklift");
-            string size = Convert.ToString(model.transform.localScale.y);
+            string size = Convert.ToString(model.transform.localScale.y, CultureInfo.InvariantCulture);
             BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
-            size += Environment.NewLine + Convert.ToString(collider.size.y);
+            size += Environment.NewLine + Convert.ToString(collider.size.y, CultureInfo.InvariantCulture);
 
             File.WriteAllText(Path.Combine(saveFolder, "forklift_" + id.Id + ".txt"), size);
         }
@@ -71,20 +71,20 @@ namespace DecorationsMod.Controllers
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "forklift_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
-                string tmpSize = File.ReadAllText(filePath);
+                string tmpSize = File.ReadAllText(filePath).Replace(',', '.');
                 string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (sizes.Length == 2)
                 {
                     GameObject model = this.gameObject.FindChild("forklift");
                     if (model != null)
                     {
-                        float size = float.Parse(sizes[0], CultureInfo.InvariantCulture.NumberFormat);
+                        float size = float.Parse(sizes[0], CultureInfo.InvariantCulture);
                         model.transform.localScale = new Vector3(size, size, size);
                     }
                     BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
                     if (collider != null)
                     {
-                        float colliderSize = float.Parse(sizes[1], CultureInfo.InvariantCulture.NumberFormat);
+                        float colliderSize = float.Parse(sizes[1], CultureInfo.InvariantCulture);
                         collider.size = new Vector3(colliderSize, colliderSize, colliderSize);
                     }
                 }

@@ -7,15 +7,28 @@
         public override void Awake()
         {
             base.Awake();
-            this._storageContainer = this.gameObject.GetComponentInChildren<StorageContainer>();
+            StorageContainer sc;
+            try { sc = this.gameObject.GetComponentInChildren<StorageContainer>(); }
+            catch { sc = null; }
+            if (sc != null)
+                this._storageContainer = sc;
         }
 
         public void OnHandClick(GUIHand hand)
         {
-            if (!base.enabled || this._storageContainer == null)
+            if (!base.enabled)
                 return;
 
-            this._storageContainer.OnHandClick(hand);
+            if (this._storageContainer == null)
+            {
+                StorageContainer sc;
+                try { sc = this.gameObject.transform.parent.GetComponentInChildren<StorageContainer>(); }
+                catch { sc = null; }
+                if (sc != null)
+                    this._storageContainer = sc;
+            }
+            if (this._storageContainer != null)
+                this._storageContainer.OnHandClick(hand);
         }
 
         public void OnHandHover(GUIHand hand)
