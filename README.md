@@ -1,5 +1,6 @@
 # Decorations Mod for Subnautica
 ## *Multilingual (EN/FR/ES/TR/DE/RU)*
+<br>
 
 ### Prerequisites:
 Requires QMods and SMLHelper.<br>
