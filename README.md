@@ -31,7 +31,7 @@ Requires QMods and SMLHelper.<br>
     6 different skeletons parts<br>
     3 different accessories<br>
     4 different toys<br>
-**It will add a seeds fabricator allowing you to craft following flora:**<br>
+**It will add a seeds fabricator allowing you to craft and grow following new flora:**<br>
     7 air plants<br>
     7 air trees<br>
     8 tropical plants<br>
@@ -50,6 +50,7 @@ Requires QMods and SMLHelper.<br>
     Forklift toy (customizable)<br>
     3 different cargo crates (customizable)<br>
     4 different sofas<br>
+    Stool<br>
     Customizable picture frame (you can change it's size, orientation and frame border style by clicking on it, and also set its content image from screenshot folder like regular picture frames)<br>
     Empty desk<br>
     3 different lockers<br>
@@ -82,6 +83,7 @@ Requires QMods and SMLHelper.<br>
 Inside the **DecorationsMod** folder you will find the file **Config.txt** which contains options that you can modify. You can check the list of available options [here](https://github.com/K07H/DecorationsMod/raw/master/DecorationsMod/Config.txt).<br>
 All items can be rotated and placed in any base or cyclops.<br>
 All new flora is compatible with bioreactors and only the land tree is edible.<br>
+You can add all existing seeds to the seeds fabricator by modifying options inside the Config.txt file.<br>
 You can change range, brightness and color of the lamp by clicking on it (max range is currently 60m).<br>
 You can change seamoth doll model by clicking on it.<br>
 You can change PRAWN suit doll model by clicking on it.<br>
