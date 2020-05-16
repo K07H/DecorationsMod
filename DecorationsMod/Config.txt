@@ -7,7 +7,7 @@ language=auto
 useAlternativeScreenResolution=false
 
 # If "true", tooltips of the "customizable picture frame" and "customizable light" items will be scaled down (compact mode). 
-useCompactTooltips=true
+useCompactTooltips=false
 
 # If "true", more items from this mod will be buildable outside bases.
 allowBuildOutside=true
