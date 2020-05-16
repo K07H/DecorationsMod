@@ -36,18 +36,18 @@ Requires QMods and SMLHelper.<br>
     5 unique alien tablets<br>
     19 unique eggs<br>
 **It will add a seeds fabricator allowing you to craft and grow following new flora:**<br>
-    7 air plants<br>
-    7 air trees<br>
-    8 tropical plants<br>
-    12 water plants<br>
-    7 water trees<br>
-    5 corals<br>
-    7 amphibious plants<br>
+    7 unique air plants<br>
+    7 unique air trees<br>
+    8 unique tropical plants<br>
+    12 unique water plants<br>
+    7 unique water trees<br>
+    5 unique corals<br>
+    7 unique amphibious plants<br>
 **It will add the following new items in the "Miscellaneous" section of habitat builder:**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
-    Markiplier 1 doll<br>
-    Markiplier 2 doll<br>
+    Markiplier1 doll<br>
+    Markiplier2 doll<br>
     Specimen Analyzer<br>
     Seamoth doll (customizable)<br>
     PRAWN suit doll (customizable)<br>
@@ -88,17 +88,18 @@ Requires QMods and SMLHelper.<br>
 
 ### Additional information:<br>
 Inside the **DecorationsMod** folder you will find the file **Config.txt** which contains options that you can modify. You can check the list of available options [here](https://github.com/K07H/DecorationsMod/raw/master/DecorationsMod/Config.txt).<br>
-All items can be rotated and placed in any base or cyclops.<br>
-All new flora is compatible with bioreactors and only the land tree is edible.<br>
-You can add all existing seeds to the seeds fabricator by modifying options inside the Config.txt file.<br>
-You can change range, brightness and color of the lamp by clicking on it (max range is currently 60m).<br>
+You can change range, brightness and color of the customizable light item (by clicking on it and holding various keys).<br>
+You can change the size and orientation of the customizable picture frame item (also you can set its content image from the screenshot folder like any other regular picture frame).<br>
+You can switch customizable picture frames to poster mode by clicking on it while holding "F".<br>
 You can change seamoth doll model by clicking on it.<br>
 You can change PRAWN suit doll model by clicking on it.<br>
 You can change cargo crates and forklift sizes by clicking on them.<br>
 You can change computers labels by clicking on them.<br>
-You can change the customizable picture frame size, orientation and frame border style by clicking on it, and also set its content image like regular picture frames (the window displaying images found in the screenshot folder appears).<br>
 You can display or hide the giant cove tree eggs by clicking on it (hidden by default).<br>
+You can add all existing seeds to the seeds fabricator by modifying options inside the Config.txt file.<br>
 Both long planters can be build inside or outside bases/cyclops.<br>
+All items can be rotated and placed in any base or cyclops.<br>
+All new flora is compatible with bioreactors and only the land tree is edible.<br>
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
