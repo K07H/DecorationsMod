@@ -50,7 +50,7 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                GameObject aquarium = GameObject.Instantiate(CraftData.GetPrefabForTechType(TechType.Aquarium));
+                GameObject aquarium = CraftData.GetPrefabForTechType(TechType.Aquarium);
 
                 // Retrieve model node
                 GameObject model = this.GameObject.FindChild("prawnsuit");
