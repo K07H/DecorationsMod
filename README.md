@@ -10,32 +10,36 @@ Requires QMods and SMLHelper.<br>
 
 ### Installation instructions:
 1) Download one of the two ZIP archives [here](https://github.com/K07H/DecorationsMod/releases) *(either high-quality textures or low-quality)*.<br>
-2) Extract it.<br>
+2) Extract folder **DecorationsMod** from the archive.<br>
 3) Move folder **DecorationsMod** inside "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods*" directory.<br>
 
 <br><br>
 
 ### Description:
 **This mod will add a decoration fabricator allowing you to craft following new items:**<br>
-    5 different posters<br>
-    7 different glass containers<br>
-    3 different lab equipments<br>
-    3 different lab furnitures<br>
-    3 different computers (customizable)<br>
-    10 different circuit boxes<br>
-    5 different bottles<br>
-    2 different cups<br>
-    3 different dishes<br>
-    7 different office supplies<br>
-    6 different leviathan dolls<br>
-    6 different skeletons parts<br>
-    3 different accessories<br>
-    4 different toys<br>
+    5 unique posters<br>
+    7 unique glass containers<br>
+    3 unique lab equipments<br>
+    3 unique lab furnitures<br>
+    3 unique computers (customizable)<br>
+    10 unique circuit boxes<br>
+    5 unique bottles<br>
+    2 unique cups<br>
+    3 unique dishes<br>
+    7 unique office supplies<br>
+    6 unique leviathan dolls<br>
+    6 unique skeletons parts<br>
+    3 unique accessories<br>
+    4 unique toys<br>
+    11 unique warper parts<br>
+    11 unique alien relics<br>
+    5 unique alien tablets<br>
+    19 unique eggs<br>
 **It will add a seeds fabricator allowing you to craft and grow following new flora:**<br>
     7 air plants<br>
     7 air trees<br>
     8 tropical plants<br>
-    5 water plants<br>
+    12 water plants<br>
     7 water trees<br>
     5 corals<br>
     7 amphibious plants<br>
@@ -48,17 +52,20 @@ Requires QMods and SMLHelper.<br>
     Seamoth doll (customizable)<br>
     PRAWN suit doll (customizable)<br>
     Forklift toy (customizable)<br>
-    3 different cargo crates (customizable)<br>
-    4 different sofas<br>
+    3 unique cargo crates (customizable)<br>
+    4 unique sofas<br>
     Stool<br>
-    Customizable picture frame (you can change it's size, orientation and frame border style by clicking on it, and also set its content image from screenshot folder like regular picture frames)<br>
+    Customizable picture frame (customizable)<br>
     Empty desk<br>
-    3 different lockers<br>
-    2 different benches<br>
+    3 unique lockers<br>
+    2 unique benches<br>
+    Warper specimen<br>
+    Small aquarium<br>
 **It will add following new item in the "Exterior modules" section of the habitat builder:**<br>
     Lamp (customizable)<br>
+    Long planter (handles sea seeds)<br>
 **It will add following new item in the "Interior modules" section of the habitat builder:**<br>
-    Long planter (8x2)<br>
+    Long planter (handles land seeds)<br>
 **And you will be able to place following existing items where you want:**<br>
     Coffee cup<br>
     All snacks<br>
@@ -91,9 +98,11 @@ You can change cargo crates and forklift sizes by clicking on them.<br>
 You can change computers labels by clicking on them.<br>
 You can change the customizable picture frame size, orientation and frame border style by clicking on it, and also set its content image like regular picture frames (the window displaying images found in the screenshot folder appears).<br>
 You can display or hide the giant cove tree eggs by clicking on it (hidden by default).<br>
+Both long planters can be build inside or outside bases/cyclops.<br>
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
+May 16, 2020: Updated to version 1.7.0.<br>
 February 16, 2020: Updated to version 1.6.5.<br>
 November 17, 2019: Updated to version 1.6.3.<br>
 November 15, 2019: Updated to version 1.6.2.<br>
