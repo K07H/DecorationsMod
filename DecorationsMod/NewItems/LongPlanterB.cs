@@ -47,7 +47,7 @@ namespace DecorationsMod.NewItems
             {
                 // Add to the custom buidables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorOther, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorOther, this.TechType, TechType.FarmingTray);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);

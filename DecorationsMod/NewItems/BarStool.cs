@@ -63,7 +63,7 @@ namespace DecorationsMod.NewItems
 
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipChair3);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);

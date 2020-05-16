@@ -56,6 +56,11 @@ namespace DecorationsMod
         // If "true", glass of the aquariums (regular and the one from this mod) will be a little glowing.
         public static bool GlowingAquariumGlass = false;
 
+        // If "true", there will be a new tab inside decorations fabricator containing following items:
+        // 11 unique warper parts, 11 unique alien relics and 5 unique alien tablets
+        // Hidden by default to prevent end game spoilers.
+        public static bool EnablePrecursorTab = false;
+
         // If true: Item will be available as a buildable (in habitat builder menu).
         // If false: Item will be available as a craftable (in decorations fabricator).
         public static bool SpecimenAnalyzer_asBuildable = true;
@@ -238,6 +243,8 @@ namespace DecorationsMod
                                     ConfigSwitcher.AllowIndoorLongPlanterOutside = configValue; break;
                                 case "allowOutdoorLongPlanterInside":
                                     ConfigSwitcher.AllowOutdoorLongPlanterInside = configValue; break;
+                                case "enablePrecursorTab":
+                                    ConfigSwitcher.EnablePrecursorTab = configValue; break;
                                 case "enableNutrientBlock":
                                     ConfigSwitcher.EnableNutrientBlock = configValue; break;
                                 case "enableAllEggs":

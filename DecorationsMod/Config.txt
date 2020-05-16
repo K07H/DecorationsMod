@@ -2,12 +2,16 @@
 # Possible values: "fr" for French, "en" for English, "es" for Spanish, "de" for Deutsch,
 # "tr" for Turkish, "ru" for Russian and "auto" for default language.
 language=auto
-
-# Set this to "true" only if some items in Decorations Fabricator or Seeds Fabricator are not visible because they don't fit in screen (if it still doesn't fit after that, download the Radial Tabs mod here: https://www.nexusmods.com/subnautica/mods/207).
+ 
+# Set this to "true" only if some items in Decorations Fabricator or Seeds Fabricator are not visible because they don't fit in screen.
+# If it still doesn't fit after that, download Radial Tabs mod here: https://www.nexusmods.com/subnautica/mods/207.
 useAlternativeScreenResolution=false
 
 # If "true", tooltips of the "customizable picture frame" and "customizable light" items will be scaled down (compact mode). 
 useCompactTooltips=false
+
+# If "true", there will be a new tab inside decorations fabricator containing 11 unique warper parts, 11 unique alien relics and 5 unique alien tablets.
+enablePrecursorTab=false
 
 # If "true", more items from this mod will be buildable outside bases.
 allowBuildOutside=true

@@ -214,66 +214,69 @@ namespace DecorationsMod
 
             #region PRECURSOR
 
-            var precursorTab = rootNode.AddTabNode("Precursor", LanguageHelper.GetFriendlyWord("Precursor"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_10_b"));
+            if (ConfigSwitcher.EnablePrecursorTab)
+            {
+                var precursorTab = rootNode.AddTabNode("Precursor", LanguageHelper.GetFriendlyWord("Precursor"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_10_b"));
 
-            // Warpers
-            var warperTab = precursorTab.AddTabNode("PrecursorWarperParts", LanguageHelper.GetFriendlyWord("PrecursorWarperParts"), AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart2") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart2"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart3") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart3"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart4") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart4"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart12") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart12"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart5") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart5"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart6") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart6"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart7") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart7"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart8") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart8"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart9") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart9"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart10") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart10"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart11") != TechType.None)
-                warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart11"));
+                // Warpers
+                var warperTab = precursorTab.AddTabNode("PrecursorWarperParts", LanguageHelper.GetFriendlyWord("PrecursorWarperParts"), AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart2") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart2"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart3") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart3"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart4") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart4"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart12") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart12"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart5") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart5"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart6") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart6"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart7") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart7"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart8") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart8"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart9") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart9"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart10") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart10"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart11") != TechType.None)
+                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart11"));
 
-            // Weapons
-            var weaponsTab = precursorTab.AddTabNode("PrecursorWeapons", LanguageHelper.GetFriendlyWord("Weapons"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_02_b"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact6") != TechType.None)
-                weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact6"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact7") != TechType.None)
-                weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact7"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact8") != TechType.None)
-                weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact8"));
+                // Weapons
+                var weaponsTab = precursorTab.AddTabNode("PrecursorWeapons", LanguageHelper.GetFriendlyWord("Weapons"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_02_b"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact6") != TechType.None)
+                    weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact6"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact7") != TechType.None)
+                    weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact7"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact8") != TechType.None)
+                    weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact8"));
 
-            // Artefacts
-            var artefactsTab = precursorTab.AddTabNode("PrecursorRelics", LanguageHelper.GetFriendlyWord("Relics"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_04_b"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact1") != TechType.None)
-                artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact1"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact2") != TechType.None)
-                artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact2"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact3") != TechType.None)
-                artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact3"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact4") != TechType.None)
-                artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact4"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact5") != TechType.None)
-                artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact5"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact9") != TechType.None)
-                artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact9"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact10") != TechType.None)
-                artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact10"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact11") != TechType.None)
-                artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact11"));
+                // Artefacts
+                var artefactsTab = precursorTab.AddTabNode("PrecursorRelics", LanguageHelper.GetFriendlyWord("Relics"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_04_b"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact1") != TechType.None)
+                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact1"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact2") != TechType.None)
+                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact2"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact3") != TechType.None)
+                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact3"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact4") != TechType.None)
+                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact4"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact5") != TechType.None)
+                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact5"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact9") != TechType.None)
+                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact9"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact10") != TechType.None)
+                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact10"));
+                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact11") != TechType.None)
+                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact11"));
 
-            // Keys
-            var keysTab = precursorTab.AddTabNode("PrecursorKeys", LanguageHelper.GetFriendlyWord("PrecursorKeys"), SpriteManager.Get(TechType.PrecursorKey_Red));
-            if (ConfigSwitcher.PrecursorKeysAll)
-                keysTab.AddCraftingNode(new TechType[] { TechType.PrecursorKey_Purple, TechType.PrecursorKey_Orange, TechType.PrecursorKey_Blue });
-            keysTab.AddCraftingNode(new TechType[] { TechType.PrecursorKey_White, TechType.PrecursorKey_Red });
+                // Keys
+                var keysTab = precursorTab.AddTabNode("PrecursorKeys", LanguageHelper.GetFriendlyWord("PrecursorKeys"), SpriteManager.Get(TechType.PrecursorKey_Red));
+                if (ConfigSwitcher.PrecursorKeysAll)
+                    keysTab.AddCraftingNode(new TechType[] { TechType.PrecursorKey_Purple, TechType.PrecursorKey_Orange, TechType.PrecursorKey_Blue });
+                keysTab.AddCraftingNode(new TechType[] { TechType.PrecursorKey_White, TechType.PrecursorKey_Red });
+            }
 
             #endregion
 
