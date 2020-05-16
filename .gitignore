@@ -384,3 +384,5 @@ DecorationsMod/obj/DebugStool/DesignTimeResolveAssemblyReferencesInput.cache
 .vs/
 bin/
 obj/
+DecorationsMod/Assets/decorationassets.assets
+DecorationsMod/Assets/decorationassets_lowquality.assets
