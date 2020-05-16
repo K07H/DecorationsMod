@@ -16,7 +16,9 @@ Requires QMods and SMLHelper.<br>
 <br><br>
 
 ### Description:
-**This mod will add a decoration fabricator allowing you to craft following new items:**<br>
+Adds a fabricator allowing you to craft 113 new items. Adds another fabricator to craft 53 new seeds. 27 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
+
+**Adds a decoration fabricator allowing you to craft following new items:**<br>
     5 unique posters<br>
     7 unique glass containers<br>
     3 unique lab equipments<br>
@@ -35,7 +37,7 @@ Requires QMods and SMLHelper.<br>
     11 unique alien relics<br>
     5 unique alien tablets<br>
     19 unique eggs<br>
-**It will add a seeds fabricator allowing you to craft and grow following new flora:**<br>
+**Add a seeds fabricator allowing you to craft and grow following new flora:**<br>
     7 unique air plants<br>
     7 unique air trees<br>
     8 unique tropical plants<br>
@@ -43,7 +45,7 @@ Requires QMods and SMLHelper.<br>
     7 unique water trees<br>
     5 unique corals<br>
     7 unique amphibious plants<br>
-**It will add the following new items in the "Miscellaneous" section of habitat builder:**<br>
+**Add the following new items in the "Miscellaneous" section of habitat builder:**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
     Markiplier1 doll<br>
@@ -61,12 +63,12 @@ Requires QMods and SMLHelper.<br>
     2 unique benches<br>
     Warper specimen<br>
     Small aquarium<br>
-**It will add following new item in the "Exterior modules" section of the habitat builder:**<br>
+**Adds following new items in the "Exterior modules" section of the habitat builder:**<br>
     Lamp (customizable)<br>
     Long planter (handles sea seeds)<br>
-**It will add following new item in the "Interior modules" section of the habitat builder:**<br>
+**Adds following new item in the "Interior modules" section of the habitat builder:**<br>
     Long planter (handles land seeds)<br>
-**And you will be able to place following existing items where you want:**<br>
+**You will be able to place following existing items where you want:**<br>
     Coffee cup<br>
     All snacks<br>
     Nutrient block<br>
@@ -103,7 +105,7 @@ All new flora is compatible with bioreactors and only the land tree is edible.<b
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
-May 16, 2020: Updated to version 1.7.0.<br>
+May 16, 2020: Updated to version 1.7.1.<br>
 February 16, 2020: Updated to version 1.6.5.<br>
 November 17, 2019: Updated to version 1.6.3.<br>
 November 15, 2019: Updated to version 1.6.2.<br>
