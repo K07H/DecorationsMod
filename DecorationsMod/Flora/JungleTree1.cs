@@ -16,15 +16,29 @@ namespace DecorationsMod.Flora
         public JungleTree1()
         {
             this.ClassID = "JungleTree1"; // abe4426a-5968-40b0-9d99-b06207984aa8
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if BELOWZERO
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/old/jungle tree 3a");
+#else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Land/Jungle Tree 3a");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("JungleTree1Name"),
                                                         LanguageHelper.GetFriendlyWord("JungleTree1Description"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -32,6 +46,7 @@ namespace DecorationsMod.Flora
                     new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
             };
+#endif
 
             this.Config = ConfigSwitcher.config_JungleTree1;
         }
@@ -77,6 +92,8 @@ namespace DecorationsMod.Flora
             Logger.Log("DEBUG: JungleTree1->GetGameObject(): B");
 #endif
             prefab.name = this.ClassID;
+
+            PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_FLORA
             Logger.Log("DEBUG: JungleTree1->GetGameObject(): C");
@@ -155,7 +172,11 @@ namespace DecorationsMod.Flora
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
+#if BELOWZERO
+            pickupable.isLootCube = false;
+#else
             pickupable.cubeOnPickup = false;
+#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -199,7 +220,9 @@ namespace DecorationsMod.Flora
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
+#if SUBNAUTICA
             liveMixin.data.explodeOnDestroy = false;
+#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

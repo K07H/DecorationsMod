@@ -8,7 +8,7 @@ namespace DecorationsMod.Fixers
     [HarmonyPatch("CanDropItemHere")]
     public class InventoryFixer
     {
-        internal static readonly List<string> _plants = new List<string>(new string[46] {
+        internal static readonly List<string> _plants = new List<string>(new string[53] {
             "Fern2",
             "Fern4",
             "JungleTree1",
@@ -54,7 +54,14 @@ namespace DecorationsMod.Fixers
             "SmallDeco13",
             "SmallDeco14",
             "SmallDeco15Red",
-            "SmallDeco17Purple"
+            "SmallDeco17Purple",
+            "BloodGrassDense",
+            "BloodGrassRed",
+            "RedGrass1",
+            "RedGrass2",
+            "RedGrass2Tall",
+            "RedGrass3",
+            "RedGrass3Tall"
         });
 
         //public static bool CanDropItemHere(Pickupable item, bool notify = false)
@@ -92,8 +99,7 @@ namespace DecorationsMod.Fixers
                 {
                     if (!String.IsNullOrEmpty(id.ClassId) && _plants.Contains(id.ClassId))
                     {
-                        // If yes, set result value to false (cannot drop item) and return false to
-                        // prevent original function from being called
+                        // Set result value to false (cannot drop item) and return false to prevent original function from being called
                         __result = false;
                         return false;
                     }
@@ -134,7 +140,11 @@ namespace DecorationsMod.Fixers
                 string empty = string.Empty;
                 if (flag && !equipment.GetItemSlot(item, ref empty))
                     return true;
+#if BELOWZERO
+                EquipmentType equipmentType = TechData.GetEquipmentType(techType);
+#else
                 EquipmentType equipmentType = CraftData.GetEquipmentType(techType);
+#endif
                 if (string.IsNullOrEmpty(slotB))
                     equipmentB.GetCompatibleSlot(equipmentType, out slotB);
                 if (string.IsNullOrEmpty(slotB))

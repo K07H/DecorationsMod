@@ -17,7 +17,13 @@ namespace DecorationsMod
 
         // If "true" player will be able to place most of the placeable-items provided by this mod outside bases.
         public static bool AllowPlaceOutside = false;
-        
+
+        // If "true" player will be able to build indoor long planter outside (thus allowing to plant land seeds in water).
+        public static bool AllowIndoorLongPlanterOutside = true;
+
+        // If "true" player will be able to build outdoor long planter inside (thus allowing to plant sea seeds inside base/cyclops).
+        public static bool AllowOutdoorLongPlanterInside = true;
+
         // If "true" player will be able to place following items:
         // coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, 
         // water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth, first aid kit
@@ -33,10 +39,22 @@ namespace DecorationsMod
         public static bool EnableSpecialItems = true;
 
         // If "true", player will be able to craft Nutrient Blocks from the decorations fabricator.
-        public static bool EnableNutrientBlock = true;
+        public static bool EnableNutrientBlock = false;
 
         // If "true", additionnal categories will be added to the fabricators to make all items fit in screen.
         public static bool UseFlatScreenResolution = false;
+
+        // If "true", tooltips of the custom lamp and custom picture frame will be more compact.
+        public static bool UseCompactTooltips = false;
+
+        // If "true", player will not switch to next quickslot tool when using mouse wheel up/down if he is currently holding a placeable item.
+        public static bool LockQuickslotsWhenPlacingItem = true;
+
+        // If "true", regular aquarium will adapt to the lighting depending if it's indoor or outdoor.
+        public static bool FixAquariumLighting = false;
+
+        // If "true", glass of the aquariums (regular and the one from this mod) will be a little glowing.
+        public static bool GlowingAquariumGlass = false;
 
         // If true: Item will be available as a buildable (in habitat builder menu).
         // If false: Item will be available as a craftable (in decorations fabricator).
@@ -53,8 +71,24 @@ namespace DecorationsMod
         public static bool LabCart_asBuildable = true;
         public static bool EmptyDesk_asBuildable = true;
 
+        // Setup all precursor keys in decorations fabricator (true), or only red/white (false).
+        public static bool PrecursorKeysAll = true;
+
+        // Alien keys recipies
+        public static TechType PrecursorKeysResource = TechType.PrecursorIonCrystal;
+        public static int PrecursorKeysResourceAmount = 3;
+
+        // Alien relics recipies
+        public static TechType RelicRecipiesResource = TechType.PrecursorIonCrystal;
+        public static int RelicRecipiesResourceAmount = 2;
+
+        // Creature eggs recipies
+        public static TechType CreatureEggsResource = TechType.PrecursorIonCrystal;
+        public static int CreatureEggsResourceAmount = 1;
+
         // New flora recipies
         public static TechType FloraRecipiesResource = TechType.PrecursorIonCrystal;
+        public static int FloraRecipiesResourceAmount = 1;
 
         // New flora default configuration
         public static CustomFlora config_LandTree1 = new CustomFlora(2400.0f, 200.0f, true, 3.0f, 6.0f, false, 500.0f);
@@ -103,10 +137,20 @@ namespace DecorationsMod
         public static CustomFlora config_SmallDeco14 = new CustomFlora(1600.0f, 10.0f, true, 0.0f, 0.0f, false, 120.0f);
         public static CustomFlora config_SmallDeco15Red = new CustomFlora(1600.0f, 10.0f, true, 0.0f, 0.0f, false, 120.0f);
         public static CustomFlora config_SmallDeco17Purple = new CustomFlora(1600.0f, 10.0f, true, 0.0f, 0.0f, false, 120.0f);
+        public static CustomFlora config_RedGrass1 = new CustomFlora(800.0f, 30.0f, true, 0.0f, 0.0f, false, 30.0f);
+        public static CustomFlora config_RedGrass2 = new CustomFlora(800.0f, 40.0f, true, 0.0f, 0.0f, false, 50.0f);
+        public static CustomFlora config_RedGrass3 = new CustomFlora(800.0f, 40.0f, true, 0.0f, 0.0f, false, 50.0f);
+        public static CustomFlora config_RedGrass2Tall = new CustomFlora(1000.0f, 40.0f, true, 0.0f, 0.0f, false, 70.0f);
+        public static CustomFlora config_RedGrass3Tall = new CustomFlora(1000.0f, 40.0f, true, 0.0f, 0.0f, false, 70.0f);
+        public static CustomFlora config_BloodGrassRed = new CustomFlora(1000.0f, 40.0f, true, 0.0f, 0.0f, false, 70.0f);
+        public static CustomFlora config_BloodGrassDense = new CustomFlora(1600.0f, 60.0f, true, 0.0f, 0.0f, false, 90.0f);
 
-        // Add existing game seeds to the seeds fabricator, default config
+        // Add existing game seeds to the seeds fabricator
         public static bool EnableRegularAirSeeds = true;
         public static bool EnableRegularWaterSeeds = true;
+
+        // Add existing game eggs to the decorations fabricator
+        public static bool EnableRegularEggs = true;
 
         // Ghost leviathans (spawned from Cove Trees) default config
         public static bool GhostLeviatan_enable = true;
@@ -114,6 +158,19 @@ namespace DecorationsMod
         public static float GhostLeviatan_timeBeforeFirstSpawn = 3600f;
         public static float GhostLeviatan_spawnTimeRatio = 1f;
         public static float GhostLeviatan_health = 100f;
+
+        // Precursor artefact animations
+        public static bool AlienRelic1Animation = true;
+        public static bool AlienRelic2Animation = true;
+        public static bool AlienRelic3Animation = true;
+        public static bool AlienRelic4Animation = true;
+        public static bool AlienRelic5Animation = true;
+        public static bool AlienRelic6Animation = true;
+        public static bool AlienRelic7Animation = true;
+        public static bool AlienRelic8Animation = true;
+        public static bool AlienRelic9Animation = true;
+        public static bool AlienRelic10Animation = true;
+        public static bool AlienRelic11Animation = true;
 
         #endregion
         
@@ -162,6 +219,9 @@ namespace DecorationsMod
                             string configValueStr = configElem[1].Trim();
                             bool configValue = (configValueStr.CompareTo("true") == 0);
 
+                            TechType tmpresource = TechType.None;
+                            int tmpVal = -1;
+
                             switch (configKey)
                             {
                                 case "allowBuildOutside":
@@ -174,10 +234,24 @@ namespace DecorationsMod
                                     ConfigSwitcher.EnablePlaceBatteries = configValue; break;
                                 case "enableSpecialItems":
                                     ConfigSwitcher.EnableSpecialItems = configValue; break;
+                                case "allowIndoorLongPlanterOutside":
+                                    ConfigSwitcher.AllowIndoorLongPlanterOutside = configValue; break;
+                                case "allowOutdoorLongPlanterInside":
+                                    ConfigSwitcher.AllowOutdoorLongPlanterInside = configValue; break;
                                 case "enableNutrientBlock":
                                     ConfigSwitcher.EnableNutrientBlock = configValue; break;
-                                case "useFlatScreenResolution":
+                                case "enableAllEggs":
+                                    ConfigSwitcher.EnableRegularEggs = configValue; break;
+                                case "useAlternativeScreenResolution":
                                     ConfigSwitcher.UseFlatScreenResolution = configValue; break;
+                                case "useCompactTooltips":
+                                    ConfigSwitcher.UseCompactTooltips = configValue; break;
+                                case "lockQuickslotsWhenPlacingItem":
+                                    ConfigSwitcher.LockQuickslotsWhenPlacingItem = configValue; break;
+                                case "fixAquariumLighting":
+                                    ConfigSwitcher.FixAquariumLighting = configValue; break;
+                                case "enableAquariumGlassGlowing":
+                                    ConfigSwitcher.GlowingAquariumGlass = configValue; break;
                                 case "asBuildable_SpecimenAnalyzer":
                                     ConfigSwitcher.SpecimenAnalyzer_asBuildable = configValue; break;
                                 case "asBuildable_MarkiplierDoll1":
@@ -202,12 +276,59 @@ namespace DecorationsMod
                                     ConfigSwitcher.LabCart_asBuildable = configValue; break;
                                 case "asBuildable_EmptyDesk":
                                     ConfigSwitcher.EmptyDesk_asBuildable = configValue; break;
+                                case "precursorKeysAll":
+                                    ConfigSwitcher.PrecursorKeysAll = configValue; break;
+                                case "precursorKeys_RecipiesResource":
+                                    tmpresource = TechType.None;
+                                    if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
+                                        ConfigSwitcher.PrecursorKeysResource = tmpresource;
+                                    else
+                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource type for precursor keys recipies. Default resource will be used.");
+                                    break;
+                                case "precursorKeys_RecipiesResourceAmount":
+                                    tmpVal = -1;
+                                    if (int.TryParse(configValueStr, out tmpVal) && tmpVal > 0 && tmpVal < 500)
+                                        ConfigSwitcher.PrecursorKeysResourceAmount = tmpVal;
+                                    else
+                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource amount for precursor keys recipies. Default amount will be used.");
+                                    break;
+                                case "relics_RecipiesResource":
+                                    if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
+                                        ConfigSwitcher.RelicRecipiesResource = tmpresource;
+                                    else
+                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource type for relics recipies. Default resource will be used.");
+                                    break;
+                                case "relics_RecipiesResourceAmount":
+                                    if (int.TryParse(configValueStr, out tmpVal) && tmpVal > 0 && tmpVal < 500)
+                                        ConfigSwitcher.RelicRecipiesResourceAmount = tmpVal;
+                                    else
+                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource amount for relics recipies. Default amount will be used.");
+                                    break;
+                                case "creatureEggs_RecipiesResource":
+                                    if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
+                                        ConfigSwitcher.CreatureEggsResource = tmpresource;
+                                    else
+                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource type for creature eggs recipies. Default resource will be used.");
+                                    break;
+                                case "creatureEggs_RecipiesResourceAmount":
+                                    if (int.TryParse(configValueStr, out tmpVal) && tmpVal > 0 && tmpVal < 500)
+                                        ConfigSwitcher.CreatureEggsResourceAmount = tmpVal;
+                                    else
+                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource amount for creature eggs recipies. Default amount will be used.");
+                                    break;
                                 case "flora_RecipiesResource":
-                                    TechType tmpresource = TechType.None;
+                                    tmpresource = TechType.None;
                                     if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
                                         ConfigSwitcher.FloraRecipiesResource = tmpresource;
                                     else
-                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource type for flora recipies. Default resource will be set.");
+                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource type for flora recipies. Default resource will be used.");
+                                    break;
+                                case "flora_RecipiesResourceAmount":
+                                    tmpVal = -1;
+                                    if (int.TryParse(configValueStr, out tmpVal) && tmpVal > 0 && tmpVal < 500)
+                                        ConfigSwitcher.FloraRecipiesResourceAmount = tmpVal;
+                                    else
+                                        Logger.Log("Warning: \"" + configValueStr + "\" is not a valid resource amount for flora recipies. Default amount will be used.");
                                     break;
                                 case "config_LandTree":
                                     GetFloraConfig(ConfigSwitcher.config_LandTree1, configValueStr); break;
@@ -301,6 +422,20 @@ namespace DecorationsMod
                                     GetFloraConfig(ConfigSwitcher.config_SmallDeco15Red, configValueStr); break;
                                 case "config_CoralPlantPurple":
                                     GetFloraConfig(ConfigSwitcher.config_SmallDeco17Purple, configValueStr); break;
+                                case "config_BloodGrass":
+                                    GetFloraConfig(ConfigSwitcher.config_BloodGrassRed, configValueStr); break;
+                                case "config_RedGrass1":
+                                    GetFloraConfig(ConfigSwitcher.config_RedGrass1, configValueStr); break;
+                                case "config_RedGrass2":
+                                    GetFloraConfig(ConfigSwitcher.config_RedGrass2, configValueStr); break;
+                                case "config_RedGrass2Tall":
+                                    GetFloraConfig(ConfigSwitcher.config_RedGrass2Tall, configValueStr); break;
+                                case "config_RedGrass3":
+                                    GetFloraConfig(ConfigSwitcher.config_RedGrass3, configValueStr); break;
+                                case "config_RedGrass3Tall":
+                                    GetFloraConfig(ConfigSwitcher.config_RedGrass3Tall, configValueStr); break;
+                                case "config_BloodGrassDense":
+                                    GetFloraConfig(ConfigSwitcher.config_BloodGrassDense, configValueStr); break;
                                 case "addRegularAirSeeds":
                                     ConfigSwitcher.EnableRegularAirSeeds = configValue; break;
                                 case "addRegularWaterSeeds":
@@ -315,6 +450,28 @@ namespace DecorationsMod
                                     float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out ConfigSwitcher.GhostLeviatan_spawnTimeRatio); break;
                                 case "GhostLeviatan_health":
                                     float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out ConfigSwitcher.GhostLeviatan_health); break;
+                                case "alienRelic1Animation":
+                                    AlienRelic1Animation = configValue; break;
+                                case "alienRelic2Animation":
+                                    AlienRelic2Animation = configValue; break;
+                                case "alienRelic3Animation":
+                                    AlienRelic3Animation = configValue; break;
+                                case "alienRelic4Animation":
+                                    AlienRelic4Animation = configValue; break;
+                                case "alienRelic5Animation":
+                                    AlienRelic5Animation = configValue; break;
+                                case "alienRelic6Animation":
+                                    AlienRelic6Animation = configValue; break;
+                                case "alienRelic7Animation":
+                                    AlienRelic7Animation = configValue; break;
+                                case "alienRelic8Animation":
+                                    AlienRelic8Animation = configValue; break;
+                                case "alienRelic9Animation":
+                                    AlienRelic9Animation = configValue; break;
+                                case "alienRelic10Animation":
+                                    AlienRelic10Animation = configValue; break;
+                                case "alienRelic11Animation":
+                                    AlienRelic11Animation = configValue; break;
                                 case "language":
                                     if (configValueStr.CompareTo("fr") == 0)
                                         LanguageHelper.UserLanguage = RegionHelper.CountryCode.FR;

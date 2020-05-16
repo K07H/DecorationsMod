@@ -16,15 +16,29 @@ namespace DecorationsMod.Flora
         public LandPlant4()
         {
             this.ClassID = "LandPlant4"; // 05c3df2b-8710-4aec-b2cb-242846e040a5
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if BELOWZERO
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/old/land_plant_middle_08");
+#else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Land/land_plant_middle_08");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LandPlant4Name"),
                                                         LanguageHelper.GetFriendlyWord("LandPlant4Description"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -32,6 +46,7 @@ namespace DecorationsMod.Flora
                     new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
             };
+#endif
 
             this.Config = ConfigSwitcher.config_LandPlant4;
         }
@@ -71,7 +86,9 @@ namespace DecorationsMod.Flora
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             prefab.name = this.ClassID;
-            
+
+            PrefabsHelper.AddNewGenericSeed(ref prefab);
+
             // Add rigid body
             var rb = prefab.GetComponent<Rigidbody>();
             rb.mass = 1.0f;
@@ -117,7 +134,11 @@ namespace DecorationsMod.Flora
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
+#if BELOWZERO
+            pickupable.isLootCube = false;
+#else
             pickupable.cubeOnPickup = false;
+#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -149,7 +170,9 @@ namespace DecorationsMod.Flora
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
+#if SUBNAUTICA
             liveMixin.data.explodeOnDestroy = false;
+#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

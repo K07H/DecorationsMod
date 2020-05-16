@@ -17,6 +17,16 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("LeviathanSkeletonDescription"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -25,6 +35,7 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
@@ -68,65 +79,49 @@ namespace DecorationsMod.NewItems
                         {
                             tmpMat.SetTexture("_BumpMap", normal);
                             tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                            tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                         }
                         else if (tmpMat.name.CompareTo("Lost_river_sea_dragon_skeleton_skull (Instance)") == 0)
                         {
                             tmpMat.SetTexture("_BumpMap", normal2);
                             tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                            tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                         }
                     }
                 }
 
                 // Add large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
-                lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
+                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
+
+                // Add rigid body
+                PrefabsHelper.SetDefaultRigidBody(this.GameObject);
 
                 // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
-                applier.renderers = renderers;
-                applier.anchorSky = Skies.Auto;
+                PrefabsHelper.SetDefaultSkyApplier(this.GameObject, renderers);
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
-                pickupable.isPickupable = true;
-                pickupable.randomizeRotationWhenDropped = true;
+                PrefabsHelper.SetDefaultPickupable(this.GameObject);
 
                 // We can place this item
-                var placeTool = this.GameObject.AddComponent<PlaceTool>();
-                placeTool.allowedInBase = true;
-                placeTool.allowedOnBase = false;
-                placeTool.allowedOnCeiling = false;
-                placeTool.allowedOnConstructable = true;
-                placeTool.allowedOnGround = true;
-                placeTool.allowedOnRigidBody = true;
-                placeTool.allowedOnWalls = false;
-                placeTool.allowedOutside = true;
-                placeTool.rotationEnabled = true;
-                placeTool.enabled = true;
-                placeTool.hasAnimations = false;
-                placeTool.hasBashAnimation = false;
-                placeTool.hasFirstUseAnimation = false;
-                placeTool.ghostModelPrefab = this.GameObject;
-                placeTool.mainCollider = collider;
-                placeTool.pickupable = pickupable;
-                placeTool.drawTime = 0.5f;
-                placeTool.dropTime = 1;
-                placeTool.holsterTime = 0.35f;
+                PrefabsHelper.SetDefaultPlaceTool(this.GameObject, collider);
+
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 // Set item occupies 4 slots
                 SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
-                // Add the new TechType to Hand Equipment type.
+                // Add the new TechType to Hand Equipment type
                 SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+                // Set quick slot type
+                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("seadragonskeletonicon"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

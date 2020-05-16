@@ -16,15 +16,29 @@ namespace DecorationsMod.FloraAquatic
         public GreenReeds1()
         {
             this.ClassID = "GreenReeds1"; // 242b7f63-7553-456b-8d16-b318040097ae
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if BELOWZERO
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/shared/Coral_reef_green_reeds_01");
+#else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_green_reeds_01");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("GreenReedsName") + " (A)",
                                                         LanguageHelper.GetFriendlyWord("GreenReedsDescription"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -32,6 +46,7 @@ namespace DecorationsMod.FloraAquatic
                     new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
             };
+#endif
 
             this.Config = ConfigSwitcher.config_GreenReeds1;
         }
@@ -71,7 +86,9 @@ namespace DecorationsMod.FloraAquatic
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             prefab.name = this.ClassID;
-            
+
+            PrefabsHelper.AddNewGenericSeed(ref prefab);
+
             // Update rigid body
             var rb = prefab.AddComponent<Rigidbody>();
             rb.mass = 1.0f;
@@ -117,7 +134,11 @@ namespace DecorationsMod.FloraAquatic
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
+#if BELOWZERO
+            pickupable.isLootCube = false;
+#else
             pickupable.cubeOnPickup = false;
+#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -149,7 +170,9 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
+#if SUBNAUTICA
             liveMixin.data.explodeOnDestroy = false;
+#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

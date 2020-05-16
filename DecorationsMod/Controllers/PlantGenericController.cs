@@ -87,6 +87,10 @@ namespace DecorationsMod.Controllers
                     else
                         Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Initializing");
 #endif
+                    // Hide seed model
+                    GameObject seed = _grownPlant.gameObject.FindChild("Generic_plant_seed");
+                    if (seed != null)
+                        seed.GetComponent<MeshRenderer>().enabled = false;
                     // Store init values
                     _initTimeValue = DayNightCycle.main.timePassed;
                     foreach (Transform tr in _grownPlant.gameObject.transform)

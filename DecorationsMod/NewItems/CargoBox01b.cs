@@ -22,6 +22,16 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 2)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -30,6 +40,7 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
@@ -65,6 +76,7 @@ namespace DecorationsMod.NewItems
                         {
                             tmpMat.SetTexture("_BumpMap", normal);
                             tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                            tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                         }
                     }
                 }

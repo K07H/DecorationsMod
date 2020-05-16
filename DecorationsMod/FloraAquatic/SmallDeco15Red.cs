@@ -16,15 +16,29 @@ namespace DecorationsMod.FloraAquatic
         public SmallDeco15Red()
         {
             this.ClassID = "SmallDeco15Red"; // 22bf7b03-8154-410b-a6fb-8ba315f68987
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if BELOWZERO
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/shared/coral_reef_small_deco_15_red");
+#else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_15_red");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SmallDeco15RedName"),
                                                         LanguageHelper.GetFriendlyWord("AlienFloraSampleDescription"),
                                                         true);
-            
+
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -32,6 +46,7 @@ namespace DecorationsMod.FloraAquatic
                     new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
             };
+#endif
 
             this.Config = ConfigSwitcher.config_SmallDeco15Red;
         }
@@ -74,7 +89,9 @@ namespace DecorationsMod.FloraAquatic
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             prefab.name = this.ClassID;
-            
+
+            PrefabsHelper.AddNewGenericSeed(ref prefab);
+
             // Scale model
             prefab.FindChild("coral_reef_small_deco_15_red").transform.localScale *= 0.7f;
 
@@ -125,7 +142,11 @@ namespace DecorationsMod.FloraAquatic
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
+#if BELOWZERO
+            pickupable.isLootCube = false;
+#else
             pickupable.cubeOnPickup = false;
+#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -159,7 +180,9 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
-            liveMixin.data.explodeOnDestroy = true;
+#if SUBNAUTICA
+            liveMixin.data.explodeOnDestroy = false;
+#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

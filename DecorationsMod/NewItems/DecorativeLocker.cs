@@ -11,7 +11,7 @@ namespace DecorationsMod.NewItems
         public DecorativeLocker() // Feeds abstract class
         {
             this.ClassID = "DecorativeLocker"; // bca9b19c-616d-4948-8742-9bb6f4296dc3
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/submarine_locker_04_open");
 
@@ -22,6 +22,16 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 2)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -30,6 +40,7 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
@@ -38,8 +49,8 @@ namespace DecorationsMod.NewItems
             {
                 this.CargoCrateContainer = Resources.Load<GameObject>("Submarine/Build/Locker");
 
-                // Add model controler
-                var decorativeLockerController = this.GameObject.AddComponent<DecorativeLockerController>();
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 // Add to the custom buidables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
@@ -50,9 +61,6 @@ namespace DecorationsMod.NewItems
 
                 // Set the custom icon
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("decorativelockericon"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -111,8 +119,10 @@ namespace DecorationsMod.NewItems
             collider.center = new Vector3(0.0f, 1.0f, 0.0f);
 
             // Update large world entity
-            LargeWorldEntity lwe = prefab.GetComponent<LargeWorldEntity>();
-            lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
+            PrefabsHelper.SetDefaultLargeWorldEntity(prefab);
+
+            // Update sky applier
+            PrefabsHelper.SetDefaultSkyApplier(prefab);
 
             // Set as constructible
             Constructable constructible = prefab.AddComponent<Constructable>();
@@ -131,6 +141,9 @@ namespace DecorationsMod.NewItems
 
             // Add constructable bounds
             ConstructableBounds bounds = prefab.AddComponent<ConstructableBounds>();
+
+            // Add model controler
+            var decorativeLockerController = prefab.AddComponent<DecorativeLockerController>();
 
             return prefab;
         }

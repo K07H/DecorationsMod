@@ -22,10 +22,10 @@ namespace DecorationsMod.Fixers
                             if (!string.IsNullOrEmpty(current.name) && current.name.StartsWith("Sign(Clone)") && current.gameObject != null)
                                 GameObject.DestroyImmediate(current.gameObject);
                         }
-                        catch (Exception) { }
+                        catch { }
                     }
                 }
-                catch (Exception) { }
+                catch { }
             }
         }
     }

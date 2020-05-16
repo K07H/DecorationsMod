@@ -16,15 +16,29 @@ namespace DecorationsMod.FloraAquatic
         public SmallDeco3()
         {
             this.ClassID = "SmallDeco3"; // 6d9e37de-f808-4621-a762-e0d6340b30dc
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if BELOWZERO
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/shared/Coral_reef_small_deco_03");
+#else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_small_deco_03");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SmallDeco3Name"),
                                                         LanguageHelper.GetFriendlyWord("SmallDeco3Description"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -32,6 +46,7 @@ namespace DecorationsMod.FloraAquatic
                     new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
             };
+#endif
 
             this.Config = ConfigSwitcher.config_SmallDeco3;
         }
@@ -74,7 +89,9 @@ namespace DecorationsMod.FloraAquatic
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             prefab.name = this.ClassID;
-            
+
+            PrefabsHelper.AddNewGenericSeed(ref prefab);
+
             // Disable and destroy plant behaviour
             PlantBehaviour plantBehaviour = prefab.GetComponent<PlantBehaviour>();
             plantBehaviour.enabled = false;
@@ -121,7 +138,11 @@ namespace DecorationsMod.FloraAquatic
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
+#if BELOWZERO
+            pickupable.isLootCube = false;
+#else
             pickupable.cubeOnPickup = false;
+#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -156,7 +177,9 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.broadcastKillOnDeath = true;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
-            liveMixin.data.explodeOnDestroy = true;
+#if SUBNAUTICA
+            liveMixin.data.explodeOnDestroy = false;
+#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

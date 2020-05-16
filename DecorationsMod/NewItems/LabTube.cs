@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -8,7 +9,7 @@ namespace DecorationsMod.NewItems
         public LabTube() // Feeds abstract class
         {
             this.ClassID = "DecorationLabTube"; // a36047b0-1533-4718-8879-d6ba9229c978
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_tube_01");
 
@@ -17,6 +18,17 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("LabTubeDescription"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -26,17 +38,24 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Set item occupies 9 slots
                 SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(3, 3));
 
                 // Add the new TechType to the hand-equipments
                 SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+                // Set quick slot type.
+                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
@@ -44,9 +63,6 @@ namespace DecorationsMod.NewItems
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("labtubeicon"));
 
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-                
                 this.IsRegistered = true;
             }
         }
@@ -94,7 +110,8 @@ namespace DecorationsMod.NewItems
             pickupable.randomizeRotationWhenDropped = true;
 
             // We can place this item
-            var placeTool = prefab.AddComponent<PlaceTool>();
+            prefab.AddComponent<CustomPlaceToolController>();
+            var placeTool = prefab.AddComponent<GenericPlaceTool>();
             placeTool.allowedInBase = true;
             placeTool.allowedOnBase = false;
             placeTool.allowedOnCeiling = false;

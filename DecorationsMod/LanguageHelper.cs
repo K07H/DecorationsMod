@@ -283,6 +283,84 @@ namespace DecorationsMod
                         return "Аксессуары";
                     else
                         return "Accessories";
+                case "ToysAndAccessories":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Jouets & accessoires";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Juguetes y accesorios";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Oyuncaklar ve aksesuarlar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Spielzeug & zubehör";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Игрушки и аксессуары";
+                    else
+                        return "Toys & accessories";
+                case "Precursor":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Pr\u00e9curseurs";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Precursores";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Öncüleri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Erbauer";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Предшественники";
+                    else
+                        return "Precursor";
+                case "PrecursorWarperParts": // Ency_Precursor_LostRiverBase_WarperParts
+                    if (UserLanguage == CountryCode.FR)
+                        return "El\u00e9ments de wrper";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Partes de curvador";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "S\u0131\u00e7ray\u0131c\u0131 par\u00e7alar\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Warper-Teile";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0427\u0430\u0441\u0442\u0438 \u0442\u0435\u043b\u0430 \u0441\u0442\u0440\u0430\u0436\u0430";
+                    else
+                        return "Warper parts";
+                case "PrecursorKeys":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Tablettes";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Tablillas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tabletler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Tafel";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Таблетки";
+                    else
+                        return "Tablets";
+                case "Weapons":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Armes";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Armas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Öncü";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Waffen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Оружие";
+                    else
+                        return "Weapons";
+                case "Relics":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Reliques";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Reliquias";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Emanetler";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Relikte";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Реликвии";
+                    else
+                        return "Relics";
                 case "LeviathansTab":
                     if (UserLanguage == CountryCode.FR)
                         return "Léviathans";
@@ -400,6 +478,58 @@ namespace DecorationsMod
                         return "Растения Амфибии";
                     else
                         return "Amphibious plants";
+                case "RedGrassesTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbes sanguines";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Hierbas de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kan otları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Blutgräser";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Кровавые травы";
+                    else
+                        return "Blood grasses";
+                case "EggsTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "\u0152ufs de cr\u00e9atures";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Huevos de criaturas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yaratıklar yumurta";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kreaturen Eier";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Существа яиц";
+                    else
+                        return "Creatures eggs";
+                case "DmgCreatureEggsTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cr\u00e9atures aggressives";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Criaturas agresivas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Saldırgan yaratıklar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Aggressive Kreaturen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Агрессивные существа";
+                    else
+                        return "Aggressive creatures";
+                case "NonDmgCreatureEggsTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cr\u00e9atures pacifiques";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Criaturas pacíficas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Huzurlu yaratıklar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Friedliche Kreaturen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Мирные существа";
+                    else
+                        return "Peaceful creatures";
                 case "LabContainer4Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Conteneur d'échantillons cylindrique inversé";
@@ -1005,30 +1135,30 @@ namespace DecorationsMod
                         return "This cuddlefish doll was created from observations made on 4546B.";
                 case "ReactorLampName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Lampe";
+                        return "Lampe (lumière customizable)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Lámpara";
+                        return "Lámpara (luz personalizable)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Lamba";
+                        return "Lamba (özelleştirilebilir ışık)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Lampe";
+                        return "Lampe (anpassbares Licht)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лампа";
+                        return "Лампа (настраиваемый свет)";
                     else
-                        return "Lamp";
+                        return "Lamp (customizable light)";
                 case "ReactorLampDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une lampe customisable.";
+                        return "Une lampe customisable. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip") + Environment.NewLine + "PS: Si vous téléchargez le mod « Base Light Switch » vous pourrez éteindre la lumière par défaut de votre base ce qui vous permettra de profiter pleinement de ces lampes.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una lámpara personalizable.";
+                        return "Una lámpara personalizable. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip");
                     else if (UserLanguage == CountryCode.TR)
-                        return "Özelleştirilebilir lamba.";
+                        return "Özelleştirilebilir lamba. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine anpassbare Lampe.";
+                        return "Eine anpassbare Lampe. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лампа с настройками.";
+                        return "Лампа с настройками. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip");
                     else
-                        return "A customizable lamp.";
+                        return "A customizable lamp. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip") + Environment.NewLine + "PS: If you download the « Base Light Switch » mod you'll be able to turn off base default light and thus enjoy this lamp even more.";
                 case "SeamothDollName":
                     if (UserLanguage == CountryCode.FR)
                         return "Jouet Seamoth";
@@ -1044,17 +1174,17 @@ namespace DecorationsMod
                         return "Seamoth toy";
                 case "SeamothDollDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une miniature décorative du seamoth.";
+                        return "Une miniature décorative du seamoth. Cliquez dessus pour changer de modèle.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una miniatura decorativa de seamoth.";
+                        return "Una miniatura decorativa de seamoth. Haga clic en él para cambiar de modelo.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Minyatür seamoth oyuncağı.";
+                        return "Minyatür seamoth oyuncağı. Modeli değiştirmek için üzerine tıklayın.";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine dekorative Miniatur der Seemotte";
+                        return "Eine dekorative Miniatur der Seemotte. Klicken Sie darauf, um das Modell zu ändern.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Декоративная кукла для интерьера.";
+                        return "Декоративная кукла для интерьера. Нажмите на нее, чтобы изменить модель.";
                     else
-                        return "A decorative miniature of the seamoth.";
+                        return "A decorative miniature of the seamoth. Click on it to change its model.";
                 case "ExosuitDollName":
                     if (UserLanguage == CountryCode.FR)
                         return "Jouet combinaison PRAWN";
@@ -1070,17 +1200,17 @@ namespace DecorationsMod
                         return "PRAWN suit toy";
                 case "ExosuitDollDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une miniature décorative de la combinaison PRAWN.";
+                        return "Une miniature décorative de la combinaison PRAWN. " + GetFriendlyWord("SwitchExosuitModel");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una miniatura decorativa de traje PRAWN.";
+                        return "Una miniatura decorativa de traje PRAWN. " + GetFriendlyWord("SwitchExosuitModel");
                     else if (UserLanguage == CountryCode.TR)
-                        return "Minyatür suban giysi oyuncağı.";
+                        return "Minyatür suban giysi oyuncağı. " + GetFriendlyWord("SwitchExosuitModel");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine dekorative Miniatur des Krebs-Anzuges.";
+                        return "Eine dekorative Miniatur des Krebs-Anzuges. " + GetFriendlyWord("SwitchExosuitModel");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Декоративная кукла для интерьера.";
+                        return "Декоративная кукла для интерьера. " + GetFriendlyWord("SwitchExosuitModel");
                     else
-                        return "A decorative miniature of the PRAWN suit.";
+                        return "A decorative miniature of the PRAWN suit. " + GetFriendlyWord("SwitchExosuitModel");
                 case "ForkLiftDollName":
                     if (UserLanguage == CountryCode.FR)
                         return "Chariot élévateur (non-fonctionnel)";
@@ -1096,17 +1226,17 @@ namespace DecorationsMod
                         return "Forklift (non-functional)";
                 case "ForkLiftDollDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un chariot élévateur décoratif.";
+                        return "Un chariot élévateur décoratif. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una carretilla elevadora decorativa.";
+                        return "Una carretilla elevadora decorativa. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.TR)
-                        return "Dekoratif forklift.";
+                        return "Dekoratif forklift. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Ein dekorativer Gabelstapler.";
+                        return "Ein dekorativer Gabelstapler. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Техника для декорации.";
+                        return "Техника для декорации. " + GetFriendlyWord("AdjustForkliftSize");
                     else
-                        return "A decorative forklift.";
+                        return "A decorative forklift. " + GetFriendlyWord("AdjustForkliftSize");
                 case "DrinksAndFood":
                     if (UserLanguage == CountryCode.FR)
                         return "Boissons & nourriture";
@@ -1345,7 +1475,7 @@ namespace DecorationsMod
                                "Mantenga 'B' y haga clic para cambiar los niveles azules." + Environment.NewLine +
                                "Mantenga 'F' y haga clic para cambiar el alcance." + Environment.NewLine +
                                "Mantenga 'I' y haga clic para cambiar la intensidad." + Environment.NewLine +
-                               "Mantenga 'I' y haga clic para cambiar la intensidad del neón." + Environment.NewLine +
+                               "Mantenga 'T' y haga clic para cambiar la intensidad del neón." + Environment.NewLine +
                                "Mantenga 'E' y haga clic para cambiar el color del neón." + Environment.NewLine;
                     else if (UserLanguage == CountryCode.TR)
                         return "Açmak/kapatmak için tıklayın, ya da:" + Environment.NewLine +
@@ -1379,10 +1509,23 @@ namespace DecorationsMod
                                "Hold 'R' and click to change red levels." + Environment.NewLine +
                                "Hold 'G' and click to change green levels." + Environment.NewLine +
                                "Hold 'B' and click to change blue levels." + Environment.NewLine +
-                               "Hold 'F' and click to adjust light range." + Environment.NewLine +
-                               "Hold 'I' and click to change intensity." + Environment.NewLine +
+                               "Hold 'F' and click to change light range." + Environment.NewLine +
+                               "Hold 'I' and click to change light intensity." + Environment.NewLine +
                                "Hold 'T' and click to change neon tube intensity." + Environment.NewLine +
                                "Hold 'E' and click to change neon tube color." + Environment.NewLine;
+                case "LampTooltipCompact":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Click: ON/OFF, R+Click: rouge, G+Click: vert, B+Click: bleu, F+Click: portée, I+Click: intensité, T+Click: intensité néon, E+Click: couleur néon";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Clic: ON/OFF, R+Clic: rojos, G+Clic: verdes, B+Clic: azules, F+Clic: alcance, I+Clic: intensidad, T+Clic: neón intensidad, E+Clic: neón color";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tıklayın: Açmak/kapatmak, R+tıklayın: Kırmızı, G+tıklayın: Yeşil, B+tıklayın: Mavi, F+tıklayın: Aralığı değiştirmek, I+tıklayın: Yoğunluğu, T+tıklayın: Neon tüp yoğunluğu, E+tıklayın: Neon tüp rengini";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken: ON/OFF, R+klicken: Rotstufe, G+klicken: Grünstufe, B+klicken: Blaustufe, F+klicken: Lichtstärke, I+klicken: Intensität, T+klicken: Intensität der Neonröhre, E+klicken: Neonröhrenfarbe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Нажмите: ON/OFF, R+Нажмите: красного, G+Нажмите: зеленого, B+Нажмите: голубого, F+Нажмите: яркости, I+Нажмите: интенсивность, T+Нажмите: нтенсивности неоновой, E+Нажмите: цвет неоновой";
+                    else
+                        return "Click: ON/OFF, R+Click: red, G+Click: green, B+Click: blue, F+Click: range, I+Click: intensity, T+Click: Neon intensity, E+Click: Neon color";
                 case "SwitchSeamothModel":
                     if (UserLanguage == CountryCode.FR)
                         return "Changer le modèle";
@@ -1462,17 +1605,17 @@ namespace DecorationsMod
                         return "Reinforced cargo crate";
                 case "CargoBox1aDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une caisse de chargement renforcée permettant le transport des marchandises.";
+                        return "Une caisse de chargement renforcée permettant le transport des marchandises. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una caja de carga reforzada que permite el transporte de mercancías.";
+                        return "Una caja de carga reforzada que permite el transporte de mercancías. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.TR)
-                        return "İyi şeyleri taşımak için güçlendirilmiş kargo kutusu.";
+                        return "İyi şeyleri taşımak için güçlendirilmiş kargo kutusu. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine durch Stahlplatten verstärkte Frachtkiste für den Transport von Gütern.";
+                        return "Eine durch Stahlplatten verstärkte Frachtkiste für den Transport von Gütern. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Используется для защиты груза от внешних воздействий.";
+                        return "Используется для защиты груза от внешних воздействий. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else
-                        return "A reinforced cargo crate made for the transport of goods.";
+                        return "A reinforced cargo crate made for the transport of goods. " + GetFriendlyWord("AdjustCargoBoxSize");
                 case "CargoBox1bName":
                     if (UserLanguage == CountryCode.FR)
                         return "Caisse de chargement";
@@ -1488,17 +1631,17 @@ namespace DecorationsMod
                         return "Cargo crate";
                 case "CargoBox1bDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une caisse de chargement permettant le transport des marchandises.";
+                        return "Une caisse de chargement permettant le transport des marchandises. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una caja de carga que permite el transporte de mercancías.";
+                        return "Una caja de carga que permite el transporte de mercancías. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.TR)
-                        return "İyi şeyleri taşımak için kargo kutusu.";
+                        return "İyi şeyleri taşımak için kargo kutusu. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine Frachtkiste für den Transport von Gütern.";
+                        return "Eine Frachtkiste für den Transport von Gütern. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Используется для транспортировки грузов.";
+                        return "Используется для транспортировки грузов. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else
-                        return "A cargo crate made for the transport of goods.";
+                        return "A cargo crate made for the transport of goods. " + GetFriendlyWord("AdjustCargoBoxSize");
                 case "CargoBox1DmgName":
                     if (UserLanguage == CountryCode.FR)
                         return "Caisse de chargement endommagée";
@@ -1514,17 +1657,17 @@ namespace DecorationsMod
                         return "Damaged cargo crate";
                 case "CargoBox1DmgDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une caisse de chargement en piteux état.";
+                        return "Une caisse de chargement en piteux état. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una caja de carga en mal estado.";
+                        return "Una caja de carga en mal estado. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.TR)
-                        return "Kullanılamayan hasarlı kargo kutusu.";
+                        return "Kullanılamayan hasarlı kargo kutusu. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine unbrauchbar beschädigte Frachtkiste.";
+                        return "Eine unbrauchbar beschädigte Frachtkiste. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Поврежденный грузовой ящик.";
+                        return "Поврежденный грузовой ящик. " + GetFriendlyWord("AdjustCargoBoxSize");
                     else
-                        return "An unusable damaged cargo crate.";
+                        return "An unusable damaged cargo crate. " + GetFriendlyWord("AdjustCargoBoxSize");
                 case "Folder1Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Documents";
@@ -1774,23 +1917,23 @@ namespace DecorationsMod
                         return "Customizable picture frame";
                 case "CustomPictureFrameDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un cadre mural personnalisable, où vous pouvez envoyer une photo issue des galeries de PDA compatibles.";
+                        return "Un cadre mural personnalisable. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Marco de pared personalizables, puede cargar la imagen deseada desde las galerías de imágenes de una PDA compatible.";
+                        return "Marco de pared personalizables. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
                     else if (UserLanguage == CountryCode.TR)
-                        return "PDA'nın fotoğraf albümünden istenilen görselin eklenebildiği, duvara asılan çerçevedir.";
+                        return "Duvara asılan çerçevedir. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Ein an der Wand befestigter, kundengerechter Rahmen. Laden Sie Ihr gewünschtes Bild von einer PDA-kompatiblen Fotogalerie hoch.";
+                        return "Ein an der Wand befestigter, kundengerechter Rahmen. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Настенная рамка для различных изображений и надписей.";
+                        return "Настенная рамка для различных изображений и надписей. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
                     else
-                        return "Wall-mounted customizable frame, upload desired image from compatible PDA photo galleries.";
+                        return "Wall-mounted customizable frame. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
                 case "CustomPictureFrameTooltip":
                     if (UserLanguage == CountryCode.FR)
                         return "Cliquez pour placer une image, ou:" + Environment.NewLine +
                                "Maintenez 'E' et cliquez pour ajuster la taille" + Environment.NewLine +
                                "Maintenez 'R' et cliquez pour tourner le cadre photo" + Environment.NewLine +
-                               "Maintenez 'F' et cliquez pour changer de cadre" + Environment.NewLine;
+                               "Maintenez 'F' et cliquez pour passer en mode poster" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.ES)
                         return "Haga clic para establecer la imagen o:" + Environment.NewLine +
                                "Mantenga 'E' y haga clic para ajustar el tamaño" + Environment.NewLine +
@@ -1815,7 +1958,20 @@ namespace DecorationsMod
                         return "Click to set picture, or:" + Environment.NewLine +
                                "Hold 'E' and click to adjust size" + Environment.NewLine +
                                "Hold 'R' and click to rotate picture frame" + Environment.NewLine +
-                               "Hold 'F' and click to change frame border" + Environment.NewLine;
+                               "Hold 'F' and click to switch to poster mode" + Environment.NewLine;
+                case "CustomPictureFrameTooltipCompact":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Click: ajout image, E+Click: taille, R+Click: orientation, F+Click: mode";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Clic: imagen, E+Clic: tamaño, R+Clic: girar, F+Clic: marco";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "tıklayın: Görüntüyü ayarlamak, E+tıklayın: Boyutu, R+tıklayın: çevirmek, F+tıklayın: çerçevesini";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken: Bild, E+Klicken: Größe, R+Klicken: Drehen, F+Klicken: Rahmen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Нажмите: изменить картинку, E+Нажмите: размер, R+Нажмите: повернуть, F+Нажмите: рамки";
+                    else
+                        return "Click: picture, E+Click: size, R+Click: orientation, F+Click: mode";
                 case "LandTree1Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Arbre alien vivace";
@@ -2635,6 +2791,19 @@ namespace DecorationsMod
                         return "Скелет Жнеца";
                     else
                         return "Leviathan Skeletal Remains";
+                case "OpenCustomStorage":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ouvrir le casier";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Abre el armario";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dolabı aç";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Öffne das Schließfach";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Откройте шкафчик";
+                    else
+                        return "Open the locker";
                 case "DecorativeLockerName":
                     if (UserLanguage == CountryCode.FR)
                         return "Casier";
@@ -2643,7 +2812,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Dolap";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Wandspind (nicht funktional)";
+                        return "Wandspind";
                     else if (UserLanguage == CountryCode.RU)
                         return "Шкафчик";
                     else
@@ -2832,17 +3001,43 @@ namespace DecorationsMod
                         return "Long planter";
                 case "LongPlanterDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une longue jardinière (fonctionnelle).";
+                        return "Une longue jardinière.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una maceta larga (funcional).";
+                        return "Una maceta larga.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Uzun bir ekici (fonksiyonel).";
+                        return "Uzun bir ekici.";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Ein langer Pflanzentopf (funktional).";
+                        return "Ein langer Pflanzentopf.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Длинный плантатор (функциональный).";
+                        return "Длинный плантатор.";
                     else
-                        return "A long planter (functional).";
+                        return "A long planter.";
+                case "ExteriorLongPlanterName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Longue jardinière d'exterieur";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Jardinera larga de exterior";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzun açık ekici";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Langer Pflanzentopf im Freien";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Длинный открытый плантатор";
+                    else
+                        return "Long outdoor planter";
+                case "ExteriorLongPlanterDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une longue jardinière d'exterieur. On peut y planter tout type de plante aquatique.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una jardinera larga para el exterior. Puedes plantar cualquier tipo de planta acuática allí.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzun bir açık ekici. Orada herhangi bir tür su bitkisi ekebilirsiniz.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein langer Pflanzentopf im Freien. Sie können dort jede Art von Wasserpflanze pflanzen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Длинный открытый плантатор. Вы можете посадить там любой тип водных растений.";
+                    else
+                        return "A long outdoor planter. It can grow any type of aquatic plant.";
                 case "BarStoolName":
                     if (UserLanguage == CountryCode.FR)
                         return "Tabouret";
@@ -2858,17 +3053,563 @@ namespace DecorationsMod
                         return "Stool";
                 case "BarStoolDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un tabouret (fonctionnel).";
+                        return "Un tabouret.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un taburete (funcional).";
+                        return "Un taburete.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Bir tabure (fonksiyonel).";
+                        return "Bir tabure.";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Ein Hocker (funktional).";
+                        return "Ein Hocker.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Стул (Функциональная).";
+                        return "Стул.";
                     else
-                        return "A stool (functional).";
+                        return "A stool.";
+                case "AlienRelic1Name": // Ency_PrecursorPrisonArtifact1
+                    if (UserLanguage == CountryCode.FR)
+                        return "Particulateur de mati\u00e8re organique";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Particularizador de Materia Org\u00e1nica";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Organik Madde Par\u00e7alay\u0131c\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Biomaterie-Partikulator";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0420\u0430\u0441\u0449\u0435\u043f\u0438\u0442\u0435\u043b\u044c \u043e\u0440\u0433\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u043e\u0439 \u043c\u0430\u0442\u0435\u0440\u0438\u0438";
+                    else
+                        return "Organic Matter Particulator";
+                case "AlienRelic1Description": // EncyDesc_PrecursorPrisonArtifact1
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cet appareil contient un isotope radioactif tr\u00e8s instable, qui d\u00e9truirait probablement tous les organismes qui y seraient expos\u00e9s, tout en laissant les structures physiques intactes.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Este dispositivo contiene un is\u00f3topo radiactivo altamente inestable, seguramente para destruir todos los organismos expuestos a \u00e9l, dejando las estructuras f\u00edsicas intactas.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu cihaz, y\u00fcksek d\u00fczeyde karars\u0131z radyoaktif izotop i\u00e7ermektedir. Fiziksel yap\u0131lar\u0131n\u0131 bozmadan, t\u00fcm organizmalar\u0131 yok etmektedir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dieses Ger\u00e4t enth\u00e4lt ein h\u00f6chst instabiles radioaktives Isotop, das wahrscheinlich alle Organismen, die ihm ausgesetzt werden, zerst\u00f6rt, physikalische Strukturen aber intakt l\u00e4sst.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0430\u043d\u043d\u043e\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u043a\u0440\u0430\u0439\u043d\u0435 \u043d\u0435\u0441\u0442\u0430\u0431\u0438\u043b\u044c\u043d\u044b\u0439 \u0440\u0430\u0434\u0438\u043e\u0430\u043a\u0442\u0438\u0432\u043d\u044b\u0439 \u0438\u0437\u043e\u0442\u043e\u043f, \u043f\u043e-\u0432\u0438\u0434\u0438\u043c\u043e\u043c\u0443, \u0441\u043f\u043e\u0441\u043e\u0431\u043d\u044b\u0439 \u0443\u043d\u0438\u0447\u0442\u043e\u0436\u0438\u0442\u044c \u043b\u044e\u0431\u044b\u0435 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u043c\u044b, \u043d\u0430 \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043e\u043d \u0432\u043e\u0437\u0434\u0435\u0439\u0441\u0442\u0432\u0443\u0435\u0442, \u043e\u0441\u0442\u0430\u0432\u043b\u044f\u044f \u0444\u0438\u0437\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b \u043d\u0435\u0442\u0440\u043e\u043d\u0443\u0442\u044b\u043c\u0438.";
+                    else
+                        return "This device contains a highly unstable radioactive isotope, likely to destroy all organisms exposed to it, while leaving physical structures intact.";
+                case "AlienRelic2Name": // Ency_PrecursorPrisonArtifact2
+                    if (UserLanguage == CountryCode.FR)
+                        return "Projecteur holographique";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Proyector Hologr\u00e1fico";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Holografik Yans\u0131t\u0131c\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "holografischer Projektor";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0413\u043e\u043b\u043e\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0440";
+                    else
+                        return "Holographic Projector";
+                case "AlienRelic2Description": // EncyDesc_PrecursorPrisonArtifact2
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cet appareil contient des composants de mise en r\u00e9seau et une unit\u00e9 de projection holographique.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Este dispositivo contiene una red de aparatos y una unidad de proyecci\u00f3n hologr\u00e1fica.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu cihaz, a\u011f ba\u011fda\u015ft\u0131r\u0131c\u0131s\u0131 ve holografik yans\u0131t\u0131m birimlerinden olu\u015fmaktad\u0131r.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dieses Ger\u00e4t enth\u00e4lt Netzwerktechnik und eine holografische Projektionseinheit.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0430\u043d\u043d\u043e\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u0441\u0435\u0442\u0435\u0432\u043e\u0435 \u043e\u0431\u043e\u0440\u0443\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u0438 \u0443\u0437\u0435\u043b \u0433\u043e\u043b\u043e\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u043f\u0440\u043e\u0435\u0446\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f.";
+                    else
+                        return "This device contains network apparatus and a holographic projection unit.";
+                case "AlienRelic3Name": // Ency_PrecursorPrisonArtifact3
+                    if (UserLanguage == CountryCode.FR)
+                        return "Tablette rudimentaire";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Tablilla Rudimentaria";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "\u0130lkel Tablet";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "rudiment\u00e4re Tafel";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u041f\u0440\u0438\u043c\u0438\u0442\u0438\u0432\u043d\u0430\u044f \u0441\u043a\u0440\u0438\u0436\u0430\u043b\u044c";
+                    else
+                        return "Rudimentary Tablet";
+                case "AlienRelic3Description": // EncyDesc_PrecursorPrisonArtifact3
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cet appareil partage beaucoup de similitudes avec les tablettes utilis\u00e9es pour acc\u00e9der aux complexes aliens, bien que sa structure soit moins complexe.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Este dispositivo comparte muchas similitudes con las tablillas usadas para acceder a las instalaciones alien\u00edgenas, aunque est\u00e1 estructura es menos compleja.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu cihaz, uzayl\u0131 \u00fcslerine eri\u015fmek i\u00e7in kullan\u0131lan tabletlerle bir\u00e7ok benzer \u00f6zellik ta\u015f\u0131maktad\u0131r.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dieses Ger\u00e4t hat viele Gemeinsamkeiten mit den Tafeln, die f\u00fcr den Zugang zu den fremden Einrichtungen verwendet werden, obwohl sein Aufbau weniger komplex ist.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0430\u043d\u043d\u043e\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u0438\u043c\u0435\u0435\u0442 \u0431\u043e\u043b\u044c\u0448\u043e\u0435 \u0441\u0445\u043e\u0434\u0441\u0442\u0432\u043e \u0441\u043e \u0441\u043a\u0440\u0438\u0436\u0430\u043b\u044f\u043c\u0438, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u043c\u0438 \u0434\u043b\u044f \u0434\u043e\u0441\u0442\u0443\u043f\u0430 \u0432 \u044d\u0442\u0438 \u043a\u043e\u043c\u043f\u043b\u0435\u043a\u0441\u044b, \u0445\u043e\u0442\u044f \u0435\u0433\u043e \u0441\u0442\u0440\u043e\u0435\u043d\u0438\u0435 \u0433\u043e\u0440\u0430\u0437\u0434\u043e \u043c\u0435\u043d\u0435\u0435 \u0441\u043b\u043e\u0436\u043d\u043e.";
+                    else
+                        return "This device shares many similarities with the tablets used to access the alien facilities, although its structure is rather less complex.";
+                case "AlienRelic4Name": // Ency_PrecursorPrisonArtifact4
+                    if (UserLanguage == CountryCode.FR)
+                        return "Implant traceur";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Implante de rastreo";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "\u0130zleme Cihaz\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Sensor-Implantat";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0418\u043c\u043f\u043b\u0430\u043d\u0442\u0430\u0442 \u0441\u043b\u0435\u0436\u0435\u043d\u0438\u044f";
+                    else
+                        return "Tracking Implant";
+                case "AlienRelic4Description": // EncyDesc_PrecursorPrisonArtifact4
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cette structure \u00e9met un signal haute fr\u00e9quence coh\u00e9rent avec les transmissions d\u00e9j\u00e0 intercept\u00e9es.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Este constructo est\u00e1 emitiendo una se\u00f1al de alta frecuencia que coincide con las transmisiones alien\u00edgenas hasta ahora interceptadas.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu yap\u0131, kesintiye u\u011frayan di\u011fer uzayl\u0131 yay\u0131nlar\u0131 ile e\u015fle\u015fen, y\u00fcksek bant geni\u015fli\u011finde yay\u0131n yapmaktad\u0131r.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Konstruktion gibt ein Signal mit hoher Bandbreite ab, das mit den fremden \u00dcbertragungen \u00fcbereinstimmt, die anderswo abgefangen wurden.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0430\u043d\u043d\u044b\u0439 \u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0442 \u0438\u0437\u043b\u0443\u0447\u0430\u0435\u0442 \u0448\u0438\u0440\u043e\u043a\u043e\u043f\u043e\u043b\u043e\u0441\u043d\u044b\u0439 \u0441\u0438\u0433\u043d\u0430\u043b, \u0441\u043e\u0432\u043f\u0430\u0434\u0430\u044e\u0449\u0438\u0439 \u0441 \u0438\u043d\u043e\u043f\u043b\u0430\u043d\u0435\u0442\u043d\u044b\u043c\u0438 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0430\u043c\u0438, \u043f\u0435\u0440\u0435\u0445\u0432\u0430\u0447\u0435\u043d\u043d\u044b\u043c\u0438 \u0432 \u0434\u0440\u0443\u0433\u0438\u0445 \u043c\u0435\u0441\u0442\u0430\u0445.";
+                    else
+                        return "This construct is emitting a high-bandwidth signal consistent with alien transmissions intercepted elsewhere.";
+                case "AlienRelic5Name": // Ency_PrecursorPrisonArtifact5
+                    if (UserLanguage == CountryCode.FR)
+                        return "Gravure alien";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Talla Alien\u00edgena";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzayl\u0131 Oymas\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "fremdartige Schnitzerei";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0418\u043d\u043e\u043f\u043b\u0430\u043d\u0435\u0442\u043d\u043e\u0435 \u0440\u0435\u0437\u043d\u043e\u0435 \u0443\u043a\u0440\u0430\u0448\u0435\u043d\u0438\u0435";
+                    else
+                        return "Alien Carving";
+                case "AlienRelic5Description": // EncyDesc_PrecursorPrisonArtifact5
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cette sculpture a des centaines de milliers d'ann\u00e9es et est fabriqu\u00e9e \u00e0 partir d'une fibre naturelle non reconnue, cultiv\u00e9e sur une plan\u00e8te inconnue.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Esta talla tiene cientos de miles de a\u00f1os, y est\u00e1 hecha de una fibra natural irreconocible que posiblemente crece en un planeta desconocido.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu oyma, y\u00fcz binlerce y\u0131ll\u0131kt\u0131r ve bilinmeyen, olas\u0131l\u0131kla hen\u00fcz ke\u015ffedilmemi\u015f bir gezegende yeti\u015fen do\u011fal bir yap\u0131dan \u00fcretilmi\u015ftir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Schnitzerei ist mehrere hunderttausend Jahre alt und wurde aus einer unbekannten nat\u00fcrlichen Faser hergestellt, die auf einem unbekannten Planeten gewachsen ist.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0430\u043d\u043d\u043e\u0435 \u0440\u0435\u0437\u043d\u043e\u0435 \u0438\u0437\u0434\u0435\u043b\u0438\u0435 \u0431\u044b\u043b\u043e \u0441\u0434\u0435\u043b\u0430\u043d\u043e \u0442\u044b\u0441\u044f\u0447\u0438 \u043b\u0435\u0442 \u043d\u0430\u0437\u0430\u0434 \u0438\u0437 \u043d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e\u0433\u043e \u043f\u0440\u0438\u0440\u043e\u0434\u043d\u043e\u0433\u043e \u0432\u043e\u043b\u043e\u043a\u043d\u0430, \u0432\u044b\u0440\u0430\u0449\u0435\u043d\u043d\u043e\u0433\u043e \u043d\u0430 \u0435\u0449\u0451 \u043d\u0435 \u043e\u0442\u043a\u0440\u044b\u0442\u043e\u0439 \u043f\u043b\u0430\u043d\u0435\u0442\u0435.";
+                    else
+                        return "This carving is hundreds of thousands of years old, and made from an unrecognized natural fiber, grown on an unknown planet.";
+                case "AlienRelic6Name": // Ency_PrecursorPrisonArtifact6
+                    if (UserLanguage == CountryCode.FR)
+                        return "Dispositif de fin du monde";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Dispositivo del Juicio Final";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "K\u0131yamet Cihaz\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Weltenvernichter";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u041c\u0430\u0448\u0438\u043d\u0430 \u0421\u0443\u0434\u043d\u043e\u0433\u043e \u0434\u043d\u044f";
+                    else
+                        return "Doomsday Device";
+                case "AlienRelic6Description": // EncyDesc_PrecursorPrisonArtifact6
+                    if (UserLanguage == CountryCode.FR)
+                        return "Les scans indiquent que ce dispositif contient suffisamment de potentiel \u00e9nerg\u00e9tique pour d\u00e9truire toute la plan\u00e8te, ainsi que la majeure partie du syst\u00e8me solaire. Par chance, il est endommag\u00e9.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Los an\u00e1lisis indican que este dispositivo contiene el potencial energ\u00e9tico para destruir todo el planeta, junto con la mayor\u00eda del sistema solar. Afortunadamente, se ha averiado.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Taramalar, bu cihaz\u0131n t\u00fcm gezegeni ve g\u00fcne\u015f sisteminin b\u00fcy\u00fck k\u0131sm\u0131n\u0131 yok edebilecek bir enerji bar\u0131nd\u0131rd\u0131\u011f\u0131n\u0131 g\u00f6stermektedir. Neyse ki bozulmu\u015f.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Scans zeigen, dass dieses Ger\u00e4t genug potentielle Energie enth\u00e4lt, um den gesamten Planeten und den Gro\u00dfteil des Planetensystems zu vernichten. Gl\u00fccklicherweise hatte es eine Fehlfunktion.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0421\u043a\u0430\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0443\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442 \u043d\u0430 \u0442\u043e, \u0447\u0442\u043e \u0434\u0430\u043d\u043d\u043e\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u0443\u044e \u043f\u043e\u0442\u0435\u043d\u0446\u0438\u0430\u043b\u044c\u043d\u0443\u044e \u044d\u043d\u0435\u0440\u0433\u0438\u044e, \u0447\u0442\u043e\u0431\u044b \u0443\u043d\u0438\u0447\u0442\u043e\u0436\u0438\u0442\u044c \u0432\u0441\u044e \u043f\u043b\u0430\u043d\u0435\u0442\u0443 \u0432\u043c\u0435\u0441\u0442\u0435 \u0441 \u0431\u043e\u043b\u044c\u0448\u0435\u0439 \u0447\u0430\u0441\u0442\u044c\u044e \u0441\u043e\u043b\u043d\u0435\u0447\u043d\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b. \u041a \u0441\u0447\u0430\u0441\u0442\u044c\u044e, \u043e\u043d\u043e \u043d\u0435\u0438\u0441\u043f\u0440\u0430\u0432\u043d\u043e.";
+                    else
+                        return "Scans indicate this device contains enough potential energy to destroy the entire planet, along with most of the solar system. Fortunately, it has malfunctioned.";
+                case "AlienRelic7Name": // Ency_PrecursorPrisonArtifact7
+                    if (UserLanguage == CountryCode.FR)
+                        return "Fusil alien";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Rifle Antiguo";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzayl\u0131 T\u00fcfe\u011fi";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "fremdartiges Gewehr";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0418\u043d\u043e\u043f\u043b\u0430\u043d\u0435\u0442\u043d\u043e\u0435 \u0440\u0443\u0436\u044c\u0451";
+                    else
+                        return "Alien Rifle";
+                case "AlienRelic7Description": // EncyDesc_PrecursorPrisonArtifact7
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ressemblant fortement avec l'armement humain dans la forme, cet appareil doit avoir \u00e9t\u00e9 con\u00e7u en pensant \u00e0 un utilisateur humano\u00efde.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Con una gran similitud a la forma de las armas humanas, este dispositivo debi\u00f3 ser dise\u00f1ado para un usuario humanoide.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "\u0130nsan yap\u0131m\u0131 silahlarla g\u00fc\u00e7l\u00fc benzerlikler ta\u015f\u0131yan bu cihaz, insan t\u00fcr\u00fc bir kullan\u0131c\u0131 ile tasarlanm\u0131\u015f olmal\u0131d\u0131r.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Aufgrund seiner starken \u00c4hnlichkeit mit menschlicher Waffentechnik muss dieses Ger\u00e4t in Anlehnung an einen humanoiden Benutzer entworfen worden sein.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0430\u043d\u043d\u043e\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e, \u0441\u0445\u043e\u0436\u0435\u0435 \u043f\u043e \u0444\u043e\u0440\u043c\u0435 \u0441 \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u043a\u0438\u043c \u043e\u0440\u0443\u0436\u0438\u0435\u043c, \u0441\u043a\u043e\u0440\u0435\u0435 \u0432\u0441\u0435\u0433\u043e, \u0441\u043f\u0440\u043e\u0435\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0434\u043b\u044f \u0433\u0443\u043c\u0430\u043d\u043e\u0438\u0434\u043d\u043e\u0433\u043e \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f.";
+                    else
+                        return "Strong resemblance to human weaponry in form, this device must have been designed with a humanoid user in mind.";
+                case "AlienRelic8Name": // Ency_PrecursorPrisonArtifact8
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ancienne \u00e9p\u00e9e de la Terre";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Espada Antigua de la Tierra";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "\u00c7ok Eski D\u00fcnya K\u0131l\u0131c\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "antikes Schwert von der Erde";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0440\u0435\u0432\u043d\u0438\u0439 \u0437\u0435\u043c\u043d\u043e\u0439 \u043a\u043b\u0438\u043d\u043e\u043a";
+                    else
+                        return "Ancient Earth Blade";
+                case "AlienRelic8Description": // EncyDesc_PrecursorPrisonArtifact8
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une ancienne \u00e9p\u00e9e terrienne, qui remonte au XIIIe si\u00e8cle.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una antigua espada de la Tierra que data del siglo 13.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "13.y\u00fczy\u0131l \u00f6ncesinden kalma eski bir d\u00fcnya k\u0131l\u0131c\u0131.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein antikes Schwert von der Erde, auf das 13. Jahrhundert zur\u00fcckdatiert.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0440\u0435\u0432\u043d\u0438\u0439 \u0437\u0435\u043c\u043d\u043e\u0439 \u043a\u043b\u0438\u043d\u043e\u043a, \u0434\u0430\u0442\u0438\u0440\u0443\u0435\u043c\u044b\u0439 XIII \u0432\u0435\u043a\u043e\u043c.";
+                    else
+                        return "An ancient Earth blade, dating back to the 13th century.";
+                case "AlienRelic9Name": // Ency_PrecursorPrisonArtifact10
+                    if (UserLanguage == CountryCode.FR)
+                        return "Statue Alien";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Estatua Alien\u00edgena";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzayl\u0131 Heykeli";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "fremde Skulptur";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0418\u043d\u043e\u043f\u043b\u0430\u043d\u0435\u0442\u043d\u0430\u044f \u0441\u0442\u0430\u0442\u0443\u044d\u0442\u043a\u0430";
+                    else
+                        return "Alien Statue";
+                case "AlienRelic9Description": // EncyDesc_PrecursorPrisonArtifact10
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cet artefact n'est pas aliment\u00e9, ce qui sugg\u00e8re qu'il a servi \u00e0 un but plus c\u00e9r\u00e9moniel que pratique.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Este artefacto no tiene energ\u00eda, lo que sugiere que serv\u00eda para un prop\u00f3sito m\u00e1s ceremonial que pr\u00e1ctico.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu yap\u0131t\u0131n g\u00fcc\u00fcn\u00fcn olmamas\u0131, uygulamaya d\u00f6n\u00fck de\u011fil de simgesel ama\u00e7l\u0131 oldu\u011funu g\u00f6steriyor.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dieses Artefakt enth\u00e4lt keine Energiequelle, was darauf hinweist, dass es eher einem zeremoniellen als einem praktischen Zweck diente.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0430\u043d\u043d\u044b\u0439 \u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442 \u043d\u0435 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u044d\u043d\u0435\u0440\u0433\u0438\u0438, \u0447\u0442\u043e \u043f\u0440\u0435\u0434\u043f\u043e\u043b\u0430\u0433\u0430\u0435\u0442 \u0435\u0433\u043e \u0431\u043e\u043b\u0435\u0435 \u0446\u0435\u0440\u0435\u043c\u043e\u043d\u0438\u0430\u043b\u044c\u043d\u043e\u0435, \u043d\u0435\u0436\u0435\u043b\u0438 \u043f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435.";
+                    else
+                        return "This artifact is unpowered, suggesting it served a ceremonial, rather than practical purpose.";
+                case "AlienRelic10Name": // Ency_PrecursorPrisonArtifact11
+                    if (UserLanguage == CountryCode.FR)
+                        return "Dispositif de traduction";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Dispositivo de Traducci\u00f3n";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "\u00c7eviri Cihaz\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "\u00dcbersetzungsger\u00e4t";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0423\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u043f\u0435\u0440\u0435\u0432\u043e\u0434\u0430";
+                    else
+                        return "Translation Device";
+                case "AlienRelic10Description": // EncyDesc_PrecursorPrisonArtifact11
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cet appareil stocke des donn\u00e9es linguistiques de plus de 1000 langages diff\u00e9rents.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Este dispositivo almacena datos ling\u00fcisticos de m\u00e1s de 1,000 idiomas diferentes.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu cihaz, 1000'in \u00fczerinde farkl\u0131 dilin verilerini tutmaktad\u0131r.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dieses Ger\u00e4t hat linguistische Daten von \u00fcber 1.000 verschiedenen Sprachen gespeichert.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0414\u0430\u043d\u043d\u043e\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u0445\u0440\u0430\u043d\u0438\u0442 \u043b\u0438\u043d\u0433\u0432\u0438\u0441\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0434\u0430\u043d\u043d\u044b\u0435 \u043e \u0431\u043e\u043b\u0435\u0435 \u0447\u0435\u043c 1000 \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0445 \u044f\u0437\u044b\u043a\u0430\u0445.";
+                    else
+                        return "This device stores linguistic data from over 1,000 different languages.";
+                case "AlienRelic11Name": // Ency_PrecursorPrisonArtifact12
+                    if (UserLanguage == CountryCode.FR)
+                        return "Bloc d\u2019une structure extraterrestre";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Bloque de Construcci\u00f3n Alien\u00edgena";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzayl\u0131 Yap\u0131 Ta\u015f\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "fremder Baustein";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0418\u043d\u043e\u043f\u043b\u0430\u043d\u0435\u0442\u043d\u044b\u0439 \u0441\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0431\u043b\u043e\u043a";
+                    else
+                        return "Alien Building Block";
+                case "AlienRelic11Description": // EncyDesc_PrecursorPrisonArtifact12
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cet objet ressemblant \u00e0 une roche comporte des parties organiques aussi bien que m\u00e9caniques, et il existe une certaine similitude g\u00e9n\u00e9tique et technologique avec la conception des cr\u00e9atures t\u00e9l\u00e9portantes rencontr\u00e9es ailleurs.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Este objeto rocoso presenta partes tanto org\u00e1nicas como mec\u00e1nicas, y hay algunas coincidencias gen\u00e9ticas y tecnol\u00f3gicas el dise\u00f1o de los constructos que se teletransportan encontrados en otros lugares.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu kaya benzeri nesne, organik par\u00e7alar\u0131n yan\u0131 s\u0131ra mekanik par\u00e7alar da i\u00e7ermektedir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dieses steinartige Material enth\u00e4lt sowohl organische als auch mechanische Teile. Im Aufbau gibt es einige genetische und technische \u00dcberschneidungen mit den selbstteleportierenden Konstruktionen, die woanders gefunden wurden.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u042d\u0442\u043e\u0442 \u043f\u043e\u0445\u043e\u0436\u0438\u0439 \u043d\u0430 \u043a\u0430\u043c\u0435\u043d\u044c \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u043a\u0430\u043a \u043e\u0440\u0433\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0435, \u0442\u0430\u043a \u0438 \u043c\u0435\u0445\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0447\u0430\u0441\u0442\u0438 \u0438 \u0438\u043c\u0435\u0435\u0442 \u0433\u0435\u043d\u0435\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0438 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0441\u0445\u043e\u0434\u0441\u0442\u0432\u043e \u0441\u043e \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u043e\u0439 \u0432\u0441\u0442\u0440\u0435\u0447\u0435\u043d\u043d\u044b\u0445 \u0432 \u0434\u0440\u0443\u0433\u0438\u0445 \u043c\u0435\u0441\u0442\u0430\u0445 \u0442\u0435\u043b\u0435\u043f\u043e\u0440\u0442\u0438\u0440\u0443\u044e\u0449\u0438\u0445\u0441\u044f \u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0442\u043e\u0432.";
+                    else
+                        return "This rock-like object features organic as well as mechanical parts, and there is some genetic and technological crossover with the design of the self-warping constructs encountered elsewhere.";
+                case "AlienPillar1Name":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Piédestal";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pedestal";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kaideye";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Sockel";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Пьедестал";
+                    else
+                        return "Pedestal";
+                case "AlienPillar1Description":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un petit piédestal (pratique pour y exposer les reliques ou autre objet).";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un pequeño pedestal (útil para colocar reliquias).";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Küçük bir kaide (kalıntıları yerleştirmek için kullanışlı).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein kleiner Sockel (praktisch zum Platzieren von Reliquien).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Небольшой постамент (удобно для размещения реликвий).";
+                    else
+                        return "A small pedestal (handy for placing relics or any other item).";
+                case "EggSeaEmperorName": // Ency_PrecursorPrisonEggChamberEmperorEgg
+                    if (UserLanguage == CountryCode.FR)
+                        return "\u0152uf d\u2019empereur intact";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Huevo de Emperador Intacto";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bozulmam\u0131\u015f \u0130mparator Yumurtas\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "intaktes Imperator-Ei";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u041d\u0435\u043f\u043e\u0432\u0440\u0435\u0436\u0434\u0451\u043d\u043d\u043e\u0435 \u044f\u0439\u0446\u043e \u0438\u043c\u043f\u0435\u0440\u0430\u0442\u043e\u0440\u0430";
+                    else
+                        return "In-tact Emperor Egg";
+                case "EggSeaEmperorDescription": // EncyDesc_PrecursorPrisonEggChamberEmperorEgg
+                    if (UserLanguage == CountryCode.FR)
+                        return "Les analyses indiquent que l\u2019\u0153uf est dans un \u00e9tat sain de stase auto-r\u00e9gul\u00e9e.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Los an\u00e1lisis indican que el huevo est\u00e1 en un estado saludable de estasis  autorregulada.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Taramalar, yumurtan\u0131n kendi i\u00e7 dengesini sa\u011flam\u0131\u015f, dura\u011fan bir halde ve sa\u011fl\u0131kl\u0131 oldu\u011funu g\u00f6steriyor.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Scans zeigen, dass sich das Ei in einem gesunden Zustand einer selbst regulierten Stase befindet.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0421\u043a\u0430\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442, \u0447\u0442\u043e \u044f\u0439\u0446\u043e \u043d\u0430\u0445\u043e\u0434\u0438\u0442\u0441\u044f \u0432 \u0437\u0434\u043e\u0440\u043e\u0432\u043e\u043c \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u0441\u0430\u043c\u043e\u0440\u0435\u0433\u0443\u043b\u0438\u0440\u0443\u0435\u043c\u043e\u0433\u043e \u0441\u0442\u0430\u0437\u0438\u0441\u0430.";
+                    else
+                        return "Scans indicate the egg is in a healthy condition of self-regulated stasis.";
+                case "EggSeaDragonName": // Ency_Precursor_LostRiverBase_LeviathanEggShellScan
+                    if (UserLanguage == CountryCode.FR)
+                        return "\u0152uf de Dragon des mers";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Huevo de Drag\u00f3n Marino";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Deniz Ejderhas\u0131 Yumurtas\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Seedrachen-Ei";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u042f\u0439\u0446\u043e \u043c\u043e\u0440\u0441\u043a\u043e\u0433\u043e \u0434\u0440\u0430\u043a\u043e\u043d\u0430";
+                    else
+                        return "Sea Dragon Egg";
+                case "EggSeaDragonDescription": // EncyDesc_Precursor_LostRiverBase_LeviathanEggShellScan
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ce grand \u0153uf est maintenu dans un environnement herm\u00e9tiquement clos, et a \u00e9t\u00e9 st\u00e9rilis\u00e9 chimiquement.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Este gran huevo se mantiene en un ambiente herm\u00e9ticamente sellado y ha sido esterilizado qu\u00edmicamente.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu b\u00fcy\u00fck yumurta ortamdan tamamen yal\u0131t\u0131lm\u0131\u015ft\u0131r ve kimyasal olarak temizlenmi\u015ftir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dieses gro\u00dfe Ei wird in einem hermetisch versiegelten Beh\u00e4lter aufbewahrt und wurde chemisch sterilisiert.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u042d\u0442\u043e \u0431\u043e\u043b\u044c\u0448\u043e\u0435 \u044f\u0439\u0446\u043e \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442\u0441\u044f \u0432 \u0433\u0435\u0440\u043c\u0435\u0442\u0438\u0447\u043d\u043e \u0437\u0430\u043a\u0440\u044b\u0442\u043e\u0439 \u0441\u0440\u0435\u0434\u0435 \u0438 \u0431\u044b\u043b\u043e \u0445\u0438\u043c\u0438\u0447\u0435\u0441\u043a\u0438 \u0441\u0442\u0435\u0440\u0438\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043e.";
+                    else
+                        return "This large egg is held in a hermetically sealed environment, and has been chemically sterilized.";
+                case "EggsGhostLeviathanName": // Ency_Precursor_LostRiverBase_LeviathanEggShellScan
+                    if (UserLanguage == CountryCode.FR)
+                        return "\u0152ufs de L\u00e9viathan Fant\u00f4me";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Huevos de Leviat\u00e1n Fantasma";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Hayalet Canavar Yumurtalar\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Phantom-Eier";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u042f\u0439\u0446\u0430 \u043f\u0440\u0438\u0437\u0440\u0430\u0447\u043d\u043e\u0433\u043e \u043b\u0435\u0432\u0438\u0430\u0444\u0430\u043d\u0430";
+                    else
+                        return "Ghost Leviathan Eggs";
+                case "EggsGhostLeviathanDescription": // EncyDesc_Precursor_LostRiverBase_LeviathanEggShellScan
+                    if (UserLanguage == CountryCode.FR)
+                        return "\u0152ufs non \u00e9clos appartenant \u00e0 l'esp\u00e8ce baptis\u00e9e \"l\u00e9viathan fant\u00f4me\".";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Huevos maduros, pertenecientes a la especie denominada \"leviat\u00e1n fantasma\".";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yumurtalar, 'hayalet canavar' adl\u0131 canl\u0131ya aittir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Unausgebr\u00fctete Eier, die zu einer Tierart mit der Bezeichnung \u201ePhantom\u201c geh\u00f6ren.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Невылупившихся яиц, принадлежащих виду с обозначением «призрачный левиафан».";
+                    else
+                        return "Maturing eggs belonging to the species designated 'ghost leviathan'.";
+                case "WarperPartName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "El\u00e9ment de warper";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Parte de curvador";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "S\u0131\u00e7ray\u0131c\u0131 par\u00e7alar\u0131";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Warper-Teile";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0427\u0430\u0441\u0442\u0438 \u0442\u0435\u043b\u0430 \u0441\u0442\u0440\u0430\u0436\u0430";
+                    else
+                        return "Warper part";
+                case "WarperPartDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une partie du corps d'un warper.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una parte del cuerpo de curvador.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bir vücut kısmı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein wärmeres Körperteil.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Часть тела снователя.";
+                    else
+                        return "A warper body part.";
+                case "BigWarperPartName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Spécimen de Warper";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Espécimen Curvador";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Çözgü örneği";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Warper Probe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Образец согревателя";
+                    else
+                        return "Warper Specimen";
+                case "BigWarperPartDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un spécimen de warper presque complet.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un espécimen casi completo de urdidor.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Neredeyse tam bir çözgü örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein fast vollständiges Exemplar von Warper.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Почти полный образец варпера.";
+                    else
+                        return "An almost complete specimen of warper.";
+                case "HangingWarperPartName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "El\u00e9ment de warper suspendu";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Parte de curvador colgante";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Asma Sıçrayıcı Parçaları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Hängendes warperteil";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Часть тела хранителя приостановлена";
+                    else
+                        return "Hanging warper part";
+                case "HangingWarperPartDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une partie du corps d'un warper suspendue.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una parte del cuerpo suspendida de una curvador.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bir çözgünün askıya alınmış bir vücut kısmı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein wärmeres Körperteil.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Часть подвесного опекуна тела.";
+                    else
+                        return "An hanging warper body part.";
+                case "AquariumSmallName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Petit aquarium";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pequeño acuario";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Küçük akvaryum";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kleines Aquarium";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Небольшой аквариум";
+                    else
+                        return "Small aquarium";
+                case "AquariumSmallDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un petit aquarium (ne peut contenir qu'un seul spécimen).";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un acuario pequeño (solo puede contener una muestra).";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Küçük bir akvaryum (sadece bir örnek içerebilir).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein kleines Aquarium (kann nur ein Exemplar enthalten).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Небольшой аквариум (может содержать только один экземпляр).";
+                    else
+                        return "A small aquarium (can only contain one specimen).";
+                case "RedGrassName": // Ency_BloodGrass
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u041a\u0440\u043e\u0432\u0430\u0432\u0430\u044f \u0442\u0440\u0430\u0432\u0430";
+                    else
+                        return "Blood grass";
+                case "RedGrassDescription": // EncyDesc_BloodGrass
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une vari\u00e9t\u00e9 d'algue marine assez commune, adapt\u00e9e aux environnements sablonneux peu profonds.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una hierba marina com\u00fan adaptada a las zonas arenosas de los baj\u00edos.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "S\u0131\u011fl\u0131klar ve kumlu ortamlara uyum sa\u011flam\u0131\u015f yayg\u0131n bir deniz otudur.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein einfaches Seegras, das sich an seichte, sandige Umgebungen angepasst hat.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u041e\u0431\u044b\u0447\u043d\u0430\u044f \u043c\u043e\u0440\u0441\u043a\u0430\u044f \u0442\u0440\u0430\u0432\u0430, \u043f\u0440\u0438\u0441\u043f\u043e\u0441\u043e\u0431\u043b\u0435\u043d\u043d\u0430\u044f \u043a \u043c\u0435\u043b\u043a\u043e\u0432\u043e\u0434\u043d\u043e\u0439 \u043f\u0435\u0441\u0447\u0430\u043d\u043e\u0439 \u0441\u0440\u0435\u0434\u0435.";
+                    else
+                        return "A common sea grass adapted to shallow, sandy environments.";
+                case "RedGrassTallName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Haute herbe sanguine";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Hierba alta de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Hohes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Высокая кровавая трава";
+                    else
+                        return "Tall blood grass";
+                case "RedGrassDenseName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Dense blood grass";
                 default:
                     return "?";
             }

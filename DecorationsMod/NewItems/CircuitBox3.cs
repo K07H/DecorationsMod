@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -8,7 +9,7 @@ namespace DecorationsMod.NewItems
         public CircuitBox3() // Feeds abstract class
         {
             this.ClassID = "CircuitBox3"; // 5d5fad52-7783-4107-a68c-6a94c473e25e
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/circuit_box_01_03");
 
@@ -17,6 +18,17 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("CircuitBox3Description"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Copper, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -26,23 +38,27 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Copper, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Add the new TechType to the hand-equipments
                 SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+                // Set quick slot type.
+                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox3"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -92,9 +108,11 @@ namespace DecorationsMod.NewItems
             pickupable.randomizeRotationWhenDropped = true;
 
             // We can place this item
+            prefab.AddComponent<CustomPlaceToolController>();
             var placeTool = prefab.GetComponent<PlaceTool>();
-            if (placeTool == null)
-                placeTool = prefab.AddComponent<PlaceTool>();
+            if (placeTool != null)
+                GameObject.DestroyImmediate(placeTool);
+            placeTool = prefab.AddComponent<GenericPlaceTool>();
             placeTool.allowedInBase = true;
             placeTool.allowedOnBase = true;
             placeTool.allowedOnCeiling = false;

@@ -156,7 +156,7 @@ namespace DecorationsMod.Controllers
             }
         }
 
-        private void SwitchLampOff(Renderer renderer, Light reactorRodLight)
+        private void SwitchLampOff(Renderer renderer, Light reactorRodLight, bool noSound = false)
         {
             if (isOn)
             {
@@ -176,11 +176,17 @@ namespace DecorationsMod.Controllers
                 // Disable lamp range
                 reactorRodLight.range = 0.0f;
 
+                // Play sound
+#pragma warning disable CS0618
+                if (!noSound)
+                    FMODUWE.PlayOneShot("event:/sub/cyclops/lights_off", MainCamera.camera.transform.position, 1f);
+#pragma warning restore CS0618
+
                 isOn = false;
             }
         }
 
-        private void SwitchLampOn(Renderer renderer, Light reactorRodLight)
+        private void SwitchLampOn(Renderer renderer, Light reactorRodLight, bool noSound = false)
         {
             if (!isOn)
             {
@@ -193,6 +199,12 @@ namespace DecorationsMod.Controllers
                 // Restore lamp range
                 reactorRodLight.range = savedRange;
 
+                // Play sound
+#pragma warning disable CS0618
+                if (!noSound)
+                    FMODUWE.PlayOneShot("event:/sub/cyclops/lights_on", MainCamera.camera.transform.position, 1f);
+#pragma warning restore CS0618
+
                 isOn = true;
             }
         }
@@ -204,9 +216,13 @@ namespace DecorationsMod.Controllers
 
             var reticle = HandReticle.main;
             reticle.SetIcon(HandReticle.IconType.Hand, 1f);
-            reticle.SetInteractText("ToggleLamp");
+#if BELOWZERO
+            reticle.SetTextRaw(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip"));
+#else
+            reticle.SetInteractText(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip");
+#endif
         }
-        
+
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
 #if DEBUG_LAMP
@@ -244,7 +260,7 @@ namespace DecorationsMod.Controllers
                 bool turnedOn = false;
                 if (!this.isOn)
                 {
-                    SwitchLampOn(renderer, reactorRodLight);
+                    SwitchLampOn(renderer, reactorRodLight, true);
                     turnedOn = true;
                 }
 
@@ -305,7 +321,7 @@ namespace DecorationsMod.Controllers
                     (turnedOn ? "0" : "1"));
 
                 if (turnedOn)
-                    SwitchLampOff(renderer, reactorRodLight);
+                    SwitchLampOff(renderer, reactorRodLight, true);
             }
         }
 
@@ -374,7 +390,7 @@ namespace DecorationsMod.Controllers
                     savedGlowColor = new Color(Cglow, Cglow, Cglow, 1.0f);
                     renderer.material.SetColor("_GlowColor", savedGlowColor);
                     if (state[7].CompareTo("0") == 0)
-                        SwitchLampOff(renderer, reactorRodLight);
+                        SwitchLampOff(renderer, reactorRodLight, true);
                 }
             }
         }

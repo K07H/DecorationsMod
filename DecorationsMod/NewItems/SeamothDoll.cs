@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,18 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -30,12 +43,15 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                GameObject aquarium = GameObject.Instantiate(CraftData.GetPrefabForTechType(TechType.Aquarium));
+
                 // Move model
                 GameObject model = this.GameObject.FindChild("Model");
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.032f, model.transform.localPosition.z);
@@ -45,8 +61,7 @@ namespace DecorationsMod.NewItems
                 prefabId.ClassId = this.ClassID;
 
                 // Add large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
-                lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
+                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
 
                 // Add tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
@@ -56,6 +71,23 @@ namespace DecorationsMod.NewItems
                 var collider = this.GameObject.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.07f, 0.054f, 0.07f);
                 collider.center = new Vector3(collider.center.x, collider.center.y + 0.027f, collider.center.z);
+
+                // Get glass material
+                Material glass = null;
+                Renderer[] aRenderers = aquarium.GetComponentsInChildren<Renderer>(true);
+                foreach (Renderer aRenderer in aRenderers)
+                {
+                    foreach (Material aMaterial in aRenderer.materials)
+                    {
+                        if (aMaterial.name.StartsWith("Aquarium_glass", StringComparison.OrdinalIgnoreCase))
+                        {
+                            glass = aMaterial;
+                            break;
+                        }
+                    }
+                    if (glass != null)
+                        break;
+                }
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
@@ -77,16 +109,23 @@ namespace DecorationsMod.NewItems
                 Texture normal8 = AssetsHelper.Assets.LoadAsset<Texture>("seamoth_torpedo_01_hatch_01_normal");
                 Texture spec8 = AssetsHelper.Assets.LoadAsset<Texture>("seamoth_torpedo_01_hatch_01_spec");
                 
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = this.GameObject.GetAllComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
                     {
-                        if (rend.materials.Length > 0)
+                        if (rend.name.StartsWith("Submersible_SeaMoth_glass_geo"))
+                            rend.material = glass;
+                        else if (rend.materials.Length > 0)
                         {
                             foreach (Material tmpMat in rend.materials)
                             {
-                                if (tmpMat.name.CompareTo("Submersible_SeaMoth_Glass (Instance)") != 0 && tmpMat.name.CompareTo("Submersible_SeaMoth_Glass_interior (Instance)") != 0)
+                                if (tmpMat.name.CompareTo("Submersible_SeaMoth_Glass_interior (Instance)") == 0)
+                                {
+                                    tmpMat.EnableKeyword("MARMO_SIMPLE_GLASS");
+                                    tmpMat.EnableKeyword("WBOIT");
+                                }
+                                else if (tmpMat.name.CompareTo("Submersible_SeaMoth_Glass (Instance)") != 0)
                                 {
                                     tmpMat.shader = marmosetUber;
                                     if (tmpMat.name.CompareTo("power_cell_01 (Instance)") == 0)
@@ -98,6 +137,8 @@ namespace DecorationsMod.NewItems
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
+                                        tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
                                     else if (tmpMat.name.CompareTo("Submersible_SeaMoth (Instance)") == 0)
                                     {
@@ -108,6 +149,8 @@ namespace DecorationsMod.NewItems
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
+                                        tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
                                     else if (tmpMat.name.CompareTo("Submersible_SeaMoth_indoor (Instance)") == 0)
                                     {
@@ -117,12 +160,14 @@ namespace DecorationsMod.NewItems
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
+                                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
                                     else if (tmpMat.name.CompareTo("seamoth_storage_01 (Instance)") == 0)
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal4);
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
                                     else if (tmpMat.name.CompareTo("seamoth_storage_02 (Instance)") == 0)
                                     {
@@ -132,6 +177,7 @@ namespace DecorationsMod.NewItems
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
+                                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
                                     else if (tmpMat.name.CompareTo("seamoth_power_cell_slot_01 (Instance)") == 0)
                                     {
@@ -139,6 +185,8 @@ namespace DecorationsMod.NewItems
                                         tmpMat.SetTexture("_SpecTex", spec6);
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                        tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
                                     else if (tmpMat.name.CompareTo("seamoth_torpedo_01 (Instance)") == 0)
                                     {
@@ -146,6 +194,8 @@ namespace DecorationsMod.NewItems
                                         tmpMat.SetTexture("_SpecTex", spec7);
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                        tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
                                     else if (tmpMat.name.CompareTo("seamoth_torpedo_01_hatch_01 (Instance)") == 0)
                                     {
@@ -153,6 +203,8 @@ namespace DecorationsMod.NewItems
                                         tmpMat.SetTexture("_SpecTex", spec8);
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                        tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
                                 }
                             }
@@ -168,6 +220,9 @@ namespace DecorationsMod.NewItems
                 constructable.allowedOnCeiling = false;
                 constructable.allowedOnGround = true;
                 constructable.allowedOnConstructables = true;
+#if BELOWZERO
+                constructable.allowedUnderwater = true;
+#endif
                 constructable.controlModelState = true;
                 constructable.deconstructionAllowed = true;
                 constructable.rotationEnabled = true;
@@ -183,8 +238,19 @@ namespace DecorationsMod.NewItems
                 SkyApplier applier = this.GameObject.GetComponent<SkyApplier>();
                 if (applier == null)
                     applier = this.GameObject.AddComponent<SkyApplier>();
-                applier.renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
+                applier.updaterIndex = 0;
+                SkyApplier[] appliers = this.GameObject.GetComponentsInChildren<SkyApplier>();
+                if (appliers != null && appliers.Length > 0)
+                {
+                    foreach (SkyApplier ap in appliers)
+                    {
+                        ap.renderers = renderers;
+                        ap.anchorSky = Skies.Auto;
+                        ap.updaterIndex = 0;
+                    }
+                }
 
                 // Add lights/model controler
                 SeamothDollController controller = this.GameObject.AddComponent<SeamothDollController>();

@@ -92,6 +92,10 @@ namespace DecorationsMod.Controllers
                     else
                         Logger.Log("DEBUG: PlantMonoTransformController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.gameObject.transform.localPosition.x + "] y=[" + _grownPlant.gameObject.transform.localPosition.y + "] z=[" + _grownPlant.gameObject.transform.localPosition.z + "] => Initializing");
 #endif
+                    // Hide seed model
+                    GameObject seed = _grownPlant.gameObject.FindChild("Generic_plant_seed");
+                    if (seed != null)
+                        seed.GetComponent<MeshRenderer>().enabled = false;
                     // Store init values
                     _initTimeValue = DayNightCycle.main.timePassed;
                     if (_origScale == Vector3.zero)
@@ -110,8 +114,8 @@ namespace DecorationsMod.Controllers
                     else
                         Logger.Log("DEBUG: PlantMonoTransformController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.gameObject.transform.localPosition.x + "] y=[" + _grownPlant.gameObject.transform.localPosition.y + "] z=[" + _grownPlant.gameObject.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
 #endif
-                    if (Utils.NearlyEqual(_grownPlant.gameObject.transform.localPosition.x, 5000.0f)
-                        && Utils.NearlyEqual(_grownPlant.gameObject.transform.localPosition.z, 5000.0f))
+                    if (_grownPlant.gameObject.transform.localPosition.x > 4900.0f && _grownPlant.gameObject.transform.localPosition.x < 5100.0f &&
+                        _grownPlant.gameObject.transform.localPosition.z > 4900.0f && _grownPlant.gameObject.transform.localPosition.z < 5100.0f)
                     {
 #if DEBUG_FLORA
                         if (id != null)

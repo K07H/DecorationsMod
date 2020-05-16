@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -11,10 +12,26 @@ namespace DecorationsMod.NewItems
             this.PrefabFileName = "WorldEntities/Food/NutrientBlock";
 
             this.TechType = TechType.NutrientBlock;
-            SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(this.TechType);
+            //SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(this.TechType);
 
             this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[7]
+                    {
+                        new Ingredient(TechType.Melon, 1),
+                        new Ingredient(TechType.HangingFruit, 1),
+                        new Ingredient(TechType.PurpleVegetable, 1),
+                        new Ingredient(TechType.BulboTreePiece, 1),
+                        new Ingredient(TechType.CreepvinePiece, 1),
+                        new Ingredient(TechType.JellyPlant, 1),
+                        new Ingredient(TechType.KooshChunk, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -29,20 +46,26 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.KooshChunk, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                // Add the new TechType to the hand-equipments
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
-                // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
-                // Set the custom icon
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.NutrientBlock));
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
+                // Add the new TechType to the hand-equipments
+                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+#if BELOWZERO
+                // Set quick slot type.
+                //SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+#endif
+
+                // Set the buildable prefab
+                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 this.IsRegistered = true;
             }
@@ -78,6 +101,7 @@ namespace DecorationsMod.NewItems
             pickupable.randomizeRotationWhenDropped = true;
 
             // We can place this item
+            prefab.AddComponent<CustomPlaceToolController>();
             var placeTool = prefab.AddComponent<NutrientBlock_PT>();
             placeTool.allowedInBase = true;
             placeTool.allowedOnBase = false;

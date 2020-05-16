@@ -19,6 +19,19 @@ namespace DecorationsMod
 
         public Texture2D ColoredTexture = null;
 
+#if BELOWZERO
+        public RecipeData Recipe = new RecipeData()
+        {
+            craftAmount = 1,
+            Ingredients = new List<Ingredient>(new Ingredient[4]
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.ComputerChip, 1),
+                new Ingredient(TechType.Silver, 1),
+                new Ingredient(TechType.Magnetite, 1)
+            })
+        };
+#else
         public TechData Recipe = new TechData()
         {
             craftAmount = 1,
@@ -30,7 +43,8 @@ namespace DecorationsMod
                 new Ingredient(TechType.Magnetite, 1)
             })
         };
-        
+#endif
+
         internal Fabricator_Flora() : base("", "")
         {
             this.ClassID = FloraFabID;
@@ -46,7 +60,7 @@ namespace DecorationsMod
             if (this.IsRegistered == false)
             {
                 // Create new Craft Tree Type
-                ModCraftTreeRoot rootNode = CreateCustomTree(out CraftTree.Type craftType, decorationItems);
+                CreateCustomTree(out CraftTree.Type craftType, decorationItems);
                 this.TreeTypeID = craftType;
                 
                 // Add the new TechType to the buildables
@@ -80,9 +94,9 @@ namespace DecorationsMod
         {
             ModCraftTreeRoot rootNode = CraftTreeHandler.CreateCustomCraftTreeAndType(FloraFabID, out craftType);
 
-            ModCraftTreeTab plantAirTab = null;
-            ModCraftTreeTab treeAirTab = null;
-            ModCraftTreeTab tropicalPlantTab = null;
+            ModCraftTreeTab plantAirTab;
+            ModCraftTreeTab treeAirTab;
+            ModCraftTreeTab tropicalPlantTab;
             if (ConfigSwitcher.UseFlatScreenResolution)
             {
                 // Additional tab
@@ -196,8 +210,8 @@ namespace DecorationsMod
                                                       TechType.KooshChunk);
             }
 
-            ModCraftTreeTab plantWaterTab = null;
-            ModCraftTreeTab treeWaterTab = null;
+            ModCraftTreeTab plantWaterTab;
+            ModCraftTreeTab treeWaterTab;
             if (ConfigSwitcher.UseFlatScreenResolution)
             {
                 // Additional tab
@@ -221,6 +235,15 @@ namespace DecorationsMod
                                           DecorationItemsHelper.getTechType(decorationItems, "LostRiverPlant2"),
                                           DecorationItemsHelper.getTechType(decorationItems, "LostRiverPlant4"),
                                           DecorationItemsHelper.getTechType(decorationItems, "PlantMiddle11"));
+            var redGrassesTab = plantWaterTab.AddTabNode("RedGrassesTab", LanguageHelper.GetFriendlyWord("RedGrassesTab"), AssetsHelper.Assets.LoadAsset<Sprite>("redgrass"));
+            redGrassesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BloodGrassRed"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "BloodGrassDense"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass1"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass2"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass2Tall"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass3"),
+                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass3Tall")); 
+
             // Tree Water
             treeWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp2"),
                                          DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp1"),
@@ -271,6 +294,10 @@ namespace DecorationsMod
             if (techTag == null)
                 techTag = fabricatorPrefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
+
+            // Adjust position
+            GameObject model = fabricatorPrefab.FindChild("submarine_fabricator_01");
+            model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y, model.transform.localPosition.z + 0.035f);
 
             // Associate custom craft tree to the fabricator
             Fabricator fabricator = fabricatorPrefab.GetComponent<Fabricator>();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -8,7 +9,7 @@ namespace DecorationsMod.NewItems
         public LabCart() // Feeds abstract class
         {
             this.ClassID = "LabCart"; //af165b07-a2a3-4d85-8ad7-0c801334c115
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_cart_01");
 
@@ -19,7 +20,17 @@ namespace DecorationsMod.NewItems
 
             if (ConfigSwitcher.LabCart_asBuildable)
                 this.IsHabitatBuilder = true;
-            
+
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -28,12 +39,16 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 if (ConfigSwitcher.LabCart_asBuildable)
                 {
                     // Add to the custom buidables
@@ -47,6 +62,9 @@ namespace DecorationsMod.NewItems
 
                     // Add the new TechType to the hand-equipments
                     SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+                    // Set quick slot type.
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
                 }
 
                 // Set the buildable prefab
@@ -54,9 +72,6 @@ namespace DecorationsMod.NewItems
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("labcarticon"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -110,7 +125,8 @@ namespace DecorationsMod.NewItems
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                PlaceTool placeTool = prefab.AddComponent<PlaceTool>();
+                prefab.AddComponent<CustomPlaceToolController>();
+                var placeTool = prefab.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = true;
                 placeTool.allowedOnCeiling = false;

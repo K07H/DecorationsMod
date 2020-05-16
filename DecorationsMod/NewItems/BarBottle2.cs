@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -17,6 +18,17 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("BarBottleDescription"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.BigFilteredWater, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -26,6 +38,7 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.BigFilteredWater, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
@@ -57,6 +70,14 @@ namespace DecorationsMod.NewItems
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 var renderer = this.GameObject.GetComponentInChildren<Renderer>();
                 renderer.material.shader = marmosetUber;
+                Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("docking_bar_bottles_01_normal");
+                renderer.material.SetTexture("_BumpMap", normal);
+                Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("docking_bar_bottles_02");
+                renderer.material.SetTexture("_Illum", illum);
+                renderer.material.SetFloat("_EmissionLM", 1.0f); // Set always visible
+                renderer.material.EnableKeyword("MARMO_EMISSION");
+                renderer.material.EnableKeyword("MARMO_NORMALMAP");
+                renderer.material.EnableKeyword("_ZWRITE_ON"); // Enable Z write
 
                 // Update sky applier
                 var applier = this.GameObject.GetComponent<SkyApplier>();
@@ -71,7 +92,8 @@ namespace DecorationsMod.NewItems
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                var placeTool = this.GameObject.AddComponent<PlaceTool>();
+                this.GameObject.AddComponent<CustomPlaceToolController>();
+                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -95,24 +117,29 @@ namespace DecorationsMod.NewItems
                 var eatable = this.GameObject.AddComponent<Eatable>();
                 eatable.foodValue = 0;
                 eatable.waterValue = 20;
+#if SUBNAUTICA
                 eatable.stomachVolume = 15;
+                eatable.allowOverfill = false;
+#endif
                 eatable.decomposes = false;
                 eatable.despawns = false;
-                eatable.allowOverfill = false;
                 eatable.kDecayRate = 0;
                 eatable.despawnDelay = 0;
 
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Add the new TechType to Hand Equipment type.
                 SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+                // Set quick slot type.
+                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("barbottle02icon"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

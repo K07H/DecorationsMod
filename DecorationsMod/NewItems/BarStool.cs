@@ -14,7 +14,7 @@ namespace DecorationsMod.NewItems
         {
             // Feed DecortionItem interface
             this.ClassID = "BarStool";
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = Resources.Load<GameObject>("Submarine/Build/starshipchair");
 
@@ -26,6 +26,17 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.FiberMesh, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -35,6 +46,7 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
@@ -151,18 +163,22 @@ namespace DecorationsMod.NewItems
                     {
                         tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
                         tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
+                        tmpMat.EnableKeyword("MARMO_SPECMAP");
                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                     }
                     else if (tmpMat.name.StartsWith("Stool_Metal"))
                     {
-                        tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
-                        tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
-                        tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                        tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
-
                         tmpMat.SetTexture("_SpecTex", metal_spec);
                         tmpMat.SetTexture("_MetallicGlossMap", metal_spec);
                         tmpMat.SetTexture("_BumpMap", metal_normal);
+
+                        tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
+                        tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
+                        tmpMat.EnableKeyword("MARMO_SPECMAP");
+                        tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                        tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
+                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                     }
                 }
             }

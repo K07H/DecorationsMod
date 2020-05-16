@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -8,7 +9,7 @@ namespace DecorationsMod.NewItems
         public DecorationsEmptyDesk() // Feeds abstract class
         {
             this.ClassID = "DecorationsEmptyDesk"; // 04a07ec0-e3f4-4285-a087-688215fdb142
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/Starship_work_desk_01_empty");
 
@@ -20,6 +21,16 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.EmptyDesk_asBuildable)
                 this.IsHabitatBuilder = true;
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -28,12 +39,16 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 if (ConfigSwitcher.EmptyDesk_asBuildable)
                 {
                     // Add to the custom buidables
@@ -47,6 +62,9 @@ namespace DecorationsMod.NewItems
 
                     // Add the new TechType to the hand-equipments
                     SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+                    // Set quick slot type.
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
                 }
 
                 // Set the buildable prefab
@@ -54,9 +72,6 @@ namespace DecorationsMod.NewItems
 
                 // Set the custom icon
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("deskemptyicon"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -97,7 +112,8 @@ namespace DecorationsMod.NewItems
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                PlaceTool placeTool = prefab.AddComponent<PlaceTool>();
+                prefab.AddComponent<CustomPlaceToolController>();
+                var placeTool = prefab.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;

@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace DecorationsMod.NewItems
         public ReactorLamp() // Feeds abstract class
         {
             this.ClassID = "ReactorLamp";
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("nuclearreactorrod_white");
 
@@ -20,6 +21,19 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[4]
+                    {
+                        new Ingredient(TechType.ComputerChip, 1),
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Diamond, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -32,17 +46,20 @@ namespace DecorationsMod.NewItems
                         
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                GameObject aquarium = GameObject.Instantiate(CraftData.GetPrefabForTechType(TechType.Aquarium));
+
                 // Retrieve model node
                 GameObject model = this.GameObject.FindChild("model");
                 
                 // Move model
-                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y, model.transform.localPosition.z);
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y - 0.04f, model.transform.localPosition.z + 0.05f);
 
                 // Disable light at start
                 var reactorRodLight = this.GameObject.GetComponentInChildren<Light>();
@@ -65,8 +82,25 @@ namespace DecorationsMod.NewItems
 
                 // Add box collider
                 var collider = this.GameObject.AddComponent<BoxCollider>();
-                collider.size = new Vector3(0.2f, 0.36f, 0.2f);
-                collider.center = new Vector3(collider.center.x, collider.center.y + 0.18f, collider.center.z);
+                collider.size = new Vector3(0.18f, 0.36f, 0.18f);
+                collider.center = new Vector3(collider.center.x, collider.center.y + 0.22f, collider.center.z);
+
+                // Get glass material
+                Material glass = null;
+                Renderer[] aRenderers = aquarium.GetComponentsInChildren<Renderer>(true);
+                foreach (Renderer aRenderer in aRenderers)
+                {
+                    foreach (Material aMaterial in aRenderer.materials)
+                    {
+                        if (aMaterial.name.StartsWith("Aquarium_glass", StringComparison.OrdinalIgnoreCase))
+                        {
+                            glass = aMaterial;
+                            break;
+                        }
+                    }
+                    if (glass != null)
+                        break;
+                }
 
                 // Set proper shaders (for crafting animation)
                 Shader shader = Shader.Find("MarmosetUBER");
@@ -105,13 +139,21 @@ namespace DecorationsMod.NewItems
                         // Enable emission
                         renderer.sharedMaterial.EnableKeyword("MARMO_NORMALMAP");
                         renderer.sharedMaterial.EnableKeyword("MARMO_EMISSION");
+                        renderer.sharedMaterial.EnableKeyword("MARMO_SPECMAP");
+                        renderer.sharedMaterial.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                         renderer.material.EnableKeyword("MARMO_NORMALMAP");
                         renderer.material.EnableKeyword("MARMO_EMISSION");
+                        renderer.material.EnableKeyword("MARMO_SPECMAP");
+                        renderer.material.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                     }
+                    else if (renderer.name.CompareTo("nuclear_reactor_rod_glass") == 0 && glass != null)
+                        renderer.material = glass;
                 }
 
                 // Add sky applier
-                var skyapplier = this.GameObject.AddComponent<SkyApplier>();
+                var skyapplier = this.GameObject.GetComponent<SkyApplier>();
+                if (skyapplier == null)
+                    skyapplier = this.GameObject.AddComponent<SkyApplier>();
                 skyapplier.renderers = this.GameObject.GetComponentsInChildren<Renderer>();
                 skyapplier.anchorSky = Skies.Auto;
                 
@@ -124,6 +166,9 @@ namespace DecorationsMod.NewItems
                 constructible.allowedOnGround = true;
                 constructible.allowedOnConstructables = true;
                 constructible.allowedOnWall = true;
+#if BELOWZERO
+                constructible.allowedUnderwater = true;
+#endif
                 constructible.controlModelState = true;
                 constructible.deconstructionAllowed = true;
                 constructible.rotationEnabled = false;
@@ -140,7 +185,7 @@ namespace DecorationsMod.NewItems
 
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorOther, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorLight, this.TechType);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
@@ -158,7 +203,7 @@ namespace DecorationsMod.NewItems
         public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
-
+            
             prefab.name = this.ClassID;
             // Scale prefab
             prefab.transform.localScale *= 1.5f;

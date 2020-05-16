@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -14,7 +15,7 @@ namespace DecorationsMod.NewItems
         {
             // Feed DecortionItem interface
             this.ClassID = "SofaCorner2";
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = Resources.Load<GameObject>("Submarine/Build/Bench");
 
@@ -28,6 +29,17 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.SofaCorner2_asBuidable)
                 this.IsHabitatBuilder = true;
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.FiberMesh, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -37,6 +49,7 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
@@ -45,6 +58,9 @@ namespace DecorationsMod.NewItems
             {
                 normal = AssetsHelper.Assets.LoadAsset<Texture>("descent_bar_sofa_01_normal");
                 spec = AssetsHelper.Assets.LoadAsset<Texture>("descent_bar_sofa_01_spec");
+
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 if (ConfigSwitcher.SofaCorner2_asBuidable)
                 {
@@ -59,6 +75,9 @@ namespace DecorationsMod.NewItems
 
                     // Add the new TechType to Hand Equipment type.
                     SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+                    // Set quick slot type.
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
                 }
 
                 // Set the buildable prefab
@@ -66,9 +85,6 @@ namespace DecorationsMod.NewItems
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("sofacorner02icon"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -137,6 +153,8 @@ namespace DecorationsMod.NewItems
                         tmpMat.SetTexture("_BumpMap", normal);
                         tmpMat.SetTexture("_SpecTex", spec);
                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                        tmpMat.EnableKeyword("MARMO_SPECMAP");
+                        tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                     }
                 }
             }
@@ -145,6 +163,7 @@ namespace DecorationsMod.NewItems
             var skyapplier = prefab.GetComponent<SkyApplier>();
             skyapplier.renderers = renderers;
             skyapplier.anchorSky = Skies.Auto;
+            skyapplier.updaterIndex = 0;
 
             if (ConfigSwitcher.SofaCorner2_asBuidable)
             {
@@ -183,7 +202,8 @@ namespace DecorationsMod.NewItems
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                var placeTool = prefab.AddComponent<PlaceTool>();
+                prefab.AddComponent<CustomPlaceToolController>();
+                var placeTool = prefab.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;

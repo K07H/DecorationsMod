@@ -3,14 +3,17 @@
 # "tr" for Turkish, "ru" for Russian and "auto" for default language.
 language=auto
 
-# Set to "true" if some items in Decorations Fabricator or Seeds Fabricator are not visible because they don't fit in screen.
-useFlatScreenResolution=false
+# Set this to "true" only if some items in Decorations Fabricator or Seeds Fabricator are not visible because they don't fit in screen (if it still doesn't fit after that, download the Radial Tabs mod here: https://www.nexusmods.com/subnautica/mods/207).
+useAlternativeScreenResolution=false
+
+# If "true", tooltips of the "customizable picture frame" and "customizable light" items will be scaled down (compact mode). 
+useCompactTooltips=true
 
 # If "true", more items from this mod will be buildable outside bases.
-allowBuildOutside=false
+allowBuildOutside=true
 
 # If "true", more items from this mod will be placeable outside bases.
-allowPlaceOutside=false
+allowPlaceOutside=true
 
 # If "true" you'll be able to place following items:
 # coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, 
@@ -18,36 +21,64 @@ allowPlaceOutside=false
 enablePlaceItems=true
 
 # If "true", you'll be able to place batteries, powercells, ion batteries and ion powercells where you want.
-# Be careful using this option: if enabled, you'll have to manually drag-n-drop batteries/power cells to the charger (left click won't equip them).
+# Be careful using this option: if enabled, you will have to manually drag-n-drop batteries/power cells to the charger (left click won't equip them).
 enablePlaceBatteries=false
 
+# If "true", it will stop switching to next quickslot tool if you are currently holding a placeable item and using mouse wheel (this allows to rotate the placeable item with mouse wheel).
+lockQuickslotsWhenPlacingItem=true
+
+# If "true", the regular aquarium (not the one from this mod) will adapt to the lights depending if it's indoor or outdoor.
+fixAquariumLighting=true
+
+# If "true", glass of the aquariums (both regular aquarium and the one from this mod) will be glowing a little.
+enableAquariumGlassGlowing=false
+
 # If "true", you'll be able to build/craft the following items:
-# lab cart, specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll, lamp, seamoth doll,
-# exosuit doll, forklift, cargo crates, sofas, customizable picture frame, small bench and additional lockers.
+# lab cart, alien pillar, long planter, specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll, empty desk,
+# eatmydiction doll, jacksepticeye doll, markiplier dolls, seamoth doll, exosuit doll, forklift, cargo crates, sofas, benches, stool, 
+# customizable picture frame, customizable light and additional lockers.
 enableSpecialItems=true
+
+# If "true", you'll be able to build the indoor long planter outside bases/cyclops (tip: this allows to have land plants in water).
+allowIndoorLongPlanterOutside=true
+
+# If "true", you'll be able to build the exterior long planter inside bases/cyclops (tip: this allows to have sea plants inside bases/cyclops).
+allowOutdoorLongPlanterInside=true
 
 # If "true", you'll be able to craft Nutrient Blocks using the decorations fabricator.
 enableNutrientBlock=false
 
-# If "true",  item will be available through the habitat builder menu.
-# If "false", item will be available through the decorations fabricator.
-# Be careful using this option: you may loose some of the item functionalities by placing it in the decorations fabricator.
-asBuildable_SpecimenAnalyzer=true
-asBuildable_MarkiplierDoll1=true
-asBuildable_MarkiplierDoll2=true
-asBuildable_JackSepticEyeDoll=true
-asBuildable_EatMyDictionDoll=true
-asBuildable_ForkliftToy=true
-asBuildable_SofaSmall=true
-asBuildable_SofaMedium=true
-asBuildable_SofaBig=true
-asBuildable_SofaCorner=true
-asBuildable_LabCart=true
-asBuildable_EmptyDesk=true
+# If true, you'll be able to craft all eggs from the decorations fabricator.
+# If false, only the sea dragon and sea emperor eggs will be available in the decorations fabricator.
+enableAllEggs=true
 
-# This defines the resource used in new flora recipies.
+# If true, all alien tablets will be available for craft in the decorations frabricator.
+# If false, only the red and white alien tablets will be available in the decorations fabricator.
+precursorKeysAll=true
+
+# This defines the resource required to craft alien tablets.
+# Possible values: An existing tech type name (exemple: salt).
+precursorKeys_RecipiesResource=precursorioncrystal
+
+# This defines the amount of resources required to craft alien tablets.
+# Possible values: A positive integer (exemple: 1).
+precursorKeys_RecipiesResourceAmount=3
+
+# This defines the resource required to craft alien relics.
+# Possible values: An existing tech type name (exemple: salt).
+relics_RecipiesResource=precursorioncrystal
+
+# This defines the amount of resources required to craft alien relics.
+# Possible values: A positive integer (exemple: 1).
+relics_RecipiesResourceAmount=2
+
+# This defines the resource required to craft seeds.
 # Possible values: An existing tech type name (example: salt).
 flora_RecipiesResource=precursorioncrystal
+
+# This defines the amount of resources required to craft seeds.
+# Possible values: A positive integer (exemple: 1).
+flora_RecipiesResourceAmount=1
 
 # Defines new flora configuration. Format is: growth-duration/health/bioreactor-charge
 config_LandTree=2400/200/500
@@ -96,13 +127,20 @@ config_CoralPlantGreen=1600/10/120
 config_CoralPlantBlue=1600/10/120
 config_CoralPlantRed=1600/10/120
 config_CoralPlantPurple=1600/10/120
+config_RedGrass1=800/30/30
+config_RedGrass2=800/40/50
+config_RedGrass3=800/40/50
+config_RedGrass2Tall=1000/40/70
+config_RedGrass3Tall=1000/40/70
+config_BloodGrass=1000/40/70
+config_BloodGrassDense=1600/60/90
 
 # If "true", all existing air seeds will be added to the seeds fabricator.
-addRegularAirSeeds=false
+addRegularAirSeeds=true
 # If "true", all existing water seeds will be added to the seeds fabricator.
-addRegularWaterSeeds=false
+addRegularWaterSeeds=true
 
-# If "true", cove trees bellow 100m depth having eggs displayed will spawn Juvenile Ghost Leviatan after a certain amount of time.
+# If "true", cove trees below 100m depth having eggs displayed will spawn Juvenile Ghost Leviatan after a certain amount of time.
 GhostLeviatan_enable=false
 # Defines spawned juvenile ghost leviatan health points.
 GhostLeviatan_health=2000
@@ -113,3 +151,43 @@ GhostLeviatan_timeBeforeFirstSpawn=1200
 # This is the ratio applied to the duration between two leviatans spawns. Set it close to 0 if you want fast spawn rate (for example,
 # 0.01 will be around 10seconds), or set it to a high value if you want low spawn rate (for example, 3.0 will be around 45minutes).
 GhostLeviatan_spawnTimeRatio=1.0
+
+# If "true",  item will be available through the habitat builder menu.
+# If "false", item will be available through the decorations fabricator.
+# WARNING: It is not recommended to change this settign (there's a high chance that you loose some of the items functionalities by placing them in the decorations fabricator).
+asBuildable_SpecimenAnalyzer=true
+asBuildable_MarkiplierDoll1=true
+asBuildable_MarkiplierDoll2=true
+asBuildable_JackSepticEyeDoll=true
+asBuildable_EatMyDictionDoll=true
+asBuildable_ForkliftToy=true
+asBuildable_SofaSmall=true
+asBuildable_SofaMedium=true
+asBuildable_SofaBig=true
+asBuildable_SofaCorner=true
+asBuildable_LabCart=true
+asBuildable_EmptyDesk=true
+
+# Below you can configure precursor relics animations. If "true", enables relic animation. If "false", disables relic animation.
+# Artefact 1, Organic Matter Particulator:
+alienRelic1Animation=true
+# Artefact 2, Holographic Projector:
+alienRelic2Animation=true
+# Artefact 3, Rudimentary Tablet:
+alienRelic3Animation=true
+# Artefact 4, Tracking Implant:
+alienRelic4Animation=true
+# Artefact 5, Alien Carving:
+alienRelic5Animation=true
+# Artefact 6, Doomsday Device:
+alienRelic6Animation=true
+# Artefact 7, Alien Rifle:
+alienRelic7Animation=true
+# Artefact 8, Ancient Earth Blade:
+alienRelic8Animation=true
+# Artefact 9, Alien Statue:
+alienRelic9Animation=true
+# Artefact 10, Translation Device:
+alienRelic10Animation=true
+# Artefact 11, Alien Building Block:
+alienRelic11Animation=true

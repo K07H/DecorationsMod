@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -8,7 +9,7 @@ namespace DecorationsMod.NewItems
         public EatMyDiction()
         {
             this.ClassID = "MarlaCat"; // c96baff4-0993-4893-8345-adb8709901a7
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = Resources.Load<GameObject>("Submarine/Build/Eatmydiction");
 
@@ -20,6 +21,16 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.EatMyDiction_asBuidable)
                 this.IsHabitatBuilder = true;
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.FiberMesh, 2)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -28,12 +39,16 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 2)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 if (ConfigSwitcher.EatMyDiction_asBuidable)
                 {
                     // Add the new TechType to the buildables
@@ -44,6 +59,9 @@ namespace DecorationsMod.NewItems
                 {
                     // Add the new TechType to the hand-equipments
                     SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+                    // Set quick slot type.
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
                 }
 
                 // Set the custom prefab
@@ -51,9 +69,6 @@ namespace DecorationsMod.NewItems
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.EatMyDiction));
-                
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
                 
                 this.IsRegistered = true;
             }
@@ -92,7 +107,8 @@ namespace DecorationsMod.NewItems
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                var placeTool = prefab.AddComponent<PlaceTool>();
+                prefab.AddComponent<CustomPlaceToolController>();
+                var placeTool = prefab.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;

@@ -8,6 +8,7 @@ namespace DecorationsMod
         string ClassID { get; }
         string PrefabFileName { get; }
         TechType TechType { get; }
+        Sprite Sprite { get; }
 
         // Method signatures
         GameObject GetGameObject();
@@ -16,12 +17,12 @@ namespace DecorationsMod
     
     public abstract class DecorationItem : SMLHelper.V2.Assets.ModPrefab, IDecorationItem
     {
-        #region Constructor
+#region Constructor
 
         public DecorationItem() : base("", "") { }
 
-        #endregion
-        #region Attributes
+#endregion
+#region Attributes
 
         // This is used as the default path when we add a new resource to the game
         public const string DefaultResourcePath = "WorldEntities/Environment/Wrecks/";
@@ -34,9 +35,15 @@ namespace DecorationsMod
         
         // The item root GameObject
         public GameObject GameObject { get; set; }
-        
+
+        public Sprite Sprite { get; set; }
+
         // The item recipe
+#if BELOWZERO
+        public SMLHelper.V2.Crafting.RecipeData Recipe { get; set; }
+#else
         public SMLHelper.V2.Crafting.TechData Recipe { get; set; }
+#endif
 
         #endregion
         #region Abstract and virtual methods
@@ -45,21 +52,19 @@ namespace DecorationsMod
 
         public virtual void RegisterItem()
         {
-            if (this.IsRegistered == false)
+            if (this.IsRegistered == false && this.GameObject != null)
             {
+                // Associate new recipe
+                if (this.Recipe != null)
+                    SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Update PlaceTool parameters
-                var placeTool = this.GameObject.GetComponent<PlaceTool>();
+                PrefabsHelper.SetDefaultPlaceTool(this.GameObject, null, null, false, false, true);
+                PlaceTool placeTool = this.GameObject.GetComponent<GenericPlaceTool>();
+                if (placeTool == null)
+                    placeTool = this.GameObject.GetComponent<PlaceTool>();
                 if (placeTool != null)
                 {
-                    placeTool.enabled = true;
-                    placeTool.allowedInBase = true;
-                    placeTool.allowedOnBase = true;
-                    placeTool.allowedOnCeiling = false;
-                    placeTool.allowedOnConstructable = true;
-                    placeTool.allowedOnRigidBody = true;
-                    placeTool.allowedOutside = ConfigSwitcher.AllowPlaceOutside;
-                    placeTool.rotationEnabled = true;
-                    
                     if (this.TechType == TechType.Poster ||
                         this.TechType == TechType.PosterAurora ||
                         this.TechType == TechType.PosterExoSuit1 ||
@@ -77,20 +82,15 @@ namespace DecorationsMod
                         placeTool.allowedOnGround = true;
                         placeTool.allowedOnWalls = false;
                     }
-
                 }
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
-                // Associate new recipe
-                if (this.Recipe != null)
-                    SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-
                 this.IsRegistered = true;
             }
         }
 
-        #endregion
+#endregion
     }
 }

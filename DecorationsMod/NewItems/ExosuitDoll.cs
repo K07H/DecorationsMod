@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,18 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -30,12 +43,15 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                GameObject aquarium = GameObject.Instantiate(CraftData.GetPrefabForTechType(TechType.Aquarium));
+
                 // Retrieve model node
                 GameObject model = this.GameObject.FindChild("prawnsuit");
 
@@ -47,8 +63,7 @@ namespace DecorationsMod.NewItems
                 prefabId.ClassId = this.ClassID;
 
                 // Add large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
-                lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
+                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
 
                 // Add tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();
@@ -59,6 +74,23 @@ namespace DecorationsMod.NewItems
                 //collider.radius = 0.0375f;
                 collider.size = new Vector3(0.04f, 0.115f, 0.04f);
                 collider.center = new Vector3(collider.center.x, collider.center.y + 0.0575f, collider.center.z);
+
+                // Get glass material
+                Material glass = null;
+                Renderer[] aRenderers = aquarium.GetComponentsInChildren<Renderer>(true);
+                foreach (Renderer aRenderer in aRenderers)
+                {
+                    foreach (Material aMaterial in aRenderer.materials)
+                    {
+                        if (aMaterial.name.StartsWith("Aquarium_glass", StringComparison.OrdinalIgnoreCase))
+                        {
+                            glass = aMaterial;
+                            break;
+                        }
+                    }
+                    if (glass != null)
+                        break;
+                }
 
                 // Set proper shaders (for crafting animation)
                 Shader shader = Shader.Find("MarmosetUBER");
@@ -93,176 +125,234 @@ namespace DecorationsMod.NewItems
                 Texture spec11 = AssetsHelper.Assets.LoadAsset<Texture>("submarine_engine_power_cells_01_spec");
                 Texture illum11 = AssetsHelper.Assets.LoadAsset<Texture>("submarine_engine_power_cells_01_illum");
 
-                Renderer[] renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                Renderer[] renderers = this.GameObject.GetAllComponentsInChildren<Renderer>();
                 foreach (Renderer renderer in renderers)
                 {
-                    foreach (Material tmpMat in renderer.materials)
+                    if (renderer.name.StartsWith("Exosuit_cabin_01_glass"))
+                        renderer.material = glass;
+                    else if (renderer.materials != null)
                     {
-                        // Associate MarmosetUBER shader
-                        if (tmpMat.name.CompareTo("exosuit_01_glass (Instance)") != 0 && tmpMat.name.CompareTo("exosuit_cabin_01_glass (Instance)") != 0)
-                        tmpMat.shader = shader;
+                        foreach (Material tmpMat in renderer.materials)
+                        {
+                            // Associate MarmosetUBER shader
+                            if (tmpMat.name.CompareTo("exosuit_cabin_01_glass (Instance)") == 0)
+                            {
+                                tmpMat.EnableKeyword("MARMO_SIMPLE_GLASS");
+                                tmpMat.EnableKeyword("WBOIT");
+                            }
+                            else if (tmpMat.name.CompareTo("exosuit_01_glass (Instance)") != 0)
+                                tmpMat.shader = shader;
 
-                        if (tmpMat.name.CompareTo("exosuit_01 (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal);
-                            tmpMat.SetTexture("_ColorMask", colorMask);
-                            tmpMat.SetTexture("_SpecTex", spec);
-                            tmpMat.SetTexture("_Illum", illum);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+                            if (tmpMat.name.CompareTo("exosuit_01 (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal);
+                                tmpMat.SetTexture("_ColorMask", colorMask);
+                                tmpMat.SetTexture("_SpecTex", spec);
+                                tmpMat.SetTexture("_Illum", illum);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
-                            // Enable color mask
-                            tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
-                            // Enable specular
-                            //tmpMat.EnableKeyword("MARMO_SPECULAR_ON");
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
-                            tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                            // Enable emission map
-                            tmpMat.EnableKeyword("MARMO_EMISSION");
-                        }
-                        else if (tmpMat.name.CompareTo("exosuit_01_fp (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal2);
-                            tmpMat.SetTexture("_Illum", illum2);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
-                            
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                            // Enable emission map
-                            tmpMat.EnableKeyword("MARMO_EMISSION");
-                        }
-                        else if (tmpMat.name.CompareTo("Exosuit_Arm_Propulsion_Cannon (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal3);
-                            tmpMat.SetTexture("_ColorMask", colorMask3);
-                            tmpMat.SetTexture("_Illum", illum3);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+                                // Enable color mask
+                                tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
+                                // Enable specular
+                                //tmpMat.EnableKeyword("MARMO_SPECULAR_ON");
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
+                                tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable emission map
+                                tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            else if (tmpMat.name.CompareTo("exosuit_01_fp (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal2);
+                                tmpMat.SetTexture("_Illum", illum2);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
-                            // Enable color mask
-                            tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                            // Enable emission map
-                            tmpMat.EnableKeyword("MARMO_EMISSION");
-                        }
-                        else if (tmpMat.name.CompareTo("Exosuit_grappling_arm (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal4);
-                            tmpMat.SetTexture("_ColorMask", colorMask4);
-                            tmpMat.SetTexture("_Illum", illum4);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable emission map
+                                tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            else if (tmpMat.name.CompareTo("Exosuit_Arm_Propulsion_Cannon (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal3);
+                                tmpMat.SetTexture("_ColorMask", colorMask3);
+                                tmpMat.SetTexture("_Illum", illum3);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
-                            // Enable color mask
-                            tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                            // Enable emission map
-                            tmpMat.EnableKeyword("MARMO_EMISSION");
-                        }
-                        else if (tmpMat.name.CompareTo("exosuit_01_glass (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal5);
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                        }
-                        else if (tmpMat.name.CompareTo("exosuit_storage_01 (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal6);
-                            tmpMat.SetTexture("_ColorMask", colorMask6);
-                            tmpMat.SetTexture("_Illum", illum6);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+                                // Enable color mask
+                                tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable emission map
+                                tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            else if (tmpMat.name.CompareTo("Exosuit_grappling_arm (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal4);
+                                tmpMat.SetTexture("_ColorMask", colorMask4);
+                                tmpMat.SetTexture("_Illum", illum4);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
-                            // Enable color mask
-                            tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                            // Enable emission map
-                            tmpMat.EnableKeyword("MARMO_EMISSION");
-                        }
-                        else if (tmpMat.name.CompareTo("Exosuit_torpedo_launcher_arm (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal7);
-                            tmpMat.SetTexture("_ColorMask", colorMask7);
-                            tmpMat.SetTexture("_Illum", illum7);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+                                // Enable color mask
+                                tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable emission map
+                                tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            /*
+                            else if (tmpMat.name.CompareTo("exosuit_01_glass (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal5);
 
-                            // Enable color mask
-                            tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                            // Enable emission map
-                            tmpMat.EnableKeyword("MARMO_EMISSION");
-                        }
-                        else if (tmpMat.name.CompareTo("power_cell_01 (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal8);
-                            tmpMat.SetTexture("_SpecTex", spec8);
-                            tmpMat.SetTexture("_Illum", illum8);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
-                            
-                            // Enable specular
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
-                            tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                            // Enable emission map
-                            tmpMat.EnableKeyword("MARMO_EMISSION");
-                        }
-                        else if (tmpMat.name.CompareTo("seamoth_torpedo_01 (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal9);
-                            tmpMat.SetTexture("_SpecTex", spec9);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
-                            
-                            // Enable specular
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
-                            tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                        }
-                        else if (tmpMat.name.CompareTo("seamoth_upgrade_slots_01 (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal10);
-                            tmpMat.SetTexture("_SpecTex", spec10);
-                            tmpMat.SetTexture("_Illum", illum10);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
-                            
-                            // Enable specular
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
-                            tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                            // Enable emission map
-                            tmpMat.EnableKeyword("MARMO_EMISSION");
-                        }
-                        else if (tmpMat.name.CompareTo("submarine_engine_power_cells_01 (Instance)") == 0)
-                        {
-                            tmpMat.SetTexture("_BumpMap", normal11);
-                            tmpMat.SetTexture("_SpecTex", spec11);
-                            tmpMat.SetTexture("_Illum", illum11);
-                            tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+                                tmpMat.EnableKeyword("MARMO_SIMPLE_GLASS");
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                tmpMat.EnableKeyword("WBOIT");
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            else if (tmpMat.name.CompareTo("exosuit_cabin_01_glass (Instance)") == 0)
+                            {
+                                tmpMat.EnableKeyword("MARMO_SIMPLE_GLASS");
+                                tmpMat.EnableKeyword("WBOIT");
+                            }
+                            */
+                            else if (tmpMat.name.CompareTo("exosuit_storage_01 (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal6);
+                                tmpMat.SetTexture("_ColorMask", colorMask6);
+                                tmpMat.SetTexture("_Illum", illum6);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
 
-                            // Enable specular
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
-                            tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
-                            tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
-                            // Enable normal map
-                            tmpMat.EnableKeyword("MARMO_NORMALMAP");
-                            // Enable emission map
-                            tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable color mask
+                                tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable emission map
+                                tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            else if (tmpMat.name.CompareTo("Exosuit_torpedo_launcher_arm (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal7);
+                                tmpMat.SetTexture("_ColorMask", colorMask7);
+                                tmpMat.SetTexture("_Illum", illum7);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+
+                                // Enable color mask
+                                tmpMat.EnableKeyword("MARMO_VERTEX_COLOR");
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable emission map
+                                tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            else if (tmpMat.name.CompareTo("power_cell_01 (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal8);
+                                tmpMat.SetTexture("_SpecTex", spec8);
+                                tmpMat.SetTexture("_Illum", illum8);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+
+                                // Enable specular
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
+                                tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable emission map
+                                tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            else if (tmpMat.name.CompareTo("seamoth_torpedo_01 (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal9);
+                                tmpMat.SetTexture("_SpecTex", spec9);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+
+                                // Enable specular
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
+                                tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            else if (tmpMat.name.CompareTo("seamoth_upgrade_slots_01 (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal10);
+                                tmpMat.SetTexture("_SpecTex", spec10);
+                                tmpMat.SetTexture("_Illum", illum10);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+
+                                // Enable specular
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
+                                tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable emission map
+                                tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
+                            else if (tmpMat.name.CompareTo("submarine_engine_power_cells_01 (Instance)") == 0)
+                            {
+                                tmpMat.SetTexture("_BumpMap", normal11);
+                                tmpMat.SetTexture("_SpecTex", spec11);
+                                tmpMat.SetTexture("_Illum", illum11);
+                                tmpMat.SetFloat("_EmissionLM", 0.75f); // Set always visible
+
+                                // Enable specular
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
+                                tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
+                                tmpMat.EnableKeyword("MARMO_SPECMAP");
+                                tmpMat.EnableKeyword("MARMO_MIP_GLOSS");
+                                // Enable normal map
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
+                                // Enable emission map
+                                tmpMat.EnableKeyword("MARMO_EMISSION");
+                                // Enable Z write
+                                tmpMat.EnableKeyword("_ZWRITE_ON");
+                            }
                         }
                     }
                 }
 
                 // Add sky applier
-                var skyapplier = this.GameObject.AddComponent<SkyApplier>();
-                skyapplier.renderers = renderers;
-                skyapplier.anchorSky = Skies.Auto;
+                SkyApplier applier = this.GameObject.GetComponent<SkyApplier>();
+                if (applier == null)
+                    applier = this.GameObject.AddComponent<SkyApplier>();
+                applier.renderers = renderers;
+                applier.anchorSky = Skies.Auto;
+                applier.updaterIndex = 0;
+                SkyApplier[] appliers = this.GameObject.GetComponentsInChildren<SkyApplier>();
+                if (appliers != null && appliers.Length > 0)
+                {
+                    foreach (SkyApplier ap in appliers)
+                    {
+                        ap.renderers = renderers;
+                        ap.anchorSky = Skies.Auto;
+                        ap.updaterIndex = 0;
+                    }
+                }
 
                 // Add contructable
                 var constructible = this.GameObject.AddComponent<Constructable>();
@@ -272,6 +362,9 @@ namespace DecorationsMod.NewItems
                 constructible.allowedOnCeiling = false;
                 constructible.allowedOnGround = true;
                 constructible.allowedOnConstructables = true;
+#if BELOWZERO
+                constructible.allowedUnderwater = true;
+#endif
                 constructible.controlModelState = true;
                 constructible.deconstructionAllowed = true;
                 constructible.rotationEnabled = true;
@@ -286,7 +379,7 @@ namespace DecorationsMod.NewItems
                 // Add model controler
                 var exosuitDollControler = this.GameObject.AddComponent<ExosuitDollController>();
 
-                #region Disable right arms (except hand arm)
+#region Disable right arms (except hand arm)
 
                 GameObject rightArm = model.FindChild("ExosuitArmRight");
                 GameObject rightArmRig = rightArm.FindChild("exosuit_01_armRight 1").FindChild("ArmRig 1");
@@ -324,9 +417,9 @@ namespace DecorationsMod.NewItems
                 // Disable right propulsion arm
                 rightPropulsionArm.GetComponent<Renderer>().enabled = false;
 
-                #endregion
+#endregion
                 
-                #region Disable left arms (except hand arm)
+#region Disable left arms (except hand arm)
 
                 GameObject leftArm = model.FindChild("ExosuitArmLeft");
                 GameObject leftArmRig = leftArm.FindChild("exosuit_01_armRight").FindChild("ArmRig");
@@ -364,7 +457,7 @@ namespace DecorationsMod.NewItems
                 // Disable right propulsion arm
                 leftPropulsionArm.GetComponent<Renderer>().enabled = false;
 
-                #endregion
+#endregion
                 
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);

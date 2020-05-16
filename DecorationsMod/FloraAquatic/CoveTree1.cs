@@ -16,15 +16,29 @@ namespace DecorationsMod.FloraAquatic
         public CoveTree1()
         {
             this.ClassID = "CoveTree1"; // 0e7cc3b9-cdf2-42d9-9c1f-c11b94277c19
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if BELOWZERO
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/lostriver/lost_river_cove_tree_01");
+#else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Lost_river/lost_river_cove_tree_01");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CoveTreeName"),
                                                         LanguageHelper.GetFriendlyWord("CoveTreeDescription"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 2)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -32,6 +46,7 @@ namespace DecorationsMod.FloraAquatic
                     new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 2)
                 }),
             };
+#endif
 
             this.Config = ConfigSwitcher.config_CoveTree1;
         }
@@ -40,6 +55,9 @@ namespace DecorationsMod.FloraAquatic
         {
             if (this.IsRegistered == false)
             {
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Set item occupies 4 slots
                 SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
@@ -59,9 +77,6 @@ namespace DecorationsMod.FloraAquatic
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("covetreeicon"));
 
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-
                 this.IsRegistered = true;
             }
         }
@@ -71,7 +86,9 @@ namespace DecorationsMod.FloraAquatic
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             prefab.name = this.ClassID;
-            
+
+            PrefabsHelper.AddNewGenericSeed(ref prefab);
+
             // Get sub objects
             GameObject model = prefab.FindChild("lost_river_cove_tree_01");
             GameObject eggs = model.FindChild("lost_river_cove_tree_01_eggs");
@@ -83,9 +100,7 @@ namespace DecorationsMod.FloraAquatic
             // Disable colliders
             Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
             foreach (Collider collider in colliders)
-            {
                 collider.enabled = false;
-            }
 
             // Hide eggs
             eggs.SetActive(false);
@@ -134,7 +149,11 @@ namespace DecorationsMod.FloraAquatic
             Pickupable pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
+#if BELOWZERO
+            pickupable.isLootCube = false;
+#else
             pickupable.cubeOnPickup = false;
+#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -175,7 +194,9 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
+#if SUBNAUTICA
             liveMixin.data.explodeOnDestroy = false;
+#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

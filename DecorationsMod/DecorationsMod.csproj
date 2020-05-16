@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">ReleaseSN</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6C2BB0AD-A2B3-4101-83C8-7CD26C0ABDE6}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -13,106 +13,117 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugSN|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed</Dependencies>
+    <OutputPath>bin\DebugSN\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SUBNAUTICA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseSN|AnyCPU' ">
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants></DefineConstants>
+    <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed</Dependencies>
+    <OutputPath>bin\ReleaseSN\</OutputPath>
+    <DefineConstants>SUBNAUTICA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugFlora|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugBZ|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugFlora\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_FLORA;DEBUG_FLORA_ENTRY;DEBUG_FLORA_ANIMATION;DEBUG_GROWNPLANT_FIXER;DEBUG_COVE_TREE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Optimize>false</Optimize>
+    <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\SubnauticaZero_Data\Managed</Dependencies>
+    <OutputPath>bin\DebugBZ\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;BELOWZERO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FullDebug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\FullDebug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_FLORA;DEBUG_FLORA_ENTRY;DEBUG_FLORA_ANIMATION;DEBUG_LAMP;DEBUG_GROWNPLANT_FIXER;DEBUG_COVE_TREE;DEBUG_DROP_ITEM;DEBUG_KNIFE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugItems|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugItems\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DEBUG_LAMP;DEBUG_KNIFE;DEBUG_DROP_ITEM;DEBUG_CARGO_CRATES;DEBUG_STOOL</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugVehicles|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugVehicles\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseBZ|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\SubnauticaZero_Data\Managed</Dependencies>
+    <OutputPath>bin\ReleaseBZ\</OutputPath>
+    <DefineConstants>BELOWZERO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>2</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony-1.2.0.1">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\0Harmony-1.2.0.1.dll</HintPath>
+      <HintPath>$(Dependencies)\0Harmony-1.2.0.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>$(Dependencies)\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(Dependencies)\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SMLHelper, Version=2.5.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\SMLHelper.dll</HintPath>
+    <Reference Include="AssetsTools.NET">
+      <HintPath>$(Dependencies)\AssetsTools.NET.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LitJson">
+      <HintPath>$(Dependencies)\LitJson.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(Dependencies)\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SMLHelper">
+      <HintPath Condition="'$(Configuration)' == 'DebugSN'">C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\SMLHelper.dll</HintPath>
+      <HintPath Condition="'$(Configuration)' == 'ReleaseSN'">C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\SMLHelper.dll</HintPath>
+      <HintPath Condition="'$(Configuration)' == 'DebugBZ'">C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\SMLHelper_BZ\SMLHelper.dll</HintPath>
+      <HintPath Condition="'$(Configuration)' == 'ReleaseBZ'">C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\SMLHelper_BZ\SMLHelper.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.dll</HintPath>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Timeline">
+      <HintPath>$(Dependencies)\Unity.Timeline.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(Dependencies)\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(Dependencies)\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>$(Dependencies)\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(Dependencies)\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>$(Dependencies)\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>$(Dependencies)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>$(Dependencies)\UnityEngine.ParticleSystemModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>$(Dependencies)\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -123,6 +134,7 @@
     <Compile Include="Controllers\CoveTree1Controller.cs" />
     <Compile Include="Controllers\CustomFloraSerializer.cs" />
     <Compile Include="Controllers\CustomPictureFrameController.cs" />
+    <Compile Include="Controllers\CustomPlaceToolController.cs" />
     <Compile Include="Controllers\ForkliftController.cs" />
     <Compile Include="Controllers\GhostLeviatanSpawner.cs" />
     <Compile Include="Controllers\DecorativeLockerController.cs" />
@@ -138,6 +150,35 @@
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
     <Compile Include="Controllers\ExosuitDollController.cs" />
+    <Compile Include="Fixers\AquariumFixer.cs" />
+    <Compile Include="Fixers\PickupableFixer.cs" />
+    <Compile Include="FloraAquatic\BloodGrassDense.cs" />
+    <Compile Include="FloraAquatic\BloodGrassRed.cs" />
+    <Compile Include="FloraAquatic\RedGrass1.cs" />
+    <Compile Include="FloraAquatic\RedGrass2.cs" />
+    <Compile Include="FloraAquatic\RedGrass2Tall.cs" />
+    <Compile Include="FloraAquatic\RedGrass3.cs" />
+    <Compile Include="FloraAquatic\RedGrass3Tall.cs" />
+    <Compile Include="NewItems\LongPlanterB.cs" />
+    <Compile Include="NewItems\EggCrabsnake.cs" />
+    <Compile Include="NewItems\EggBoneshark.cs" />
+    <Compile Include="NewItems\EggCrabSquid.cs" />
+    <Compile Include="NewItems\EggCrash.cs" />
+    <Compile Include="NewItems\EggCute.cs" />
+    <Compile Include="NewItems\EggGasopod.cs" />
+    <Compile Include="NewItems\EggGhostLeviathan.cs" />
+    <Compile Include="NewItems\EggJellyray.cs" />
+    <Compile Include="NewItems\EggJumper.cs" />
+    <Compile Include="NewItems\EggLavaLizard.cs" />
+    <Compile Include="NewItems\EggMesmer.cs" />
+    <Compile Include="NewItems\EggRabbitRay.cs" />
+    <Compile Include="NewItems\EggReefback.cs" />
+    <Compile Include="NewItems\EggSandshark.cs" />
+    <Compile Include="NewItems\EggSeaDragon.cs" />
+    <Compile Include="NewItems\EggSeaEmperor.cs" />
+    <Compile Include="NewItems\EggShocker.cs" />
+    <Compile Include="NewItems\EggSpadefish.cs" />
+    <Compile Include="NewItems\EggStalker.cs" />
     <Compile Include="Fabricator_Decorations.cs" />
     <Compile Include="Fabricator_Flora.cs" />
     <Compile Include="Fixers\ConstructableFixer.cs" />
@@ -192,6 +233,23 @@
     <Compile Include="Flora\TropicalPlant6b.cs" />
     <Compile Include="Flora\TropicalPlant7a.cs" />
     <Compile Include="Flora\TropicalPlant7b.cs" />
+    <Compile Include="NewItems\AlienArtefact1.cs" />
+    <Compile Include="NewItems\AlienArtefact10.cs" />
+    <Compile Include="NewItems\AlienArtefact11.cs" />
+    <Compile Include="NewItems\AlienArtefact2.cs" />
+    <Compile Include="NewItems\AlienArtefact3.cs" />
+    <Compile Include="NewItems\AlienArtefact4.cs" />
+    <Compile Include="NewItems\AlienArtefact5.cs" />
+    <Compile Include="NewItems\AlienArtefact6.cs" />
+    <Compile Include="NewItems\AlienArtefact7.cs" />
+    <Compile Include="NewItems\AlienArtefact8.cs" />
+    <Compile Include="NewItems\AlienArtefact9.cs" />
+    <Compile Include="NewItems\AlienPillar1.cs" />
+    <Compile Include="NewItems\AlienTabletBlue.cs" />
+    <Compile Include="NewItems\AlienTabletOrange.cs" />
+    <Compile Include="NewItems\AlienTabletPurple.cs" />
+    <Compile Include="NewItems\AlienTabletRed.cs" />
+    <Compile Include="NewItems\AlienTabletWhite.cs" />
     <Compile Include="NewItems\BarBottle1.cs" />
     <Compile Include="NewItems\BarBottle2.cs" />
     <Compile Include="NewItems\BarBottle3.cs" />
@@ -228,7 +286,7 @@
     <Compile Include="NewItems\LabRobotArm.cs" />
     <Compile Include="Flora\LandPlant1.cs" />
     <Compile Include="Flora\LandTree1.cs" />
-    <Compile Include="NewItems\ALongPlanter.cs" />
+    <Compile Include="NewItems\LongPlanterA.cs" />
     <Compile Include="NewItems\NutrientBlock.cs" />
     <Compile Include="NewItems\PaperTrash.cs" />
     <Compile Include="NewItems\Pen.cs" />
@@ -285,10 +343,24 @@
     <Compile Include="NewItems\LabTube.cs" />
     <Compile Include="NewItems\SeaEmperorDoll.cs" />
     <Compile Include="DecorationItemsHelper.cs" />
+    <Compile Include="NewItems\AquariumSmall.cs" />
     <Compile Include="NewItems\WallMonitor1.cs" />
     <Compile Include="NewItems\WallMonitor2.cs" />
     <Compile Include="NewItems\WallMonitor3.cs" />
+    <Compile Include="NewItems\WarperPart1.cs" />
+    <Compile Include="NewItems\WarperPart10.cs" />
+    <Compile Include="NewItems\WarperPart11.cs" />
+    <Compile Include="NewItems\WarperPart12.cs" />
+    <Compile Include="NewItems\WarperPart2.cs" />
+    <Compile Include="NewItems\WarperPart3.cs" />
+    <Compile Include="NewItems\WarperPart4.cs" />
+    <Compile Include="NewItems\WarperPart5.cs" />
+    <Compile Include="NewItems\WarperPart6.cs" />
+    <Compile Include="NewItems\WarperPart7.cs" />
+    <Compile Include="NewItems\WarperPart8.cs" />
+    <Compile Include="NewItems\WarperPart9.cs" />
     <Compile Include="PlaceToolItems.cs" />
+    <Compile Include="PrefabsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QPatch.cs" />
     <Compile Include="Controllers\SeamothDollController.cs" />
@@ -301,30 +373,6 @@
     <None Include="Assets\decorationassets.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Assets\benchmediumicon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\benchsmallicon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\decorativelockerclosedicon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\decorativelockerdooricon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\labcontaineropen1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\labcontaineropen2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\labcontaineropen3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\longplanterbox.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Config.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -333,28 +381,87 @@
     <None Include="mod.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <None Include="modBZ.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-xcopy "$(TargetDir)DecorationsMod.pdb" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+    <PostBuildEvent>echo ------ Decorations Mod compilation success.
+if $(ConfigurationName) == DebugSN (
+echo ------ Copying "$(TargetPath)" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
+xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+echo ------ Copying "$(TargetDir)mod.json" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
 xcopy "$(TargetDir)mod.json" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+echo ------ Copying "$(TargetDir)Config.txt" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
 xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-xcopy "$(TargetDir)SMLHelper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\" /Y
-xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\decorativelockerclosedicon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\decorativelockerdooricon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\benchmediumicon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\benchsmallicon.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\labcontaineropen1.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\labcontaineropen2.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\labcontaineropen3.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-xcopy "$(TargetDir)Assets\longplanterbox.png" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-
-</PostBuildEvent>
+echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y /d
+echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y /d
+)
+if $(ConfigurationName) == ReleaseSN (
+echo ------ Copying "$(TargetPath)" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
+xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+echo ------ Copying "$(TargetDir)mod.json" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
+xcopy "$(TargetDir)mod.json" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+echo ------ Copying "$(TargetDir)Config.txt" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
+xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
+echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y /d
+echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y /d
+)
+if $(ConfigurationName) == DebugBZ (
+echo ------ Copying "$(TargetPath)" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
+xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
+echo ------ Copying "$(TargetDir)modBZ.json" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
+xcopy "$(TargetDir)modBZ.json" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
+echo ------ Deleting previous copy of "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\mod.json"...
+del /F /Q "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\mod.json"
+echo ------ Renaming "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\modBZ.json" to "mod.json"...
+ren "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\modBZ.json" "mod.json"
+echo ------ Copying "$(TargetDir)Config.txt" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
+xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
+echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\" /Y /d
+echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\" /Y /d
+)
+if $(ConfigurationName) == ReleaseBZ (
+echo ------ Copying "$(TargetPath)" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
+xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
+echo ------ Copying "$(TargetDir)modBZ.json" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
+xcopy "$(TargetDir)modBZ.json" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
+echo ------ Deleting previous copy of "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\mod.json"...
+del /F /Q "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\mod.json"
+echo ------ Renaming "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\modBZ.json" to "mod.json"...
+ren "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\modBZ.json" "mod.json"
+echo ------ Copying "$(TargetDir)Config.txt" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
+xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
+echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\" /Y /d
+echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\" /Y /d
+)</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>IF EXIST "G:\MyPropulsionArm\Assets\AssetBundles" (
+IF EXIST "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets" (
+IF EXIST "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets" (
+echo ------ Deleting previous copy of "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets"...
+del /F /Q "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets"
+)
+)
+IF NOT EXIST "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets" (
+echo ------ Renaming latest assets from "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets" to "decorationassets.assets"...
+ren "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets" "decorationassets.assets"
+)
+echo ------ Copying "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets" to "$(ProjectDir)Assets\"...
+xcopy "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets" "$(ProjectDir)Assets\" /Y /d
+echo ------ Copying "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.manifest" to "$(ProjectDir)Assets\"...
+xcopy "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.manifest" "$(ProjectDir)Assets\" /Y /d
+)
+echo ------ Compiling Decorations Mod...</PreBuildEvent>
   </PropertyGroup>
 </Project>

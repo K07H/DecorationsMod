@@ -1,4 +1,5 @@
-﻿using DecorationsMod.Fixers;
+﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,9 +14,13 @@ namespace DecorationsMod.NewItems
         public WallMonitor3() // Feeds abstract class
         {
             this.ClassID = "WallMonitor3"; //cb612e1b-d57a-44f5-a043-a886eb17e5a6
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if BELOWZERO
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/alterra/base/wall_monitor_01_03");
+#else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/wall_monitor_01_03");
+#endif
 
             this.SignObject = Resources.Load<GameObject>("Submarine/Build/Sign");
 
@@ -24,6 +29,17 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("WallMonitor3Description"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.ComputerChip, 1),
+                        new Ingredient(TechType.Glass, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -33,6 +49,7 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
             };
+#endif
         }
 
         public override void RegisterItem()
@@ -42,17 +59,20 @@ namespace DecorationsMod.NewItems
                 screenMaterial = AssetsHelper.Assets.LoadAsset<Material>("new_wall_monitor_screen_material");
                 screenMaterial.shader = Shader.Find("MarmosetUBER");
 
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Add the new TechType to the hand-equipments
                 SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+
+                // Set quick slot type.
+                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("computer3"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -93,7 +113,8 @@ namespace DecorationsMod.NewItems
             pickupable.randomizeRotationWhenDropped = true;
 
             // We can place this item
-            var placeTool = prefab.AddComponent<PlaceTool>();
+            prefab.AddComponent<CustomPlaceToolController>();
+            var placeTool = prefab.AddComponent<GenericPlaceTool>();
             placeTool.allowedInBase = true;
             placeTool.allowedOnBase = true;
             placeTool.allowedOnCeiling = false;

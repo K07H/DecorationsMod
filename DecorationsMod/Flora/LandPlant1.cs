@@ -16,15 +16,29 @@ namespace DecorationsMod.Flora
         public LandPlant1()
         {
             this.ClassID = "LandPlant1"; // 559fe0c7-1754-40f5-9453-b537900b3ac42
-            this.PrefabFileName = $"{DecorationItem.DefaultResourcePath}{this.ClassID}";
+            this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if BELOWZERO
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/old/land_plant_middle_06_01");
+#else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Land/land_plant_middle_06_01");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LandPlant1Name"),
                                                         LanguageHelper.GetFriendlyWord("LandPlant1Description"),
                                                         true);
 
+#if BELOWZERO
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                    }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -32,6 +46,7 @@ namespace DecorationsMod.Flora
                     new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
                 }),
             };
+#endif
 
             this.Config = ConfigSwitcher.config_LandPlant1;
         }
@@ -71,33 +86,8 @@ namespace DecorationsMod.Flora
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             prefab.name = this.ClassID;
-            
-            /* Debug
-            Logger.Log("DEBUG: MAIN-TR name=[" + prefab.transform.name + "] type=[" + prefab.transform.GetType() + "]");
-            Component[] comps = prefab.GetComponents<Component>();
-            foreach (Component comp in comps)
-            {
-                Logger.Log("DEBUG: MAIN-COMPONENT name=[" + comp.name + "] type=[" + comp.GetType() + "]");
-            }
-            foreach (Transform tr in prefab.transform)
-            {
-                Logger.Log("DEBUG: SUB-TR name=[" + tr.name + "] type=[" + tr.GetType() + "]");
-                Component[] compsb = tr.GetComponents<Component>();
-                foreach (Component comp in compsb)
-                {
-                    Logger.Log("DEBUG: SUB-COMPONENT name=[" + comp.name + "] type=[" + comp.GetType() + "]");
-                }
-                foreach (Transform subtr in tr.transform)
-                {
-                    Logger.Log("DEBUG: SUB-SUB-TR name=[" + subtr.name + "] type=[" + subtr.GetType() + "]");
-                    Component[] compsc = subtr.GetComponents<Component>();
-                    foreach (Component comp in compsc)
-                    {
-                        Logger.Log("DEBUG: SUB-SUB-COMPONENT name=[" + comp.name + "] type=[" + comp.GetType() + "]");
-                    }
-                }
-            }
-            */
+
+            PrefabsHelper.AddNewGenericSeed(ref prefab);
 
             // Update rigid body
             var rb = prefab.GetComponent<Rigidbody>();
@@ -144,7 +134,11 @@ namespace DecorationsMod.Flora
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
+#if BELOWZERO
+            pickupable.isLootCube = false;
+#else
             pickupable.cubeOnPickup = false;
+#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -176,7 +170,9 @@ namespace DecorationsMod.Flora
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
+#if SUBNAUTICA
             liveMixin.data.explodeOnDestroy = false;
+#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

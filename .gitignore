@@ -382,3 +382,5 @@ DecorationsMod/obj/DebugStool/DesignTimeResolveAssemblyReferencesInput.cache
 .vs/config/applicationhost.config
 .vs/DecorationsMod/v16/.suo
 .vs/
+bin/
+obj/

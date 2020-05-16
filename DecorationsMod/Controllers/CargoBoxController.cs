@@ -67,7 +67,11 @@ namespace DecorationsMod.Controllers
                 return;
             
             HandReticle.main.SetIcon(HandReticle.IconType.Hand, 1f);
+#if BELOWZERO
+            HandReticle.main.SetTextRaw(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord("AdjustCargoBoxSize"));
+#else
             HandReticle.main.SetInteractText("AdjustCargoBoxSize");
+#endif
         }
 
         public void OnProtoSerialize(ProtobufSerializer serializer)

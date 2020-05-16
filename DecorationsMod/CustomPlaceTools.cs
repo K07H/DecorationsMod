@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using DecorationsMod.Controllers;
+using rail;
+using System.Reflection;
+using UnityEngine;
 
 namespace DecorationsMod
 {
@@ -7,8 +10,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -41,8 +57,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -75,8 +104,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -109,8 +151,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -143,8 +198,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -177,8 +245,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -213,8 +294,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -247,8 +341,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -281,8 +388,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -315,8 +435,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -349,8 +482,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -383,8 +529,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
             
             if (!HasBeenPlaced)
@@ -417,8 +576,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -446,13 +618,120 @@ namespace DecorationsMod
         public void OnProtoSerialize(ProtobufSerializer serializer) { }
     }
 
+    public class RedKey_PT : PlaceTool, IProtoEventListener
+    {
+        [SerializeField]
+        public bool HasBeenPlaced = false;
+
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
+        public override void OnPlace()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnPlace();
+
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject redKeyModel = this.gameObject.FindChild("Model");
+                redKeyModel.transform.localPosition = new Vector3(redKeyModel.transform.localPosition.x, redKeyModel.transform.localPosition.y + 0.0202f, redKeyModel.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoDeserialize(ProtobufSerializer serializer)
+        {
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject redKeyModel = this.gameObject.FindChild("Model");
+                redKeyModel.transform.localPosition = new Vector3(redKeyModel.transform.localPosition.x, redKeyModel.transform.localPosition.y + 0.0202f, redKeyModel.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoSerialize(ProtobufSerializer serializer) { }
+    }
+
+    public class WhiteKey_PT : PlaceTool, IProtoEventListener
+    {
+        [SerializeField]
+        public bool HasBeenPlaced = false;
+
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
+        public override void OnPlace()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnPlace();
+
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject whiteKeyModel = this.gameObject.FindChild("Model");
+                whiteKeyModel.transform.localPosition = new Vector3(whiteKeyModel.transform.localPosition.x, whiteKeyModel.transform.localPosition.y + 0.0202f, whiteKeyModel.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoDeserialize(ProtobufSerializer serializer)
+        {
+            if (!HasBeenPlaced)
+            {
+                // Translate
+                GameObject whiteKeyModel = this.gameObject.FindChild("Model");
+                whiteKeyModel.transform.localPosition = new Vector3(whiteKeyModel.transform.localPosition.x, whiteKeyModel.transform.localPosition.y + 0.0202f, whiteKeyModel.transform.localPosition.z);
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoSerialize(ProtobufSerializer serializer) { }
+    }
+
     public class Battery_PT : PlaceTool, IProtoEventListener
     {
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -485,8 +764,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -519,8 +811,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -553,8 +858,21 @@ namespace DecorationsMod
         [SerializeField]
         public bool HasBeenPlaced = false;
 
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
         public override void OnPlace()
         {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
             if (!HasBeenPlaced)
@@ -580,6 +898,165 @@ namespace DecorationsMod
         }
 
         public void OnProtoSerialize(ProtobufSerializer serializer) { }
+    }
+
+    public class EggSeaEmperor_PT : PlaceTool, IProtoEventListener
+    {
+        [SerializeField]
+        public bool HasBeenPlaced = false;
+
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
+        public override void OnPlace()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnPlace();
+
+            if (!HasBeenPlaced)
+            {
+                // Scale
+                GameObject model = this.gameObject.FindChild("Creatures_eggs_11");
+                model.transform.localScale *= 4f;
+                foreach (SphereCollider c in this.gameObject.GetAllComponentsInChildren<SphereCollider>())
+                    c.radius *= 3.5f;
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoDeserialize(ProtobufSerializer serializer)
+        {
+            if (!HasBeenPlaced)
+            {
+                // Scale
+                GameObject model = this.gameObject.FindChild("Creatures_eggs_11");
+                model.transform.localScale *= 4f;
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoSerialize(ProtobufSerializer serializer) { }
+    }
+
+    public class EggSeaDragon_PT : PlaceTool, IProtoEventListener
+    {
+        [SerializeField]
+        public bool HasBeenPlaced = false;
+
+        public override void OnDraw(Player p)
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnHolster();
+        }
+
+        public override void OnPlace()
+        {
+            this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
+            base.OnPlace();
+
+            if (!HasBeenPlaced)
+            {
+                // Scale
+                GameObject model = this.gameObject.FindChild("engine_power_cell_ion");
+                model.transform.localScale *= 2f;
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoDeserialize(ProtobufSerializer serializer)
+        {
+            if (!HasBeenPlaced)
+            {
+                // Scale
+                GameObject model = this.gameObject.FindChild("engine_power_cell_ion");
+                model.transform.localScale *= 2f;
+
+                HasBeenPlaced = true;
+            }
+        }
+
+        public void OnProtoSerialize(ProtobufSerializer serializer) { }
+    }
+
+    public class AlienArtefact1_PT : PlaceTool
+    {
+        //Player.main.camRoot.GetAimingTransform().forward * 20f
+        public override void OnDraw(Player p)
+        {
+            var cpt = this.gameObject.GetComponent<CustomPlaceToolController>();
+            if (cpt != null)
+                cpt.Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            var cpt = this.gameObject.GetComponent<CustomPlaceToolController>();
+            if (cpt != null)
+                cpt.Hide();
+            base.OnHolster();
+        }
+
+        public override void OnPlace()
+        {
+            var cpt = this.gameObject.GetComponent<CustomPlaceToolController>();
+            if (cpt != null)
+                cpt.Hide();
+            base.OnPlace();
+
+            Transform aim = Player.main.camRoot.GetAimingTransform();
+            if (aim.eulerAngles.x > 65f)
+                this.gameObject.transform.Translate(0f, 0.2f, 0f, aim);
+            else if (aim.eulerAngles.x < 25f)
+                this.gameObject.transform.Translate(0f, 0f, 0.2f, aim);
+            else
+                this.gameObject.transform.Translate(0f, 0.14f, 0.14f, aim);
+        }
+    }
+
+    public class GenericPlaceTool : PlaceTool
+    {
+        public override void OnDraw(Player p)
+        {
+            var cpt = this.gameObject.GetComponent<CustomPlaceToolController>();
+            if (cpt != null)
+                cpt.Show();
+            base.OnDraw(p);
+        }
+
+        public override void OnHolster()
+        {
+            var cpt = this.gameObject.GetComponent<CustomPlaceToolController>();
+            if (cpt != null)
+                cpt.Hide();
+            base.OnHolster();
+        }
+
+        public override void OnPlace()
+        {
+            var cpt = this.gameObject.GetComponent<CustomPlaceToolController>();
+            if (cpt != null)
+                cpt.Hide();
+            base.OnPlace();
+        }
     }
 }
 

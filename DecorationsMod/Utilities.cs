@@ -44,14 +44,14 @@ namespace DecorationsMod
             RU = 5
         };
 
-        #region Win32 Declarations
+        #region Win32 Declarations to get Windows locale.
         [DllImport("kernel32.dll", ExactSpelling = true, CallingConvention = CallingConvention.StdCall, SetLastError = true)]
         private static extern int GetUserGeoID(GeoClass geoClass);
 
         [DllImport("kernel32.dll")]
         private static extern int GetUserDefaultLCID();
 
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         private static extern int GetGeoInfo(int geoid, int geoType, StringBuilder lpGeoData, int cchData, int langid);
         #endregion
 

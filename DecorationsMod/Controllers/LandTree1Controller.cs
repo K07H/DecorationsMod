@@ -48,6 +48,10 @@ namespace DecorationsMod.Controllers
 
                     StaticPrefab.SetActive(true);
                 }
+                // Hide seed model
+                GameObject seed = _grownPlant.gameObject.FindChild("Generic_plant_seed");
+                if (seed != null)
+                    seed.GetComponent<MeshRenderer>().enabled = false;
                 // Store init values
                 _initTimeValue = DayNightCycle.main.timePassed;
                 foreach (Transform tr in go.transform)

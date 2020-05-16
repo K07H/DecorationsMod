@@ -1,6 +1,6 @@
 ﻿using Harmony;
-using SMLHelper.V2.Utility;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -10,9 +10,13 @@ namespace DecorationsMod.Controllers
 {
     public static class PictureFrameEnumHelper
     {
+        public static readonly MethodInfo SetStateMethod = typeof(PictureFrame).GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
+
         private static bool _initialized = false;
         private static object _noneEnumValue = 0;
+        private static object _thumbnailEnumValue = 1;
         private static object _fullEnumValue = 2;
+        //public static Dictionary<Vector3, bool> _appliedSmallSizeFix = new Dictionary<Vector3, bool>();
 
         public static object NoneEnumValue
         {
@@ -27,6 +31,22 @@ namespace DecorationsMod.Controllers
                 if (!_initialized)
                     GetPictureFrameStateEnums();
                 _noneEnumValue = value;
+            }
+        }
+
+        public static object ThumbnailEnumValue
+        {
+            get
+            {
+                if (!_initialized)
+                    GetPictureFrameStateEnums();
+                return _thumbnailEnumValue;
+            }
+            set
+            {
+                if (!_initialized)
+                    GetPictureFrameStateEnums();
+                _thumbnailEnumValue = value;
             }
         }
 
@@ -59,7 +79,9 @@ namespace DecorationsMod.Controllers
                         continue;
                     if (field.Name.CompareTo("None") == 0)
                         _noneEnumValue = field.GetRawConstantValue();
-                    if (field.Name.CompareTo("Full") == 0)
+                    else if (field.Name.CompareTo("Thumbnail") == 0)
+                        _thumbnailEnumValue = field.GetRawConstantValue();
+                    else if (field.Name.CompareTo("Full") == 0)
                         _fullEnumValue = field.GetRawConstantValue();
                 }
                 _initialized = true;
@@ -77,7 +99,13 @@ namespace DecorationsMod.Controllers
             if (!__instance.enabled)
                 return;
             if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)"))
-                HandReticle.main.SetInteractText(LanguageHelper.GetFriendlyWord("CustomPictureFrameTooltip"));
+            {
+#if BELOWZERO
+                HandReticle.main.SetTextRaw(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip"));
+#else
+                HandReticle.main.SetInteractText(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
+#endif
+            }
             // else, we are in regular PictureFrame
             return;
         }
@@ -88,34 +116,51 @@ namespace DecorationsMod.Controllers
                 return true;
             if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)"))
             {
+
+                // Minimum CustomPictureFrame size = normal size / minSizeRatio
+                float minSizeRatio = 4.0f;
+
+                CustomPictureFrameController cpfController = __instance.gameObject.GetComponent<CustomPictureFrameController>();
+                GameObject frame = __instance.gameObject.FindChild("mesh");
+                GameObject poster = __instance.gameObject.FindChild("poster_decorations(Clone)");
+                GameObject posterModel = poster.FindChild("model");
+                GameObject magnetModel = posterModel.FindChild("poster_kitty");
+                MeshRenderer magnetRenderer = magnetModel.GetComponent<MeshRenderer>();
+                GameObject bgBisModel = posterModel.FindChild("poster_background_bis");
+                MeshRenderer bgBisRenderer = bgBisModel.GetComponent<MeshRenderer>();
+                GameObject bgPivotModel = posterModel.FindChild("poster_background_pivot");
+                MeshRenderer bgPivotRenderer = bgPivotModel.GetComponent<MeshRenderer>();
+
                 if (Input.GetKey(KeyCode.R))
                 {
-                    CustomPictureFrameController cpfController = __instance.gameObject.GetComponent<CustomPictureFrameController>();
-                    GameObject model = __instance.gameObject.FindChild("mesh");
-                    GameObject posterMagnet = __instance.gameObject.FindChild("poster_kitty(Clone)");
-                    GameObject posterMagnetModel = posterMagnet.FindChild("model");
+                    GameObject pictureFrame = frame.FindChild("submarine_Picture_Frame");
+                    MeshRenderer frameRenderer = pictureFrame.GetComponent<MeshRenderer>();
 
-                    // Restore size
-                    model.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                    posterMagnetModel.transform.localPosition = new Vector3(posterMagnetModel.transform.localPosition.x, 0.0110998f, posterMagnetModel.transform.localPosition.z);
-                    posterMagnetModel.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-                    if (model.transform.localEulerAngles != cpfController.OriginEulerAngles)
-                        __instance.imageRenderer.transform.localScale = new Vector3(0.685f, 1.275f, 0.25f);
+                    // Rotate frame
+                    if (cpfController.Flipped)
+                        frame.transform.localEulerAngles = new Vector3(frame.transform.localEulerAngles.x, frame.transform.localEulerAngles.y, frame.transform.localEulerAngles.z + 90f);
                     else
-                        __instance.imageRenderer.transform.localScale = new Vector3(1.275f, 0.685f, 0.25f);
-                    __instance.imageRenderer.transform.localPosition = new Vector3(__instance.imageRenderer.transform.localPosition.x, __instance.imageRenderer.transform.localPosition.y, 0.0125f);
+                        frame.transform.localEulerAngles = new Vector3(frame.transform.localEulerAngles.x, frame.transform.localEulerAngles.y, frame.transform.localEulerAngles.z - 90f);
 
-                    // Rotate model and adjust magnet position
-                    if (model.transform.localEulerAngles != cpfController.OriginEulerAngles)
+                    // Adjust poster style
+                    if (!frameRenderer.enabled)
                     {
-                        model.transform.localEulerAngles = cpfController.OriginEulerAngles;
-                        posterMagnet.transform.localPosition = new Vector3(0.0f, -0.02f, -0.002f);
+                        bgBisRenderer.enabled = !bgBisRenderer.enabled;
+                        bgPivotRenderer.enabled = !bgPivotRenderer.enabled;
+                        // Adjust magnet pos
+                        if (bgPivotRenderer.enabled)
+                            magnetModel.transform.localPosition = new Vector3(0f, -0.0115f, 0f);
+                        else
+                            magnetModel.transform.localPosition = new Vector3(0f, 0f, 0f);
                     }
                     else
                     {
-                        model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x, model.transform.localEulerAngles.y, model.transform.localEulerAngles.z + 90.0f);
-                        posterMagnet.transform.localPosition = new Vector3(0.0f, 0.27f, -0.002f);
+                        bgBisRenderer.enabled = false;
+                        bgPivotRenderer.enabled = false;
                     }
+
+                    // Toogle flip
+                    cpfController.Flipped = !cpfController.Flipped;
 
                     // Rotate collider
                     GameObject trigger = __instance.gameObject.FindChild("Trigger");
@@ -128,99 +173,130 @@ namespace DecorationsMod.Controllers
                     // Rotate constructable bounds extents
                     var constructableBounds = __instance.gameObject.GetComponent<ConstructableBounds>();
                     constructableBounds.bounds.extents = new Vector3(constructableBounds.bounds.extents.y, constructableBounds.bounds.extents.x, constructableBounds.bounds.extents.z);
-                    
+
                     // Refresh picture
-                    Type PictureFrameType = typeof(PictureFrame);
-                    MethodInfo SetStateMethod = PictureFrameType.GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
-                    SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.NoneEnumValue });
-                    SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.FullEnumValue });
+                    PictureFrameEnumHelper.SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.ThumbnailEnumValue });
+                    PictureFrameEnumHelper.SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.FullEnumValue });
 
                     return false;
                 }
                 else if (Input.GetKey(KeyCode.F))
                 {
-                    // Hide/display frame border
-                    GameObject model = __instance.gameObject.FindChild("mesh");
-                    GameObject pictureFrame = model.FindChild("submarine_Picture_Frame");
+                    // Get objects.
+                    GameObject pictureFrame = frame.FindChild("submarine_Picture_Frame");
                     GameObject frameButton = pictureFrame.FindChild("submarine_Picture_Frame_button");
                     MeshRenderer frameRenderer = pictureFrame.GetComponent<MeshRenderer>();
                     MeshRenderer buttonRenderer = frameButton.GetComponent<MeshRenderer>();
-                    bool pictureFrameRenderer = frameRenderer.enabled;
-                    if (pictureFrameRenderer)
+                    GameObject bgModel = posterModel.FindChild("poster_background");
+                    MeshRenderer bgRenderer = bgModel.GetComponent<MeshRenderer>();
+
+                    // Switch frame style.
+                    if (frameRenderer.enabled) // If we're in picture frame mode, switch to poster mode.
                     {
-                        // Disable picture frame borders
+                        // Disable picture frame
                         frameRenderer.enabled = false;
                         buttonRenderer.enabled = false;
                         // Enable poster magnet
-                        GameObject posterMagnet = __instance.gameObject.FindChild("poster_kitty(Clone)");
-                        GameObject magnetModel = posterMagnet.FindChild("model").FindChild("poster_kitty");
-                        MeshRenderer magnetRenderer = magnetModel.GetComponent<MeshRenderer>();
                         magnetRenderer.enabled = true;
-                    }
-                    else
-                    {
-                        GameObject posterMagnet = __instance.gameObject.FindChild("poster_kitty(Clone)");
-                        GameObject magnetModel = posterMagnet.FindChild("model").FindChild("poster_kitty");
-                        MeshRenderer magnetRenderer = magnetModel.GetComponent<MeshRenderer>();
-                        if (magnetRenderer.enabled)
-                            magnetRenderer.enabled = false; // Disable poster magnet
+                        bgRenderer.enabled = false;
+                        // Enable bg bis
+                        bgBisRenderer.enabled = !cpfController.Flipped;
+                        bgPivotRenderer.enabled = cpfController.Flipped;
+                        // Adjust magnet pos.
+                        if (cpfController.Flipped)
+                            magnetModel.transform.localPosition = new Vector3(0f, -0.0115f, 0f);
                         else
-                        {
-                            frameRenderer.enabled = true; // Enable picture frame border
-                            buttonRenderer.enabled = true; // Enable picture frame border
-                        }
+                            magnetModel.transform.localPosition = new Vector3(0f, 0f, 0f);
+                        // Adjust image pos.
+                        __instance.imageRenderer.transform.localPosition = new Vector3(__instance.imageRenderer.transform.localPosition.x, __instance.imageRenderer.transform.localPosition.y, __instance.imageRenderer.transform.localPosition.z - 0.0045f);
                     }
+                    else if (magnetRenderer.enabled) // Else if we're in poster mode, switch to plain image mode.
+                    {
+                        // Disable picture frame
+                        frameRenderer.enabled = false;
+                        buttonRenderer.enabled = false;
+                        // Disable poster magnet and poster bg
+                        magnetRenderer.enabled = false;
+                        bgRenderer.enabled = false;
+                        // Enable bg bis
+                        bgBisRenderer.enabled = !cpfController.Flipped;
+                        bgPivotRenderer.enabled = cpfController.Flipped;
+                    }
+                    else // Else if we're if plain image mode, switch to picture frame mode.
+                    {
+                        // Enable picture frame
+                        frameRenderer.enabled = true;
+                        buttonRenderer.enabled = true;
+                        // Disable poster magnet and poster bg
+                        magnetRenderer.enabled = false;
+                        bgRenderer.enabled = false;
+                        // Disable bg bis
+                        bgBisRenderer.enabled = false;
+                        bgPivotRenderer.enabled = false;
+                        // Adjust image pos
+                        __instance.imageRenderer.transform.localPosition = new Vector3(__instance.imageRenderer.transform.localPosition.x, __instance.imageRenderer.transform.localPosition.y, __instance.imageRenderer.transform.localPosition.z + 0.0045f);
+                    }
+
                     return false;
                 }
                 else if (Input.GetKey(KeyCode.E))
                 {
-                    GameObject model = __instance.gameObject.FindChild("mesh");
-                    GameObject posterMagnet = __instance.gameObject.FindChild("poster_kitty(Clone)");
-                    GameObject posterMagnetModel = posterMagnet.FindChild("model");
-                    CustomPictureFrameController cpfController = __instance.gameObject.GetComponent<CustomPictureFrameController>();
-
                     // CustomPictureFrame scale ratio step
-                    float scaleRatio = 1.2f;
+                    float scaleRatio = 1.1f;
 
-                    // Minimum CustomPictureFrame size = normal size / minSizeRatio
-                    float minSizeRatio = 4.0f;
-
-                    if (model.transform.localScale.x >= 3.0f)
+                    if (frame.transform.localScale.x >= 3.0f)
                     {
                         // Set minimum size
-                        model.transform.localScale = new Vector3((1.0f / minSizeRatio), (1.0f / minSizeRatio), (1.0f / minSizeRatio));
-                        if (model.transform.localEulerAngles != cpfController.OriginEulerAngles)
-                            posterMagnet.transform.localPosition = new Vector3(0.0f, (0.27f / minSizeRatio), -0.002f);
+                        frame.transform.localScale = new Vector3(cpfController.OriginFrameScale.x * (1.0f / minSizeRatio), cpfController.OriginFrameScale.y * (1.0f / minSizeRatio), cpfController.OriginFrameScale.z);
+                        poster.transform.localPosition = new Vector3(cpfController.OriginPosterPosition.x * (1.0f / minSizeRatio), cpfController.OriginPosterPosition.y * (1.0f / minSizeRatio), cpfController.OriginPosterPosition.z);
+                        posterModel.transform.localPosition = new Vector3(cpfController.OriginPosterModelPosition.x * (1.0f / minSizeRatio), cpfController.OriginPosterModelPosition.y * (1.0f / minSizeRatio), cpfController.OriginPosterModelPosition.z);
+                        posterModel.transform.localScale = new Vector3(cpfController.OriginPosterModelScale.x * (1.0f / minSizeRatio), cpfController.OriginPosterModelScale.y * (1.0f / minSizeRatio), cpfController.OriginPosterModelScale.z);
+                        __instance.imageRenderer.transform.localScale = new Vector3(cpfController.OriginImageScale.x * (1.0f / minSizeRatio), cpfController.OriginImageScale.y * (1.0f / minSizeRatio), cpfController.OriginImageScale.z * (1.0f / minSizeRatio));
+                        magnetModel.transform.localScale = new Vector3(cpfController.OriginMagnetScale.x, (cpfController.OriginMagnetScale.y * (1.0f / minSizeRatio)) + 0.1f, cpfController.OriginMagnetScale.z);
+                        frame.transform.localPosition = new Vector3(cpfController.OriginFramePosition.x, cpfController.OriginFramePosition.y, cpfController.OriginFramePosition.z + 0.0001f);
+
+                        if (cpfController.Flipped)
+                        {
+#if DEBUG_CUSTOM_PICTURE_FRAME
+                            Logger.Log("DEBUG: ENTERING FLIPPED");
+                            Logger.Log("DEBUG: BG BIS IS " + (bgBisRenderer.enabled ? "ENABLED" : "DISABLED"));
+                            Logger.Log("DEBUG: BG PIVOT IS " + (bgPivotRenderer.enabled ? "ENABLED" : "DISABLED"));
+#endif
+                            // Rotate image
+                            __instance.imageRenderer.transform.localScale = new Vector3(__instance.imageRenderer.transform.localScale.y, __instance.imageRenderer.transform.localScale.x, __instance.imageRenderer.transform.localScale.z);
+
+                        }
+#if DEBUG_CUSTOM_PICTURE_FRAME
                         else
-                            posterMagnet.transform.localPosition = new Vector3(0.0f, (-0.02f / minSizeRatio), -0.002f);
-                        posterMagnetModel.transform.localPosition = new Vector3(posterMagnetModel.transform.localPosition.x, (0.0110998f / minSizeRatio), posterMagnetModel.transform.localPosition.z);
-                        posterMagnetModel.transform.localScale = new Vector3((0.8f / minSizeRatio), (0.8f / minSizeRatio), (0.8f / minSizeRatio));
-                        if (model.transform.localEulerAngles != cpfController.OriginEulerAngles)
-                            __instance.imageRenderer.transform.localScale = new Vector3((0.685f / minSizeRatio), (1.275f / minSizeRatio), 0.25f);
-                        else
-                            __instance.imageRenderer.transform.localScale = new Vector3((1.275f / minSizeRatio), (0.685f / minSizeRatio), 0.25f);
-                        __instance.imageRenderer.transform.localPosition = new Vector3(__instance.imageRenderer.transform.localPosition.x, __instance.imageRenderer.transform.localPosition.y, (0.0125f / minSizeRatio));
+                        {
+                            Logger.Log("DEBUG: ENTERING NOT FLIPPED");
+                            Logger.Log("DEBUG: BG BIS IS " + (bgBisRenderer.enabled ? "ENABLED" : "DISABLED"));
+                            Logger.Log("DEBUG: BG PIVOT IS " + (bgPivotRenderer.enabled ? "ENABLED" : "DISABLED"));
+                        }
+#endif
                     }
                     else
                     {
                         // Increase size
-                        model.transform.localScale *= scaleRatio;
-                        posterMagnet.transform.localPosition = new Vector3(posterMagnet.transform.localPosition.x, posterMagnet.transform.localPosition.y * scaleRatio, posterMagnet.transform.localPosition.z);
-                        posterMagnetModel.transform.localPosition = new Vector3(posterMagnetModel.transform.localPosition.x, posterMagnetModel.transform.localPosition.y * scaleRatio, posterMagnetModel.transform.localPosition.z);
-                        posterMagnetModel.transform.localScale *= scaleRatio;
-                        __instance.imageRenderer.transform.localScale *= scaleRatio;
-                        __instance.imageRenderer.transform.localPosition = new Vector3(__instance.imageRenderer.transform.localPosition.x, __instance.imageRenderer.transform.localPosition.y, __instance.imageRenderer.transform.localPosition.z * scaleRatio);
+                        frame.transform.localScale = new Vector3(frame.transform.localScale.x * scaleRatio, frame.transform.localScale.y * scaleRatio, frame.transform.localScale.z); // *= scaleRatio;
+                        poster.transform.localPosition = new Vector3(poster.transform.localPosition.x, poster.transform.localPosition.y * scaleRatio, poster.transform.localPosition.z);
+                        posterModel.transform.localPosition = new Vector3(posterModel.transform.localPosition.x, posterModel.transform.localPosition.y * scaleRatio, posterModel.transform.localPosition.z);
+                        posterModel.transform.localScale = new Vector3(posterModel.transform.localScale.x * scaleRatio, posterModel.transform.localScale.y * scaleRatio, posterModel.transform.localScale.z); // *= scaleRatio;
+                        __instance.imageRenderer.transform.localScale = new Vector3(__instance.imageRenderer.transform.localScale.x * scaleRatio, __instance.imageRenderer.transform.localScale.y * scaleRatio, __instance.imageRenderer.transform.localScale.z * scaleRatio); //*= scaleRatio;
+                        magnetModel.transform.localScale = new Vector3(magnetModel.transform.localScale.x, magnetModel.transform.localScale.y * scaleRatio, magnetModel.transform.localScale.z);
+                        frame.transform.localPosition = new Vector3(frame.transform.localPosition.x, frame.transform.localPosition.y, frame.transform.localPosition.z * 1.0f);
                     }
-                    
+
                     // Refresh picture
-                    Type PictureFrameType = typeof(PictureFrame);
-                    FieldInfo current = PictureFrameType.GetField("current", BindingFlags.NonPublic | BindingFlags.Instance);
-                    object currentEnumValue = current.GetValue(__instance);
-                    MethodInfo SetStateMethod = PictureFrameType.GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
-                    SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.NoneEnumValue });
-                    currentEnumValue = current.GetValue(__instance);
-                    SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.FullEnumValue });
-                    currentEnumValue = current.GetValue(__instance);
+                    //Type PictureFrameType = typeof(PictureFrame);
+                    //FieldInfo current = PictureFrameType.GetField("current", BindingFlags.NonPublic | BindingFlags.Instance);
+                    //object currentEnumValue = current.GetValue(__instance);
+                    //MethodInfo SetStateMethod = typeof(PictureFrame).GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
+                    PictureFrameEnumHelper.SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.ThumbnailEnumValue });
+                    //currentEnumValue = current.GetValue(__instance);
+                    
+                    PictureFrameEnumHelper.SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.FullEnumValue });
+                    //currentEnumValue = current.GetValue(__instance);
 
                     return false;
                 }
@@ -231,11 +307,24 @@ namespace DecorationsMod.Controllers
     
     public class CustomPictureFrameController : MonoBehaviour, IProtoEventListener
     {
-        public Vector3 OriginEulerAngles = Vector3.zero;
+        public Vector3 OriginFrameScale = Vector3.zero;
+        public Vector3 OriginFramePosition = Vector3.zero;
+        public Vector3 OriginFrameEulerAngles = Vector3.zero;
+        public Vector3 OriginImageScale = Vector3.zero;
         public Vector3 OriginColliderSize = Vector3.zero;
-        public Vector3 OriginImageRendererScale = Vector3.zero;
         public Vector3 OriginConstructableBoundsExtents = Vector3.zero;
+        public Vector3 OriginPosterPosition = Vector3.zero;
+        public Vector3 OriginPosterModelPosition = Vector3.zero;
+        public Vector3 OriginPosterModelScale = Vector3.zero;
+        public Vector3 OriginMagnetScale = Vector3.zero;
+
+        public bool Flipped = false;
         
+        public void MySetState()
+        {
+            PictureFrameEnumHelper.SetStateMethod.Invoke(this.gameObject.GetComponent<PictureFrame>(), new object[] { PictureFrameEnumHelper.FullEnumValue });
+        }
+
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
             // Retrieve save file
@@ -247,22 +336,22 @@ namespace DecorationsMod.Controllers
             string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "custompictureframe_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
-                GameObject model = this.gameObject.FindChild("mesh");
+                GameObject frame = this.gameObject.FindChild("mesh");
                 PictureFrame pf = this.gameObject.GetComponent<PictureFrame>();
 
                 string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
                 string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                if (sizes.Length == 10)
+                if (sizes.Length >= 10 || sizes.Length <= 12)
                 {
-                    // Restore model angles
+                    // Restore frame angles
                     string[] eulerAngles = sizes[0].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (eulerAngles.Length == 3)
                     {
-                        Vector3 savedEulerAngles = new Vector3(OriginEulerAngles.x, OriginEulerAngles.y, OriginEulerAngles.z);
+                        Vector3 savedEulerAngles = new Vector3(OriginFrameEulerAngles.x, OriginFrameEulerAngles.y, OriginFrameEulerAngles.z);
                         float.TryParse(eulerAngles[0], NumberStyles.Float, CultureInfo.InvariantCulture, out savedEulerAngles.x);
                         float.TryParse(eulerAngles[1], NumberStyles.Float, CultureInfo.InvariantCulture, out savedEulerAngles.y);
                         float.TryParse(eulerAngles[2], NumberStyles.Float, CultureInfo.InvariantCulture, out savedEulerAngles.z);
-                        model.transform.localEulerAngles = savedEulerAngles;
+                        frame.transform.localEulerAngles = savedEulerAngles;
                     }
 
                     // Restore collider size
@@ -282,7 +371,7 @@ namespace DecorationsMod.Controllers
                     string[] imageRendererScale = sizes[2].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (imageRendererScale.Length == 3)
                     {
-                        Vector3 savedImageRendererScale = new Vector3(OriginImageRendererScale.x, OriginImageRendererScale.y, OriginImageRendererScale.z);
+                        Vector3 savedImageRendererScale = new Vector3(OriginImageScale.x, OriginImageScale.y, OriginImageScale.z);
                         float.TryParse(imageRendererScale[0], NumberStyles.Float, CultureInfo.InvariantCulture, out savedImageRendererScale.x);
                         float.TryParse(imageRendererScale[1], NumberStyles.Float, CultureInfo.InvariantCulture, out savedImageRendererScale.y);
                         float.TryParse(imageRendererScale[2], NumberStyles.Float, CultureInfo.InvariantCulture, out savedImageRendererScale.z);
@@ -290,17 +379,15 @@ namespace DecorationsMod.Controllers
                     }
 
                     // Restore frame border visibility
-                    GameObject pictureFrame = model.FindChild("submarine_Picture_Frame");
+                    GameObject pictureFrame = frame.FindChild("submarine_Picture_Frame");
                     MeshRenderer frameRenderer = pictureFrame.GetComponent<MeshRenderer>();
                     frameRenderer.enabled = ((sizes[3].CompareTo("1") == 0) ? true : false);
                     GameObject frameButton = pictureFrame.FindChild("submarine_Picture_Frame_button");
                     MeshRenderer buttonRenderer = frameButton.GetComponent<MeshRenderer>();
                     buttonRenderer.enabled = ((sizes[3].CompareTo("1") == 0) ? true : false);
-                    GameObject posterMagnet = this.gameObject.FindChild("poster_kitty(Clone)");
-                    GameObject posterMagnetModel = posterMagnet.FindChild("model");
-                    GameObject magnetModel = posterMagnetModel.FindChild("poster_kitty");
-                    MeshRenderer magnetRenderer = magnetModel.GetComponent<MeshRenderer>();
-                    magnetRenderer.enabled = ((sizes[3].CompareTo("2") == 0) ? true : false);
+                    GameObject poster = this.gameObject.FindChild("poster_decorations(Clone)");
+                    GameObject posterModel = poster.FindChild("model");
+                    GameObject magnetModel = posterModel.FindChild("poster_kitty");
 
                     // Restore constructable bounds extents
                     string[] constructableBoundsExtents = sizes[4].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
@@ -318,38 +405,38 @@ namespace DecorationsMod.Controllers
                     string[] modelScale = sizes[5].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (modelScale.Length == 3)
                     {
-                        Vector3 updateModelScale = Vector3.zero;
+                        Vector3 updateModelScale = new Vector3(OriginFrameScale.x, OriginFrameScale.y, OriginFrameScale.z);
                         float.TryParse(modelScale[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updateModelScale.x);
                         float.TryParse(modelScale[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updateModelScale.y);
                         float.TryParse(modelScale[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updateModelScale.z);
-                        model.transform.localScale = updateModelScale;
+                        frame.transform.localScale = updateModelScale;
                     }
                     string[] posterMagnetPosition = sizes[6].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (posterMagnetPosition.Length == 3)
                     {
-                        Vector3 updatePosterMagnetPosition = Vector3.zero;
+                        Vector3 updatePosterMagnetPosition = new Vector3(OriginPosterPosition.x, OriginPosterPosition.y, OriginPosterPosition.z);
                         float.TryParse(posterMagnetPosition[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetPosition.x);
                         float.TryParse(posterMagnetPosition[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetPosition.y);
                         float.TryParse(posterMagnetPosition[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetPosition.z);
-                        posterMagnet.transform.localPosition = updatePosterMagnetPosition;
+                        poster.transform.localPosition = updatePosterMagnetPosition;
                     }
-                    string[] posterMagnetModelPosition = sizes[7].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    if (posterMagnetModelPosition.Length == 3)
+                    string[] posterModelPosition = sizes[7].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    if (posterModelPosition.Length == 3)
                     {
-                        Vector3 updatePosterMagnetModelPosition = Vector3.zero;
-                        float.TryParse(posterMagnetModelPosition[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelPosition.x);
-                        float.TryParse(posterMagnetModelPosition[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelPosition.y);
-                        float.TryParse(posterMagnetModelPosition[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelPosition.z);
-                        posterMagnetModel.transform.localPosition = updatePosterMagnetModelPosition;
+                        Vector3 updatePosterModelPosition = new Vector3(OriginPosterModelPosition.x, OriginPosterModelPosition.y, OriginPosterModelPosition.z);
+                        float.TryParse(posterModelPosition[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterModelPosition.x);
+                        float.TryParse(posterModelPosition[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterModelPosition.y);
+                        float.TryParse(posterModelPosition[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterModelPosition.z);
+                        posterModel.transform.localPosition = updatePosterModelPosition;
                     }
-                    string[] posterMagnetModelScale = sizes[8].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    if (posterMagnetModelScale.Length == 3)
+                    string[] posterModelScale = sizes[8].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    if (posterModelScale.Length == 3)
                     {
-                        Vector3 updatePosterMagnetModelScale = Vector3.zero;
-                        float.TryParse(posterMagnetModelScale[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelScale.x);
-                        float.TryParse(posterMagnetModelScale[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelScale.y);
-                        float.TryParse(posterMagnetModelScale[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterMagnetModelScale.z);
-                        posterMagnetModel.transform.localScale = updatePosterMagnetModelScale;
+                        Vector3 updatePosterModelScale = new Vector3(OriginPosterModelScale.x, OriginPosterModelScale.y, OriginPosterModelScale.z);
+                        float.TryParse(posterModelScale[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterModelScale.x);
+                        float.TryParse(posterModelScale[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterModelScale.y);
+                        float.TryParse(posterModelScale[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updatePosterModelScale.z);
+                        posterModel.transform.localScale = updatePosterModelScale;
                     }
                     string[] imageRendererPosition = sizes[9].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (imageRendererPosition.Length == 3)
@@ -360,12 +447,69 @@ namespace DecorationsMod.Controllers
                         float.TryParse(imageRendererPosition[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updateImageRendererPosition.z);
                         pf.imageRenderer.transform.localPosition = updateImageRendererPosition;
                     }
-                    
+                    // Restore magnet scale
+                    if (sizes.Length >= 11)
+                    {
+                        string[] posterMagnetScale = sizes[10].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                        if (posterMagnetScale.Length == 3)
+                        {
+                            Vector3 updateMagnetScale = new Vector3(OriginMagnetScale.x, OriginMagnetScale.y, OriginMagnetScale.z);
+                            float.TryParse(posterMagnetScale[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updateMagnetScale.x);
+                            float.TryParse(posterMagnetScale[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updateMagnetScale.y);
+                            float.TryParse(posterMagnetScale[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updateMagnetScale.z);
+                            magnetModel.transform.localScale = updateMagnetScale;
+                        }
+                    }
+                    // Restore frame position
+                    //frame.transform.localPosition = new Vector3(this.OriginFramePosition.x, this.OriginFramePosition.y, this.OriginFramePosition.z + 0.0001f);
+                    if (sizes.Length >= 12)
+                    {
+                        string[] framePosition = sizes[11].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                        if (framePosition.Length == 3)
+                        {
+                            Vector3 updateFramePosition = new Vector3(OriginFramePosition.x, OriginFramePosition.y, OriginFramePosition.z + 0.0001f);
+                            float.TryParse(framePosition[0], NumberStyles.Float, CultureInfo.InvariantCulture, out updateFramePosition.x);
+                            float.TryParse(framePosition[1], NumberStyles.Float, CultureInfo.InvariantCulture, out updateFramePosition.y);
+                            float.TryParse(framePosition[2], NumberStyles.Float, CultureInfo.InvariantCulture, out updateFramePosition.z);
+                            frame.transform.localPosition = updateFramePosition;
+                        }
+                    }
+
+                    // Restore flip toogle
+                    this.Flipped = (pf.imageRenderer.transform.localScale.x > pf.imageRenderer.transform.localScale.y);
+
+                    GameObject bgBisModel = posterModel.FindChild("poster_background_bis");
+                    MeshRenderer bgBisRenderer = bgBisModel?.GetComponent<MeshRenderer>();
+                    GameObject bgPivotModel = posterModel.FindChild("poster_background_pivot");
+                    MeshRenderer bgPivotRenderer = bgPivotModel?.GetComponent<MeshRenderer>();
+
+                    // Rotate poster background if needed
+                    if (this.Flipped)
+                    {
+                        bgPivotRenderer.enabled = !(sizes[3].CompareTo("1") == 0);
+                        bgBisRenderer.enabled = false;
+                    }
+                    else
+                    {
+                        bgPivotRenderer.enabled = false;
+                        bgBisRenderer.enabled = !(sizes[3].CompareTo("1") == 0);
+                    }
+
+                    MeshRenderer magnetRenderer = magnetModel.GetComponent<MeshRenderer>();
+
+                    // Adjust magnet position
+                    if (bgPivotRenderer.enabled)
+                        magnetModel.transform.localPosition = new Vector3(0f, -0.0115f, 0f);
+                    else
+                        magnetModel.transform.localPosition = Vector3.zero;
+
+                    // Restore magnet visibility
+                    magnetRenderer.enabled = sizes[3].CompareTo("2") == 0;
+
                     // Refresh picture
-                    Type PictureFrameType = typeof(PictureFrame);
-                    MethodInfo SetStateMethod = PictureFrameType.GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
-                    SetStateMethod.Invoke(pf, new object[] { PictureFrameEnumHelper.NoneEnumValue });
-                    SetStateMethod.Invoke(pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
+                    //MethodInfo SetStateMethod = typeof(PictureFrame).GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
+                    PictureFrameEnumHelper.SetStateMethod.Invoke(pf, new object[] { PictureFrameEnumHelper.ThumbnailEnumValue });
+                    this.Invoke("MySetState", 3f);
                 }
             }
         }
@@ -384,34 +528,34 @@ namespace DecorationsMod.Controllers
                 Directory.CreateDirectory(saveFolder);
 
             // Save model angles
-            GameObject model = this.gameObject.FindChild("mesh");
-            string saveData = model.transform.localEulerAngles.x + "|" + 
-                              model.transform.localEulerAngles.y + "|" + 
-                              model.transform.localEulerAngles.z + Environment.NewLine;
+            GameObject frame = this.gameObject.FindChild("mesh");
+            string saveData = Convert.ToString(frame.transform.localEulerAngles.x, CultureInfo.InvariantCulture) + "|" +
+                              Convert.ToString(frame.transform.localEulerAngles.y, CultureInfo.InvariantCulture) + "|" +
+                              Convert.ToString(frame.transform.localEulerAngles.z, CultureInfo.InvariantCulture) + Environment.NewLine;
 
             // Save collider size
             GameObject trigger = this.gameObject.FindChild("Trigger");
             BoxCollider collider = trigger.GetComponent<BoxCollider>();
-            saveData += collider.size.x + "|" + 
-                        collider.size.y + "|" + 
-                        collider.size.z + Environment.NewLine;
+            saveData += Convert.ToString(collider.size.x, CultureInfo.InvariantCulture) + "|" +
+                        Convert.ToString(collider.size.y, CultureInfo.InvariantCulture) + "|" +
+                        Convert.ToString(collider.size.z, CultureInfo.InvariantCulture) + Environment.NewLine;
 
             // Save picture scale
             PictureFrame pf = this.gameObject.GetComponent<PictureFrame>();
-            saveData += pf.imageRenderer.transform.localScale.x + "|" + 
-                        pf.imageRenderer.transform.localScale.y + "|" + 
-                        pf.imageRenderer.transform.localScale.z + Environment.NewLine;
+            saveData += Convert.ToString(pf.imageRenderer.transform.localScale.x, CultureInfo.InvariantCulture) + "|" +
+                        Convert.ToString(pf.imageRenderer.transform.localScale.y, CultureInfo.InvariantCulture) + "|" +
+                        Convert.ToString(pf.imageRenderer.transform.localScale.z, CultureInfo.InvariantCulture) + Environment.NewLine;
 
             // Save frame border visibility
-            GameObject pictureFrame = model.FindChild("submarine_Picture_Frame");
-            GameObject posterMagnet = this.gameObject.FindChild("poster_kitty(Clone)");
-            GameObject posterMagnetModel = posterMagnet.FindChild("model");
+            GameObject pictureFrame = frame.FindChild("submarine_Picture_Frame");
+            GameObject poster = this.gameObject.FindChild("poster_decorations(Clone)");
+            GameObject posterModel = poster.FindChild("model");
+            GameObject magnetModel = posterModel.FindChild("poster_kitty");
             MeshRenderer frameRenderer = pictureFrame.GetComponent<MeshRenderer>();
             if (frameRenderer.enabled)
                 saveData += "1" + Environment.NewLine;
             else
             {
-                GameObject magnetModel = posterMagnet.FindChild("model").FindChild("poster_kitty");
                 MeshRenderer magnetRenderer = magnetModel.GetComponent<MeshRenderer>();
                 if (magnetRenderer.enabled)
                     saveData += "2" + Environment.NewLine;
@@ -421,17 +565,18 @@ namespace DecorationsMod.Controllers
 
             // Save constructable bounds extents
             ConstructableBounds constructableBounds = this.gameObject.GetComponent<ConstructableBounds>();
-            saveData += constructableBounds.bounds.extents.x + "|" +
-                        constructableBounds.bounds.extents.y + "|" +
-                        constructableBounds.bounds.extents.z + Environment.NewLine;
+            saveData += Convert.ToString(constructableBounds.bounds.extents.x, CultureInfo.InvariantCulture) + "|" +
+                        Convert.ToString(constructableBounds.bounds.extents.y, CultureInfo.InvariantCulture) + "|" +
+                        Convert.ToString(constructableBounds.bounds.extents.z, CultureInfo.InvariantCulture) + Environment.NewLine;
 
             // Save current sizes
-            saveData += model.transform.localScale.x + "|" + model.transform.localScale.y + "|" + model.transform.localScale.z + Environment.NewLine;
-            saveData += posterMagnet.transform.localPosition.x + "|" + posterMagnet.transform.localPosition.y + "|" + posterMagnet.transform.localPosition.z + Environment.NewLine;
-            saveData += posterMagnetModel.transform.localPosition.x + "|" + posterMagnetModel.transform.localPosition.y + "|" + posterMagnetModel.transform.localPosition.z + Environment.NewLine;
-            saveData += posterMagnetModel.transform.localScale.x + "|" + posterMagnetModel.transform.localScale.y + "|" + posterMagnetModel.transform.localScale.z + Environment.NewLine;
-            saveData += pf.imageRenderer.transform.localPosition.x + "|" + pf.imageRenderer.transform.localPosition.y + "|" + pf.imageRenderer.transform.localPosition.z + Environment.NewLine;
-            //pf.imageRenderer.transform.localScale
+            saveData += Convert.ToString(frame.transform.localScale.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(frame.transform.localScale.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(frame.transform.localScale.z, CultureInfo.InvariantCulture) + Environment.NewLine;
+            saveData += Convert.ToString(poster.transform.localPosition.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(poster.transform.localPosition.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(poster.transform.localPosition.z, CultureInfo.InvariantCulture) + Environment.NewLine;
+            saveData += Convert.ToString(posterModel.transform.localPosition.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(posterModel.transform.localPosition.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(posterModel.transform.localPosition.z, CultureInfo.InvariantCulture) + Environment.NewLine;
+            saveData += Convert.ToString(posterModel.transform.localScale.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(posterModel.transform.localScale.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(posterModel.transform.localScale.z, CultureInfo.InvariantCulture) + Environment.NewLine;
+            saveData += Convert.ToString(pf.imageRenderer.transform.localPosition.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(pf.imageRenderer.transform.localPosition.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(pf.imageRenderer.transform.localPosition.z, CultureInfo.InvariantCulture) + Environment.NewLine;
+            saveData += Convert.ToString(magnetModel.transform.localScale.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(magnetModel.transform.localScale.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(magnetModel.transform.localScale.z, CultureInfo.InvariantCulture) + Environment.NewLine;
+            saveData += Convert.ToString(frame.transform.localPosition.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(frame.transform.localPosition.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(frame.transform.localPosition.z, CultureInfo.InvariantCulture) + Environment.NewLine;
 
             // Save state to file
             File.WriteAllText(Path.Combine(saveFolder, "custompictureframe_" + id.Id + ".txt"), saveData);
