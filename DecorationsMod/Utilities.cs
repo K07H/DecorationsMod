@@ -28,6 +28,8 @@ namespace DecorationsMod
     {
         private const int GEO_FRIENDLYNAME = 8;
 
+        public static string[] AvailableLanguages = new string[6] { "fr", "en", "de", "es", "ru", "tr" };
+
         private enum GeoClass : int
         {
             Nation = 16,
@@ -81,6 +83,44 @@ namespace DecorationsMod
                     return CountryCode.RU;
             }
             return CountryCode.EN;
+        }
+
+        public static CountryCode GetCountryCodeFromLabel(string label)
+        {
+            switch (label)
+            {
+                case "fr":
+                    return CountryCode.FR;
+                case "de":
+                    return CountryCode.DE;
+                case "es":
+                    return CountryCode.ES;
+                case "ru":
+                    return CountryCode.RU;
+                case "tr":
+                    return CountryCode.TR;
+                default:
+                    return CountryCode.EN;
+            }
+        }
+
+        public static string GetCountryLabelFromCode(CountryCode code)
+        {
+            switch (code)
+            {
+                case CountryCode.FR:
+                    return "fr";
+                case CountryCode.DE:
+                    return "de";
+                case CountryCode.ES:
+                    return "es";
+                case CountryCode.RU:
+                    return "ru";
+                case CountryCode.TR:
+                    return "tr";
+                default:
+                    return "en";
+            }
         }
     }
 

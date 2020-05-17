@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssetsHelper.cs" />
+    <Compile Include="ConfigOptions.cs" />
     <Compile Include="ConfigSwitcher.cs" />
     <Compile Include="Controllers\CargoBoxController.cs" />
     <Compile Include="Controllers\CoveTree1Controller.cs" />

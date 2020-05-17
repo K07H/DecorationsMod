@@ -1,8 +1,8 @@
-﻿using Harmony;
+﻿/*using Harmony;
 
 namespace DecorationsMod.Fixers
 {
-    /*
+    
     [HarmonyPatch(typeof(Pickupable))]
     [HarmonyPatch("OnHandClick")]
     public class PickupableFixer
@@ -21,5 +21,5 @@ namespace DecorationsMod.Fixers
             }
         }
     }
-    */
 }
+*/

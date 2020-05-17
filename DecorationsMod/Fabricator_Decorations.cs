@@ -214,10 +214,9 @@ namespace DecorationsMod
 
             #region PRECURSOR
 
+            var precursorTab = rootNode.AddTabNode("Precursor", LanguageHelper.GetFriendlyWord("Precursor"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_10_b"));
             if (ConfigSwitcher.EnablePrecursorTab)
             {
-                var precursorTab = rootNode.AddTabNode("Precursor", LanguageHelper.GetFriendlyWord("Precursor"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_10_b"));
-
                 // Warpers
                 var warperTab = precursorTab.AddTabNode("PrecursorWarperParts", LanguageHelper.GetFriendlyWord("PrecursorWarperParts"), AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon"));
                 if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart2") != TechType.None)

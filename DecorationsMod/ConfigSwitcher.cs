@@ -9,7 +9,7 @@ namespace DecorationsMod
     {
         // THESE ARE DEFAULT SETTING.
         // They are automatically overwritten when getting configuration from Config.txt file.
-        // They will be used only if Config.txt file has not been found.
+        // They will be used only if they are missing from the Config.txt file (or if Config.txt file is missing).
         #region Settings
         
         // If "true" player will be able to build most of the buildable-items provided by this mod outside bases.
@@ -196,6 +196,7 @@ namespace DecorationsMod
             return success;
         }
 
+        public static string configFilePath = null;
         // Loads configuration from Config.txt file.
         public static void LoadConfiguration()
         {
@@ -204,7 +205,7 @@ namespace DecorationsMod
             UriBuilder uri = new UriBuilder(codeBase);
             string path = Uri.UnescapeDataString(uri.Path);
             string currentDir = Path.GetDirectoryName(path);
-            string configFilePath = currentDir + "/Config.txt";
+            configFilePath = currentDir + "/Config.txt";
 
             Logger.Log("Loading configuration from \"" + configFilePath + "\"...");
 
@@ -237,7 +238,7 @@ namespace DecorationsMod
                                     ConfigSwitcher.EnablePlaceItems = configValue; break;
                                 case "enablePlaceBatteries":
                                     ConfigSwitcher.EnablePlaceBatteries = configValue; break;
-                                case "enableSpecialItems":
+                                case "enableNewBuilderItems":
                                     ConfigSwitcher.EnableSpecialItems = configValue; break;
                                 case "allowIndoorLongPlanterOutside":
                                     ConfigSwitcher.AllowIndoorLongPlanterOutside = configValue; break;

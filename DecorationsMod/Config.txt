@@ -1,8 +1,10 @@
-# Modify this to override default language.
-# Possible values: "fr" for French, "en" for English, "es" for Spanish, "de" for Deutsch,
-# "tr" for Turkish, "ru" for Russian and "auto" for default language.
+# Stop Subnautica before editing this file (live modifications will not work).
+
+
+# Modify the line "language=auto" to override default language.
+# Possible values: "fr" for French, "en" for English, "es" for Spanish, "de" for Deutsch, "tr" for Turkish, "ru" for Russian and "auto" for default language.
 language=auto
- 
+
 # Set this to "true" only if some items in Decorations Fabricator or Seeds Fabricator are not visible because they don't fit in screen.
 # If it still doesn't fit after that, download Radial Tabs mod here: https://www.nexusmods.com/subnautica/mods/207.
 useAlternativeScreenResolution=false
@@ -10,7 +12,7 @@ useAlternativeScreenResolution=false
 # If "true", tooltips of the "customizable picture frame" and "customizable light" items will be scaled down (compact mode). 
 useCompactTooltips=false
 
-# If "true", there will be a new tab inside decorations fabricator containing 11 unique warper parts, 11 unique alien relics and 5 unique alien tablets.
+# If "true", there will be a new tab inside decorations fabricator containing 11 unique warper parts + 11 unique alien relics + 5 unique alien tablets.
 enablePrecursorTab=false
 
 # If "true", more items from this mod will be buildable outside bases.
@@ -31,17 +33,28 @@ enablePlaceBatteries=false
 # If "true", it will stop switching to next quickslot tool if you are currently holding a placeable item and using mouse wheel (this allows to rotate the placeable item with mouse wheel).
 lockQuickslotsWhenPlacingItem=true
 
-# If "true", the regular aquarium (not the one from this mod) will adapt to the lights depending if it's indoor or outdoor.
-fixAquariumLighting=true
-
-# If "true", glass of the aquariums (both regular aquarium and the one from this mod) will be glowing a little.
-enableAquariumGlassGlowing=false
-
 # If "true", you'll be able to build/craft the following items:
-# lab cart, alien pillar, long planter, specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll, empty desk,
-# eatmydiction doll, jacksepticeye doll, markiplier dolls, seamoth doll, exosuit doll, forklift, cargo crates, sofas, benches, stool, 
-# customizable picture frame, customizable light and additional lockers.
-enableSpecialItems=true
+# lab cart, alien pillar, indoor long planter, outdoor long planter specimen analyzer, markiplier doll 1, markiplier doll 2
+# jacksepticeye doll, eatmydiction doll, empty desk, eatmydiction doll, seamoth doll, exosuit doll, forklift, cargo crates
+# sofas, benches, stool, customizable picture frame, customizable light, warper specimen and additional lockers.
+enableNewBuilderItems=true
+
+# If true, you'll be able to craft all eggs from the decorations fabricator.
+# If false, only the sea dragon and sea emperor eggs will be available in the decorations fabricator.
+enableAllEggs=false
+
+# If true, all alien tablets will be available for craft in the decorations frabricator.
+# If false, only the red and white alien tablets will be available in the decorations fabricator.
+precursorKeysAll=false
+
+# If "true", you'll be able to craft Nutrient Blocks using the decorations fabricator.
+enableNutrientBlock=false
+
+# If "true", all existing air seeds will be added to the seeds fabricator.
+addRegularAirSeeds=false
+
+# If "true", all existing water seeds will be added to the seeds fabricator.
+addRegularWaterSeeds=false
 
 # If "true", you'll be able to build the indoor long planter outside bases/cyclops (tip: this allows to have land plants in water).
 allowIndoorLongPlanterOutside=true
@@ -49,23 +62,18 @@ allowIndoorLongPlanterOutside=true
 # If "true", you'll be able to build the exterior long planter inside bases/cyclops (tip: this allows to have sea plants inside bases/cyclops).
 allowOutdoorLongPlanterInside=true
 
-# If "true", you'll be able to craft Nutrient Blocks using the decorations fabricator.
-enableNutrientBlock=false
+# If "true", the regular aquarium (not the one from this mod) will adapt to the lights depending if it's indoor or outdoor.
+fixAquariumLighting=true
 
-# If true, you'll be able to craft all eggs from the decorations fabricator.
-# If false, only the sea dragon and sea emperor eggs will be available in the decorations fabricator.
-enableAllEggs=true
-
-# If true, all alien tablets will be available for craft in the decorations frabricator.
-# If false, only the red and white alien tablets will be available in the decorations fabricator.
-precursorKeysAll=true
+# If "true", glass of the aquariums (both regular aquarium and the one from this mod) will be glowing a little.
+enableAquariumGlassGlowing=false
 
 # This defines the resource required to craft alien tablets.
 # Possible values: An existing tech type name (exemple: salt).
 precursorKeys_RecipiesResource=precursorioncrystal
 
 # This defines the amount of resources required to craft alien tablets.
-# Possible values: A positive integer (exemple: 1).
+# Possible values: A digit between 1 and 10 (exemple: 3).
 precursorKeys_RecipiesResourceAmount=3
 
 # This defines the resource required to craft alien relics.
@@ -73,15 +81,23 @@ precursorKeys_RecipiesResourceAmount=3
 relics_RecipiesResource=precursorioncrystal
 
 # This defines the amount of resources required to craft alien relics.
-# Possible values: A positive integer (exemple: 1).
+# Possible values: A digit between 1 and 10 (exemple: 3).
 relics_RecipiesResourceAmount=2
+
+# This defines the resource required to craft creature eggs.
+# Possible values: An existing tech type name (exemple: salt).
+creatureEggs_RecipiesResource=precursorioncrystal
+
+# This defines the amount of resources required to craft creature eggs.
+# Possible values: A digit between 1 and 10 (exemple: 3).
+creatureEggs_RecipiesResourceAmount=1
 
 # This defines the resource required to craft seeds.
 # Possible values: An existing tech type name (example: salt).
 flora_RecipiesResource=precursorioncrystal
 
 # This defines the amount of resources required to craft seeds.
-# Possible values: A positive integer (exemple: 1).
+# Possible values: A digit between 1 and 10 (exemple: 3).
 flora_RecipiesResourceAmount=1
 
 # Defines new flora configuration. Format is: growth-duration/health/bioreactor-charge
@@ -139,21 +155,17 @@ config_RedGrass3Tall=1000/40/70
 config_BloodGrass=1000/40/70
 config_BloodGrassDense=1600/60/90
 
-# If "true", all existing air seeds will be added to the seeds fabricator.
-addRegularAirSeeds=true
-# If "true", all existing water seeds will be added to the seeds fabricator.
-addRegularWaterSeeds=true
-
 # If "true", cove trees below 100m depth having eggs displayed will spawn Juvenile Ghost Leviatan after a certain amount of time.
 GhostLeviatan_enable=false
-# Defines spawned juvenile ghost leviatan health points.
+# Defines spawned juvenile ghost leviathan health points. Minimum 20 and maximum 20000.
 GhostLeviatan_health=2000
-# Defines the number of juvenile ghost leviatan that spawns before eggs disappears.
+# Defines the number of juvenile ghost leviathan that spawns before eggs disappears. Minimum 1 and maximum 10.
 GhostLeviatan_maxSpawns=2
-# Defines the minimum number of seconds to wait before the first leviatan spawns.
+# Defines the minimum number of seconds to wait before the first leviathan spawns. Minimum 10 and maximum 14400.
 GhostLeviatan_timeBeforeFirstSpawn=1200
-# This is the ratio applied to the duration between two leviatans spawns. Set it close to 0 if you want fast spawn rate (for example,
-# 0.01 will be around 10seconds), or set it to a high value if you want low spawn rate (for example, 3.0 will be around 45minutes).
+# This is the ratio applied to the duration between two leviathans spawns. Set it close to 0 if you want fast spawn rate, or set it to a high value if you want low spawn rate.
+# For example, 0.01 will be around 10 seconds and 3.0 will be around 45 minutes.
+# Possible values: Between 0.01 (minimum) and 10.0 (maximum).
 GhostLeviatan_spawnTimeRatio=1.0
 
 # If "true",  item will be available through the habitat builder menu.

@@ -18,7 +18,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "AquariumSmall";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/Aquarium"); // CraftData.GetPrefabForTechType(TechType.Aquarium);
+            this.GameObject = Resources.Load<GameObject>("Submarine/Build/Aquarium");
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("AquariumSmallName"),

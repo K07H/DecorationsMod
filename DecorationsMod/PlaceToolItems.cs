@@ -219,105 +219,10 @@ namespace DecorationsMod
             }
         }
 
-        public static void MakeItemsPlaceable()
+        private static bool _batteriesMadePlaceable = false;
+        public static void MakeBatteriesPlaceable()
         {
-            Logger.Log("Making some existing items positionable/pickupable...");
-
-            // Chimicals
-            GameObject bleach = Resources.Load<GameObject>("WorldEntities/Natural/bleach");
-            if (bleach != null)
-            {
-                bleach.AddComponent<Bleach_PT>();
-                MakeItemPlaceable(TechType.Bleach, bleach);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/bleach");
-            GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Natural/lubricant");
-            if (lubricant != null)
-            {
-                lubricant.AddComponent<Lubricant_PT>();
-                MakeItemPlaceable(TechType.Lubricant, lubricant);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/lubricant");
-            GameObject polyaniline = Resources.Load<GameObject>("WorldEntities/Natural/polyaniline");
-            if (polyaniline != null)
-                MakeItemPlaceable(TechType.Polyaniline, polyaniline);
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/polyaniline");
-            GameObject benzene = Resources.Load<GameObject>("WorldEntities/Natural/benzene");
-            if (benzene != null)
-                MakeItemPlaceable(TechType.Benzene, benzene);
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/benzene");
-            GameObject hydrochloricacid = Resources.Load<GameObject>("WorldEntities/Natural/hydrochloricacid");
-            if (hydrochloricacid != null)
-                MakeItemPlaceable(TechType.HydrochloricAcid, hydrochloricacid);
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/hydrochloricacid");
-            GameObject hatchingenzymes = Resources.Load<GameObject>("WorldEntities/Natural/HatchingEnzymes");
-            if (hatchingenzymes != null)
-                MakeItemPlaceable(TechType.HatchingEnzymes, hatchingenzymes);
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/HatchingEnzymes");
-
-            // Food & water
-            GameObject coffee = Resources.Load<GameObject>("WorldEntities/Food/Coffee");
-            if (coffee != null)
-                MakeItemPlaceable(TechType.Coffee, coffee);
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Coffee");
-            GameObject bigfilteredwater = Resources.Load<GameObject>("WorldEntities/Food/BigFilteredWater");
-            if (bigfilteredwater != null)
-                MakeItemPlaceable(TechType.BigFilteredWater, bigfilteredwater);
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/BigFilteredWater");
-            GameObject disinfectedwater = Resources.Load<GameObject>("WorldEntities/Food/DisinfectedWater");
-            if (disinfectedwater != null)
-            {
-                disinfectedwater.AddComponent<DisinfectedWater_PT>();
-                MakeItemPlaceable(TechType.DisinfectedWater, disinfectedwater);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/DisinfectedWater");
-            GameObject filteredwater = Resources.Load<GameObject>("WorldEntities/Food/FilteredWater");
-            if (filteredwater != null)
-            {
-                filteredwater.AddComponent<FilteredWater_PT>();
-                MakeItemPlaceable(TechType.FilteredWater, filteredwater);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/FilteredWater");
-
-            // Snacks
-            MakeSnacksPlaceable();
-            
-            // Electronics
-            GameObject wiringkit = Resources.Load<GameObject>("WorldEntities/Natural/wiringkit");
-            if (wiringkit != null)
-            {
-                wiringkit.AddComponent<WiringKit_PT>();
-                MakeItemPlaceable(TechType.WiringKit, wiringkit);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/wiringkit");
-            GameObject advancedwiringkit = Resources.Load<GameObject>("WorldEntities/Natural/advancedwiringkit");
-            if (advancedwiringkit != null)
-            {
-                advancedwiringkit.AddComponent<AdvancedWiringKit_PT>();
-                MakeItemPlaceable(TechType.AdvancedWiringKit, advancedwiringkit);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/advancedwiringkit");
-            GameObject computerchip = Resources.Load<GameObject>("WorldEntities/Natural/computerchip");
-            if (computerchip != null)
-            {
-                computerchip.AddComponent<ComputerChip_PT>();
-                MakeItemPlaceable(TechType.ComputerChip, computerchip);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/computerchip");
-            if (ConfigSwitcher.EnablePlaceBatteries)
+            if (!_batteriesMadePlaceable)
             {
                 GameObject powercell = Resources.Load<GameObject>("WorldEntities/Tools/PowerCell");
                 if (powercell != null)
@@ -351,74 +256,185 @@ namespace DecorationsMod
                 }
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Tools/PrecursorIonBattery");
-            }
 
-            // Eggs
-            //MakeEggsPlaceable();
+                _batteriesMadePlaceable = true;
+            }
+        }
 
-            // Precursor
-            GameObject ionCrystal = Resources.Load<GameObject>("WorldEntities/Natural/PrecursorIonCrystal");
-            if (ionCrystal != null)
-                MakeItemPlaceable(TechType.PrecursorIonCrystal, ionCrystal);
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/PrecursorIonCrystal");
-            /*
-            GameObject purpleKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Purple");
-            if (purpleKey != null)
+        private static bool _madeItemsPlaceable = false;
+        public static void MakeItemsPlaceable()
+        {
+            if (!_madeItemsPlaceable)
             {
-                purpleKey.AddComponent<PurpleKey_PT>();
-                MakeItemPlaceable(TechType.PrecursorKey_Purple, purpleKey);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Purple");
-            GameObject orangeKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Orange");
-            if (orangeKey != null)
-            {
-                orangeKey.AddComponent<OrangeKey_PT>();
-                MakeItemPlaceable(TechType.PrecursorKey_Orange, orangeKey);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Orange");
-            GameObject blueKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Blue");
-            if (blueKey != null)
-            {
-                blueKey.AddComponent<BlueKey_PT>();
-                MakeItemPlaceable(TechType.PrecursorKey_Blue, blueKey);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Blue");
-            GameObject redKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Red");
-            if (redKey != null)
-            {
-                redKey.AddComponent<RedKey_PT>();
-                MakeItemPlaceable(TechType.PrecursorKey_Red, redKey);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Red");
-            GameObject whiteKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_White");
-            if (whiteKey != null)
-            {
-                whiteKey.AddComponent<WhiteKey_PT>();
-                MakeItemPlaceable(TechType.PrecursorKey_White, whiteKey);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_White");
-            */
+                Logger.Log("Making some existing items positionable/pickupable...");
 
-            // Others
-            GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/Natural/stalkertooth");
-            if (stalkertooth != null)
-            {
-                stalkertooth.AddComponent<StalkerTooth_PT>();
-                MakeItemPlaceable(TechType.StalkerTooth, stalkertooth);
+                // Chimicals
+                GameObject bleach = Resources.Load<GameObject>("WorldEntities/Natural/bleach");
+                if (bleach != null)
+                {
+                    bleach.AddComponent<Bleach_PT>();
+                    MakeItemPlaceable(TechType.Bleach, bleach);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/bleach");
+                GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Natural/lubricant");
+                if (lubricant != null)
+                {
+                    lubricant.AddComponent<Lubricant_PT>();
+                    MakeItemPlaceable(TechType.Lubricant, lubricant);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/lubricant");
+                GameObject polyaniline = Resources.Load<GameObject>("WorldEntities/Natural/polyaniline");
+                if (polyaniline != null)
+                    MakeItemPlaceable(TechType.Polyaniline, polyaniline);
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/polyaniline");
+                GameObject benzene = Resources.Load<GameObject>("WorldEntities/Natural/benzene");
+                if (benzene != null)
+                    MakeItemPlaceable(TechType.Benzene, benzene);
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/benzene");
+                GameObject hydrochloricacid = Resources.Load<GameObject>("WorldEntities/Natural/hydrochloricacid");
+                if (hydrochloricacid != null)
+                    MakeItemPlaceable(TechType.HydrochloricAcid, hydrochloricacid);
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/hydrochloricacid");
+                GameObject hatchingenzymes = Resources.Load<GameObject>("WorldEntities/Natural/HatchingEnzymes");
+                if (hatchingenzymes != null)
+                    MakeItemPlaceable(TechType.HatchingEnzymes, hatchingenzymes);
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/HatchingEnzymes");
+
+                // Food & water
+                GameObject coffee = Resources.Load<GameObject>("WorldEntities/Food/Coffee");
+                if (coffee != null)
+                    MakeItemPlaceable(TechType.Coffee, coffee);
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Coffee");
+                GameObject bigfilteredwater = Resources.Load<GameObject>("WorldEntities/Food/BigFilteredWater");
+                if (bigfilteredwater != null)
+                    MakeItemPlaceable(TechType.BigFilteredWater, bigfilteredwater);
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/BigFilteredWater");
+                GameObject disinfectedwater = Resources.Load<GameObject>("WorldEntities/Food/DisinfectedWater");
+                if (disinfectedwater != null)
+                {
+                    disinfectedwater.AddComponent<DisinfectedWater_PT>();
+                    MakeItemPlaceable(TechType.DisinfectedWater, disinfectedwater);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/DisinfectedWater");
+                GameObject filteredwater = Resources.Load<GameObject>("WorldEntities/Food/FilteredWater");
+                if (filteredwater != null)
+                {
+                    filteredwater.AddComponent<FilteredWater_PT>();
+                    MakeItemPlaceable(TechType.FilteredWater, filteredwater);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/FilteredWater");
+
+                // Snacks
+                MakeSnacksPlaceable();
+
+                // Electronics
+                GameObject wiringkit = Resources.Load<GameObject>("WorldEntities/Natural/wiringkit");
+                if (wiringkit != null)
+                {
+                    wiringkit.AddComponent<WiringKit_PT>();
+                    MakeItemPlaceable(TechType.WiringKit, wiringkit);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/wiringkit");
+                GameObject advancedwiringkit = Resources.Load<GameObject>("WorldEntities/Natural/advancedwiringkit");
+                if (advancedwiringkit != null)
+                {
+                    advancedwiringkit.AddComponent<AdvancedWiringKit_PT>();
+                    MakeItemPlaceable(TechType.AdvancedWiringKit, advancedwiringkit);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/advancedwiringkit");
+                GameObject computerchip = Resources.Load<GameObject>("WorldEntities/Natural/computerchip");
+                if (computerchip != null)
+                {
+                    computerchip.AddComponent<ComputerChip_PT>();
+                    MakeItemPlaceable(TechType.ComputerChip, computerchip);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/computerchip");
+
+                if (ConfigSwitcher.EnablePlaceBatteries)
+                    MakeBatteriesPlaceable();
+
+                // Eggs
+                //MakeEggsPlaceable();
+
+                    // Precursor
+                GameObject ionCrystal = Resources.Load<GameObject>("WorldEntities/Natural/PrecursorIonCrystal");
+                if (ionCrystal != null)
+                    MakeItemPlaceable(TechType.PrecursorIonCrystal, ionCrystal);
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/PrecursorIonCrystal");
+                /*
+                GameObject purpleKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Purple");
+                if (purpleKey != null)
+                {
+                    purpleKey.AddComponent<PurpleKey_PT>();
+                    MakeItemPlaceable(TechType.PrecursorKey_Purple, purpleKey);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Purple");
+                GameObject orangeKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Orange");
+                if (orangeKey != null)
+                {
+                    orangeKey.AddComponent<OrangeKey_PT>();
+                    MakeItemPlaceable(TechType.PrecursorKey_Orange, orangeKey);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Orange");
+                GameObject blueKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Blue");
+                if (blueKey != null)
+                {
+                    blueKey.AddComponent<BlueKey_PT>();
+                    MakeItemPlaceable(TechType.PrecursorKey_Blue, blueKey);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Blue");
+                GameObject redKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Red");
+                if (redKey != null)
+                {
+                    redKey.AddComponent<RedKey_PT>();
+                    MakeItemPlaceable(TechType.PrecursorKey_Red, redKey);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Red");
+                GameObject whiteKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_White");
+                if (whiteKey != null)
+                {
+                    whiteKey.AddComponent<WhiteKey_PT>();
+                    MakeItemPlaceable(TechType.PrecursorKey_White, whiteKey);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_White");
+                */
+
+                // Others
+                GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/Natural/stalkertooth");
+                if (stalkertooth != null)
+                {
+                    stalkertooth.AddComponent<StalkerTooth_PT>();
+                    MakeItemPlaceable(TechType.StalkerTooth, stalkertooth);
+                }
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/stalkertooth");
+                GameObject firstaidkit = Resources.Load<GameObject>("WorldEntities/Natural/firstaidkit");
+                if (firstaidkit != null)
+                    MakeItemPlaceable(TechType.FirstAidKit, firstaidkit);
+                else
+                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/firstaidkit");
+
+                _madeItemsPlaceable = true;
             }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/stalkertooth");
-            GameObject firstaidkit = Resources.Load<GameObject>("WorldEntities/Natural/firstaidkit");
-            if (firstaidkit != null)
-                MakeItemPlaceable(TechType.FirstAidKit, firstaidkit);
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/firstaidkit");
         }
     }
 }
