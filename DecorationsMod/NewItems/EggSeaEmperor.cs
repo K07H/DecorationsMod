@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -113,6 +114,7 @@ namespace DecorationsMod.NewItems
             PrefabsHelper.SetDefaultPickupable(prefab);
 
             // We can place this item
+            prefab.AddComponent<CustomPlaceToolController>();
             prefab.AddComponent<EggSeaEmperor_PT>();
             PrefabsHelper.SetDefaultPlaceTool(prefab);
 

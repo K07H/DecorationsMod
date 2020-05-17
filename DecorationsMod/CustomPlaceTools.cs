@@ -949,6 +949,7 @@ namespace DecorationsMod
         public void OnProtoSerialize(ProtobufSerializer serializer) { }
     }
 
+    /*
     public class EggSeaDragon_PT : PlaceTool, IProtoEventListener
     {
         [SerializeField]
@@ -995,6 +996,7 @@ namespace DecorationsMod
 
         public void OnProtoSerialize(ProtobufSerializer serializer) { }
     }
+    */
 
     public class AlienArtefact1_PT : PlaceTool
     {

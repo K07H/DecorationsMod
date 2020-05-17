@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -85,6 +86,9 @@ namespace DecorationsMod.NewItems
             pickupable.randomizeRotationWhenDropped = true;
 
             // We can place this item
+            var cpt = prefab.GetComponent<CustomPlaceToolController>();
+            if (cpt == null)
+                cpt = prefab.AddComponent<CustomPlaceToolController>();
             var placeTool = prefab.AddComponent<RedKey_PT>();
             placeTool.allowedInBase = true;
             placeTool.allowedOnBase = true;

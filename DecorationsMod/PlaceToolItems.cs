@@ -1,4 +1,5 @@
-﻿using SMLHelper.V2.Assets;
+﻿using DecorationsMod.Controllers;
+using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace DecorationsMod
             SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(techType, QuickSlotType.Selectable);
         }
 
+        /*
         public static void MakeEggsPlaceable()
         {
             GameObject egg1 = Resources.Load<GameObject>("WorldEntities/Eggs/BonesharkEgg");
@@ -169,6 +171,7 @@ namespace DecorationsMod
             else
                 Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/StalkerEgg");
         }
+        */
 
         public static void MakeSnacksPlaceable()
         {
@@ -227,6 +230,7 @@ namespace DecorationsMod
                 GameObject powercell = Resources.Load<GameObject>("WorldEntities/Tools/PowerCell");
                 if (powercell != null)
                 {
+                    powercell.AddComponent<CustomPlaceToolController>();
                     powercell.AddComponent<PowerCell_PT>();
                     MakeItemPlaceable(TechType.PowerCell, powercell);
                 }
@@ -235,6 +239,7 @@ namespace DecorationsMod
                 GameObject battery = Resources.Load<GameObject>("WorldEntities/Tools/Battery");
                 if (battery != null)
                 {
+                    battery.AddComponent<CustomPlaceToolController>();
                     battery.AddComponent<Battery_PT>();
                     MakeItemPlaceable(TechType.Battery, battery);
                 }
@@ -243,6 +248,7 @@ namespace DecorationsMod
                 GameObject ionpowercell = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonPowerCell");
                 if (ionpowercell != null)
                 {
+                    ionpowercell.AddComponent<CustomPlaceToolController>();
                     ionpowercell.AddComponent<IonPowerCell_PT>();
                     MakeItemPlaceable(TechType.PrecursorIonPowerCell, ionpowercell);
                 }
@@ -251,6 +257,7 @@ namespace DecorationsMod
                 GameObject ionbattery = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonBattery");
                 if (ionbattery != null)
                 {
+                    ionbattery.AddComponent<CustomPlaceToolController>();
                     ionbattery.AddComponent<IonBattery_PT>();
                     MakeItemPlaceable(TechType.PrecursorIonBattery, ionbattery);
                 }
@@ -272,6 +279,7 @@ namespace DecorationsMod
                 GameObject bleach = Resources.Load<GameObject>("WorldEntities/Natural/bleach");
                 if (bleach != null)
                 {
+                    bleach.AddComponent<CustomPlaceToolController>();
                     bleach.AddComponent<Bleach_PT>();
                     MakeItemPlaceable(TechType.Bleach, bleach);
                 }
@@ -280,6 +288,7 @@ namespace DecorationsMod
                 GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Natural/lubricant");
                 if (lubricant != null)
                 {
+                    lubricant.AddComponent<CustomPlaceToolController>();
                     lubricant.AddComponent<Lubricant_PT>();
                     MakeItemPlaceable(TechType.Lubricant, lubricant);
                 }
@@ -320,6 +329,7 @@ namespace DecorationsMod
                 GameObject disinfectedwater = Resources.Load<GameObject>("WorldEntities/Food/DisinfectedWater");
                 if (disinfectedwater != null)
                 {
+                    disinfectedwater.AddComponent<CustomPlaceToolController>();
                     disinfectedwater.AddComponent<DisinfectedWater_PT>();
                     MakeItemPlaceable(TechType.DisinfectedWater, disinfectedwater);
                 }
@@ -328,6 +338,7 @@ namespace DecorationsMod
                 GameObject filteredwater = Resources.Load<GameObject>("WorldEntities/Food/FilteredWater");
                 if (filteredwater != null)
                 {
+                    filteredwater.AddComponent<CustomPlaceToolController>();
                     filteredwater.AddComponent<FilteredWater_PT>();
                     MakeItemPlaceable(TechType.FilteredWater, filteredwater);
                 }
@@ -341,6 +352,7 @@ namespace DecorationsMod
                 GameObject wiringkit = Resources.Load<GameObject>("WorldEntities/Natural/wiringkit");
                 if (wiringkit != null)
                 {
+                    wiringkit.AddComponent<CustomPlaceToolController>();
                     wiringkit.AddComponent<WiringKit_PT>();
                     MakeItemPlaceable(TechType.WiringKit, wiringkit);
                 }
@@ -349,6 +361,7 @@ namespace DecorationsMod
                 GameObject advancedwiringkit = Resources.Load<GameObject>("WorldEntities/Natural/advancedwiringkit");
                 if (advancedwiringkit != null)
                 {
+                    advancedwiringkit.AddComponent<CustomPlaceToolController>();
                     advancedwiringkit.AddComponent<AdvancedWiringKit_PT>();
                     MakeItemPlaceable(TechType.AdvancedWiringKit, advancedwiringkit);
                 }
@@ -357,6 +370,7 @@ namespace DecorationsMod
                 GameObject computerchip = Resources.Load<GameObject>("WorldEntities/Natural/computerchip");
                 if (computerchip != null)
                 {
+                    computerchip.AddComponent<CustomPlaceToolController>();
                     computerchip.AddComponent<ComputerChip_PT>();
                     MakeItemPlaceable(TechType.ComputerChip, computerchip);
                 }
@@ -422,6 +436,7 @@ namespace DecorationsMod
                 GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/Natural/stalkertooth");
                 if (stalkertooth != null)
                 {
+                    stalkertooth.AddComponent<CustomPlaceToolController>();
                     stalkertooth.AddComponent<StalkerTooth_PT>();
                     MakeItemPlaceable(TechType.StalkerTooth, stalkertooth);
                 }

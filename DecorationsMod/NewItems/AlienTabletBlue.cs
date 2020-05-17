@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -46,7 +47,7 @@ namespace DecorationsMod.NewItems
                 SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                //SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
@@ -83,6 +84,9 @@ namespace DecorationsMod.NewItems
             pickupable.randomizeRotationWhenDropped = true;
 
             // We can place this item
+            var cpt = prefab.GetComponent<CustomPlaceToolController>();
+            if (cpt == null)
+                cpt = prefab.AddComponent<CustomPlaceToolController>();
             var placeTool = prefab.AddComponent<BlueKey_PT>();
             placeTool.allowedInBase = true;
             placeTool.allowedOnBase = true;
