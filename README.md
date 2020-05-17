@@ -132,6 +132,7 @@ Feel free to propose new translations for this mod. You can find the up-to-date 
 @[UnknownWorlds](https://unknownworlds.com/subnautica/) (for creating this awesome game and letting us do mods)<br>
 @[AHK1221](https://github.com/ahk1221/) (for helping me to get into Subnautica modding)<br>
 @Revan (for mod testing)<br>
+@Inviscient (for mod testing)<br>
 @Paladyne (for the Türkçe translation)<br>
 @Verodor (for the Deutsch translation)<br>
 @Krotobosha (for the Russian translation)<br>
