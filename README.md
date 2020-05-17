@@ -105,6 +105,7 @@ All new flora is compatible with bioreactors and only the land tree is edible.<b
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
+May 17, 2020: Updated to version 1.7.3.<br>
 May 16, 2020: Updated to version 1.7.1.<br>
 February 16, 2020: Updated to version 1.6.5.<br>
 November 17, 2019: Updated to version 1.6.3.<br>
