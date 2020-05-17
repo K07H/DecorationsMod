@@ -7,7 +7,7 @@ Changed: Following settings of the "Config.txt" file are now disabled by default
 Added: You can now change some of the "Config.txt" file settings through game menu (but most of the modifications will still require full game restart to be taken into account).
 
 Version 1.7.1
-Fixed: Just a tiny hotfix for previous update (log file size was increasing too much because of an error in Aquarium fix).
+Fixed: Log file size was increasing too much because of an error in Aquarium glass treatment.
 
 Version 1.7.0
 Added: All warper parts (in decorations fabricator).
