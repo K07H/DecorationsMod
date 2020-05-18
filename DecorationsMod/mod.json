@@ -2,7 +2,7 @@
   "Id": "DecorationsMod",
   "DisplayName": "DecorationsMod",
   "Author": "OSubMarin",
-  "Version": "1.7.3",
+  "Version": "1.7.4",
   "Requires": [ "0Harmony.dll", "SMLHelper.dll" ],
   "Enable": true,
   "Game": "Subnautica",
