@@ -3610,6 +3610,359 @@ namespace DecorationsMod
                         return "Густая кровавая трава";
                     else
                         return "Dense blood grass";
+                case "Config_UseFlatScreenResolution":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Résolution d'écran alternative";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Resolución alternativa de pantalla";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Alternatif ekran çözünürlüğü";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Alternative Bildschirmauflösung";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Альтернативное разрешение экрана";
+                    else
+                        return "Use alternate screen resolution";
+                case "Config_UseCompactTooltips":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Infobulles compactes";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Información sobre herramientas compacta";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kompakt araç ipuçları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Kompakte Tooltips";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Компактные подсказки";
+                    else
+                        return "Use compact tooltips";
+                case "Config_LockQuickslotsWhenPlacingItem":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Bloquer quickslots lors placement objet";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Bloquee las ranuras al colocar el artículo";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Öğe yerleştirirken yuvaları kilitle";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Sperren Sie die Schlitze beim Platzieren des Objekts";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Блокировка слотов при размещении предмета";
+                    else
+                        return "Lock quickslots when placing item";
+
+                // TODO: FINISH LANGUAGE STRINGS BELOW
+                case "Config_AllowBuildOutside":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Allow build outside";
+                case "Config_AllowPlaceOutside":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Allow place outside";
+                case "Config_EnablePlaceItems":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Enable items placing";
+                case "Config_EnablePlaceBatteries":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Enable batteries placing";
+                case "Config_EnableSpecialItems":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Enable special items";
+                case "Config_EnablePrecursorTab":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Enable precursor tab";
+                case "Config_PrecursorKeysAll":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Add regular alien tablets in deco fabricator";
+                case "Config_EnableRegularEggs":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Add regular eggs in deco fabricator";
+                case "Config_EnableNutrientBlock":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Add nutrient block in deco fabricator";
+                case "Config_EnableRegularAirSeeds":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Add regular air seeds in flora fabricator";
+                case "Config_EnableRegularWaterSeeds":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Add regular water seeds in flora fabricator";
+                case "Config_AllowIndoorLongPlanterOutside":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Allow indoor long planter outside";
+                case "Config_AllowOutdoorLongPlanterInside":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Allow outdoor long planter inside";
+                case "Config_FixAquariumLighting":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Fix aquarium lighting";
+                case "Config_GlowingAquariumGlass":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Enable aquarium glowing effect";
+                case "Config_PrecursorKeysResourceAmount":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Amount of resources to craft alien tablet";
+                case "Config_RelicRecipiesResourceAmount":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Amount of resources to craft alien relic";
+                case "Config_CreatureEggsResourceAmount":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Amount of resources to craft creature egg";
+                case "Config_FloraRecipiesResourceAmount":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Amount of resources to craft flora seed";
+                case "Config_GhostLeviatan_enable":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Enable leviatan spawning from cove tree eggs";
+                case "Config_GhostLeviatan_maxSpawns":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Leviatans to spawn before eggs disappear";
+                case "Config_GhostLeviatan_timeBeforeFirstSpawn":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "First leviatan spawn in";
+                case "Config_GhostLeviatan_spawnTimeRatio":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Time between 2 leviatan spawns";
+                case "Config_GhostLeviatan_health":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Herbe sanguine dense";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Densa hierba de sangre";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yoğun kan otu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Dichtes Blutgras";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Густая кровавая трава";
+                    else
+                        return "Spawned leviatan health points";
                 default:
                     return "?";
             }

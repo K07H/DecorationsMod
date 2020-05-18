@@ -134,6 +134,64 @@ namespace DecorationsMod
 #endif
         }
 
+        public static void RegisterTooltips()
+        {
+            // Register lamp tooltips
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("LampTooltip", LanguageHelper.GetFriendlyWord("LampTooltip"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("LampTooltipCompact", LanguageHelper.GetFriendlyWord("LampTooltipCompact"));
+
+            // Register seamoth doll tooltip
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("SwitchSeamothModel", LanguageHelper.GetFriendlyWord("SwitchSeamothModel"));
+
+            // Register exosuit doll tooltip
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("SwitchExosuitModel", LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
+
+            // Register cargo boxes tooltip
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("AdjustCargoBoxSize", LanguageHelper.GetFriendlyWord("AdjustCargoBoxSize"));
+
+            // Register forklift tooltip
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("AdjustForkliftSize", LanguageHelper.GetFriendlyWord("AdjustForkliftSize"));
+
+            // Register cove tree tooltip
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("DisplayCoveTreeEggs", LanguageHelper.GetFriendlyWord("DisplayCoveTreeEggs"));
+
+            // Register custom picture frame tooltips
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("CustomPictureFrameTooltip", LanguageHelper.GetFriendlyWord("CustomPictureFrameTooltip"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("CustomPictureFrameTooltipCompact", LanguageHelper.GetFriendlyWord("CustomPictureFrameTooltipCompact"));
+
+            // Register custom lockers tooltip
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("OpenCustomStorage", LanguageHelper.GetFriendlyWord("OpenCustomStorage"));
+
+            // Register configuration strings
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_UseFlatScreenResolution", LanguageHelper.GetFriendlyWord("Config_UseFlatScreenResolution"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_UseCompactTooltips", LanguageHelper.GetFriendlyWord("Config_UseCompactTooltips"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_LockQuickslotsWhenPlacingItem", LanguageHelper.GetFriendlyWord("Config_LockQuickslotsWhenPlacingItem"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_AllowBuildOutside", LanguageHelper.GetFriendlyWord("Config_AllowBuildOutside"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_AllowPlaceOutside", LanguageHelper.GetFriendlyWord("Config_AllowPlaceOutside"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnablePlaceItems", LanguageHelper.GetFriendlyWord("Config_EnablePlaceItems"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnablePlaceBatteries", LanguageHelper.GetFriendlyWord("Config_EnablePlaceBatteries"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableSpecialItems", LanguageHelper.GetFriendlyWord("Config_EnableSpecialItems"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnablePrecursorTab", LanguageHelper.GetFriendlyWord("Config_EnablePrecursorTab"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_PrecursorKeysAll", LanguageHelper.GetFriendlyWord("Config_PrecursorKeysAll"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableRegularEggs", LanguageHelper.GetFriendlyWord("Config_EnableRegularEggs"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableNutrientBlock", LanguageHelper.GetFriendlyWord("Config_EnableNutrientBlock"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableRegularAirSeeds", LanguageHelper.GetFriendlyWord("Config_EnableRegularAirSeeds"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableRegularWaterSeeds", LanguageHelper.GetFriendlyWord("Config_EnableRegularWaterSeeds"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_AllowIndoorLongPlanterOutside", LanguageHelper.GetFriendlyWord("Config_AllowIndoorLongPlanterOutside"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_AllowOutdoorLongPlanterInside", LanguageHelper.GetFriendlyWord("Config_AllowOutdoorLongPlanterInside"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_FixAquariumLighting", LanguageHelper.GetFriendlyWord("Config_FixAquariumLighting"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GlowingAquariumGlass", LanguageHelper.GetFriendlyWord("Config_GlowingAquariumGlass"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_PrecursorKeysResourceAmount", LanguageHelper.GetFriendlyWord("Config_PrecursorKeysResourceAmount"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_RelicRecipiesResourceAmount", LanguageHelper.GetFriendlyWord("Config_RelicRecipiesResourceAmount"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_CreatureEggsResourceAmount", LanguageHelper.GetFriendlyWord("Config_CreatureEggsResourceAmount"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_FloraRecipiesResourceAmount", LanguageHelper.GetFriendlyWord("Config_FloraRecipiesResourceAmount"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_enable", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_enable"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_maxSpawns", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_maxSpawns"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_timeBeforeFirstSpawn", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_timeBeforeFirstSpawn"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_spawnTimeRatio", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_spawnTimeRatio"));
+            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_health", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_health"));
+        }
+
         private static List<IDecorationItem> RegisterDecorationItems()
         {
             List<IDecorationItem> result = new List<IDecorationItem>();
@@ -320,31 +378,8 @@ namespace DecorationsMod
                 RegisterRecipeForTechType(TechType.KooshChunk, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
             }
 
-            // Register lamp tooltips
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("LampTooltip", LanguageHelper.GetFriendlyWord("LampTooltip"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("LampTooltipCompact", LanguageHelper.GetFriendlyWord("LampTooltipCompact"));
-
-            // Register seamoth doll tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("SwitchSeamothModel", LanguageHelper.GetFriendlyWord("SwitchSeamothModel"));
-
-            // Register exosuit doll tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("SwitchExosuitModel", LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
-
-            // Register cargo boxes tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("AdjustCargoBoxSize", LanguageHelper.GetFriendlyWord("AdjustCargoBoxSize"));
-
-            // Register forklift tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("AdjustForkliftSize", LanguageHelper.GetFriendlyWord("AdjustForkliftSize"));
-
-            // Register cove tree tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("DisplayCoveTreeEggs", LanguageHelper.GetFriendlyWord("DisplayCoveTreeEggs"));
-            
-            // Register custom picture frame tooltips
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("CustomPictureFrameTooltip", LanguageHelper.GetFriendlyWord("CustomPictureFrameTooltip"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("CustomPictureFrameTooltipCompact", LanguageHelper.GetFriendlyWord("CustomPictureFrameTooltipCompact"));
-            
-            // Register custom lockers tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("OpenCustomStorage", LanguageHelper.GetFriendlyWord("OpenCustomStorage"));
+            // Register tooltips language strings
+            RegisterTooltips();
 
             return result;
         }

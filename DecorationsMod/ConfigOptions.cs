@@ -18,29 +18,29 @@ namespace DecorationsMod
         {
             this.AddChoiceOption("DecorationsLanguage", "Language", RegionHelper.AvailableLanguages, RegionHelper.GetCountryLabelFromCode(LanguageHelper.UserLanguage));
             
-            this.AddToggleOption("UseFlatScreenResolution", "Use alternate screen resolution", ConfigSwitcher.UseFlatScreenResolution);
-            this.AddToggleOption("UseCompactTooltips", "Use compact tooltips", ConfigSwitcher.UseCompactTooltips);
-            this.AddToggleOption("LockQuickslotsWhenPlacingItem", "Lock quickslots when placing item", ConfigSwitcher.LockQuickslotsWhenPlacingItem);
-            this.AddToggleOption("AllowBuildOutside", "Allow build outside", ConfigSwitcher.AllowBuildOutside);
-            this.AddToggleOption("AllowPlaceOutside", "Allow place outside", ConfigSwitcher.AllowPlaceOutside);
-            this.AddToggleOption("EnablePlaceItems", "Enable items placing", ConfigSwitcher.EnablePlaceItems);
-            this.AddToggleOption("EnablePlaceBatteries", "Enable batteries placing", ConfigSwitcher.EnablePlaceBatteries);
-            this.AddToggleOption("EnableSpecialItems", "Enable special items", ConfigSwitcher.EnableSpecialItems);
-            this.AddToggleOption("EnablePrecursorTab", "Enable precursor tab", ConfigSwitcher.EnablePrecursorTab);
-            this.AddToggleOption("PrecursorKeysAll", "Add regular alien tablets in deco fabricator", ConfigSwitcher.PrecursorKeysAll);
-            this.AddToggleOption("EnableRegularEggs", "Add regular eggs in deco fabricator", ConfigSwitcher.EnableRegularEggs);
-            this.AddToggleOption("EnableNutrientBlock", "Add nutrient block in deco fabricator", ConfigSwitcher.EnableNutrientBlock);
-            this.AddToggleOption("EnableRegularAirSeeds", "Add regular air seeds in flora fabricator", ConfigSwitcher.EnableRegularAirSeeds);
-            this.AddToggleOption("EnableRegularWaterSeeds", "Add regular water seeds in flora fabricator", ConfigSwitcher.EnableRegularWaterSeeds);
-            this.AddToggleOption("AllowIndoorLongPlanterOutside", "Allow indoor long planter outside", ConfigSwitcher.AllowIndoorLongPlanterOutside);
-            this.AddToggleOption("AllowOutdoorLongPlanterInside", "Allow outdoor long planter inside", ConfigSwitcher.AllowOutdoorLongPlanterInside);
-            this.AddToggleOption("FixAquariumLighting", "Fix aquarium lighting", ConfigSwitcher.FixAquariumLighting);
-            this.AddToggleOption("GlowingAquariumGlass", "Enable aquarium glowing effect", ConfigSwitcher.GlowingAquariumGlass);
+            this.AddToggleOption("UseFlatScreenResolution", "Config_UseFlatScreenResolution", ConfigSwitcher.UseFlatScreenResolution);
+            this.AddToggleOption("UseCompactTooltips", "Config_UseCompactTooltips", ConfigSwitcher.UseCompactTooltips);
+            this.AddToggleOption("LockQuickslotsWhenPlacingItem", "Config_LockQuickslotsWhenPlacingItem", ConfigSwitcher.LockQuickslotsWhenPlacingItem);
+            this.AddToggleOption("AllowBuildOutside", "Config_AllowBuildOutside", ConfigSwitcher.AllowBuildOutside);
+            this.AddToggleOption("AllowPlaceOutside", "Config_AllowPlaceOutside", ConfigSwitcher.AllowPlaceOutside);
+            this.AddToggleOption("EnablePlaceItems", "Config_EnablePlaceItems", ConfigSwitcher.EnablePlaceItems);
+            this.AddToggleOption("EnablePlaceBatteries", "Config_EnablePlaceBatteries", ConfigSwitcher.EnablePlaceBatteries);
+            this.AddToggleOption("EnableSpecialItems", "Config_EnableSpecialItems", ConfigSwitcher.EnableSpecialItems);
+            this.AddToggleOption("EnablePrecursorTab", "Config_EnablePrecursorTab", ConfigSwitcher.EnablePrecursorTab);
+            this.AddToggleOption("PrecursorKeysAll", "Config_PrecursorKeysAll", ConfigSwitcher.PrecursorKeysAll);
+            this.AddToggleOption("EnableRegularEggs", "Config_EnableRegularEggs", ConfigSwitcher.EnableRegularEggs);
+            this.AddToggleOption("EnableNutrientBlock", "Config_EnableNutrientBlock", ConfigSwitcher.EnableNutrientBlock);
+            this.AddToggleOption("EnableRegularAirSeeds", "Config_EnableRegularAirSeeds", ConfigSwitcher.EnableRegularAirSeeds);
+            this.AddToggleOption("EnableRegularWaterSeeds", "Config_EnableRegularWaterSeeds", ConfigSwitcher.EnableRegularWaterSeeds);
+            this.AddToggleOption("AllowIndoorLongPlanterOutside", "Config_AllowIndoorLongPlanterOutside", ConfigSwitcher.AllowIndoorLongPlanterOutside);
+            this.AddToggleOption("AllowOutdoorLongPlanterInside", "Config_AllowOutdoorLongPlanterInside", ConfigSwitcher.AllowOutdoorLongPlanterInside);
+            this.AddToggleOption("FixAquariumLighting", "Config_FixAquariumLighting", ConfigSwitcher.FixAquariumLighting);
+            this.AddToggleOption("GlowingAquariumGlass", "Config_GlowingAquariumGlass", ConfigSwitcher.GlowingAquariumGlass);
 
-            this.AddChoiceOption("PrecursorKeysResourceAmount", "Amount of resources to craft alien tablet", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.PrecursorKeysResourceAmount > 10 ? "10" : (ConfigSwitcher.PrecursorKeysResourceAmount < 1 ? "1" : ConfigSwitcher.PrecursorKeysResourceAmount.ToString(CultureInfo.InvariantCulture)));
-            this.AddChoiceOption("RelicRecipiesResourceAmount", "Amount of resources to craft alien relic", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.RelicRecipiesResourceAmount > 10 ? "10" : (ConfigSwitcher.RelicRecipiesResourceAmount < 1 ? "1" : ConfigSwitcher.RelicRecipiesResourceAmount.ToString(CultureInfo.InvariantCulture)));
-            this.AddChoiceOption("CreatureEggsResourceAmount", "Amount of resources to craft creature egg", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.CreatureEggsResourceAmount > 10 ? "10" : (ConfigSwitcher.CreatureEggsResourceAmount < 1 ? "1" : ConfigSwitcher.CreatureEggsResourceAmount.ToString(CultureInfo.InvariantCulture)));
-            this.AddChoiceOption("FloraRecipiesResourceAmount", "Amount of resources to craft flora seed", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.FloraRecipiesResourceAmount > 10 ? "10" : (ConfigSwitcher.FloraRecipiesResourceAmount < 1 ? "1" : ConfigSwitcher.FloraRecipiesResourceAmount.ToString(CultureInfo.InvariantCulture)));
+            this.AddChoiceOption("PrecursorKeysResourceAmount", "Config_PrecursorKeysResourceAmount", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.PrecursorKeysResourceAmount > 10 ? "10" : (ConfigSwitcher.PrecursorKeysResourceAmount < 1 ? "1" : ConfigSwitcher.PrecursorKeysResourceAmount.ToString(CultureInfo.InvariantCulture)));
+            this.AddChoiceOption("RelicRecipiesResourceAmount", "Config_RelicRecipiesResourceAmount", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.RelicRecipiesResourceAmount > 10 ? "10" : (ConfigSwitcher.RelicRecipiesResourceAmount < 1 ? "1" : ConfigSwitcher.RelicRecipiesResourceAmount.ToString(CultureInfo.InvariantCulture)));
+            this.AddChoiceOption("CreatureEggsResourceAmount", "Config_CreatureEggsResourceAmount", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.CreatureEggsResourceAmount > 10 ? "10" : (ConfigSwitcher.CreatureEggsResourceAmount < 1 ? "1" : ConfigSwitcher.CreatureEggsResourceAmount.ToString(CultureInfo.InvariantCulture)));
+            this.AddChoiceOption("FloraRecipiesResourceAmount", "Config_FloraRecipiesResourceAmount", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.FloraRecipiesResourceAmount > 10 ? "10" : (ConfigSwitcher.FloraRecipiesResourceAmount < 1 ? "1" : ConfigSwitcher.FloraRecipiesResourceAmount.ToString(CultureInfo.InvariantCulture)));
 
             /*
             this.AddToggleOption("AlienRelic1Animation", "Enable alien relic 1 animation", ConfigSwitcher.AlienRelic1Animation);
@@ -56,11 +56,11 @@ namespace DecorationsMod
             this.AddToggleOption("AlienRelic11Animation", "Enable alien relic 11 animation", ConfigSwitcher.AlienRelic11Animation);
             */
 
-            this.AddToggleOption("GhostLeviatan_enable", "Enable leviatan spawning from cove tree eggs", ConfigSwitcher.GhostLeviatan_enable);
-            this.AddChoiceOption("GhostLeviatan_maxSpawns", "Leviatans to spawn before eggs disappear", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.GhostLeviatan_maxSpawns > 10 ? "10" : (ConfigSwitcher.GhostLeviatan_maxSpawns < 1 ? "1" : ConfigSwitcher.GhostLeviatan_maxSpawns.ToString(CultureInfo.InvariantCulture)));
-            this.AddSliderOption("GhostLeviatan_timeBeforeFirstSpawn", "First leviatan spawn in", 10.0f, 14400.0f, ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn > 14400.0f ? 14400.0f : (ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn < 10.0f ? 10.0f : ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn));
-            this.AddSliderOption("GhostLeviatan_spawnTimeRatio", "Time between 2 leviatan spawns", 0.01f, 10.0f, ConfigSwitcher.GhostLeviatan_spawnTimeRatio > 10.0f ? 10.0f : (ConfigSwitcher.GhostLeviatan_spawnTimeRatio < 0.01f ? 0.01f : ConfigSwitcher.GhostLeviatan_spawnTimeRatio));
-            this.AddSliderOption("GhostLeviatan_health", "Spawned leviatan health points", 20.0f, 20000.0f, ConfigSwitcher.GhostLeviatan_health > 20000.0f ? 20000.0f : (ConfigSwitcher.GhostLeviatan_health < 20.0f ? 20.0f : ConfigSwitcher.GhostLeviatan_health));
+            this.AddToggleOption("GhostLeviatan_enable", "Config_GhostLeviatan_enable", ConfigSwitcher.GhostLeviatan_enable);
+            this.AddChoiceOption("GhostLeviatan_maxSpawns", "Config_GhostLeviatan_maxSpawns", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ConfigSwitcher.GhostLeviatan_maxSpawns > 10 ? "10" : (ConfigSwitcher.GhostLeviatan_maxSpawns < 1 ? "1" : ConfigSwitcher.GhostLeviatan_maxSpawns.ToString(CultureInfo.InvariantCulture)));
+            this.AddSliderOption("GhostLeviatan_timeBeforeFirstSpawn", "Config_GhostLeviatan_timeBeforeFirstSpawn", 10.0f, 14400.0f, ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn > 14400.0f ? 14400.0f : (ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn < 10.0f ? 10.0f : ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn));
+            this.AddSliderOption("GhostLeviatan_spawnTimeRatio", "Config_GhostLeviatan_spawnTimeRatio", 0.01f, 10.0f, ConfigSwitcher.GhostLeviatan_spawnTimeRatio > 10.0f ? 10.0f : (ConfigSwitcher.GhostLeviatan_spawnTimeRatio < 0.01f ? 0.01f : ConfigSwitcher.GhostLeviatan_spawnTimeRatio));
+            this.AddSliderOption("GhostLeviatan_health", "Config_GhostLeviatan_health", 20.0f, 20000.0f, ConfigSwitcher.GhostLeviatan_health > 20000.0f ? 20000.0f : (ConfigSwitcher.GhostLeviatan_health < 20.0f ? 20.0f : ConfigSwitcher.GhostLeviatan_health));
 
             this.ChoiceChanged += ConfigOptions_ChoiceChanged;
             this.SliderChanged += ConfigOptions_SliderChanged;
@@ -313,7 +313,8 @@ namespace DecorationsMod
                 {
                     LanguageHelper.UserLanguage = RegionHelper.GetCountryCodeFromLabel(e.Value);
                     UpdateConfigFile("\r\nlanguage=\r\n", "\r\nlanguage=" + e.Value + "\r\n");
-                    ErrorMessage.AddMessage("Restart game completely to switch language to \"" + e.Value + "\".");
+                    DecorationsMod.RegisterTooltips();
+                    ErrorMessage.AddMessage("Language switched to \"" + e.Value + "\".");
                 }
                 else if (e.Id == "PrecursorKeysResourceAmount" && int.TryParse(e.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out intVal) && intVal > 0 && intVal < 6)
                 {
