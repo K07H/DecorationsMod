@@ -1,3 +1,36 @@
+Version 1.7.3
+Fixed: A bug that was affecting placement of following items: Alien tablets, Sea emperor egg, Shocker egg, Powercell, Ion powercell, Battery, Ion battery, Bleach, Lubricant, Water bottles, Computer chip, Wiring kit, Advanced wiring kit and Stalker tooth.
+
+Version 1.7.2
+Fixed: Conflict with Habitat Control Panel from RandyKnapp.
+Changed: Following settings of the "Config.txt" file are now disabled by default to prevent spoilers: enablePrecursorTab, enableAllEggs, precursorKeysAll, addRegularAirSeeds, addRegularWaterSeeds.
+Added: You can now change some of the "Config.txt" file settings through game menu (but most of the modifications will still require full game restart to be taken into account).
+
+Version 1.7.1
+Fixed: Log file size was increasing too much because of an error in Aquarium glass treatment.
+
+Version 1.7.0
+Added: All warper parts (in decorations fabricator).
+Added: All alien relics (in decorations fabricator).
+Added: All alien tablets (in decorations fabricator).
+Added: All eggs (in decorations fabricator).
+Added: A long planter for sea seeds (in exterior modules section of the builder tool).
+Added: A small aquarium that can hold one small fish (in miscellaneous section of the builder tool).
+Added: Warper specimen (in miscellaneous section of the builder tool).
+Added: 7 new plants (red grasses, seeds in flora fabricator).
+Added: Sound effect when turning customizable lights ON/OFF.
+Added: Crafting animations for seeds in flora fabricator.
+Added: A compact mode for "customizable picture frame" and "customizable light" tooltips (you can disable it in the Config.txt file to have full tooltips).
+Added: A lot more configuration settings in the Config.txt file!
+Fixed: Textures don't turn black anymore (this was affecting the glass texture of seamoth doll, prawnsuit doll, ghost leviathan doll and customizable light).
+Fixed: Parts of wall no longer visible behind custom picture frames.
+Fixed: Tooltip of decorative lockers are now correct and they no longer appear on Aurora lockers.
+Fixed: Decorative lockers do not randomly change color anymore (this was happening in some specific situations only).
+Fixed: Various bugs.
+Enhanced: Leviathans textures.
+Enhanced: Prepared for Below Zero release.
+Added: A fix for the regular aquarium (so lights applies correctly on it). You can disable this feature in the Config.txt file.
+
 Version 1.6.5
 Fixed: Cargo crates sizes now properly restores in every scenario (quit to menu or quit to desktop, starting or reloading, ...).
 Fixed: Cargo crates storage now properly restores in every scenario (quit to menu or quit to desktop, starting or reloading, ...).
