@@ -39,7 +39,8 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(this.TechType);
+                if (ConfigSwitcher.EnableRegularEggs)
+                    SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(this.TechType);
 
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
