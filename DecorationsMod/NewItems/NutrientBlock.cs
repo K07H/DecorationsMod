@@ -61,7 +61,7 @@ namespace DecorationsMod.NewItems
 
 #if BELOWZERO
                 // Set quick slot type.
-                //SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 #endif
 
                 // Set the buildable prefab
