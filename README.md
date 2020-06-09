@@ -8,6 +8,8 @@ Requires QMods and SMLHelper.<br>
 1) Install QMods: https://www.nexusmods.com/subnautica/mods/201<br>
 2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
 
+<br>
+
 ### Installation instructions:
 1) Download one of the two ZIP archives [here](https://github.com/K07H/DecorationsMod/releases) *(either high-quality textures or low-quality)*.<br>
 2) Extract folder **DecorationsMod** from the archive.<br>
@@ -16,12 +18,12 @@ Requires QMods and SMLHelper.<br>
 <br>
 
 ### Configuration instructions:
-To edit configuration, double click on Configurator shortcut inside folder "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod".<br>
+To edit configuration, double click on **Configurator** shortcut inside folder "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod*".<br>
 
 <br><br><br>
 
 ### Update instructions:
-Same as the installation instructions (at step 3 it will ask if you want to replace files, say Yes).<br>
+Same as the installation instructions (at step 3 it will ask if you want to replace files, say **Yes**).<br>
 
 <br><br><br>
 
