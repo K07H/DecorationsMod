@@ -1,3 +1,16 @@
+Version 1.7.4
+Fixed: Precursor tablets now have correct recipes.
+Modified: You can now define more options for the new flora (food value, water value, decomposition rate, ...).
+Modified: Customizable Picture Frame now renders in high quality when player is within a 20meters radius.
+Modified: Reorganized the positions of items in the Builder tool menu.
+Modified: Seeds and eggs recipes now requires salt by default (instead of ion crystal), you can change it by editing mod config.
+Added: 2 mushroom tree seeds (in seeds fabricator).
+Added: 5 seamoth fragments (in decorations fabricator).
+Added: More options in the Config file.
+Added: You can now resize the Warper Specimen (hold 'E' and click on it) and you can build it in more places.
+Added: Discovery mode: You can now customize unlock conditions for new items, seeds and eggs by editing mod config.
+Added: A configuration tool which simplifies configuration of this mod. It is available through game menu (Options => Mods => Decorations mod), or by double clicking the "Configurator" shortcut inside Decorations mod folder at "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod".
+
 Version 1.7.3
 Fixed: A bug that was affecting placement of following items: Alien tablets, Sea emperor egg, Shocker egg, Powercell, Ion powercell, Battery, Ion battery, Bleach, Lubricant, Water bottles, Computer chip, Wiring kit, Advanced wiring kit and Stalker tooth.
 
