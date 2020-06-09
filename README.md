@@ -18,7 +18,7 @@ Requires QMods and SMLHelper.<br>
 ### Description:
 Adds a fabricator allowing you to craft 118 new items. Adds another fabricator to craft 55 new seeds. 27 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
 
-**Adds a decoration fabricator allowing you to craft following new items:**<br>
+**Adds a decoration fabricator allowing you to craft following new items (118 new items):**<br>
     5 unique posters<br>
     7 unique glass containers<br>
     3 unique lab equipments<br>
@@ -38,7 +38,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     5 unique alien tablets<br>
     19 unique eggs<br>
     5 unique seamoth fragments<br>
-**Add a seeds fabricator allowing you to craft and grow following new flora:**<br>
+**Add a seeds fabricator allowing you to craft and grow following new flora (55 new seeds):**<br>
     7 unique air plants<br>
     7 unique air trees<br>
     8 unique tropical plants<br>
@@ -46,29 +46,28 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     9 unique water trees<br>
     5 unique corals<br>
     7 unique amphibious plants<br>
-**Add the following new items in the "Miscellaneous" section of habitat builder:**<br>
+**Add the following new items in the habitat builder menu (29 new buildables):**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
     Markiplier1 doll<br>
     Markiplier2 doll<br>
     Specimen Analyzer<br>
-    Seamoth doll (customizable)<br>
-    PRAWN suit doll (customizable)<br>
-    Forklift toy (customizable)<br>
-    3 unique cargo crates (customizable)<br>
-    4 unique sofas<br>
-    Stool<br>
-    Customizable picture frame (customizable)<br>
+    Seamoth doll<br>
+    PRAWN suit doll<br>
+    Forklift toy<br>
+    Customizable picture frame<br>
+    Customizable posters<br>
     Empty desk<br>
-    3 unique lockers<br>
-    2 unique benches<br>
+    Stool<br>
     Warper specimen<br>
-    Small aquarium<br>
-**Adds following new items in the "Exterior modules" section of the habitat builder:**<br>
-    Lamp (customizable)<br>
+    3 unique cargo crates<br>
+    3 unique lockers<br>
+    4 unique sofas<br>
+    2 unique benches<br>
     Long planter (handles sea seeds)<br>
-**Adds following new item in the "Interior modules" section of the habitat builder:**<br>
+    Customizable light<br>
     Long planter (handles land seeds)<br>
+    Small aquarium<br>
 **You will be able to place following existing items where you want:**<br>
     Coffee cup<br>
     All snacks<br>
@@ -90,7 +89,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     Batteries/PowerCells and their ion versions<br>
 
 ### Additional information:<br>
-Inside the **DecorationsMod** folder you will find the file **Config.txt** which contains options that you can modify. You can check the list of available options [here](https://github.com/K07H/DecorationsMod/raw/master/DecorationsMod/Config.txt).<br>
+Inside the **DecorationsMod** folder you will a **Configurator** shortcut which allows you to configure this mod.<br>
 You can change range, brightness and color of the customizable light item (by clicking on it and holding various keys).<br>
 You can change the size and orientation of the customizable picture frame item (also you can set its content image from the screenshot folder like any other regular picture frame).<br>
 You can switch customizable picture frames to poster mode by clicking on it while holding "F".<br>
