@@ -742,7 +742,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un petit ordinateur mural simple (doit être relié à un serveur pour fonctionner).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una computadora pequeña y sencilla montada en la pared (debe estar conectada a un servidor para funcionar).";
+                        return "Una computadora simple montada en la pared (debe estar conectada a un servidor para funcionar).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük, basit duvara monte edilen bilgisayar (kullanılması için bir sunucuya bağlanılması gerekiyor).";
                     else if (UserLanguage == CountryCode.DE)
@@ -859,7 +859,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Analyseur de spécimen";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Analizador de muestras";
+                        return "Analizador de especímenes";
                     else if (UserLanguage == CountryCode.TR)
                         return "Örnek İnceleyici";
                     else if (UserLanguage == CountryCode.DE)
@@ -872,7 +872,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Étudie des spécimens pour en déduire des schémas de fabrication.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Estudie especímenes para deducir patrones de fabricación.";
+                        return "Estudie especímenes para deducir patrones de comportamiento.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Üretim kalıplarını anlamak için örnekler üzerinde çalışır.";
                     else if (UserLanguage == CountryCode.DE)
@@ -898,7 +898,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Cette poupée d'empereur léviathan a été créée à partir des observations faites sur 4546B.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Esta muñeca emperador leviatán fue creada a partir de observaciones hechas en 4546B.";
+                        return "Esta muñeca de emperador leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu Deniz İmparatoru oyuncağı 4546B'deki gözlemlerle yapıldı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -916,9 +916,9 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Le chat de EatMyDiction.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "El gato de Eat My Diction.";
+                        return "El gato de EatMyDiction.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Eat My Diction'un kedisi.";
+                        return "EatMyDiction'un kedisi.";
                     else if (UserLanguage == CountryCode.DE)
                         return "Friss-meine-Aussprache-Katze.";
                     else if (UserLanguage == CountryCode.RU)
@@ -955,7 +955,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Conteneur de JackSepticEye";
                     else if (UserLanguage == CountryCode.ES)
-                        return "JackSepticEye Tanque";
+                        return "Contenedor de JackSepticEye";
                     else if (UserLanguage == CountryCode.TR)
                         return "JackSepticEye Tüpü";
                     else if (UserLanguage == CountryCode.DE)
@@ -981,7 +981,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Poupées de léviathans";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Muñecas Leviatán";
+                        return "Muñecos de Leviatanes";
                     else if (UserLanguage == CountryCode.TR)
                         return "Canavar oyuncakları";
                     else if (UserLanguage == CountryCode.DE)
@@ -994,7 +994,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Poupée de léviathan fantôme";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Fantasma leviatán muñeca";
+                        return "Muñeco de Leviatán Fantasma";
                     else if (UserLanguage == CountryCode.TR)
                         return "Hayalet canavar oyuncağı";
                     else if (UserLanguage == CountryCode.DE)
@@ -1007,7 +1007,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Cette poupée de léviathan fantôme a été créée à partir des observations faites sur 4546B.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Esta muñeca fantasma leviatán fue creada a partir de observaciones hechas en 4546B.";
+                        return "Este muñeco de leviatán fantasma fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu hayalet canavar oyuncağı 4546B'deki gözlemlerle yapıldı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1020,7 +1020,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Poupée de faucheur léviathan";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Segador leviatán muñeca";
+                        return "Muñeco de Leviatán Segador";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tırpanlı canavar oyuncağı";
                     else if (UserLanguage == CountryCode.DE)
@@ -1033,7 +1033,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Cette poupée de faucheur léviathan a été créée à partir des observations faites sur 4546B.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Esta muñeca segador leviatán fue creada a partir de observaciones hechas en 4546B.";
+                        return "Este muñeco de leviatán segador fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu tırpanlı canavar oyuncağı 4546B'deki gözlemlerle yapıldı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1046,7 +1046,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Poupée de dragon des mers léviathan";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Dragon marino leviatán muñeca";
+                        return "Muñeco de dragón marino leviatán";
                     else if (UserLanguage == CountryCode.TR)
                         return "Deniz ejderhası oyuncağı";
                     else if (UserLanguage == CountryCode.DE)
@@ -1059,7 +1059,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Cette poupée de dragon des mers léviathan a été créée à partir des observations faites sur 4546B.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Esta muñeca dragon marino leviatán fue creada a partir de observaciones hechas en 4546B.";
+                        return "Este muñeco dragón marino leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu deniz ejderhası oyuncağı 4546B'deki gözlemlerle yapıldı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1072,7 +1072,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Poupée de pèlerin des mers léviathan";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Caminante marino leviatán muñeca";
+                        return "Muñeco de Caminante Marino leviatán";
                     else if (UserLanguage == CountryCode.TR)
                         return "Deniz gezgini oyuncağı";
                     else if (UserLanguage == CountryCode.DE)
@@ -1085,7 +1085,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Cette poupée de pèlerin des mers léviathan a été créée à partir des observations faites sur 4546B.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Esta muñeca caminante marino leviatán fue creada a partir de observaciones hechas en 4546B.";
+                        return "Este muñeco de caminante marino leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu deniz gezgini oyuncağı 4546B'deki gözlemlerle yapıldı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1098,7 +1098,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Poupée de reefback léviathan";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Portarrecifes leviatán muñeca";
+                        return "Muñeco de Portarrecifes Leviatán";
                     else if (UserLanguage == CountryCode.TR)
                         return "Resif devi oyuncağı";
                     else if (UserLanguage == CountryCode.DE)
@@ -1111,7 +1111,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Cette poupée de reefback léviathan a été créée à partir des observations faites sur 4546B.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Esta muñeca portarrecifes leviatán fue creada a partir de observaciones hechas en 4546B.";
+                        return "Este muñeco de portarrecifes leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu resif devi oyuncağı 4546B'deki gözlemlerle yapıldı";
                     else if (UserLanguage == CountryCode.DE)
@@ -1124,7 +1124,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Poupée de câlineur";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Muñeca pez monada";
+                        return "Muñeco de pez monada";
                     else if (UserLanguage == CountryCode.TR)
                         return "Sevimli balık oyuncağı";
                     else if (UserLanguage == CountryCode.DE)
@@ -1137,7 +1137,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Cette poupée de câlineur a été créée à partir des observations faites sur 4546B.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Esta muñeca pez monada fue creada a partir de observaciones hechas en 4546B.";
+                        return "Este muñeco de pez monada fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu sevimli balık oyuncağı 4546B'deki gözlemlerle yapıldı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1176,7 +1176,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Jouet Seamoth";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Juguete Seamoth";
+                        return "Juguete del Seamoth";
                     else if (UserLanguage == CountryCode.TR)
                         return "Seamoth oyuncağı";
                     else if (UserLanguage == CountryCode.DE)
@@ -1202,7 +1202,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Jouet combinaison PRAWN";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Juguete traje PRAWN";
+                        return "Juguete del traje PRAWN";
                     else if (UserLanguage == CountryCode.TR)
                         return "Suban giysi oyuncağı";
                     else if (UserLanguage == CountryCode.DE)
@@ -1226,9 +1226,9 @@ namespace DecorationsMod
                         return "A decorative miniature of the PRAWN suit. " + GetFriendlyWord("SwitchExosuitModel");
                 case "ForkLiftDollName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Chariot élévateur (non-fonctionnel)";
+                        return "Monte-charge (non fonctionnel)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Carretilla elevadora (no funcionales)";
+                        return "Montacargas (no funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Forklift (yararsız)";
                     else if (UserLanguage == CountryCode.DE)
@@ -1239,9 +1239,9 @@ namespace DecorationsMod
                         return "Forklift (non-functional)";
                 case "ForkLiftDollDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un chariot élévateur décoratif. " + GetFriendlyWord("AdjustForkliftSize");
+                        return "Un monte-charge décoratif. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una carretilla elevadora decorativa. " + GetFriendlyWord("AdjustForkliftSize");
+                        return "Un montacargas decorativo. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.TR)
                         return "Dekoratif forklift. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.DE)
@@ -1319,7 +1319,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Petit gobelet";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Pequeña taza";
+                        return "Taza pequeña";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük bardak";
                     else if (UserLanguage == CountryCode.DE)
@@ -1358,7 +1358,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un plat à base de poisson.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un plato hecho de pescado.";
+                        return "Una comida hecha de pescado.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Balıktan yapılmış bir yemek.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1410,7 +1410,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Des serviettes de table en maille de fibre.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Servilletas en malla de fibra.";
+                        return "Servilletas de malla de fibra.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Fiber örgüden yapılmış peçete.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1421,7 +1421,7 @@ namespace DecorationsMod
                         return "Napkins made of fiber mesh.";
                 case "LabRobotArmName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Bras robot (non-fonctionnel)";
+                        return "Bras robot (non fonctionnel)";
                     else if (UserLanguage == CountryCode.ES)
                         return "Brazo robótico (no funcional)";
                     else if (UserLanguage == CountryCode.TR)
@@ -1434,7 +1434,7 @@ namespace DecorationsMod
                         return "Robot arm (non-functional)";
                 case "LabRobotArmDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un bras robot de laboratoire (non-fonctionnel).";
+                        return "Un bras robot de laboratoire (non fonctionnel).";
                     else if (UserLanguage == CountryCode.ES)
                         return "Un brazo robótico de laboratorio (no funcional).";
                     else if (UserLanguage == CountryCode.TR)
@@ -1558,16 +1558,16 @@ namespace DecorationsMod
                                "Maintenez 'E' et cliquez pour change le modèle de bras droit" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.ES)
                         return "Haga clic para cambiar el modelo de brazo izquierdo, o:" + Environment.NewLine +
-                               "Mantenga 'E' y haga clic para cambiar el modelo de brazo derecho" + Environment.NewLine;
+                               "Mantenga 'E' y haga clic para cambiar al modelo de brazo derecho" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.TR)
                         return "Sol kol modelini değiştirmek için sol tıklayın," + Environment.NewLine +
                                "Sağ kol modelini değiştirmek için 'E' tuşuna basarken sol tıklayın" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.DE)
                         return "Klicken, um das linke Armmodell zu ändern, oder:" + Environment.NewLine +
-                               "'E' drücken und klicken, um das rechte Armmodell zu wechseln." + Environment.NewLine;
+                               "'E' drücken und klicken, um das rechte Armmodell zu wechseln" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.RU)
                         return "Нажмите, чтобы изменить:" + Environment.NewLine +
-                               "Удерживайте 'E' и выберите, чтобы изменить модель." + Environment.NewLine;
+                               "Удерживайте 'E' и выберите, чтобы изменить модель" + Environment.NewLine;
                     else
                         return "Click to change left arm model, or:" + Environment.NewLine +
                                "Hold 'E' and click to change right arm model" + Environment.NewLine;
@@ -1750,7 +1750,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Stylo";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Lápice";
+                        return "Lápiz";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kalem";
                     else if (UserLanguage == CountryCode.DE)
@@ -1763,7 +1763,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un stylo Alterra.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un lápice Alterra.";
+                        return "Un lápiz Alterra.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Alterra kalemi.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1789,7 +1789,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un porte-stylo Alterra.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un portalápices Alterra.";
+                        return "Un portalápices de Alterra.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Alterra kalem tutucu.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1828,7 +1828,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Petit banc (décoratif et fonctionnel)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Pequeño banco (decorativo y funcional)";
+                        return "Asiento pequeño (decorativo y funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük oturak (dekoratif ve işlevsel)";
                     else if (UserLanguage == CountryCode.DE)
@@ -1841,7 +1841,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un petit banc : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un pequeño banco: Estético y práctico para un descanso.";
+                        return "Un asiento pequeño: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük bir oturak: Estetik ve dinlenmek için kullanışlı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1854,7 +1854,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Banc moyen (décoratif et fonctionnel)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Mediano banco (decorativo y funcional)";
+                        return "Asiento mediano (decorativo y funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Orta boyutlu oturak (dekoratif ve işlevsel)";
                     else if (UserLanguage == CountryCode.DE)
@@ -1867,7 +1867,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un banc moyen : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un mediano banco: Estético y práctico para un descanso.";
+                        return "Un asiento mediano: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Orta boyutlu bir oturak: Estetik ve dinlenmek için kullanışlı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1880,7 +1880,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Banc large (décoratif et fonctionnel)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Banco grande (decorativo y funcional)";
+                        return "Asiento grande (decorativo y funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzun oturak (dekoratif ve işlevsel)";
                     else if (UserLanguage == CountryCode.DE)
@@ -1893,7 +1893,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un banc large : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un grande banco: Estético y práctico para un descanso.";
+                        return "Un asiento grande: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzun bir oturak: Estetik ve dinlenmek için kullanışlı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1906,7 +1906,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Angle de banc (décoratif et fonctionnel)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Ángulo de banco (decorativo y funcional)";
+                        return "Asiento angulado (decorativo y funcional)";
                     else if (UserLanguage == CountryCode.TR)
                         return "Açılı oturak (dekoratif ve işlevsel)";
                     else if (UserLanguage == CountryCode.DE)
@@ -1919,7 +1919,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un angle de banc : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un ángulo de banco: Estético y práctico para un descanso.";
+                        return "Un asiento angulado: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Açılı bir oturak: Estetik ve dinlenmek için kullanışlı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -1945,7 +1945,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un cadre mural personnalisable." + Environment.NewLine + Environment.NewLine + "Utilisation : " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Marco de pared personalizables." + Environment.NewLine + Environment.NewLine + "Uso: " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
+                        return "Marco de pared personalizable." + Environment.NewLine + Environment.NewLine + "Uso: " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                     else if (UserLanguage == CountryCode.TR)
                         return "Duvara asılan çerçevedir." + Environment.NewLine + Environment.NewLine + "Kullanımı: " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                     else if (UserLanguage == CountryCode.DE)
@@ -2041,7 +2041,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Spécimen alpha d'une variété d'arbre terrestre alien.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Muestra alfa de una variedad de árbol terrestre alienígena.";
+                        return "Muestra alfa de una variedad de árboles terrestres alienígena.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara ağacının alfa örneği.";
                     else if (UserLanguage == CountryCode.DE)
@@ -2067,7 +2067,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Spécimen beta d'une variété d'arbre terrestre alien.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Beta espécimen de una variedad de árbol terrestre alienígena.";
+                        return "Beta espécimen de una variedad de árboles terrestres alienígenas.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uzaylı kara ağacının beta örneği.";
                     else if (UserLanguage == CountryCode.DE)
@@ -2119,7 +2119,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Spécimen beta d'une variété de plante terrestre alien aux propriétés intéressantes.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Beta espécimen alfa de una variedad de plantas terrestres alienígenas con propiedades interesantes.";
+                        return "Espécimen beta de una variedad de plantas terrestres alienígenas con propiedades interesantes.";
                     else if (UserLanguage == CountryCode.TR)
                         return "İlginç özelliklere sahip uzaylı kara ağacının beta örneği.";
                     else if (UserLanguage == CountryCode.DE)
@@ -2418,7 +2418,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Gousse d'ancrage";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Orbe anclado";
+                        return "Vainas ancladas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Deniz Mayını";
                     else if (UserLanguage == CountryCode.DE)
@@ -2886,7 +2886,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Casier";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Armario";
+                        return "Casillero";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dolap";
                     else if (UserLanguage == CountryCode.DE)
@@ -2899,7 +2899,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Un casier de stockage.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un armario de almacenamiento.";
+                        return "Un casillero de almacenamiento.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bir depolama dolabı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -2951,7 +2951,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Grandes plantes terrestres";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Grandes plantas terrestres";
+                        return "Plantas terrestres grandes";
                     else if (UserLanguage == CountryCode.TR)
                         return "Büyük karasal bitkiler";
                     else if (UserLanguage == CountryCode.DE)
@@ -2964,7 +2964,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Petites plantes terrestres";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Pequeñas plantas terrestres";
+                        return "Plantas terrestres pequeñas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük karasal bitkiler";
                     else if (UserLanguage == CountryCode.DE)
@@ -3016,7 +3016,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Buissons aquatiques";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Arbustos de agua";
+                        return "Arbustos acuáticos";
                     else if (UserLanguage == CountryCode.TR)
                         return "Su çalıları";
                     else if (UserLanguage == CountryCode.DE)
@@ -3029,7 +3029,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Petites plantes aquatiques";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Pequeñas plantas acuáticas";
+                        return "Plantas acuáticas pequeñas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Küçük sucul bitkiler";
                     else if (UserLanguage == CountryCode.DE)
@@ -3042,7 +3042,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Grandes plantes aquatiques";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Grandes plantas acuáticas";
+                        return "Plantas acuáticas grandes";
                     else if (UserLanguage == CountryCode.TR)
                         return "Büyük su bitkileri";
                     else if (UserLanguage == CountryCode.DE)
