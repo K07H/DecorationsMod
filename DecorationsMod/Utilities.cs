@@ -1,8 +1,6 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
-using UnityEngine;
 
 namespace DecorationsMod
 {
@@ -18,92 +16,52 @@ namespace DecorationsMod
 
     internal static class FilesHelper
     {
-        public static string GetSaveFolderPath()
-        {
-            return Path.Combine(Path.Combine(@".\SNAppData\SavedGames\", SaveLoadManager.main.GetCurrentSlot()), "DecorationsMod");
-        }
+        public static string GetSaveFolderPath() => Path.Combine(Path.Combine(@".\SNAppData\SavedGames\", SaveLoadManager.main.GetCurrentSlot()), "DecorationsMod");
     }
 
     public static class RegionHelper
     {
-        private const int GEO_FRIENDLYNAME = 8;
+        /// <summary>Supported languages.</summary>
+        public static string[] AvailableLanguages = new string[6] { "en", "fr", "es", "de", "ru", "tr" };
 
-        public static string[] AvailableLanguages = new string[6] { "fr", "en", "de", "es", "ru", "tr" };
-
-        private enum GeoClass : int
-        {
-            Nation = 16,
-            Region = 14
-        };
-
+        /// <summary>Supported country codes.</summary>
         public enum CountryCode
         {
             EN = 0,
             FR = 1,
             ES = 2,
-            TR = 3,
-            DE = 4,
-            RU = 5
+            DE = 3,
+            RU = 4,
+            TR = 5
         };
 
-        #region Win32 Declarations to get Windows locale.
-        [DllImport("kernel32.dll", ExactSpelling = true, CallingConvention = CallingConvention.StdCall, SetLastError = true)]
-        private static extern int GetUserGeoID(GeoClass geoClass);
+        /// <summary>Returns default country code.</summary>
+        public static CountryCode GetDefaultCountryCode() => GetCountryCodeFromLabel(CultureInfo.InstalledUICulture?.TwoLetterISOLanguageName);
 
-        [DllImport("kernel32.dll")]
-        private static extern int GetUserDefaultLCID();
-
-        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-        private static extern int GetGeoInfo(int geoid, int geoType, StringBuilder lpGeoData, int cchData, int langid);
-        #endregion
-
-        /// <summary>
-        /// Returns country code.
-        /// </summary>
-        public static CountryCode GetCountryCode()
+        /// <summary>Returns country code from language label.</summary>
+        /// <param name="label">Language label.</param>
+        /// <returns>Returns the associated country code.</returns>
+        public static CountryCode GetCountryCodeFromLabel(string label)
         {
-            int geoId = GetUserGeoID(GeoClass.Nation);
-            int lcid = GetUserDefaultLCID();
-            StringBuilder locationBuffer = new StringBuilder(100);
-            GetGeoInfo(geoId, GEO_FRIENDLYNAME, locationBuffer, locationBuffer.Capacity, lcid);
-
-            string countryCode = locationBuffer.ToString().Trim();
-            if (countryCode.Length > 1)
+            if (!string.IsNullOrEmpty(label) && label.Length == 2)
             {
-                countryCode = countryCode.Substring(0, 2).ToLowerInvariant();
-                if (countryCode.CompareTo("fr") == 0)
+                if (string.Compare(label, "fr", true, CultureInfo.InvariantCulture) == 0)
                     return CountryCode.FR;
-                else if (countryCode.CompareTo("es") == 0)
-                    return CountryCode.ES;
-                else if (countryCode.CompareTo("tr") == 0)
-                    return CountryCode.TR;
-                else if (countryCode.CompareTo("de") == 0)
-                    return CountryCode.DE;
-                else if (countryCode.CompareTo("ru") == 0)
+                else if (string.Compare(label, "ru", true, CultureInfo.InvariantCulture) == 0)
                     return CountryCode.RU;
+                else if (string.Compare(label, "tr", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.TR;
+                else if (string.Compare(label, "de", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.DE;
+                else if (string.Compare(label, "es", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.ES;
             }
             return CountryCode.EN;
         }
 
-        public static CountryCode GetCountryCodeFromLabel(string label)
-        {
-            switch (label)
-            {
-                case "fr":
-                    return CountryCode.FR;
-                case "de":
-                    return CountryCode.DE;
-                case "es":
-                    return CountryCode.ES;
-                case "ru":
-                    return CountryCode.RU;
-                case "tr":
-                    return CountryCode.TR;
-                default:
-                    return CountryCode.EN;
-            }
-        }
-
+        /// <summary>Returns language label from country code.</summary>
+        /// <param name="code">Country code.</param>
+        /// <returns>Returns the associated language label.</returns>
         public static string GetCountryLabelFromCode(CountryCode code)
         {
             switch (code)
@@ -121,26 +79,6 @@ namespace DecorationsMod
                 default:
                     return "en";
             }
-        }
-    }
-
-    public static class ImageUtils
-    {
-        // Scrapped from: https://github.com/RandyKnapp/SubnauticaModSystem/blob/master/SubnauticaModSystem/Common/Utility/ImageUtils.cs
-        public static Texture2D LoadTextureFromFile(string imageFilePath)
-        {
-            if (File.Exists(imageFilePath))
-            {
-                byte[] imageBytes = File.ReadAllBytes(imageFilePath);
-                Texture2D texture2D = new Texture2D(2, 2, TextureFormat.BC7, false);
-                if (texture2D.LoadImage(imageBytes))
-                    return texture2D;
-                else
-                    Logger.Log("ERROR: Image located at \"" + imageFilePath + "\" cannot not be loaded.");
-            }
-            else
-                Logger.Log("ERROR: Image located at \"" + imageFilePath + "\" has not been found.");
-            return null;
         }
     }
 }

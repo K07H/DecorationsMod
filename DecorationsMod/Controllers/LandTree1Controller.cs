@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Globalization;
+using UnityEngine;
 
 namespace DecorationsMod.Controllers
 {
@@ -56,7 +57,7 @@ namespace DecorationsMod.Controllers
                 _initTimeValue = DayNightCycle.main.timePassed;
                 foreach (Transform tr in go.transform)
                 {
-                    bool isStatic = tr.name.StartsWith("Land_tree_01_static");
+                    bool isStatic = tr.name.StartsWith("Land_tree_01_static", true, CultureInfo.InvariantCulture);
                     if (_origScale == Vector3.zero && !isStatic)
                         _origScale = new Vector3(tr.localScale.x, tr.localScale.y, tr.localScale.z);
                     else if (_origStaticScale == Vector3.zero && isStatic)
@@ -138,8 +139,8 @@ namespace DecorationsMod.Controllers
                     else
                         Logger.Log("DEBUG: LandTree1Controller.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "]");
 #endif
-                    if (Utils.NearlyEqual(_grownPlant.gameObject.transform.localPosition.x, 5000.0f)
-                        && Utils.NearlyEqual(_grownPlant.gameObject.transform.localPosition.z, 5000.0f))
+                    if (_grownPlant.gameObject.transform.localPosition.x > 4900.0f && _grownPlant.gameObject.transform.localPosition.x < 5100.0f &&
+                        _grownPlant.gameObject.transform.localPosition.z > 4900.0f && _grownPlant.gameObject.transform.localPosition.z < 5100.0f)
                     {
 #if DEBUG_FLORA
                         if (id != null)
@@ -155,7 +156,7 @@ namespace DecorationsMod.Controllers
                         {
                             foreach (Transform tr in _grownPlant.gameObject.transform)
                             {
-                                if (tr.name.StartsWith("Land_tree_01_static"))
+                                if (tr.name.StartsWith("Land_tree_01_static", true, CultureInfo.InvariantCulture))
                                     tr.localScale = new Vector3(_origStaticScale.x * _progress, _origStaticScale.y * _progress, _origStaticScale.z * _progress);
                             }
                         }
@@ -171,7 +172,7 @@ namespace DecorationsMod.Controllers
                             _progress = 1.0f;
                             foreach (Transform tr in _grownPlant.gameObject.transform)
                             {
-                                if (!tr.name.StartsWith("Land_tree_01_static"))
+                                if (!tr.name.StartsWith("Land_tree_01_static", true, CultureInfo.InvariantCulture))
                                     tr.localScale = new Vector3(_origScale.x, _origScale.y, _origScale.z);
                             }
                             // Enable knifeable

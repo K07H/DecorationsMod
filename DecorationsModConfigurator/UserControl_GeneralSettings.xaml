@@ -1,0 +1,259 @@
+﻿<UserControl x:Class="DecorationsModConfigurator.UserControl_GeneralSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DecorationsModConfigurator"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             x:Name="UserControlGeneralSettings"
+             mc:Ignorable="d"
+             FontWeight="Light"
+             FontSize="18"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             d:DesignHeight="1050" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Background" Value="Transparent" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3000BFFF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="10,0,0,0">
+        <TextBlock Text="{Binding Config_GeneralSettings, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="22" FontWeight="Regular" Margin="15" />
+        <Grid VerticalAlignment="Center" Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_Language, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" x:Name="ComboBox_Language" Width="140" SelectionChanged="ComboBox_Language_SelectionChanged">
+                <ComboBoxItem Name="lang_auto">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="QuestionMarkBox" Width="32" Height="24" Margin="0,1,0,0" VerticalAlignment="Bottom" />
+                        <TextBlock Text="Automatic" VerticalAlignment="Center" Margin="5,0,0,1" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="lang_de">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="22" Height="15" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/DE.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Deutsche" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="lang_en">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="22" Height="15" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/EN.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="English" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="lang_es">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="22" Height="15" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/ES.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Español" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="lang_fr">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="22" Height="15" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/FR.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Français" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="lang_ru">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="22" Height="15" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/RU.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Русский" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="lang_tr">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="22" Height="15" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TR.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Türk" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_UseCompactTooltips, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_UseCompactTooltips" Width="20" Height="20" Content="" IsChecked="{Binding UseCompactTooltips, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_LockQuickslotsWhenPlacingItem, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_LockQuickslotsWhenPlacingItem" Width="20" Height="20" Content="" IsChecked="{Binding LockQuickslotsWhenPlacingItem, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_AllowBuildOutside, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_AllowBuildOutside" Width="20" Height="20" Content="" IsChecked="{Binding AllowBuildOutside, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_AllowPlaceOutside, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_AllowPlaceOutside" Width="20" Height="20" Content="" IsChecked="{Binding AllowPlaceOutside, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_EnablePlaceItems, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_EnablePlaceItems" Width="20" Height="20" Content="" IsChecked="{Binding EnablePlaceItems, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_EnablePlaceBatteries, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_EnablePlaceBatteries" Width="20" Height="20" Content="" IsChecked="{Binding EnablePlaceBatteries, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_EnableNewFlora, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_EnableNewFlora" Width="20" Height="20" Content="" IsChecked="{Binding EnableNewFlora, Mode=TwoWay}" Checked="CB_EnableNewFlora_Checked" Unchecked="CB_EnableNewFlora_Unchecked">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_EnableNewItems, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_EnableNewItems" Width="20" Height="20" Content="" IsChecked="{Binding EnableNewItems, Mode=TwoWay}" Checked="CB_EnableNewItems_Checked" Unchecked="CB_EnableNewItems_Unchecked">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid x:Name="GRD_AddSofas">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_EnableSofas, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_EnableSofas" Width="20" Height="20" Content="" IsChecked="{Binding EnableSofas, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid x:Name="GRD_EnableIndoorLongPlanterOutside">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_AllowIndoorLongPlanterOutside, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_EnableIndoorLongPlanterOutside" Width="20" Height="20" Content="" IsChecked="{Binding AllowIndoorLongPlanterOutside, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid x:Name="GRD_EnableOutdoorLongPlanterInside">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_AllowOutdoorLongPlanterInside, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_EnableOutdoorLongPlanterInside" Width="20" Height="20" Content="" IsChecked="{Binding AllowOutdoorLongPlanterInside, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_FixAquariumLighting, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_FixAquariumLighting" Width="20" Height="20" Content="" IsChecked="{Binding FixAquariumLighting, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_EnableAquariumGlassGlowing, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_EnableAquariumGlassGlowing" Width="20" Height="20" Content="" IsChecked="{Binding EnableAquariumGlassGlowing, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+    </StackPanel>
+</UserControl>

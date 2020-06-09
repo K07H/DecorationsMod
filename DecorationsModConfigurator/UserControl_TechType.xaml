@@ -1,0 +1,2487 @@
+﻿<UserControl x:Class="DecorationsModConfigurator.UserControl_TechType"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DecorationsModConfigurator"
+             xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             FontSize="18"
+             FontWeight="Light"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox HorizontalAlignment="Stretch" MinWidth="330" x:Name="ComboBox_TechType" SelectionChanged="ComboBox_TechType_SelectionChanged" TextSearch.TextPath="Name">
+                <ComboBoxItem Name="Custom">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Unknown.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Custom (advanced)" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Acid_Mushroom">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Acid_Mushroom.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Acid Mushroom" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Acid_Mushroom_Spore">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Acid_Mushroom_Spore.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Acid Mushroom Spore" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Advanced_Wiring_Kit">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Advanced_Wiring_Kit.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Advanced Wiring Kit" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Aerogel">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Aerogel.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Aerogel" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Air_Bladder">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Air_Bladder.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Air_Bladder" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Alien_Feces">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Alien_Feces.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Alien Feces" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Arcade_Gorge_Toy">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Arcade_Gorge_Toy.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Arcade Gorge Toy" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Aurora_Miniature">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Aurora_Miniature.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Aurora Miniature" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Battery">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Battery.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Battery" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Beacon">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Beacon.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Beacon" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Benzene">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Benzene.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Benzene" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Bladderfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Bladderfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Bladderfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Bladderfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Bladderfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Bladderfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Bladderfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Bladderfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Bladderfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Bleach">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Bleach.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Bleach" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Blood_Oil">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Blood_Oil.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Blood Oil" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Blue_Cap">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush  ImageSource="/Images/TechTypes/Blue_Cap.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Blue Cap" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Blue_Palm_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Blue_Palm_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Blue Palm Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Boomerang">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Boomerang.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Boomerang" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Boomerang">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Boomerang.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Boomerang" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Boomerang">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Boomerang.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Boomerang" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Brain_Coral_Sample">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Brain_Coral_Sample.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Brain Coral Sample" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Bulb_Bush_Sample">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Bulb_Bush_Sample.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Bulb Bush Sample" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Bulbo_Tree_Sample">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Bulbo_Tree_Sample.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Bulbo Tree Sample" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Camera_Drone">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Camera_Drone.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Camera Drone" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Carry_all">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Carry-all.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Carry-all" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cave_Bush_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cave_Bush_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cave Bush Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cave_Sulfur">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cave_Sulfur.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cave Sulfur" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Chinese_Potato">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Chinese_Potato.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Chinese Potato" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Coffee">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Coffee.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Coffee" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Compass">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Compass.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Compass" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Computer_Chip">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Computer_Chip.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Computer Chip" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Copper_Ore">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Copper_Ore.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Copper" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Copper_Wire">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Copper_Wire.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Copper Wire" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Coral_Tube_Sample">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Coral_Tube_Sample.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Coral Tube Sample" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Creature_Decoy">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Creature_Decoy.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Creature Decoy" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Creepvine_Sample">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Creepvine_Sample.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Creepvine Sample" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Creepvine_Seed_Cluster">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Creepvine_Seed_Cluster.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Creepvine Seed Cluster" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Crystalline_Sulfur">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Crystalline_Sulfur.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Crystalline Sulfur" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Decoy_Tube_Upgrade">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Decoy_Tube_Upgrade.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Decoy Tube Upgrade" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Depth_Module_MK1">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Depth_Module_MK1.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Depth Module MK1" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Depth_Module_MK2">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Depth_Module_MK2.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Depth Module MK2" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Depth_Module_MK3">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Depth_Module_MK3.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Depth Module MK3" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Docking_Bay_Repair_Module">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Docking_Bay_Repair_Module.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Docking Bay Repair Module" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Engine_Efficiency_Module">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Engine_Efficiency_Module.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Engine Efficiency Module" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Fire_Suppression_System">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Fire_Suppression_System.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Fire Suppression System" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Shield_Generator">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Shield_Generator.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Shield Generator" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Sonar_Upgrade">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Sonar_Upgrade.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Sonar Upgrade" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cyclops_Thermal_Reactor_Module">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cyclops_Thermal_Reactor_Module.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cyclops Thermal Reactor Module" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cylindrical_Sample_Flask">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cylindrical_Sample_Flask.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cylindrical Sample Flask" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Deep_Shroom">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Deep_Shroom.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Deep Shroom" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Deep_Shroom_Spore">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Deep_Shroom_Spore.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Deep Shroom Spore" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Diamond">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Diamond.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Diamond" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Disinfected_Water">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Disinfected_Water.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Disinfected Water" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Bone_Shark_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Bone_Shark_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Boneshark" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Crabsnake_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Crabsnake_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Crabsnake" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Crabsquid_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Crabsquid_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Crabsquid" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="CrashEgg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/CrashEgg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Crashfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cute_Fish_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cute_Fish_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Cuddlefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Gasopod_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Gasopod_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Gasopod" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Jellyray_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Jellyray_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Jellyray" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="LavaLizard_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/LavaLizard_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Lavalizard" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Mesmer_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Mesmer_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Mesmer" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Rabbit_Ray_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Rabbit_Ray_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Rabbit Ray" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Sand_Shark_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Sand_Shark_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Sandshark" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Shocker_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Shocker_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Shocker" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Spadefish_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Spadefish_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Spadefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Stalker_Egg">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Stalker_Egg.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Egg: Stalker" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Enameled_Glass">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Enameled_Glass.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Enameled Glass" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Engine_Efficiency_Module">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Engine_Efficiency_Module.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Engine Efficiency Module" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Eye_Stalk_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Eye_Stalk_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Eye Stalk Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Eyeye">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Eyeye.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Eyeye" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Eyeye">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Eyeye.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Eyeye" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Eyeye">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Eyeye.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Eyeye" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Fern_Palm_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Fern_Palm_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Fern Palm Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Fiber_Mesh">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Fiber_Mesh.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Fiber Mesh" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Filtered_Water">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Filtered_Water.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Filtered Water" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Fins">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Fins.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Fins" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="First_Aid_Kit">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/First_Aid_Kit.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="First Aid Kit" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Flare">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Flare.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Flare" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Flashlight">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Flashlight.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Flashlight" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Floater">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Floater.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Floater" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Fungal_Sample">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Fungal_Sample.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Fungal Sample" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Furled_Papyrus_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Furled_Papyrus_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Furled Papyrus Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Gabes_Feather_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Gabes_Feather_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Gabe's Feather Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Garryfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Garryfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Garryfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Garryfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Garryfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Garryfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Garryfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Garryfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Garryfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Gas_Pod">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Gas_Pod.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Gas Pod" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Gas_Torpedo">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Gas_Torpedo.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Gas Torpedo" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Gel_Sack">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Gel_Sack.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Gel Sack" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Gel_Sack_Spore">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Gel_Sack_Spore.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Gel Sack Spore" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Ghost_Weed_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Ghost_Weed_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Ghost Weed Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Glass">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Glass.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Glass" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Gold">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Gold.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Gold" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Grav_Trap">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Grav_Trap.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Grav Trap" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Gray_Cap">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Gray_Cap.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Gray Cap" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Grub_Basket_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Grub_Basket_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Grub Basket Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Habitat_Builder">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Habitat_Builder.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Habitat Builder" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Hatching_Enzymes">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Hatching_Enzymes.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Hatching Enzymes" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="High_Capacity_Tank">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/High_Capacity_Tank.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="High Capacity O² Tank" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Holefish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Holefish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Holefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Holefish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Holefish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Holefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Holefish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Holefish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Holefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Hoopfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Hoopfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Hoopfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Hoopfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Hoopfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Hoopfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Hoopfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Hoopfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Hoopfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Hoverfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Hoverfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Hoverfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Hoverfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Hoverfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Hoverfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Hoverfish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Hoverfish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Hoverfish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Electron_Microscope">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Electron_Microscope.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Electron Microscope" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Fluid_Analyzer">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Fluid_Analyzer.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Fluid Analyzer" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Hull_Reinforcement">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Hull_Reinforcement.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Hull Reinforcement" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Hydrochloric_Acid">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Hydrochloric_Acid.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Hydrochloric Acid" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Ion_Battery">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Ion_Battery.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Ion Battery" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Ion_Power_Cell">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Ion_Power_Cell.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Ion Powercell" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Ion_Precursor_Crystal">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Ion_Precursor_Crystal.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Ion Cube" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Jaffa_Cup_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Jaffa_Cup_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Jaffa Cup Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Jellyshroom_Spore">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Jellyshroom_Spore.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Jellyshroom Spore" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Kyanite">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Kyanite.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Kyanite" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Lantern_Fruit">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Lantern_Fruit.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Lantern Fruit" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Large_Filtered_Water">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Large_Filtered_Water.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Large Filtered Water" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Large_Sample_Flask">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Large_Sample_Flask.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Large Sample Flask" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Laser_Cutter">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Laser_Cutter.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Laser Cutter" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Lead">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Lead.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Lead" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Light_Stick">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Light_Stick.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Light Stick" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Lightweight_High_Capacity_Tank">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Lightweight_High_Capacity_Tank.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Lightweight High Capacity O² Tank" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Lithium">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Lithium.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Lithium" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Lubricant">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Lubricant.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Lubricant" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Magmarang">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Magmarang.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Magmarang" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Magmarang">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Magmarang.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Magmarang" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Magmarang">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Magmarang.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Magmarang" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Magnetite">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Magnetite.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Magnetite" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Marblemelon">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Marblemelon.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Marblemelon" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Marblemelon_Seeds">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Marblemelon_Seeds.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Marblemelon Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Membrain_Tree_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Membrain_Tree_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Membrain Tree Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Metal_Salvage">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Metal_Salvage.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Metal Salvage" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Ming_Plant_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Ming_Plant_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Ming Plant Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Mobile_Vehicle_Bay">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Mobile_Vehicle_Bay.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Mobile Vehicle Bay" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Nickel_Ore">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Nickel_Ore.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Nickel Ore" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Nutrient_Block">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Nutrient_Block.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Nutrient Block" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Oculus">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Oculus.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Oculus" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Oculus">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Oculus.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Oculus" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Oculus">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Oculus.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Oculus" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Pathfinder_Tool">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Pathfinder_Tool.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Pathfinder Tool" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Peeper">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Peeper.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Peeper" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Peeper">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Peeper.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked_Peeper" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Peeper">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Peeper.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured_Peeper" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Pink_Cap">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Pink_Cap.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Pink Cap" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Pink_Cap_Spore">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Pink_Cap_Spore.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Pink Cap Spore" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Pipe">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Pipe.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Pipe" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Base_Pipe_Connector">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Base_Pipe_Connector.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Pipe (Base Connector)" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Pipe_Surface_Floater">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Pipe_Surface_Floater.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Pipe (Surface Floater)" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Plasteel_Ingot">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Plasteel_Ingot.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Plasteel Ingot" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Polyaniline">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Polyaniline.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Polyaniline" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Poster_Aurora">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Poster_Aurora.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Poster Aurora" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Poster_Natural_Selection_2">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Poster_Natural_Selection_2.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Poster Natural Selection 2" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Poster_Kitty">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Poster_Kitty.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Poster Kitty" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Poster_Exosuit">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Poster_Exosuit.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Poster Exosuit" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Poster_Exosuit_2">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Poster_Exosuit_2.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Poster Exosuit 2" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Power_Cell">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Power_Cell.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Powercell" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Prawn_Suit_Depth_Module_MK1">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Prawn_Suit_Depth_Module_MK1.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Prawn Suit Depth Module MK1" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Prawn_Suit_Depth_Module_MK2">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Prawn_Suit_Depth_Module_MK2.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Prawn Suit Depth Module MK2" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Prawn_Suit_Drill_Arm">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Prawn_Suit_Drill_Arm.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Prawn Suit Drill Arm" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Prawn_Suit_Grappling_Arm">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Prawn_Suit_Grappling_Arm.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Prawn Suit Grappling Arm" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Prawn_Suit_Jump_Jet_Upgrade">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Prawn_Suit_Jump_Jet_Upgrade.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Prawn Suit Jump Jet Upgrade" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Prawn_Suit_Propulsion_Cannon">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Prawn_Suit_Propulsion_Cannon.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Prawn Suit Propulsion Cannon" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Prawn_Suit_Thermal_Reactor">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Prawn_Suit_Thermal_Reactor.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Prawn Suit Thermal Reactor" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Prawn_Suit_Torpedo_Arm">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Prawn_Suit_Torpedo_Arm.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Prawn Suit Torpedo Arm" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Propulsion_Cannon">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Propulsion_Cannon.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Propulsion Cannon" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Pygmy_Fan_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Pygmy_Fan_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Pygmy Fan Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Quartz">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Quartz.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Quartz" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Radiation_Suit">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Radiation_Suit.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Radiation Suit" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Reactor_Rod">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Reactor_Rod.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Reactor Rod" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Reactor_Rod_Depleted">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Reactor_Rod_Depleted.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Reactor Rod (Depleted)" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Rebreather">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Rebreather.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Rebreather" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Reclaimed_Water">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Reclaimed_Water.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Reclaimed Water" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Red_Eyeye">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Red_Eyeye.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Red Eyeye" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Red_Eyeye">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Red_Eyeye.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Red Eyeye" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Red_Eyeye">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Red_Eyeye.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Red Eyeye" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Redwort_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Redwort_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Redwort Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Reginald">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Reginald.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Reginald" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Reginald">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Reginald.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Reginald" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Reginald">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Reginald.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Reginald" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Regress_Shell_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Regress_Shell_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Regress Shell Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Reinforced_Dive_Suit">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Reinforced_Dive_Suit.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Reinforced Dive Suit" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Repair_Tool">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Repair_Tool.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Repair Tool" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Repulsion_Cannon">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Repulsion_Cannon.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Repulsion Cannon" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Rouge_Cradle_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Rouge_Cradle_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Rouge Cradle Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Ruby_Crystal">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Ruby_Crystal.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Ruby" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Salt_Deposit">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Salt_Deposit.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Salt Deposit" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Sample_Analyzer">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Sample_Analyzer.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Sample Analyzer" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Scanner">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Scanner.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Scanner" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Scanner_Room_HUD_Chip">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Scanner_Room_HUD_Chip.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Scanner Room HUD Chip" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Scanner_Room_Range_Upgrade">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Scanner_Room_Range_Upgrade.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Scanner Room Range Upgrade" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Scanner_Room_Speed_Upgrade">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Scanner_Room_Speed_Upgrade.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Scanner Room Speed Upgrade" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Sea_Crown_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Sea_Crown_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Sea Crown Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Seaglide">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Seaglide.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Seaglide" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Seamoth_Depth_Module_MK1">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Seamoth_Depth_Module_MK1.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Seamoth Depth Module MK1" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Seamoth_Depth_Module_MK2">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Seamoth_Depth_Module_MK2.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Seamoth Depth Module MK2" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Seamoth_Depth_Module_MK3">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Seamoth_Depth_Module_MK3.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Seamoth Depth Module MK3" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Seamoth_Solar_Charger">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Seamoth_Solar_Charger.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Seamoth Solar Charger" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Seamoth_Sonar">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Seamoth_Sonar.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Seamoth Sonar" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Seamoth_Torpedo_System">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Seamoth_Torpedo_System.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Seamoth Torpedo System" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Silicone_Rubber">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Silicone_Rubber.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Silicone Rubber" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Silver_Ore">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Silver_Ore.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Silver" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Small_Marblemelon">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Small_Marblemelon.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Small Marblemelon" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Small_Sample_Flask">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Small_Sample_Flask.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Small Sample Flask" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Snack1">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Snack1.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Snack 1" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Snack2">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Snack2.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Snack 2" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Snack3">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Snack3.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Snack 3" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Spadefish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Spadefish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Spadefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Spadefish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Spadefish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Spadefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Spadefish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Spadefish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Spadefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Speckled_Rattler">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Speckled_Rattler.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Speckled Rattler" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Speckled_Rattler_Spore">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Speckled_Rattler_Spore.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Speckled Rattler Spore" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Spiked_Horn_Grass_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Spiked_Horn_Grass_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Spiked Horn Grass Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Spinefish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Spinefish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Spinefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cooked_Spinefish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cooked_Spinefish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cooked Spinefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Cured_Spinefish">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Cured_Spinefish.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Cured Spinefish" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Spotted_Dockleaf_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Spotted_Dockleaf_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Spotted Dockleaf Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Stalker_Tooth">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Stalker_Tooth.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Stalker Tooth" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Standard_O2_Tank">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Standard_O2_Tank.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Standard O² Tank" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Stasis_Rifle">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Stasis_Rifle.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Stasis Rifle" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Stillsuit">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Stillsuit.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Stillsuit" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Storage_Module">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Storage_Module.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Storage Module" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Survival_Knife">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Survival_Knife.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Survival Knife" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Swim_Charge_Fins">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Swim_Charge_Fins.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Swim Charge Fins" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Synthetic_Fibers">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Synthetic_Fibers.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Synthetic Fibers" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Table_Coral_Sample">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Table_Coral_Sample.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Table Coral Sample" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Thermoblade">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Thermoblade.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Thermoblade" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Tiger_Plant_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Tiger_Plant_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Tiger Plant Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Titanium">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Titanium.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Titanium" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Titanium_Ingot">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Titanium_Ingot.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Titanium Ingot" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Toy_Car">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Toy_Car.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Toy Car" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Ultra_Glide_Fins">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Ultra_Glide_Fins.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Ultra Glide Fins" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Ultra_High_Capacity_Tank">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Ultra_High_Capacity_Tank.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Ultra High Capacity O² Tank" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Uraninite_Crystal">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Uraninite_Crystal.gif"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Uraninite Crystal" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Veined_Nettle_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Veined_Nettle_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Veined Nettle Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Violet_Beau_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Violet_Beau_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Violet Beau Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Vortex_Torpedo">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Vortex_Torpedo.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Vortex Torpedo" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Voxel_Shrub_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Voxel_Shrub_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Voxel Shrub Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Waterproof_Locker">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Waterproof_Locker.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Waterproof Locker" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Wiring_Kit">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Wiring_Kit.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Wiring Kit" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Writhing_Weed_Seed">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="40" Height="40" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/TechTypes/Writhing_Weed_Seed.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Writhing Weed Seed" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel x:Name="SP_CustomTechType" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Tech type name or ID: " VerticalAlignment="Center" />
+            <TextBox x:Name="TB_CustomTechTypeName" Width="160" VerticalAlignment="Center" Text="{Binding CustomTechType, Mode=TwoWay}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

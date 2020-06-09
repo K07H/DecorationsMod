@@ -1,10 +1,7 @@
-﻿using Harmony;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DecorationsMod.Fixers
 {
-    [HarmonyPatch(typeof(Knife))]
-    [HarmonyPatch("GiveResourceOnDamage")]
     public class KnifeFixer
     {
         public static TechType purplePineConeTechType = TechType.None;
@@ -24,7 +21,7 @@ namespace DecorationsMod.Fixers
                 HarvestType harvestTypeFromTech = CraftData.GetHarvestTypeFromTech(techType);
 #endif
                 if ((harvestTypeFromTech == HarvestType.DamageAlive && wasAlive) || (harvestTypeFromTech == HarvestType.DamageDead && !isAlive))
-                    CraftData.AddToInventory(TechType.Salt, 1, false, false); // Add one salt in player's inventory
+                    CraftData.AddToInventory(ConfigSwitcher.PurplePineconeDroppedResource, ConfigSwitcher.PurplePineconeDroppedResourceAmount, false, false); // Add one salt in player's inventory
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -18,6 +20,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("SeamothDollName"),
                                                         LanguageHelper.GetFriendlyWord("SeamothDollDescription"),
                                                         true);
+
+            CrafterLogicFixer.SeamothDoll = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
@@ -114,21 +119,21 @@ namespace DecorationsMod.NewItems
                 {
                     foreach (Renderer rend in renderers)
                     {
-                        if (rend.name.StartsWith("Submersible_SeaMoth_glass_geo"))
+                        if (rend.name.StartsWith("Submersible_SeaMoth_glass_geo", true, CultureInfo.InvariantCulture))
                             rend.material = glass;
                         else if (rend.materials.Length > 0)
                         {
                             foreach (Material tmpMat in rend.materials)
                             {
-                                if (tmpMat.name.CompareTo("Submersible_SeaMoth_Glass_interior (Instance)") == 0)
+                                if (string.Compare(tmpMat.name, "Submersible_SeaMoth_Glass_interior (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.EnableKeyword("MARMO_SIMPLE_GLASS");
                                     tmpMat.EnableKeyword("WBOIT");
                                 }
-                                else if (tmpMat.name.CompareTo("Submersible_SeaMoth_Glass (Instance)") != 0)
+                                else if (string.Compare(tmpMat.name, "Submersible_SeaMoth_Glass (Instance)", true, CultureInfo.InvariantCulture) != 0)
                                 {
                                     tmpMat.shader = marmosetUber;
-                                    if (tmpMat.name.CompareTo("power_cell_01 (Instance)") == 0)
+                                    if (string.Compare(tmpMat.name, "power_cell_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal1);
                                         tmpMat.SetTexture("_SpecTex", spec1);
@@ -140,7 +145,7 @@ namespace DecorationsMod.NewItems
                                         tmpMat.EnableKeyword("MARMO_SPECMAP");
                                         tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
-                                    else if (tmpMat.name.CompareTo("Submersible_SeaMoth (Instance)") == 0)
+                                    else if (string.Compare(tmpMat.name, "Submersible_SeaMoth (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal2);
                                         tmpMat.SetTexture("_SpecTex", spec2);
@@ -152,7 +157,7 @@ namespace DecorationsMod.NewItems
                                         tmpMat.EnableKeyword("MARMO_SPECMAP");
                                         tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
-                                    else if (tmpMat.name.CompareTo("Submersible_SeaMoth_indoor (Instance)") == 0)
+                                    else if (string.Compare(tmpMat.name, "Submersible_SeaMoth_indoor (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal3);
                                         tmpMat.SetTexture("_Illum", illum3);
@@ -162,14 +167,14 @@ namespace DecorationsMod.NewItems
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
                                         tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
-                                    else if (tmpMat.name.CompareTo("seamoth_storage_01 (Instance)") == 0)
+                                    else if (string.Compare(tmpMat.name, "seamoth_storage_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal4);
 
                                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                         tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
-                                    else if (tmpMat.name.CompareTo("seamoth_storage_02 (Instance)") == 0)
+                                    else if (string.Compare(tmpMat.name, "seamoth_storage_02 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal5);
                                         tmpMat.SetTexture("_Illum", illum5);
@@ -179,7 +184,7 @@ namespace DecorationsMod.NewItems
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
                                         tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
-                                    else if (tmpMat.name.CompareTo("seamoth_power_cell_slot_01 (Instance)") == 0)
+                                    else if (string.Compare(tmpMat.name, "seamoth_power_cell_slot_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal6);
                                         tmpMat.SetTexture("_SpecTex", spec6);
@@ -188,7 +193,7 @@ namespace DecorationsMod.NewItems
                                         tmpMat.EnableKeyword("MARMO_SPECMAP");
                                         tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
-                                    else if (tmpMat.name.CompareTo("seamoth_torpedo_01 (Instance)") == 0)
+                                    else if (string.Compare(tmpMat.name, "seamoth_torpedo_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal7);
                                         tmpMat.SetTexture("_SpecTex", spec7);
@@ -197,7 +202,7 @@ namespace DecorationsMod.NewItems
                                         tmpMat.EnableKeyword("MARMO_SPECMAP");
                                         tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                     }
-                                    else if (tmpMat.name.CompareTo("seamoth_torpedo_01_hatch_01 (Instance)") == 0)
+                                    else if (string.Compare(tmpMat.name, "seamoth_torpedo_01_hatch_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_BumpMap", normal8);
                                         tmpMat.SetTexture("_SpecTex", spec8);

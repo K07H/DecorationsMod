@@ -1,5 +1,6 @@
 ﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.Flora
@@ -43,7 +44,7 @@ namespace DecorationsMod.Flora
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
                     {
-                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                     }),
             };
 #else
@@ -51,7 +52,7 @@ namespace DecorationsMod.Flora
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
 #endif
@@ -120,7 +121,7 @@ namespace DecorationsMod.Flora
             MeshRenderer staticRenderer = staticModel.GetComponent<MeshRenderer>();
             foreach (Material tmpMat in staticRenderer.materials)
             {
-                if (tmpMat.name.CompareTo("Land_tree_01_trunk (Instance)") == 0)
+                if (string.Compare(tmpMat.name, "Land_tree_01_trunk (Instance)", true, CultureInfo.InvariantCulture) == 0)
                 {
                     tmpMat.shader = marmosetUber;
                     tmpMat.SetTexture("_BumpMap", normal); // Set normal map
@@ -205,19 +206,21 @@ namespace DecorationsMod.Flora
             pickupable.usePackUpIcon = false;
 
             // Add eatable
-            Eatable eatable = prefab.AddComponent<Eatable>();
-            eatable.foodValue = Config.FoodValue;
-            eatable.waterValue = Config.WaterValue;
+            Eatable eatable = null;
+            if (Config.Eatable)
+            {
+                eatable = prefab.AddComponent<Eatable>();
+                eatable.foodValue = Config.FoodValue;
+                eatable.waterValue = Config.WaterValue;
 #if SUBNAUTICA
-            eatable.stomachVolume = 10.0f;
+                eatable.stomachVolume = 10.0f;
+                eatable.allowOverfill = false;
 #endif
-            eatable.decomposes = Config.Decomposes;
-            eatable.despawns = false;
-#if SUBNAUTICA
-            eatable.allowOverfill = false;
-#endif
-            eatable.kDecayRate = 0.02f;
-            eatable.despawnDelay = 300.0f;
+                eatable.decomposes = Config.Decomposes;
+                eatable.kDecayRate = Config.KDecayRate;
+                eatable.despawns = Config.Despawns;
+                eatable.despawnDelay = Config.DespawnDelay;
+            }
 
             // Add plantable
             Plantable plantable = prefab.AddComponent<Plantable>();

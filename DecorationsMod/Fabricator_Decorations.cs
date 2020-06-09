@@ -74,7 +74,7 @@ namespace DecorationsMod
                 CraftDataHandler.AddBuildable(this.TechType);
 
                 // Add the new TechType to the group of Interior Module buildables
-                CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType, TechType.Fabricator);
                 
                 LanguageHandler.SetLanguageLine(HandOverText, LanguageHelper.GetFriendlyWord(HandOverText));
 
@@ -181,6 +181,19 @@ namespace DecorationsMod
 
             //var circuitBoxTab1 = electronicsTab.AddTabNode("CircuitBoxTab1", LanguageHelper.GetFriendlyWord("CircuitBoxTab1"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox2"));
             //var circuitBoxTab2 = electronicsTab.AddTabNode("CircuitBoxTab2", LanguageHelper.GetFriendlyWord("CircuitBoxTab2"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox3"));
+
+            // Seamoth fragments
+            var seamothFragmentsTab = electronicsTab.AddTabNode("SeamothFragments", LanguageHelper.GetFriendlyWord("SeamothFragments"), AssetsHelper.Assets.LoadAsset<Sprite>("seamothfragment2icon"));
+            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment1") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment1"));
+            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment2") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment2"));
+            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment3") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment3"));
+            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment4") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment4"));
+            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment5") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment5"));
 
             #endregion
 
@@ -412,14 +425,17 @@ namespace DecorationsMod
             // Accessories
             var accessoriesTab = patTab.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));
             accessoriesTab.AddCraftingNode(TechType.LuggageBag);
-            if (!ConfigSwitcher.SofaStr1_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaStr1") != TechType.None)
-                accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr1"));
-            if (!ConfigSwitcher.SofaStr2_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaStr2") != TechType.None)
-                accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr2"));
-            if (!ConfigSwitcher.SofaStr3_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaStr3") != TechType.None)
-                accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr3"));
-            if (!ConfigSwitcher.SofaCorner2_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaCorner2") != TechType.None)
-                accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaCorner2"));
+            if (ConfigSwitcher.EnableSofas)
+            {
+                if (!ConfigSwitcher.SofaStr1_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaStr1") != TechType.None)
+                    accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr1"));
+                if (!ConfigSwitcher.SofaStr2_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaStr2") != TechType.None)
+                    accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr2"));
+                if (!ConfigSwitcher.SofaStr3_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaStr3") != TechType.None)
+                    accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr3"));
+                if (!ConfigSwitcher.SofaCorner2_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaCorner2") != TechType.None)
+                    accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaCorner2"));
+            }
             accessoriesTab.AddCraftingNode(TechType.Cap1,
                                            TechType.Cap2);
 

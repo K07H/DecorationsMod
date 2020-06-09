@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Fixers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -14,6 +15,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("EggSeaDragonName"),
                                                         LanguageHelper.GetFriendlyWord("EggSeaDragonDescription"),
                                                         true);
+
+            CrafterLogicFixer.SeaDragonEgg = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell");
 

@@ -1,6 +1,7 @@
 ﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -143,14 +144,14 @@ namespace DecorationsMod.NewItems
             MeshRenderer[] renderers = prefab.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer rend in renderers)
             {
-                if (rend.name.CompareTo("Starship_wall_monitor_01_03") == 0)
+                if (string.Compare(rend.name, "Starship_wall_monitor_01_03", true, CultureInfo.InvariantCulture) == 0)
                 {
                     Material[] tmp = rend.materials;
                     if (tmp.Length >= 2)
                     {
-                        if (tmp[0].name.CompareTo("Starship_wall_monitor_01_screen (Instance)") == 0)
+                        if (string.Compare(tmp[0].name, "Starship_wall_monitor_01_screen (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             rend.materials = new Material[] { screenMaterial, tmp[1] };
-                        else if (tmp[1].name.CompareTo("Starship_wall_monitor_01_screen (Instance)") == 0)
+                        else if (string.Compare(tmp[1].name, "Starship_wall_monitor_01_screen (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             rend.materials = new Material[] { tmp[0], screenMaterial };
                     }
                 }

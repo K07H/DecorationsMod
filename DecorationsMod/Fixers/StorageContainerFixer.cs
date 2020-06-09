@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.Fixers
@@ -21,12 +22,12 @@ namespace DecorationsMod.Fixers
 #endif
                 GameObject parentGO = __instance.gameObject.transform.parent.gameObject;
                 PrefabIdentifier pid2 = parentGO.GetComponent<PrefabIdentifier>();
-                if (pid2 != null && (parentGO.name.StartsWith("CargoBox01_damaged") ||
-                                     parentGO.name.StartsWith("CargoBox01a") ||
-                                     parentGO.name.StartsWith("CargoBox01b") ||
-                                     parentGO.name.StartsWith("DecorativeLocker") ||
-                                     parentGO.name.StartsWith("DecorativeLockerClosed") ||
-                                     parentGO.name.StartsWith("DecorativeLockerDoor")))
+                if (pid2 != null && (parentGO.name.StartsWith("CargoBox01_damaged", true, CultureInfo.InvariantCulture) ||
+                                     parentGO.name.StartsWith("CargoBox01a", true, CultureInfo.InvariantCulture) ||
+                                     parentGO.name.StartsWith("CargoBox01b", true, CultureInfo.InvariantCulture) ||
+                                     parentGO.name.StartsWith("DecorativeLocker", true, CultureInfo.InvariantCulture) ||
+                                     parentGO.name.StartsWith("DecorativeLockerClosed", true, CultureInfo.InvariantCulture) ||
+                                     parentGO.name.StartsWith("DecorativeLockerDoor", true, CultureInfo.InvariantCulture)))
                 {
 #if DEBUG_CARGO_CRATES
                     Logger.Log("DEBUG: OnProtoDeserializeObjectTree() parent storageConteiner Id=[" + pid2.Id + "] objName=[" + parentGO.name + "] nbItems=[" + (__instance.container != null ? Convert.ToString(__instance.container.count) : "null") + "]");

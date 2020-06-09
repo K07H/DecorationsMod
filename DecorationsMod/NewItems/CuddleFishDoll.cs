@@ -1,5 +1,7 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -17,6 +19,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("CuddleFishDollName"),
                                                         LanguageHelper.GetFriendlyWord("CuddleFishDollDescription"),
                                                         true);
+
+            CrafterLogicFixer.CuddleFishDoll = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
@@ -87,7 +92,7 @@ namespace DecorationsMod.NewItems
                             foreach (Material tmpMat in rend.materials)
                             {
                                 tmpMat.shader = marmosetUber;
-                                if (tmpMat.name.CompareTo("Cute_fish (Instance)") == 0)
+                                if (string.Compare(tmpMat.name, "Cute_fish (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal);
                                     tmpMat.SetTexture("_SpecTex", spec);

@@ -1,5 +1,6 @@
 ﻿using SMLHelper.V2.Crafting;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -84,7 +85,7 @@ namespace DecorationsMod.NewItems
                     foreach (Material tmpMat in rend.materials)
                     {
                         tmpMat.shader = marmosetUber;
-                        if (tmpMat.name.CompareTo("docking_clerical_01 (Instance)") == 0)
+                        if (string.Compare(tmpMat.name, "docking_clerical_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                         {
                             tmpMat.SetTexture("_BumpMap", normal);
                             tmpMat.EnableKeyword("MARMO_NORMALMAP");

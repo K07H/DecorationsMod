@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("SpecimenAnalyzerName"),
                                                         LanguageHelper.GetFriendlyWord("SpecimenAnalyzerDescription"),
                                                         true);
+
+            CrafterLogicFixer.SpecimenAnalyzer = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             if (ConfigSwitcher.SpecimenAnalyzer_asBuildable)
                 this.IsHabitatBuilder = true;

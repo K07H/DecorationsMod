@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2616106294
+CRC: 3689292979
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 243c177d0b3e34060ec3dea43aa829a8
+    Hash: 934b5af776b3a0145df47f2361400fa5
   TypeTreeHash:
     serializedVersion: 2
     Hash: eedc87be2896b4e070c2bce7ab33f497
@@ -100,6 +100,7 @@ Assets:
 - Assets/landplant2icon.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_normal.png
 - Assets/flora_smalldeco13icon.png
+- Assets/seamothfragment5icon.png
 - Assets/cutefish.fbx
 - Assets/Materials/Ghost_Leviathan_inside.mat
 - Assets/prawnsuit.fbm/Exosuit_grappling_arm_colorMask.png
@@ -107,6 +108,7 @@ Assets:
 - Assets/flora.fbm/Land_tree_01_leaves_illum.png
 - Assets/benchmediumicon.png
 - Assets/poster_decorations.prefab
+- Assets/seamothfragment4icon.png
 - Assets/flora_plantmiddle11icon.png
 - Assets/robotarm.fbm/biodome_Robot_Arm_illum.png
 - Assets/starshipcargo.fbm/Starship_cargo_normal.png
@@ -136,10 +138,12 @@ Assets:
 - Assets/seatreader.fbm/Sea_Treader_01_02_normal.png
 - Assets/Lost_river_generic_skeleton_03.prefab
 - Assets/computer1.png
+- Assets/seamothfragment3icon.png
 - Assets/circuitbox3b.png
 - Assets/seamoth.fbm/power_cell_01.png
 - Assets/Materials/Lost_river_sea_dragon_skeleton_skull.mat
 - Assets/seamoth.fbm/seamoth_torpedo_01_hatch_01_normal.png
+- Assets/MushroomTree/Coral_reef_tree_mushrooms_02_normal.png
 - Assets/robotarm.fbm/biodome_Robot_Arm.png
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_blue.png
@@ -148,8 +152,10 @@ Assets:
 - Assets/barnapkinsicon.png
 - Assets/prawnsuit.fbm/exosuit_01_glass_normal.png
 - Assets/leviathans.fbm/OLD_Ghost_Leviathan_shell_illum.png
+- Assets/MushroomTreeParts/Coral_reef_barnacle_suckers_spec.png
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon_colorMask.png
 - Assets/seamoth.fbm/power_cell_01_normal.png
+- Assets/MushroomTreeParts/Coral_reef_small_deco_06_normal.png
 - Assets/circuitbox3.png
 - Assets/Materials/Sea_Dragon_01_eyeball.mat
 - Assets/leviathans.fbm/Sea_Dragon_01_01_spec.png
@@ -170,6 +176,7 @@ Assets:
 - Assets/seamoth.fbm/Submersible_SeaMoth_illum.png
 - Assets/flora_smalldeco15redicon.png
 - Assets/prawnsuit.fbm/exosuit_01_fp.png
+- Assets/MyMushroomTree1.prefab
 - Assets/docking_clerical_clipboard1.prefab
 - Assets/Materials/Sea_Dragon_01_02.mat
 - Assets/robotarm.fbm/biodome_Robot_Arm_wall.png
@@ -184,10 +191,12 @@ Assets:
 - Assets/drinksandfood.fbm/docking_food_01_normal.png
 - Assets/flora_browncoraltubes0203icon.png
 - Assets/cutefish.fbm/Cute_fish.png
+- Assets/MushroomTreeParts/Coral_reef_ball_clusters_normal.png
 - Assets/seamoth.fbm/seamoth_torpedo_01.png
 - Assets/labtubeicon.png
 - Assets/ghostleviathan.prefab
 - Assets/forklifticon.png
+- Assets/MushroomTree/Coral_reef_tree_mushrooms_01_illum.png
 - Assets/computer2.png
 - Assets/Materials/exosuit_storage_01.mat
 - Assets/Materials/seamoth_storage_02.mat
@@ -204,12 +213,15 @@ Assets:
 - Assets/leviathans.fbx
 - Assets/Materials/Submersible_SeaMoth.mat
 - Assets/Lost_river_generic_skeleton_02.prefab
+- Assets/MushroomTree/Coral_reef_tree_mushrooms_02_spec.png
 - Assets/reefback.fbx
 - Assets/folder3icon.png
 - Assets/seaemperor.prefab
 - Assets/tropicalplant1bicon.png
+- Assets/seamothfragment1icon.png
 - Assets/spottedreedsicon.png
 - Assets/fern4icon.png
+- Assets/MushroomTreeParts/Coral_reef_small_deco_02_spec.png
 - Assets/Materials/Reefback_reef_tile.mat
 - Assets/poster_kitty_n_aurora.fbx
 - Assets/seatreaderleviathan.prefab
@@ -239,6 +251,7 @@ Assets:
 - Assets/spottedreeds1icon.png
 - Assets/furnitures.fbm/docking_clerical_01.png
 - Assets/AlienRelicsSprites/relic_01_b.png
+- Assets/MushroomTreeParts/Coral_reef_small_deco_02_illum.png
 - Assets/ghost_leviathan_eggs_icon.png
 - Assets/Materials/seamoth_torpedo_01.mat
 - Assets/seamoth.fbm/seamoth_storage_02_illum.png
@@ -282,6 +295,7 @@ Assets:
 - Assets/seamoth.fbm/seamoth_torpedo_01_spec.png
 - Assets/seamoth.fbm/seamoth_storage_02_normal.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_normal.png
+- Assets/MushroomTreeTrunk/texture4normal.png
 - Assets/covetree.fbm/lost_river_cove_tree_01_eggs_spec.png
 - Assets/Materials/submarine_engine_power_cells_01.mat
 - Assets/Materials/poster_bg.mat
@@ -293,6 +307,8 @@ Assets:
 - Assets/sofacorner02icon.png
 - Assets/seatreader.fbm/Sea_Treader_01_01.png
 - Assets/AlienRelicsSprites/relic_05_b.png
+- Assets/MushroomTreeParts/Coral_reef_ball_clusters_spec.png
+- Assets/MushroomTree/Coral_reef_tree_mushrooms_02_illum.png
 - Assets/flora.fbm/Land_tree_01_leaves_spec.png
 - Assets/warper_part_4.prefab
 - Assets/reaperleviathanskull.fbm/Lost_river_reaper_skeleton_skull_normal.png
@@ -330,6 +346,7 @@ Assets:
 - Assets/Jason/Materials/Stool_Leather_Normal.png
 - Assets/PDA.fbm/PDA_illum.png
 - Assets/Materials/new_wall_monitor_screen_material.mat
+- Assets/MushroomTreeParts/Spiral_blue_thing.png
 - Assets/leviathans.fbm/Ghost_Leviathan_inside.png
 - Assets/submarine_fabricator_purple.png
 - Assets/PrecursorKeySprites/PrecursorKey_Blue.png
@@ -370,7 +387,9 @@ Assets:
 - Assets/Jason/Materials/Stool_Leather_AlbedoTransparency.png
 - Assets/emperorleviathan.fbm/Leviathan_01_02_normal.png
 - Assets/reefback.fbm/coral_reef_grass_07.png
+- Assets/MushroomTreeParts/Coral_reef_small_deco_02_normal.png
 - Assets/seamoth.fbm/seamoth_upgrade_slots_01_normal.png
+- Assets/MushroomTreeTrunk/texture4.png
 - Assets/floatingstone1icon.png
 - Assets/cargobox01b.prefab
 - Assets/barbottle02icon.png
@@ -390,6 +409,7 @@ Assets:
 - Assets/Materials/poster_magnet.mat
 - Assets/emperorleviathan.fbm/Leviathan_01_01_normal.png
 - Assets/fabricator_icon_purple.png
+- Assets/seamothfragment2icon.png
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon_normal.png
 - Assets/Materials/coral_reef_grass_04.mat
 - Assets/seamoth.fbm/Submersible_SeaMoth.png
@@ -408,6 +428,7 @@ Assets:
 - Assets/WarperParts/warper_entrails_illum.png
 - Assets/sofastr02icon.png
 - Assets/reefback.fbm/Reefback_01_02_illum.png
+- Assets/MushroomTreeParts/Coral_reef_ball_clusters_illum.png
 - Assets/Jason/Materials/Stool_Leather_SpecularSmoothness.png
 - Assets/seamoth.fbm/seamoth_torpedo_01_hatch_01.png
 - Assets/jungletree2icon.png
@@ -423,7 +444,9 @@ Assets:
 - Assets/Materials/Sea_Treader_01_02.mat
 - Assets/seamoth.fbm/seamoth_power_cell_slot_01_normal.png
 - Assets/seatreader.fbm/Sea_Treader_01_01_illum.png
+- Assets/MushroomTreeParts/Spiral_blue_thing_normal.png
 - Assets/Materials/exosuit_01.mat
+- Assets/MushroomTreeParts/Coral_reef_barnacle_suckers_normals.png
 - Assets/Materials/Reefback_01_01.mat
 - Assets/warper_part_3.prefab
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball_normal.png
@@ -439,6 +462,7 @@ Assets:
 - Assets/WarperParts/warper_normal.png
 - Assets/descent_bar_sofa_str_02.prefab
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_white.png
+- Assets/MushroomTreeTrunk/texture4normal2.png
 - Assets/barfood02.prefab
 - Assets/emperorleviathan.fbm/leviathan_01_01.png
 - Assets/penholdericon.png
@@ -518,6 +542,7 @@ Assets:
 - Assets/Materials/Reaper_Leviathan.mat
 - Assets/poster_kitty_n_aurora.fbm/poster_magnet.png
 - Assets/Materials/Reefback_coral_flat.mat
+- Assets/MushroomTree/Coral_reef_tree_mushrooms_01_normal.png
 - Assets/furnitures.fbm/docking_clerical_01_normal.png
 - Assets/flora_smalldeco17purpleicon.png
 - Assets/docking_clerical_folder3.prefab
@@ -527,11 +552,13 @@ Assets:
 - Assets/tropicalplant10aicon.png
 - Assets/Materials/Submersible_SeaMoth_Glass.mat
 - Assets/ghostleviathanicon.png
+- Assets/MushroomTreeParts/Coral_reef_barnacle_suckers_illum.png
 - Assets/PDA.fbm/PDA_spec.png
 - Assets/reefback.fbm/Reefback_reef_tile.png
 - Assets/prawnsuit.fbm/Exosuit_grappling_arm_normal.png
 - Assets/reefback.fbm/Reefback_01_02_normal.png
 - Assets/skulls.fbm/Lost_river_sea_dragon_skeleton_skull_normal.png
+- Assets/mushroomtree2icon.png
 - Assets/WarperParts/warper_entrails_spec.png
 - Assets/prawnsuit.fbm/Exosuit_torpedo_launcher_arm_normal.png
 - Assets/leviathans.fbm/Sea_Dragon_01_eyeball_spec.png
@@ -541,6 +568,7 @@ Assets:
 - Assets/warper_icon_7.png
 - Assets/poster_kitty_n_aurora.fbm/poster_magnet_normal.png
 - Assets/leviathans.fbm/Sea_Dragon_01_02_illum.png
+- Assets/mushroomtreeicon.png
 - Assets/barcup01.prefab
 - Assets/warper_icon_2.png
 - Assets/redgrass2tallicon.png

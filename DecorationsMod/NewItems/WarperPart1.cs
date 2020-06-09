@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
+using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -16,6 +19,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("BigWarperPartName"),
                                                         LanguageHelper.GetFriendlyWord("BigWarperPartDescription"),
                                                         true);
+
+            CrafterLogicFixer.WarperPart1 = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
@@ -76,10 +82,10 @@ namespace DecorationsMod.NewItems
                         {
                             foreach (Material tmpMat in rend.materials)
                             {
-                                if (tmpMat.name.CompareTo("precursor_lab_warper_liquid (Instance)") != 0 && !tmpMat.name.StartsWith("precursor_lab_warper_tube_"))
+                                if (string.Compare(tmpMat.name, "precursor_lab_warper_liquid (Instance)", true, CultureInfo.InvariantCulture) != 0 && !tmpMat.name.StartsWith("precursor_lab_warper_tube_", true, CultureInfo.InvariantCulture))
                                 {
                                     tmpMat.shader = marmosetUber;
-                                    if (tmpMat.name.CompareTo("precursor_lab_warper (Instance)") == 0)
+                                    if (string.Compare(tmpMat.name, "precursor_lab_warper (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_SpecTex", spec1);
                                         tmpMat.SetTexture("_BumpMap", normal1);
@@ -91,7 +97,7 @@ namespace DecorationsMod.NewItems
                                         tmpMat.EnableKeyword("MARMO_EMISSION");
                                         tmpMat.EnableKeyword("_ZWRITE_ON");
                                     }
-                                    else if (tmpMat.name.CompareTo("precursor_lab_warper_box (Instance)") == 0)
+                                    else if (string.Compare(tmpMat.name, "precursor_lab_warper_box (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                     {
                                         tmpMat.SetTexture("_SpecTex", spec1);
                                         tmpMat.SetTexture("_BumpMap", normal1);
@@ -137,9 +143,9 @@ namespace DecorationsMod.NewItems
                 constructable.allowedInSub = true;
                 constructable.allowedOnCeiling = true;
                 constructable.allowedOnWall = true;
+                constructable.allowedOnConstructables = true;
                 constructable.allowedOutside = false;
                 constructable.allowedOnGround = false;
-                constructable.allowedOnConstructables = false;
 #if BELOWZERO
                 constructable.allowedUnderwater = true;
 #endif
@@ -154,6 +160,16 @@ namespace DecorationsMod.NewItems
                 ConstructableBounds bounds = this.GameObject.AddComponent<ConstructableBounds>();
                 //bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.032f, bounds.bounds.position.z);
 
+                // Add warper specimen controller
+                var warperSpecimenController = this.GameObject.AddComponent<WarperSpecimenController>();
+
+                // Define unlock conditions
+                if (ConfigSwitcher.AddItemsWhenDiscovered)
+                    SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorWarper, new TechType[] { this.TechType });
+
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
                 SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
@@ -163,9 +179,6 @@ namespace DecorationsMod.NewItems
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon_1"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

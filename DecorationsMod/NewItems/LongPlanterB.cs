@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Fixers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -17,6 +18,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("ExteriorLongPlanterName"),
                                                         LanguageHelper.GetFriendlyWord("ExteriorLongPlanterDescription"),
                                                         true);
+
+            CrafterLogicFixer.LongPlanterB = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
@@ -45,6 +49,9 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Add to the custom buidables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
                 SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorOther, this.TechType, TechType.FarmingTray);
@@ -54,9 +61,6 @@ namespace DecorationsMod.NewItems
 
                 // Set the custom icon
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("longplanterbox"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

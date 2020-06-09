@@ -1,5 +1,7 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -17,6 +19,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("SeaTreaderDollName"),
                                                         LanguageHelper.GetFriendlyWord("SeaTreaderDollDescription"),
                                                         true);
+
+            CrafterLogicFixer.SeaTreaderDoll = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
@@ -83,7 +88,7 @@ namespace DecorationsMod.NewItems
                             foreach (Material tmpMat in rend.materials)
                             {
                                 tmpMat.shader = marmosetUber;
-                                if (tmpMat.name.CompareTo("Sea_Treader_01_01 (Instance)") == 0)
+                                if (string.Compare(tmpMat.name, "Sea_Treader_01_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal1);
                                     tmpMat.SetTexture("_SpecTex", spec1);
@@ -95,7 +100,7 @@ namespace DecorationsMod.NewItems
                                     tmpMat.EnableKeyword("MARMO_SPECMAP");
                                     tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                 }
-                                else if (tmpMat.name.CompareTo("Sea_Treader_01_02 (Instance)") == 0)
+                                else if (string.Compare(tmpMat.name, "Sea_Treader_01_02 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal2);
                                     tmpMat.SetTexture("_SpecTex", spec2);

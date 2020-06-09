@@ -1,5 +1,6 @@
 ﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod
@@ -142,7 +143,7 @@ namespace DecorationsMod
             return true;
         }
 
-        public static bool SetDefaultLargeWorldEntity(GameObject gameObj, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Medium, int updaterIndex = 0)
+        public static bool SetDefaultLargeWorldEntity(GameObject gameObj, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Near, int updaterIndex = 0)
         {
             if (gameObj == null)
                 return false;
@@ -198,11 +199,75 @@ namespace DecorationsMod
             return false;
         }
 
+        public static void ShowPlantAndHideSeed(Transform transform, string classId = null)
+        {
+            if (transform != null)
+            {
+                bool toggle;
+                foreach (Transform tr in transform)
+                {
+                    toggle = (string.IsNullOrEmpty(tr.name) || !tr.name.StartsWith("Generic_plant_seed", true, CultureInfo.InvariantCulture));
+                    Renderer[] renderers = tr.GetComponents<Renderer>();
+                    if (renderers != null)
+                        foreach (Renderer renderer in renderers)
+                            renderer.enabled = toggle;
+                    renderers = tr.GetAllComponentsInChildren<Renderer>();
+                    if (renderers != null)
+                        foreach (Renderer renderer in renderers)
+                            renderer.enabled = toggle;
+                }
+                Pickupable p = transform.GetComponent<Pickupable>();
+                if (p != null)
+                {
+                    p.isPickupable = false;
+                    if (p.gameObject != null && classId != null && (classId == "MushroomTree1" || classId == "MushroomTree2"))
+                    {
+                        var sc = p.gameObject.GetComponent<SphereCollider>();
+                        if (sc != null)
+                            sc.enabled = false;
+                    }
+                }
+            }
+        }
+
+        public static void HidePlantAndShowSeed(Transform transform, string classId = null)
+        {
+            if (transform != null)
+            {
+                bool toggle;
+                foreach (Transform tr in transform)
+                {
+                    toggle = (!string.IsNullOrEmpty(tr.name) && tr.name.StartsWith("Generic_plant_seed", true, CultureInfo.InvariantCulture));
+                    Renderer[] renderers = tr.GetComponents<Renderer>();
+                    if (renderers != null)
+                        foreach (Renderer renderer in renderers)
+                            renderer.enabled = toggle;
+                    renderers = tr.GetAllComponentsInChildren<Renderer>();
+                    if (renderers != null)
+                        foreach (Renderer renderer in renderers)
+                            renderer.enabled = toggle;
+                }
+                Pickupable p = transform.GetComponent<Pickupable>();
+                if (p != null)
+                {
+                    p.isPickupable = true;
+                    if (p.gameObject != null && classId != null && (classId == "MushroomTree1" || classId == "MushroomTree2"))
+                    {
+                        var sc = p.gameObject.GetComponent<SphereCollider>();
+                        if (sc != null)
+                            sc.enabled = true;
+                    }
+                }
+            }
+        }
+
         private static bool _aquariumSkyApplierFixed = false; // This to ensure we fix sky appliers only once.
         public static void FixAquariumSkyApplier()
         {
             if (!PrefabsHelper._aquariumSkyApplierFixed)
             {
+                Logger.Log("Applying fix to aquariums lighting...");
+
                 var aquariumPrefab = Resources.Load<GameObject>("Submarine/Build/Aquarium"); 
                 var sas = aquariumPrefab.GetComponents<SkyApplier>();
 
@@ -215,9 +280,9 @@ namespace DecorationsMod
                         if (sa.renderers != null)
                         {
                             foreach (Renderer rend in sa.renderers)
-                                if (!string.IsNullOrEmpty(rend.name) && rend.name.CompareTo("Aquarium") != 0)
+                                if (!string.IsNullOrEmpty(rend.name) && string.Compare(rend.name, "Aquarium", true, CultureInfo.InvariantCulture) != 0)
                                 {
-                                    if (ConfigSwitcher.GlowingAquariumGlass && rend.name.CompareTo("Aquarium_glass") == 0 && rend.materials != null)
+                                    if (ConfigSwitcher.GlowingAquariumGlass && string.Compare(rend.name, "Aquarium_glass", true, CultureInfo.InvariantCulture) == 0 && rend.materials != null)
                                     {
                                         foreach (Material mat in rend.materials)
                                         {
@@ -244,7 +309,7 @@ namespace DecorationsMod
                 List<Renderer> rends = new List<Renderer>();
                 if (tmpRends != null)
                     foreach (Renderer tmpRend in tmpRends)
-                        if (!string.IsNullOrEmpty(tmpRend.name) && tmpRend.name.CompareTo("Aquarium") == 0)
+                        if (!string.IsNullOrEmpty(tmpRend.name) && string.Compare(tmpRend.name, "Aquarium", true, CultureInfo.InvariantCulture) == 0)
                             rends.Add(tmpRend);
 
                 var fixedSa = aquariumPrefab.AddComponent<SkyApplier>();
@@ -263,7 +328,7 @@ namespace DecorationsMod
             if (aquariumAnimRoot != null)
                 foreach (Transform tr in aquariumAnimRoot.transform)
                     foreach (Transform ctr in tr)
-                        if (ctr.childCount > 0 && !string.IsNullOrEmpty(ctr.name) && ctr.name.StartsWith("fish_attach"))
+                        if (ctr.childCount > 0 && !string.IsNullOrEmpty(ctr.name) && ctr.name.StartsWith("fish_attach", true, CultureInfo.InvariantCulture))
                             foreach (Transform fish in ctr)
                                 if (fish.gameObject != null)
                                 {

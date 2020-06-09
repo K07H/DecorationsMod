@@ -3,6 +3,7 @@ using Harmony;
 using mset;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -74,7 +75,7 @@ namespace DecorationsMod.NewItems
         public override GameObject GetGameObject()
         {
             // Instantiate root prefab
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(Resources.Load<GameObject>("Submarine/Build/Aquarium"));
             prefab.name = this.ClassID;
 
             // Get sub objects
@@ -358,7 +359,7 @@ namespace DecorationsMod.NewItems
             {
                 tr.localPosition = new Vector3(0.5f, 0.0f, 0.0f);
                 psr = tr.GetComponent<ParticleSystemRenderer>();
-                if (tr.name.StartsWith("xDots"))
+                if (tr.name.StartsWith("xDots", true, CultureInfo.InvariantCulture))
                 {
                     ps = tr.GetComponent<ParticleSystem>();
 #pragma warning disable CS0618
@@ -372,7 +373,7 @@ namespace DecorationsMod.NewItems
                     psr.lengthScale *= 0.11f;
                     psr.maxParticleSize *= 0.11f;
                 }
-                else if (tr.name.StartsWith("xLateralBubbles"))
+                else if (tr.name.StartsWith("xLateralBubbles", true, CultureInfo.InvariantCulture))
                     psr.enabled = false;
             }
 
@@ -426,9 +427,9 @@ namespace DecorationsMod.NewItems
             {
                 foreach (Renderer rend in sa.renderers)
                 {
-                    if (rend.name.CompareTo("Aquarium") != 0)
+                    if (string.Compare(rend.name, "Aquarium", true, CultureInfo.InvariantCulture) != 0)
                     {
-                        if (ConfigSwitcher.GlowingAquariumGlass && rend.name.CompareTo("Aquarium_glass") == 0)
+                        if (ConfigSwitcher.GlowingAquariumGlass && string.Compare(rend.name, "Aquarium_glass", true, CultureInfo.InvariantCulture) == 0)
                         {
                             foreach (Material mat in rend.materials)
                             {
@@ -453,7 +454,7 @@ namespace DecorationsMod.NewItems
             Renderer[] tmpRends = prefab.GetAllComponentsInChildren<Renderer>();
             List<Renderer> rends = new List<Renderer>();
             foreach (Renderer tmpRend in tmpRends)
-                if (tmpRend.name.CompareTo("Aquarium") == 0)
+                if (string.Compare(tmpRend.name, "Aquarium", true, CultureInfo.InvariantCulture) == 0)
                     rends.Add(tmpRend);
 
             var fixedSa = prefab.AddComponent<SkyApplier>();

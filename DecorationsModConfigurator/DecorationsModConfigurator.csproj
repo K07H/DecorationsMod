@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3E3C5571-96E5-4C1A-8E5C-D23747A83BBA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DecorationsModConfigurator</RootNamespace>
+    <AssemblyName>DecorationsModConfigurator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <SupportUrl>https://www.nexusmods.com/subnautica/mods/102</SupportUrl>
+    <ProductName>Decorations Mod Configurator</ProductName>
+    <PublisherName>OSubMarin</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>25</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>2</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>302115AB6AF27727E485A9EF6B920228C9441D19</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>DecorationsModConfigurator_2_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\configurator.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentWPF, Version=0.8.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentWPF.0.8.0\lib\net45\FluentWPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.2.6.1513, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.2.6\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=3.1.3.1513, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.3.1.3\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="LanguageHelper.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="TechTypes.cs" />
+    <Compile Include="UserControl_About.xaml.cs">
+      <DependentUpon>UserControl_About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Discovery.xaml.cs">
+      <DependentUpon>UserControl_Discovery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_DrinksAndFood.xaml.cs">
+      <DependentUpon>UserControl_DrinksAndFood.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Eggs.xaml.cs">
+      <DependentUpon>UserControl_Eggs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_ExtraSettings.xaml.cs">
+      <DependentUpon>UserControl_ExtraSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Flora.xaml.cs">
+      <DependentUpon>UserControl_Flora.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_FloraConfig.xaml.cs">
+      <DependentUpon>UserControl_FloraConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_GeneralSettings.xaml.cs">
+      <DependentUpon>UserControl_GeneralSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_GhostLeviathans.xaml.cs">
+      <DependentUpon>UserControl_GhostLeviathans.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_HomePage.xaml.cs">
+      <DependentUpon>UserControl_HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Precursor.xaml.cs">
+      <DependentUpon>UserControl_Precursor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_TechType.xaml.cs">
+      <DependentUpon>UserControl_TechType.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UserControl_About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_Discovery.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_DrinksAndFood.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_Eggs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_ExtraSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_Flora.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_FloraConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_GeneralSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_GhostLeviathans.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_Precursor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_TechType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\configurator.ico" />
+    <Resource Include="Images\DE.png" />
+    <Resource Include="Images\EN.png" />
+    <Resource Include="Images\ES.png" />
+    <Resource Include="Images\FR.png" />
+    <Resource Include="Images\RU.png" />
+    <Resource Include="Images\TR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Alien_Feces.gif" />
+    <Resource Include="Images\TechTypes\Cave_Sulfur.gif" />
+    <Resource Include="Images\TechTypes\Copper_Ore.gif" />
+    <Resource Include="Images\TechTypes\Crystalline_Sulfur.gif" />
+    <Resource Include="Images\TechTypes\Diamond.gif" />
+    <Resource Include="Images\TechTypes\Gas_Pod.gif" />
+    <Resource Include="Images\TechTypes\Gold.gif" />
+    <Resource Include="Images\TechTypes\Kyanite.gif" />
+    <Resource Include="Images\TechTypes\Lead.gif" />
+    <Resource Include="Images\TechTypes\Lithium.gif" />
+    <Resource Include="Images\TechTypes\Magnetite.gif" />
+    <Resource Include="Images\TechTypes\Metal_Salvage.gif" />
+    <Resource Include="Images\TechTypes\Nickel_Ore.gif" />
+    <Resource Include="Images\TechTypes\Quartz.gif" />
+    <Resource Include="Images\TechTypes\Ruby_Crystal.gif" />
+    <Resource Include="Images\TechTypes\Salt_Deposit.gif" />
+    <Resource Include="Images\TechTypes\Silver_Ore.gif" />
+    <Resource Include="Images\TechTypes\Stalker_Tooth.gif" />
+    <Resource Include="Images\TechTypes\Titanium.gif" />
+    <Resource Include="Images\TechTypes\Uraninite_Crystal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Acid_Mushroom.gif" />
+    <Resource Include="Images\TechTypes\Acid_Mushroom_Spore.gif" />
+    <Resource Include="Images\TechTypes\Advanced_Wiring_Kit.gif" />
+    <Resource Include="Images\TechTypes\Aerogel.gif" />
+    <Resource Include="Images\TechTypes\Air_Bladder.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Arcade_Gorge_Toy.gif" />
+    <Resource Include="Images\TechTypes\Aurora_Miniature.gif" />
+    <Resource Include="Images\TechTypes\Battery.gif" />
+    <Resource Include="Images\TechTypes\Beacon.gif" />
+    <Resource Include="Images\TechTypes\Benzene.gif" />
+    <Resource Include="Images\TechTypes\Bleach.gif" />
+    <Resource Include="Images\TechTypes\Blood_Oil.gif" />
+    <Resource Include="Images\TechTypes\Bulbo_Tree_Sample.gif" />
+    <Resource Include="Images\TechTypes\Bulb_Bush_Sample.gif" />
+    <Resource Include="Images\TechTypes\Camera_Drone.gif" />
+    <Resource Include="Images\TechTypes\Chinese_Potato.gif" />
+    <Resource Include="Images\TechTypes\Compass.gif" />
+    <Resource Include="Images\TechTypes\Computer_Chip.gif" />
+    <Resource Include="Images\TechTypes\Copper_Wire.gif" />
+    <Resource Include="Images\TechTypes\Coral_Tube_Sample.gif" />
+    <Resource Include="Images\TechTypes\Creature_Decoy.gif" />
+    <Resource Include="Images\TechTypes\Creepvine_Sample.gif" />
+    <Resource Include="Images\TechTypes\Creepvine_Seed_Cluster.gif" />
+    <Resource Include="Images\TechTypes\Cyclops_Decoy_Tube_Upgrade.gif" />
+    <Resource Include="Images\TechTypes\Cyclops_Depth_Module_MK1.gif" />
+    <Resource Include="Images\TechTypes\Cyclops_Depth_Module_MK2.gif" />
+    <Resource Include="Images\TechTypes\Cyclops_Depth_Module_MK3.gif" />
+    <Resource Include="Images\TechTypes\Cyclops_Docking_Bay_Repair_Module.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Cyclops_Engine_Efficiency_Module.gif" />
+    <Resource Include="Images\TechTypes\Cyclops_Fire_Suppression_System.gif" />
+    <Resource Include="Images\TechTypes\Cyclops_Shield_Generator.gif" />
+    <Resource Include="Images\TechTypes\Cyclops_Sonar_Upgrade.gif" />
+    <Resource Include="Images\TechTypes\Cyclops_Thermal_Reactor_Module.gif" />
+    <Resource Include="Images\TechTypes\Disinfected_Water.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Enameled_Glass.gif" />
+    <Resource Include="Images\TechTypes\Engine_Efficiency_Module.gif" />
+    <Resource Include="Images\TechTypes\Fiber_Mesh.gif" />
+    <Resource Include="Images\TechTypes\Filtered_Water.gif" />
+    <Resource Include="Images\TechTypes\Fins.gif" />
+    <Resource Include="Images\TechTypes\First_Aid_Kit.gif" />
+    <Resource Include="Images\TechTypes\Flare.gif" />
+    <Resource Include="Images\TechTypes\Flashlight.gif" />
+    <Resource Include="Images\TechTypes\Floater.gif" />
+    <Resource Include="Images\TechTypes\Fungal_Sample.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Gas_Torpedo.gif" />
+    <Resource Include="Images\TechTypes\Gel_Sack.gif" />
+    <Resource Include="Images\TechTypes\Gel_Sack_Spore.gif" />
+    <Resource Include="Images\TechTypes\Glass.gif" />
+    <Resource Include="Images\TechTypes\Grav_Trap.gif" />
+    <Resource Include="Images\TechTypes\Habitat_Builder.gif" />
+    <Resource Include="Images\TechTypes\Hatching_Enzymes.gif" />
+    <Resource Include="Images\TechTypes\High_Capacity_Tank.gif" />
+    <Resource Include="Images\TechTypes\Hull_Reinforcement.gif" />
+    <Resource Include="Images\TechTypes\Hydrochloric_Acid.gif" />
+    <Resource Include="Images\TechTypes\Ion_Battery.gif" />
+    <Resource Include="Images\TechTypes\Ion_Power_Cell.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Ion_Precursor_Crystal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Lantern_Fruit.gif" />
+    <Resource Include="Images\TechTypes\Large_Filtered_Water.gif" />
+    <Resource Include="Images\TechTypes\Laser_Cutter.gif" />
+    <Resource Include="Images\TechTypes\Lightweight_High_Capacity_Tank.gif" />
+    <Resource Include="Images\TechTypes\Lubricant.gif" />
+    <Resource Include="Images\TechTypes\Marblemelon.gif" />
+    <Resource Include="Images\TechTypes\Nutrient_Block.gif" />
+    <Resource Include="Images\TechTypes\Pathfinder_Tool.gif" />
+    <Resource Include="Images\TechTypes\Pipe.gif" />
+    <Resource Include="Images\TechTypes\Plasteel_Ingot.gif" />
+    <Resource Include="Images\TechTypes\Polyaniline.gif" />
+    <Resource Include="Images\TechTypes\Power_Cell.gif" />
+    <Resource Include="Images\TechTypes\Prawn_Suit_Depth_Module_MK1.gif" />
+    <Resource Include="Images\TechTypes\Prawn_Suit_Depth_Module_MK2.gif" />
+    <Resource Include="Images\TechTypes\Prawn_Suit_Jump_Jet_Upgrade.gif" />
+    <Resource Include="Images\TechTypes\Prawn_Suit_Thermal_Reactor.gif" />
+    <Resource Include="Images\TechTypes\Radiation_Suit.gif" />
+    <Resource Include="Images\TechTypes\Reactor_Rod.gif" />
+    <Resource Include="Images\TechTypes\Reactor_Rod_Depleted.gif" />
+    <Resource Include="Images\TechTypes\Rebreather.gif" />
+    <Resource Include="Images\TechTypes\Reclaimed_Water.gif" />
+    <Resource Include="Images\TechTypes\Reinforced_Dive_Suit.gif" />
+    <Resource Include="Images\TechTypes\Repair_Tool.gif" />
+    <Resource Include="Images\TechTypes\Repulsion_Cannon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Marblemelon_Seeds.png" />
+    <Resource Include="Images\TechTypes\Pink_Cap.png" />
+    <Resource Include="Images\TechTypes\Pink_Cap_Spore.png" />
+    <Resource Include="Images\TechTypes\Prawn_Suit_Drill_Arm.png" />
+    <Resource Include="Images\TechTypes\Prawn_Suit_Grappling_Arm.png" />
+    <Resource Include="Images\TechTypes\Prawn_Suit_Propulsion_Cannon.png" />
+    <Resource Include="Images\TechTypes\Prawn_Suit_Torpedo_Arm.png" />
+    <Resource Include="Images\TechTypes\Scanner_Room_HUD_Chip.gif" />
+    <Resource Include="Images\TechTypes\Scanner_Room_Range_Upgrade.gif" />
+    <Resource Include="Images\TechTypes\Scanner_Room_Speed_Upgrade.gif" />
+    <Resource Include="Images\TechTypes\Seaglide.gif" />
+    <Resource Include="Images\TechTypes\Seamoth_Depth_Module_MK1.gif" />
+    <Resource Include="Images\TechTypes\Seamoth_Depth_Module_MK2.gif" />
+    <Resource Include="Images\TechTypes\Seamoth_Depth_Module_MK3.gif" />
+    <Resource Include="Images\TechTypes\Seamoth_Solar_Charger.gif" />
+    <Resource Include="Images\TechTypes\Seamoth_Sonar.gif" />
+    <Resource Include="Images\TechTypes\Silicone_Rubber.gif" />
+    <Resource Include="Images\TechTypes\Small_Marblemelon.png" />
+    <Resource Include="Images\TechTypes\Snack1.gif" />
+    <Resource Include="Images\TechTypes\Snack2.gif" />
+    <Resource Include="Images\TechTypes\Snack3.gif" />
+    <Resource Include="Images\TechTypes\Stasis_Rifle.gif" />
+    <Resource Include="Images\TechTypes\Stillsuit.gif" />
+    <Resource Include="Images\TechTypes\Storage_Module.gif" />
+    <Resource Include="Images\TechTypes\Survival_Knife.gif" />
+    <Resource Include="Images\TechTypes\Swim_Charge_Fins.gif" />
+    <Resource Include="Images\TechTypes\Synthetic_Fibers.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Speckled_Rattler.png" />
+    <Resource Include="Images\TechTypes\Speckled_Rattler_Spore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Standard_O2_Tank.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Seamoth_Torpedo_System.png" />
+    <Resource Include="Images\TechTypes\Table_Coral_Sample.png" />
+    <Resource Include="Images\TechTypes\Thermoblade.png" />
+    <Resource Include="Images\TechTypes\Titanium_Ingot.png" />
+    <Resource Include="Images\TechTypes\Toy_Car.png" />
+    <Resource Include="Images\TechTypes\Ultra_Glide_Fins.png" />
+    <Resource Include="Images\TechTypes\Ultra_High_Capacity_Tank.png" />
+    <Resource Include="Images\TechTypes\Vortex_Torpedo.png" />
+    <Resource Include="Images\TechTypes\Waterproof_Locker.png" />
+    <Resource Include="Images\TechTypes\Wiring_Kit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Light_Stick.png" />
+    <Resource Include="Images\TechTypes\Propulsion_Cannon.png" />
+    <Resource Include="Images\TechTypes\Scanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Blue_Palm_Seed.png" />
+    <Resource Include="Images\TechTypes\Brain_Coral_Sample.png" />
+    <Resource Include="Images\TechTypes\Cave_Bush_Seed.png" />
+    <Resource Include="Images\TechTypes\Coffee.png" />
+    <Resource Include="Images\TechTypes\Deep_Shroom.png" />
+    <Resource Include="Images\TechTypes\Deep_Shroom_Spore.png" />
+    <Resource Include="Images\TechTypes\Eye_Stalk_Seed.png" />
+    <Resource Include="Images\TechTypes\Fern_Palm_Seed.png" />
+    <Resource Include="Images\TechTypes\Furled_Papyrus_Seed.png" />
+    <Resource Include="Images\TechTypes\Gabes_Feather_Seed.png" />
+    <Resource Include="Images\TechTypes\Ghost_Weed_Seed.png" />
+    <Resource Include="Images\TechTypes\Grub_Basket_Seed.png" />
+    <Resource Include="Images\TechTypes\Jaffa_Cup_Seed.png" />
+    <Resource Include="Images\TechTypes\Jellyshroom_Spore.png" />
+    <Resource Include="Images\TechTypes\Membrain_Tree_Seed.png" />
+    <Resource Include="Images\TechTypes\Ming_Plant_Seed.png" />
+    <Resource Include="Images\TechTypes\Mobile_Vehicle_Bay.png" />
+    <Resource Include="Images\TechTypes\Pygmy_Fan_Seed.png" />
+    <Resource Include="Images\TechTypes\Redwort_Seed.png" />
+    <Resource Include="Images\TechTypes\Regress_Shell_Seed.png" />
+    <Resource Include="Images\TechTypes\Rouge_Cradle_Seed.png" />
+    <Resource Include="Images\TechTypes\Sea_Crown_Seed.png" />
+    <Resource Include="Images\TechTypes\Spiked_Horn_Grass_Seed.png" />
+    <Resource Include="Images\TechTypes\Spotted_Dockleaf_Seed.png" />
+    <Resource Include="Images\TechTypes\Tiger_Plant_Seed.png" />
+    <Resource Include="Images\TechTypes\Veined_Nettle_Seed.png" />
+    <Resource Include="Images\TechTypes\Violet_Beau_Seed.png" />
+    <Resource Include="Images\TechTypes\Voxel_Shrub_Seed.png" />
+    <Resource Include="Images\TechTypes\Writhing_Weed_Seed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Bladderfish.png" />
+    <Resource Include="Images\TechTypes\Boomerang.png" />
+    <Resource Include="Images\TechTypes\Cooked_Bladderfish.png" />
+    <Resource Include="Images\TechTypes\Cooked_Boomerang.png" />
+    <Resource Include="Images\TechTypes\Cooked_Eyeye.png" />
+    <Resource Include="Images\TechTypes\Cooked_Garryfish.png" />
+    <Resource Include="Images\TechTypes\Cooked_Holefish.png" />
+    <Resource Include="Images\TechTypes\Cooked_Hoopfish.png" />
+    <Resource Include="Images\TechTypes\Cooked_Hoverfish.png" />
+    <Resource Include="Images\TechTypes\Cooked_Magmarang.png" />
+    <Resource Include="Images\TechTypes\Cooked_Oculus.png" />
+    <Resource Include="Images\TechTypes\Cooked_Peeper.png" />
+    <Resource Include="Images\TechTypes\Cooked_Red_Eyeye.png" />
+    <Resource Include="Images\TechTypes\Cooked_Reginald.png" />
+    <Resource Include="Images\TechTypes\Cooked_Spadefish.png" />
+    <Resource Include="Images\TechTypes\Cooked_Spinefish.png" />
+    <Resource Include="Images\TechTypes\Cured_Bladderfish.png" />
+    <Resource Include="Images\TechTypes\Cured_Boomerang.png" />
+    <Resource Include="Images\TechTypes\Cured_Eyeye.png" />
+    <Resource Include="Images\TechTypes\Cured_Garryfish.png" />
+    <Resource Include="Images\TechTypes\Cured_Holefish.png" />
+    <Resource Include="Images\TechTypes\Cured_Hoopfish.png" />
+    <Resource Include="Images\TechTypes\Cured_Hoverfish.png" />
+    <Resource Include="Images\TechTypes\Cured_Magmarang.png" />
+    <Resource Include="Images\TechTypes\Cured_Oculus.png" />
+    <Resource Include="Images\TechTypes\Cured_Peeper.png" />
+    <Resource Include="Images\TechTypes\Cured_Red_Eyeye.png" />
+    <Resource Include="Images\TechTypes\Cured_Reginald.png" />
+    <Resource Include="Images\TechTypes\Cured_Spadefish.png" />
+    <Resource Include="Images\TechTypes\Cured_Spinefish.png" />
+    <Resource Include="Images\TechTypes\Eyeye.png" />
+    <Resource Include="Images\TechTypes\Garryfish.png" />
+    <Resource Include="Images\TechTypes\Holefish.png" />
+    <Resource Include="Images\TechTypes\Hoopfish.png" />
+    <Resource Include="Images\TechTypes\Hoverfish.png" />
+    <Resource Include="Images\TechTypes\Magmarang.png" />
+    <Resource Include="Images\TechTypes\Oculus.png" />
+    <Resource Include="Images\TechTypes\Peeper.png" />
+    <Resource Include="Images\TechTypes\Red_Eyeye.png" />
+    <Resource Include="Images\TechTypes\Reginald.png" />
+    <Resource Include="Images\TechTypes\Spadefish.png" />
+    <Resource Include="Images\TechTypes\Spinefish.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Blue_Cap.png" />
+    <Resource Include="Images\TechTypes\Bone_Shark_Egg.png" />
+    <Resource Include="Images\TechTypes\Carry-all.png" />
+    <Resource Include="Images\TechTypes\Crabsnake_Egg.png" />
+    <Resource Include="Images\TechTypes\Crabsquid_Egg.png" />
+    <Resource Include="Images\TechTypes\CrashEgg.png" />
+    <Resource Include="Images\TechTypes\Cute_Fish_Egg.png" />
+    <Resource Include="Images\TechTypes\Cylindrical_Sample_Flask.png" />
+    <Resource Include="Images\TechTypes\Electron_Microscope.png" />
+    <Resource Include="Images\TechTypes\Fluid_Analyzer.png" />
+    <Resource Include="Images\TechTypes\Gasopod_Egg.png" />
+    <Resource Include="Images\TechTypes\Gray_Cap.png" />
+    <Resource Include="Images\TechTypes\Jellyray_Egg.png" />
+    <Resource Include="Images\TechTypes\Large_Sample_Flask.png" />
+    <Resource Include="Images\TechTypes\Mesmer_Egg.png" />
+    <Resource Include="Images\TechTypes\Poster_Aurora.png" />
+    <Resource Include="Images\TechTypes\Poster_Exosuit.png" />
+    <Resource Include="Images\TechTypes\Poster_Exosuit_2.png" />
+    <Resource Include="Images\TechTypes\Poster_Kitty.png" />
+    <Resource Include="Images\TechTypes\Poster_Natural_Selection_2.png" />
+    <Resource Include="Images\TechTypes\Rabbit_Ray_Egg.png" />
+    <Resource Include="Images\TechTypes\Sample_Analyzer.png" />
+    <Resource Include="Images\TechTypes\Sand_Shark_Egg.png" />
+    <Resource Include="Images\TechTypes\Shocker_Egg.png" />
+    <Resource Include="Images\TechTypes\Small_Sample_Flask.png" />
+    <Resource Include="Images\TechTypes\Spadefish_Egg.png" />
+    <Resource Include="Images\TechTypes\Stalker_Egg.png" />
+    <Resource Include="Images\TechTypes\Unknown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\LavaLizard_Egg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TechTypes\Base_Pipe_Connector.png" />
+    <Resource Include="Images\TechTypes\Pipe_Surface_Floater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flora\lostriverplant4icon.png" />
+    <Resource Include="Images\Flora\lostriverplant5icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flora\bloodgrassdense2icon.png" />
+    <Resource Include="Images\Flora\bloodgrassicon.png" />
+    <Resource Include="Images\Flora\covetreeicon.png" />
+    <Resource Include="Images\Flora\fern2icon.png" />
+    <Resource Include="Images\Flora\fern4icon.png" />
+    <Resource Include="Images\Flora\floatingstone1icon.png" />
+    <Resource Include="Images\Flora\flora_bluecoraltubesicon.png" />
+    <Resource Include="Images\Flora\flora_browncoraltubes01icon.png" />
+    <Resource Include="Images\Flora\flora_browncoraltubes0201icon.png" />
+    <Resource Include="Images\Flora\flora_browncoraltubes0203icon.png" />
+    <Resource Include="Images\Flora\flora_plantmiddle11icon.png" />
+    <Resource Include="Images\Flora\flora_smalldeco03icon.png" />
+    <Resource Include="Images\Flora\flora_smalldeco10icon.png" />
+    <Resource Include="Images\Flora\flora_smalldeco11icon.png" />
+    <Resource Include="Images\Flora\flora_smalldeco13icon.png" />
+    <Resource Include="Images\Flora\flora_smalldeco14icon.png" />
+    <Resource Include="Images\Flora\flora_smalldeco15redicon.png" />
+    <Resource Include="Images\Flora\flora_smalldeco17purpleicon.png" />
+    <Resource Include="Images\Flora\jungletree1icon.png" />
+    <Resource Include="Images\Flora\jungletree2icon.png" />
+    <Resource Include="Images\Flora\landplant1icon.png" />
+    <Resource Include="Images\Flora\landplant2icon.png" />
+    <Resource Include="Images\Flora\landplant3icon.png" />
+    <Resource Include="Images\Flora\landplant4icon.png" />
+    <Resource Include="Images\Flora\landplant5icon.png" />
+    <Resource Include="Images\Flora\landtree1seedicon.png" />
+    <Resource Include="Images\Flora\lostriverplant1icon.png" />
+    <Resource Include="Images\Flora\lostriverplant2icon.png" />
+    <Resource Include="Images\Flora\lostriverplant3icon.png" />
+    <Resource Include="Images\Flora\pyrocoral1icon.png" />
+    <Resource Include="Images\Flora\pyrocoral2icon.png" />
+    <Resource Include="Images\Flora\pyrocoral3icon.png" />
+    <Resource Include="Images\Flora\redgrass.png" />
+    <Resource Include="Images\Flora\redgrass1icon.png" />
+    <Resource Include="Images\Flora\redgrass2tallicon.png" />
+    <Resource Include="Images\Flora\redgrass3icon.png" />
+    <Resource Include="Images\Flora\redgrass3tallicon.png" />
+    <Resource Include="Images\Flora\redgrasstinyicon.png" />
+    <Resource Include="Images\Flora\spottedreeds1icon.png" />
+    <Resource Include="Images\Flora\spottedreedsicon.png" />
+    <Resource Include="Images\Flora\tropicalplant10aicon.png" />
+    <Resource Include="Images\Flora\tropicalplant10bicon.png" />
+    <Resource Include="Images\Flora\tropicalplant1aicon.png" />
+    <Resource Include="Images\Flora\tropicalplant1bicon.png" />
+    <Resource Include="Images\Flora\tropicalplant2aicon.png" />
+    <Resource Include="Images\Flora\tropicalplant2bicon.png" />
+    <Resource Include="Images\Flora\tropicalplant3aicon.png" />
+    <Resource Include="Images\Flora\tropicalplant3bicon.png" />
+    <Resource Include="Images\Flora\tropicalplant6aicon.png" />
+    <Resource Include="Images\Flora\tropicalplant6bicon.png" />
+    <Resource Include="Images\Flora\tropicalplant7aicon.png" />
+    <Resource Include="Images\Flora\tropicalplant7bicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flora\mushroomtree2icon.png" />
+    <Resource Include="Images\Flora\mushroomtreeicon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets'))" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>echo ------ Copying "$(TargetDir)$(TargetFileName)" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...
+xcopy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\" /Y
+echo ------ Copying "$(TargetDir)FluentWPF.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...
+xcopy "$(TargetDir)FluentWPF.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...
+xcopy "$(TargetDir)MaterialDesignColors.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...
+xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\" /Y
+
+echo ------ Copying "$(TargetDir)$(TargetFileName)" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\"...
+xcopy "$(TargetDir)$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\" /Y
+echo ------ Copying "$(TargetDir)FluentWPF.dll" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\"...
+xcopy "$(TargetDir)FluentWPF.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\"...
+xcopy "$(TargetDir)MaterialDesignColors.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\"...
+xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\" /Y
+
+echo ------ Copying "$(TargetDir)$(TargetFileName)" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\"...
+xcopy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\" /Y
+echo ------ Copying "$(TargetDir)FluentWPF.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\"...
+xcopy "$(TargetDir)FluentWPF.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\"...
+xcopy "$(TargetDir)MaterialDesignColors.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\"...
+xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\" /Y
+
+echo ------ Copying "$(TargetDir)$(TargetFileName)" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\"...
+xcopy "$(TargetDir)$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\" /Y
+echo ------ Copying "$(TargetDir)FluentWPF.dll" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\"...
+xcopy "$(TargetDir)FluentWPF.dll" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\"...
+xcopy "$(TargetDir)MaterialDesignColors.dll" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\"...
+xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\" /Y
+</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>echo ------ Copying "$(SolutionDir)DecorationsMod\Config.txt" to "$(TargetDir)..\" for live debugging...
+xcopy "$(SolutionDir)DecorationsMod\Config.txt" "$(TargetDir)..\" /Y
+echo ------ Copying "$(SolutionDir)DecorationsMod\mod.json" to "$(TargetDir)..\" for live debugging...
+xcopy "$(SolutionDir)DecorationsMod\mod.json" "$(TargetDir)..\" /Y
+</PreBuildEvent>
+  </PropertyGroup>
+</Project>

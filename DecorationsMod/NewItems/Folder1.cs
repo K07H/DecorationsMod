@@ -1,5 +1,6 @@
 ﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -14,7 +15,7 @@ namespace DecorationsMod.NewItems
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_folder1");
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("Folder1Name") + " (A)",
+                                                        LanguageHelper.GetFriendlyWord("Folder1Name") + " (1)",
                                                         LanguageHelper.GetFriendlyWord("Folder1Description"),
                                                         true);
 
@@ -74,7 +75,7 @@ namespace DecorationsMod.NewItems
                     foreach (Material tmpMat in rend.materials)
                     {
                         tmpMat.shader = marmosetUber;
-                        if (tmpMat.name.CompareTo("docking_clerical_01 (Instance)") == 0)
+                        if (string.Compare(tmpMat.name, "docking_clerical_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                         {
                             tmpMat.SetTexture("_BumpMap", normal);
                             tmpMat.EnableKeyword("MARMO_NORMALMAP");

@@ -1,5 +1,6 @@
 ﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -77,7 +78,7 @@ namespace DecorationsMod.NewItems
                     foreach (Material tmpMat in renderer.materials)
                     {
                         tmpMat.shader = marmosetUber;
-                        if (tmpMat.name.CompareTo("biodome_Robot_Arm (Instance)") == 0)
+                        if (string.Compare(tmpMat.name, "biodome_Robot_Arm (Instance)", true, CultureInfo.InvariantCulture) == 0)
                         {
                             tmpMat.SetTexture("_BumpMap", normal);
                             tmpMat.SetTexture("_Illum", illum);
@@ -86,7 +87,7 @@ namespace DecorationsMod.NewItems
                             tmpMat.EnableKeyword("MARMO_EMISSION");
                             tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                         }
-                        else if (tmpMat.name.CompareTo("biodome_Robot_Arm_wall (Instance)") == 0)
+                        else if (string.Compare(tmpMat.name, "biodome_Robot_Arm_wall (Instance)", true, CultureInfo.InvariantCulture) == 0)
                         {
                             tmpMat.SetTexture("_BumpMap", normal2);
                             tmpMat.EnableKeyword("MARMO_NORMALMAP");

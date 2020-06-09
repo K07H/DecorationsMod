@@ -1,5 +1,7 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -17,6 +19,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("WarperPartName") + " (2)",
                                                         LanguageHelper.GetFriendlyWord("WarperPartDescription"),
                                                         true);
+
+            CrafterLogicFixer.WarperPart6 = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
@@ -76,10 +81,13 @@ namespace DecorationsMod.NewItems
                     if (rend.materials.Length > 0)
                         foreach (Material tmpMat in rend.materials)
                         {
-                            if (tmpMat.name.CompareTo("precursor_lab_warper_tube_01 (Instance)") != 0 && tmpMat.name.CompareTo("precursor_lab_warper_tube_02 (Instance)") != 0 && tmpMat.name.CompareTo("precursor_lab_warper_liquid (Instance)") != 0)
+                            if (string.Compare(tmpMat.name, "precursor_lab_warper_tube_01 (Instance)", true, CultureInfo.InvariantCulture) != 0 && 
+                                string.Compare(tmpMat.name, "precursor_lab_warper_tube_02 (Instance)", true, CultureInfo.InvariantCulture) != 0 && 
+                                string.Compare(tmpMat.name, "precursor_lab_warper_liquid (Instance)", true, CultureInfo.InvariantCulture) != 0)
                             {
                                 tmpMat.shader = marmosetUber;
-                                if (tmpMat.name.CompareTo("precursor_lab_warper (Instance)") == 0 || tmpMat.name.CompareTo("precursor_lab_warper_box (Instance)") == 0)
+                                if (string.Compare(tmpMat.name, "precursor_lab_warper (Instance)", true, CultureInfo.InvariantCulture) == 0 || 
+                                    string.Compare(tmpMat.name, "precursor_lab_warper_box (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_SpecTex", spec1);
                                     tmpMat.SetTexture("_BumpMap", normal1);
@@ -91,7 +99,8 @@ namespace DecorationsMod.NewItems
                                     tmpMat.EnableKeyword("MARMO_EMISSION");
                                     tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                 }
-                                else if (tmpMat.name.CompareTo("Warper (Instance)") == 0 || tmpMat.name.CompareTo("Warper_alpha (Instance)") == 0)
+                                else if (string.Compare(tmpMat.name, "Warper (Instance)", true, CultureInfo.InvariantCulture) == 0 || 
+                                    string.Compare(tmpMat.name, "Warper_alpha (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_SpecTex", spec2);
                                     tmpMat.SetTexture("_BumpMap", normal2);
@@ -103,7 +112,7 @@ namespace DecorationsMod.NewItems
                                     tmpMat.EnableKeyword("MARMO_EMISSION");
                                     tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                 }
-                                else if (tmpMat.name.CompareTo("warper_entrails (Instance)") == 0)
+                                else if (string.Compare(tmpMat.name, "warper_entrails (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_SpecTex", spec3);
                                     tmpMat.SetTexture("_BumpMap", normal3);
@@ -149,6 +158,10 @@ namespace DecorationsMod.NewItems
                 placeTool.drawTime = 0.5f;
                 placeTool.dropTime = 1;
                 placeTool.holsterTime = 0.35f;
+
+                // Define unlock conditions
+                if (ConfigSwitcher.AddItemsWhenDiscovered)
+                    SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorLostRiverWarperParts, new TechType[] { this.TechType });
 
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);

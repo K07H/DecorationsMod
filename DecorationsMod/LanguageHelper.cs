@@ -5,7 +5,7 @@ namespace DecorationsMod
 {
     public static class LanguageHelper
     {
-        public static CountryCode UserLanguage = RegionHelper.GetCountryCode();
+        public static CountryCode UserLanguage = RegionHelper.GetDefaultCountryCode();
 
         public static string GetFriendlyGrowingTooltip(int progress)
         {
@@ -218,6 +218,19 @@ namespace DecorationsMod
                         return "Электроника";
                     else
                         return "Electronics";
+                case "ElectronicsAndFragments":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Électronique et fragments";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Electrónica y fragmentos";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Elektronik ve parçalar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Elektronik und Fragmente";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Электроника и фрагменты";
+                    else
+                        return "Electronics and fragments";
                 case "CircuitBoxTab1":
                     if (UserLanguage == CountryCode.FR)
                         return "Relais de connectivité";
@@ -1148,17 +1161,17 @@ namespace DecorationsMod
                         return "Lamp (customizable light)";
                 case "ReactorLampDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une lampe customisable. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip") + Environment.NewLine + "PS: Si vous téléchargez le mod « Base Light Switch » vous pourrez éteindre la lumière par défaut de votre base ce qui vous permettra de profiter pleinement de ces lampes.";
+                        return "Une lampe customisable. Peut être construit à l'extérieur et à l'intérieur." + Environment.NewLine + Environment.NewLine + "Utilisation : " + GetFriendlyWord("LampTooltipCompact") + Environment.NewLine + Environment.NewLine + "PS: Si vous téléchargez le mod « Base Light Switch » vous pourrez éteindre la lumière par défaut de votre base ce qui vous permettra de profiter pleinement de ces lampes.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una lámpara personalizable. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip");
+                        return "Una lámpara personalizable. Se puede construir en interiores y exteriores." + Environment.NewLine + Environment.NewLine + "Uso: " + GetFriendlyWord("LampTooltipCompact");
                     else if (UserLanguage == CountryCode.TR)
-                        return "Özelleştirilebilir lamba. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip");
+                        return "Özelleştirilebilir lamba. İç ve dış mekanlarda inşa edilebilir." + Environment.NewLine + Environment.NewLine + "Kullanımı: " + GetFriendlyWord("LampTooltipCompact");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine anpassbare Lampe. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip");
+                        return "Eine anpassbare Lampe. Kann drinnen und draußen gebaut werden." + Environment.NewLine + Environment.NewLine + "Verwendungszweck: " + GetFriendlyWord("LampTooltipCompact");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лампа с настройками. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip");
+                        return "Лампа с настройками. Может быть построен внутри и снаружи." + Environment.NewLine + Environment.NewLine + "Применение: " + GetFriendlyWord("LampTooltipCompact");
                     else
-                        return "A customizable lamp. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "LampTooltipCompact" : "LampTooltip") + Environment.NewLine + "PS: If you download the « Base Light Switch » mod you'll be able to turn off base default light and thus enjoy this lamp even more.";
+                        return "A customizable lamp. Can be built indoor and outdoor." + Environment.NewLine + Environment.NewLine + "Usage: " + GetFriendlyWord("LampTooltipCompact") + Environment.NewLine + Environment.NewLine + "PS: If you download the « Base Light Switch » mod you'll be able to turn off base default light and thus enjoy this lamp even more.";
                 case "SeamothDollName":
                     if (UserLanguage == CountryCode.FR)
                         return "Jouet Seamoth";
@@ -1571,6 +1584,19 @@ namespace DecorationsMod
                         return "Удерживайте 'E' и выберите, чтобы изменить размер";
                     else
                         return "Hold 'E' and click to adjust size";
+                case "AdjustWarperSpecimenSize":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Maintenez 'E' et cliquez pour modifier la taille";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Mantenga 'E' y haga clic para cambiar el tamaño";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Büyüklüğü ayarlamak için 'E' tuşuna basarken sol tıklayın";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "'E' drücken und klicken, um die Größe zu ändern";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Удерживайте 'E' и выберите, чтобы изменить размер";
+                    else
+                        return "Hold 'E' and click to adjust size";
                 case "AdjustCargoBoxSize":
                     if (UserLanguage == CountryCode.FR)
                         return "Cliquez pour accéder au stockage, ou:" + Environment.NewLine +
@@ -1605,17 +1631,17 @@ namespace DecorationsMod
                         return "Reinforced cargo crate";
                 case "CargoBox1aDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une caisse de chargement renforcée permettant le transport des marchandises. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Une caisse de chargement renforcée permettant le transport des marchandises. Peut être construit à l'intérieur et à l'extérieur." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una caja de carga reforzada que permite el transporte de mercancías. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Una caja de carga reforzada que permite el transporte de mercancías. Se puede construir en interiores y exteriores." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.TR)
-                        return "İyi şeyleri taşımak için güçlendirilmiş kargo kutusu. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "İyi şeyleri taşımak için güçlendirilmiş kargo kutusu. İç ve dış mekanlarda inşa edilebilir." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine durch Stahlplatten verstärkte Frachtkiste für den Transport von Gütern. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Eine durch Stahlplatten verstärkte Frachtkiste für den Transport von Gütern. Kann drinnen und draußen gebaut werden." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Используется для защиты груза от внешних воздействий. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Используется для защиты груза от внешних воздействий. Может быть построен внутри и снаружи." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else
-                        return "A reinforced cargo crate made for the transport of goods. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "A reinforced cargo crate made for the transport of goods. Can be built indoor and outdoor." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                 case "CargoBox1bName":
                     if (UserLanguage == CountryCode.FR)
                         return "Caisse de chargement";
@@ -1631,17 +1657,17 @@ namespace DecorationsMod
                         return "Cargo crate";
                 case "CargoBox1bDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une caisse de chargement permettant le transport des marchandises. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Une caisse de chargement permettant le transport des marchandises. Peut être construit à l'intérieur et à l'extérieur." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una caja de carga que permite el transporte de mercancías. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Una caja de carga que permite el transporte de mercancías. Se puede construir en interiores y exteriores." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.TR)
-                        return "İyi şeyleri taşımak için kargo kutusu. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "İyi şeyleri taşımak için kargo kutusu. İç ve dış mekanlarda inşa edilebilir." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine Frachtkiste für den Transport von Gütern. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Eine Frachtkiste für den Transport von Gütern. Kann drinnen und draußen gebaut werden." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Используется для транспортировки грузов. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Используется для транспортировки грузов. Может быть построен внутри и снаружи." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else
-                        return "A cargo crate made for the transport of goods. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "A cargo crate made for the transport of goods. Can be built indoor and outdoor." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                 case "CargoBox1DmgName":
                     if (UserLanguage == CountryCode.FR)
                         return "Caisse de chargement endommagée";
@@ -1657,17 +1683,17 @@ namespace DecorationsMod
                         return "Damaged cargo crate";
                 case "CargoBox1DmgDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une caisse de chargement en piteux état. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Une caisse de chargement en piteux état. Peut être construit à l'intérieur et à l'extérieur." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Una caja de carga en mal estado. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Una caja de carga en mal estado. Se puede construir en interiores y exteriores." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.TR)
-                        return "Kullanılamayan hasarlı kargo kutusu. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Kullanılamayan hasarlı kargo kutusu. İç ve dış mekanlarda inşa edilebilir." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine unbrauchbar beschädigte Frachtkiste. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Eine unbrauchbar beschädigte Frachtkiste. Kann drinnen und draußen gebaut werden." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Поврежденный грузовой ящик. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "Поврежденный грузовой ящик. Может быть построен внутри и снаружи." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                     else
-                        return "An unusable damaged cargo crate. " + GetFriendlyWord("AdjustCargoBoxSize");
+                        return "An unusable damaged cargo crate. Can be built indoor and outdoor." + Environment.NewLine + Environment.NewLine + GetFriendlyWord("AdjustCargoBoxSize");
                 case "Folder1Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Documents";
@@ -1917,17 +1943,17 @@ namespace DecorationsMod
                         return "Customizable picture frame";
                 case "CustomPictureFrameDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un cadre mural personnalisable. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
+                        return "Un cadre mural personnalisable." + Environment.NewLine + Environment.NewLine + "Utilisation : " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Marco de pared personalizables. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
+                        return "Marco de pared personalizables." + Environment.NewLine + Environment.NewLine + "Uso: " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                     else if (UserLanguage == CountryCode.TR)
-                        return "Duvara asılan çerçevedir. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
+                        return "Duvara asılan çerçevedir." + Environment.NewLine + Environment.NewLine + "Kullanımı: " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Ein an der Wand befestigter, kundengerechter Rahmen. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
+                        return "Ein an der Wand befestigter, kundengerechter Rahmen." + Environment.NewLine + Environment.NewLine + "Verwendungszweck: " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Настенная рамка для различных изображений и надписей. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
+                        return "Настенная рамка для различных изображений и надписей." + Environment.NewLine + Environment.NewLine + "Применение: " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                     else
-                        return "Wall-mounted customizable frame. " + GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
+                        return "Wall-mounted customizable frame." + Environment.NewLine + Environment.NewLine + "Usage: " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                 case "CustomPictureFrameTooltip":
                     if (UserLanguage == CountryCode.FR)
                         return "Cliquez pour placer une image, ou:" + Environment.NewLine +
@@ -2000,17 +2026,17 @@ namespace DecorationsMod
                         return "An alien land tree variety with interesting properties.";
                 case "JungleTree1Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien (A)";
+                        return "Arbre alien (1)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Árbol alienígena (A)";
+                        return "Árbol alienígena (1)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı ağacı (A)";
+                        return "Uzaylı ağacı (1)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Außerirdischer Baum (A)";
+                        return "Außerirdischer Baum (1)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Дерево Alpha";
                     else
-                        return "Alien tree (A)";
+                        return "Alien tree (1)";
                 case "JungleTree1Description":
                     if (UserLanguage == CountryCode.FR)
                         return "Spécimen alpha d'une variété d'arbre terrestre alien.";
@@ -2026,20 +2052,20 @@ namespace DecorationsMod
                         return "Alpha specimen of an alien land tree variety.";
                 case "JungleTree2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien (B)";
+                        return "Arbre alien (2)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Árbol alienígena (B)";
+                        return "Árbol alienígena (2)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı ağacı (B)";
+                        return "Uzaylı ağacı (2)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Außerirdischer Baum (B)";
+                        return "Außerirdischer Baum (2)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Дерево Beta";
                     else
-                        return "Alien tree (B)";
+                        return "Alien tree (2)";
                 case "JungleTree2Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen bêta d'une variété d'arbre terrestre alien.";
+                        return "Spécimen beta d'une variété d'arbre terrestre alien.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Beta espécimen de una variedad de árbol terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2052,17 +2078,17 @@ namespace DecorationsMod
                         return "Beta specimen of an alien land tree variety.";
                 case "LandPlant1Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Plante alien bioluminescente (A)";
+                        return "Plante alien bioluminescente (1)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Planta alienígena bioluminiscente (A)";
+                        return "Planta alienígena bioluminiscente (1)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Biyolüminesan uzaylı bitkisi (A)";
+                        return "Biyolüminesan uzaylı bitkisi (1)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Biolumineszente Alienpflanze (A)";
+                        return "Biolumineszente Alienpflanze (1)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Растение Alpha";
                     else
-                        return "Bioluminescent alien plant (A)";
+                        return "Bioluminescent alien plant (1)";
                 case "LandPlant1Description":
                     if (UserLanguage == CountryCode.FR)
                         return "Spécimen alpha d'une variété de plante terrestre alien aux propriétés intéressantes.";
@@ -2078,20 +2104,20 @@ namespace DecorationsMod
                         return "Alpha specimen of an alien land plant variety with interesting properties.";
                 case "LandPlant2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Plante alien bioluminescente (B)";
+                        return "Plante alien bioluminescente (2)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Planta alienígena bioluminiscente (B)";
+                        return "Planta alienígena bioluminiscente (2)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Biyolüminesan uzaylı bitkisi (B)";
+                        return "Biyolüminesan uzaylı bitkisi (2)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Biolumineszente Alienpflanze (B)";
+                        return "Biolumineszente Alienpflanze (2)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Растение Бета";
                     else
-                        return "Bioluminescent alien plant (B)";
+                        return "Bioluminescent alien plant (2)";
                 case "LandPlant2Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen bêta d'une variété de plante terrestre alien aux propriétés intéressantes.";
+                        return "Spécimen beta d'une variété de plante terrestre alien aux propriétés intéressantes.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Beta espécimen alfa de una variedad de plantas terrestres alienígenas con propiedades interesantes.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2104,17 +2130,17 @@ namespace DecorationsMod
                         return "Beta specimen of an alien land plant variety with interesting properties.";
                 case "LandPlant3Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen de plante terrestre alien (A)";
+                        return "Spécimen de plante terrestre alien (1)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen de planta terrestre alienígena (A)";
+                        return "Espécimen de planta terrestre alienígena (1)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara bitkisi örneği (A)";
+                        return "Uzaylı kara bitkisi örneği (1)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Probe einer außerirdischen Landpflanze (A)";
+                        return "Probe einer außerirdischen Landpflanze (1)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Растение Gamma";
                     else
-                        return "Specimen of alien land plant (A)";
+                        return "Specimen of alien land plant (1)";
                 case "LandPlant3Description":
                     if (UserLanguage == CountryCode.FR)
                         return "Spécimen vulgaire alpha de plante terrestre alien.";
@@ -2130,20 +2156,20 @@ namespace DecorationsMod
                         return "Alpha specimen of a vulgar alien land plant.";
                 case "LandPlant4Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen de plante terrestre alien (B)";
+                        return "Spécimen de plante terrestre alien (2)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen de planta terrestre alienígena (B)";
+                        return "Espécimen de planta terrestre alienígena (2)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara bitkisi örneği (B)";
+                        return "Uzaylı kara bitkisi örneği (2)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Probe einer außerirdischen Landpflanze (B)";
+                        return "Probe einer außerirdischen Landpflanze (2)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Растение Дельта";
                     else
-                        return "Specimen of alien land plant (B)";
+                        return "Specimen of alien land plant (2)";
                 case "LandPlant4Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire bêta de plante terrestre alien.";
+                        return "Spécimen vulgaire beta de plante terrestre alien.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Especie Vulgar beta de planta terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2156,17 +2182,17 @@ namespace DecorationsMod
                         return "Beta specimen of a vulgar alien land plant.";
                 case "LandPlant5Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen de plante terrestre alien (C)";
+                        return "Spécimen de plante terrestre alien (3)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen de planta terrestre alienígena (C)";
+                        return "Espécimen de planta terrestre alienígena (3)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Uzaylı kara bitkisi örneği (C)";
+                        return "Uzaylı kara bitkisi örneği (3)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Probe einer außerirdischen Landpflanze (C)";
+                        return "Probe einer außerirdischen Landpflanze (3)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Растение Эпсилон";
                     else
-                        return "Specimen of alien land plant (C)";
+                        return "Specimen of alien land plant (3)";
                 case "LandPlant5Description":
                     if (UserLanguage == CountryCode.FR)
                         return "Spécimen vulgaire thêta de plante terrestre alien.";
@@ -2284,7 +2310,7 @@ namespace DecorationsMod
                         return "Вид водорослей с голубыми наконечниками, которые имеют тенденцию расти вблизи кислых соляных бассейнов на дне океана.";
                     else
                         return "A blue-tipped kelp species which tends to grow in or near to acidic brine pools on the ocean floor.";
-                case "PyroCoralName":
+                case "PyroCoralName": // Ency_RedTipRockThings
                     if (UserLanguage == CountryCode.FR)
                         return "Corail de feu";
                     else if (UserLanguage == CountryCode.ES)
@@ -2297,7 +2323,7 @@ namespace DecorationsMod
                         return "Магнетический коралл";
                     else
                         return "Pyrocoral";
-                case "PyroCoralDescription":
+                case "PyroCoralDescription": // EncyDesc_RedTipRockThings
                     if (UserLanguage == CountryCode.FR)
                         return "Cette espèce de corail est différente des autres rencontrées sur 4546B dans la mesure où elle s'appuie sur le flux de magma plutôt que sur le courant d'eau pour la fournir en nutriments.";
                     else if (UserLanguage == CountryCode.ES)
@@ -2338,7 +2364,7 @@ namespace DecorationsMod
                         return "Clone made from a vast tree encountered in a deep cove (the only one of its kind encountered on the planet). Can be planted on land and under water.";
                 case "DisplayCoveTreeEggs":
                     if (UserLanguage == CountryCode.FR)
-                        return "Afficher/masquer les oeufs";
+                        return "Afficher/masquer les œufs";
                     else if (UserLanguage == CountryCode.ES)
                         return "Mostrar/ocultar huevos";
                     else if (UserLanguage == CountryCode.TR)
@@ -2349,6 +2375,45 @@ namespace DecorationsMod
                         return "Скрыть/Показать семена";
                     else
                         return "Show/hide eggs";
+                case "MushroomTree1Name":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Arbre à champignons géant";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Árbol Gigante con Hongos";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dev mantar ağacı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Riesiger Baum mit Pilzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Гигантское дерево с грибами";
+                    else
+                        return "Giant Mushroom Tree";
+                case "MushroomTree2Name":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Arbre à champignons";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Árbol con Hongos";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Mantar ağacı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Baum mit Pilzen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Грибное дерево";
+                    else
+                        return "Mushroom Tree";
+                case "MushroomTreeDescription": // GiantMushroomTree
+                    if (UserLanguage == CountryCode.FR)
+                        return "Grande masse organique";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Masa org\u00e1nica grande";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "B\u00fcy\u00fck organik k\u00fctle";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "gro\u00dfe organische Masse";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0411\u043e\u043b\u044c\u0448\u0430\u044f \u043e\u0440\u0433\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043c\u0430\u0441\u0441\u0430";
+                    else
+                        return "Large organic mass";
                 case "FloatingStoneName":
                     if (UserLanguage == CountryCode.FR)
                         return "Gousse d'ancrage";
@@ -2401,7 +2466,7 @@ namespace DecorationsMod
                         return "Образец пятнистого тростника.";
                     else
                         return "A specimen of alien reeds.";
-                case "BrineLilyName":
+                case "BrineLilyName": // Ency_BlueLostRiverLilly
                     if (UserLanguage == CountryCode.FR)
                         return "Nénuphar de mer";
                     else if (UserLanguage == CountryCode.ES)
@@ -2414,7 +2479,7 @@ namespace DecorationsMod
                         return "Раповая лилия";
                     else
                         return "Brine Lily";
-                case "BrineLilyDescription":
+                case "BrineLilyDescription": // EncyDesc_BlueLostRiverLilly
                     if (UserLanguage == CountryCode.FR)
                         return "Ces plantes, qui peuvent rappeler le nénuphar, ont évolué de manière à tirer parti de la densité relative des bassins de saumure acide que l’on rencontre près du plancher océanique, et flotter à leur surface.";
                     else if (UserLanguage == CountryCode.ES)
@@ -2427,32 +2492,32 @@ namespace DecorationsMod
                         return "Эти лилии эволюционировали, чтобы воспользоваться относительной плотностью кислых бассейнов, встречающихся вблизи дна океана, чтобы безопасно плавать на поверхности.";
                     else
                         return "These lily-like plants have evolved to take advantage of the relative density of the acidic brine pools encountered near the ocean floor to float safely on the surface.";
-                case "LostRiverPlantName":
+                case "LostRiverPlantName": // Ency_BlueAmoeba
                     if (UserLanguage == CountryCode.FR)
-                        return "Plante de rivière perdue";
+                        return "Amibo\u00efde";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Planta de río perdida";
+                        return "Ameba";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Kayıp nehir bitkisi";
+                        return "Amipsi";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Tiefseepflanze";
+                        return "Am\u00f6boid";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Растение Потерянной реки";
+                        return "\u0410\u043c\u0451\u0431\u043e\u0438\u0434";
                     else
-                        return "Lost river plant";
-                case "LostRiverPlantDescription":
+                        return "Amoeboid";
+                case "LostRiverPlantDescription": // EncyDesc_BlueAmoeba
                     if (UserLanguage == CountryCode.FR)
-                        return "Un curieux spécimen de plante trouvée dans la rivière perdue.";
+                        return "Un organisme simple et insensible, trouv\u00e9 attach\u00e9 \u00e0 la terre avec des niveaux \u00e9lev\u00e9s de mati\u00e8res organiques fossilis\u00e9es.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un curioso espécimen de planta encontrado en el río perdido.";
+                        return "Un simple organismo insensible, encontrado unido al suelo con altos niveles de materia org\u00e1nica fosilizada.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Kayıp nehirde ilginç bir bitki örneği bulundu.";
+                        return "Y\u00fcksek d\u00fczeyde fosille\u015fmi\u015f madde ve karaya ba\u011flanm\u0131\u015f basit, duyars\u0131z bir organizmad\u0131r.";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Ein kurioses Pflanzenexemplar, das im verlorenen Fluss gefunden wurde.";
+                        return "Ein einfacher, nicht empfindungsf\u00e4higer Organismus, der auf Oberfl\u00e4chen mit hohem Gehalt an versteinertem organischem Material vorkommt.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Любопытный образец растения. Найден в русле потерянной реки.";
+                        return "\u041f\u0440\u043e\u0441\u0442\u0435\u0439\u0448\u0438\u0439 \u043d\u0435\u0440\u0430\u0437\u0443\u043c\u043d\u044b\u0439 \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u043c, \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u043d\u044b\u0439 \u043f\u0440\u0438\u043a\u0440\u0435\u043f\u043b\u0451\u043d\u043d\u044b\u043c \u043a \u043c\u0435\u0441\u0442\u0443 \u0441 \u0432\u044b\u0441\u043e\u043a\u0438\u043c \u0443\u0440\u043e\u0432\u043d\u0435\u043c \u043e\u043a\u0430\u043c\u0435\u043d\u0435\u0432\u0448\u0435\u0433\u043e \u043e\u0440\u0433\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u0432\u0435\u0449\u0435\u0441\u0442\u0432\u0430.";
                     else
-                        return "A curious plant specimen found in the lost river.";
+                        return "A simple, non-sentient organism, found attached to land with high levels of fossilized organic matter.";
                 case "PlantMiddle11Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Algues translucides alien";
@@ -2507,17 +2572,30 @@ namespace DecorationsMod
                         return "A decorative variety of small alien mushrooms. Can be planted on land and under water.";
                 case "BrownCoralTubesName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Tubes de Corail d'argile";
+                        return "Tubes de corail enterr\u00e9s";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Tubos de coral embarrados";
+                        return "Tubos de Coral Terrestres";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Toprak mercanı boruları";
+                        return "Toprak Mercan\u0131 Borular\u0131";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Irdene Korallenröhren";
+                        return "Braune R\u00f6hrenkoralle";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Коралловые трубы";
+                        return "\u0417\u0435\u043c\u043b\u044f\u043d\u044b\u0435 \u043a\u043e\u0440\u0430\u043b\u043b\u043e\u0432\u044b\u0435 \u0442\u0440\u0443\u0431\u044b";
                     else
                         return "Earthen coral tubes";
+                case "BrownCoralTubesDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Les ressemblances g\u00e9n\u00e9tiques aux tubes de corail g\u00e9ants rencontr\u00e9s ailleurs sugg\u00e8rent l'existence d'une divergence \u00e9volutive il y a environ 100 000 ans. Cette sous-esp\u00e8ce, moins riche en calcium et de plus petite taille, se rencontre en plus vastes colonies \u00e0 de plus grandes profondeurs.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Las similitudes gen\u00e9ticas de los tubos de coral gigante encontrados por todas partes sugieren una divergencia evolutiva hace aproximadamente 100,000 a\u00f1os, con esta subespecie siendo sustancialmente baja en el contenido de calcio, y especializ\u00e1ndose en crecer en peque\u00f1os y densos montones a m\u00e1s profundidad.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kar\u015f\u0131la\u015f\u0131lan kocaman mercan borular\u0131yla kal\u0131t\u0131msal olarak benzerlikleri, yakla\u015f\u0131k olarak 100.000 y\u0131l \u00f6nce evrimsel bir ayr\u0131\u015fma ya\u015fad\u0131klar\u0131n\u0131 g\u00f6steriyor. Bu alt t\u00fcr\u00fcn i\u00e7erdi\u011fi kalsiyum daha azd\u0131r; daha derinlerde, daha k\u00fc\u00e7\u00fck ve yo\u011fun \u00f6bekler halinde ya\u015fama konusunda uzmanla\u015fm\u0131\u015flard\u0131r.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Die genetische \u00c4hnlichkeit mit den Riesenr\u00f6hrenkorallen, die anderswo vorkommen, weist auf eine Auseinanderentwicklung vor ungef\u00e4hr 100.000 Jahren hin, wobei diese Unterart wesentlich kalzium\u00e4rmer wurde und sich darauf spezialisiert hat, in kleineren, dichteren Kolonien in gr\u00f6\u00dferen Tiefen zu wachsen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0413\u0435\u043d\u0435\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0441\u0445\u043e\u0434\u0441\u0442\u0432\u043e \u0441 \u0433\u0438\u0433\u0430\u043d\u0442\u0441\u043a\u0438\u043c\u0438 \u043a\u043e\u0440\u0430\u043b\u043b\u043e\u0432\u044b\u043c\u0438 \u0442\u0440\u0443\u0431\u0430\u043c\u0438, \u0432\u0441\u0442\u0440\u0435\u0447\u0430\u0435\u043c\u044b\u043c\u0438 \u0432 \u0434\u0440\u0443\u0433\u0438\u0445 \u043c\u0435\u0441\u0442\u0430\u0445, \u043f\u0440\u0435\u0434\u043f\u043e\u043b\u0430\u0433\u0430\u0435\u0442 \u044d\u0432\u043e\u043b\u044e\u0446\u0438\u043e\u043d\u043d\u043e\u0435 \u0440\u0430\u0441\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u0435 \u043f\u0440\u0438\u043c\u0435\u0440\u043d\u043e 100 000 \u043b\u0435\u0442 \u043d\u0430\u0437\u0430\u0434, \u043f\u0440\u0438 \u044d\u0442\u043e\u043c \u0434\u0430\u043d\u043d\u044b\u0439 \u043f\u043e\u0434\u0432\u0438\u0434 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e \u043c\u0435\u043d\u044c\u0448\u0435 \u043a\u0430\u043b\u044c\u0446\u0438\u044f \u0438 \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0437\u0438\u0440\u0443\u0435\u0442\u0441\u044f \u043d\u0430 \u0440\u0430\u0437\u0440\u0430\u0441\u0442\u0430\u043d\u0438\u0438 \u043c\u0435\u043d\u044c\u0448\u0438\u043c\u0438 \u0438 \u0431\u043e\u043b\u0435\u0435 \u043f\u043b\u043e\u0442\u043d\u044b\u043c\u0438 \u0441\u043a\u043e\u043f\u043b\u0435\u043d\u0438\u044f\u043c\u0438 \u043d\u0430 \u0431\u043e\u043b\u0435\u0435 \u0433\u043b\u0443\u0431\u043e\u043a\u0438\u0445 \u0443\u0440\u043e\u0432\u043d\u044f\u0445.";
+                    else
+                        return "Genetic resemblances to the giant coral tubes encountered elsewhere suggests evolutionary divergence approximately 100,000 years ago, with this subspecies being substantially lower in calcium content, and specializing in growing in smaller, denser packs at deeper levels.";
                 case "AlienFloraSampleDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Échantillon de flore extraterrestre.";
@@ -3495,17 +3573,17 @@ namespace DecorationsMod
                         return "Warper Specimen";
                 case "BigWarperPartDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un spécimen de warper presque complet.";
+                        return "Un spécimen de warper presque complet. " + GetFriendlyWord("AdjustWarperSpecimenSize");
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un espécimen casi completo de urdidor.";
+                        return "Un espécimen casi completo de urdidor. " + GetFriendlyWord("AdjustWarperSpecimenSize");
                     else if (UserLanguage == CountryCode.TR)
-                        return "Neredeyse tam bir çözgü örneği.";
+                        return "Neredeyse tam bir çözgü örneği. " + GetFriendlyWord("AdjustWarperSpecimenSize");
                     else if (UserLanguage == CountryCode.DE)
-                        return "Ein fast vollständiges Exemplar von Warper.";
+                        return "Ein fast vollständiges Exemplar von Warper. " + GetFriendlyWord("AdjustWarperSpecimenSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Почти полный образец варпера.";
+                        return "Почти полный образец варпера. " + GetFriendlyWord("AdjustWarperSpecimenSize");
                     else
-                        return "An almost complete specimen of warper.";
+                        return "An almost complete specimen of warper. " + GetFriendlyWord("AdjustWarperSpecimenSize");
                 case "HangingWarperPartName":
                     if (UserLanguage == CountryCode.FR)
                         return "El\u00e9ment de warper suspendu";
@@ -3610,19 +3688,58 @@ namespace DecorationsMod
                         return "Густая кровавая трава";
                     else
                         return "Dense blood grass";
+                case "SeamothFragments":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Fragments de Seamoth";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Fragmentos de Seamoth";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Seamoth Parçaları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Seemotten Fragmente";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Фрагменты Seamoth";
+                    else
+                        return "Seamoth fragments";
+                case "SeamothFragmentName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Fragment de Seamoth";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Fragmento de Seamoth";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Seamoth parçası";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Seemotten Fragment";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Фрагмент Seamoth";
+                    else
+                        return "Seamoth fragment";
+                case "SeamothFragmentDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un fragment de technologie du Seamoth.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un fragmento de tecnolog\u00eda del Seamoth.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Seamoth teknolojisinin bir par\u00e7as\u0131.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Fragment der Seemotten-Technologie.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "\u0424\u0440\u0430\u0433\u043c\u0435\u043d\u0442 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438 \u00ab\u041c\u043e\u0442\u044b\u043b\u044c\u043a\u0430\u00bb.";
+                    else
+                        return "A fragment of seamoth technology.";
                 case "Config_UseFlatScreenResolution":
                     if (UserLanguage == CountryCode.FR)
-                        return "Résolution d'écran alternative";
+                        return "Icônes compactes dans le fabricateur de graines";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Resolución alternativa de pantalla";
+                        return "Íconos compactos en el fabricator de semillas";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Alternatif ekran çözünürlüğü";
+                        return "Tohum yapımcısı içindeki kompakt simgeler";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Alternative Bildschirmauflösung";
+                        return "Kompakte Symbole im Saatguthersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Альтернативное разрешение экрана";
+                        return "Компактные иконки в семени";
                     else
-                        return "Use alternate screen resolution";
+                        return "Compact icons in seeds fabricator";
                 case "Config_UseCompactTooltips":
                     if (UserLanguage == CountryCode.FR)
                         return "Infobulles compactes";
@@ -3649,320 +3766,617 @@ namespace DecorationsMod
                         return "Блокировка слотов при размещении предмета";
                     else
                         return "Lock quickslots when placing item";
-
-                // TODO: FINISH LANGUAGE STRINGS BELOW
                 case "Config_AllowBuildOutside":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Autoriser construction à l'extérieur";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Permitir construir afuera";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Dışarıda derlemeye izin ver";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Lassen Sie draußen bauen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Разрешить строить снаружи";
                     else
                         return "Allow build outside";
                 case "Config_AllowPlaceOutside":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Autoriser placement à l'extérieur";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Dejar colocar afuera";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Dışarıya yerleştirilmesine izin ver";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Draußen platzieren lassen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Разрешить разместить снаружи";
                     else
-                        return "Allow place outside";
+                        return "Allow to place outside";
                 case "Config_EnablePlaceItems":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Activer le placement d'objets";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Habilitar colocación de artículos";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Öğe yerleşimini etkinleştir";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Aktivieren Sie die Artikelplatzierung";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Включить размещение предметов";
                     else
                         return "Enable items placing";
                 case "Config_EnablePlaceBatteries":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Autoriser le placement de batteries";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Permitir la colocación de baterías";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Pillerin yerleştirilmesine izin ver";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Platzieren Sie die Batterien";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Разрешить размещение батарей";
                     else
                         return "Enable batteries placing";
-                case "Config_EnableSpecialItems":
+                case "Config_EnableNewItems":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Inclure les nouveaux objets";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Incluir nuevos objetos";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Yeni nesneler dahil et";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Neue Objekte einschließen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Включить новые объекты";
                     else
-                        return "Enable special items";
+                        return "Enable new items";
+                case "Config_EnableNewFlora":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Inclure les nouvelles plantes";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Incluir nuevas plantas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yeni bitkileri dahil et";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Neue Pflanzen einschließen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Включить новые растения";
+                    else
+                        return "Enable new plants";
                 case "Config_EnablePrecursorTab":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Activer l'onglet Précurseurs";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Habilitar la pestaña Precursores";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Öncüler sekmesini etkinleştir";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Aktivieren Sie die Registerkarte Erbauer";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Включить вкладку Прекурсоры";
                     else
                         return "Enable precursor tab";
                 case "Config_PrecursorKeysAll":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Tablettes alien dans le fabricateur de déco";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Tabletas alienígenas en el fabricante";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Üreticiye yabancı tabletler ekleyin";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Fügen Sie Alien-Tabletten im Hersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Добавить чужие таблетки в фабрикаторе";
                     else
                         return "Add regular alien tablets in deco fabricator";
                 case "Config_EnableRegularEggs":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Œufs standard dans fabricateur de déco";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Agregue huevos regulares en el fabricante";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Fabrikatörde düzenli yumurta ekleyin";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Fügen Sie normale Eier in Hersteller hinzu";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Добавьте обычные яйца в фабрикаторе";
                     else
                         return "Add regular eggs in deco fabricator";
+                case "Config_EnableEggsWhenCreatureScanned":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Déverrouiller œufs quand trouvés en jeu";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Desbloquea huevos cuando los descubras en el juego";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Oyunda keşfedildiğinde yumurtaların kilidini aç";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Schalte Eier frei, wenn sie im Spiel entdeckt werden";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Разблокировать яйца, когда обнаружены в игре";
+                    else
+                        return "Unlock eggs when discovered in game";
+                case "Config_EnableEggsAtStart":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Déverrouiller les œufs en début de partie";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Desbloquea huevos cuando comienza el juego";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Oyun başladığında yumurtaların kilidini aç";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Schalte Eier frei, wenn das Spiel beginnt";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Разблокировать яйца, когда игра начинается";
+                    else
+                        return "Unlock eggs when game starts";
+                case "Config_EggsDicoverySetting":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Activer fabrication d'œufs";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Permitir elaboración de huevos";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yumurta işçiliğini etkinleştir";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Erlaube das Basteln von Eiern";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Включить крафт яйца";
+                    else
+                        return "Enable crafting regular eggs";
                 case "Config_EnableNutrientBlock":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Block de nutriments dans fabricateur de déco";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Bloque de nutrientes en el fabricante";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Fabrikatördeki besin bloğu";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Nährstoffblock im Hersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Питательный блок в изготовителе";
                     else
                         return "Add nutrient block in deco fabricator";
                 case "Config_EnableRegularAirSeeds":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Graînes terrestres dans fabricateur de graînes";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Semillas de aire en el fabricante de flora";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Flora fabrikatöründe düzenli hava tohumları";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Regelmäßige Luftsamen im Pflanzenhersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Обычные воздушные семена во флоре-фабриканте";
                     else
                         return "Add regular air seeds in flora fabricator";
+                case "Config_AddRegularAirSeedsWhenDiscovered":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Activer fabrication de graînes terrestres";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Permitir elaboración de semillas de aire";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Üretim havası tohumunu etkinleştir";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Erlaube das Herstellen von Luftsamen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Разрешить создание воздушных семян";
+                    else
+                        return "Enable crafting regular air seeds";
                 case "Config_EnableRegularWaterSeeds":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Graînes aquatiques dans fabricateur de graînes";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Semillas de agua regular en fabricante de flora";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Flora fabrikatöründe düzenli su tohumları";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Regelmäßige Wassersamen in Flora Hersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Регулярные семена воды во флоре фабрикант";
                     else
                         return "Add regular water seeds in flora fabricator";
+                case "Config_AddRegularWaterSeedsWhenDiscovered":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Activer fabrication de graînes aquatiques";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Permitir elaboración de semillas de agua";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Su tohumlarının işçiliğini etkinleştir";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Erlaube das Herstellen von Wassersamen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Включить крафт семян воды";
+                    else
+                        return "Enable crafting regular water seeds";
+                case "Config_EnableDiscoveryMode":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Activer fabrication de nouveaux objets";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Habilitar fabrication de nuevos elementos";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yeni öğeler oluşturmayı etkinleştir";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Aktivieren Sie das Erstellen neuer Objekte";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Включить создание новых предметов";
+                    else
+                        return "Enable crafting new items";
+                case "Config_EnableSofas":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Activer les canapés";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Habilitar sofás";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kanepeleri etkinleştir";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Sofas aktivieren";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Включить диваны";
+                    else
+                        return "Enable sofas";
+                case "Config_BarBottle1_water":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Valeur en eau de bouteille de bar 1";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Valor del agua de la botella bar 1";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bar şişe 1'in su değeri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserwert der Riegelflasche 1";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Водная ценность барной бутылки 1";
+                    else
+                        return "Water value for bar bottle 1";
+                case "Config_BarBottle2_water":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Valeur en eau de bouteille de bar 2";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Valor del agua de la botella bar 2";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bar şişe 2'in su değeri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserwert der Riegelflasche 2";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Водная ценность барной бутылки 2";
+                    else
+                        return "Water value for bar bottle 3";
+                case "Config_BarBottle3_water":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Valeur en eau de bouteille de bar 3";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Valor del agua de la botella bar 3";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bar şişe 3'in su değeri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserwert der Riegelflasche 3";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Водная ценность барной бутылки 3";
+                    else
+                        return "Water value for bar bottle 3";
+                case "Config_BarBottle4_water":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Valeur en eau de bouteille de bar 4";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Valor del agua de la botella bar 4";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bar şişe 4'in su değeri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserwert der Riegelflasche 4";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Водная ценность барной бутылки 4";
+                    else
+                        return "Water value for bar bottle 4";
+                case "Config_BarBottle5_water":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Valeur en eau de bouteille de bar 5";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Valor del agua de la botella bar 5";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bar şişe 5'in su değeri";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserwert der Riegelflasche 5";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Водная ценность барной бутылки 5";
+                    else
+                        return "Water value for bar bottle 5";
+                case "Config_BarFood1_nutrient":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Valeur nutritive nourriture de bar 1";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Valor nutritivo para comida de bar 1";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bar gıda için besin değeri 1";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Nährwert für Riegelfutter 1";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Питательная ценность для бара еды 1";
+                    else
+                        return "Nutrient value for bar food 1";
+                case "Config_BarFood1_water":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Valeur en eau de nourriture de bar 1";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Valor del agua para comida de bar 1";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bar gıda için su değeri 1";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserwert für Bar Food 1";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Значение воды для еды в баре 1";
+                    else
+                        return "Water value for bar food 1";
+                case "Config_BarFood2_nutrient":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Valeur nutritive nourriture de bar 2";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Valor nutritivo para comida de bar 2";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bar gıda için besin değeri 2";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Nährwert für Riegelfutter 2";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Питательная ценность для бара еды 2";
+                    else
+                        return "Nutrient value for bar food 2";
+                case "Config_BarFood2_water":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Valeur en eau de nourriture de bar 2";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Valor del agua para comida de bar 2";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bar gıda için su değeri 2";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wasserwert für Bar Food 2";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Значение воды для еды в баре 2";
+                    else
+                        return "Water value for bar food 2";
                 case "Config_AllowIndoorLongPlanterOutside":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Autoriser long jardin d'intérieur à l'extérieur";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Permitir maceta larga interior afuera";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Dışarıda uzun ekici izin ver";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Lassen Sie lange Pflanzgefäße draußen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Разрешить в помещении длинную сеялку снаружи";
                     else
                         return "Allow indoor long planter outside";
                 case "Config_AllowOutdoorLongPlanterInside":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Autoriser long jardin d'extérieur à l'intérieur";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Permitir maceta larga al aire libre adentro";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "İç mekanda uzun ekiciye izin ver";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Lassen Sie lange Pflanzgefäße im Freien drinnen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Разрешить открытый длинный сеялка внутри";
                     else
                         return "Allow outdoor long planter inside";
                 case "Config_FixAquariumLighting":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Améliorer éclairage des aquariums";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Fijar la iluminación de acuarios";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Akvaryum aydınlatmasını düzeltin";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Fix Aquarienbeleuchtung";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Исправить освещение аквариумов";
                     else
-                        return "Fix aquarium lighting";
+                        return "Fix aquariums lighting";
                 case "Config_GlowingAquariumGlass":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Activer effet brillant sur aquariums";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Habilitar el efecto brillante del acuario";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Akvaryumda parlayan efekti etkinleştir";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Aktivieren Sie den Aquarium-Glüheffekt";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Включить светящийся эффект аквариума";
                     else
                         return "Enable aquarium glowing effect";
+                case "Config_PrecursorKeysResource":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ressource pour fabriquer tablette alien";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Recurso para fabricar tabletas alienígenas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzaylı tableti hazırlamak için kaynak";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ressource für Herstellung von Alien-Tablets";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Ресурс изготовления планшетов пришельцев";
+                    else
+                        return "Resource to craft alien tablet";
                 case "Config_PrecursorKeysResourceAmount":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Quantité ressources pour fabriquer tablette";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Cantidad de recursos para fabricar tabletas";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Uzaylı tableti hazırlamak için kaynak miktarı";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Menge an Ressourcen für Alien-Tablets";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Количество ресурсов для создания чужой таблетки";
                     else
                         return "Amount of resources to craft alien tablet";
+                case "Config_RelicRecipiesResource":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ressource pour fabriquer relique alien";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Recurso para fabricar reliquia alienígenas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Uzaylı kalıntıları için kaynak miktarı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Handwerksressource für außerirdische Relikte";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Ресурсы для создания реликвии пришельцев";
+                    else
+                        return "Resource to craft alien relic";
                 case "Config_RelicRecipiesResourceAmount":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Quantité ressources pour fabriquer relique";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Cantidad de recursos para fabricar reliquia";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Uzaylı kalıntısı yapmak için kaynak miktarı";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Menge an Ressourcen, um Relikte herzustellen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Количество ресурсов для изготовления реликвии";
                     else
                         return "Amount of resources to craft alien relic";
+                case "Config_CreatureEggsResource":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ressource pour créer œufs";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Recurso para crear huevos";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yaratık yumurtası yapmak için kaynak";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ressource für Herstellung von Eiern";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Ресурс для изготовления яиц существ";
+                    else
+                        return "Resource to craft eggs";
                 case "Config_CreatureEggsResourceAmount":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Quantité de ressources pour créer œuf";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Cantidad de recursos para crear huevos";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Yaratık yumurtası yapmak için kaynak miktarı";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Menge an Ressourcen für Kreaturenei";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Количество ресурсов для создания яйца существа";
                     else
-                        return "Amount of resources to craft creature egg";
+                        return "Amount of resources to craft egg";
+                case "Config_FloraRecipiesResource":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ressource pour créer graînes";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Recurso para crear semillas";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tohum oluşturmak için kaynak";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ressource zum Erstellen von Samen";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Ресурс для создания семян";
+                    else
+                        return "Resource to craft seeds";
                 case "Config_FloraRecipiesResourceAmount":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Quantité de ressources pour créer graîne";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Cantidad de recursos para elaborar semillas";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Tohumculuk yapmak için kaynak miktarı";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Menge an Ressourcen für Saatgut";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Количество ресурсов на семена";
                     else
-                        return "Amount of resources to craft flora seed";
+                        return "Amount of resources to craft seed";
+                case "Config_PurplePineconeDroppedResourceAmount":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Nb ressources données par pomme de pin violette";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Cantidad de recursos dados por la piña morada";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Mor çam kozalakları tarafından sağlanan kaynak miktarı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Menge Ressourcen von lila Tannenzapfen gegeben";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Количество ресурсов, даваемых фиолетовой шишкой";
+                    else
+                        return "Amount of resources given by purple pinecone";
                 case "Config_GhostLeviatan_enable":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Arbre de crique géant crée léviathans";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Leviatán se genera del árbol de la ensenada";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Koyu ağaçtan Leviathan yumurtlama";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Leviathan, der vom Buchtenbaum laicht";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Левиафан нерестится из бухты дерева";
                     else
-                        return "Enable leviatan spawning from cove tree eggs";
+                        return "Cove tree spawns ghost leviathan(s)";
                 case "Config_GhostLeviatan_maxSpawns":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Nombre de léviathans créés";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Cantidad de leviatanes para desovar";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Yumurtlanacak leviathans miktarı";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Anzahl der zu laichenden Leviathaner";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Количество левиафанов на нерест";
                     else
                         return "Leviatans to spawn before eggs disappear";
                 case "Config_GhostLeviatan_timeBeforeFirstSpawn":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Léviathan apparaît au bout de";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "El primer leviatán se genera en";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "İlk Leviathan doğuyor";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Der erste Leviathan erscheint in";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Первый левиафан появляется в";
                     else
                         return "First leviatan spawn in";
                 case "Config_GhostLeviatan_spawnTimeRatio":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Temps entre 2 création de léviathans";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Tiempo entre dos engendros de leviatán";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "İki Leviathan doğuşu arasındaki zaman";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Zeit zwischen zwei Leviathan-Spawns";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Время между двумя порождениями левиафана";
                     else
                         return "Time between 2 leviatan spawns";
                 case "Config_GhostLeviatan_health":
                     if (UserLanguage == CountryCode.FR)
-                        return "Herbe sanguine dense";
+                        return "Points de santé des léviathans créés";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Densa hierba de sangre";
+                        return "Puntos de salud de leviatán engendrados";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yoğun kan otu";
+                        return "Doğmuş leviathan sağlık noktaları";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Dichtes Blutgras";
+                        return "Spawn Leviathan Gesundheitspunkte";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Появившиеся пункты здоровья левиафана";
                     else
                         return "Spawned leviatan health points";
+                case "Config_OpenDecorationsModConfigurator":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cliquez ici pour configurer";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Haga clic aquí para configurar";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yapılandırmak için burayı tıklayın";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken Sie hier zum Konfigurieren";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Нажмите здесь, чтобы настроить";
+                    else
+                        return "Click here to configure";
                 default:
                     return "?";
             }

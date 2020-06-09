@@ -7,15 +7,15 @@ namespace DecorationsMod.Controllers
 {
     public class ReactorLampBrightness : HandTarget, IHandTarget, IProtoEventListener
     {
-        private Texture yellow = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");
-        private Texture orange = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_orange");
-        private Texture red = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_red");
-        private Texture pink = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_pink");
-        private Texture purple = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_purple");
-        private Texture blue = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_blue");
-        private Texture cyan = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum");
-        private Texture green = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green");
-        private Texture white = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
+        private readonly Texture yellow = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");
+        private readonly Texture orange = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_orange");
+        private readonly Texture red = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_red");
+        private readonly Texture pink = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_pink");
+        private readonly Texture purple = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_purple");
+        private readonly Texture blue = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_blue");
+        private readonly Texture cyan = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum");
+        private readonly Texture green = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green");
+        private readonly Texture white = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
 
         private bool isOn = true;
         private float savedIntensity = -1.0f;
@@ -71,7 +71,7 @@ namespace DecorationsMod.Controllers
             Renderer renderer = null;
             foreach (Renderer rend in renderers)
             {
-                if (rend.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
+                if (string.Compare(rend.name, "nuclear_reactor_rod_mesh", true, CultureInfo.InvariantCulture) == 0)
                 {
                     renderer = rend;
                     break;
@@ -243,7 +243,7 @@ namespace DecorationsMod.Controllers
             Renderer renderer = null;
             foreach (Renderer rend in renderers)
             {
-                if (rend.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
+                if (string.Compare(rend.name, "nuclear_reactor_rod_mesh", true, CultureInfo.InvariantCulture) == 0)
                 {
                     renderer = rend;
                     break;
@@ -344,7 +344,7 @@ namespace DecorationsMod.Controllers
                 Renderer renderer = null;
                 foreach (Renderer rend in renderers)
                 {
-                    if (rend.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
+                    if (string.Compare(rend.name, "nuclear_reactor_rod_mesh", true, CultureInfo.InvariantCulture) == 0)
                     {
                         renderer = rend;
                         break;
@@ -389,7 +389,7 @@ namespace DecorationsMod.Controllers
                     float Cglow = float.Parse(state[6], CultureInfo.InvariantCulture);
                     savedGlowColor = new Color(Cglow, Cglow, Cglow, 1.0f);
                     renderer.material.SetColor("_GlowColor", savedGlowColor);
-                    if (state[7].CompareTo("0") == 0)
+                    if (string.Compare(state[7], "0", false, CultureInfo.InvariantCulture) == 0)
                         SwitchLampOff(renderer, reactorRodLight, true);
                 }
             }

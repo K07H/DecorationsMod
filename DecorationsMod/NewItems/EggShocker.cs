@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace DecorationsMod.NewItems
             this.PrefabFileName = "WorldEntities/Eggs/ShockerEgg";
 
             this.TechType = TechType.ShockerEgg;
+
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
@@ -40,7 +43,8 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                if (ConfigSwitcher.EnableRegularEggs)
+                // Set unlock conditions
+                if (ConfigSwitcher.EnableEggsAtStart || ConfigSwitcher.EnableEggsWhenCreatureScanned)
                     SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(this.TechType);
 
                 // Associate recipe to the new TechType

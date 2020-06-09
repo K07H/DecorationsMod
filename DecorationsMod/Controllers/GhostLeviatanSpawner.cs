@@ -7,8 +7,6 @@ namespace DecorationsMod.Controllers
     {
         public static GameObject ghostLeviathanPrefab = null;
 
-        private const string kVoidBiome = "void";
-        
         public bool hasEggs = false;
         
         public float spawnInterval = 20f;
@@ -16,7 +14,7 @@ namespace DecorationsMod.Controllers
         public float spawnDistance = 10f;
         public float minDepthForSpawn = -100f;
         
-        private HashSet<GameObject> spawnedCreatures = new HashSet<GameObject>();
+        private readonly HashSet<GameObject> spawnedCreatures = new HashSet<GameObject>();
 
         private float timeNextSpawn = -1f;
         
@@ -48,8 +46,7 @@ namespace DecorationsMod.Controllers
                 this.timeNextSpawn = this.CalculateTimeNextSpawn();
             }
 
-            Vector3 position;
-            if (this.hasEggs && this.timeNextSpawn > 0f && Time.time > this.timeNextSpawn && this.TryGetSpawnPosition(this.gameObject.transform.position, out position))
+            if (this.hasEggs && this.timeNextSpawn > 0f && Time.time > this.timeNextSpawn && this.TryGetSpawnPosition(this.gameObject.transform.position, out Vector3 position))
             {
                 GameObject item = UnityEngine.Object.Instantiate<GameObject>(GhostLeviatanSpawner.ghostLeviathanPrefab, position, Quaternion.identity);
                 LiveMixin liveMixin = item.GetComponent<LiveMixin>();
@@ -71,8 +68,6 @@ namespace DecorationsMod.Controllers
         private bool TryGetSpawnPosition(Vector3 covetreePosition, out Vector3 spawnPosition)
         {
             spawnPosition = Vector3.zero;
-            //if (!LargeWorld.main)
-            //    return false;
             for (int i = 0; i < 10; i++)
             {
                 spawnPosition = covetreePosition + UnityEngine.Random.onUnitSphere * this.spawnDistance;

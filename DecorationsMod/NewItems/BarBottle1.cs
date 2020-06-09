@@ -115,16 +115,16 @@ namespace DecorationsMod.NewItems
 
                 // We can drink this item
                 var eatable = this.GameObject.AddComponent<Eatable>();
-                eatable.foodValue = 0;
-                eatable.waterValue = 20;
+                eatable.foodValue = 0.0f;
+                eatable.waterValue = ConfigSwitcher.BarBottle1Value;
 #if SUBNAUTICA
-                eatable.stomachVolume = 15;
+                eatable.stomachVolume = 10.0f;
                 eatable.allowOverfill = false;
 #endif
                 eatable.decomposes = false;
                 eatable.despawns = false;
-                eatable.kDecayRate = 0;
-                eatable.despawnDelay = 0;
+                eatable.kDecayRate = 0.0f;
+                eatable.despawnDelay = 0.0f;
 
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);

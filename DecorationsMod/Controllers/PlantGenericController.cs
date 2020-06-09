@@ -14,6 +14,7 @@ namespace DecorationsMod.Controllers
         public bool EnableColliders = false;
         public bool RestoreRadius = false;
         public bool RestoreBoxColliders = false;
+        //public bool RestoreBoxColliderAndSize = false;
         public bool Running = false;
         public float _progress = 0.0f;
         public float _passedProgress = 0.0f;
@@ -101,11 +102,15 @@ namespace DecorationsMod.Controllers
                     // If we need to add a temporary collider, do it before scaling
                     if (EnableColliders)
                     {
-                        _tmpCollider = _grownPlant.gameObject.FindChild("lost_river_cove_tree_01").AddComponent<BoxCollider>();
-                        if (_tmpCollider != null)
+                        var coveTreeModel = _grownPlant.gameObject.FindChild("lost_river_cove_tree_01");
+                        if (coveTreeModel != null)
                         {
-                            _tmpCollider.size = new Vector3(7.0f, 20.0f, 7.0f);
-                            _tmpCollider.center = new Vector3(_tmpCollider.center.x, _tmpCollider.center.y + 10.0f, _tmpCollider.center.z);
+                            _tmpCollider = coveTreeModel.AddComponent<BoxCollider>();
+                            if (_tmpCollider != null)
+                            {
+                                _tmpCollider.size = new Vector3(7.0f, 20.0f, 7.0f);
+                                _tmpCollider.center = new Vector3(_tmpCollider.center.x, _tmpCollider.center.y + 10.0f, _tmpCollider.center.z);
+                            }
                         }
                     }
                     // Init tree/plant size
@@ -120,6 +125,7 @@ namespace DecorationsMod.Controllers
                         foreach (Collider collider in colliders)
                         {
                             collider.transform.localScale *= 1000.0f;
+                            collider.enabled = true;
                         }
                     }
                     if (RestoreRadius)
@@ -128,6 +134,7 @@ namespace DecorationsMod.Controllers
                         foreach (SphereCollider collider in colliders)
                         {
                             collider.radius *= 1000.0f;
+                            collider.enabled = true;
                         }
                     }
                     if (RestoreBoxColliders)
@@ -136,8 +143,20 @@ namespace DecorationsMod.Controllers
                         foreach (BoxCollider collider in colliders)
                         {
                             collider.size *= 1000.0f;
+                            collider.enabled = true;
                         }
                     }
+                    /*
+                    if (RestoreBoxColliderAndSize)
+                    {
+                        BoxCollider[] colliders = _grownPlant.gameObject.GetComponentsInChildren<BoxCollider>();
+                        foreach (BoxCollider collider in colliders)
+                        {
+                            collider.size *= 1000.0f;
+                            collider.transform.localPosition = new Vector3(collider.transform.localPosition.x, collider.transform.localPosition.y + 1.0f, collider.transform.localPosition.z);
+                        }
+                    }
+                    */
 
                     Running = true;
                 }
@@ -151,8 +170,8 @@ namespace DecorationsMod.Controllers
                     else
                         Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
 #endif
-                    if (Utils.NearlyEqual(_grownPlant.gameObject.transform.localPosition.x, 5000.0f)
-                        && Utils.NearlyEqual(_grownPlant.gameObject.transform.localPosition.z, 5000.0f))
+                    if (_grownPlant.gameObject.transform.localPosition.x > 4900.0f && _grownPlant.gameObject.transform.localPosition.x < 5100.0f &&
+                        _grownPlant.gameObject.transform.localPosition.z > 4900.0f && _grownPlant.gameObject.transform.localPosition.z < 5100.0f)
                     {
 #if DEBUG_FLORA
                         if (id != null)

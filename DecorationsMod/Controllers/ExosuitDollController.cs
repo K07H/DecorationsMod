@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 
@@ -187,7 +188,7 @@ namespace DecorationsMod.Controllers
             GameObject rightPropulsionArm = rightArmRig.FindChild("exosuit_propulsion_geo 1");
 
             // Right torpedo arm
-            if (arm.CompareTo("0") != 0)
+            if (string.Compare(arm, "0", false, CultureInfo.InvariantCulture) != 0)
             {
                 List<Renderer> rightTorpedoArmRenderers = new List<Renderer>();
                 rightTorpedoArm.GetComponentsInChildren<Renderer>(rightTorpedoArmRenderers);
@@ -211,10 +212,10 @@ namespace DecorationsMod.Controllers
             }
 
             // Right drill arm
-            rightDrillArm.GetComponent<Renderer>().enabled = (arm.CompareTo("1") == 0);
+            rightDrillArm.GetComponent<Renderer>().enabled = (string.Compare(arm, "1", false, CultureInfo.InvariantCulture) == 0);
 
             // Right grapplin arm
-            if (arm.CompareTo("2") != 0)
+            if (string.Compare(arm, "2", false, CultureInfo.InvariantCulture) != 0)
             {
                 List<Renderer> rightGrapplinArmRenderers = new List<Renderer>();
                 rightGrapplinHand.GetComponentsInChildren<Renderer>(rightGrapplinArmRenderers);
@@ -240,10 +241,10 @@ namespace DecorationsMod.Controllers
             }
 
             // Right propulsion arm
-            rightPropulsionArm.GetComponent<Renderer>().enabled = (arm.CompareTo("3") == 0);
+            rightPropulsionArm.GetComponent<Renderer>().enabled = (string.Compare(arm, "3", false, CultureInfo.InvariantCulture) == 0);
 
             // Right hand arm
-            rightHandArm.GetComponent<Renderer>().enabled = (arm.CompareTo("4") == 0);
+            rightHandArm.GetComponent<Renderer>().enabled = (string.Compare(arm, "4", false, CultureInfo.InvariantCulture) == 0);
         }
 
         public static void SetLeftArm(GameObject gameObject, string arm)
@@ -258,7 +259,7 @@ namespace DecorationsMod.Controllers
             GameObject leftPropulsionArm = leftArmRig.FindChild("exosuit_propulsion_geo");
 
             // Right torpedo arm
-            if (arm.CompareTo("0") != 0)
+            if (string.Compare(arm, "0", false, CultureInfo.InvariantCulture) != 0)
             {
                 List<Renderer> leftTorpedoArmRenderers = new List<Renderer>();
                 leftTorpedoArm.GetComponentsInChildren<Renderer>(leftTorpedoArmRenderers);
@@ -282,10 +283,10 @@ namespace DecorationsMod.Controllers
             }
 
             // Right drill arm
-            leftDrillArm.GetComponent<Renderer>().enabled = (arm.CompareTo("1") == 0);
+            leftDrillArm.GetComponent<Renderer>().enabled = (string.Compare(arm, "1", false, CultureInfo.InvariantCulture) == 0);
 
             // Right grapplin arm
-            if (arm.CompareTo("2") != 0)
+            if (string.Compare(arm, "2", false, CultureInfo.InvariantCulture) != 0)
             {
                 List<Renderer> rightGrapplinArmRenderers = new List<Renderer>();
                 leftGrapplinHand.GetComponentsInChildren<Renderer>(rightGrapplinArmRenderers);
@@ -311,10 +312,10 @@ namespace DecorationsMod.Controllers
             }
 
             // Right propulsion arm
-            leftPropulsionArm.GetComponent<Renderer>().enabled = (arm.CompareTo("3") == 0);
+            leftPropulsionArm.GetComponent<Renderer>().enabled = (string.Compare(arm, "3", false, CultureInfo.InvariantCulture) == 0);
 
             // Right hand arm
-            leftHandArm.GetComponent<Renderer>().enabled = (arm.CompareTo("4") == 0);
+            leftHandArm.GetComponent<Renderer>().enabled = (string.Compare(arm, "4", false, CultureInfo.InvariantCulture) == 0);
         }
 
         // Save seamoth doll state
@@ -336,8 +337,7 @@ namespace DecorationsMod.Controllers
             GameObject rightGrapplinArm = rightArmRig.FindChild("exosuit_grapplingHook_geo 1");
             GameObject rightPropulsionArm = rightArmRig.FindChild("exosuit_propulsion_geo 1");
 
-            string state = "";
-
+            string state;
             if (rightTorpedoArm.GetComponent<Renderer>().enabled)
                 state = "0";
             else if (rightDrillArm.GetComponent<Renderer>().enabled)

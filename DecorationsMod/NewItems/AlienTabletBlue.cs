@@ -15,6 +15,7 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
+            /*
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
             {
@@ -34,6 +35,7 @@ namespace DecorationsMod.NewItems
                     }),
             };
 #endif
+            */
         }
 
         public override void RegisterItem()
@@ -41,7 +43,7 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+                //SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 // Add the new TechType to the hand-equipments
                 SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);

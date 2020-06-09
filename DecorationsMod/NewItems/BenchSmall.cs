@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Fixers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -17,6 +18,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("BenchSmallName"),
                                                         LanguageHelper.GetFriendlyWord("BenchDescription"),
                                                         true);
+
+            CrafterLogicFixer.BenchSmall = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
@@ -45,6 +49,9 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
                 SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.Bench);
@@ -54,9 +61,6 @@ namespace DecorationsMod.NewItems
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("benchsmallicon"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

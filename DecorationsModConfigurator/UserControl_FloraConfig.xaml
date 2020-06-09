@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="DecorationsModConfigurator.UserControl_FloraConfig"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DecorationsModConfigurator"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             FontWeight="Light"
+             FontSize="18"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             d:DesignHeight="650" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Background" Value="Transparent" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3000BFFF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border BorderThickness="0.5" BorderBrush="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Orientation="Vertical" Grid.Column="1" Margin="5,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+                <Image Source="{Binding PlantImagePath, Mode=TwoWay}" />
+                <TextBlock Text="{Binding PlantName, Mode=TwoWay}" FontWeight="Regular" VerticalAlignment="Center" Margin="15" />
+            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Config_PlantGrowthDuration, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Slider Grid.Column="1" x:Name="SL_GrowthDuration" Minimum="100" Maximum="10000" SmallChange="10" LargeChange="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding GrowthDuration}" Width="250" Value="{Binding GrowthDuration, Mode=TwoWay}" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Config_PlantHealthPoints, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Slider Grid.Column="1" x:Name="SL_HealthPoints" Minimum="10" Maximum="2000" SmallChange="1" LargeChange="10" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding HealthPoints}" Width="250" Value="{Binding HealthPoints, Mode=TwoWay}" />
+            </Grid>
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Config_PlantBioreactorCharge, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Slider Grid.Column="1" x:Name="SL_BioreactorCharge" Minimum="10" Maximum="2000" SmallChange="1" LargeChange="10" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BioreactorCharge}" Width="250" Value="{Binding BioreactorCharge, Mode=TwoWay}" />
+            </Grid>
+            <Grid Margin="0,15,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Config_PlantCanEat, Mode=TwoWay}" Margin="15,15,15,3" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <CheckBox Grid.Column="1" x:Name="CB_CanEat" Width="20" Height="17" VerticalAlignment="Bottom" Content="" IsChecked="{Binding CanEat, Mode=TwoWay}" Checked="CB_CanEat_Checked" Unchecked="CB_CanEat_Unchecked">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+            </Grid>
+            <Grid x:Name="GRD_NutrientsAmount">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Config_PlantNutrientsAmount, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Slider Grid.Column="1" x:Name="SL_NutrientsAmount" Minimum="1" Maximum="100" SmallChange="1" LargeChange="10" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding NutrientsAmount}" Width="250" Value="{Binding NutrientsAmount, Mode=TwoWay}" />
+            </Grid>
+            <Grid x:Name="GRD_WaterAmount">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Config_PlantWaterAmount, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Slider Grid.Column="1" x:Name="SL_WaterAmount" Minimum="1" Maximum="100" SmallChange="1" LargeChange="10" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding WaterAmount}" Width="250" Value="{Binding WaterAmount, Mode=TwoWay}" />
+            </Grid>
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Config_PlantDecomposes, Mode=TwoWay}" Margin="15,15,15,3" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <CheckBox Grid.Column="1" x:Name="CB_Decomposes" Width="20" Height="17" VerticalAlignment="Bottom" Content="" IsChecked="{Binding Decomposes, Mode=TwoWay}" Checked="CB_Decomposes_Checked" Unchecked="CB_Decomposes_Unchecked">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+            </Grid>
+            <Grid x:Name="GRD_DecompositionSpeed" Margin="0,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Config_PlantDecompositionSpeed, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Slider Grid.Column="1" x:Name="SL_DecompositionSpeed" Minimum="1" Maximum="100" SmallChange="1" LargeChange="10" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding DecompositionSpeed}" Width="250" Value="{Binding DecompositionSpeed, Mode=TwoWay}" />
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

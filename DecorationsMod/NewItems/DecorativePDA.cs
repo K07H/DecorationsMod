@@ -1,5 +1,6 @@
 ﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -72,7 +73,7 @@ namespace DecorationsMod.NewItems
                     foreach (Material tmpMat in rend.materials)
                     {
                         tmpMat.shader = marmosetUber;
-                        if (tmpMat.name.CompareTo("PDA (Instance)") == 0)
+                        if (string.Compare(tmpMat.name, "PDA (Instance)", true, CultureInfo.InvariantCulture) == 0)
                         {
                             tmpMat.SetTexture("_BumpMap", normal);
                             tmpMat.SetTexture("_SpecTex", spec);

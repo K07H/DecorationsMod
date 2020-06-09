@@ -1,0 +1,152 @@
+﻿<UserControl x:Class="DecorationsModConfigurator.UserControl_Flora"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DecorationsModConfigurator"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             FontWeight="Light"
+             FontSize="18"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             d:DesignHeight="1250" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Background" Value="Transparent" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3000BFFF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="10,0,0,0">
+        <TextBlock Text="{Binding Config_FloraSettings, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="22" FontWeight="Regular" Margin="15" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_EnableRegularAirSeeds, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_AddRegularAirSeeds" Width="20" Height="20" Content="" IsChecked="{Binding AddRegularAirSeeds, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_EnableRegularWaterSeeds, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <CheckBox Grid.Column="1" x:Name="CB_AddRegularWaterSeeds" Width="20" Height="20" Content="" IsChecked="{Binding AddRegularWaterSeeds, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_FloraRecipiesResource, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <local:UserControl_TechType Grid.Column="1" x:Name="CB_Flora_RecipiesResource" TransitionTechType="{Binding Flora_RecipiesResource, Mode=TwoWay}" CustomTechType="{Binding Flora_RecipiesResource_Custom, Mode=OneWayToSource}" />
+        </Grid>
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_FloraRecipiesResourceAmount, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+            <Slider Grid.Column="1" x:Name="SL_Flora_RecipiesResourceAmount" Minimum="0" Maximum="10" VerticalAlignment="Top" Margin="0,0,0,18" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding Flora_RecipiesResourceAmount}" Width="330" Value="{Binding Flora_RecipiesResourceAmount, Mode=TwoWay}" />
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_PurplePineconeDroppedResource, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <local:UserControl_TechType Grid.Column="1" x:Name="CB_PurplePineconeDroppedResource" TransitionTechType="{Binding PurplePineconeDroppedResource, Mode=TwoWay}" CustomTechType="{Binding PurplePineconeDroppedResource_Custom, Mode=OneWayToSource}" />
+        </Grid>
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_PurplePineconeDroppedResourceAmount, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+            <Slider Grid.Column="1" x:Name="SL_PurplePineconeDroppedResourceAmount" Minimum="0" Maximum="10" VerticalAlignment="Top" Margin="0,0,0,18" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding PurplePineconeDroppedResourceAmount}" Width="330" Value="{Binding PurplePineconeDroppedResourceAmount, Mode=TwoWay}" />
+        </Grid>
+        <StackPanel x:Name="Stack_Main" Margin="0,15,0,0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TextBlock Text="{Binding Config_PlantsCharacteristics, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Regular" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="15" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock Text="{Binding Config_FilterPlantsList, Mode=TwoWay}" FontSize="16" HorizontalAlignment="Center" />
+                        <TextBox x:Name="TB_FilterByName" MinWidth="300" Margin="10,0,0,0" FontSize="16"  HorizontalAlignment="Center" TextChanged="TB_FilterByName_TextChanged" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <local:UserControl_FloraConfig x:Name="UC_LandTree" Margin="0,20,0,15" Plant="{Binding LandTree, Mode=TwoWay}" PlantName="{Binding LandTree.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_MushroomTree2" Margin="0,0,0,15" Plant="{Binding MushroomTree2, Mode=TwoWay}" PlantName="{Binding MushroomTree2.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_MushroomTree1" Margin="0,0,0,15" Plant="{Binding MushroomTree1, Mode=TwoWay}" PlantName="{Binding MushroomTree1.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_JungleTreeA" Margin="0,0,0,15" Plant="{Binding JungleTreeA, Mode=TwoWay}"  PlantName="{Binding JungleTreeA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_JungleTreeB" Margin="0,0,0,15" Plant="{Binding JungleTreeB, Mode=TwoWay}" PlantName="{Binding JungleTreeB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalTreeA" Margin="0,0,0,15" Plant="{Binding TropicalTreeA, Mode=TwoWay}" PlantName="{Binding TropicalTreeA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalTreeB" Margin="0,0,0,15" Plant="{Binding TropicalTreeB, Mode=TwoWay}" PlantName="{Binding TropicalTreeB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalTreeC" Margin="0,0,0,15" Plant="{Binding TropicalTreeC, Mode=TwoWay}" PlantName="{Binding TropicalTreeC.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalTreeD" Margin="0,0,0,15" Plant="{Binding TropicalTreeD, Mode=TwoWay}" PlantName="{Binding TropicalTreeD.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_LandPlantRedA" Margin="0,0,0,15" Plant="{Binding LandPlantRedA, Mode=TwoWay}" PlantName="{Binding LandPlantRedA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_LandPlantRedB" Margin="0,0,0,15" Plant="{Binding LandPlantRedB, Mode=TwoWay}" PlantName="{Binding LandPlantRedB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_LandPlantA" Margin="0,0,0,15" Plant="{Binding LandPlantA, Mode=TwoWay}" PlantName="{Binding LandPlantA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_LandPlantB" Margin="0,0,0,15" Plant="{Binding LandPlantB, Mode=TwoWay}" PlantName="{Binding LandPlantB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_LandPlantC" Margin="0,0,0,15" Plant="{Binding LandPlantC, Mode=TwoWay}" PlantName="{Binding LandPlantC.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_FernA" Margin="0,0,0,15" Plant="{Binding FernA, Mode=TwoWay}" PlantName="{Binding FernA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_FernB" Margin="0,0,0,15" Plant="{Binding FernB, Mode=TwoWay}" PlantName="{Binding FernB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalPlantA" Margin="0,0,0,15" Plant="{Binding TropicalPlantA, Mode=TwoWay}" PlantName="{Binding TropicalPlantA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalPlantB" Margin="0,0,0,15" Plant="{Binding TropicalPlantB, Mode=TwoWay}" PlantName="{Binding TropicalPlantB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalPlantC" Margin="0,0,0,15" Plant="{Binding TropicalPlantC, Mode=TwoWay}" PlantName="{Binding TropicalPlantC.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalPlantD" Margin="0,0,0,15" Plant="{Binding TropicalPlantD, Mode=TwoWay}" PlantName="{Binding TropicalPlantD.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalPlantE" Margin="0,0,0,15" Plant="{Binding TropicalPlantE, Mode=TwoWay}" PlantName="{Binding TropicalPlantE.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalPlantF" Margin="0,0,0,15" Plant="{Binding TropicalPlantF, Mode=TwoWay}" PlantName="{Binding TropicalPlantF.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalPlantG" Margin="0,0,0,15" Plant="{Binding TropicalPlantG, Mode=TwoWay}" PlantName="{Binding TropicalPlantG.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_TropicalPlantH" Margin="0,0,0,15" Plant="{Binding TropicalPlantH, Mode=TwoWay}" PlantName="{Binding TropicalPlantH.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CrabClawKelpA" Margin="0,0,0,15" Plant="{Binding CrabClawKelpA, Mode=TwoWay}" PlantName="{Binding CrabClawKelpA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CrabClawKelpB" Margin="0,0,0,15" Plant="{Binding CrabClawKelpB, Mode=TwoWay}" PlantName="{Binding CrabClawKelpB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CrabClawKelpC" Margin="0,0,0,15" Plant="{Binding CrabClawKelpC, Mode=TwoWay}" PlantName="{Binding CrabClawKelpC.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_PyroCoralA" Margin="0,0,0,15" Plant="{Binding PyroCoralA, Mode=TwoWay}" PlantName="{Binding PyroCoralA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_PyroCoralB" Margin="0,0,0,15" Plant="{Binding PyroCoralB, Mode=TwoWay}" PlantName="{Binding PyroCoralB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_PyroCoralC" Margin="0,0,0,15" Plant="{Binding PyroCoralC, Mode=TwoWay}" PlantName="{Binding PyroCoralC.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CoveTree" Margin="0,0,0,15" Plant="{Binding CoveTree, Mode=TwoWay}" PlantName="{Binding CoveTree.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_SpottedReedsA" Margin="0,0,0,15" Plant="{Binding SpottedReedsA, Mode=TwoWay}" PlantName="{Binding SpottedReedsA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_SpottedReedsB" Margin="0,0,0,15" Plant="{Binding SpottedReedsB, Mode=TwoWay}" PlantName="{Binding SpottedReedsB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_BrineLily" Margin="0,0,0,15" Plant="{Binding BrineLily, Mode=TwoWay}" PlantName="{Binding BrineLily.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_LostRiverPlant" Margin="0,0,0,15" Plant="{Binding LostRiverPlant, Mode=TwoWay}" PlantName="{Binding LostRiverPlant.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CoralReefPlantMiddle" Margin="0,0,0,15" Plant="{Binding CoralReefPlantMiddle, Mode=TwoWay}" PlantName="{Binding CoralReefPlantMiddle.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_SmallMushroomsDeco" Margin="0,0,0,15" Plant="{Binding SmallMushroomsDeco, Mode=TwoWay}" PlantName="{Binding SmallMushroomsDeco.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_FloatingStone" Margin="0,0,0,15" Plant="{Binding FloatingStone, Mode=TwoWay}" PlantName="{Binding FloatingStone.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_BrownCoralTubesA" Margin="0,0,0,15" Plant="{Binding BrownCoralTubesA, Mode=TwoWay}" PlantName="{Binding BrownCoralTubesA.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_BrownCoralTubesB" Margin="0,0,0,15" Plant="{Binding BrownCoralTubesB, Mode=TwoWay}" PlantName="{Binding BrownCoralTubesB.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_BrownCoralTubesC" Margin="0,0,0,15" Plant="{Binding BrownCoralTubesC, Mode=TwoWay}" PlantName="{Binding BrownCoralTubesC.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_BlueCoralTubes" Margin="0,0,0,15" Plant="{Binding BlueCoralTubes, Mode=TwoWay}" PlantName="{Binding BlueCoralTubes.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_PurplePinecone" Margin="0,0,0,15" Plant="{Binding PurplePinecone, Mode=TwoWay}" PlantName="{Binding PurplePinecone.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CoralPlantYellow" Margin="0,0,0,15" Plant="{Binding CoralPlantYellow, Mode=TwoWay}" PlantName="{Binding CoralPlantYellow.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CoralPlantGreen" Margin="0,0,0,15" Plant="{Binding CoralPlantGreen, Mode=TwoWay}" PlantName="{Binding CoralPlantGreen.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CoralPlantBlue" Margin="0,0,0,15" Plant="{Binding CoralPlantBlue, Mode=TwoWay}" PlantName="{Binding CoralPlantBlue.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CoralPlantRed" Margin="0,0,0,15" Plant="{Binding CoralPlantRed, Mode=TwoWay}" PlantName="{Binding CoralPlantRed.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_CoralPlantPurple" Margin="0,0,0,15" Plant="{Binding CoralPlantPurple, Mode=TwoWay}" PlantName="{Binding CoralPlantPurple.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_RedGrass1" Margin="0,0,0,15" Plant="{Binding RedGrass1, Mode=TwoWay}" PlantName="{Binding RedGrass1.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_RedGrass2" Margin="0,0,0,15" Plant="{Binding RedGrass2, Mode=TwoWay}" PlantName="{Binding RedGrass2.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_RedGrass3" Margin="0,0,0,15" Plant="{Binding RedGrass3, Mode=TwoWay}" PlantName="{Binding RedGrass3.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_RedGrass2Tall" Margin="0,0,0,15" Plant="{Binding RedGrass2Tall, Mode=TwoWay}" PlantName="{Binding RedGrass2Tall.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_RedGrass3Tall" Margin="0,0,0,15" Plant="{Binding RedGrass3Tall, Mode=TwoWay}" PlantName="{Binding RedGrass3Tall.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_BloodGrass" Margin="0,0,0,15" Plant="{Binding BloodGrass, Mode=TwoWay}" PlantName="{Binding BloodGrass.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_BloodGrassDense" Margin="0,0,0,15" Plant="{Binding BloodGrassDense, Mode=TwoWay}" PlantName="{Binding BloodGrassDense.PlantName, Mode=TwoWay}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -1,6 +1,8 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -18,6 +20,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("ExosuitDollName"),
                                                         LanguageHelper.GetFriendlyWord("ExosuitDollDescription"),
                                                         true);
+
+            CrafterLogicFixer.ExosuitDoll = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
@@ -128,22 +133,22 @@ namespace DecorationsMod.NewItems
                 Renderer[] renderers = this.GameObject.GetAllComponentsInChildren<Renderer>();
                 foreach (Renderer renderer in renderers)
                 {
-                    if (renderer.name.StartsWith("Exosuit_cabin_01_glass"))
+                    if (renderer.name.StartsWith("Exosuit_cabin_01_glass", true, CultureInfo.InvariantCulture))
                         renderer.material = glass;
                     else if (renderer.materials != null)
                     {
                         foreach (Material tmpMat in renderer.materials)
                         {
                             // Associate MarmosetUBER shader
-                            if (tmpMat.name.CompareTo("exosuit_cabin_01_glass (Instance)") == 0)
+                            if (string.Compare(tmpMat.name, "exosuit_cabin_01_glass (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.EnableKeyword("MARMO_SIMPLE_GLASS");
                                 tmpMat.EnableKeyword("WBOIT");
                             }
-                            else if (tmpMat.name.CompareTo("exosuit_01_glass (Instance)") != 0)
+                            else if (string.Compare(tmpMat.name, "exosuit_01_glass (Instance)", true, CultureInfo.InvariantCulture) != 0)
                                 tmpMat.shader = shader;
 
-                            if (tmpMat.name.CompareTo("exosuit_01 (Instance)") == 0)
+                            if (string.Compare(tmpMat.name, "exosuit_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal);
                                 tmpMat.SetTexture("_ColorMask", colorMask);
@@ -166,7 +171,7 @@ namespace DecorationsMod.NewItems
                                 // Enable Z write
                                 tmpMat.EnableKeyword("_ZWRITE_ON");
                             }
-                            else if (tmpMat.name.CompareTo("exosuit_01_fp (Instance)") == 0)
+                            else if (string.Compare(tmpMat.name, "exosuit_01_fp (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal2);
                                 tmpMat.SetTexture("_Illum", illum2);
@@ -179,7 +184,7 @@ namespace DecorationsMod.NewItems
                                 // Enable Z write
                                 tmpMat.EnableKeyword("_ZWRITE_ON");
                             }
-                            else if (tmpMat.name.CompareTo("Exosuit_Arm_Propulsion_Cannon (Instance)") == 0)
+                            else if (string.Compare(tmpMat.name, "Exosuit_Arm_Propulsion_Cannon (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal3);
                                 tmpMat.SetTexture("_ColorMask", colorMask3);
@@ -195,7 +200,7 @@ namespace DecorationsMod.NewItems
                                 // Enable Z write
                                 tmpMat.EnableKeyword("_ZWRITE_ON");
                             }
-                            else if (tmpMat.name.CompareTo("Exosuit_grappling_arm (Instance)") == 0)
+                            else if (string.Compare(tmpMat.name, "Exosuit_grappling_arm (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal4);
                                 tmpMat.SetTexture("_ColorMask", colorMask4);
@@ -227,7 +232,7 @@ namespace DecorationsMod.NewItems
                                 tmpMat.EnableKeyword("WBOIT");
                             }
                             */
-                            else if (tmpMat.name.CompareTo("exosuit_storage_01 (Instance)") == 0)
+                            else if (string.Compare(tmpMat.name, "exosuit_storage_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal6);
                                 tmpMat.SetTexture("_ColorMask", colorMask6);
@@ -243,7 +248,7 @@ namespace DecorationsMod.NewItems
                                 // Enable Z write
                                 tmpMat.EnableKeyword("_ZWRITE_ON");
                             }
-                            else if (tmpMat.name.CompareTo("Exosuit_torpedo_launcher_arm (Instance)") == 0)
+                            else if (string.Compare(tmpMat.name, "Exosuit_torpedo_launcher_arm (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal7);
                                 tmpMat.SetTexture("_ColorMask", colorMask7);
@@ -259,7 +264,7 @@ namespace DecorationsMod.NewItems
                                 // Enable Z write
                                 tmpMat.EnableKeyword("_ZWRITE_ON");
                             }
-                            else if (tmpMat.name.CompareTo("power_cell_01 (Instance)") == 0)
+                            else if (string.Compare(tmpMat.name, "power_cell_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal8);
                                 tmpMat.SetTexture("_SpecTex", spec8);
@@ -278,7 +283,7 @@ namespace DecorationsMod.NewItems
                                 // Enable Z write
                                 tmpMat.EnableKeyword("_ZWRITE_ON");
                             }
-                            else if (tmpMat.name.CompareTo("seamoth_torpedo_01 (Instance)") == 0)
+                            else if (string.Compare(tmpMat.name, "seamoth_torpedo_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal9);
                                 tmpMat.SetTexture("_SpecTex", spec9);
@@ -294,7 +299,7 @@ namespace DecorationsMod.NewItems
                                 // Enable Z write
                                 tmpMat.EnableKeyword("_ZWRITE_ON");
                             }
-                            else if (tmpMat.name.CompareTo("seamoth_upgrade_slots_01 (Instance)") == 0)
+                            else if (string.Compare(tmpMat.name, "seamoth_upgrade_slots_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal10);
                                 tmpMat.SetTexture("_SpecTex", spec10);
@@ -313,7 +318,7 @@ namespace DecorationsMod.NewItems
                                 // Enable Z write
                                 tmpMat.EnableKeyword("_ZWRITE_ON");
                             }
-                            else if (tmpMat.name.CompareTo("submarine_engine_power_cells_01 (Instance)") == 0)
+                            else if (string.Compare(tmpMat.name, "submarine_engine_power_cells_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                             {
                                 tmpMat.SetTexture("_BumpMap", normal11);
                                 tmpMat.SetTexture("_SpecTex", spec11);

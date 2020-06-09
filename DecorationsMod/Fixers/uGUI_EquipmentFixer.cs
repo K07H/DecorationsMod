@@ -4,7 +4,7 @@ namespace DecorationsMod.Fixers
 {
     public class uGUI_EquipmentFixer
     {
-        private static FieldInfo equipmentField = typeof(uGUI_Equipment).GetField("equipment", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly FieldInfo equipmentField = typeof(uGUI_Equipment).GetField("equipment", BindingFlags.NonPublic | BindingFlags.Instance);
         
         public static bool CanSwitchOrSwap_Prefix(uGUI_Equipment __instance, ref ItemAction __result, string slotB)
         {

@@ -1,6 +1,7 @@
 ﻿using DecorationsMod.Controllers;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod
@@ -22,157 +23,6 @@ namespace DecorationsMod
             SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(techType, QuickSlotType.Selectable);
         }
 
-        /*
-        public static void MakeEggsPlaceable()
-        {
-            GameObject egg1 = Resources.Load<GameObject>("WorldEntities/Eggs/BonesharkEgg");
-            if (egg1 != null)
-            {
-                MakeItemPlaceable(TechType.BonesharkEgg, egg1);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.BonesharkEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.BonesharkEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/BonesharkEgg");
-            GameObject egg2 = Resources.Load<GameObject>("WorldEntities/Eggs/CrabsnakeEgg");
-            if (egg2 != null)
-            {
-                MakeItemPlaceable(TechType.CrabsnakeEgg, egg2);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.CrabsnakeEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.CrabsnakeEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/CrabsnakeEgg");
-            GameObject egg3 = Resources.Load<GameObject>("WorldEntities/Eggs/CrabSquidEgg");
-            if (egg3 != null)
-            {
-                MakeItemPlaceable(TechType.CrabsquidEgg, egg3);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.CrabsquidEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.CrabsquidEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/CrabSquidEgg");
-            GameObject egg4 = Resources.Load<GameObject>("WorldEntities/Eggs/CrashEgg");
-            if (egg4 != null)
-            {
-                MakeItemPlaceable(TechType.CrashEgg, egg4);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.CrashEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.CrashEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/CrashEgg");
-            GameObject egg5 = Resources.Load<GameObject>("WorldEntities/Eggs/CuteEgg");
-            if (egg5 != null)
-            {
-                MakeItemPlaceable(TechType.CutefishEgg, egg5);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.CutefishEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.CutefishEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/CuteEgg");
-            GameObject egg6 = Resources.Load<GameObject>("WorldEntities/Eggs/GasopodEgg");
-            if (egg6 != null)
-            {
-                MakeItemPlaceable(TechType.GasopodEgg, egg6);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.GasopodEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.GasopodEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/GasopodEgg");
-            GameObject egg7 = Resources.Load<GameObject>("WorldEntities/Eggs/JellyrayEgg");
-            if (egg7 != null)
-            {
-                MakeItemPlaceable(TechType.JellyrayEgg, egg7);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.JellyrayEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.JellyrayEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/JellyrayEgg");
-            GameObject egg8 = Resources.Load<GameObject>("WorldEntities/Eggs/JumperEgg");
-            if (egg8 != null)
-            {
-                MakeItemPlaceable(TechType.JumperEgg, egg8);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.JumperEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.JumperEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/JumperEgg");
-            GameObject egg9 = Resources.Load<GameObject>("WorldEntities/Eggs/LavaLizardEgg");
-            if (egg9 != null)
-            {
-                MakeItemPlaceable(TechType.LavaLizardEgg, egg9);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.LavaLizardEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.LavaLizardEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/LavaLizardEgg");
-            GameObject egg10 = Resources.Load<GameObject>("WorldEntities/Eggs/MesmerEgg");
-            if (egg10 != null)
-            {
-                MakeItemPlaceable(TechType.MesmerEgg, egg10);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.MesmerEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.MesmerEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/MesmerEgg");
-            GameObject egg11 = Resources.Load<GameObject>("WorldEntities/Eggs/RabbitRayEgg");
-            if (egg11 != null)
-            {
-                MakeItemPlaceable(TechType.RabbitrayEgg, egg11);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.RabbitrayEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.RabbitrayEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/RabbitRayEgg");
-            GameObject egg12 = Resources.Load<GameObject>("WorldEntities/Eggs/ReefbackEgg");
-            if (egg12 != null)
-            {
-                MakeItemPlaceable(TechType.ReefbackEgg, egg12);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.ReefbackEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.ReefbackEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/ReefbackEgg");
-            GameObject egg13 = Resources.Load<GameObject>("WorldEntities/Eggs/SandsharkEgg");
-            if (egg13 != null)
-            {
-                MakeItemPlaceable(TechType.SandsharkEgg, egg13);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.SandsharkEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.SandsharkEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/SandsharkEgg");
-            GameObject egg14 = Resources.Load<GameObject>("WorldEntities/Eggs/ShockerEgg");
-            if (egg14 != null)
-            {
-                egg14.AddComponent<Egg14_PT>();
-                MakeItemPlaceable(TechType.ShockerEgg, egg14);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.ShockerEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.ShockerEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/ShockerEgg");
-            GameObject egg15 = Resources.Load<GameObject>("WorldEntities/Eggs/SpadefishEgg");
-            if (egg15 != null)
-            {
-                MakeItemPlaceable(TechType.SpadefishEgg, egg15);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.SpadefishEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.SpadefishEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/SpadefishEgg");
-            GameObject egg16 = Resources.Load<GameObject>("WorldEntities/Eggs/StalkerEgg");
-            if (egg16 != null)
-            {
-                MakeItemPlaceable(TechType.StalkerEgg, egg16);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(TechType.StalkerEggUndiscovered, EquipmentType.Hand);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(TechType.StalkerEggUndiscovered, QuickSlotType.Selectable);
-            }
-            else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Eggs/StalkerEgg");
-        }
-        */
-
         public static void MakeSnacksPlaceable()
         {
             GameObject snack1 = Resources.Load<GameObject>("WorldEntities/Food/Snack1");
@@ -182,8 +32,10 @@ namespace DecorationsMod
                 snack1Collider.size = new Vector3(0.17f, 0.18f, 0.8f);
                 MakeItemPlaceable(TechType.Snack1, snack1, snack1Collider);
             }
+#if DEBUG_ITEMS_REGISTRATION
             else
                 Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Snack1");
+#endif
             GameObject snack2 = Resources.Load<GameObject>("WorldEntities/Food/Snack2");
             if (snack2 != null)
             {
@@ -191,8 +43,10 @@ namespace DecorationsMod
                 snack2Collider.size = new Vector3(0.17f, 0.18f, 0.8f);
                 MakeItemPlaceable(TechType.Snack2, snack2, snack2Collider);
             }
+#if DEBUG_ITEMS_REGISTRATION
             else
                 Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Snack2");
+#endif
             GameObject snack3 = Resources.Load<GameObject>("WorldEntities/Food/Snack3");
             if (snack3 != null)
             {
@@ -200,8 +54,10 @@ namespace DecorationsMod
                 snack3Collider.size = new Vector3(0.17f, 0.18f, 0.8f);
                 MakeItemPlaceable(TechType.Snack3, snack3, snack3Collider);
             }
+#if DEBUG_ITEMS_REGISTRATION
             else
                 Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Snack3");
+#endif
 
             // Swap Snack2 and Snack3 techtypes (as tooltips do not match models)
             if (snack2 != null && snack3 != null)
@@ -234,8 +90,10 @@ namespace DecorationsMod
                     powercell.AddComponent<PowerCell_PT>();
                     MakeItemPlaceable(TechType.PowerCell, powercell);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Tools/PowerCell");
+#endif
                 GameObject battery = Resources.Load<GameObject>("WorldEntities/Tools/Battery");
                 if (battery != null)
                 {
@@ -243,8 +101,10 @@ namespace DecorationsMod
                     battery.AddComponent<Battery_PT>();
                     MakeItemPlaceable(TechType.Battery, battery);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Tools/PowerCell");
+#endif
                 GameObject ionpowercell = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonPowerCell");
                 if (ionpowercell != null)
                 {
@@ -252,8 +112,10 @@ namespace DecorationsMod
                     ionpowercell.AddComponent<IonPowerCell_PT>();
                     MakeItemPlaceable(TechType.PrecursorIonPowerCell, ionpowercell);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Tools/PrecursorIonPowerCell");
+#endif
                 GameObject ionbattery = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonBattery");
                 if (ionbattery != null)
                 {
@@ -261,8 +123,10 @@ namespace DecorationsMod
                     ionbattery.AddComponent<IonBattery_PT>();
                     MakeItemPlaceable(TechType.PrecursorIonBattery, ionbattery);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Tools/PrecursorIonBattery");
+#endif
 
                 _batteriesMadePlaceable = true;
             }
@@ -283,8 +147,10 @@ namespace DecorationsMod
                     bleach.AddComponent<Bleach_PT>();
                     MakeItemPlaceable(TechType.Bleach, bleach);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/bleach");
+#endif
                 GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Natural/lubricant");
                 if (lubricant != null)
                 {
@@ -292,40 +158,54 @@ namespace DecorationsMod
                     lubricant.AddComponent<Lubricant_PT>();
                     MakeItemPlaceable(TechType.Lubricant, lubricant);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/lubricant");
+#endif
                 GameObject polyaniline = Resources.Load<GameObject>("WorldEntities/Natural/polyaniline");
                 if (polyaniline != null)
                     MakeItemPlaceable(TechType.Polyaniline, polyaniline);
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/polyaniline");
+#endif
                 GameObject benzene = Resources.Load<GameObject>("WorldEntities/Natural/benzene");
                 if (benzene != null)
                     MakeItemPlaceable(TechType.Benzene, benzene);
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/benzene");
+#endif
                 GameObject hydrochloricacid = Resources.Load<GameObject>("WorldEntities/Natural/hydrochloricacid");
                 if (hydrochloricacid != null)
                     MakeItemPlaceable(TechType.HydrochloricAcid, hydrochloricacid);
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/hydrochloricacid");
+#endif
                 GameObject hatchingenzymes = Resources.Load<GameObject>("WorldEntities/Natural/HatchingEnzymes");
                 if (hatchingenzymes != null)
                     MakeItemPlaceable(TechType.HatchingEnzymes, hatchingenzymes);
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/HatchingEnzymes");
+#endif
 
                 // Food & water
                 GameObject coffee = Resources.Load<GameObject>("WorldEntities/Food/Coffee");
                 if (coffee != null)
                     MakeItemPlaceable(TechType.Coffee, coffee);
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Coffee");
+#endif
                 GameObject bigfilteredwater = Resources.Load<GameObject>("WorldEntities/Food/BigFilteredWater");
                 if (bigfilteredwater != null)
                     MakeItemPlaceable(TechType.BigFilteredWater, bigfilteredwater);
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/BigFilteredWater");
+#endif
                 GameObject disinfectedwater = Resources.Load<GameObject>("WorldEntities/Food/DisinfectedWater");
                 if (disinfectedwater != null)
                 {
@@ -333,8 +213,10 @@ namespace DecorationsMod
                     disinfectedwater.AddComponent<DisinfectedWater_PT>();
                     MakeItemPlaceable(TechType.DisinfectedWater, disinfectedwater);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/DisinfectedWater");
+#endif
                 GameObject filteredwater = Resources.Load<GameObject>("WorldEntities/Food/FilteredWater");
                 if (filteredwater != null)
                 {
@@ -342,8 +224,10 @@ namespace DecorationsMod
                     filteredwater.AddComponent<FilteredWater_PT>();
                     MakeItemPlaceable(TechType.FilteredWater, filteredwater);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/FilteredWater");
+#endif
 
                 // Snacks
                 MakeSnacksPlaceable();
@@ -356,8 +240,10 @@ namespace DecorationsMod
                     wiringkit.AddComponent<WiringKit_PT>();
                     MakeItemPlaceable(TechType.WiringKit, wiringkit);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/wiringkit");
+#endif
                 GameObject advancedwiringkit = Resources.Load<GameObject>("WorldEntities/Natural/advancedwiringkit");
                 if (advancedwiringkit != null)
                 {
@@ -365,8 +251,10 @@ namespace DecorationsMod
                     advancedwiringkit.AddComponent<AdvancedWiringKit_PT>();
                     MakeItemPlaceable(TechType.AdvancedWiringKit, advancedwiringkit);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/advancedwiringkit");
+#endif
                 GameObject computerchip = Resources.Load<GameObject>("WorldEntities/Natural/computerchip");
                 if (computerchip != null)
                 {
@@ -374,63 +262,22 @@ namespace DecorationsMod
                     computerchip.AddComponent<ComputerChip_PT>();
                     MakeItemPlaceable(TechType.ComputerChip, computerchip);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/computerchip");
+#endif
 
                 if (ConfigSwitcher.EnablePlaceBatteries)
                     MakeBatteriesPlaceable();
 
-                // Eggs
-                //MakeEggsPlaceable();
-
-                    // Precursor
+                // Precursor
                 GameObject ionCrystal = Resources.Load<GameObject>("WorldEntities/Natural/PrecursorIonCrystal");
                 if (ionCrystal != null)
                     MakeItemPlaceable(TechType.PrecursorIonCrystal, ionCrystal);
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/PrecursorIonCrystal");
-                /*
-                GameObject purpleKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Purple");
-                if (purpleKey != null)
-                {
-                    purpleKey.AddComponent<PurpleKey_PT>();
-                    MakeItemPlaceable(TechType.PrecursorKey_Purple, purpleKey);
-                }
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Purple");
-                GameObject orangeKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Orange");
-                if (orangeKey != null)
-                {
-                    orangeKey.AddComponent<OrangeKey_PT>();
-                    MakeItemPlaceable(TechType.PrecursorKey_Orange, orangeKey);
-                }
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Orange");
-                GameObject blueKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Blue");
-                if (blueKey != null)
-                {
-                    blueKey.AddComponent<BlueKey_PT>();
-                    MakeItemPlaceable(TechType.PrecursorKey_Blue, blueKey);
-                }
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Blue");
-                GameObject redKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_Red");
-                if (redKey != null)
-                {
-                    redKey.AddComponent<RedKey_PT>();
-                    MakeItemPlaceable(TechType.PrecursorKey_Red, redKey);
-                }
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_Red");
-                GameObject whiteKey = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/PrecursorKey_White");
-                if (whiteKey != null)
-                {
-                    whiteKey.AddComponent<WhiteKey_PT>();
-                    MakeItemPlaceable(TechType.PrecursorKey_White, whiteKey);
-                }
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Doodads/Precursor/PrecursorKey_White");
-                */
+#endif
 
                 // Others
                 GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/Natural/stalkertooth");
@@ -440,13 +287,17 @@ namespace DecorationsMod
                     stalkertooth.AddComponent<StalkerTooth_PT>();
                     MakeItemPlaceable(TechType.StalkerTooth, stalkertooth);
                 }
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/stalkertooth");
+#endif
                 GameObject firstaidkit = Resources.Load<GameObject>("WorldEntities/Natural/firstaidkit");
                 if (firstaidkit != null)
                     MakeItemPlaceable(TechType.FirstAidKit, firstaidkit);
+#if DEBUG_ITEMS_REGISTRATION
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/firstaidkit");
+#endif
 
                 _madeItemsPlaceable = true;
             }

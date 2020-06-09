@@ -1,13 +1,11 @@
-﻿using System;
+﻿using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.Fixers
 {
     public class SignSetupFixer : MonoBehaviour, IProtoEventListener
     {
-        public void OnProtoSerialize(ProtobufSerializer serializer)
-        {
-        }
+        public void OnProtoSerialize(ProtobufSerializer serializer) { }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
@@ -19,7 +17,7 @@ namespace DecorationsMod.Fixers
                     {
                         try
                         {
-                            if (!string.IsNullOrEmpty(current.name) && current.name.StartsWith("Sign(Clone)") && current.gameObject != null)
+                            if (!string.IsNullOrEmpty(current.name) && current.name.StartsWith("Sign(Clone)", true, CultureInfo.InvariantCulture) && current.gameObject != null)
                                 GameObject.DestroyImmediate(current.gameObject);
                         }
                         catch { }

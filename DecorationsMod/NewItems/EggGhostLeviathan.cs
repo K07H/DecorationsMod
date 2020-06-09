@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Fixers;
+using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -14,6 +16,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("EggsGhostLeviathanName"),
                                                         LanguageHelper.GetFriendlyWord("EggsGhostLeviathanDescription"),
                                                         true);
+
+            CrafterLogicFixer.GhostLeviathanEggs = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
 #if BELOWZERO
             this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/lostriver/lost_river_cove_tree_01");
@@ -93,18 +98,18 @@ namespace DecorationsMod.NewItems
             GameObject.DestroyImmediate(prefab.GetComponent<ConstructionObstacle>());
             foreach (Transform tr in prefab.transform)
             {
-                if (tr.name.CompareTo("lost_river_cove_tree_01") != 0)
+                if (string.Compare(tr.name, "lost_river_cove_tree_01", true, CultureInfo.InvariantCulture) != 0)
                     GameObject.DestroyImmediate(tr);
                 else
                     foreach (Transform ctr in tr)
-                        if (!ctr.name.StartsWith("lost_river_cove_tree_01_eggs"))
+                        if (!ctr.name.StartsWith("lost_river_cove_tree_01_eggs", true, CultureInfo.InvariantCulture))
                             GameObject.DestroyImmediate(ctr);
             }
 
             // Disable existing renderers
             Renderer[] renderers = prefab.GetAllComponentsInChildren<Renderer>();
             foreach (Renderer rend in renderers)
-                if (!rend.name.StartsWith("lost_river_cove_tree_01_eggs"))
+                if (!rend.name.StartsWith("lost_river_cove_tree_01_eggs", true, CultureInfo.InvariantCulture))
                     rend.enabled = false;
 
             // Delete existing colliders

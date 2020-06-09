@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("DecorationsEmptyDeskName"),
                                                         LanguageHelper.GetFriendlyWord("DecorationsEmptyDeskDescription"),
                                                         true);
+
+            CrafterLogicFixer.EmptyDesk = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             if (ConfigSwitcher.EmptyDesk_asBuildable)
                 this.IsHabitatBuilder = true;

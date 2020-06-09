@@ -67,8 +67,9 @@ namespace DecorationsMod
                 CraftDataHandler.AddBuildable(this.TechType);
 
                 // Add the new TechType to the group of Interior Module buildables
-                CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType, TechType.Fabricator);
                 
+                // Register handover text
                 LanguageHandler.SetLanguageLine(HandOverText, LanguageHelper.GetFriendlyWord(HandOverText));
 
                 // Unlock at start
@@ -148,7 +149,7 @@ namespace DecorationsMod
             if (ConfigSwitcher.EnableRegularAirSeeds)
             {
                 var regularAirSeedsTab = rootNode.AddTabNode("RegularAirSeedsTab", LanguageHelper.GetFriendlyWord("RegularAirSeedsTab"), SpriteManager.Get(TechType.BulboTreePiece));
-
+                
                 var edibleRegularAirTab = regularAirSeedsTab.AddTabNode("EdibleRegularAirTab", LanguageHelper.GetFriendlyWord("EdibleRegularAirTab"), SpriteManager.Get(TechType.MelonSeed));
                 edibleRegularAirTab.AddCraftingNode(TechType.BulboTreePiece,
                                                     TechType.PurpleVegetable,
@@ -170,12 +171,12 @@ namespace DecorationsMod
             // Existing water seeds from the game
             if (ConfigSwitcher.EnableRegularWaterSeeds)
             {
-                var regularWaterSeedsTab = rootNode.AddTabNode("RegularWaterSeedsTab", LanguageHelper.GetFriendlyWord("RegularWaterSeedsTab"), SpriteManager.Get(TechType.CreepvineSeedCluster));
+                var regularWaterSeedsTab = rootNode.AddTabNode("RegularWaterSeedsTab", LanguageHelper.GetFriendlyWord("RegularWaterSeedsTab"), SpriteManager.Get(TechType.SeaCrownSeed));
 
                 var decorativeMediumWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeMediumWaterTab", LanguageHelper.GetFriendlyWord("DecorativeMediumWaterTab"), SpriteManager.Get(TechType.SeaCrownSeed));
-                decorativeMediumWaterTab.AddCraftingNode(TechType.GabeSFeatherSeed,
+                decorativeMediumWaterTab.AddCraftingNode(TechType.SeaCrownSeed,
+                                                         TechType.GabeSFeatherSeed,
                                                          TechType.RedGreenTentacleSeed,
-                                                         TechType.SeaCrownSeed,
                                                          TechType.ShellGrassSeed);
 
                 var decorativeBushesWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeBushesWaterTab", LanguageHelper.GetFriendlyWord("DecorativeBushesWaterTab"), SpriteManager.Get(TechType.PurpleStalkSeed));
@@ -245,7 +246,9 @@ namespace DecorationsMod
                                           DecorationItemsHelper.getTechType(decorationItems, "RedGrass3Tall")); 
 
             // Tree Water
-            treeWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp2"),
+            treeWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MushroomTree2"),
+                                         DecorationItemsHelper.getTechType(decorationItems, "MushroomTree1"),
+                                         DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp2"),
                                          DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp1"),
                                          DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp3"),
                                          DecorationItemsHelper.getTechType(decorationItems, "PyroCoral1"),
@@ -327,5 +330,90 @@ namespace DecorationsMod
 
             return fabricatorPrefab;
         }
+
+        public static readonly Dictionary<TechType, TechType> AirPlants = new Dictionary<TechType, TechType>()
+        {
+            { TechType.BulboTree, TechType.BulboTreePiece },
+            { TechType.BulboTreePiece, TechType.BulboTreePiece },
+            { TechType.PurpleVegetablePlant, TechType.PurpleVegetable },
+            { TechType.PurpleVegetable, TechType.PurpleVegetable },
+            { TechType.HangingFruitTree, TechType.HangingFruit },
+            { TechType.HangingFruit, TechType.HangingFruit },
+            { TechType.MelonPlant, TechType.MelonSeed },
+            { TechType.MelonSeed, TechType.MelonSeed },
+            { TechType.FernPalm, TechType.FernPalmSeed },
+            { TechType.FernPalmSeed, TechType.FernPalmSeed },
+            { TechType.OrangePetalsPlant, TechType.OrangePetalsPlantSeed },
+            { TechType.OrangePetalsPlantSeed, TechType.OrangePetalsPlantSeed },
+            { TechType.PurpleVasePlant, TechType.PurpleVasePlantSeed },
+            { TechType.PurpleVasePlantSeed, TechType.PurpleVasePlantSeed },
+            { TechType.OrangeMushroom, TechType.OrangeMushroomSpore },
+            { TechType.OrangeMushroomSpore, TechType.OrangeMushroomSpore },
+            { TechType.PinkMushroom, TechType.PinkMushroomSpore },
+            { TechType.PinkMushroomSpore, TechType.PinkMushroomSpore },
+            { TechType.PurpleRattle, TechType.PurpleRattleSpore },
+            { TechType.PurpleRattleSpore, TechType.PurpleRattleSpore },
+            { TechType.PinkFlower, TechType.PinkFlowerSeed },
+            { TechType.PinkFlowerSeed, TechType.PinkFlowerSeed }
+        };
+
+        public static readonly Dictionary<TechType, TechType> WaterPlants = new Dictionary<TechType, TechType>()
+        {
+            { TechType.GabeSFeather, TechType.GabeSFeatherSeed },
+            { TechType.GabeSFeatherSeed, TechType.GabeSFeatherSeed },
+            { TechType.RedGreenTentacle, TechType.RedGreenTentacleSeed },
+            { TechType.RedGreenTentacleSeed, TechType.RedGreenTentacleSeed },
+            { TechType.SeaCrown, TechType.SeaCrownSeed },
+            { TechType.SeaCrownSeed, TechType.SeaCrownSeed },
+            { TechType.ShellGrass, TechType.ShellGrassSeed },
+            { TechType.ShellGrassSeed, TechType.ShellGrassSeed },
+            { TechType.PurpleBranches, TechType.PurpleBranchesSeed },
+            { TechType.PurpleBranchesSeed, TechType.PurpleBranchesSeed },
+            { TechType.RedRollPlant, TechType.RedRollPlantSeed },
+            { TechType.RedRollPlantSeed, TechType.RedRollPlantSeed },
+            { TechType.RedBush, TechType.RedBushSeed },
+            { TechType.RedBushSeed, TechType.RedBushSeed },
+            { TechType.PurpleStalk, TechType.PurpleStalkSeed },
+            { TechType.PurpleStalkSeed, TechType.PurpleStalkSeed },
+            { TechType.SpottedLeavesPlant, TechType.SpottedLeavesPlantSeed },
+            { TechType.SpottedLeavesPlantSeed, TechType.SpottedLeavesPlantSeed },
+            { TechType.AcidMushroom, TechType.AcidMushroomSpore },
+            { TechType.AcidMushroomSpore, TechType.AcidMushroomSpore },
+            { TechType.WhiteMushroom, TechType.WhiteMushroomSpore },
+            { TechType.WhiteMushroomSpore, TechType.WhiteMushroomSpore },
+            { TechType.JellyPlant, TechType.JellyPlantSeed },
+            { TechType.JellyPlantSeed, TechType.JellyPlantSeed },
+            { TechType.SmallFan, TechType.SmallFanSeed },
+            { TechType.SmallFanSeed, TechType.SmallFanSeed },
+            { TechType.PurpleFan, TechType.PurpleFanSeed },
+            { TechType.PurpleFanSeed, TechType.PurpleFanSeed },
+            { TechType.PurpleTentacle, TechType.PurpleTentacleSeed },
+            { TechType.PurpleTentacleSeed, TechType.PurpleTentacleSeed },
+            { TechType.BluePalm, TechType.BluePalmSeed },
+            { TechType.BluePalmSeed, TechType.BluePalmSeed },
+            { TechType.EyesPlant, TechType.EyesPlantSeed },
+            { TechType.EyesPlantSeed, TechType.EyesPlantSeed },
+            { TechType.MembrainTree, TechType.MembrainTreeSeed },
+            { TechType.MembrainTreeSeed, TechType.MembrainTreeSeed },
+            { TechType.RedConePlant, TechType.RedConePlantSeed },
+            { TechType.RedConePlantSeed, TechType.RedConePlantSeed },
+            { TechType.RedBasketPlant, TechType.RedBasketPlantSeed },
+            { TechType.RedBasketPlantSeed, TechType.RedBasketPlantSeed },
+            { TechType.SnakeMushroom, TechType.SnakeMushroomSpore },
+            { TechType.SnakeMushroomSpore, TechType.SnakeMushroomSpore },
+            { TechType.SpikePlant, TechType.SpikePlantSeed },
+            { TechType.SpikePlantSeed, TechType.SpikePlantSeed },
+            { TechType.Creepvine, TechType.CreepvinePiece },
+            { TechType.CreepvinePiece, TechType.CreepvinePiece },
+            { TechType.CreepvineSeedCluster, TechType.CreepvineSeedCluster },
+            { TechType.BloodVine, TechType.BloodOil },
+            { TechType.BloodRoot, TechType.BloodOil },
+            { TechType.BloodOil, TechType.BloodOil },
+            { TechType.PurpleBrainCoral, TechType.PurpleBrainCoralPiece },
+            { TechType.PurpleBrainCoralPiece, TechType.PurpleBrainCoralPiece },
+            { TechType.MediumKoosh, TechType.KooshChunk },
+            { TechType.HugeKoosh, TechType.KooshChunk },
+            { TechType.KooshChunk, TechType.KooshChunk }
+        };
     }
 }

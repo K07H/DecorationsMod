@@ -1,13 +1,9 @@
 ﻿using DecorationsMod.Controllers;
-using Harmony;
 
 namespace DecorationsMod.Fixers
 {
-    [HarmonyPatch(typeof(GrownPlant))]
-    [HarmonyPatch("OnHandHover")]
     public class GrownPlantFixer
     {
-        //public void OnHandHover(GUIHand hand)
         public static void OnHandHover_Postfix(GrownPlant __instance, GUIHand hand)
         {
 #if DEBUG_GROWNPLANT_FIXER
@@ -19,7 +15,7 @@ namespace DecorationsMod.Fixers
                 // Get prefab ID
                 PrefabIdentifier prefabID = __instance.seed.gameObject.GetComponent<PrefabIdentifier>();
                 // If current plant is one of our custom plants
-                if (prefabID != null && InventoryFixer._plants.Contains(prefabID.ClassId))
+                if (prefabID != null && CustomFlora.AllPlants.Contains(prefabID.ClassId))
                 {
                     LiveMixin liveMixin = null;
                     bool componentEnabled = false;

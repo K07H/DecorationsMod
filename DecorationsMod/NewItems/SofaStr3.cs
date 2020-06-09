@@ -1,5 +1,7 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -23,6 +25,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("SofaStr3Name"),
                                                         LanguageHelper.GetFriendlyWord("SofaStr3Description"),
                                                         true);
+
+            CrafterLogicFixer.Sofa3 = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.newsofa = AssetsHelper.Assets.LoadAsset<GameObject>("descent_bar_sofa_str_03");
 
@@ -144,7 +149,7 @@ namespace DecorationsMod.NewItems
                     // Associate MarmosetUBER shader
                     tmpMat.shader = shader;
 
-                    if (tmpMat.name.CompareTo("descent_bar_sofa_01 (Instance)") == 0)
+                    if (string.Compare(tmpMat.name, "descent_bar_sofa_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                     {
                         tmpMat.SetTexture("_BumpMap", normal);
                         tmpMat.SetTexture("_SpecTex", spec);

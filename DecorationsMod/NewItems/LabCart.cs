@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("LabCartName"),
                                                         LanguageHelper.GetFriendlyWord("LabCartDescription"),
                                                         true);
+
+            CrafterLogicFixer.LabCart = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             if (ConfigSwitcher.LabCart_asBuildable)
                 this.IsHabitatBuilder = true;

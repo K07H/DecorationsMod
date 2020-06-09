@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,7 @@ namespace DecorationsMod.FloraAquatic
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
                     {
-                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                     }),
             };
 #else
@@ -63,7 +64,7 @@ namespace DecorationsMod.FloraAquatic
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
 #endif
@@ -164,7 +165,8 @@ namespace DecorationsMod.FloraAquatic
             GameObject.DestroyImmediate(prefabTiny.GetComponent<LargeWorldEntity>());
             GameObject.DestroyImmediate(prefabBloodGrass.GetComponent<PrefabIdentifier>());
             GameObject.DestroyImmediate(prefabBloodGrass.GetComponent<LargeWorldEntity>());
-            GameObject.DestroyImmediate(prefab3Tall.GetComponent<LargeWorldEntity>());
+            //GameObject.DestroyImmediate(prefab3Tall.GetComponent<PrefabIdentifier>());
+            //GameObject.DestroyImmediate(prefab3Tall.GetComponent<LargeWorldEntity>());
 
             // Setup plants relative positions
             prefab2.transform.parent = prefab3Tall.transform;
@@ -182,7 +184,7 @@ namespace DecorationsMod.FloraAquatic
 
             // Add collider
             BoxCollider collider = prefab3Tall.AddComponent<BoxCollider>();
-            collider.size = new Vector3(0.15f, 0.2f, 0.15f);
+            collider.size = new Vector3(0.2f, 0.2f, 0.2f);
             collider.center = new Vector3(collider.center.x, collider.center.y + 0.1f, collider.center.z);
 
             // Update rigid body
@@ -194,7 +196,7 @@ namespace DecorationsMod.FloraAquatic
             rb.angularDrag = 1.0f;
             rb.useGravity = true;
             rb.isKinematic = false;
-            //rb.detectCollisions = true;
+            rb.detectCollisions = false;
             rb.interpolation = RigidbodyInterpolation.None;
             rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
             rb.constraints = RigidbodyConstraints.None;
@@ -216,7 +218,9 @@ namespace DecorationsMod.FloraAquatic
             prefabId.ClassId = this.ClassID;
 
             // Update large world entity
-            PrefabsHelper.SetDefaultLargeWorldEntity(prefab3Tall);
+            var lwe = prefab3Tall.GetComponent<LargeWorldEntity>();
+            lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
+            //PrefabsHelper.SetDefaultLargeWorldEntity(prefab3Tall);
 
             // Update sky applier
             PrefabsHelper.SetDefaultSkyApplier(prefab3Tall, prefab3Tall.GetAllComponentsInChildren<MeshRenderer>(), Skies.Auto, true);
@@ -236,6 +240,23 @@ namespace DecorationsMod.FloraAquatic
             // Add pickupable
             PrefabsHelper.SetDefaultPickupable(prefab3Tall, false, true);
 
+            // Add eatable
+            Eatable eatable = null;
+            if (Config.Eatable)
+            {
+                eatable = prefab3Tall.AddComponent<Eatable>();
+                eatable.foodValue = Config.FoodValue;
+                eatable.waterValue = Config.WaterValue;
+#if SUBNAUTICA
+                eatable.stomachVolume = 10.0f;
+                eatable.allowOverfill = false;
+#endif
+                eatable.decomposes = Config.Decomposes;
+                eatable.kDecayRate = Config.KDecayRate;
+                eatable.despawns = Config.Despawns;
+                eatable.despawnDelay = Config.DespawnDelay;
+            }
+
             // Add plantable
             var plantable = prefab3Tall.GetComponent<Plantable>();
             if (plantable == null)
@@ -246,6 +267,7 @@ namespace DecorationsMod.FloraAquatic
             plantable.plantTechType = this.TechType;
             plantable.size = Plantable.PlantSize.Small;
             plantable.pickupable = prefab3Tall.GetComponent<Pickupable>();
+            plantable.eatable = eatable;
             plantable.model = prefab3Tall;
             plantable.linkedGrownPlant = new GrownPlant();
             plantable.linkedGrownPlant.seed = plantable;

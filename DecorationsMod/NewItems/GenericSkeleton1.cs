@@ -1,5 +1,7 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -14,9 +16,13 @@ namespace DecorationsMod.NewItems
             this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("Lost_river_generic_skeleton_01");
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("GenericSkeletonName") + " (A)",
+                                                        LanguageHelper.GetFriendlyWord("GenericSkeletonName") + " (1)",
                                                         LanguageHelper.GetFriendlyWord("GenericSkeletonDescription"),
                                                         true);
+
+            CrafterLogicFixer.GenericSkeleton1 = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
+
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
             {
@@ -74,7 +80,7 @@ namespace DecorationsMod.NewItems
                     foreach (Material tmpMat in rend.materials)
                     {
                         tmpMat.shader = marmosetUber;
-                        if (tmpMat.name.CompareTo("Lost_river_reaper_skeleton_bones (Instance)") == 0)
+                        if (string.Compare(tmpMat.name, "Lost_river_reaper_skeleton_bones (Instance)", true, CultureInfo.InvariantCulture) == 0)
                         {
                             tmpMat.SetTexture("_BumpMap", normal);
                             tmpMat.EnableKeyword("MARMO_NORMALMAP");

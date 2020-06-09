@@ -1,6 +1,8 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using Harmony;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using UnityEngine;
 
@@ -23,6 +25,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("CustomPictureFrameName"),
                                                         LanguageHelper.GetFriendlyWord("CustomPictureFrameDescription"),
                                                         true);
+
+            CrafterLogicFixer.CustomizablePictureFrame = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
@@ -57,6 +62,9 @@ namespace DecorationsMod.NewItems
                 normal = AssetsHelper.Assets.LoadAsset<Texture>("poster_magnet_normal");
                 illum = AssetsHelper.Assets.LoadAsset<Texture>("poster_magnet_illum");
 
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
                 SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.PictureFrame);
@@ -67,9 +75,6 @@ namespace DecorationsMod.NewItems
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe"));
 
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-                
                 // Override OnHandHover
                 var pictureFrameType = typeof(PictureFrame);
                 var onHandHoverMethod = pictureFrameType.GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
@@ -109,7 +114,7 @@ namespace DecorationsMod.NewItems
                 foreach (Material tmpMat in magnetRenderer.materials)
                 {
                     tmpMat.shader = marmosetUber;
-                    if (tmpMat.name.CompareTo("poster_magnet (Instance)") == 0)
+                    if (string.Compare(tmpMat.name, "poster_magnet (Instance)", true, CultureInfo.InvariantCulture) == 0)
                     {
                         tmpMat.SetTexture("_BumpMap", normal);
                         tmpMat.SetTexture("_Illum", illum);
@@ -150,7 +155,7 @@ namespace DecorationsMod.NewItems
 
             // Adjust position from wall (except for poster)
             foreach (Transform tr in prefab.transform)
-                if (!tr.name.StartsWith("poster_decorations"))
+                if (!tr.name.StartsWith("poster_decorations", true, CultureInfo.InvariantCulture))
                     tr.localPosition = new Vector3(tr.localPosition.x, tr.localPosition.y, tr.localPosition.z + 0.005f);
 
             // Update prefab name
@@ -205,7 +210,7 @@ namespace DecorationsMod.NewItems
             // Adjust frame scale
             foreach (Transform tr in prefab.transform)
             {
-                if (tr.name.StartsWith("mesh"))
+                if (tr.name.StartsWith("mesh", true, CultureInfo.InvariantCulture))
                 {
                     tr.localScale = new Vector3(tr.localScale.x, tr.localScale.y, tr.localScale.z + 0.002f);
                     break;
@@ -218,7 +223,7 @@ namespace DecorationsMod.NewItems
             Vector3 originFrameEulerAngles = Vector3.zero;
             foreach (Transform tr in prefab.transform)
             {
-                if (tr.name.StartsWith("mesh"))
+                if (tr.name.StartsWith("mesh", true, CultureInfo.InvariantCulture))
                 {
                     originFrameScale = tr.localScale;
                     originFramePosition = tr.localPosition;
@@ -233,18 +238,18 @@ namespace DecorationsMod.NewItems
             Vector3 originMagnetScale = Vector3.zero;
             foreach (Transform tr in prefab.transform)
             {
-                if (tr.name.StartsWith("poster_decorations"))
+                if (tr.name.StartsWith("poster_decorations", true, CultureInfo.InvariantCulture))
                 {
                     originPosterPosition = tr.localPosition;
                     foreach (Transform ch in tr)
                     {
-                        if (ch.name.StartsWith("model"))
+                        if (ch.name.StartsWith("model", true, CultureInfo.InvariantCulture))
                         {
                             originPosterModelPosition = ch.localPosition;
                             originPosterModelScale = ch.localScale;
                             foreach (Transform chb in ch)
                             {
-                                if (chb.name.StartsWith("poster_kitty"))
+                                if (chb.name.StartsWith("poster_kitty", true, CultureInfo.InvariantCulture))
                                 {
                                     originMagnetScale = chb.localScale;
                                     break;
@@ -275,8 +280,8 @@ namespace DecorationsMod.NewItems
             cpfController.OriginPosterModelScale = originPosterModelScale;
             cpfController.OriginMagnetScale = originMagnetScale;
 
-            // Adjust PictureFrame rendering distance (displays full image quality if player is closer than distance² meters: 16m)
-            pf.distance = 4.0f;
+            // Adjust PictureFrame rendering distance (displays full image quality if player is closer than 20m)
+            pf.distance = 20.0f;
 
             return prefab;
         }

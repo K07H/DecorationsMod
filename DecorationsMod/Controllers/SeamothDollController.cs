@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using UnityEngine;
 
 namespace DecorationsMod.Controllers
@@ -86,7 +87,7 @@ namespace DecorationsMod.Controllers
 
                 foreach (Renderer renderer in renderers)
                 {
-                    renderer.enabled = (state.CompareTo("1") == 0);
+                    renderer.enabled = (string.Compare(state, "1", false, CultureInfo.InvariantCulture) == 0);
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Fixers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -11,6 +12,8 @@ namespace DecorationsMod.NewItems
             this.PrefabFileName = "WorldEntities/Eggs/RabbitRayEgg";
 
             this.TechType = TechType.RabbitrayEgg;
+
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
@@ -39,7 +42,8 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                if (ConfigSwitcher.EnableRegularEggs)
+                // Set unlock conditions
+                if (ConfigSwitcher.EnableEggsAtStart || ConfigSwitcher.EnableEggsWhenCreatureScanned)
                     SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(this.TechType);
 
                 // Associate recipe to the new TechType
@@ -82,10 +86,11 @@ namespace DecorationsMod.NewItems
             prefabId.ClassId = this.ClassID;
 
             // We can pick this item
-            PrefabsHelper.SetDefaultPickupable(prefab);
+            PrefabsHelper.SetDefaultPickupable(prefab, true, true);
 
             // We can place this item
             PrefabsHelper.SetDefaultPlaceTool(prefab);
+            var pt = prefab.GetComponent<PlaceTool>();
 
             // Add fabricating animation
             var fabricating = prefab.AddComponent<VFXFabricating>();

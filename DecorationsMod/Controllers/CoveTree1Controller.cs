@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 
@@ -94,7 +95,7 @@ namespace DecorationsMod.Controllers
                 if (covetreeparams.Length == 1)
                 {
                     // Check if we need to display eggs
-                    bool showEggs = (covetreeparams[0].CompareTo("1") == 0);
+                    bool showEggs = (string.Compare(covetreeparams[0], "1", false, CultureInfo.InvariantCulture) == 0);
 #if DEBUG_COVE_TREE
                     Logger.Log("DEBUG: OnProtoDeserialize covetree: showEggs=[" + showEggs + "]");
 #endif

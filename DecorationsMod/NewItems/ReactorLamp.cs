@@ -1,6 +1,8 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -18,6 +20,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("ReactorLampName"),
                                                         LanguageHelper.GetFriendlyWord("ReactorLampDescription"),
                                                         true);
+
+            CrafterLogicFixer.ReactorLamp = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
@@ -59,7 +64,7 @@ namespace DecorationsMod.NewItems
                 GameObject model = this.GameObject.FindChild("model");
                 
                 // Move model
-                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y - 0.04f, model.transform.localPosition.z + 0.05f);
+                model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y - 0.04f, model.transform.localPosition.z + 0.03f);
 
                 // Disable light at start
                 var reactorRodLight = this.GameObject.GetComponentInChildren<Light>();
@@ -112,7 +117,7 @@ namespace DecorationsMod.NewItems
                 this.GameObject.GetComponentsInChildren<Renderer>(renderers);
                 foreach (Renderer renderer in renderers)
                 {
-                    if (renderer.name.CompareTo("nuclear_reactor_rod_mesh") == 0)
+                    if (string.Compare(renderer.name, "nuclear_reactor_rod_mesh", true, CultureInfo.InvariantCulture) == 0)
                     {
                         // Associate MarmosetUBER shader
                         renderer.sharedMaterial.shader = shader;
@@ -146,7 +151,7 @@ namespace DecorationsMod.NewItems
                         renderer.material.EnableKeyword("MARMO_SPECMAP");
                         renderer.material.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                     }
-                    else if (renderer.name.CompareTo("nuclear_reactor_rod_glass") == 0 && glass != null)
+                    else if (string.Compare(renderer.name, "nuclear_reactor_rod_glass", true, CultureInfo.InvariantCulture) == 0 && glass != null)
                         renderer.material = glass;
                 }
 
@@ -178,23 +183,23 @@ namespace DecorationsMod.NewItems
 
                 // Add constructable bounds
                 var bounds = this.GameObject.AddComponent<ConstructableBounds>();
-                bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.003f, bounds.bounds.position.z);
+                //bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.003f, bounds.bounds.position.z);
 
                 // Add lamp brightness controler
                 var lampBrightness = this.GameObject.AddComponent<ReactorLampBrightness>();
+                
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorLight, this.TechType);
+                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorLight, this.TechType, TechType.Spotlight);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
                 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("reactorrod_white"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

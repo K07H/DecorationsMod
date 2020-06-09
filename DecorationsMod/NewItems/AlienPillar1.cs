@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Fixers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -16,6 +17,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("AlienPillar1Name"),
                                                         LanguageHelper.GetFriendlyWord("AlienPillar1Description"),
                                                         true);
+
+            CrafterLogicFixer.AlienPillar = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 

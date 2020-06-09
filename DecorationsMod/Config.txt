@@ -1,19 +1,21 @@
+
 # Stop Subnautica before editing this file (live modifications will not work).
 
 
-# Modify the line "language=auto" to override default language.
-# Possible values: "fr" for French, "en" for English, "es" for Spanish, "de" for Deutsch, "tr" for Turkish, "ru" for Russian and "auto" for default language.
+# -----------------------
+#    GENERAL SETTINGS
+# -----------------------
+
+# Modify the line "language=auto" to change language. Possible values:
+# "auto" => default language, "fr" => Français, "en" => English, "es" => Español, "de" => German, "ru" => Russian, "tr" => Türk
 language=auto
 
-# Set this to "true" only if some items in Decorations Fabricator or Seeds Fabricator are not visible because they don't fit in screen.
-# If it still doesn't fit after that, download Radial Tabs mod here: https://www.nexusmods.com/subnautica/mods/207.
-useAlternativeScreenResolution=false
-
-# If "true", tooltips of the "customizable picture frame" and "customizable light" items will be scaled down (compact mode). 
+# If "true", tooltips of the "customizable picture frame" and "customizable light" items will be shorter.
+# If "false", tooltips of the "customizable picture frame" and "customizable light" will have normal length.
 useCompactTooltips=false
 
-# If "true", there will be a new tab inside decorations fabricator containing 11 unique warper parts + 11 unique alien relics + 5 unique alien tablets.
-enablePrecursorTab=false
+# If "true", it will stop switching to next quickslot tool if you are currently holding a placeable item and using mouse wheel (this allows to rotate the placeable item with mouse wheel).
+lockQuickslotsWhenPlacingItem=true
 
 # If "true", more items from this mod will be buildable outside bases.
 allowBuildOutside=true
@@ -21,40 +23,27 @@ allowBuildOutside=true
 # If "true", more items from this mod will be placeable outside bases.
 allowPlaceOutside=true
 
-# If "true" you'll be able to place following items:
+# If "true" you will be able to place following items:
 # coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, 
 # water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth, first aid kit
 enablePlaceItems=true
 
-# If "true", you'll be able to place batteries, powercells, ion batteries and ion powercells where you want.
+# If "true", you will be able to place batteries, powercells, ion batteries and ion powercells where you want (note that option "enablePlaceItems" needs to be set to "true" for this to work).
 # Be careful using this option: if enabled, you will have to manually drag-n-drop batteries/power cells to the charger (left click won't equip them).
-enablePlaceBatteries=false
+enablePlaceBatteries=true
 
-# If "true", it will stop switching to next quickslot tool if you are currently holding a placeable item and using mouse wheel (this allows to rotate the placeable item with mouse wheel).
-lockQuickslotsWhenPlacingItem=true
+# If "true", you will be able to build the seeds fabricator and to craft seeds.
+# The seeds fabricator can be used to craft all existing seeds plus new ones (54 different seeds in total).
+enableNewFlora=true
 
-# If "true", you'll be able to build/craft the following items:
-# lab cart, alien pillar, indoor long planter, outdoor long planter specimen analyzer, markiplier doll 1, markiplier doll 2
-# jacksepticeye doll, eatmydiction doll, empty desk, eatmydiction doll, seamoth doll, exosuit doll, forklift, cargo crates
-# sofas, benches, stool, customizable picture frame, customizable light, warper specimen and additional lockers.
-enableNewBuilderItems=true
+# If "true", you will be able to build/craft the following items:
+# lab cart, indoor long planter, outdoor long planter specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll,
+# eatmydiction doll, empty desk, eatmydiction doll, seamoth doll, exosuit doll, forklift, cargo crates, sofas, benches, stool,
+# customizable picture frame, customizable light, warper specimen, warper parts, alien pillar, alien relics and additional lockers.
+enableNewItems=true
 
-# If true, you'll be able to craft all eggs from the decorations fabricator.
-# If false, only the sea dragon and sea emperor eggs will be available in the decorations fabricator.
-enableAllEggs=false
-
-# If true, all alien tablets will be available for craft in the decorations frabricator.
-# If false, only the red and white alien tablets will be available in the decorations fabricator.
-precursorKeysAll=false
-
-# If "true", you'll be able to craft Nutrient Blocks using the decorations fabricator.
-enableNutrientBlock=false
-
-# If "true", all existing air seeds will be added to the seeds fabricator.
-addRegularAirSeeds=false
-
-# If "true", all existing water seeds will be added to the seeds fabricator.
-addRegularWaterSeeds=false
+# If "true", you will be able to build sofas.
+enableSofas=true
 
 # If "true", you'll be able to build the indoor long planter outside bases/cyclops (tip: this allows to have land plants in water).
 allowIndoorLongPlanterOutside=true
@@ -62,11 +51,76 @@ allowIndoorLongPlanterOutside=true
 # If "true", you'll be able to build the exterior long planter inside bases/cyclops (tip: this allows to have sea plants inside bases/cyclops).
 allowOutdoorLongPlanterInside=true
 
-# If "true", the regular aquarium (not the one from this mod) will adapt to the lights depending if it's indoor or outdoor.
+# If "true", the aquarium will adapt to the lights depending if it's indoor or outdoor.
 fixAquariumLighting=true
 
 # If "true", glass of the aquariums (both regular aquarium and the one from this mod) will be glowing a little.
 enableAquariumGlassGlowing=false
+
+
+# -----------------------
+#     DISCOVERY MODES
+# -----------------------
+
+# If "true", new items from this mod will be available only after you made some discoveries in game.
+# Seamoth fragments will be available once you can build the seamoth.
+# Seamoth doll will be available once you can build the seamoth.
+# PRAWN suit doll will be available once you can build the PRAWN suit.
+# Creature dolls (Reefback/reaper/dragon/ghost/treader/emperor leviathans and cuddle fish) will be available once you scanned the associated creatures in game (works with juvenile creatures as well).
+# Reaper skeleton and reaper skull will be available once you scanned the reaper skeleton in lava zone.
+# Sea dragon skeleton will be available once you scanned the sea dragon skeleton in lost river.
+# Small and tiny benches will be available once you scanned the bench in game.
+# Stool will be available once you scanned one of the chairs in game.
+# Sofas will be available once you scanned the 3 chairs and the bench in game.
+# Indoor long planter will be available once you scanned the indoor planter in game.
+# Outdoor long planter will be available once you scanned the outdoor planter in game.
+# Empty desk will be available once you scanned the desk in game.
+# Customizable picture frame will be available once you scanned the picture frame in game.
+# Customizable light will be available once you scanned one of the lights in game.
+# Lab cart and specimen analyzer will be available once you scanned the alien containment unit.
+# Alien pillar will be available once you scanned one of the following: Precursor lab table, precursor key terminal, precursor energy core or precursor teleporter.
+# Warper parts will be available once you scanned the warper parts in precursor lab.
+# Warper specimen will be available once you scanned the warper specimen in precursor lab.
+# Alien relics will be available once you scanned them in game.
+# Red and white tablets will be available once you pickup a purple tablet in game.
+# If "false", items from this mod will be available from start (you can build/craft them immediately).
+addItemsWhenDiscovered=true
+
+# If "true", land seeds are added to the seeds fabricator only after you picked up the plant/seed in game (if the plant/seed is not pickupable you need to scan it instead).
+# This setting works for following seeds: All existing land seeds.
+# If "false", land seeds will be available from start (you can craft them in the seeds fabricator immediately).
+addAirSeedsWhenDiscovered=true
+
+# If "true", water seeds are added to the seeds fabricator only after you picked up the plant/seed in game.
+# If the plant/seed is not pickupable, you will have to scan it instead (for the mushroom tree seed you need to scan a tree leech or giant mushroom tree).
+# This setting works for following seeds: All existing water seeds, floating stone seed, brine lily seed, amoeba seed, pyrocoral seeds, crab claw kelp seeds, earthen coral tubes seeds, cove tree seed and mushroom tree seed.
+# If "false", water seeds will be available from start (you can craft them in the seeds fabricator immediately).
+addWaterSeedsWhenDiscovered=true
+
+# NOTE:
+# To unlock ghost leviathans eggs you need to scan the Cove Tree.
+# To unlock eggs of sea dragon and sea emperor you need to find and scan the eggs in game (they are located in precursor bases).
+# For all other eggs, you need to hatch them in an Alien Containment unit to unlock them.
+
+# If "true", eggs are added to the decorations fabricator once you scanned their associated creature or once you hatched them in an Alien Containment unit.
+# If "false", eggs are added to the decorations fabricator once you hatched them in an Alien Containment unit.
+addEggsWhenCreatureScanned=false
+
+# If "true", eggs are added to the decorations fabricator from start (removes unlock conditions, you can craft them in fabricator immediately).
+# If "false", eggs are added to the decorations fabricator like explained in the NOTE above.
+addEggsAtStart=false
+
+
+# -----------------------
+#        PRECURSOR     
+# -----------------------
+
+# If "true", there will be a new tab inside decorations fabricator containing 11 unique warper parts + 11 unique alien relics + 5 unique alien tablets.
+enablePrecursorTab=true
+
+# If "true", all alien tablets will be available for craft in the Precursor tab of the decorations frabricator.
+# If "false", only the red and white alien tablets will be available in the Precursor tab of the decorations fabricator.
+precursorKeysAll=true
 
 # This defines the resource required to craft alien tablets.
 # Possible values: An existing tech type name (exemple: salt).
@@ -74,7 +128,7 @@ precursorKeys_RecipiesResource=precursorioncrystal
 
 # This defines the amount of resources required to craft alien tablets.
 # Possible values: A digit between 1 and 10 (exemple: 3).
-precursorKeys_RecipiesResourceAmount=3
+precursorKeys_RecipiesResourceAmount=1
 
 # This defines the resource required to craft alien relics.
 # Possible values: An existing tech type name (exemple: salt).
@@ -82,109 +136,9 @@ relics_RecipiesResource=precursorioncrystal
 
 # This defines the amount of resources required to craft alien relics.
 # Possible values: A digit between 1 and 10 (exemple: 3).
-relics_RecipiesResourceAmount=2
+relics_RecipiesResourceAmount=1
 
-# This defines the resource required to craft creature eggs.
-# Possible values: An existing tech type name (exemple: salt).
-creatureEggs_RecipiesResource=precursorioncrystal
-
-# This defines the amount of resources required to craft creature eggs.
-# Possible values: A digit between 1 and 10 (exemple: 3).
-creatureEggs_RecipiesResourceAmount=1
-
-# This defines the resource required to craft seeds.
-# Possible values: An existing tech type name (example: salt).
-flora_RecipiesResource=precursorioncrystal
-
-# This defines the amount of resources required to craft seeds.
-# Possible values: A digit between 1 and 10 (exemple: 3).
-flora_RecipiesResourceAmount=1
-
-# Defines new flora configuration. Format is: growth-duration/health/bioreactor-charge
-config_LandTree=2400/200/500
-config_JungleTreeA=2000/120/300
-config_JungleTreeB=2000/120/300
-config_TropicalTreeA=1400/100/200
-config_TropicalTreeB=1400/100/200
-config_TropicalTreeC=1400/100/200
-config_TropicalTreeD=1400/100/200
-config_LandPlantRedA=1200/80/100
-config_LandPlantRedB=1200/80/100
-config_LandPlantA=1200/60/70
-config_LandPlantB=1200/60/70
-config_LandPlantC=1200/60/70
-config_FernA=800/60/70
-config_FernB=800/60/70
-config_TropicalPlantA=1200/60/140
-config_TropicalPlantB=1200/60/140
-config_TropicalPlantC=1200/60/100
-config_TropicalPlantD=1200/60/100
-config_TropicalPlantE=1200/60/100
-config_TropicalPlantF=1200/60/100
-config_TropicalPlantG=1200/60/100
-config_TropicalPlantH=1200/60/100
-config_CrabClawKelpA=1600/100/220
-config_CrabClawKelpB=1600/100/220
-config_CrabClawKelpC=1600/100/220
-config_PyroCoralA=2000/130/300
-config_PyroCoralB=2000/130/300
-config_PyroCoralC=2000/130/300
-config_CoveTree=3000/300/400
-config_SpottedReedsA=1000/60/120
-config_SpottedReedsB=1000/60/120
-config_BrineLily=1400/100/120
-config_LostRiverPlant=1400/100/200
-config_CoralReefPlantMiddle=1000/60/70
-config_SmallMushroomsDeco=700/10/120
-config_FloatingStone=2000/130/160
-config_BrownCoralTubesA=1400/10/50
-config_BrownCoralTubesB=1600/10/70
-config_BrownCoralTubesC=1800/60/100
-config_BlueCoralTubes=1600/10/140
-config_PurplePinecone=1800/10/160
-config_CoralPlantYellow=1600/10/120
-config_CoralPlantGreen=1600/10/120
-config_CoralPlantBlue=1600/10/120
-config_CoralPlantRed=1600/10/120
-config_CoralPlantPurple=1600/10/120
-config_RedGrass1=800/30/30
-config_RedGrass2=800/40/50
-config_RedGrass3=800/40/50
-config_RedGrass2Tall=1000/40/70
-config_RedGrass3Tall=1000/40/70
-config_BloodGrass=1000/40/70
-config_BloodGrassDense=1600/60/90
-
-# If "true", cove trees below 100m depth having eggs displayed will spawn Juvenile Ghost Leviatan after a certain amount of time.
-GhostLeviatan_enable=false
-# Defines spawned juvenile ghost leviathan health points. Minimum 20 and maximum 20000.
-GhostLeviatan_health=2000
-# Defines the number of juvenile ghost leviathan that spawns before eggs disappears. Minimum 1 and maximum 10.
-GhostLeviatan_maxSpawns=2
-# Defines the minimum number of seconds to wait before the first leviathan spawns. Minimum 10 and maximum 14400.
-GhostLeviatan_timeBeforeFirstSpawn=1200
-# This is the ratio applied to the duration between two leviathans spawns. Set it close to 0 if you want fast spawn rate, or set it to a high value if you want low spawn rate.
-# For example, 0.01 will be around 10 seconds and 3.0 will be around 45 minutes.
-# Possible values: Between 0.01 (minimum) and 10.0 (maximum).
-GhostLeviatan_spawnTimeRatio=1.0
-
-# If "true",  item will be available through the habitat builder menu.
-# If "false", item will be available through the decorations fabricator.
-# WARNING: It is not recommended to change this settign (there's a high chance that you loose some of the items functionalities by placing them in the decorations fabricator).
-asBuildable_SpecimenAnalyzer=true
-asBuildable_MarkiplierDoll1=true
-asBuildable_MarkiplierDoll2=true
-asBuildable_JackSepticEyeDoll=true
-asBuildable_EatMyDictionDoll=true
-asBuildable_ForkliftToy=true
-asBuildable_SofaSmall=true
-asBuildable_SofaMedium=true
-asBuildable_SofaBig=true
-asBuildable_SofaCorner=true
-asBuildable_LabCart=true
-asBuildable_EmptyDesk=true
-
-# Below you can configure precursor relics animations. If "true", enables relic animation. If "false", disables relic animation.
+# Below you can configure precursor relics animations. Set to "true" to enable animation or "false" to disable it.
 # Artefact 1, Organic Matter Particulator:
 alienRelic1Animation=true
 # Artefact 2, Holographic Projector:
@@ -207,3 +161,188 @@ alienRelic9Animation=true
 alienRelic10Animation=true
 # Artefact 11, Alien Building Block:
 alienRelic11Animation=true
+
+
+# -----------------------
+#          EGGS
+# -----------------------
+
+# If "true", you will be able to craft all existing eggs from the decorations fabricator.
+# If "false", only the sea dragon, sea emperor and ghost leviathan eggs will be available in the decorations fabricator.
+enableAllEggs=true
+
+# This defines the resource required to craft creature eggs.
+# Possible values: An existing tech type name (exemple: salt).
+creatureEggs_RecipiesResource=salt
+
+# This defines the amount of resources required to craft creature eggs.
+# Possible values: A digit between 1 and 10 (exemple: 3).
+creatureEggs_RecipiesResourceAmount=5
+
+
+# -----------------------
+#      DRINKS & FOOD
+# -----------------------
+
+# If "true", you will be able to craft Nutrient Blocks using the decorations fabricator.
+enableNutrientBlock=true
+
+# This defines the amount of water bar bottles will give if you drink them.
+# Possible values: A digit between 1 and 100.
+barBottle1Water=20
+barBottle2Water=20
+barBottle3Water=40
+barBottle4Water=40
+barBottle5Water=40
+
+# This defines the amount of nutrient and water bar food will give if you eat it.
+# Possible values: A digit between 1 and 100.
+barFood1Nutrient=40
+barFood1Water=10
+barFood2Nutrient=55
+barFood2Water=25
+
+
+# -----------------------
+#         SEEDS
+# -----------------------
+
+# If "true", all existing land seeds will be added to the seeds fabricator.
+addRegularAirSeeds=true
+
+# If "true", all existing water seeds will be added to the seeds fabricator.
+addRegularWaterSeeds=true
+
+# This defines the resource required to craft seeds.
+# Possible values: An existing tech type name (example: salt).
+flora_RecipiesResource=salt
+
+# This defines the amount of resources required to craft seeds.
+# To craft the cove tree seed it will require twice the amount.
+# Possible values: A digit between 1 and 10 (exemple: 3).
+flora_RecipiesResourceAmount=5
+
+# This defines the resource dropped by purple pinecones when you harvest them.
+# Possible values: An existing tech type name (example: salt).
+purplePineconeDroppedResource=salt
+
+# This defines the amount of resources dropped by purple pinecones when you harvest them.
+# Possible values: A digit between 1 and 10 (example: 3).
+purplePineconeDroppedResourceAmount=1
+
+# Defines new flora configuration.
+# Format is: growth duration/health/bioreactor charge/eatable?/food value/water value/decomposes?/decomposition speed
+# Possible values for growth duration: a digit between 100 and 10000.
+# Possible values for health points: a digit between 10 and 2000.
+# Possible values for bioreactor charge: a digit between 10 and 2000.
+# Possible values for eatable: true or false.
+# Possible values for food value: a digit between 1 and 100.
+# Possible values for water value: a digit between 1 and 100.
+# Possible values for decomposes: true or false.
+# Possible values for decomposition speed: a digit between 1 and 100 (With value 1 the nutrient/water values will loose 1 point every 17 minutes, and with value 100 the nutrient/water values will loose 1 point every 10 seconds).
+config_LandTree=2400/200/500/true/3/6/false/20
+config_JungleTreeA=2000/120/300/false/1/1/false/20
+config_JungleTreeB=2000/120/300/false/1/1/false/20
+config_TropicalTreeA=1400/100/200/false/1/1/false/20
+config_TropicalTreeB=1400/100/200/false/1/1/false/20
+config_TropicalTreeC=1400/100/200/false/1/1/false/20
+config_TropicalTreeD=1400/100/200/false/1/1/false/20
+config_LandPlantRedA=1200/80/100/false/1/1/false/20
+config_LandPlantRedB=1200/80/100/false/1/1/false/20
+config_LandPlantA=1200/60/70/false/1/1/false/20
+config_LandPlantB=1200/60/70/false/1/1/false/20
+config_LandPlantC=1200/60/70/false/1/1/false/20
+config_FernA=800/60/70/false/1/1/false/20
+config_FernB=800/60/70/false/1/1/false/20
+config_TropicalPlantA=1200/60/140/false/1/1/false/20
+config_TropicalPlantB=1200/60/140/false/1/1/false/20
+config_TropicalPlantC=1200/60/100/false/1/1/false/20
+config_TropicalPlantD=1200/60/100/false/1/1/false/20
+config_TropicalPlantE=1200/60/100/false/1/1/false/20
+config_TropicalPlantF=1200/60/100/false/1/1/false/20
+config_TropicalPlantG=1200/60/100/false/1/1/false/20
+config_TropicalPlantH=1200/60/100/false/1/1/false/20
+config_CrabClawKelpA=1600/100/220/false/1/1/false/20
+config_CrabClawKelpB=1600/100/220/false/1/1/false/20
+config_CrabClawKelpC=1600/100/220/false/1/1/false/20
+config_PyroCoralA=2000/130/300/false/1/1/false/20
+config_PyroCoralB=2000/130/300/false/1/1/false/20
+config_PyroCoralC=2000/130/300/false/1/1/false/20
+config_CoveTree=3000/300/400/false/1/1/false/20
+config_SpottedReedsA=1000/60/120/false/1/1/false/20
+config_SpottedReedsB=1000/60/120/false/1/1/false/20
+config_BrineLily=1400/100/120/false/1/1/false/20
+config_LostRiverPlant=1400/100/200/false/1/1/false/20
+config_CoralReefPlantMiddle=1000/60/70/false/1/1/false/20
+config_SmallMushroomsDeco=700/10/120/false/1/1/false/20
+config_FloatingStone=2000/130/160/false/1/1/false/20
+config_BrownCoralTubesA=1400/10/50/false/1/1/false/20
+config_BrownCoralTubesB=1600/10/70/false/1/1/false/20
+config_BrownCoralTubesC=1800/60/100/false/1/1/false/20
+config_BlueCoralTubes=1600/10/140/false/1/1/false/20
+config_PurplePinecone=1800/10/160/false/1/1/false/20
+config_CoralPlantYellow=1600/10/120/false/1/1/false/20
+config_CoralPlantGreen=1600/10/120/false/1/1/false/20
+config_CoralPlantBlue=1600/10/120/false/1/1/false/20
+config_CoralPlantRed=1600/10/120/false/1/1/false/20
+config_CoralPlantPurple=1600/10/120/false/1/1/false/20
+config_RedGrass1=800/30/30/false/1/1/false/20
+config_RedGrass2=800/40/50/false/1/1/false/20
+config_RedGrass3=800/40/50/false/1/1/false/20
+config_RedGrass2Tall=1000/40/70/false/1/1/false/20
+config_RedGrass3Tall=1000/40/70/false/1/1/false/20
+config_BloodGrass=1000/40/70/false/1/1/false/20
+config_BloodGrassDense=1600/60/90/false/1/1/false/20
+config_MushroomTree1=3000/300/140/false/1/1/false/20
+config_MushroomTree2=1500/100/80/false/1/1/false/20
+
+
+# -----------------------
+#    GHOST LEVIATHANS
+# -----------------------
+
+# Note that settings of this section only affects juvenile ghost leviathans that spawns from the cove tree of this mod.
+# In other words, these settings do not affect the existing juvenile ghost leviathans and they do not affect the existing cove tree.
+# You can craft the cove tree of this mod in the seeds fabricator (if you enabled the option "addWaterSeedsWhenDiscovered", it will be available only once you scanned the cove tree in game).
+
+# If "true", cove trees below 100m depth having eggs displayed will spawn Juvenile Ghost Leviatan after a certain amount of time.
+GhostLeviatan_enable=false
+
+# Defines spawned juvenile ghost leviathan health points. Minimum 10 and maximum 10000.
+GhostLeviatan_health=2000
+
+# Defines the number of juvenile ghost leviathan that spawns before eggs disappears. Minimum 1 and maximum 10.
+GhostLeviatan_maxSpawns=2
+
+# Defines the minimum number of seconds to wait before the first leviathan spawns. Minimum 10 and maximum 14400.
+GhostLeviatan_timeBeforeFirstSpawn=1200
+
+# This is the ratio applied to the duration between two juvenile leviathans spawns. Set it close to 1 if you want fast spawn rate, or set it to a high value if you want low spawn rate.
+# For example, 1 will be around 10 seconds and 300 will be around 45 minutes.
+# Possible values: Between 1 (minimum) and 1000 (maximum).
+GhostLeviatan_spawnTimeRatio=100
+
+
+# -----------------------
+#     EXTRA SETTINGS
+# -----------------------
+
+# Set this to "true" only if some items in Seeds Fabricator are not visible because they don't fit in screen.
+# If it still doesn't fit after that, download Radial Tabs mod here: https://www.nexusmods.com/subnautica/mods/207.
+useAlternativeScreenResolution=false
+
+# If "true",  item will be available through the habitat builder menu.
+# If "false", item will be available through the decorations fabricator.
+# WARNING: It is not recommended to change settings below (there's a high chance that you loose some of the items functionalities by placing them in the decorations fabricator).
+asBuildable_SpecimenAnalyzer=true
+asBuildable_MarkiplierDoll1=true
+asBuildable_MarkiplierDoll2=true
+asBuildable_JackSepticEyeDoll=true
+asBuildable_EatMyDictionDoll=true
+asBuildable_ForkliftToy=true
+asBuildable_SofaSmall=true
+asBuildable_SofaMedium=true
+asBuildable_SofaBig=true
+asBuildable_SofaCorner=true
+asBuildable_LabCart=true
+asBuildable_EmptyDesk=true

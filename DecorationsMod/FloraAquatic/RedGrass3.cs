@@ -39,7 +39,7 @@ namespace DecorationsMod.FloraAquatic
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
                     {
-                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                     }),
             };
 #else
@@ -47,7 +47,7 @@ namespace DecorationsMod.FloraAquatic
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, 1)
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
 #endif
@@ -107,7 +107,7 @@ namespace DecorationsMod.FloraAquatic
 
             // Add collider
             BoxCollider collider = prefab.AddComponent<BoxCollider>();
-            collider.size = new Vector3(0.3f, 0.5f, 0.3f);
+            collider.size = new Vector3(0.2f, 0.2f, 0.2f);
             collider.center = new Vector3(collider.center.x, collider.center.y + 0.25f, collider.center.z);
 
             // Update rigid body
@@ -142,7 +142,7 @@ namespace DecorationsMod.FloraAquatic
 
             // Update large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
-            lwe.cellLevel = LargeWorldEntity.CellLevel.Medium;
+            lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
             // Set sky applier
             PrefabsHelper.SetDefaultSkyApplier(prefab, new Renderer[] { renderer }, Skies.Auto, true);
@@ -162,6 +162,23 @@ namespace DecorationsMod.FloraAquatic
             // Add pickupable
             PrefabsHelper.SetDefaultPickupable(prefab, false, true);
 
+            // Add eatable
+            Eatable eatable = null;
+            if (Config.Eatable)
+            {
+                eatable = prefab.AddComponent<Eatable>();
+                eatable.foodValue = Config.FoodValue;
+                eatable.waterValue = Config.WaterValue;
+#if SUBNAUTICA
+                eatable.stomachVolume = 10.0f;
+                eatable.allowOverfill = false;
+#endif
+                eatable.decomposes = Config.Decomposes;
+                eatable.kDecayRate = Config.KDecayRate;
+                eatable.despawns = Config.Despawns;
+                eatable.despawnDelay = Config.DespawnDelay;
+            }
+
             // Add plantable
             var plantable = prefab.GetComponent<Plantable>();
             if (plantable == null)
@@ -172,6 +189,7 @@ namespace DecorationsMod.FloraAquatic
             plantable.plantTechType = this.TechType;
             plantable.size = Plantable.PlantSize.Small;
             plantable.pickupable = prefab.GetComponent<Pickupable>();
+            plantable.eatable = eatable;
             plantable.model = prefab;
             plantable.linkedGrownPlant = new GrownPlant();
             plantable.linkedGrownPlant.seed = plantable;

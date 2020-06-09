@@ -1,5 +1,7 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -17,6 +19,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("ReefBackDollName"),
                                                         LanguageHelper.GetFriendlyWord("ReefBackDollDescription"),
                                                         true);
+
+            CrafterLogicFixer.ReefBackDoll = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
@@ -87,31 +92,31 @@ namespace DecorationsMod.NewItems
                             foreach (Material tmpMat in rend.materials)
                             {
                                 tmpMat.shader = marmosetUber;
-                                if (tmpMat.name.CompareTo("coral_reef_grass_04 (Instance)") == 0)
+                                if (string.Compare(tmpMat.name, "coral_reef_grass_04 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal1);
                                     tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                     tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                 }
-                                else if (tmpMat.name.CompareTo("Coral_reef_red_seaweed_03 (Instance)") == 0)
+                                else if (string.Compare(tmpMat.name, "Coral_reef_red_seaweed_03 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal2);
                                     tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                     tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                 }
-                                else if (tmpMat.name.CompareTo("Reefback_coral_flat (Instance)") == 0)
+                                else if (string.Compare(tmpMat.name, "Reefback_coral_flat (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal3);
                                     tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                     tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                 }
-                                else if (tmpMat.name.CompareTo("Reefback_reef_tile (Instance)") == 0)
+                                else if (string.Compare(tmpMat.name, "Reefback_reef_tile (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal4);
                                     tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                     tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                 }
-                                else if (tmpMat.name.CompareTo("Reefback_01_01 (Instance)") == 0)
+                                else if (string.Compare(tmpMat.name, "Reefback_01_01 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal5);
                                     tmpMat.SetTexture("_SpecTex", spec5);
@@ -123,7 +128,7 @@ namespace DecorationsMod.NewItems
                                     tmpMat.EnableKeyword("MARMO_SPECMAP");
                                     tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                                 }
-                                else if (tmpMat.name.CompareTo("Reefback_01_02 (Instance)") == 0)
+                                else if (string.Compare(tmpMat.name, "Reefback_01_02 (Instance)", true, CultureInfo.InvariantCulture) == 0)
                                 {
                                     tmpMat.SetTexture("_BumpMap", normal6);
                                     tmpMat.SetTexture("_SpecTex", spec6);

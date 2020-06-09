@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("EggSeaEmperorName"),
                                                         LanguageHelper.GetFriendlyWord("EggSeaEmperorDescription"),
                                                         true);
+
+            CrafterLogicFixer.SeaEmperorEgg = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Eggs/EmperorEgg");
 

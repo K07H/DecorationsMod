@@ -1,5 +1,6 @@
 ﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -124,7 +125,7 @@ namespace DecorationsMod.NewItems
                     // Associate MarmosetUBER shader
                     tmpMat.shader = shader;
 
-                    if (tmpMat.name.CompareTo("generic_forklift (Instance)") == 0)
+                    if (string.Compare(tmpMat.name, "generic_forklift (Instance)", true, CultureInfo.InvariantCulture) == 0)
                     {
                         tmpMat.SetTexture("_BumpMap", normal);
                         tmpMat.SetTexture("_Illum", illum);

@@ -1,14 +1,15 @@
 ﻿using DecorationsMod.Fixers;
 using Harmony;
-using SMLHelper.V2.Crafting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using UnityEngine;
 
 namespace DecorationsMod
 {
-    // Available DEBUG flags:
+    // List of DEBUG flags:
+    // DEBUG_ITEMS_REGISTRATION
     // DEBUG_AQUARIUM
     // DEBUG_CARGO_CRATES
     // DEBUG_COVE_TREE
@@ -27,64 +28,59 @@ namespace DecorationsMod
         // Harmony stuff
         internal static HarmonyInstance HarmonyInstance = null;
 
+        // List of modded items
         public static List<IDecorationItem> DecorationItems = null;
 
-        private static bool _patchedBatteries = false;
-        public static void PatchBatteries()
-        {
-            if (!_patchedBatteries)
-            {
-                var allowedToAddMethod = typeof(Equipment).GetMethod("AllowedToAdd", BindingFlags.Public | BindingFlags.Instance);
-                var allowedToAddPrefix = typeof(EquipmentFixer).GetMethod("AllowedToAdd_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(allowedToAddMethod, new HarmonyMethod(allowedToAddPrefix), null);
-                var addOrSwapMethod = typeof(Inventory).GetMethod("AddOrSwap", new Type[] { typeof(InventoryItem), typeof(Equipment), typeof(string) }); //, BindingFlags.Public | BindingFlags.Static);
-                var addOrSwapPrefix = typeof(InventoryFixer).GetMethod("AddOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(addOrSwapMethod, new HarmonyMethod(addOrSwapPrefix), null);
-                var canSwitchOrSwapMethod = typeof(uGUI_Equipment).GetMethod("CanSwitchOrSwap", BindingFlags.Public | BindingFlags.Instance);
-                var canSwitchOrSwapPrefix = typeof(uGUI_EquipmentFixer).GetMethod("CanSwitchOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(canSwitchOrSwapMethod, new HarmonyMethod(canSwitchOrSwapPrefix), null);
-
-                _patchedBatteries = true;
-            }
-        }
-
+        // Decorations mod entry point
         public static void Patch()
         {
             // 1) INITIALIZE HARMONY
-            HarmonyInstance = HarmonyInstance.Create("com.osubmarin.decorationsmod");
+            if ((HarmonyInstance = HarmonyInstance.Create("com.osubmarin.decorationsmod")) == null)
+            {
+                Logger.Log("ERROR: Unable to initialize Harmony!");
+                return;
+            }
 
             // 2) LOAD CONFIGURATION
             ConfigSwitcher.LoadConfiguration();
 
-            // 3) REGISTER DECORATION ITEMS
-            DecorationsMod.DecorationItems = RegisterDecorationItems();
-            
-            // 4) MAKE SOME EXISTING ITEMS PICKUPABLE & POSITIONABLE
+            // 3) REGISTER NEW ITEMS
+            DecorationsMod.DecorationItems = RegisterNewItems();
+
+            // 4) REGISTER LANGUAGE STRINGS
+            RegisterLanguageStrings();
+
+            // 5) MAKE SOME EXISTING ITEMS PICKUPABLE & PLACEABLE
             if (ConfigSwitcher.EnablePlaceItems)
                 PlaceToolItems.MakeItemsPlaceable();
-            
-            // 5) REGISTER DECORATIONS FABRICATOR
+
+            // 6) REGISTER DECORATIONS FABRICATOR
             Fabricator_Decorations decorationsFabricator = new Fabricator_Decorations();
-            decorationsFabricator.RegisterDecorationsFabricator(DecorationsMod.DecorationItems); //, rootNode, craftType);
+            decorationsFabricator.RegisterDecorationsFabricator(DecorationsMod.DecorationItems);
 
-            // 6) REGISTER FLORA FABRICATOR
-            Fabricator_Flora floraFabricator = new Fabricator_Flora();
-            floraFabricator.RegisterFloraFabricator(DecorationsMod.DecorationItems);
+            // 7) REGISTER FLORA FABRICATOR
+            if (ConfigSwitcher.EnableNewFlora)
+            {
+                Fabricator_Flora floraFabricator = new Fabricator_Flora();
+                floraFabricator.RegisterFloraFabricator(DecorationsMod.DecorationItems);
+            }
 
-            // 7) HARMONY PATCHING
+            // 8) HARMONY PATCHING
+            HarmonyPatchAll();
+
+            // 9) ENHANCEMENTS
+            if (ConfigSwitcher.FixAquariumLighting)
+                PrefabsHelper.FixAquariumSkyApplier();
+
+            // 10) SETUP IN GAME OPTIONS MENU
+            Logger.Log("Setting up in-game options menu...");
+            SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
+        }
+
+        /// <summary>Patches Subnautica DLL with Harmony.</summary>
+        private static void HarmonyPatchAll()
+        {
             Logger.Log("Patching with Harmony...");
-            // Give salt when purple pinecone is cut
-            var giveResourceOnDamageMethod = typeof(Knife).GetMethod("GiveResourceOnDamage", BindingFlags.NonPublic | BindingFlags.Instance);
-            var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(giveResourceOnDamageMethod, null, new HarmonyMethod(giveResourceOnDamagePostfix));
-            // Make plants undropable
-            var canDropItemHereMethod = typeof(Inventory).GetMethod("CanDropItemHere", BindingFlags.Public | BindingFlags.Static);
-            var canDropItemHerePrefix = typeof(InventoryFixer).GetMethod("CanDropItemHere_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(canDropItemHereMethod, new HarmonyMethod(canDropItemHerePrefix), null);
-            // Change custom plants tooltips
-            var onHandHoverMethod = typeof(GrownPlant).GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
-            var onHandHoverPostfix = typeof(GrownPlantFixer).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(onHandHoverPostfix));
             // Fix cargo crates items-containers
             var onProtoDeserializeObjectTreeMethod = typeof(StorageContainer).GetMethod("OnProtoDeserializeObjectTree", BindingFlags.Public | BindingFlags.Instance);
             var onProtoDeserializeObjectTreePostfix = typeof(StorageContainerFixer).GetMethod("OnProtoDeserializeObjectTree_Postfix", BindingFlags.Public | BindingFlags.Static);
@@ -100,18 +96,251 @@ namespace DecorationsMod
             var addItemMethod = typeof(Aquarium).GetMethod("AddItem", BindingFlags.NonPublic | BindingFlags.Instance);
             var addItemPostfix = typeof(AquariumFixer).GetMethod("AddItem_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(addItemMethod, null, new HarmonyMethod(addItemPostfix));
-
-            // 8) ENHANCEMENTS
-            if (ConfigSwitcher.FixAquariumLighting)
-                PrefabsHelper.FixAquariumSkyApplier();
-
-            // 9) SETUP IN GAME MENU
-            SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
+            // Setup new items unlock conditions
+            var isCraftRecipeUnlockedMethod = typeof(CrafterLogic).GetMethod("IsCraftRecipeUnlocked", BindingFlags.Public | BindingFlags.Static);
+            var isCraftRecipeUnlockedPostfix = typeof(CrafterLogicFixer).GetMethod("IsCraftRecipeUnlocked_Postfix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(isCraftRecipeUnlockedMethod, null, new HarmonyMethod(isCraftRecipeUnlockedPostfix));
+            var getTechUnlockStateMethod = typeof(KnownTech).GetMethod("GetTechUnlockState", new Type[] { typeof(TechType), typeof(int).MakeByRefType(), typeof(int).MakeByRefType() }); //, BindingFlags.Public | BindingFlags.Static);
+            var getTechUnlockStatePrefix = typeof(KnownTechFixer).GetMethod("GetTechUnlockState_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(getTechUnlockStateMethod, new HarmonyMethod(getTechUnlockStatePrefix), null);
+            // Load added "new item" notifications when game loads
+            var loadMostRecentSavedGameMethod = typeof(uGUI_MainMenu).GetMethod("LoadMostRecentSavedGame", BindingFlags.NonPublic | BindingFlags.Instance);
+            var loadMostRecentSavedGamePrefix = typeof(uGUI_MainMenuFixer).GetMethod("LoadMostRecentSavedGame_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(loadMostRecentSavedGameMethod, new HarmonyMethod(loadMostRecentSavedGamePrefix), null);
+            var onErrorConfirmedMethod = typeof(uGUI_MainMenu).GetMethod("OnErrorConfirmed", BindingFlags.NonPublic | BindingFlags.Instance);
+            var onErrorConfirmedPrefix = typeof(uGUI_MainMenuFixer).GetMethod("OnErrorConfirmed_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(onErrorConfirmedMethod, new HarmonyMethod(onErrorConfirmedPrefix), null);
+            var loadMethod = typeof(MainMenuLoadButton).GetMethod("Load", BindingFlags.Public | BindingFlags.Instance);
+            var loadPrefix = typeof(MainMenuLoadButtonFixer).GetMethod("Load_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(loadMethod, new HarmonyMethod(loadPrefix), null);
+            // Save added "new item" notifications when game saves
+            var saveGameMethod = typeof(IngameMenu).GetMethod("SaveGame", BindingFlags.Public | BindingFlags.Instance);
+            var saveGamePostfix = typeof(IngameMenuFixer).GetMethod("SaveGame_Postfix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(saveGameMethod, null, new HarmonyMethod(saveGamePostfix));
+            if (ConfigSwitcher.EnableNewFlora)
+            {
+                // Prevent dropping seeds
+                var canDropItemHereMethod = typeof(Inventory).GetMethod("CanDropItemHere", BindingFlags.Public | BindingFlags.Static);
+                var canDropItemHerePrefix = typeof(InventoryFixer).GetMethod("CanDropItemHere_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(canDropItemHereMethod, new HarmonyMethod(canDropItemHerePrefix), null);
+                // Give salt when purple pinecone is cut
+                var giveResourceOnDamageMethod = typeof(Knife).GetMethod("GiveResourceOnDamage", BindingFlags.NonPublic | BindingFlags.Instance);
+                var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(giveResourceOnDamageMethod, null, new HarmonyMethod(giveResourceOnDamagePostfix));
+                // Change custom plants tooltips
+                var onHandHoverMethod = typeof(GrownPlant).GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
+                var onHandHoverPostfix = typeof(GrownPlantFixer).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(onHandHoverPostfix));
+                // Make new flora spawn as seeds when using console commands (instead of grown plants)
+                var onConsoleCommand_itemMethod = typeof(InventoryConsoleCommands).GetMethod("OnConsoleCommand_item", BindingFlags.NonPublic | BindingFlags.Instance);
+                var onConsoleCommand_itemPrefix = typeof(InventoryConsoleCommandsFixer).GetMethod("OnConsoleCommand_item_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(onConsoleCommand_itemMethod, new HarmonyMethod(onConsoleCommand_itemPrefix), null);
+                var onConsoleCommand_spawnMethod = typeof(SpawnConsoleCommand).GetMethod("OnConsoleCommand_spawn", BindingFlags.NonPublic | BindingFlags.Instance);
+                var onConsoleCommand_spawnPrefix = typeof(SpawnConsoleCommandFixer).GetMethod("OnConsoleCommand_spawn_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(onConsoleCommand_spawnMethod, new HarmonyMethod(onConsoleCommand_spawnPrefix), null);
+                // Handles pland/seed state upon drop and pickup
+                var dropMethod = typeof(Pickupable).GetMethod("Drop", new Type[] { typeof(Vector3), typeof(Vector3), typeof(bool) });
+                var dropPostfix = typeof(PickupableFixer).GetMethod("Drop_Postfix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(dropMethod, null, new HarmonyMethod(dropPostfix));
+                var onHandClickMethod = typeof(Pickupable).GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
+                var onHandClickPrefix = typeof(PickupableFixer).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(onHandClickPrefix), null);
+            }
         }
 
+        private static bool _patchedBatteries = false;
+        /// <summary>This will make batteries and powercells placeable (uses Harmony).</summary>
+        public static void PatchBatteries()
+        {
+            if (!_patchedBatteries)
+            {
+                var allowedToAddMethod = typeof(Equipment).GetMethod("AllowedToAdd", BindingFlags.Public | BindingFlags.Instance);
+                var allowedToAddPrefix = typeof(EquipmentFixer).GetMethod("AllowedToAdd_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(allowedToAddMethod, new HarmonyMethod(allowedToAddPrefix), null);
+                var addOrSwapMethod = typeof(Inventory).GetMethod("AddOrSwap", new Type[] { typeof(InventoryItem), typeof(Equipment), typeof(string) });
+                var addOrSwapPrefix = typeof(InventoryFixer).GetMethod("AddOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(addOrSwapMethod, new HarmonyMethod(addOrSwapPrefix), null);
+                var canSwitchOrSwapMethod = typeof(uGUI_Equipment).GetMethod("CanSwitchOrSwap", BindingFlags.Public | BindingFlags.Instance);
+                var canSwitchOrSwapPrefix = typeof(uGUI_EquipmentFixer).GetMethod("CanSwitchOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(canSwitchOrSwapMethod, new HarmonyMethod(canSwitchOrSwapPrefix), null);
+
+                _patchedBatteries = true;
+            }
+        }
+
+        /// <summary>Registers language strings based on user language.</summary>
+        public static void RegisterLanguageStrings()
+        {
+            // Register tooltips
+            foreach (string tooltip in DecorationsMod.tooltips)
+                SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(tooltip, LanguageHelper.GetFriendlyWord(tooltip));
+            // Register configuration strings
+            foreach (string configOption in ConfigOptions.LanguageStrings)
+                SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(configOption, LanguageHelper.GetFriendlyWord(configOption));
+        }
+
+        /// <summary>Returns a list containing all new items added by this mod.</summary>
+        private static List<IDecorationItem> RegisterNewItems()
+        {
+            List<IDecorationItem> result = new List<IDecorationItem>();
+
+            Logger.Log("Registering items...");
+
+            // Get the list of modified existing items
+            var existingItems = from t in Assembly.GetExecutingAssembly().GetTypes() 
+                                where t.IsClass && t.Namespace == "DecorationsMod.ExistingItems" 
+                                select t;
+
+            // Register modified existing items
+            foreach (Type existingItemType in existingItems)
+            {
+#if DEBUG_ITEMS_REGISTRATION
+                Logger.Log("INFO: Trying to create item type=[{0}]", existingItemType.Name);
+#endif
+                // Get item
+                DecorationItem existingItem = (DecorationItem)(Activator.CreateInstance(existingItemType));
+                if (existingItem.GameObject != null)
+                {
+                    // Register item
+                    existingItem.RegisterItem();
+                    // Unlock item at game start
+                    SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(existingItem.TechType);
+                    // Store item in the list
+                    result.Add(existingItem);
+                }
+#if DEBUG_ITEMS_REGISTRATION
+                else
+                    Logger.Log("WARNING: Unable to create item type=[{0}]!", existingItemType.Name);
+#endif
+            }
+
+            // Get the list of new items
+            var newItems = from t in Assembly.GetExecutingAssembly().GetTypes() 
+                           where t.IsClass && t.Namespace == "DecorationsMod.NewItems" 
+                           select t;
+
+            // Register new items
+            foreach (Type newItemType in newItems)
+            {
+#if DEBUG_ITEMS_REGISTRATION
+                Logger.Log("INFO: Trying to create new item type=[{0}]", newItemType.Name);
+#endif
+                DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
+                if (newItem.GameObject != null)
+                {
+                    // Check if item has been enabled in Config options
+                    if ((ConfigSwitcher.EnableNutrientBlock || newItem.TechType != TechType.NutrientBlock) &&
+                        (ConfigSwitcher.EnableSofas || (newItem.ClassID != "SofaStr1" && newItem.ClassID != "SofaStr2" && newItem.ClassID != "SofaStr3" && newItem.ClassID != "SofaCorner2")))
+                    {
+                        // If decoration items from habitat builder are enabled, add everything
+                        // Otherwise add only items that are not from habitat builder
+                        if (ConfigSwitcher.EnableNewItems || !newItem.IsHabitatBuilder)
+                        {
+                            newItem.RegisterItem();
+                            result.Add(newItem);
+                        }
+                    }
+                }
+#if DEBUG_ITEMS_REGISTRATION
+                else
+                    Logger.Log("WARNING: Unable create new item type=[{0}]!", newItemType.Name);
+#endif
+            }
+
+            // Register new flora
+            if (ConfigSwitcher.EnableNewFlora)
+            {
+                // Get the list of new air flora
+                var newFlora = from t in Assembly.GetExecutingAssembly().GetTypes()
+                               where t.IsClass && t.Namespace == "DecorationsMod.Flora"
+                               select t;
+                // Register new air flora
+                foreach (Type newItemType in newFlora)
+                {
+#if DEBUG_ITEMS_REGISTRATION
+                    Logger.Log("INFO: Trying to create flora item type=[{0}]", newItemType.Name);
+#endif
+                    DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
+                    if (newItem.GameObject != null)
+                    {
+                        newItem.RegisterItem();
+                        result.Add(newItem);
+                    }
+#if DEBUG_ITEMS_REGISTRATION
+                    else
+                        Logger.Log("WARNING: Unable create flora item type=[{0}]!", newItemType.Name);
+#endif
+                }
+
+                // Get the list of new water flora
+                var newWaterFlora = from t in Assembly.GetExecutingAssembly().GetTypes()
+                                    where t.IsClass && t.Namespace == "DecorationsMod.FloraAquatic"
+                                    select t;
+                // Register new water flora
+                foreach (Type newItemType in newWaterFlora)
+                {
+#if DEBUG_ITEMS_REGISTRATION
+                    Logger.Log("INFO: Trying to create water flora item type=[{0}]", newItemType.Name);
+#endif
+                    DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
+                    if (newItem.GameObject != null)
+                    {
+                        newItem.RegisterItem();
+                        result.Add(newItem);
+                    }
+#if DEBUG_ITEMS_REGISTRATION
+                    else
+                        Logger.Log("WARNING: Unable to create water flora item type=[{0}]!", newItemType.Name);
+#endif
+                }
+
+                // Register existing air seeds recipes
+                if (ConfigSwitcher.EnableRegularAirSeeds)
+                {
+                    List<TechType> processedSeeds = new List<TechType>();
+                    foreach (KeyValuePair<TechType, TechType> airPlant in Fabricator_Flora.AirPlants)
+                    {
+                        if (!processedSeeds.Contains(airPlant.Value))
+                        {
+                            RegisterRecipeForTechType(airPlant.Value, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
+                            processedSeeds.Add(airPlant.Value);
+                        }
+                        if (ConfigSwitcher.AddAirSeedsWhenDiscovered)
+                            SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(airPlant.Key, new TechType[] { airPlant.Value });
+                        else
+                            SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(airPlant.Value);
+                    }
+                }
+
+                // Register existing water seeds recipes
+                if (ConfigSwitcher.EnableRegularWaterSeeds)
+                {
+                    List<TechType> processedSeeds = new List<TechType>();
+                    foreach (KeyValuePair<TechType, TechType> waterPlant in Fabricator_Flora.WaterPlants)
+                    {
+                        if (!processedSeeds.Contains(waterPlant.Value))
+                        {
+                            RegisterRecipeForTechType(waterPlant.Value, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
+                            processedSeeds.Add(waterPlant.Value);
+                        }
+                        if (ConfigSwitcher.AddWaterSeedsWhenDiscovered)
+                            SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(waterPlant.Key, new TechType[] { waterPlant.Value });
+                        else
+                            SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(waterPlant.Value);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>Associates given recipe to a TechType.</summary>
+        /// <param name="techType">The tech type that needs a recipe.</param>
+        /// <param name="resource">The recipe resource.</param>
+        /// <param name="resourceAmount">The recipe resource amount.</param>
+        /// <param name="craftingAmount">Number of crafted items amount.</param>
         private static void RegisterRecipeForTechType(TechType techType, TechType resource, int resourceAmount = 1, int craftingAmount = 1)
         {
-            // Associate recipe to the new TechType
 #if BELOWZERO
             SMLHelper.V2.Crafting.RecipeData techTypeRecipe = new SMLHelper.V2.Crafting.RecipeData()
             {
@@ -134,254 +363,20 @@ namespace DecorationsMod
 #endif
         }
 
-        public static void RegisterTooltips()
+        /// <summary>List of tooltip language strings.</summary>
+        private static readonly string[] tooltips = new string[11]
         {
-            // Register lamp tooltips
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("LampTooltip", LanguageHelper.GetFriendlyWord("LampTooltip"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("LampTooltipCompact", LanguageHelper.GetFriendlyWord("LampTooltipCompact"));
-
-            // Register seamoth doll tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("SwitchSeamothModel", LanguageHelper.GetFriendlyWord("SwitchSeamothModel"));
-
-            // Register exosuit doll tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("SwitchExosuitModel", LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
-
-            // Register cargo boxes tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("AdjustCargoBoxSize", LanguageHelper.GetFriendlyWord("AdjustCargoBoxSize"));
-
-            // Register forklift tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("AdjustForkliftSize", LanguageHelper.GetFriendlyWord("AdjustForkliftSize"));
-
-            // Register cove tree tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("DisplayCoveTreeEggs", LanguageHelper.GetFriendlyWord("DisplayCoveTreeEggs"));
-
-            // Register custom picture frame tooltips
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("CustomPictureFrameTooltip", LanguageHelper.GetFriendlyWord("CustomPictureFrameTooltip"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("CustomPictureFrameTooltipCompact", LanguageHelper.GetFriendlyWord("CustomPictureFrameTooltipCompact"));
-
-            // Register custom lockers tooltip
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("OpenCustomStorage", LanguageHelper.GetFriendlyWord("OpenCustomStorage"));
-
-            // Register configuration strings
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_UseFlatScreenResolution", LanguageHelper.GetFriendlyWord("Config_UseFlatScreenResolution"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_UseCompactTooltips", LanguageHelper.GetFriendlyWord("Config_UseCompactTooltips"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_LockQuickslotsWhenPlacingItem", LanguageHelper.GetFriendlyWord("Config_LockQuickslotsWhenPlacingItem"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_AllowBuildOutside", LanguageHelper.GetFriendlyWord("Config_AllowBuildOutside"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_AllowPlaceOutside", LanguageHelper.GetFriendlyWord("Config_AllowPlaceOutside"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnablePlaceItems", LanguageHelper.GetFriendlyWord("Config_EnablePlaceItems"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnablePlaceBatteries", LanguageHelper.GetFriendlyWord("Config_EnablePlaceBatteries"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableSpecialItems", LanguageHelper.GetFriendlyWord("Config_EnableSpecialItems"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnablePrecursorTab", LanguageHelper.GetFriendlyWord("Config_EnablePrecursorTab"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_PrecursorKeysAll", LanguageHelper.GetFriendlyWord("Config_PrecursorKeysAll"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableRegularEggs", LanguageHelper.GetFriendlyWord("Config_EnableRegularEggs"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableNutrientBlock", LanguageHelper.GetFriendlyWord("Config_EnableNutrientBlock"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableRegularAirSeeds", LanguageHelper.GetFriendlyWord("Config_EnableRegularAirSeeds"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_EnableRegularWaterSeeds", LanguageHelper.GetFriendlyWord("Config_EnableRegularWaterSeeds"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_AllowIndoorLongPlanterOutside", LanguageHelper.GetFriendlyWord("Config_AllowIndoorLongPlanterOutside"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_AllowOutdoorLongPlanterInside", LanguageHelper.GetFriendlyWord("Config_AllowOutdoorLongPlanterInside"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_FixAquariumLighting", LanguageHelper.GetFriendlyWord("Config_FixAquariumLighting"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GlowingAquariumGlass", LanguageHelper.GetFriendlyWord("Config_GlowingAquariumGlass"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_PrecursorKeysResourceAmount", LanguageHelper.GetFriendlyWord("Config_PrecursorKeysResourceAmount"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_RelicRecipiesResourceAmount", LanguageHelper.GetFriendlyWord("Config_RelicRecipiesResourceAmount"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_CreatureEggsResourceAmount", LanguageHelper.GetFriendlyWord("Config_CreatureEggsResourceAmount"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_FloraRecipiesResourceAmount", LanguageHelper.GetFriendlyWord("Config_FloraRecipiesResourceAmount"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_enable", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_enable"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_maxSpawns", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_maxSpawns"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_timeBeforeFirstSpawn", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_timeBeforeFirstSpawn"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_spawnTimeRatio", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_spawnTimeRatio"));
-            SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine("Config_GhostLeviatan_health", LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_health"));
-        }
-
-        private static List<IDecorationItem> RegisterDecorationItems()
-        {
-            List<IDecorationItem> result = new List<IDecorationItem>();
-
-            Logger.Log("Registering items...");
-
-            // Get the list of modified existing items
-            var existingItems = from t in Assembly.GetExecutingAssembly().GetTypes() 
-                                where t.IsClass && t.Namespace == "DecorationsMod.ExistingItems" 
-                                select t;
-
-            // Register modified existing items
-            foreach (Type existingItemType in existingItems)
-            {
-                Logger.Log("DEBUG: Trying to create item type=[{0}]", existingItemType.Name);
-                // Get item
-                DecorationItem existingItem = (DecorationItem)(Activator.CreateInstance(existingItemType));
-                if (existingItem.GameObject == null)
-                    Logger.Log("WARNING: Unable to create item type=[{0}]!", existingItemType.Name);
-                else
-                {
-                    // Register item
-                    existingItem.RegisterItem();
-                    // Unlock item at game start
-                    SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(existingItem.TechType);
-                    // Store item in the list
-                    result.Add(existingItem);
-                }
-            }
-
-            // Get the list of new items
-            var newItems = from t in Assembly.GetExecutingAssembly().GetTypes() 
-                           where t.IsClass && t.Namespace == "DecorationsMod.NewItems" 
-                           select t;
-
-            // Register new items
-            foreach (Type newItemType in newItems)
-            {
-                Logger.Log("DEBUG: Trying to create new item type=[{0}] baseType=[{1}] declaringType=[{2}] qualifiedName=[{3}]", newItemType?.Name, newItemType?.BaseType?.Name, newItemType?.DeclaringType?.Name, newItemType?.AssemblyQualifiedName);
-                DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
-                if (newItem.GameObject == null)
-                    Logger.Log("WARNING: Unable create new item type=[{0}]!", newItemType.Name);
-                else
-                {
-                    // If current item is not a nutrient block continue, otherwise if that is a nutrient block
-                    // we continue only if nutrient blocks are enabled in Config.txt file.
-                    if (newItem.TechType != TechType.NutrientBlock || ConfigSwitcher.EnableNutrientBlock) // && ((newItem.TechType != TechType.PrecursorKey_Purple && newItem.TechType != TechType.PrecursorKey_Orange && newItem.TechType != TechType.PrecursorKey_Blue) || ConfigSwitcher.PrecursorKeysAll))
-                    {
-                        // If decoration items from habitat builder are enabled, add everything.
-                        // Otherwise add only items that are not from habitat builder.
-                        if (ConfigSwitcher.EnableSpecialItems || !newItem.IsHabitatBuilder)
-                        {
-                            newItem.RegisterItem();
-                            result.Add(newItem);
-                        }
-                    }
-                }
-            }
-
-            // Get the list of new land flora
-            var newFlora = from t in Assembly.GetExecutingAssembly().GetTypes()
-                           where t.IsClass && t.Namespace == "DecorationsMod.Flora"
-                           select t;
-            // Register new land flora
-            foreach (Type newItemType in newFlora)
-            {
-                Logger.Log("DEBUG: Trying to create flora item type=[{0}]", newItemType.Name);
-                DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
-
-                if (newItem.GameObject == null)
-                    Logger.Log("WARNING: Unable create flora item type=[{0}]!", newItemType.Name);
-                else
-                {
-                    newItem.RegisterItem();
-                    result.Add(newItem);
-                }
-            }
-
-            // Get the list of new water flora
-            var newWaterFlora = from t in Assembly.GetExecutingAssembly().GetTypes()
-                           where t.IsClass && t.Namespace == "DecorationsMod.FloraAquatic"
-                           select t;
-
-            // Register new water flora
-            foreach (Type newItemType in newWaterFlora)
-            {
-                Logger.Log("DEBUG: Trying to create water flora item type=[{0}]", newItemType.Name);
-                DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
-
-                if (newItem.GameObject == null)
-                    Logger.Log("WARNING: Unable create water flora item type=[{0}]!", newItemType.Name);
-                else
-                {
-                    newItem.RegisterItem();
-                    result.Add(newItem);
-                }
-            }
-
-            // Register existing air seeds recipes
-            if (ConfigSwitcher.EnableRegularAirSeeds)
-            {
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.BulboTreePiece);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleVegetable);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.HangingFruit);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.MelonSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.FernPalmSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.OrangePetalsPlantSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleVasePlantSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.OrangeMushroomSpore);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PinkMushroomSpore);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleRattleSpore);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PinkFlowerSeed);
-
-                RegisterRecipeForTechType(TechType.BulboTreePiece, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.PurpleVegetable, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.HangingFruit, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.MelonSeed, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.FernPalmSeed, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.OrangePetalsPlantSeed, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.PurpleVasePlantSeed, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.OrangeMushroomSpore, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.PinkMushroomSpore, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.PurpleRattleSpore, ConfigSwitcher.FloraRecipiesResource);
-                RegisterRecipeForTechType(TechType.PinkFlowerSeed, ConfigSwitcher.FloraRecipiesResource);
-            }
-
-            // Register existing water seeds recipes
-            if (ConfigSwitcher.EnableRegularWaterSeeds)
-            {
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.GabeSFeatherSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedGreenTentacleSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SeaCrownSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.ShellGrassSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleBranchesSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedRollPlantSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedBushSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleStalkSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SpottedLeavesPlantSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.AcidMushroomSpore);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.WhiteMushroomSpore);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.JellyPlantSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SmallFanSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleFanSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleTentacleSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.BluePalmSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.EyesPlantSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.MembrainTreeSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedConePlantSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.RedBasketPlantSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SnakeMushroomSpore);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.SpikePlantSeed);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.CreepvinePiece);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.CreepvineSeedCluster);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.BloodOil);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.PurpleBrainCoralPiece);
-                SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(TechType.KooshChunk);
-
-                RegisterRecipeForTechType(TechType.GabeSFeatherSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.RedGreenTentacleSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.SeaCrownSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.ShellGrassSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.PurpleBranchesSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.RedRollPlantSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.RedBushSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.PurpleStalkSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.SpottedLeavesPlantSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.AcidMushroomSpore, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.WhiteMushroomSpore, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.JellyPlantSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.SmallFanSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.PurpleFanSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.PurpleTentacleSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.BluePalmSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.EyesPlantSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.MembrainTreeSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.RedConePlantSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.RedBasketPlantSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.SnakeMushroomSpore, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.SpikePlantSeed, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.CreepvinePiece, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.CreepvineSeedCluster, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.BloodOil, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.PurpleBrainCoralPiece, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-                RegisterRecipeForTechType(TechType.KooshChunk, ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount);
-            }
-
-            // Register tooltips language strings
-            RegisterTooltips();
-
-            return result;
-        }
+            "LampTooltip",
+            "LampTooltipCompact",
+            "SwitchSeamothModel",
+            "SwitchExosuitModel",
+            "AdjustCargoBoxSize",
+            "AdjustForkliftSize",
+            "AdjustWarperSpecimenSize",
+            "DisplayCoveTreeEggs",
+            "CustomPictureFrameTooltip",
+            "CustomPictureFrameTooltipCompact",
+            "OpenCustomStorage"
+        };
     }
 }

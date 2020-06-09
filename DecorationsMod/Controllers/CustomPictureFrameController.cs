@@ -1,6 +1,4 @@
-﻿using Harmony;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -16,7 +14,6 @@ namespace DecorationsMod.Controllers
         private static object _noneEnumValue = 0;
         private static object _thumbnailEnumValue = 1;
         private static object _fullEnumValue = 2;
-        //public static Dictionary<Vector3, bool> _appliedSmallSizeFix = new Dictionary<Vector3, bool>();
 
         public static object NoneEnumValue
         {
@@ -77,11 +74,11 @@ namespace DecorationsMod.Controllers
                 {
                     if (field.Name.Equals("value__"))
                         continue;
-                    if (field.Name.CompareTo("None") == 0)
+                    if (string.Compare(field.Name, "None", true, CultureInfo.InvariantCulture) == 0)
                         _noneEnumValue = field.GetRawConstantValue();
-                    else if (field.Name.CompareTo("Thumbnail") == 0)
+                    else if (string.Compare(field.Name, "Thumbnail", true, CultureInfo.InvariantCulture) == 0)
                         _thumbnailEnumValue = field.GetRawConstantValue();
-                    else if (field.Name.CompareTo("Full") == 0)
+                    else if (string.Compare(field.Name, "Full", true, CultureInfo.InvariantCulture) == 0)
                         _fullEnumValue = field.GetRawConstantValue();
                 }
                 _initialized = true;
@@ -89,16 +86,13 @@ namespace DecorationsMod.Controllers
         }
     }
 
-    [HarmonyPatch(typeof(PictureFrame))]
-    [HarmonyPatch("OnHandHover")]
-    [HarmonyPatch("OnHandClick")]
     public class PictureFramePatch
     {
         public static void OnHandHover_Postfix(PictureFrame __instance, HandTargetEventData eventData)
         {
             if (!__instance.enabled)
                 return;
-            if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)"))
+            if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)", true, CultureInfo.InvariantCulture))
             {
 #if BELOWZERO
                 HandReticle.main.SetTextRaw(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip"));
@@ -114,7 +108,7 @@ namespace DecorationsMod.Controllers
         {
             if (!__instance.enabled)
                 return true;
-            if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)"))
+            if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)", true, CultureInfo.InvariantCulture))
             {
 
                 // Minimum CustomPictureFrame size = normal size / minSizeRatio
@@ -288,15 +282,8 @@ namespace DecorationsMod.Controllers
                     }
 
                     // Refresh picture
-                    //Type PictureFrameType = typeof(PictureFrame);
-                    //FieldInfo current = PictureFrameType.GetField("current", BindingFlags.NonPublic | BindingFlags.Instance);
-                    //object currentEnumValue = current.GetValue(__instance);
-                    //MethodInfo SetStateMethod = typeof(PictureFrame).GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
                     PictureFrameEnumHelper.SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.ThumbnailEnumValue });
-                    //currentEnumValue = current.GetValue(__instance);
-                    
                     PictureFrameEnumHelper.SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.FullEnumValue });
-                    //currentEnumValue = current.GetValue(__instance);
 
                     return false;
                 }
@@ -381,10 +368,10 @@ namespace DecorationsMod.Controllers
                     // Restore frame border visibility
                     GameObject pictureFrame = frame.FindChild("submarine_Picture_Frame");
                     MeshRenderer frameRenderer = pictureFrame.GetComponent<MeshRenderer>();
-                    frameRenderer.enabled = ((sizes[3].CompareTo("1") == 0) ? true : false);
+                    frameRenderer.enabled = ((string.Compare(sizes[3], "1", false, CultureInfo.InvariantCulture) == 0) ? true : false);
                     GameObject frameButton = pictureFrame.FindChild("submarine_Picture_Frame_button");
                     MeshRenderer buttonRenderer = frameButton.GetComponent<MeshRenderer>();
-                    buttonRenderer.enabled = ((sizes[3].CompareTo("1") == 0) ? true : false);
+                    buttonRenderer.enabled = ((string.Compare(sizes[3], "1", false, CultureInfo.InvariantCulture) == 0) ? true : false);
                     GameObject poster = this.gameObject.FindChild("poster_decorations(Clone)");
                     GameObject posterModel = poster.FindChild("model");
                     GameObject magnetModel = posterModel.FindChild("poster_kitty");
@@ -461,7 +448,6 @@ namespace DecorationsMod.Controllers
                         }
                     }
                     // Restore frame position
-                    //frame.transform.localPosition = new Vector3(this.OriginFramePosition.x, this.OriginFramePosition.y, this.OriginFramePosition.z + 0.0001f);
                     if (sizes.Length >= 12)
                     {
                         string[] framePosition = sizes[11].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
@@ -486,13 +472,13 @@ namespace DecorationsMod.Controllers
                     // Rotate poster background if needed
                     if (this.Flipped)
                     {
-                        bgPivotRenderer.enabled = !(sizes[3].CompareTo("1") == 0);
+                        bgPivotRenderer.enabled = !(string.Compare(sizes[3], "1", false, CultureInfo.InvariantCulture) == 0);
                         bgBisRenderer.enabled = false;
                     }
                     else
                     {
                         bgPivotRenderer.enabled = false;
-                        bgBisRenderer.enabled = !(sizes[3].CompareTo("1") == 0);
+                        bgBisRenderer.enabled = !(string.Compare(sizes[3], "1", false, CultureInfo.InvariantCulture) == 0);
                     }
 
                     MeshRenderer magnetRenderer = magnetModel.GetComponent<MeshRenderer>();
@@ -504,12 +490,11 @@ namespace DecorationsMod.Controllers
                         magnetModel.transform.localPosition = Vector3.zero;
 
                     // Restore magnet visibility
-                    magnetRenderer.enabled = sizes[3].CompareTo("2") == 0;
+                    magnetRenderer.enabled = (string.Compare(sizes[3], "2", false, CultureInfo.InvariantCulture) == 0);
 
                     // Refresh picture
-                    //MethodInfo SetStateMethod = typeof(PictureFrame).GetMethod("SetState", BindingFlags.NonPublic | BindingFlags.Instance);
                     PictureFrameEnumHelper.SetStateMethod.Invoke(pf, new object[] { PictureFrameEnumHelper.ThumbnailEnumValue });
-                    this.Invoke("MySetState", 3f);
+                    this.Invoke("MySetState", 2f);
                 }
             }
         }

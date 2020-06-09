@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using Harmony;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("AlienRelic6Name"),
                                                         LanguageHelper.GetFriendlyWord("AlienRelic6Description"),
                                                         true);
+
+            CrafterLogicFixer.AlienArtefact6 = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()

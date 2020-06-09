@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using DecorationsMod.Fixers;
+using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace DecorationsMod.NewItems
@@ -23,6 +25,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("BarStoolDescription"),
                                                         true);
             this.barstoolgo = AssetsHelper.Assets.LoadAsset<GameObject>("bar_stool");
+
+            CrafterLogicFixer.Stool = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
@@ -61,6 +66,9 @@ namespace DecorationsMod.NewItems
                 metal_spec = AssetsHelper.Assets.LoadAsset<Texture>("Stool_Metal_MetallicSmoothness");
                 metal_normal = AssetsHelper.Assets.LoadAsset<Texture>("Stool_Metal_Normal");
 
+                // Associate recipe to the new TechType
+                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
                 SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipChair3);
@@ -70,9 +78,6 @@ namespace DecorationsMod.NewItems
 
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("bar_stool"));
-
-                // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -159,7 +164,7 @@ namespace DecorationsMod.NewItems
                 {
                     // Associate MarmosetUBER shader
                     tmpMat.shader = Shader.Find("MarmosetUBER");
-                    if (tmpMat.name.StartsWith("Stool_Leather"))
+                    if (tmpMat.name.StartsWith("Stool_Leather", true, CultureInfo.InvariantCulture))
                     {
                         tmpMat.EnableKeyword("MARMO_SPECULAR_IBL");
                         tmpMat.EnableKeyword("MARMO_SPECULAR_DIRECT");
@@ -167,7 +172,7 @@ namespace DecorationsMod.NewItems
                         tmpMat.EnableKeyword("MARMO_NORMALMAP");
                         tmpMat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                     }
-                    else if (tmpMat.name.StartsWith("Stool_Metal"))
+                    else if (tmpMat.name.StartsWith("Stool_Metal", true, CultureInfo.InvariantCulture))
                     {
                         tmpMat.SetTexture("_SpecTex", metal_spec);
                         tmpMat.SetTexture("_MetallicGlossMap", metal_spec);

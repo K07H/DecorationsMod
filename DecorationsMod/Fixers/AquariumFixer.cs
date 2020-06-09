@@ -1,13 +1,7 @@
-﻿using Harmony;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DecorationsMod.Fixers
 {
-    [HarmonyPatch(typeof(Aquarium))]
-    [HarmonyPatch("AddItem")]
     public class AquariumFixer
     {
         public static void AddItem_Postfix(Aquarium __instance, InventoryItem item)

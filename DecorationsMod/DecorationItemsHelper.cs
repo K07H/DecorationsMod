@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 
 namespace DecorationsMod
 {
@@ -11,7 +12,7 @@ namespace DecorationsMod
         {
             foreach (IDecorationItem item in decorationItems)
             {
-                if (item.ClassID.CompareTo(classID) == 0)
+                if (string.Compare(item.ClassID, classID, true, CultureInfo.InvariantCulture) == 0)
                     return item.TechType;
             }
             return 0;
