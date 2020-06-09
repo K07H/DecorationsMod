@@ -81,7 +81,11 @@ namespace DecorationsModConfigurator
         public string Config_CreatureEggsResource { get { return LanguageHelper.GetFriendlyWord("Config_CreatureEggsResource"); } set { } }
         public string Config_CreatureEggsResourceAmount { get { return LanguageHelper.GetFriendlyWord("Config_CreatureEggsResourceAmount"); } set { } }
 
-        public void RefreshGUI() => OnPropertyChanged("");
+        public void RefreshGUI()
+        {
+            CB_CreatureEggs_RecipiesResource.RefreshGUI();
+            OnPropertyChanged("");
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

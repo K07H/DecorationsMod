@@ -119,6 +119,7 @@ namespace DecorationsMod
             HarmonyInstance.Patch(saveGameMethod, null, new HarmonyMethod(saveGamePostfix));
             if (ConfigSwitcher.EnableNewFlora)
             {
+                // TODO: Remove "prevent dropping seeds" and set proper renderer states (showSeedAndHidePlant) to plants that are not in inventory or attached to a planter when game loads.
                 // Prevent dropping seeds
                 var canDropItemHereMethod = typeof(Inventory).GetMethod("CanDropItemHere", BindingFlags.Public | BindingFlags.Static);
                 var canDropItemHerePrefix = typeof(InventoryFixer).GetMethod("CanDropItemHere_Prefix", BindingFlags.Public | BindingFlags.Static);

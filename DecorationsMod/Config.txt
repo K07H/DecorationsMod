@@ -77,7 +77,7 @@ enableAquariumGlassGlowing=false
 # Empty desk will be available once you scanned the desk in game.
 # Customizable picture frame will be available once you scanned the picture frame in game.
 # Customizable light will be available once you scanned one of the lights in game.
-# Lab cart and specimen analyzer will be available once you scanned the alien containment unit.
+# Lab cart, lab robot arm and specimen analyzer will be available once you scanned the alien containment unit.
 # Alien pillar will be available once you scanned one of the following: Precursor lab table, precursor key terminal, precursor energy core or precursor teleporter.
 # Warper parts will be available once you scanned the warper parts in precursor lab.
 # Warper specimen will be available once you scanned the warper specimen in precursor lab.

@@ -332,6 +332,10 @@ namespace DecorationsModConfigurator
             if (_plantsCharacteristics != null)
                 foreach (UserControl_FloraConfig flora in _plantsCharacteristics)
                     flora.RefreshGUI();
+
+            CB_Flora_RecipiesResource.RefreshGUI();
+            CB_PurplePineconeDroppedResource.RefreshGUI();
+
             OnPropertyChanged("");
         }
 

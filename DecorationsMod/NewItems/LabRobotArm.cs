@@ -1,4 +1,5 @@
 ﻿using DecorationsMod.Controllers;
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -18,6 +19,9 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("LabRobotArmName"),
                                                         LanguageHelper.GetFriendlyWord("LabRobotArmDescription"),
                                                         true);
+
+            CrafterLogicFixer.LabRobotArm = this.TechType;
+            KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()

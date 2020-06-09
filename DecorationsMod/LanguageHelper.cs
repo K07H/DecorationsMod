@@ -1059,7 +1059,7 @@ namespace DecorationsMod
                     if (UserLanguage == CountryCode.FR)
                         return "Cette poupée de dragon des mers léviathan a été créée à partir des observations faites sur 4546B.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Este muñeco dragón marino leviatán fue creada a partir de observaciones hechas en 4546B.";
+                        return "Este muñeco de dragón marino leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu deniz ejderhası oyuncağı 4546B'deki gözlemlerle yapıldı.";
                     else if (UserLanguage == CountryCode.DE)

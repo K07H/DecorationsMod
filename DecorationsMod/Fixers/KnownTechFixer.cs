@@ -389,7 +389,7 @@ namespace DecorationsMod.Fixers
                     else
                         KnownTechFixer.AddNotification(techType, false, false, true);
                 }
-                else if (techType == CrafterLogicFixer.LabCart || techType == CrafterLogicFixer.SpecimenAnalyzer)
+                else if (techType == CrafterLogicFixer.LabCart || techType == CrafterLogicFixer.SpecimenAnalyzer || techType == CrafterLogicFixer.LabRobotArm)
                 {
                     if (KnownTech.GetTechUnlockState(TechType.BaseWaterPark) != TechUnlockState.Available)
                         return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);

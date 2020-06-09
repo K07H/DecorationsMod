@@ -199,7 +199,7 @@
                     if (ConfigSwitcher.AddItemsWhenDiscovered && !(PDAEncyclopedia.ContainsEntry("Precursor_LostRiverBase_ProductionLine") || PDAEncyclopedia.ContainsEntry("Precursor_LostRiverBase_WarperParts")))
                         __result = false;
                 }
-                else if (techType == LabCart || techType == SpecimenAnalyzer)
+                else if (techType == LabCart || techType == SpecimenAnalyzer || techType == LabRobotArm)
                 {
                     if (ConfigSwitcher.AddItemsWhenDiscovered && KnownTech.GetTechUnlockState(TechType.BaseWaterPark) != TechUnlockState.Available)
                         __result = false;
@@ -418,6 +418,7 @@
 
         public static TechType LabCart = TechType.None;
         public static TechType SpecimenAnalyzer = TechType.None;
+        public static TechType LabRobotArm = TechType.None;
 
         public static TechType FloatingStone1 = TechType.None;
         public static TechType BrineLily = TechType.None;

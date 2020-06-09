@@ -24,7 +24,7 @@
                                 <ImageBrush ImageSource="/Images/TechTypes/Unknown.png"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <TextBlock Text="Custom (advanced)" VerticalAlignment="Center" Margin="5,0,0,0" />
+                        <TextBlock Text="{Binding Config_TechTypes_Custom, Mode=TwoWay}" VerticalAlignment="Center" Margin="5,0,0,0" />
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem Name="Acid_Mushroom">
@@ -2480,7 +2480,7 @@
             </ComboBox>
         </StackPanel>
         <StackPanel x:Name="SP_CustomTechType" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="Tech type name or ID: " VerticalAlignment="Center" />
+            <TextBlock Text="{Binding Config_TechTypes_NameOrId, Mode=TwoWay}" VerticalAlignment="Center" />
             <TextBox x:Name="TB_CustomTechTypeName" Width="160" VerticalAlignment="Center" Text="{Binding CustomTechType, Mode=TwoWay}" />
         </StackPanel>
     </Grid>

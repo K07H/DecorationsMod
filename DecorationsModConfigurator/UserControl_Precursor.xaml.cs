@@ -160,8 +160,13 @@ namespace DecorationsModConfigurator
         public string Config_AlienRelic9Name { get { return LanguageHelper.GetFriendlyWord("AlienRelic9Name"); } set { } }
         public string Config_AlienRelic10Name { get { return LanguageHelper.GetFriendlyWord("AlienRelic10Name"); } set { } }
         public string Config_AlienRelic11Name { get { return LanguageHelper.GetFriendlyWord("AlienRelic11Name"); } set { } }
-        
-        public void RefreshGUI() => OnPropertyChanged("");
+
+        public void RefreshGUI()
+        {
+            CB_PrecursorKeys_RecipiesResource.RefreshGUI();
+            CB_Relics_RecipiesResource.RefreshGUI();
+            OnPropertyChanged("");
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1115,7 +1115,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Cette poupée de dragon des mers léviathan a été créée à partir des observations faites sur 4546B.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Este muñeco dragón marino leviatán fue creada a partir de observaciones hechas en 4546B.";
+                        return "Este muñeco de dragón marino leviatán fue creada a partir de observaciones hechas en 4546B.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu deniz ejderhası oyuncağı 4546B'deki gözlemlerle yapıldı.";
                     else if (UserLanguage == CountryCode.DE)
@@ -5162,6 +5162,32 @@ namespace DecorationsModConfigurator
                         return "Конфигурация « Decorations Mod » была сохранена. Пожалуйста, перезапустите Subnautica, чтобы принять изменения во внимание.";
                     else
                         return "The Decorations Mod configuration has been saved. Please restart Subnautica to take modifications into account.";
+                case "Config_TechTypes_Custom":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Personnalisé (avancé)";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Personalizado (avanzado)";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Özel ayar";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Benutzerdefinierten";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Персонализированный";
+                    else
+                        return "Custom (advanced)";
+                case "Config_TechTypes_NameOrId":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Nom ou ID de l'objet: ";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Nombre del ítem o ID: ";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Nesne adı veya kimliği: ";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Objektname oder ID: ";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Имя объекта или идентификатор: ";
+                    else
+                        return "Tech type name or ID: ";
                 default:
                     return "?";
             }

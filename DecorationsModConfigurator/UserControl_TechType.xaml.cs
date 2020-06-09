@@ -209,6 +209,11 @@ namespace DecorationsModConfigurator
             SP_CustomTechType.Visibility = (SelectedTechType == "Custom") ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public string Config_TechTypes_Custom { get { return LanguageHelper.GetFriendlyWord("Config_TechTypes_Custom"); } set { } }
+        public string Config_TechTypes_NameOrId { get { return LanguageHelper.GetFriendlyWord("Config_TechTypes_NameOrId"); } set { } }
+
+        public void RefreshGUI() => OnPropertyChanged("");
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
