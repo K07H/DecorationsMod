@@ -16,7 +16,7 @@ Requires QMods and SMLHelper.<br>
 <br><br>
 
 ### Description:
-Adds a fabricator allowing you to craft 113 new items. Adds another fabricator to craft 53 new seeds. 27 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
+Adds a fabricator allowing you to craft 118 new items. Adds another fabricator to craft 55 new seeds. 27 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
 
 **Adds a decoration fabricator allowing you to craft following new items:**<br>
     5 unique posters<br>
@@ -37,12 +37,13 @@ Adds a fabricator allowing you to craft 113 new items. Adds another fabricator t
     11 unique alien relics<br>
     5 unique alien tablets<br>
     19 unique eggs<br>
+    5 unique seamoth fragments<br>
 **Add a seeds fabricator allowing you to craft and grow following new flora:**<br>
     7 unique air plants<br>
     7 unique air trees<br>
     8 unique tropical plants<br>
     12 unique water plants<br>
-    7 unique water trees<br>
+    9 unique water trees<br>
     5 unique corals<br>
     7 unique amphibious plants<br>
 **Add the following new items in the "Miscellaneous" section of habitat builder:**<br>
