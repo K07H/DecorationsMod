@@ -29,7 +29,7 @@
             </StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Config_PlantGrowthDuration, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
@@ -37,7 +37,7 @@
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Config_PlantHealthPoints, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
@@ -45,7 +45,7 @@
             </Grid>
             <Grid Margin="0,0,0,10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Config_PlantBioreactorCharge, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
@@ -53,7 +53,7 @@
             </Grid>
             <Grid Margin="0,15,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Config_PlantCanEat, Mode=TwoWay}" Margin="15,15,15,3" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -65,7 +65,7 @@
             </Grid>
             <Grid x:Name="GRD_NutrientsAmount">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Config_PlantNutrientsAmount, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
@@ -73,7 +73,7 @@
             </Grid>
             <Grid x:Name="GRD_WaterAmount">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Config_PlantWaterAmount, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
@@ -81,7 +81,7 @@
             </Grid>
             <Grid Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Config_PlantDecomposes, Mode=TwoWay}" Margin="15,15,15,3" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -93,7 +93,7 @@
             </Grid>
             <Grid x:Name="GRD_DecompositionSpeed" Margin="0,0,0,15">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Config_PlantDecompositionSpeed, Mode=TwoWay}" FontSize="16" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
