@@ -395,7 +395,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="configurator.ico" />
-    <None Include="Assets\decorationassets.assets" />
+    <None Include="Assets\decorationassets.assets">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Assets\decorationassets.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
