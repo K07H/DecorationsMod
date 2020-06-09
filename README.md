@@ -15,12 +15,12 @@ Requires QMods and SMLHelper.<br>
 2) Extract folder **DecorationsMod** from the archive.<br>
 3) Move folder **DecorationsMod** inside "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods*" folder.<br>
 
-<br>
+<br><br>
 
 ### Configuration instructions:
 To edit configuration, double click on **Configurator** shortcut inside folder "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod*".<br>
 
-<br><br>
+<br>
 
 ### Update instructions:
 Same as the installation instructions (at step 3 it will ask if you want to replace files, say **Yes**).<br>
