@@ -29,23 +29,59 @@ namespace DecorationsMod
 
         public override void BuildModOptions()
         {
-            // TODO: Use line below when feature added to SML Helper.
-            //this.AddButtonOption("OpenDecorationsModConfigurator", "Config_OpenDecorationsModConfigurator", false);
+            // TODO: Use line below when button feature added to SML Helper.
+            //this.AddButtonOption("OpenDecorationsModConfigurator", "Config_OpenDecorationsModConfigurator", ConfigSwitcher.OpenDecorationsModConfigurator);
             this.AddToggleOption("OpenDecorationsModConfigurator", "Config_OpenDecorationsModConfigurator", ConfigSwitcher.OpenDecorationsModConfigurator);
             this.AddToggleOption("UseCompactTooltips", "Config_UseCompactTooltips", ConfigSwitcher.UseCompactTooltips);
             this.AddToggleOption("LockQuickslotsWhenPlacingItem", "Config_LockQuickslotsWhenPlacingItem", ConfigSwitcher.LockQuickslotsWhenPlacingItem);
 
-            this.ButtonClicked += ConfigOptions_ButtonClicked;
+            // TODO: Use line below when button feature added to SML Helper.
+            //this.ButtonClicked += ConfigOptions_ButtonClicked;
             this.ToggleChanged += ConfigOptions_ToggleChanged;
 
+            // TODO: Remove line below when button feature added to SML Helper.
             this.GameObjectCreated += ConfigOptions_GameObjectCreated;
         }
 
+        // TODO: Use method below when button feature added to SML Helper.
+        /*
         private void ConfigOptions_ButtonClicked(object sender, ButtonClickedEventArgs e)
         {
             if (e.Id == "OpenDecoModConfigurator")
-                Logger.Log("DEBUG: Button clicked! State is [" + ((e.Toggle != null && e.Toggle.HasValue) ? (e.Toggle.Value ? "ON" : "OFF") : "?") + "]");
+            {
+                ConfigSwitcher.OpenDecorationsModConfigurator = !ConfigSwitcher.OpenDecorationsModConfigurator;
+                // If button state changed
+                if (ConfigSwitcher.OpenConfiguratorLastState != ConfigSwitcher.OpenDecorationsModConfigurator)
+                {
+                    // Update button state
+                    ConfigSwitcher.OpenConfiguratorLastState = ConfigSwitcher.OpenDecorationsModConfigurator;
+                    // Open configurator
+                    string configuratorPath = ConfiguratorPath();
+                    if (File.Exists(configuratorPath))
+                    {
+                        // Try launch configurator
+                        try { Configurator = Process.Start(new ProcessStartInfo { Arguments = "/C \"" + configuratorPath + "\"", FileName = "cmd", WindowStyle = ProcessWindowStyle.Hidden }); }
+                        catch (Exception ex)
+                        {
+                            // Cleanup any running instance on failure
+                            if (Configurator != null)
+                            {
+                                if (!Configurator.HasExited)
+                                {
+                                    try { Configurator.CloseMainWindow(); }
+                                    catch { }
+                                }
+                                try { Configurator.Close(); }
+                                catch { }
+                            }
+                            // Log error
+                            Logger.Log("ERROR: Unable to open configurator. Exception=[" + ex.ToString() + "]");
+                        }
+                    }
+                }
+            }
         }
+        */
 
         public void UpdateConfigFile(string oldStr, string newStr)
         {
@@ -86,6 +122,40 @@ namespace DecorationsMod
                 }
             }
         }
+
+        /// <summary>
+        /// Holds the installer stub process. TheForest.exe launches the stub and the stub launches the installer.
+        /// That way, when we stop the stub process, TheForest.exe has no more child processes running and we can exit it properly.
+        /// </summary>
+        private static Process Configurator { get; set; }
+
+        private static string ConfiguratorPath() => Path.Combine(@".\QMods\DecorationsMod\Configurator\", "DecorationsModConfigurator.exe");
+
+        private void ConfigOptions_ToggleChanged(object sender, SMLHelper.V2.Options.ToggleChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(e?.Id))
+            {
+                switch (e.Id)
+                {
+                    case "OpenDecorationsModConfigurator":
+                        break;
+                    case "UseCompactTooltips":
+                        ConfigSwitcher.UseCompactTooltips = e.Value;
+                        UpdateConfigFile("\r\nuseCompactTooltips=" + (e.Value ? "false" : "true") + "\r\n", "\r\nuseCompactTooltips=" + (e.Value ? "true" : "false") + "\r\n");
+                        ErrorMessage.AddMessage("Compact tooltips " + (e.Value ? "enabled" : "disabled") + ".");
+                        break;
+                    case "LockQuickslotsWhenPlacingItem":
+                        ConfigSwitcher.LockQuickslotsWhenPlacingItem = e.Value;
+                        UpdateConfigFile("\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "false" : "true") + "\r\n", "\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "true" : "false") + "\r\n");
+                        ErrorMessage.AddMessage("Lock quickslots when placing item " + (e.Value ? "enabled" : "disabled") + ".");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        // TODO: Remove lines below when button feature added to SML Helper.
 
         private static Type _tabType = typeof(uGUI_TabbedControlsPanel).GetNestedType("Tab", BindingFlags.NonPublic | BindingFlags.Instance);
         private static FieldInfo _tabsField = typeof(uGUI_TabbedControlsPanel).GetField("tabs", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -168,7 +238,7 @@ namespace DecorationsMod
                                                     if (tr != null && !string.IsNullOrEmpty(tr.name) && tr.name.StartsWith("uGUI_OptionButton"))
                                                     {
                                                         Text btnText = tr.GetComponentInChildren<Text>();
-                                                        if (btnText != null && !string.IsNullOrEmpty(btnText.text) && 
+                                                        if (btnText != null && !string.IsNullOrEmpty(btnText.text) &&
                                                             (string.Compare(btnText.text, "Cliquez ici pour configurer", true, CultureInfo.InvariantCulture) == 0 ||
                                                              string.Compare(btnText.text, "Haga clic aquí para configurar", true, CultureInfo.InvariantCulture) == 0 ||
                                                              string.Compare(btnText.text, "Yapılandırmak için burayı tıklayın", true, CultureInfo.InvariantCulture) == 0 ||
@@ -195,38 +265,6 @@ namespace DecorationsMod
                             }
                         }
                     }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Holds the installer stub process. TheForest.exe launches the stub and the stub launches the installer.
-        /// That way, when we stop the stub process, TheForest.exe has no more child processes running and we can exit it properly.
-        /// </summary>
-        private static Process Configurator { get; set; }
-
-        private static string ConfiguratorPath() => Path.Combine(@".\QMods\DecorationsMod\Configurator\", "DecorationsModConfigurator.exe");
-
-        private void ConfigOptions_ToggleChanged(object sender, SMLHelper.V2.Options.ToggleChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(e?.Id))
-            {
-                switch (e.Id)
-                {
-                    case "OpenDecorationsModConfigurator":
-                        break;
-                    case "UseCompactTooltips":
-                        ConfigSwitcher.UseCompactTooltips = e.Value;
-                        UpdateConfigFile("\r\nuseCompactTooltips=" + (e.Value ? "false" : "true") + "\r\n", "\r\nuseCompactTooltips=" + (e.Value ? "true" : "false") + "\r\n");
-                        ErrorMessage.AddMessage("Compact tooltips " + (e.Value ? "enabled" : "disabled") + ".");
-                        break;
-                    case "LockQuickslotsWhenPlacingItem":
-                        ConfigSwitcher.LockQuickslotsWhenPlacingItem = e.Value;
-                        UpdateConfigFile("\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "false" : "true") + "\r\n", "\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "true" : "false") + "\r\n");
-                        ErrorMessage.AddMessage("Lock quickslots when placing item " + (e.Value ? "enabled" : "disabled") + ".");
-                        break;
-                    default:
-                        break;
                 }
             }
         }
