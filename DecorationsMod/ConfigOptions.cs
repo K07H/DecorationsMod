@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 namespace DecorationsMod
 {
-    class ConfigOptions : SMLHelper.V2.Options.ModOptions
+    class ConfigOptions : ModOptions
     {
         /// <summary>List of configuration option language strings.</summary>
         public static readonly string[] LanguageStrings = new string[3]
@@ -29,7 +29,9 @@ namespace DecorationsMod
 
         public override void BuildModOptions()
         {
-            this.AddButtonOption("OpenDecorationsModConfigurator", "Config_OpenDecorationsModConfigurator", false);
+            // TODO: Use line below when feature added to SML Helper.
+            //this.AddButtonOption("OpenDecorationsModConfigurator", "Config_OpenDecorationsModConfigurator", false);
+            this.AddToggleOption("OpenDecorationsModConfigurator", "Config_OpenDecorationsModConfigurator", ConfigSwitcher.OpenDecorationsModConfigurator);
             this.AddToggleOption("UseCompactTooltips", "Config_UseCompactTooltips", ConfigSwitcher.UseCompactTooltips);
             this.AddToggleOption("LockQuickslotsWhenPlacingItem", "Config_LockQuickslotsWhenPlacingItem", ConfigSwitcher.LockQuickslotsWhenPlacingItem);
 
