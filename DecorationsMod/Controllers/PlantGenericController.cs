@@ -14,7 +14,6 @@ namespace DecorationsMod.Controllers
         public bool EnableColliders = false;
         public bool RestoreRadius = false;
         public bool RestoreBoxColliders = false;
-        //public bool RestoreBoxColliderAndSize = false;
         public bool Running = false;
         public float _progress = 0.0f;
         public float _passedProgress = 0.0f;
@@ -88,10 +87,8 @@ namespace DecorationsMod.Controllers
                     else
                         Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Initializing");
 #endif
-                    // Hide seed model
-                    GameObject seed = _grownPlant.gameObject.FindChild("Generic_plant_seed");
-                    if (seed != null)
-                        seed.GetComponent<MeshRenderer>().enabled = false;
+                    // Hide seed model and show plant model
+                    PrefabsHelper.ShowPlantAndHideSeed(_grownPlant.gameObject.transform);
                     // Store init values
                     _initTimeValue = DayNightCycle.main.timePassed;
                     foreach (Transform tr in _grownPlant.gameObject.transform)
@@ -146,17 +143,6 @@ namespace DecorationsMod.Controllers
                             collider.enabled = true;
                         }
                     }
-                    /*
-                    if (RestoreBoxColliderAndSize)
-                    {
-                        BoxCollider[] colliders = _grownPlant.gameObject.GetComponentsInChildren<BoxCollider>();
-                        foreach (BoxCollider collider in colliders)
-                        {
-                            collider.size *= 1000.0f;
-                            collider.transform.localPosition = new Vector3(collider.transform.localPosition.x, collider.transform.localPosition.y + 1.0f, collider.transform.localPosition.z);
-                        }
-                    }
-                    */
 
                     Running = true;
                 }
@@ -186,9 +172,7 @@ namespace DecorationsMod.Controllers
                         if (_progress < 1.0f)
                         {
                             foreach (Transform tr in _grownPlant.gameObject.transform)
-                            {
                                 tr.localScale = new Vector3(_origScale.x * _progress, _origScale.y * _progress, _origScale.z * _progress);
-                            }
                         }
                         else
                         {

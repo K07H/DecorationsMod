@@ -202,14 +202,8 @@ namespace DecorationsMod.Flora
             liveMixin.data.maxHealth = Config.Health;
             //liveMixin.startHealthPercent = 1.0f;
 
-            /*
-            var fabricating = genericSeed.AddComponent<VFXFabricating>();
-            fabricating.localMinY = -0.05f;
-            fabricating.localMaxY = 0.15f;
-            fabricating.posOffset = new Vector3(0.0f, 0.07f, 0.0f);
-            fabricating.eulerOffset = new Vector3(0.0f, 0.0f, 90.0f);
-            fabricating.scaleFactor = 1.0f;
-            */
+            // Hide plant and show seed
+            PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
 
             return prefab;
         }

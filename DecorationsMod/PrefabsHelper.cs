@@ -218,14 +218,16 @@ namespace DecorationsMod
                 }
                 Pickupable p = transform.GetComponent<Pickupable>();
                 if (p != null)
-                {
                     p.isPickupable = false;
-                    if (p.gameObject != null && classId != null && (classId == "MushroomTree1" || classId == "MushroomTree2"))
-                    {
-                        var sc = p.gameObject.GetComponent<SphereCollider>();
-                        if (sc != null)
-                            sc.enabled = false;
-                    }
+                if (classId != null && (classId == "MushroomTree1" || classId == "MushroomTree2"))
+                {
+                    SphereCollider sc = null;
+                    if (p != null && p.gameObject != null)
+                        sc = p.gameObject.GetComponent<SphereCollider>();
+                    if (sc == null)
+                        sc = transform.GetComponent<SphereCollider>();
+                    if (sc != null)
+                        sc.enabled = false;
                 }
             }
         }
@@ -249,14 +251,16 @@ namespace DecorationsMod
                 }
                 Pickupable p = transform.GetComponent<Pickupable>();
                 if (p != null)
-                {
                     p.isPickupable = true;
-                    if (p.gameObject != null && classId != null && (classId == "MushroomTree1" || classId == "MushroomTree2"))
-                    {
-                        var sc = p.gameObject.GetComponent<SphereCollider>();
-                        if (sc != null)
-                            sc.enabled = true;
-                    }
+                if (classId != null && (classId == "MushroomTree1" || classId == "MushroomTree2"))
+                {
+                    SphereCollider sc = null;
+                    if (p != null && p.gameObject != null)
+                        sc = p.gameObject.GetComponent<SphereCollider>();
+                    if (sc == null)
+                        sc = transform.GetComponent<SphereCollider>();
+                    if (sc != null)
+                        sc.enabled = true;
                 }
             }
         }

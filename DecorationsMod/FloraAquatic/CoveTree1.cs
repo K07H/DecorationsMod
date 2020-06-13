@@ -232,6 +232,9 @@ namespace DecorationsMod.FloraAquatic
             aVolume.highDetail = true;
             aVolume.affectsVisuals = true;
 
+            // Hide plant and show seed
+            PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
+
             return prefab;
         }
     }

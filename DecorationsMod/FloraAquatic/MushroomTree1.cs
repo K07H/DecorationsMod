@@ -94,8 +94,6 @@ namespace DecorationsMod.FloraAquatic
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             prefab.name = this.ClassID;
 
-            PrefabsHelper.AddNewGenericSeed(ref prefab);
-
             // Get sub objects
             GameObject model = prefab.FindChild("MyMushroomTree01");
 
@@ -234,6 +232,8 @@ namespace DecorationsMod.FloraAquatic
                         }
                 }
 
+            PrefabsHelper.AddNewGenericSeed(ref prefab);
+
             // Update prefab identifier
             PrefabIdentifier prefabId = prefab.GetComponent<PrefabIdentifier>();
             if (prefabId == null)
@@ -269,7 +269,7 @@ namespace DecorationsMod.FloraAquatic
             BoxCollider collider = prefab.AddComponent<BoxCollider>();
             BoxCollider colliderB = prefab.AddComponent<BoxCollider>();
             BoxCollider colliderC = prefab.AddComponent<BoxCollider>();
-            colliderSmall.radius = 0.001f;
+            colliderSmall.radius = 0.1f;
             collider.size = new Vector3(0.00055f, 0.005f, 0.00055f);
             colliderB.size = new Vector3(0.0006f, 0.0099f, 0.0006f);
             colliderC.size = new Vector3(0.0006f, 0.005f, 0.0006f);
@@ -359,6 +359,9 @@ namespace DecorationsMod.FloraAquatic
 
             // Add sky applier
             PrefabsHelper.SetDefaultSkyApplier(prefab, saRenderers.ToArray(), Skies.Auto);
+
+            // Hide plant and show seed
+            PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
 
             return prefab;
         }

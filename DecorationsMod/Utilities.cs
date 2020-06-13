@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace DecorationsMod
 {
@@ -79,6 +84,108 @@ namespace DecorationsMod
                 default:
                     return "en";
             }
+        }
+    }
+
+    /// <summary>Class used to display messages from menu.</summary>
+    public static class MenuMessageHelper
+    {
+        // Reflected elements
+        private static readonly FieldInfo _mainErrorMessage = typeof(ErrorMessage).GetField("main", BindingFlags.NonPublic | BindingFlags.Static);
+        private static readonly FieldInfo _timeDelayField = typeof(ErrorMessage).GetField("timeDelay", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly FieldInfo _timeFadeOutField = typeof(ErrorMessage).GetField("timeFadeOut", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly FieldInfo _timeInvisibleField = typeof(ErrorMessage).GetField("timeInvisible", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly FieldInfo _messagesField = typeof(ErrorMessage).GetField("messages", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo _onUpdateMethod = typeof(ErrorMessage).GetMethod("OnUpdate", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo _releaseEntryMethod = typeof(ErrorMessage).GetMethod("ReleaseEntry", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly Type _messageType = typeof(ErrorMessage).GetNestedType("_Message", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo _getExistingMessageMethod = typeof(ErrorMessage).GetMethod("GetExistingMessage", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo _getEntryMethod = typeof(ErrorMessage).GetMethod("GetEntry", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly FieldInfo _messageEntryField = _messageType.GetField("entry", BindingFlags.Public | BindingFlags.Instance);
+        private static readonly FieldInfo _messageMessageTextField = _messageType.GetField("messageText", BindingFlags.Public | BindingFlags.Instance);
+        private static readonly FieldInfo _messageNumField = _messageType.GetField("num", BindingFlags.Public | BindingFlags.Instance);
+        private static readonly FieldInfo _messageTimeEndField = _messageType.GetField("timeEnd", BindingFlags.Public | BindingFlags.Instance);
+
+        /// <summary>Manually updates ErrorMessage GUI layout.</summary>
+        private static void UpdateErrorMessages()
+        {
+            if (_mainErrorMessage != null)
+            {
+                ErrorMessage main = (ErrorMessage)_mainErrorMessage.GetValue(null);
+                if (main != null && _onUpdateMethod != null)
+                    _onUpdateMethod.Invoke(main, null);
+            }
+        }
+
+        /// <summary>Clears out currently displayed messages in top left corner of the screen.</summary>
+        private static void CleanMessages()
+        {
+            if (_mainErrorMessage == null || _messagesField == null || _messageEntryField == null || _releaseEntryMethod == null)
+                return;
+            ErrorMessage main = (ErrorMessage)_mainErrorMessage.GetValue(null);
+            if (main != null)
+            {
+                IList messages = _messagesField.GetValue(main) as IList;
+                if (messages != null)
+                {
+                    for (int i = 0; i < messages.Count; i++)
+                        _releaseEntryMethod.Invoke(main, new object[] { _messageEntryField.GetValue(messages[i]) });
+                    messages.Clear();
+                }
+            }
+        }
+
+        /// <summary>Displays given message in top left corner of the screen.</summary>
+        /// <param name="messageText">The message to display.</param>
+        private static void AddMessageInternal(string messageText)
+        {
+            if (string.IsNullOrEmpty(messageText) || _mainErrorMessage == null)
+                return;
+            ErrorMessage main = (ErrorMessage)_mainErrorMessage.GetValue(null);
+            if (main == null || _getExistingMessageMethod == null || _getEntryMethod == null || _messageType == null ||
+                _messageEntryField == null || _messageMessageTextField == null || _messageNumField == null || _messageTimeEndField == null ||
+                _timeDelayField == null || _timeFadeOutField == null || _timeInvisibleField == null || _messagesField == null)
+                return;
+            MenuMessageHelper.CleanMessages();
+            float timeDelay = (float)_timeDelayField.GetValue(main);
+            float timeFadeOut = (float)_timeFadeOutField.GetValue(main);
+            float timeInvisible = (float)_timeInvisibleField.GetValue(main);
+            object message = _getExistingMessageMethod.Invoke(main, new object[] { messageText });
+            if (message == null)
+            {
+                Text entry = (Text)_getEntryMethod.Invoke(main, null);
+                entry.gameObject.SetActive(true);
+                entry.text = messageText;
+                message = Activator.CreateInstance(_messageType, true);
+                _messageEntryField.SetValue(message, entry);
+                _messageMessageTextField.SetValue(message, messageText);
+                _messageNumField.SetValue(message, 1);
+                _messageTimeEndField.SetValue(message, Time.time + timeDelay + timeFadeOut + timeInvisible);
+                if (_messagesField.GetValue(main) is IList messages)
+                    messages.Add(message);
+                MenuMessageHelper.UpdateErrorMessages();
+                return;
+            }
+            Text entry2 = (Text)_messageEntryField.GetValue(message);
+            _messageTimeEndField.SetValue(message, Time.time + timeDelay + timeFadeOut + timeInvisible);
+            int messageNum = ((int)_messageNumField.GetValue(message)) + 1;
+            _messageNumField.SetValue(message, messageNum);
+            entry2.text = string.Format("{0} (x{1})", messageText, messageNum.ToString());
+            MenuMessageHelper.UpdateErrorMessages();
+        }
+
+        /// <summary>Displays given message in top left corner of the screen (works from main menu and in-game menu).</summary>
+        /// <param name="text">The text to display.</param>
+        /// <param name="color">The color of the text.</param>
+        /// <param name="size">The size of the text.</param>
+        public static void AddMessage(string text, string color = "white", int size = 25)
+        {
+            string toPrint = string.Format("<size={0}><color={1}>{2}</color></size>", size, color, text);
+            bool isLoaded = SceneManager.GetSceneByName("Main").isLoaded;
+            if (isLoaded)
+                AddMessageInternal(toPrint);
+            else
+                ErrorMessage.AddMessage(toPrint);
         }
     }
 }

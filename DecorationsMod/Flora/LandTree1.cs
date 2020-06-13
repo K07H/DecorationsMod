@@ -290,6 +290,9 @@ namespace DecorationsMod.Flora
             skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>();
             skyApplier.anchorSky = Skies.Auto;
 
+            // Hide plant and show seed
+            PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
+
             return prefab;
         }
     }

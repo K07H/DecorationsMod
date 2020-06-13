@@ -1,5 +1,4 @@
-﻿using Oculus.Newtonsoft.Json;
-using SMLHelper.V2.Options;
+﻿using SMLHelper.V2.Options;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +8,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace DecorationsMod
@@ -118,7 +118,7 @@ namespace DecorationsMod
                 {
                     string error = "An error happened while updating config file at \"" + ConfigSwitcher.configFilePath + "\"!";
                     Logger.Log("ERROR: " + error);
-                    ErrorMessage.AddMessage(error);
+                    MenuMessageHelper.AddMessage(error, "red");
                 }
             }
         }
@@ -129,9 +129,13 @@ namespace DecorationsMod
         /// </summary>
         private static Process Configurator { get; set; }
 
+        /// <summary>Returns the path to Decorations Mod configuration tool executable.</summary>
         private static string ConfiguratorPath() => Path.Combine(@".\QMods\DecorationsMod\Configurator\", "DecorationsModConfigurator.exe");
 
-        private void ConfigOptions_ToggleChanged(object sender, SMLHelper.V2.Options.ToggleChangedEventArgs e)
+        /// <summary>This method gets called when a toggle value changes.</summary>
+        /// <param name="sender">The object that raised the event.</param>
+        /// <param name="e">The toggle change event properties (contains ID and value of the toggle).</param>
+        private void ConfigOptions_ToggleChanged(object sender, ToggleChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(e?.Id))
             {
@@ -140,14 +144,20 @@ namespace DecorationsMod
                     case "OpenDecorationsModConfigurator":
                         break;
                     case "UseCompactTooltips":
-                        ConfigSwitcher.UseCompactTooltips = e.Value;
-                        UpdateConfigFile("\r\nuseCompactTooltips=" + (e.Value ? "false" : "true") + "\r\n", "\r\nuseCompactTooltips=" + (e.Value ? "true" : "false") + "\r\n");
-                        ErrorMessage.AddMessage("Compact tooltips " + (e.Value ? "enabled" : "disabled") + ".");
+                        if (e.Value != ConfigSwitcher.UseCompactTooltips)
+                        {
+                            ConfigSwitcher.UseCompactTooltips = e.Value;
+                            UpdateConfigFile("\r\nuseCompactTooltips=" + (e.Value ? "false" : "true") + "\r\n", "\r\nuseCompactTooltips=" + (e.Value ? "true" : "false") + "\r\n");
+                            MenuMessageHelper.AddMessage("Compact tooltips " + (e.Value ? "enabled" : "disabled") + ".", e.Value ? "green" : "orange");
+                        }
                         break;
                     case "LockQuickslotsWhenPlacingItem":
-                        ConfigSwitcher.LockQuickslotsWhenPlacingItem = e.Value;
-                        UpdateConfigFile("\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "false" : "true") + "\r\n", "\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "true" : "false") + "\r\n");
-                        ErrorMessage.AddMessage("Lock quickslots when placing item " + (e.Value ? "enabled" : "disabled") + ".");
+                        if (e.Value != ConfigSwitcher.LockQuickslotsWhenPlacingItem)
+                        {
+                            ConfigSwitcher.LockQuickslotsWhenPlacingItem = e.Value;
+                            UpdateConfigFile("\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "false" : "true") + "\r\n", "\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "true" : "false") + "\r\n");
+                            MenuMessageHelper.AddMessage("Lock quickslots when placing item " + (e.Value ? "enabled" : "disabled") + ".", e.Value ? "green" : "orange");
+                        }
                         break;
                     default:
                         break;

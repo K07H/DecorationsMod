@@ -124,6 +124,13 @@ namespace DecorationsMod.FloraAquatic
             prefabBloodGrass.name = "BloodGrassRed";
 
             PrefabsHelper.AddNewGenericSeed(ref prefab3Tall);
+            /*PrefabsHelper.HidePlantAndShowSeed(prefab3Tall.transform);
+            PrefabsHelper.HidePlantAndShowSeed(prefab3.transform);
+            PrefabsHelper.HidePlantAndShowSeed(prefab2Tall.transform);
+            PrefabsHelper.HidePlantAndShowSeed(prefab2.transform);
+            PrefabsHelper.HidePlantAndShowSeed(prefab2b.transform);
+            PrefabsHelper.HidePlantAndShowSeed(prefabTiny.transform);
+            PrefabsHelper.HidePlantAndShowSeed(prefabBloodGrass.transform);*/
 
             GameObject model3Tall = prefab3Tall.FindChild("Coral_reef_red_seaweed_03_tall");
             GameObject model3 = prefab3.FindChild("Coral_reef_red_seaweed_03_short");
@@ -299,6 +306,9 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.weldable = false;
             liveMixin.data.knifeable = false;
             liveMixin.data.maxHealth = Config.Health;
+
+            // Hide plant and show seed
+            PrefabsHelper.HidePlantAndShowSeed(prefab3Tall.transform, this.ClassID);
 
             return prefab3Tall;
         }

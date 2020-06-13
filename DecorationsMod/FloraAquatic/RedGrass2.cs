@@ -221,6 +221,9 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.knifeable = false;
             liveMixin.data.maxHealth = Config.Health;
 
+            // Hide plant and show seed
+            PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
+
             return prefab;
         }
     }
