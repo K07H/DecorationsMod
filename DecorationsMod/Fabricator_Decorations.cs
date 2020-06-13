@@ -129,7 +129,7 @@ namespace DecorationsMod
                 glassContainersTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabContainer4"));
 
             // Furnitures
-            var labFurnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("robotarmicon"));
+            var labFurnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("labshelves"));
             if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "DecorationsSpecimenAnalyzer") != TechType.None)
                 labFurnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationsSpecimenAnalyzer"));
             if (!ConfigSwitcher.LabCart_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "LabCart") != TechType.None)
