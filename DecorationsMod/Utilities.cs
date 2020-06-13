@@ -181,8 +181,7 @@ namespace DecorationsMod
         public static void AddMessage(string text, string color = "white", int size = 25)
         {
             string toPrint = string.Format("<size={0}><color={1}>{2}</color></size>", size, color, text);
-            bool isLoaded = SceneManager.GetSceneByName("Main").isLoaded;
-            if (isLoaded)
+            if (SceneManager.GetSceneByName("Main").isLoaded)
                 AddMessageInternal(toPrint);
             else
                 ErrorMessage.AddMessage(toPrint);

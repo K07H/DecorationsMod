@@ -328,7 +328,7 @@ namespace DecorationsMod.Controllers
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
 #if DEBUG_LAMP
-            Logger.Log("Entering onProtoDeserialize for ReactorLampBrightness name=[" + this.gameObject.name + "]");
+            Logger.Log("DEBUG: Entering onProtoDeserialize for ReactorLampBrightness name=[" + this.gameObject.name + "]");
 #endif
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
             if (id == null)

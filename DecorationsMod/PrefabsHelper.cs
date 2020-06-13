@@ -270,7 +270,7 @@ namespace DecorationsMod
         {
             if (!PrefabsHelper._aquariumSkyApplierFixed)
             {
-                Logger.Log("Applying fix to aquariums lighting...");
+                Logger.Log("INFO: Applying fix to aquariums lighting...");
 
                 var aquariumPrefab = Resources.Load<GameObject>("Submarine/Build/Aquarium"); 
                 var sas = aquariumPrefab.GetComponents<SkyApplier>();

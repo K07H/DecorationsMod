@@ -22,6 +22,7 @@ namespace DecorationsMod
     // DEBUG_KNIFE
     // DEBUG_LAMP
     // DEBUG_STOOL
+    // DEBUG_SEAMOTH_FRAGMENTS
 
     public class DecorationsMod
     {
@@ -73,14 +74,14 @@ namespace DecorationsMod
                 PrefabsHelper.FixAquariumSkyApplier();
 
             // 10) SETUP IN GAME OPTIONS MENU
-            Logger.Log("Setting up in-game options menu...");
+            Logger.Log("INFO: Setting up in-game options menu...");
             SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
         }
 
         /// <summary>Patches Subnautica DLL with Harmony.</summary>
         private static void HarmonyPatchAll()
         {
-            Logger.Log("Patching with Harmony...");
+            Logger.Log("INFO: Patching with Harmony...");
             // Fix cargo crates items-containers
             var onProtoDeserializeObjectTreeMethod = typeof(StorageContainer).GetMethod("OnProtoDeserializeObjectTree", BindingFlags.Public | BindingFlags.Instance);
             var onProtoDeserializeObjectTreePostfix = typeof(StorageContainerFixer).GetMethod("OnProtoDeserializeObjectTree_Postfix", BindingFlags.Public | BindingFlags.Static);
@@ -180,7 +181,7 @@ namespace DecorationsMod
         {
             List<IDecorationItem> result = new List<IDecorationItem>();
 
-            Logger.Log("Registering items...");
+            Logger.Log("INFO: Registering items...");
 
             // Get the list of modified existing items
             var existingItems = from t in Assembly.GetExecutingAssembly().GetTypes() 

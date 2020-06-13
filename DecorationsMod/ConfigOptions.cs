@@ -123,10 +123,7 @@ namespace DecorationsMod
             }
         }
 
-        /// <summary>
-        /// Holds the installer stub process. TheForest.exe launches the stub and the stub launches the installer.
-        /// That way, when we stop the stub process, TheForest.exe has no more child processes running and we can exit it properly.
-        /// </summary>
+        /// <summary>Holds the Configurator stub process.</summary>
         private static Process Configurator { get; set; }
 
         /// <summary>Returns the path to Decorations Mod configuration tool executable.</summary>

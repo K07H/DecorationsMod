@@ -8,23 +8,19 @@ namespace DecorationsMod
 
         public static void Patch()
         {
-            Logger.Log("Initializing Decorations mod.");
-            try
-            {
-                DecorationsMod.Patch();
-            }
+            Logger.Log("INFO: Initializing Decorations mod...");
+            try { DecorationsMod.Patch(); }
             catch (Exception e)
             {
                 _success = false;
-                Logger.Log("Exception caught" + (!String.IsNullOrEmpty(e.Message) ? " Message=[" + e.Message + "]" : ""));
-                Logger.Log("StackTrace=[" + e.StackTrace + "]");
+                Logger.Log(string.Format("ERROR: Exception caught! Message=[{0}] StackTrace=[{1}]", e.Message, e.StackTrace));
                 if (e.InnerException != null)
-                {
-                    Logger.Log("Inner exception caught" + ((!String.IsNullOrEmpty(e.InnerException.Message)) ? " Message=[" + e.InnerException.Message + "]" : ""));
-                    Logger.Log("Inner stackTrace=[" + e.InnerException.StackTrace + "]");
-                }
+                    Logger.Log(string.Format("ERROR: Inner exception => Message=[{0}] StackTrace=[{1}]", e.InnerException.Message, e.InnerException.StackTrace));
             }
-            Logger.Log("Decorations mod initializ" + (!_success ? "ation failed." : "ed successfully."));
+            if (_success)
+                Logger.Log("INFO: Decorations mod initialized successfully.");
+            else
+                Logger.Log("ERROR: Decorations mod initialization failed.");
         }
     }
 }

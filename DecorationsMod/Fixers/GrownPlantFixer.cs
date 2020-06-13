@@ -83,7 +83,7 @@ namespace DecorationsMod.Fixers
 #if DEBUG_GROWNPLANT_FIXER
                         Logger.Log("DEBUG: TEST A1 enabled=[" + controllerA.enabled + "] progress=[" + controllerA._progress + "] passedProgress=[" + controllerA._passedProgress + "]");
 #endif
-                        progress = controllerA._progress;// + controllerA._passedProgress;
+                        progress = controllerA._progress;
                         componentEnabled = controllerA.enabled;
                     }
                     else if (controllerB != null)
@@ -91,7 +91,7 @@ namespace DecorationsMod.Fixers
 #if DEBUG_GROWNPLANT_FIXER
                         Logger.Log("DEBUG: TEST A2 enabled=[" + controllerB.enabled + "] progress=[" + controllerB._progress + "] passedProgress=[" + controllerB._passedProgress + "]");
 #endif
-                        progress = controllerB._progress;// + controllerB._passedProgress;
+                        progress = controllerB._progress;
                         componentEnabled = controllerB.enabled;
                     }
                     else if (controllerC != null)
@@ -99,7 +99,7 @@ namespace DecorationsMod.Fixers
 #if DEBUG_GROWNPLANT_FIXER
                         Logger.Log("DEBUG: TEST A3 enabled=[" + controllerC.enabled + "] progress=[" + controllerC._progress + "] passedProgress=[" + controllerC._passedProgress + "]");
 #endif
-                        progress = controllerC._progress;// + controllerC._passedProgress;
+                        progress = controllerC._progress;
                         componentEnabled = controllerC.enabled;
                     }
 #if DEBUG_GROWNPLANT_FIXER

@@ -79,9 +79,9 @@ namespace DecorationsMod.NewItems
 
 #if DEBUG_SEAMOTH_FRAGMENTS
             foreach (Transform tr in prefab.transform)
-                Logger.Log("DEBUG: 1 Transform name=[" + (!string.IsNullOrEmpty(tr.name) ? tr.name : "?") + "].");
+                Logger.Log("DEBUG: 2 Transform name=[" + (!string.IsNullOrEmpty(tr.name) ? tr.name : "?") + "].");
             foreach (Component comp in prefab.GetComponents<Component>())
-                Logger.Log("DEBUG: 1 Comp name=[" + (!string.IsNullOrEmpty(comp.name) ? comp.name : "?") + "] type=[" + comp.GetType().ToString() + "].");
+                Logger.Log("DEBUG: 2 Comp name=[" + (!string.IsNullOrEmpty(comp.name) ? comp.name : "?") + "] type=[" + comp.GetType().ToString() + "].");
 #endif
 
             // Translate

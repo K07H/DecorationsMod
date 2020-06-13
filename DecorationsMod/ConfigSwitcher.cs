@@ -279,7 +279,7 @@ namespace DecorationsMod
             string currentDir = Path.GetDirectoryName(path);
             configFilePath = currentDir + "/Config.txt";
 
-            Logger.Log("Loading configuration from \"" + configFilePath + "\"...");
+            Logger.Log("INFO: Loading configuration from \"" + configFilePath + "\"...");
 
             // Retrieve config
             if (File.Exists(configFilePath))

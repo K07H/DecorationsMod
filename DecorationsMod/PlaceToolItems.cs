@@ -137,7 +137,7 @@ namespace DecorationsMod
         {
             if (!_madeItemsPlaceable)
             {
-                Logger.Log("Making some existing items positionable/pickupable...");
+                Logger.Log("INFO: Making items placeable/pickupable...");
 
                 // Chimicals
                 GameObject bleach = Resources.Load<GameObject>("WorldEntities/Natural/bleach");
