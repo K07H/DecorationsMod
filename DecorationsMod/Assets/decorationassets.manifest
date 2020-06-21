@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2903766446
+CRC: 390654073
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 05d157a247d235c4d920d3aca2c80fe0
+    Hash: e840d749b5349b0e45992a6362d418f5
   TypeTreeHash:
     serializedVersion: 2
     Hash: eedc87be2896b4e070c2bce7ab33f497
@@ -295,7 +295,6 @@ Assets:
 - Assets/seamoth.fbm/seamoth_torpedo_01_spec.png
 - Assets/seamoth.fbm/seamoth_storage_02_normal.png
 - Assets/seamoth.fbm/Submersible_SeaMoth_normal.png
-- Assets/MushroomTreeTrunk/texture4normal.png
 - Assets/covetree.fbm/lost_river_cove_tree_01_eggs_spec.png
 - Assets/Precursor_LostRiverBase_SeaDragonEggShell.prefab
 - Assets/Materials/submarine_engine_power_cells_01.mat
