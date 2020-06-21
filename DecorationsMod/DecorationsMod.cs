@@ -1,5 +1,6 @@
 ﻿using DecorationsMod.Fixers;
 using Harmony;
+using QModManager.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,42 @@ namespace DecorationsMod
 
         // List of modded items
         public static List<IDecorationItem> DecorationItems = null;
+
+        private static void FixFCSMods()
+        {
+            IQMod modFCS1 = QModServices.Main.FindModById("FCSAIPowerCellSocket");
+            if (modFCS1 != null && modFCS1.ParsedVersion != null && modFCS1.ParsedVersion.ToString() == "1.2.3" && modFCS1.LoadedAssembly != null)
+            {
+                Logger.Log("INFO: Alterra Industrial Powercell Socket mod version 1.2.3 detected: Applying fix...");
+                Type[] types = modFCS1.LoadedAssembly.GetTypes();
+                if (types != null)
+                    foreach (Type t in types)
+                        if (t.Name != null && t.Name == "AIPowerCellSocketPowerManager")
+                        {
+                            MethodInfo isAllowedToAddMethod = t.GetMethod("IsAllowedToAdd", BindingFlags.NonPublic | BindingFlags.Instance);
+                            MethodInfo isAllowedToAddPrefix = typeof(FCSModsFixer).GetMethod("IsAllowedToAdd_Powercell_Prefix", BindingFlags.Public | BindingFlags.Static);
+                            HarmonyInstance.Patch(isAllowedToAddMethod, new HarmonyMethod(isAllowedToAddPrefix), null);
+                            Logger.Log("INFO: Alterra Industrial Powercell Socket mod successfully fixed.");
+                            break;
+                        }
+            }
+            IQMod modFCS2 = QModServices.Main.FindModById("FCSDeepDriller");
+            if (modFCS2 != null && modFCS2.ParsedVersion != null && modFCS2.ParsedVersion.ToString() == "1.2.5" && modFCS2.LoadedAssembly != null)
+            {
+                Logger.Log("INFO: Alterra Industrial Deep Driller mod version 1.2.5 detected: Applying fix...");
+                Type[] types = modFCS2.LoadedAssembly.GetTypes();
+                if (types != null)
+                    foreach (Type t in types)
+                        if (t.Name != null && t.Name == "FCSDeepDrillerBatteryController")
+                        {
+                            MethodInfo isAllowedToAddMethod = t.GetMethod("IsAllowedToAdd", BindingFlags.NonPublic | BindingFlags.Instance);
+                            MethodInfo isAllowedToAddPrefix = typeof(FCSModsFixer).GetMethod("IsAllowedToAdd_Driller_Prefix", BindingFlags.Public | BindingFlags.Static);
+                            HarmonyInstance.Patch(isAllowedToAddMethod, new HarmonyMethod(isAllowedToAddPrefix), null);
+                            Logger.Log("INFO: Alterra Industrial Deep Driller mod successfully fixed.");
+                            break;
+                        }
+            }
+        }
 
         // Decorations mod entry point
         public static void Patch()
@@ -73,6 +110,7 @@ namespace DecorationsMod
             // 9) ENHANCEMENTS
             if (ConfigSwitcher.FixAquariumLighting)
                 PrefabsHelper.FixAquariumSkyApplier();
+            FixFCSMods();
 
             // 10) SETUP IN GAME OPTIONS MENU
             Logger.Log("INFO: Setting up in-game options menu...");
