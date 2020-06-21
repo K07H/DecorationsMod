@@ -342,7 +342,16 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add sky applier
+#if BELOWZERO
+                BaseModuleLighting bml = this.GameObject.GetComponent<BaseModuleLighting>();
+                if (bml == null)
+                    bml = this.GameObject.GetComponentInChildren<BaseModuleLighting>();
+                if (bml == null)
+                    bml = this.GameObject.AddComponent<BaseModuleLighting>();
+#endif
                 SkyApplier applier = this.GameObject.GetComponent<SkyApplier>();
+                if (applier == null)
+                    applier = this.GameObject.GetComponentInChildren<SkyApplier>();
                 if (applier == null)
                     applier = this.GameObject.AddComponent<SkyApplier>();
                 applier.renderers = renderers;

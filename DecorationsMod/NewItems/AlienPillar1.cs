@@ -11,7 +11,11 @@ namespace DecorationsMod.NewItems
             this.ClassID = "AlienPillar1"; // 78009225-a9fa-4d21-9580-8719a3368373
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if SUBNAUTICA
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/precursor_deco_props_01");
+#else
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Precursor/Doodads/precursor_deco_props_01");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("AlienPillar1Name"),
@@ -92,10 +96,6 @@ namespace DecorationsMod.NewItems
             GameObject.DestroyImmediate(prefab.GetComponent<Rigidbody>());
             GameObject.DestroyImmediate(prefab.GetComponent<ConstructionObstacle>());
             GameObject.DestroyImmediate(prefab.GetComponent<LargeWorldEntity>());
-            GameObject.DestroyImmediate(prefab.GetComponent<SkyApplier>());
-
-            // Update sky applier
-            PrefabsHelper.SetDefaultSkyApplier(prefab);
 
             // Set large world entity
             PrefabsHelper.SetDefaultLargeWorldEntity(prefab);
@@ -121,6 +121,22 @@ namespace DecorationsMod.NewItems
 
             // Add constructable bounds
             prefab.AddComponent<ConstructableBounds>();
+
+            // Update sky applier
+#if BELOWZERO
+            BaseModuleLighting bml = prefab.GetComponent<BaseModuleLighting>();
+            if (bml == null)
+                bml = prefab.GetComponentInChildren<BaseModuleLighting>();
+            if (bml == null)
+                bml = prefab.AddComponent<BaseModuleLighting>();
+#endif
+            SkyApplier sa = prefab.GetComponent<SkyApplier>();
+            if (sa == null)
+                sa = prefab.GetComponentInChildren<SkyApplier>();
+            if (sa == null)
+                sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
 
             return prefab;
         }

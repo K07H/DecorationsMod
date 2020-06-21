@@ -85,11 +85,6 @@ namespace DecorationsMod.NewItems
                 // Add large world entity
                 this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
-                // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
-                applier.renderers = renderers;
-                applier.anchorSky = Skies.Auto;
-
                 // Add contructable
                 var constructible = this.GameObject.AddComponent<Constructable>();
                 constructible.allowedInBase = true;
@@ -161,6 +156,15 @@ namespace DecorationsMod.NewItems
             // Delete constructable bounds
             ConstructableBounds cb = container.GetComponent<ConstructableBounds>();
             GameObject.DestroyImmediate(cb);
+
+            // Update sky applier
+            SkyApplier sa = prefab.GetComponent<SkyApplier>();
+            if (sa == null)
+                sa = prefab.GetComponentInChildren<SkyApplier>();
+            if (sa == null)
+                sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
 
             return prefab;
         }

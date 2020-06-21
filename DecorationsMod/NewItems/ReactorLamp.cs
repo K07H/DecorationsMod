@@ -156,12 +156,19 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add sky applier
+#if BELOWZERO
+                BaseModuleLighting bml = this.GameObject.AddComponent<BaseModuleLighting>();
                 var skyapplier = this.GameObject.GetComponent<SkyApplier>();
+                if (skyapplier == null)
+                    skyapplier = this.GameObject.GetComponentInChildren<SkyApplier>();
                 if (skyapplier == null)
                     skyapplier = this.GameObject.AddComponent<SkyApplier>();
                 skyapplier.renderers = this.GameObject.GetComponentsInChildren<Renderer>();
                 skyapplier.anchorSky = Skies.Auto;
-                
+#else
+                PrefabsHelper.SetDefaultSkyApplier(this.GameObject, null, Skies.Auto, false, true);
+#endif
+
                 // Add contructable
                 var constructible = this.GameObject.AddComponent<Lamp_C>();
                 constructible.allowedInBase = true;

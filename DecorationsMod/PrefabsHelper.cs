@@ -272,11 +272,30 @@ namespace DecorationsMod
             {
                 Logger.Log("INFO: Applying fix to aquariums lighting...");
 
-                var aquariumPrefab = Resources.Load<GameObject>("Submarine/Build/Aquarium"); 
-                var sas = aquariumPrefab.GetComponents<SkyApplier>();
+                GameObject aquariumPrefab = Resources.Load<GameObject>("Submarine/Build/Aquarium");
 
+                /*
+                foreach (Transform tr in aquariumPrefab.transform)
+                {
+                    Logger.Log("DEBUG: Aquarium transform name=[" + tr.name + "]");
+                    foreach (Transform trb in tr)
+                    {
+                        Logger.Log("DEBUG: Aquarium sub transform name=[" + trb.name + "]");
+                        foreach (Transform trc in trb)
+                        {
+                            Logger.Log("DEBUG: Aquarium sub sub transform name=[" + trc.name + "]");
+                        }
+                    }
+                }
+                */
+#if SUBNAUTICA
+                SkyApplier[] sas = aquariumPrefab.GetComponents<SkyApplier>();
                 List<Renderer> rendsA = new List<Renderer>();
                 List<Renderer> rendsB = new List<Renderer>();
+#else
+                SkyApplier[] sas = aquariumPrefab.GetComponentsInChildren<SkyApplier>();
+#endif
+
                 int i = 0;
                 if (sas != null)
                     foreach (SkyApplier sa in sas)
@@ -298,16 +317,20 @@ namespace DecorationsMod
                                             mat.SetFloat("_GlowStrength", 0.18f);
                                         }
                                     }
+#if SUBNAUTICA
                                     if (i == 0)
                                         rendsA.Add(rend);
                                     else
                                         rendsB.Add(rend);
+#endif
                                 }
                         }
                         i++;
                     }
+#if SUBNAUTICA
                 sas[0].renderers = rendsA.ToArray();
                 sas[1].renderers = rendsB.ToArray();
+#endif
 
                 Renderer[] tmpRends = aquariumPrefab.GetAllComponentsInChildren<Renderer>();
                 List<Renderer> rends = new List<Renderer>();
@@ -345,6 +368,20 @@ namespace DecorationsMod
                                     sa.updaterIndex = 0;
                                     sa.enabled = true;
                                 }
+        }
+
+        public static void PrintTransform(Transform tr, string indent = "\t")
+        {
+            if (tr != null)
+            {
+                Logger.Log("DEBUG: Transform " + indent + "name=[" + tr.name + "]");
+                foreach (Component c in tr.GetComponents<Component>())
+                    if (c.GetType() != typeof(Transform))
+                        Logger.Log("DEBUG: Transform " + indent + " => component type=[" + c.GetType().ToString() + "] name=[" + c.name + "]");
+                string newIndent = indent + "\t";
+                foreach (Transform child in tr)
+                    PrintTransform(child, newIndent);
+            }
         }
     }
 }

@@ -9,7 +9,12 @@ namespace DecorationsMod.NewItems
         public AlienTabletOrange()// Feeds abstract class
         {
             this.ClassID = "e10ce5d9-9675-4553-bf33-b17e93e3aab4";
+
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Doodads/Precursor/PrecursorKey_Orange";
+#else
+            this.PrefabFileName = "WorldEntities/Precursor/Keys/PrecursorKey_Orange";
+#endif
 
             this.TechType = TechType.PrecursorKey_Orange;
 
@@ -113,6 +118,15 @@ namespace DecorationsMod.NewItems
             fabricating.posOffset = new Vector3(0f, 0.05f, 0.04f);
             fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricating.scaleFactor = 0.8f;
+
+            // Update sky applier
+            SkyApplier sa = prefab.GetComponent<SkyApplier>();
+            if (sa == null)
+                sa = prefab.GetComponentInChildren<SkyApplier>();
+            if (sa == null)
+                sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
 
             return prefab;
         }

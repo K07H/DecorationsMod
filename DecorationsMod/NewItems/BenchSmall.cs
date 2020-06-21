@@ -80,9 +80,6 @@ namespace DecorationsMod.NewItems
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
-            // Retrieve model node
-            GameObject model = prefab.FindChild("model");
-
             // Add large world entity
             var lwe = prefab.AddComponent<LargeWorldEntity>();
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
@@ -92,7 +89,10 @@ namespace DecorationsMod.NewItems
             collider.size = new Vector3(collider.size.x * 0.3f, collider.size.y, collider.size.z);
             var builderTrigger = prefab.FindChild("Builder Trigger").GetComponent<BoxCollider>();
             builderTrigger.size = new Vector3(builderTrigger.size.x * 0.3f, builderTrigger.size.y, builderTrigger.size.z);
-            
+
+            // Retrieve model node
+            GameObject model = prefab.FindChild("model");
+
             // Move bench parts
             GameObject benchStart = model.FindChild("Bench_01_start");
             benchStart.transform.localPosition = new Vector3(-0.001f, benchStart.transform.localPosition.y, benchStart.transform.localPosition.z);
@@ -103,9 +103,15 @@ namespace DecorationsMod.NewItems
 
             // Update sky applier
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
+#if SUBNAUTICA
             var skyapplier = prefab.GetComponent<SkyApplier>();
             skyapplier.renderers = renderers;
             skyapplier.anchorSky = Skies.Auto;
+#else
+            var skyapplier = model.GetComponent<SkyApplier>();
+            skyapplier.renderers = renderers;
+            skyapplier.anchorSky = Skies.Auto;
+#endif
 
             // Update contructable
             var constructible = prefab.GetComponent<Constructable>();

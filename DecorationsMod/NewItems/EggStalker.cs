@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggStalker()
         {
             this.ClassID = "e2e5bb2d-6427-431c-ac3d-036c22083222";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/StalkerEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/StalkerEgg";
+#endif
 
             this.TechType = TechType.StalkerEgg;
 

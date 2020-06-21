@@ -12,7 +12,11 @@ namespace DecorationsMod.NewItems
             this.ClassID = "AlienArtefact9"; // f111c882-4ef6-4ad0-aeba-d123568ad3fc
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if SUBNAUTICA
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/Prison/Relics/alien_relic_10");
+#else
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Precursor/Relics/alien_relic_10");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("AlienRelic9Name"),

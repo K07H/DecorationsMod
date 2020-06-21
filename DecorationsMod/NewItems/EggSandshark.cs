@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggSandshark()
         {
             this.ClassID = "bc0f2b09-1c5c-4573-bdcb-087883677a5f";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/SandsharkEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/SandsharkEgg";
+#endif
 
             this.TechType = TechType.SandsharkEgg;
 

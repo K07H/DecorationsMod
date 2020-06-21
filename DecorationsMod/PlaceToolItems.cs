@@ -140,7 +140,11 @@ namespace DecorationsMod
                 Logger.Log("INFO: Making items placeable/pickupable...");
 
                 // Chimicals
+#if SUBNAUTICA
                 GameObject bleach = Resources.Load<GameObject>("WorldEntities/Natural/bleach");
+#else
+                GameObject bleach = Resources.Load<GameObject>("WorldEntities/Crafting/Bleach");
+#endif
                 if (bleach != null)
                 {
                     bleach.AddComponent<CustomPlaceToolController>();
@@ -149,9 +153,14 @@ namespace DecorationsMod
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/bleach");
+                    Logger.Log("WARNING: Could not load type[{0}]", "bleach");
 #endif
+
+#if SUBNAUTICA
                 GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Natural/lubricant");
+#else
+                GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Crafting/Lubricant");
+#endif
                 if (lubricant != null)
                 {
                     lubricant.AddComponent<CustomPlaceToolController>();
@@ -160,35 +169,55 @@ namespace DecorationsMod
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/lubricant");
+                    Logger.Log("WARNING: Could not load type[{0}]", "lubricant");
 #endif
+
+#if SUBNAUTICA
                 GameObject polyaniline = Resources.Load<GameObject>("WorldEntities/Natural/polyaniline");
+#else
+                GameObject polyaniline = Resources.Load<GameObject>("WorldEntities/Crafting/polyaniline");
+#endif
                 if (polyaniline != null)
                     MakeItemPlaceable(TechType.Polyaniline, polyaniline);
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/polyaniline");
+                    Logger.Log("WARNING: Could not load type[{0}]", "polyaniline");
 #endif
+
+#if SUBNAUTICA
                 GameObject benzene = Resources.Load<GameObject>("WorldEntities/Natural/benzene");
+#else
+                GameObject benzene = Resources.Load<GameObject>("WorldEntities/Crafting/benzene");
+#endif
                 if (benzene != null)
                     MakeItemPlaceable(TechType.Benzene, benzene);
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/benzene");
+                    Logger.Log("WARNING: Could not load type[{0}]", "benzene");
 #endif
+
+#if SUBNAUTICA
                 GameObject hydrochloricacid = Resources.Load<GameObject>("WorldEntities/Natural/hydrochloricacid");
+#else
+                GameObject hydrochloricacid = Resources.Load<GameObject>("WorldEntities/Crafting/hydrochloricacid");
+#endif
                 if (hydrochloricacid != null)
                     MakeItemPlaceable(TechType.HydrochloricAcid, hydrochloricacid);
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/hydrochloricacid");
+                    Logger.Log("WARNING: Could not load type[{0}]", "hydrochloricacid");
 #endif
+
+#if SUBNAUTICA
                 GameObject hatchingenzymes = Resources.Load<GameObject>("WorldEntities/Natural/HatchingEnzymes");
+#else
+                GameObject hatchingenzymes = Resources.Load<GameObject>("WorldEntities/Crafting/HatchingEnzymes");
+#endif
                 if (hatchingenzymes != null)
                     MakeItemPlaceable(TechType.HatchingEnzymes, hatchingenzymes);
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/HatchingEnzymes");
+                    Logger.Log("WARNING: Could not load type[{0}]", "HatchingEnzymes");
 #endif
 
                 // Food & water
@@ -197,14 +226,14 @@ namespace DecorationsMod
                     MakeItemPlaceable(TechType.Coffee, coffee);
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Coffee");
+                    Logger.Log("WARNING: Could not load type[{0}]", "Coffee");
 #endif
                 GameObject bigfilteredwater = Resources.Load<GameObject>("WorldEntities/Food/BigFilteredWater");
                 if (bigfilteredwater != null)
                     MakeItemPlaceable(TechType.BigFilteredWater, bigfilteredwater);
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/BigFilteredWater");
+                    Logger.Log("WARNING: Could not load type[{0}]", "BigFilteredWater");
 #endif
                 GameObject disinfectedwater = Resources.Load<GameObject>("WorldEntities/Food/DisinfectedWater");
                 if (disinfectedwater != null)
@@ -215,7 +244,7 @@ namespace DecorationsMod
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/DisinfectedWater");
+                    Logger.Log("WARNING: Could not load type[{0}]", "DisinfectedWater");
 #endif
                 GameObject filteredwater = Resources.Load<GameObject>("WorldEntities/Food/FilteredWater");
                 if (filteredwater != null)
@@ -226,14 +255,18 @@ namespace DecorationsMod
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/FilteredWater");
+                    Logger.Log("WARNING: Could not load type[{0}]", "FilteredWater");
 #endif
 
                 // Snacks
                 MakeSnacksPlaceable();
 
                 // Electronics
+#if SUBNAUTICA
                 GameObject wiringkit = Resources.Load<GameObject>("WorldEntities/Natural/wiringkit");
+#else
+                GameObject wiringkit = Resources.Load<GameObject>("WorldEntities/Crafting/WiringKit");
+#endif
                 if (wiringkit != null)
                 {
                     wiringkit.AddComponent<CustomPlaceToolController>();
@@ -242,9 +275,14 @@ namespace DecorationsMod
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/wiringkit");
+                    Logger.Log("WARNING: Could not load type[{0}]", "wiringkit");
 #endif
+
+#if SUBNAUTICA
                 GameObject advancedwiringkit = Resources.Load<GameObject>("WorldEntities/Natural/advancedwiringkit");
+#else
+                GameObject advancedwiringkit = Resources.Load<GameObject>("WorldEntities/Crafting/AdvancedWiringKit");
+#endif
                 if (advancedwiringkit != null)
                 {
                     advancedwiringkit.AddComponent<CustomPlaceToolController>();
@@ -253,9 +291,14 @@ namespace DecorationsMod
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/advancedwiringkit");
+                    Logger.Log("WARNING: Could not load type[{0}]", "advancedwiringkit");
 #endif
+
+#if SUBNAUTICA
                 GameObject computerchip = Resources.Load<GameObject>("WorldEntities/Natural/computerchip");
+#else
+                GameObject computerchip = Resources.Load<GameObject>("WorldEntities/EnvironmentResources/ComputerChip");
+#endif
                 if (computerchip != null)
                 {
                     computerchip.AddComponent<CustomPlaceToolController>();
@@ -264,23 +307,31 @@ namespace DecorationsMod
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/computerchip");
+                    Logger.Log("WARNING: Could not load type[{0}]", "computerchip");
 #endif
 
                 if (ConfigSwitcher.EnablePlaceBatteries)
                     MakeBatteriesPlaceable();
 
                 // Precursor
+#if SUBNAUTICA
                 GameObject ionCrystal = Resources.Load<GameObject>("WorldEntities/Natural/PrecursorIonCrystal");
+#else
+                GameObject ionCrystal = Resources.Load<GameObject>("WorldEntities/EnvironmentResources/PrecursorIonCrystal");
+#endif
                 if (ionCrystal != null)
                     MakeItemPlaceable(TechType.PrecursorIonCrystal, ionCrystal);
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/PrecursorIonCrystal");
+                    Logger.Log("WARNING: Could not load type[{0}]", "PrecursorIonCrystal");
 #endif
 
                 // Others
+#if SUBNAUTICA
                 GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/Natural/stalkertooth");
+#else
+                GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/EnvironmentResources/StalkerTooth");
+#endif
                 if (stalkertooth != null)
                 {
                     stalkertooth.AddComponent<CustomPlaceToolController>();
@@ -289,14 +340,19 @@ namespace DecorationsMod
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/stalkertooth");
+                    Logger.Log("WARNING: Could not load type[{0}]", "stalkertooth");
 #endif
+
+#if SUBNAUTICA
                 GameObject firstaidkit = Resources.Load<GameObject>("WorldEntities/Natural/firstaidkit");
+#else
+                GameObject firstaidkit = Resources.Load<GameObject>("WorldEntities/Crafting/FirstAidKit");
+#endif
                 if (firstaidkit != null)
                     MakeItemPlaceable(TechType.FirstAidKit, firstaidkit);
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Natural/firstaidkit");
+                    Logger.Log("WARNING: Could not load type[{0}]", "firstaidkit");
 #endif
 
                 _madeItemsPlaceable = true;

@@ -12,7 +12,7 @@ namespace DecorationsMod.NewItems
 
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/PlanterBox");
+            this.GameObject = Resources.Load<GameObject>("Submarine/Build/FarmingTray");
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ExteriorLongPlanterName"),
@@ -60,7 +60,7 @@ namespace DecorationsMod.NewItems
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom icon
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("longplanterbox"));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("farmingtrayicon"));
 
                 this.IsRegistered = true;
             }
@@ -69,6 +69,8 @@ namespace DecorationsMod.NewItems
         public override GameObject GetGameObject()
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
+
+            PrefabsHelper.PrintTransform(prefab.transform);
 
             prefab.name = this.ClassID;
 
@@ -95,45 +97,57 @@ namespace DecorationsMod.NewItems
             // Update constructable
             Constructable constructable = prefab.GetComponent<Constructable>();
             constructable.allowedOutside = true;
-            if (!ConfigSwitcher.AllowOutdoorLongPlanterInside)
-            {
-                constructable.allowedInBase = false;
-                constructable.allowedInSub = false;
-            }
+            constructable.allowedInBase = ConfigSwitcher.AllowOutdoorLongPlanterInside;
+            constructable.allowedInSub = ConfigSwitcher.AllowOutdoorLongPlanterInside;
 
             // Update constructable bounds
             ConstructableBounds bounds = prefab.GetComponent<ConstructableBounds>();
-            bounds.bounds.extents = new Vector3(bounds.bounds.extents.x * 0.5f, bounds.bounds.extents.y, bounds.bounds.extents.z);
-            bounds.bounds.position = new Vector3(bounds.bounds.position.x + 0.5f, bounds.bounds.position.y, bounds.bounds.position.z);
+            bounds.bounds.extents = new Vector3(bounds.bounds.extents.x * 0.3f, bounds.bounds.extents.y * 0.4f, bounds.bounds.extents.z);
+            bounds.bounds.position = new Vector3(bounds.bounds.position.x + 0.3f, bounds.bounds.position.y * 0.4f, bounds.bounds.position.z);
+
+            float xPad = 1.22f; //0.5f;
+            float yPad = -0.25f;
+            float scaleRatio = 0.4f;
+            float heightScaleRatio = 0.5f;
 
             // Update box collider
-            GameObject builderTrigger = prefab.FindChild("Builder Trigger");
+#if SUBNAUTICA
             GameObject objectTrigger = prefab.FindChild("Collider");
-            BoxCollider builderCollider = builderTrigger.GetComponent<BoxCollider>();
             BoxCollider objectCollider = objectTrigger.GetComponent<BoxCollider>();
-            builderCollider.size = new Vector3(builderCollider.size.x * 0.5f, builderCollider.size.y, builderCollider.size.z);
-            objectCollider.size = new Vector3(objectCollider.size.x * 0.5f, objectCollider.size.y, objectCollider.size.z);
-            builderCollider.center = new Vector3(builderCollider.center.x + 0.5f, builderCollider.center.y, builderCollider.center.z);
-            objectCollider.center = new Vector3(objectCollider.center.x + 0.5f, objectCollider.center.y, objectCollider.center.z);
+            objectCollider.size = new Vector3(objectCollider.size.x * scaleRatio, objectCollider.size.y * heightScaleRatio, objectCollider.size.z);
+            //objectCollider.center = new Vector3(objectCollider.center.x + pad, objectCollider.center.y, objectCollider.center.z);
+            GameObject builderTrigger = prefab.FindChild("Builder Trigger");
+            BoxCollider builderCollider = builderTrigger.GetComponent<BoxCollider>();
+            builderCollider.size = new Vector3(builderCollider.size.x * scaleRatio, builderCollider.size.y * heightScaleRatio, builderCollider.size.z);
+            //builderCollider.center = new Vector3(builderCollider.center.x + pad, builderCollider.center.y, builderCollider.center.z);
+#else
+            GameObject objectTrigger = prefab.FindChild("collider");
+            BoxCollider objectCollider = objectTrigger.GetComponent<BoxCollider>();
+            objectCollider.size = new Vector3(objectCollider.size.x * scaleRatio, objectCollider.size.y * heightScaleRatio, objectCollider.size.z);
+            //objectCollider.center = new Vector3(objectCollider.center.x + pad, objectCollider.center.y, objectCollider.center.z);
+#endif
 
             // Update model
             GameObject model = prefab.FindChild("model");
-            model.transform.localScale = new Vector3(model.transform.localScale.x * 0.5f, model.transform.localScale.y, model.transform.localScale.z);
-            model.transform.localPosition = new Vector3(model.transform.localPosition.x + 0.5f, model.transform.localPosition.y, model.transform.localPosition.z);
-            model.transform.localRotation = new Quaternion(model.transform.localRotation.x, model.transform.localRotation.y + 20.0f, model.transform.localRotation.z, model.transform.localRotation.w);
+            model.transform.localScale = new Vector3(model.transform.localScale.x * scaleRatio, model.transform.localScale.y * heightScaleRatio, model.transform.localScale.z);
+            //model.transform.localPosition = new Vector3(model.transform.localPosition.x + pad, model.transform.localPosition.y, model.transform.localPosition.z);
+            //model.transform.localRotation = new Quaternion(model.transform.localRotation.x, model.transform.localRotation.y + 20.0f, model.transform.localRotation.z, model.transform.localRotation.w);
 
-            // Update grass
-            GameObject tray = model.FindChild("Base_interior_Planter_Tray_01");
-            GameObject grass1 = tray.FindChild("pot_generic_plant_03");
-            GameObject grass2 = tray.FindChild("pot_generic_plant_04");
-            grass1.GetComponent<MeshRenderer>().enabled = false;
-            grass2.GetComponent<MeshRenderer>().enabled = false;
-
-            // Translate prefab
-            //prefab.transform.localPosition = new Vector3(prefab.transform.localPosition.x + 0.6f, prefab.transform.localPosition.y, prefab.transform.localPosition.z);
+            GameObject slots = prefab.FindChild("slots");
+            foreach (Transform tr in slots.transform)
+                tr.localPosition = new Vector3(tr.localPosition.x + xPad, tr.localPosition.y + yPad, tr.localPosition.z);
+            GameObject slotsSmall = prefab.FindChild("slots_small");
+            foreach (Transform tr in slotsSmall.transform)
+                tr.localPosition = new Vector3(tr.localPosition.x + xPad, tr.localPosition.y + yPad, tr.localPosition.z);
 
             // Update sky applier
-            PrefabsHelper.SetDefaultSkyApplier(prefab);
+            SkyApplier sa = prefab.GetComponent<SkyApplier>();
+            if (sa == null)
+                sa = prefab.GetComponentInChildren<SkyApplier>();
+            if (sa == null)
+                sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
 
             return prefab;
         }

@@ -8,7 +8,11 @@ namespace DecorationsMod.ExistingItems
         public LabContainer3() // Feeds abstract class
         {
             this.ClassID = "7f601dd4-0645-414d-bb62-5b0b62985836";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_tube_01";
+#else
+            this.PrefabFileName = "WorldEntities/Alterra/Base/biodome_lab_containers_tube_01";
+#endif
 
             this.TechType = TechType.LabContainer3;
 

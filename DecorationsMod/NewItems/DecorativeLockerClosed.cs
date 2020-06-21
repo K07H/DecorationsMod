@@ -118,11 +118,28 @@ namespace DecorationsMod.NewItems
             collider.size = new Vector3(0.4f, 2.0f, 0.5f);
             collider.center = new Vector3(0.0f, 1.0f, 0.0f);
 
-            // Update sky applier
-            PrefabsHelper.SetDefaultSkyApplier(prefab);
-
             // Update large world entity
             PrefabsHelper.SetDefaultLargeWorldEntity(prefab);
+
+            // Update sky applier
+#if BELOWZERO
+            SkyApplier[] sas = prefab.GetComponentsInChildren<SkyApplier>();
+            while (prefab.GetComponentInChildren<SkyApplier>() != null)
+                GameObject.DestroyImmediate(prefab.GetComponentInChildren<SkyApplier>());
+            if (prefab.GetComponent<SkyApplier>() != null)
+                GameObject.DestroyImmediate(prefab.GetComponent<SkyApplier>());
+            while (prefab.GetComponentInChildren<BaseModuleLighting>() != null)
+                GameObject.DestroyImmediate(prefab.GetComponentInChildren<BaseModuleLighting>());
+            if (prefab.GetComponent<BaseModuleLighting>() != null)
+                GameObject.DestroyImmediate(prefab.GetComponent<BaseModuleLighting>());
+
+            BaseModuleLighting bml = prefab.AddComponent<BaseModuleLighting>();
+            SkyApplier sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
+#else
+            PrefabsHelper.SetDefaultSkyApplier(prefab);
+#endif
 
             // Set as constructible
             Constructable constructible = prefab.AddComponent<Constructable>();

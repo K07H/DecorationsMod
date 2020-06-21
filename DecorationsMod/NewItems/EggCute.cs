@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggCute()
         {
             this.ClassID = "b78912bc-0191-4455-a9de-3b708e165393";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/CuteEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/CuteEgg";
+#endif
 
             this.TechType = TechType.CutefishEgg;
 

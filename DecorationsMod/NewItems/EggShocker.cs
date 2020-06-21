@@ -10,7 +10,11 @@ namespace DecorationsMod.NewItems
         public EggShocker()
         {
             this.ClassID = "0c8a460a-3b93-4652-abd1-4a930b32a0a6";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/ShockerEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/ShockerEgg";
+#endif
 
             this.TechType = TechType.ShockerEgg;
 

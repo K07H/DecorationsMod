@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggGasopod()
         {
             this.ClassID = "b6c3cde4-739a-4a1a-b93b-78501ca9ae82";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/GasopodEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/GasopodEgg";
+#endif
 
             this.TechType = TechType.GasopodEgg;
 

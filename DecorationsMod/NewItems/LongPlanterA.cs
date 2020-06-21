@@ -123,7 +123,13 @@ namespace DecorationsMod.NewItems
             //prefab.transform.localPosition = new Vector3(prefab.transform.localPosition.x + 0.6f, prefab.transform.localPosition.y, prefab.transform.localPosition.z);
 
             // Update sky applier
-            PrefabsHelper.SetDefaultSkyApplier(prefab);
+            SkyApplier sa = prefab.GetComponent<SkyApplier>();
+            if (sa == null)
+                sa = prefab.GetComponentInChildren<SkyApplier>();
+            if (sa == null)
+                sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
 
             return prefab;
         }

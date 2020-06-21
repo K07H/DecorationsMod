@@ -17,12 +17,12 @@ namespace DecorationsMod
     
     public abstract class DecorationItem : SMLHelper.V2.Assets.ModPrefab, IDecorationItem
     {
-#region Constructor
+        #region Constructor
 
         public DecorationItem() : base("", "") { }
 
-#endregion
-#region Attributes
+        #endregion
+        #region Attributes
 
         // This is used as the default path when we add a new resource to the game
         public const string DefaultResourcePath = "WorldEntities/Environment/Wrecks/";
@@ -65,11 +65,15 @@ namespace DecorationsMod
                     placeTool = this.GameObject.GetComponent<PlaceTool>();
                 if (placeTool != null)
                 {
-                    if (this.TechType == TechType.Poster ||
-                        this.TechType == TechType.PosterAurora ||
-                        this.TechType == TechType.PosterExoSuit1 ||
-                        this.TechType == TechType.PosterExoSuit2 ||
-                        this.TechType == TechType.PosterKitty)
+                    if (this.TechType == TechType.Poster
+                        || this.TechType == TechType.PosterAurora
+                        || this.TechType == TechType.PosterExoSuit1
+                        || this.TechType == TechType.PosterExoSuit2
+                        || this.TechType == TechType.PosterKitty
+#if BELOWZERO
+                        || this.TechType == TechType.PosterSpyPenguin
+#endif
+                    )
                     {
                         placeTool.allowedOnGround = false;
                         placeTool.allowedOnWalls = true;
@@ -91,6 +95,6 @@ namespace DecorationsMod
             }
         }
 
-#endregion
+        #endregion
     }
 }

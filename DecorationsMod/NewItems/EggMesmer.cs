@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggMesmer()
         {
             this.ClassID = "3caf2f09-9cb2-4b9e-9432-6481f83fde4c";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/MesmerEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/MesmerEgg";
+#endif
 
             this.TechType = TechType.MesmerEgg;
 

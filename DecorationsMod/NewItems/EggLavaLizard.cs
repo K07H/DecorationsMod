@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggLavaLizard()
         {
             this.ClassID = "a1447801-44c0-4217-b050-2313c3a6db50";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/LavaLizardEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/LavaLizardEgg";
+#endif
 
             this.TechType = TechType.LavaLizardEgg;
 

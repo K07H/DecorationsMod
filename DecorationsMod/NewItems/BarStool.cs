@@ -18,7 +18,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "BarStool";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/starshipchair");
+            this.GameObject = Resources.Load<GameObject>("Submarine/Build/StarshipChair");
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BarStoolName"),
@@ -193,6 +193,10 @@ namespace DecorationsMod.NewItems
 #endif
             // Update sky applier
             var skyapplier = prefab.GetComponent<SkyApplier>();
+            if (skyapplier == null)
+                skyapplier = prefab.GetComponentInChildren<SkyApplier>();
+            if (skyapplier == null)
+                skyapplier = prefab.AddComponent<SkyApplier>();
             skyapplier.renderers = renderers;
             skyapplier.anchorSky = Skies.Auto;
 

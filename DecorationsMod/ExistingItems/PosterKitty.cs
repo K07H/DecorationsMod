@@ -8,7 +8,11 @@ namespace DecorationsMod.ExistingItems
         public PosterKitty() // Feeds abstract class
         {
             this.ClassID = "d809cb15-6784-4f7c-bf5d-f7d0c5bf8546";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Environment/Wrecks/poster_kitty";
+#else
+            this.PrefabFileName = "WorldEntities/Alterra/Base/poster_kitty";
+#endif
 
             this.TechType = TechType.PosterKitty;
 

@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggJellyray()
         {
             this.ClassID = "344b5156-838c-4054-b9bb-0f065a2488f8";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/JellyrayEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/JellyrayEgg";
+#endif
 
             this.TechType = TechType.JellyrayEgg;
 

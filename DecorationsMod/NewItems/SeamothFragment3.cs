@@ -12,7 +12,11 @@ namespace DecorationsMod.NewItems
             this.ClassID = "SeamothFragment3"; // 284573d8-9a80-4867-a09a-85df573c29ef
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if SUBNAUTICA
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Fragments/seamoth_fragment_03");
+#else
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Alterra/Fragments/seamoth_fragment_03");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SeamothFragmentName") + " (3)",

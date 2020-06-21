@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggSpadefish()
         {
             this.ClassID = "94d3c568-67d1-4ee7-9c56-0994adc403a9";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/SpadefishEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/SpadefishEgg";
+#endif
 
             this.TechType = TechType.SpadefishEgg;
 

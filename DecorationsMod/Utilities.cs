@@ -3,9 +3,14 @@ using System.Collections;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+#if BELOWZERO
+using TMPro;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
+#if SUBNAUTICA
 using UnityEngine.UI;
+#endif
 
 namespace DecorationsMod
 {
@@ -153,7 +158,11 @@ namespace DecorationsMod
             object message = _getExistingMessageMethod.Invoke(main, new object[] { messageText });
             if (message == null)
             {
+#if SUBNAUTICA
                 Text entry = (Text)_getEntryMethod.Invoke(main, null);
+#else
+                TextMeshProUGUI entry = (TextMeshProUGUI)_getEntryMethod.Invoke(main, null);
+#endif
                 entry.gameObject.SetActive(true);
                 entry.text = messageText;
                 message = Activator.CreateInstance(_messageType, true);
@@ -166,7 +175,11 @@ namespace DecorationsMod
                 MenuMessageHelper.UpdateErrorMessages();
                 return;
             }
+#if SUBNAUTICA
             Text entry2 = (Text)_messageEntryField.GetValue(message);
+#else
+            TMP_Text entry2 = (TMP_Text)_messageEntryField.GetValue(message);
+#endif
             _messageTimeEndField.SetValue(message, Time.time + timeDelay + timeFadeOut + timeInvisible);
             int messageNum = ((int)_messageNumField.GetValue(message)) + 1;
             _messageNumField.SetValue(message, messageNum);

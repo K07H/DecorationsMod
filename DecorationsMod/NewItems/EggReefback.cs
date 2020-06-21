@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggReefback()
         {
             this.ClassID = "4f4bdec2-67a9-425d-b317-0ee3f949d481";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/ReefbackEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/ReefbackEgg";
+#endif
 
             this.TechType = TechType.ReefbackEgg;
 

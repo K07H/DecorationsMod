@@ -140,6 +140,20 @@ namespace DecorationsMod.NewItems
                 constructible.allowedOutside = ConfigSwitcher.AllowBuildOutside;
             }
 
+            // Update sky applier
+#if BELOWZERO
+            BaseModuleLighting bml = prefab.AddComponent<BaseModuleLighting>();
+            SkyApplier sa = prefab.GetComponent<SkyApplier>();
+            if (sa == null)
+                sa = prefab.GetComponentInChildren<SkyApplier>();
+            if (sa == null)
+                sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
+#else
+            PrefabsHelper.SetDefaultSkyApplier(prefab, null, Skies.Auto, false, true);
+#endif
+
             return prefab;
         }
     }

@@ -11,7 +11,11 @@ namespace DecorationsMod.NewItems
             this.ClassID = "DecorationLabTube"; // a36047b0-1533-4718-8879-d6ba9229c978
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if SUBNAUTICA
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_tube_01");
+#else
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Alterra/Base/biodome_lab_tube_01");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LabTubeName"),

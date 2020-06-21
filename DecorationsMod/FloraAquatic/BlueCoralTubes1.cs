@@ -19,7 +19,7 @@ namespace DecorationsMod.FloraAquatic
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
 #if BELOWZERO
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/unused/Coral_reef_blue_coral_tubes");
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Flora/Shared/Coral_reef_blue_coral_tubes");
 #else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_blue_coral_tubes");
 #endif

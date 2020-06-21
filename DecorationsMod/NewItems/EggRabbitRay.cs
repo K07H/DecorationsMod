@@ -9,7 +9,11 @@ namespace DecorationsMod.NewItems
         public EggRabbitRay()
         {
             this.ClassID = "66910d41-da61-4ee6-8bf2-da6a449fe3f4";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Eggs/RabbitRayEgg";
+#else
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/RabbitRayEgg";
+#endif
 
             this.TechType = TechType.RabbitrayEgg;
 

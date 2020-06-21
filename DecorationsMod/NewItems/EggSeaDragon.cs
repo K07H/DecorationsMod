@@ -19,7 +19,11 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.SeaDragonEgg = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
+#if SUBNAUTICA
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell");
+#else
+            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_SeaDragonEggShell");
+#endif
 
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
@@ -42,10 +46,16 @@ namespace DecorationsMod.NewItems
 #endif
         }
 
+        private Shader marmosetUber = null;
+        private Texture normal = null;
+
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                marmosetUber = Shader.Find("MarmosetUBER");
+                normal = AssetsHelper.Assets.LoadAsset<Texture>("Creatures_eggs_17_normal");
+
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
@@ -83,6 +93,23 @@ namespace DecorationsMod.NewItems
             model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x - 90f, model.transform.localEulerAngles.y, model.transform.localEulerAngles.z);
             // Scale model
             model.transform.localScale *= 0.8f;
+
+#if BELOWZERO
+            MeshRenderer[] renderers = model.GetComponents<MeshRenderer>();
+            if (renderers != null)
+                foreach (MeshRenderer rend in renderers)
+                    if (rend.materials != null)
+                        foreach (Material mat in rend.materials)
+                        {
+                            mat.shader = marmosetUber;
+                            if (mat.name.StartsWith("Creatures_eggs_17"))
+                            {
+                                mat.SetTexture("_BumpMap", normal);
+                                mat.EnableKeyword("MARMO_NORMALMAP");
+                                mat.EnableKeyword("_ZWRITE_ON"); // Enable Z write
+                            }
+                        }
+#endif
 
             // Scale collider
             CapsuleCollider c = prefab.GetComponentInChildren<CapsuleCollider>();

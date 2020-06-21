@@ -421,6 +421,9 @@ namespace DecorationsMod
                                        TechType.PosterExoSuit2,
                                        TechType.PosterKitty,
                                        TechType.Poster);
+#if BELOWZERO
+            postersTab.AddCraftingNode(TechType.PosterSpyPenguin);
+#endif
 
             // Accessories
             var accessoriesTab = patTab.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));

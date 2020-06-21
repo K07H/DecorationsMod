@@ -9,7 +9,12 @@ namespace DecorationsMod.NewItems
         public AlienTabletWhite()// Feeds abstract class
         {
             this.ClassID = "066e533d-f854-435d-82c6-b28ba59858e0";
+
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Doodads/Precursor/PrecursorKey_White";
+#else
+            this.PrefabFileName = "WorldEntities/Precursor/Keys/PrecursorKey_White";
+#endif
 
             this.TechType = TechType.PrecursorKey_White;
 
@@ -116,6 +121,15 @@ namespace DecorationsMod.NewItems
             fabricating.posOffset = new Vector3(0f, 0.05f, 0.04f);
             fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricating.scaleFactor = 0.8f;
+
+            // Update sky applier
+            SkyApplier sa = prefab.GetComponent<SkyApplier>();
+            if (sa == null)
+                sa = prefab.GetComponentInChildren<SkyApplier>();
+            if (sa == null)
+                sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
 
             return prefab;
         }

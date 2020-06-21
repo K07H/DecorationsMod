@@ -1,20 +1,17 @@
-﻿using System.Collections.Generic;
+﻿#if BELOWZERO
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
 {
-    public class PosterNS2 : DecorationItem
+    public class PosterPeng : DecorationItem
     {
-        public PosterNS2() // Feeds abstract class
+        public PosterPeng() // Feeds abstract class
         {
-            this.ClassID = "72da21f9-f3e2-4183-ac57-d3679fb09122";
-#if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Environment/Wrecks/Poster";
-#else
-            this.PrefabFileName = "WorldEntities/Alterra/Base/Poster";
-#endif
+            this.ClassID = "73756fda-6d9e-4ce6-8d13-ba05f8824b78";
+            this.PrefabFileName = "WorldEntities/Alterra/Base/poster_peng";
 
-            this.TechType = TechType.Poster;
+            this.TechType = TechType.PosterSpyPenguin;
 
             this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
 
@@ -45,6 +42,7 @@ namespace DecorationsMod.ExistingItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
+            /*
             // Add fabricating animation
             var fabricating = prefab.FindChild("model").AddComponent<VFXFabricating>();
             fabricating.localMinY = -0.6f;
@@ -52,8 +50,10 @@ namespace DecorationsMod.ExistingItems
             fabricating.posOffset = new Vector3(0f, 0.5f, 0.04f);
             fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricating.scaleFactor = 0.25f;
+            */
 
             return prefab;
         }
     }
 }
+#endif

@@ -8,7 +8,11 @@ namespace DecorationsMod.ExistingItems
         public ToyCar() // Feeds abstract class
         {
             this.ClassID = "dfabc84e-c4c5-45d9-8b01-ca0eaeeb8e65";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/Goldglove_car_02";
+#else
+            this.PrefabFileName = "WorldEntities/Alterra/Base/Goldglove_car_02";
+#endif
 
             this.TechType = TechType.ToyCar;
 

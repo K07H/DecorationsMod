@@ -8,7 +8,11 @@ namespace DecorationsMod.ExistingItems
         public StarshipSouvenir() // Feeds abstract class
         {
             this.ClassID = "c0d320d2-537e-4128-90ec-ab1466cfbbc3";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir";
+#else
+            this.PrefabFileName = "WorldEntities/Alterra/Base/starship_souvenir";
+#endif
 
             this.TechType = TechType.StarshipSouvenir;
 

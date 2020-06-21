@@ -199,8 +199,13 @@ namespace DecorationsMod
                                 OpenConfiguratorBtnContainer = (RectTransform)_containerField.GetValue(currentTab);
                                 if (pane != null && tab != null && OpenConfiguratorBtnContainer != null)
                                 {
+#if SUBNAUTICA
                                     Text paneText = pane.GetComponentInChildren<Text>();
                                     Text tabText = tab.GetComponentInChildren<Text>();
+#else
+                                    TMPro.TextMeshProUGUI paneText = pane.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                                    TMPro.TextMeshProUGUI tabText = tab.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+#endif
                                     // If current panel is "QModManager" and current tab is "Mods"
                                     if (paneText != null && string.Compare(paneText.text, "QModManager", false, CultureInfo.InvariantCulture) == 0 &&
                                         tabText != null && string.Compare(tabText.text, "Mods", false, CultureInfo.InvariantCulture) == 0)
@@ -208,7 +213,8 @@ namespace DecorationsMod
                                         // Detroy toggle
                                         GameObject.DestroyImmediate(go);
                                         // Add button
-                                        tcp.AddButton(i, LanguageHelper.GetFriendlyWord("Config_OpenDecorationsModConfigurator"), new UnityEngine.Events.UnityAction(() => {
+                                        tcp.AddButton(i, LanguageHelper.GetFriendlyWord("Config_OpenDecorationsModConfigurator"), new UnityEngine.Events.UnityAction(() =>
+                                        {
                                             ConfigSwitcher.OpenDecorationsModConfigurator = !ConfigSwitcher.OpenDecorationsModConfigurator;
                                             // If button state changed
                                             if (ConfigSwitcher.OpenConfiguratorLastState != ConfigSwitcher.OpenDecorationsModConfigurator)
@@ -244,7 +250,11 @@ namespace DecorationsMod
                                                     // If current transform is GUI button
                                                     if (tr != null && !string.IsNullOrEmpty(tr.name) && tr.name.StartsWith("uGUI_OptionButton"))
                                                     {
+#if SUBNAUTICA
                                                         Text btnText = tr.GetComponentInChildren<Text>();
+#else
+                                                        TMPro.TextMeshProUGUI btnText = tr.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+#endif
                                                         if (btnText != null && !string.IsNullOrEmpty(btnText.text) &&
                                                             (string.Compare(btnText.text, "Cliquez ici pour configurer", true, CultureInfo.InvariantCulture) == 0 ||
                                                              string.Compare(btnText.text, "Haga clic aquí para configurar", true, CultureInfo.InvariantCulture) == 0 ||
@@ -276,7 +286,7 @@ namespace DecorationsMod
             }
         }
 
-        #region Old stuff
+#region Old stuff
 
         /*"Config_UseFlatScreenResolution",
         "Config_AllowBuildOutside",
@@ -709,6 +719,6 @@ namespace DecorationsMod
         }
         */
 
-        #endregion
+#endregion
     }
 }

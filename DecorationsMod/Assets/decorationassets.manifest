@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3689292979
+CRC: 2903766446
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 934b5af776b3a0145df47f2361400fa5
+    Hash: 05d157a247d235c4d920d3aca2c80fe0
   TypeTreeHash:
     serializedVersion: 2
     Hash: eedc87be2896b4e070c2bce7ab33f497
@@ -297,6 +297,7 @@ Assets:
 - Assets/seamoth.fbm/Submersible_SeaMoth_normal.png
 - Assets/MushroomTreeTrunk/texture4normal.png
 - Assets/covetree.fbm/lost_river_cove_tree_01_eggs_spec.png
+- Assets/Precursor_LostRiverBase_SeaDragonEggShell.prefab
 - Assets/Materials/submarine_engine_power_cells_01.mat
 - Assets/Materials/poster_bg.mat
 - Assets/WarperParts/warper_illum.png
@@ -307,6 +308,7 @@ Assets:
 - Assets/sofacorner02icon.png
 - Assets/seatreader.fbm/Sea_Treader_01_01.png
 - Assets/AlienRelicsSprites/relic_05_b.png
+- Assets/farmingtrayicon.png
 - Assets/MushroomTreeParts/Coral_reef_ball_clusters_spec.png
 - Assets/MushroomTree/Coral_reef_tree_mushrooms_02_illum.png
 - Assets/flora.fbm/Land_tree_01_leaves_spec.png
@@ -320,6 +322,7 @@ Assets:
 - Assets/reaperleviathanskull.fbm/Lost_river_reaper_skeleton_skull.png
 - Assets/WarperParts/warper_spec.png
 - Assets/Materials/Coral_reef_red_seaweed_03.mat
+- Assets/SeaDragonEgg/Creatures_eggs_17_normal.png
 - Assets/Materials/generic_forklift.mat
 - Assets/seadragon.prefab
 - Assets/seatreader.fbm/Sea_Treader_01_02_illum.png

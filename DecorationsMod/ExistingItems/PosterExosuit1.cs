@@ -8,7 +8,11 @@ namespace DecorationsMod.ExistingItems
         public PosterExosuit1() // Feeds abstract class
         {
             this.ClassID = "336f276f-9546-40d0-98cb-974994dee3bf";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Environment/Wrecks/poster_exosuit_01";
+#else
+            this.PrefabFileName = "WorldEntities/Alterra/Base/poster_exosuit_01";
+#endif
 
             this.TechType = TechType.PosterExoSuit1;
 

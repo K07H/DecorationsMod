@@ -13,7 +13,11 @@ namespace DecorationsMod.NewItems
             this.ClassID = "DecorativeLocker"; // bca9b19c-616d-4948-8742-9bb6f4296dc3
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if SUBNAUTICA
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/submarine_locker_04_open");
+#else
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Alterra/Base/submarine_locker_04_open");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("DecorativeLockerName"),
@@ -122,7 +126,24 @@ namespace DecorationsMod.NewItems
             PrefabsHelper.SetDefaultLargeWorldEntity(prefab);
 
             // Update sky applier
+#if BELOWZERO
+            SkyApplier[] sas = prefab.GetComponentsInChildren<SkyApplier>();
+            while (prefab.GetComponentInChildren<SkyApplier>() != null)
+                GameObject.DestroyImmediate(prefab.GetComponentInChildren<SkyApplier>());
+            if (prefab.GetComponent<SkyApplier>() != null)
+                GameObject.DestroyImmediate(prefab.GetComponent<SkyApplier>());
+            while (prefab.GetComponentInChildren<BaseModuleLighting>() != null)
+                GameObject.DestroyImmediate(prefab.GetComponentInChildren<BaseModuleLighting>());
+            if (prefab.GetComponent<BaseModuleLighting>() != null)
+                GameObject.DestroyImmediate(prefab.GetComponent<BaseModuleLighting>());
+
+            BaseModuleLighting bml = prefab.AddComponent<BaseModuleLighting>();
+            SkyApplier sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
+#else
             PrefabsHelper.SetDefaultSkyApplier(prefab);
+#endif
 
             // Set as constructible
             Constructable constructible = prefab.AddComponent<Constructable>();

@@ -11,6 +11,12 @@ namespace DecorationsMod.NewItems
             this.ClassID = "92fb421e-a3f6-4b0b-8542-fd4faee4202a";
             this.PrefabFileName = "WorldEntities/Doodads/Precursor/PrecursorKey_Purple";
 
+#if SUBNAUTICA
+            this.PrefabFileName = "WorldEntities/Doodads/Precursor/PrecursorKey_Purple";
+#else
+            this.PrefabFileName = "WorldEntities/Precursor/Keys/PrecursorKey_Purple";
+#endif
+
             this.TechType = TechType.PrecursorKey_Purple;
 
             this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
@@ -113,6 +119,18 @@ namespace DecorationsMod.NewItems
             fabricating.posOffset = new Vector3(0f, 0.05f, 0.04f);
             fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricating.scaleFactor = 0.8f;
+
+            // Update sky applier
+            SkyApplier sa = prefab.GetComponent<SkyApplier>();
+            if (sa == null)
+                sa = prefab.GetComponentInChildren<SkyApplier>();
+            if (sa == null)
+                sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = prefab.GetAllComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
+
+            sa.Invoke("RefreshDirtySky", 8.0f);
+            sa.Invoke("DebugRefreshSky", 9.0f);
 
             return prefab;
         }

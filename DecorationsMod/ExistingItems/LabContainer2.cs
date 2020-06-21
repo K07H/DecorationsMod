@@ -8,7 +8,11 @@ namespace DecorationsMod.ExistingItems
         public LabContainer2() // Feeds abstract class
         {
             this.ClassID = "e3e00261-92fc-4f52-bad2-4f0e5802a43d";
+#if SUBNAUTICA
             this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_close_02";
+#else
+            this.PrefabFileName = "WorldEntities/Alterra/Base/biodome_lab_containers_close_02";
+#endif
 
             this.TechType = TechType.LabContainer2;
 
@@ -40,7 +44,11 @@ namespace DecorationsMod.ExistingItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
             // Add fabricating animation
+#if SUBNAUTICA
             var fabricating = prefab.FindChild("biodome_lab_containers_close_02").AddComponent<VFXFabricating>();
+#else
+            var fabricating = prefab.FindChild("biodome_lab_containers_close_02 1").AddComponent<VFXFabricating>();
+#endif
             fabricating.localMinY = -0.1f;
             fabricating.localMaxY = 0.50f;
             fabricating.posOffset = new Vector3(0f, 0f, 0.04f);

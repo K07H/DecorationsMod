@@ -11,7 +11,11 @@ namespace DecorationsMod.NewItems
             this.ClassID = "CircuitBox3c"; // 5d5fad52-7783-4107-a68c-6a94c473e25e
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
+#if SUBNAUTICA
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/circuit_box_01_03");
+#else
+            this.GameObject = Resources.Load<GameObject>("WorldEntities/Alterra/Base/circuit_box_01_03");
+#endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CircuitBox3Name"),

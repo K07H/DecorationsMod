@@ -38,7 +38,7 @@
     <Optimize>false</Optimize>
     <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\SubnauticaZero_Data\Managed</Dependencies>
     <OutputPath>bin\DebugBZ\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;BELOWZERO;DEBUG_ITEMS_REGISTRATION</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;BELOWZERO;DEBUG_ITEMS_REGISTRATION;DEBUG_HARMONY_PATCHING;DEBUG_STOOL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -97,6 +97,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Condition="'$(Configuration)' == 'DebugBZ'" Include="Unity.TextMeshPro">
+      <HintPath>$(Dependencies)\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Condition="'$(Configuration)' == 'ReleaseBZ'" Include="Unity.TextMeshPro">
+      <HintPath>$(Dependencies)\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>$(Dependencies)\Unity.Timeline.dll</HintPath>
       <Private>False</Private>
@@ -163,6 +171,7 @@
     <Compile Include="ExistingItems\Cap1.cs" />
     <Compile Include="ExistingItems\Cap2.cs" />
     <Compile Include="Controllers\ExosuitDollController.cs" />
+    <Compile Include="ExistingItems\PosterPeng.cs" />
     <Compile Include="Fixers\AquariumFixer.cs" />
     <Compile Include="Fixers\CrafterLogicFixer.cs" />
     <Compile Include="Fixers\IngameMenuFixer.cs" />
