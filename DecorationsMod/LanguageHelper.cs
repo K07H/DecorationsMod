@@ -3937,7 +3937,7 @@ namespace DecorationsMod
                         return "Add nutrient block in deco fabricator";
                 case "Config_EnableRegularAirSeeds":
                     if (UserLanguage == CountryCode.FR)
-                        return "Graînes terrestres dans fabricateur de graînes";
+                        return "Graînes terrestres standardes dans fabricateur";
                     else if (UserLanguage == CountryCode.ES)
                         return "Semillas de aire en el fabricante de flora";
                     else if (UserLanguage == CountryCode.TR)
@@ -3963,7 +3963,7 @@ namespace DecorationsMod
                         return "Enable crafting regular air seeds";
                 case "Config_EnableRegularWaterSeeds":
                     if (UserLanguage == CountryCode.FR)
-                        return "Graînes aquatiques dans fabricateur de graînes";
+                        return "Graînes aquatiques standardes dans fabricateur";
                     else if (UserLanguage == CountryCode.ES)
                         return "Semillas de agua regular en fabricante de flora";
                     else if (UserLanguage == CountryCode.TR)
@@ -4002,15 +4002,15 @@ namespace DecorationsMod
                         return "Enable crafting new items";
                 case "Config_EnableSofas":
                     if (UserLanguage == CountryCode.FR)
-                        return "Activer les canapés";
+                        return "Inclure les canapés";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Habilitar sofás";
+                        return "Incluir canapés";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Kanepeleri etkinleştir";
+                        return "Kanepeleri dahil et";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Sofas aktivieren";
+                        return "Canapes einschließen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Включить диваны";
+                        return "Добавить канапе";
                     else
                         return "Enable sofas";
                 case "Config_BarBottle1_water":

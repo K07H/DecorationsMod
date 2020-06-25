@@ -210,5 +210,15 @@ namespace DecorationsModConfigurator
         {
             RefreshMenuVisibilities();
         }
+
+        private void CB_EnablePlaceItems_Checked(object sender, RoutedEventArgs e)
+        {
+            GRD_EnablePlaceBatteries.Visibility = Visibility.Visible;
+        }
+
+        private void CB_EnablePlaceItems_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GRD_EnablePlaceBatteries.Visibility = Visibility.Collapsed;
+        }
     }
 }

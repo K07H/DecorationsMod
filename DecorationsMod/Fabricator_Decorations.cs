@@ -103,16 +103,16 @@ namespace DecorationsMod
 
             #region LAB ELEMENTS
 
-            var labEquipmentTab = rootNode.AddTabNode("LabElements", LanguageHelper.GetFriendlyWord("LabElements"), SpriteManager.Get(TechType.LabEquipment1));
+            var labEquipmentTab = rootNode.AddTabNode("LabElements", LanguageHelper.GetFriendlyWord("LabElements"), AssetsHelper.Assets.LoadAsset<Sprite>("D_LabEquipment2"));
 
             // Lab equipments
-            var analyzersTab = labEquipmentTab.AddTabNode("NonFunctionalAnalyzers", LanguageHelper.GetFriendlyWord("NonFunctionalAnalyzers"), SpriteManager.Get(TechType.LabEquipment3));
+            var analyzersTab = labEquipmentTab.AddTabNode("NonFunctionalAnalyzers", LanguageHelper.GetFriendlyWord("NonFunctionalAnalyzers"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Analyzers"));
             analyzersTab.AddCraftingNode(TechType.LabEquipment1,
                                          TechType.LabEquipment2,
                                          TechType.LabEquipment3);
 
             // Open glass containers
-            var openedGlassConteinersTab = labEquipmentTab.AddTabNode("OpenedGlassContainers", LanguageHelper.GetFriendlyWord("OpenedGlassContainers"), AssetsHelper.Assets.LoadAsset<Sprite>("labcontaineropen2"));
+            var openedGlassConteinersTab = labEquipmentTab.AddTabNode("OpenedGlassContainers", LanguageHelper.GetFriendlyWord("OpenedGlassContainers"), AssetsHelper.Assets.LoadAsset<Sprite>("D_OpenGlass"));
             if (DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen3") != TechType.None)
                 openedGlassConteinersTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen3"));
             if (DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen2") != TechType.None)
@@ -121,7 +121,7 @@ namespace DecorationsMod
                 openedGlassConteinersTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen1"));
 
             // Glass containers
-            var glassContainersTab = labEquipmentTab.AddTabNode("GlassContainers", LanguageHelper.GetFriendlyWord("GlassContainers"), SpriteManager.Get(TechType.LabContainer2));
+            var glassContainersTab = labEquipmentTab.AddTabNode("GlassContainers", LanguageHelper.GetFriendlyWord("GlassContainers"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Glass"));
             glassContainersTab.AddCraftingNode(TechType.LabContainer,
                                                 TechType.LabContainer2,
                                                 TechType.LabContainer3);
@@ -129,7 +129,7 @@ namespace DecorationsMod
                 glassContainersTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabContainer4"));
 
             // Furnitures
-            var labFurnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("labshelves"));
+            var labFurnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Furnitures"));
             if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "DecorationsSpecimenAnalyzer") != TechType.None)
                 labFurnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationsSpecimenAnalyzer"));
             if (!ConfigSwitcher.LabCart_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "LabCart") != TechType.None)
@@ -145,10 +145,10 @@ namespace DecorationsMod
 
             #region ELECTRONICS
 
-            var electronicsTab = rootNode.AddTabNode("Electronics", LanguageHelper.GetFriendlyWord("Electronics"), AssetsHelper.Assets.LoadAsset<Sprite>("computer3"));
+            var electronicsTab = rootNode.AddTabNode("Electronics", LanguageHelper.GetFriendlyWord("Electronics"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Electronics"));
 
             // Wall monitors
-            var wallMonitorsTab = electronicsTab.AddTabNode("WallMonitors", LanguageHelper.GetFriendlyWord("WallMonitors"), AssetsHelper.Assets.LoadAsset<Sprite>("computer3"));
+            var wallMonitorsTab = electronicsTab.AddTabNode("WallMonitors", LanguageHelper.GetFriendlyWord("WallMonitors"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Monitor"));
             if (DecorationItemsHelper.getTechType(decorationItems, "WallMonitor1") != TechType.None)
                 wallMonitorsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WallMonitor1"));
             if (DecorationItemsHelper.getTechType(decorationItems, "WallMonitor2") != TechType.None)
@@ -157,7 +157,7 @@ namespace DecorationsMod
                 wallMonitorsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WallMonitor3"));
 
             // Circuit boxes
-            var circuitBoxesTab = electronicsTab.AddTabNode("CircuitBoxes", LanguageHelper.GetFriendlyWord("CircuitBoxes"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox3"));
+            var circuitBoxesTab = electronicsTab.AddTabNode("CircuitBoxes", LanguageHelper.GetFriendlyWord("CircuitBoxes"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Box"));
             if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1") != TechType.None)
                 circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1"));
             if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1b") != TechType.None)
@@ -183,7 +183,7 @@ namespace DecorationsMod
             //var circuitBoxTab2 = electronicsTab.AddTabNode("CircuitBoxTab2", LanguageHelper.GetFriendlyWord("CircuitBoxTab2"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox3"));
 
             // Seamoth fragments
-            var seamothFragmentsTab = electronicsTab.AddTabNode("SeamothFragments", LanguageHelper.GetFriendlyWord("SeamothFragments"), AssetsHelper.Assets.LoadAsset<Sprite>("seamothfragment2icon"));
+            var seamothFragmentsTab = electronicsTab.AddTabNode("SeamothFragments", LanguageHelper.GetFriendlyWord("SeamothFragments"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Seamoth"));
             if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment1") != TechType.None)
                 seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment1"));
             if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment2") != TechType.None)
@@ -199,7 +199,7 @@ namespace DecorationsMod
 
             #region DRINKS & FOOD
 
-            var barKitchenTab = rootNode.AddTabNode("DrinksAndFood", LanguageHelper.GetFriendlyWord("DrinksAndFood"), AssetsHelper.Assets.LoadAsset<Sprite>("barbottle05icon"));
+            var barKitchenTab = rootNode.AddTabNode("DrinksAndFood", LanguageHelper.GetFriendlyWord("DrinksAndFood"), AssetsHelper.Assets.LoadAsset<Sprite>("D_FoodandDrink"));
             if (DecorationItemsHelper.getTechType(decorationItems, "BarCup1") != TechType.None)
                 barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarCup1"));
             if (DecorationItemsHelper.getTechType(decorationItems, "BarCup2") != TechType.None)
@@ -227,11 +227,11 @@ namespace DecorationsMod
 
             #region PRECURSOR
 
-            var precursorTab = rootNode.AddTabNode("Precursor", LanguageHelper.GetFriendlyWord("Precursor"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_10_b"));
+            var precursorTab = rootNode.AddTabNode("Precursor", LanguageHelper.GetFriendlyWord("Precursor"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Precursors"));
             if (ConfigSwitcher.EnablePrecursorTab)
             {
                 // Warpers
-                var warperTab = precursorTab.AddTabNode("PrecursorWarperParts", LanguageHelper.GetFriendlyWord("PrecursorWarperParts"), AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon"));
+                var warperTab = precursorTab.AddTabNode("PrecursorWarperParts", LanguageHelper.GetFriendlyWord("PrecursorWarperParts"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Warper"));
                 if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart2") != TechType.None)
                     warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart2"));
                 if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart3") != TechType.None)
@@ -256,7 +256,7 @@ namespace DecorationsMod
                     warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart11"));
 
                 // Weapons
-                var weaponsTab = precursorTab.AddTabNode("PrecursorWeapons", LanguageHelper.GetFriendlyWord("Weapons"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_02_b"));
+                var weaponsTab = precursorTab.AddTabNode("PrecursorWeapons", LanguageHelper.GetFriendlyWord("Weapons"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Weapons"));
                 if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact6") != TechType.None)
                     weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact6"));
                 if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact7") != TechType.None)
@@ -265,7 +265,7 @@ namespace DecorationsMod
                     weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact8"));
 
                 // Artefacts
-                var artefactsTab = precursorTab.AddTabNode("PrecursorRelics", LanguageHelper.GetFriendlyWord("Relics"), AssetsHelper.Assets.LoadAsset<Sprite>("relic_04_b"));
+                var artefactsTab = precursorTab.AddTabNode("PrecursorRelics", LanguageHelper.GetFriendlyWord("Relics"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Relics"));
                 if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact1") != TechType.None)
                     artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact1"));
                 if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact2") != TechType.None)
@@ -284,7 +284,7 @@ namespace DecorationsMod
                     artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact11"));
 
                 // Keys
-                var keysTab = precursorTab.AddTabNode("PrecursorKeys", LanguageHelper.GetFriendlyWord("PrecursorKeys"), SpriteManager.Get(TechType.PrecursorKey_Red));
+                var keysTab = precursorTab.AddTabNode("PrecursorKeys", LanguageHelper.GetFriendlyWord("PrecursorKeys"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Tablets"));
                 if (ConfigSwitcher.PrecursorKeysAll)
                     keysTab.AddCraftingNode(new TechType[] { TechType.PrecursorKey_Purple, TechType.PrecursorKey_Orange, TechType.PrecursorKey_Blue });
                 keysTab.AddCraftingNode(new TechType[] { TechType.PrecursorKey_White, TechType.PrecursorKey_Red });
@@ -294,10 +294,10 @@ namespace DecorationsMod
 
             #region CREATURE EGGS
 
-            ModCraftTreeTab eggsTab = rootNode.AddTabNode("EggsTab", LanguageHelper.GetFriendlyWord("EggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("seaemperoreggicon"));
+            ModCraftTreeTab eggsTab = rootNode.AddTabNode("EggsTab", LanguageHelper.GetFriendlyWord("EggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_CreatureEggs"));
 
             // Damaging creatures
-            var dmgCreatureEggsTab = eggsTab.AddTabNode("DmgCreatureEggsTab", LanguageHelper.GetFriendlyWord("DmgCreatureEggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("seadragoneggicon"));
+            var dmgCreatureEggsTab = eggsTab.AddTabNode("DmgCreatureEggsTab", LanguageHelper.GetFriendlyWord("DmgCreatureEggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Aggressive"));
             if (DecorationItemsHelper.getTechType(decorationItems, "EggSeaDragon") != TechType.None)
                 dmgCreatureEggsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "EggSeaDragon"));
             if (DecorationItemsHelper.getTechType(decorationItems, "EggsGhostLeviathan") != TechType.None)
@@ -318,7 +318,7 @@ namespace DecorationsMod
             }
 
             // Non-damaging creatures
-            var nonDmgCreatureEggsTab = eggsTab.AddTabNode("NonDmgCreatureEggsTab", LanguageHelper.GetFriendlyWord("NonDmgCreatureEggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("seaemperoreggicon"));
+            var nonDmgCreatureEggsTab = eggsTab.AddTabNode("NonDmgCreatureEggsTab", LanguageHelper.GetFriendlyWord("NonDmgCreatureEggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Peacefull"));
             if (DecorationItemsHelper.getTechType(decorationItems, "EggSeaEmperor") != TechType.None)
                 nonDmgCreatureEggsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "EggSeaEmperor"));
             if (ConfigSwitcher.EnableRegularEggs)
@@ -336,10 +336,10 @@ namespace DecorationsMod
 
             #region LEVIATHAN DOLLS & SKELETONS
 
-            ModCraftTreeTab leviathansTab = rootNode.AddTabNode("LeviathansTab", LanguageHelper.GetFriendlyWord("LeviathansTab"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
+            ModCraftTreeTab leviathansTab = rootNode.AddTabNode("LeviathansTab", LanguageHelper.GetFriendlyWord("LeviathansTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Leviathans"));
 
             // Leviathan dolls
-            ModCraftTreeTab faunaTab = leviathansTab.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperleviathanicon"));
+            ModCraftTreeTab faunaTab = leviathansTab.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Dolls"));
             if (DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll") != TechType.None)
                 faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"));
             if (DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll") != TechType.None)
@@ -354,7 +354,7 @@ namespace DecorationsMod
                 faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll"));
 
             // Leviathan skeletons
-            ModCraftTreeTab skeletonsTab = leviathansTab.AddTabNode("SkeletonsParts", LanguageHelper.GetFriendlyWord("GenericSkeletonName"), AssetsHelper.Assets.LoadAsset<Sprite>("reaperskullicon"));
+            ModCraftTreeTab skeletonsTab = leviathansTab.AddTabNode("SkeletonsParts", LanguageHelper.GetFriendlyWord("GenericSkeletonName"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Skeleton"));
             if (DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton1") != TechType.None)
                 skeletonsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton1"));
             if (DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton2") != TechType.None)
@@ -372,7 +372,7 @@ namespace DecorationsMod
 
             #region OFFICE SUPPLIES
 
-            var officeSuppliesTab = rootNode.AddTabNode("OfficeSupplies", LanguageHelper.GetFriendlyWord("OfficeSupplies"), AssetsHelper.Assets.LoadAsset<Sprite>("clipboardicon"));
+            var officeSuppliesTab = rootNode.AddTabNode("OfficeSupplies", LanguageHelper.GetFriendlyWord("OfficeSupplies"), AssetsHelper.Assets.LoadAsset<Sprite>("D_OfficeMaterials"));
             if (!ConfigSwitcher.EmptyDesk_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "DecorationsEmptyDesk") != TechType.None)
                 officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationsEmptyDesk"));
             if (DecorationItemsHelper.getTechType(decorationItems, "Folder1") != TechType.None)
@@ -394,10 +394,10 @@ namespace DecorationsMod
 
             #region POSTERS / ACCESSORIES / TOYS
 
-            var patTab = rootNode.AddTabNode("ToysAndAccessories", LanguageHelper.GetFriendlyWord("ToysAndAccessories"), SpriteManager.Get(TechType.StarshipSouvenir));
+            var patTab = rootNode.AddTabNode("ToysAndAccessories", LanguageHelper.GetFriendlyWord("ToysAndAccessories"), AssetsHelper.Assets.LoadAsset<Sprite>("D_ToysAccessories"));
 
             // Toys
-            var toysTab = patTab.AddTabNode("Toys", LanguageHelper.GetFriendlyWord("Toys"), SpriteManager.Get(TechType.ArcadeGorgetoy));
+            var toysTab = patTab.AddTabNode("Toys", LanguageHelper.GetFriendlyWord("Toys"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Toys"));
             toysTab.AddCraftingNode(TechType.StarshipSouvenir,
                                     TechType.ArcadeGorgetoy,
                                     TechType.ToyCar);
@@ -415,7 +415,7 @@ namespace DecorationsMod
                 toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarlaCat"));
 
             // Posters
-            var postersTab = patTab.AddTabNode("Posters", LanguageHelper.GetFriendlyWord("Posters"), SpriteManager.Get(TechType.PosterKitty));
+            var postersTab = patTab.AddTabNode("Posters", LanguageHelper.GetFriendlyWord("Posters"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Posters"));
             postersTab.AddCraftingNode(TechType.PosterAurora,
                                        TechType.PosterExoSuit1,
                                        TechType.PosterExoSuit2,
@@ -426,7 +426,7 @@ namespace DecorationsMod
 #endif
 
             // Accessories
-            var accessoriesTab = patTab.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), SpriteManager.Get(TechType.LuggageBag));
+            var accessoriesTab = patTab.AddTabNode("Accessories", LanguageHelper.GetFriendlyWord("Accessories"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Accessories"));
             accessoriesTab.AddCraftingNode(TechType.LuggageBag);
             if (ConfigSwitcher.EnableSofas)
             {

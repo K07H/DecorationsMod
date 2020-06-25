@@ -33,7 +33,7 @@ enablePlaceItems=true
 enablePlaceBatteries=true
 
 # If "true", you will be able to build the seeds fabricator and to craft seeds.
-# The seeds fabricator can be used to craft all existing seeds plus new ones (54 different seeds in total).
+# The seeds fabricator can be used to craft all existing seeds plus new ones (55 different seeds in total).
 enableNewFlora=true
 
 # If "true", you will be able to build/craft the following items:
@@ -45,16 +45,16 @@ enableNewItems=true
 # If "true", you will be able to build sofas.
 enableSofas=true
 
-# If "true", you'll be able to build the indoor long planter outside bases/cyclops (tip: this allows to have land plants in water).
+# If "true", you will be able to build the indoor long planter outside bases/cyclops (tip: this allows to have land plants in water).
 allowIndoorLongPlanterOutside=true
 
-# If "true", you'll be able to build the exterior long planter inside bases/cyclops (tip: this allows to have sea plants inside bases/cyclops).
+# If "true", you will be able to build the exterior long planter inside bases/cyclops (tip: this allows to have sea plants inside bases/cyclops).
 allowOutdoorLongPlanterInside=true
 
 # If "true", the aquarium will adapt to the lights depending if it's indoor or outdoor.
 fixAquariumLighting=true
 
-# If "true", glass of the aquariums (both regular aquarium and the one from this mod) will be glowing a little.
+# If "true", glass of the aquariums will be glowing a little (this affects the regular aquarium and the small aquarium).
 enableAquariumGlassGlowing=false
 
 
@@ -84,18 +84,18 @@ enableAquariumGlassGlowing=false
 # Alien relics will be available once you scanned them in game.
 # Red and white tablets will be available once you pickup a purple tablet in game.
 # If "false", items from this mod will be available from start (you can build/craft them immediately).
-addItemsWhenDiscovered=true
+addItemsWhenDiscovered=false
 
 # If "true", land seeds are added to the seeds fabricator only after you picked up the plant/seed in game (if the plant/seed is not pickupable you need to scan it instead).
 # This setting works for following seeds: All existing land seeds.
 # If "false", land seeds will be available from start (you can craft them in the seeds fabricator immediately).
-addAirSeedsWhenDiscovered=true
+addAirSeedsWhenDiscovered=false
 
 # If "true", water seeds are added to the seeds fabricator only after you picked up the plant/seed in game.
 # If the plant/seed is not pickupable, you will have to scan it instead (for the mushroom tree seed you need to scan a tree leech or giant mushroom tree).
 # This setting works for following seeds: All existing water seeds, floating stone seed, brine lily seed, amoeba seed, pyrocoral seeds, crab claw kelp seeds, earthen coral tubes seeds, cove tree seed and mushroom tree seed.
 # If "false", water seeds will be available from start (you can craft them in the seeds fabricator immediately).
-addWaterSeedsWhenDiscovered=true
+addWaterSeedsWhenDiscovered=false
 
 # NOTE:
 # To unlock ghost leviathans eggs you need to scan the Cove Tree.
@@ -108,7 +108,7 @@ addEggsWhenCreatureScanned=false
 
 # If "true", eggs are added to the decorations fabricator from start (removes unlock conditions, you can craft them in fabricator immediately).
 # If "false", eggs are added to the decorations fabricator like explained in the NOTE above.
-addEggsAtStart=false
+addEggsAtStart=true
 
 
 # -----------------------

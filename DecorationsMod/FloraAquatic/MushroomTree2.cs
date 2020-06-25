@@ -132,8 +132,6 @@ namespace DecorationsMod.FloraAquatic
                         saRenderers.Add(rend);
                     else if (rend.name.StartsWith("Coral_reef_tree_mushrooms", true, CultureInfo.InvariantCulture) && rend.GetType() == typeof(MeshRenderer))
                         saRenderers.Add(rend);
-                    else if (rend.name.StartsWith("Spiral_blue_thing_cluster", true, CultureInfo.InvariantCulture) && rend.GetType() == typeof(MeshRenderer))
-                        saRenderers.Add(rend);
 
                     if (rend.materials.Length > 0)
                         foreach (Material tmpMat in rend.materials)
@@ -215,7 +213,7 @@ namespace DecorationsMod.FloraAquatic
                                 tmpMat.SetTexture("_BumpMap", normal7);
                                 tmpMat.SetTexture("_Illum", illum7);
                                 tmpMat.SetFloat("_Shininess", 10.0f);
-                                tmpMat.SetFloat("_EmissionLM", 1.0f);
+                                tmpMat.SetFloat("_EmissionLM", 2.5f);
                                 tmpMat.SetFloat("_EnableGlow", 1);
                                 tmpMat.SetColor("_GlowColor", new Color(0.518f, 1.0f, 1.0f, 1.0f));
                                 tmpMat.SetFloat("_GlowStrength", 2.5f);

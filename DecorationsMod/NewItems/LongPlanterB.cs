@@ -70,8 +70,6 @@ namespace DecorationsMod.NewItems
         {
             GameObject prefab = GameObject.Instantiate(this.GameObject);
 
-            PrefabsHelper.PrintTransform(prefab.transform);
-
             prefab.name = this.ClassID;
 
             // Update TechTag
@@ -111,21 +109,10 @@ namespace DecorationsMod.NewItems
             float heightScaleRatio = 0.5f;
 
             // Update box collider
-#if SUBNAUTICA
-            GameObject objectTrigger = prefab.FindChild("Collider");
-            BoxCollider objectCollider = objectTrigger.GetComponent<BoxCollider>();
-            objectCollider.size = new Vector3(objectCollider.size.x * scaleRatio, objectCollider.size.y * heightScaleRatio, objectCollider.size.z);
-            //objectCollider.center = new Vector3(objectCollider.center.x + pad, objectCollider.center.y, objectCollider.center.z);
-            GameObject builderTrigger = prefab.FindChild("Builder Trigger");
-            BoxCollider builderCollider = builderTrigger.GetComponent<BoxCollider>();
-            builderCollider.size = new Vector3(builderCollider.size.x * scaleRatio, builderCollider.size.y * heightScaleRatio, builderCollider.size.z);
-            //builderCollider.center = new Vector3(builderCollider.center.x + pad, builderCollider.center.y, builderCollider.center.z);
-#else
             GameObject objectTrigger = prefab.FindChild("collider");
             BoxCollider objectCollider = objectTrigger.GetComponent<BoxCollider>();
             objectCollider.size = new Vector3(objectCollider.size.x * scaleRatio, objectCollider.size.y * heightScaleRatio, objectCollider.size.z);
             //objectCollider.center = new Vector3(objectCollider.center.x + pad, objectCollider.center.y, objectCollider.center.z);
-#endif
 
             // Update model
             GameObject model = prefab.FindChild("model");
