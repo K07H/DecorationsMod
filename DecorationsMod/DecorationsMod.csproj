@@ -19,7 +19,7 @@
     <Optimize>false</Optimize>
     <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed</Dependencies>
     <OutputPath>bin\DebugSN\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SUBNAUTICA</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SUBNAUTICA;DEBUG_AQUARIUM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>

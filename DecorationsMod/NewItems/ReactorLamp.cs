@@ -166,6 +166,13 @@ namespace DecorationsMod.NewItems
                 skyapplier.renderers = this.GameObject.GetComponentsInChildren<Renderer>();
                 skyapplier.anchorSky = Skies.Auto;
 #else
+                var skyapplier = this.GameObject.GetComponent<SkyApplier>();
+                if (skyapplier != null)
+                    GameObject.Destroy(skyapplier);
+                var skyappliers = this.GameObject.GetComponentsInChildren<SkyApplier>();
+                if (skyappliers != null)
+                    foreach (SkyApplier sa in skyappliers)
+                        GameObject.Destroy(sa);
                 PrefabsHelper.SetDefaultSkyApplier(this.GameObject, null, Skies.Auto, false, true);
 #endif
 

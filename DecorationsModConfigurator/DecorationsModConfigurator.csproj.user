@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>publish\</PublishUrlHistory>
+    <PublishUrlHistory>publish\|C:\Program Files %28x86%29\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\ConfiguratorTest\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory>https://www.nexusmods.com/subnautica/mods/102</SupportUrlHistory>
     <UpdateUrlHistory />
@@ -12,5 +12,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ReferencePath>
+    </ReferencePath>
   </PropertyGroup>
 </Project>
