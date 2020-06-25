@@ -84,18 +84,18 @@ enableAquariumGlassGlowing=false
 # Alien relics will be available once you scanned them in game.
 # Red and white tablets will be available once you pickup a purple tablet in game.
 # If "false", items from this mod will be available from start (you can build/craft them immediately).
-addItemsWhenDiscovered=false
+addItemsWhenDiscovered=true
 
 # If "true", land seeds are added to the seeds fabricator only after you picked up the plant/seed in game (if the plant/seed is not pickupable you need to scan it instead).
 # This setting works for following seeds: All existing land seeds.
 # If "false", land seeds will be available from start (you can craft them in the seeds fabricator immediately).
-addAirSeedsWhenDiscovered=false
+addAirSeedsWhenDiscovered=true
 
 # If "true", water seeds are added to the seeds fabricator only after you picked up the plant/seed in game.
 # If the plant/seed is not pickupable, you will have to scan it instead (for the mushroom tree seed you need to scan a tree leech or giant mushroom tree).
 # This setting works for following seeds: All existing water seeds, floating stone seed, brine lily seed, amoeba seed, pyrocoral seeds, crab claw kelp seeds, earthen coral tubes seeds, cove tree seed and mushroom tree seed.
 # If "false", water seeds will be available from start (you can craft them in the seeds fabricator immediately).
-addWaterSeedsWhenDiscovered=false
+addWaterSeedsWhenDiscovered=true
 
 # NOTE:
 # To unlock ghost leviathans eggs you need to scan the Cove Tree.
@@ -108,7 +108,7 @@ addEggsWhenCreatureScanned=false
 
 # If "true", eggs are added to the decorations fabricator from start (removes unlock conditions, you can craft them in fabricator immediately).
 # If "false", eggs are added to the decorations fabricator like explained in the NOTE above.
-addEggsAtStart=true
+addEggsAtStart=false
 
 
 # -----------------------

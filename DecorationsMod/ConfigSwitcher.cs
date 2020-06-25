@@ -277,7 +277,7 @@ namespace DecorationsMod
             UriBuilder uri = new UriBuilder(codeBase);
             string path = Uri.UnescapeDataString(uri.Path);
             string currentDir = Path.GetDirectoryName(path);
-            configFilePath = currentDir + "/Config.txt";
+            configFilePath = currentDir.Replace('\\', '/') + "/Config.txt";
 
             Logger.Log("INFO: Loading configuration from \"" + configFilePath + "\"...");
 

@@ -67,5 +67,39 @@
             }
             return true;
         }
+
+        public static void GetAltUseItemAction_Postfix(ItemAction __result, InventoryItem item)
+        {
+            if (__result == ItemAction.None && item != null && item.item != null && ConfigSwitcher.EnablePlaceItems)
+            {
+                TechType techType = item.item.GetTechType();
+                if (techType == TechType.Bleach ||
+                    techType == TechType.Lubricant ||
+                    techType == TechType.Polyaniline ||
+                    techType == TechType.Benzene ||
+                    techType == TechType.HydrochloricAcid ||
+                    techType == TechType.HatchingEnzymes ||
+                    techType == TechType.Coffee ||
+                    techType == TechType.BigFilteredWater ||
+                    techType == TechType.DisinfectedWater ||
+                    techType == TechType.FilteredWater ||
+                    techType == TechType.WiringKit ||
+                    techType == TechType.AdvancedWiringKit ||
+                    techType == TechType.ComputerChip ||
+                    techType == TechType.PrecursorIonCrystal ||
+                    techType == TechType.StalkerTooth ||
+                    techType == TechType.FirstAidKit ||
+                    techType == TechType.Snack1 ||
+                    techType == TechType.Snack2 ||
+                    techType == TechType.Snack3)
+                    __result = ItemAction.Assign;
+                else if (ConfigSwitcher.EnablePlaceBatteries &&
+                         techType == TechType.PowerCell || 
+                         techType == TechType.Battery ||
+                         techType == TechType.PrecursorIonPowerCell ||
+                         techType == TechType.PrecursorIonBattery)
+                    __result = ItemAction.Assign;
+            }
+        }
     }
 }

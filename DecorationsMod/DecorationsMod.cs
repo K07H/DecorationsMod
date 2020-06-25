@@ -145,6 +145,13 @@ namespace DecorationsMod
             var addItemMethod = typeof(Aquarium).GetMethod("AddItem", BindingFlags.NonPublic | BindingFlags.Instance);
             var addItemPostfix = typeof(AquariumFixer).GetMethod("AddItem_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(addItemMethod, null, new HarmonyMethod(addItemPostfix));
+            // Fix alternative use for placeable items
+            if (ConfigSwitcher.EnablePlaceItems)
+            {
+                var getAltUseItemActionMethod = typeof(Inventory).GetMethod("GetAltUseItemAction", BindingFlags.Public | BindingFlags.Instance);
+                var getAltUseItemActionPostfix = typeof(InventoryFixer).GetMethod("GetAltUseItemAction_Postfix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(getAltUseItemActionMethod, null, new HarmonyMethod(getAltUseItemActionPostfix));
+            }
             // Setup new items unlock conditions
 #if DEBUG_HARMONY_PATCHING
             Logger.Log("DEBUG: Setting up new items unlock conditions...");
@@ -225,7 +232,7 @@ namespace DecorationsMod
             if (!_patchedBatteries)
             {
 #if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Making batteries and powercells placeable...");
+                Logger.Log("DEBUG: Making batteries and powercells placeable...");
 #endif
                 var allowedToAddMethod = typeof(Equipment).GetMethod("AllowedToAdd", BindingFlags.Public | BindingFlags.Instance);
                 var allowedToAddPrefix = typeof(EquipmentFixer).GetMethod("AllowedToAdd_Prefix", BindingFlags.Public | BindingFlags.Static);
