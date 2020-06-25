@@ -68,42 +68,62 @@
             return true;
         }
 
-        public static bool GetAltUseItemAction_Prefix(ref ItemAction __result, InventoryItem item)
+        public static bool GetAltUseItemAction_Prefix(Inventory __instance, ref ItemAction __result, InventoryItem item)
         {
-            if (__result == ItemAction.None && item != null && item.item != null && ConfigSwitcher.EnablePlaceItems)
+            if (item != null)
             {
-                TechType techType = item.item.GetTechType();
-                if (techType == TechType.Bleach ||
-                    techType == TechType.Lubricant ||
-                    techType == TechType.Polyaniline ||
-                    techType == TechType.Benzene ||
-                    techType == TechType.HydrochloricAcid ||
-                    techType == TechType.HatchingEnzymes ||
-                    techType == TechType.Coffee ||
-                    techType == TechType.BigFilteredWater ||
-                    techType == TechType.DisinfectedWater ||
-                    techType == TechType.FilteredWater ||
-                    techType == TechType.WiringKit ||
-                    techType == TechType.AdvancedWiringKit ||
-                    techType == TechType.ComputerChip ||
-                    techType == TechType.PrecursorIonCrystal ||
-                    techType == TechType.StalkerTooth ||
-                    techType == TechType.FirstAidKit ||
-                    techType == TechType.Snack1 ||
-                    techType == TechType.Snack2 ||
-                    techType == TechType.Snack3)
+                IItemsContainer container = item.container;
+                IItemsContainer oppositeContainer = __instance.GetOppositeContainer(item);
+                bool flag = container != null && container is Equipment;
+                bool flag2 = oppositeContainer != null && oppositeContainer is Equipment;
+                if (oppositeContainer != null && !flag2 && !flag)
                 {
-                    __result = ItemAction.Assign;
+                    if (item.CanDrag(false))
+                    {
+                        __result = ItemAction.Switch;
+                        return false;
+                    }
+                }
+                else if (container == __instance.container && Inventory.CanDropItemHere(item.item, false))
+                {
+                    __result = ItemAction.Drop;
                     return false;
                 }
-                else if (ConfigSwitcher.EnablePlaceBatteries &&
-                         techType == TechType.PowerCell ||
-                         techType == TechType.Battery ||
-                         techType == TechType.PrecursorIonPowerCell ||
-                         techType == TechType.PrecursorIonBattery)
+                if (item.item != null && ConfigSwitcher.EnablePlaceItems && Inventory.main.GetCanBindItem(item) && GameInput.GetPrimaryDevice() == GameInput.Device.Controller)
                 {
-                    __result = ItemAction.Assign;
-                    return false;
+                    TechType techType = item.item.GetTechType();
+                    if (techType == TechType.Bleach ||
+                        techType == TechType.Lubricant ||
+                        techType == TechType.Polyaniline ||
+                        techType == TechType.Benzene ||
+                        techType == TechType.HydrochloricAcid ||
+                        techType == TechType.HatchingEnzymes ||
+                        techType == TechType.Coffee ||
+                        techType == TechType.BigFilteredWater ||
+                        techType == TechType.DisinfectedWater ||
+                        techType == TechType.FilteredWater ||
+                        techType == TechType.WiringKit ||
+                        techType == TechType.AdvancedWiringKit ||
+                        techType == TechType.ComputerChip ||
+                        techType == TechType.PrecursorIonCrystal ||
+                        techType == TechType.StalkerTooth ||
+                        techType == TechType.FirstAidKit ||
+                        techType == TechType.Snack1 ||
+                        techType == TechType.Snack2 ||
+                        techType == TechType.Snack3)
+                    {
+                        __result = ItemAction.Assign;
+                        return false;
+                    }
+                    else if (ConfigSwitcher.EnablePlaceBatteries &&
+                             (techType == TechType.PowerCell ||
+                              techType == TechType.Battery ||
+                              techType == TechType.PrecursorIonPowerCell ||
+                              techType == TechType.PrecursorIonBattery))
+                    {
+                        __result = ItemAction.Assign;
+                        return false;
+                    }
                 }
             }
             return true;
