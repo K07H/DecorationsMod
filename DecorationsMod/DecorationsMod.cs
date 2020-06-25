@@ -149,8 +149,8 @@ namespace DecorationsMod
             if (ConfigSwitcher.EnablePlaceItems)
             {
                 var getAltUseItemActionMethod = typeof(Inventory).GetMethod("GetAltUseItemAction", BindingFlags.Public | BindingFlags.Instance);
-                var getAltUseItemActionPostfix = typeof(InventoryFixer).GetMethod("GetAltUseItemAction_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(getAltUseItemActionMethod, null, new HarmonyMethod(getAltUseItemActionPostfix));
+                var getAltUseItemActionPrefix = typeof(InventoryFixer).GetMethod("GetAltUseItemAction_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(getAltUseItemActionMethod, new HarmonyMethod(getAltUseItemActionPrefix), null);
             }
             // Setup new items unlock conditions
 #if DEBUG_HARMONY_PATCHING

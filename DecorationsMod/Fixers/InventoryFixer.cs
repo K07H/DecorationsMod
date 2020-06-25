@@ -68,7 +68,7 @@
             return true;
         }
 
-        public static void GetAltUseItemAction_Postfix(ItemAction __result, InventoryItem item)
+        public static bool GetAltUseItemAction_Prefix(ref ItemAction __result, InventoryItem item)
         {
             if (__result == ItemAction.None && item != null && item.item != null && ConfigSwitcher.EnablePlaceItems)
             {
@@ -92,14 +92,21 @@
                     techType == TechType.Snack1 ||
                     techType == TechType.Snack2 ||
                     techType == TechType.Snack3)
+                {
                     __result = ItemAction.Assign;
+                    return false;
+                }
                 else if (ConfigSwitcher.EnablePlaceBatteries &&
-                         techType == TechType.PowerCell || 
+                         techType == TechType.PowerCell ||
                          techType == TechType.Battery ||
                          techType == TechType.PrecursorIonPowerCell ||
                          techType == TechType.PrecursorIonBattery)
+                {
                     __result = ItemAction.Assign;
+                    return false;
+                }
             }
+            return true;
         }
     }
 }
