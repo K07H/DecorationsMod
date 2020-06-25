@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,6 +11,8 @@ namespace DecorationsModConfigurator
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            // Force dark theme on FluentWPF
+            SourceChord.FluentWPF.ResourceDictionaryEx.GlobalTheme = SourceChord.FluentWPF.ElementTheme.Dark;
             base.OnStartup(e);
             SetupExceptionHandling();
         }
