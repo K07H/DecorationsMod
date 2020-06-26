@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace DecorationsModConfigurator
 {
@@ -49,6 +50,8 @@ namespace DecorationsModConfigurator
             ListView_Menu.SelectedIndex = 0;
             Title = LanguageHelper.GetFriendlyWord("Config_ConfiguratorName");
 
+            if (Environment.OSVersion.Version.Major < 10) // If below Windows 10
+                this.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#B000344C"));
             (this.Content as FrameworkElement).DataContext = this;
         }
 

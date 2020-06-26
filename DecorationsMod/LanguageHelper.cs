@@ -3737,7 +3737,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Kompakte Symbole im Saatguthersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Компактные иконки в семени";
+                        return "Компактные иконки в изготовителе семян";
                     else
                         return "Compact icons in seeds fabricator";
                 case "Config_UseCompactTooltips":
@@ -3763,7 +3763,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Sperren Sie die Schlitze beim Platzieren des Objekts";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Блокировка слотов при размещении предмета";
+                        return "Блокировка быстрых слотов при размещении предмета";
                     else
                         return "Lock quickslots when placing item";
                 case "Config_AllowBuildOutside":
@@ -3854,7 +3854,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Aktivieren Sie die Registerkarte Erbauer";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Включить вкладку Прекурсоры";
+                        return "Включить вкладку Архитекторов";
                     else
                         return "Enable precursor tab";
                 case "Config_PrecursorKeysAll":
@@ -3867,7 +3867,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Fügen Sie Alien-Tabletten im Hersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Добавить чужие таблетки в фабрикаторе";
+                        return "Добавить скрижали в изготовитель декораций";
                     else
                         return "Add regular alien tablets in deco fabricator";
                 case "Config_EnableRegularEggs":
@@ -3880,7 +3880,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Fügen Sie normale Eier in Hersteller hinzu";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Добавьте обычные яйца в фабрикаторе";
+                        return "Добавить обычные яйца в изготовитель декораций";
                     else
                         return "Add regular eggs in deco fabricator";
                 case "Config_EnableEggsWhenCreatureScanned":
@@ -3893,7 +3893,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Schalte Eier frei, wenn sie im Spiel entdeckt werden";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Разблокировать яйца, когда обнаружены в игре";
+                        return "Разблокировать яйца после изучения взрослой особи";
                     else
                         return "Unlock eggs when discovered in game";
                 case "Config_EnableEggsAtStart":
@@ -3906,7 +3906,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Schalte Eier frei, wenn das Spiel beginnt";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Разблокировать яйца, когда игра начинается";
+                        return "Разблокировать яйца в начале игры"; //Разблокировать яйца сразу  - *if works by loading save after adding mode//
                     else
                         return "Unlock eggs when game starts";
                 case "Config_EggsDicoverySetting":
@@ -3919,7 +3919,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Erlaube das Basteln von Eiern";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Включить крафт яйца";
+                        return "Включить создание яиц";
                     else
                         return "Enable crafting regular eggs";
                 case "Config_EnableNutrientBlock":
@@ -3932,7 +3932,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Nährstoffblock im Hersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Питательный блок в изготовителе";
+                        return "Добавить питательный батончик в изготовитель декораций";
                     else
                         return "Add nutrient block in deco fabricator";
                 case "Config_EnableRegularAirSeeds":
@@ -3945,7 +3945,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Regelmäßige Luftsamen im Pflanzenhersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Обычные воздушные семена во флоре-фабриканте";
+                        return "Добавить семена наземных в изготовитель растений";
                     else
                         return "Add regular air seeds in flora fabricator";
                 case "Config_AddRegularAirSeedsWhenDiscovered":
@@ -3958,7 +3958,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Erlaube das Herstellen von Luftsamen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Разрешить создание воздушных семян";
+                        return "Разрешить создание наземных семян";
                     else
                         return "Enable crafting regular air seeds";
                 case "Config_EnableRegularWaterSeeds":
@@ -3971,7 +3971,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Regelmäßige Wassersamen in Flora Hersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Регулярные семена воды во флоре фабрикант";
+                        return "Добавить семена водных растений в изготовитель растений";
                     else
                         return "Add regular water seeds in flora fabricator";
                 case "Config_AddRegularWaterSeedsWhenDiscovered":
@@ -3984,7 +3984,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Erlaube das Herstellen von Wassersamen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Включить крафт семян воды";
+                        return "Разрешить создание водных семян";
                     else
                         return "Enable crafting regular water seeds";
                 case "Config_EnableDiscoveryMode":
@@ -4010,7 +4010,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Canapes einschließen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Добавить канапе";
+                        return "Добавить софы";
                     else
                         return "Enable sofas";
                 case "Config_BarBottle1_water":
@@ -4090,7 +4090,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Питательная ценность для бара еды 1";
                     else
-                        return "Nutrient value for bar food 1";
+                        return "Nutrients value for bar food 1";
                 case "Config_BarFood1_water":
                     if (UserLanguage == CountryCode.FR)
                         return "Valeur en eau de nourriture de bar 1";
@@ -4138,7 +4138,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "Dışarıda uzun ekici izin ver";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Lassen Sie lange Pflanzgefäße draußen";
+                        return "Erlauben Sie das Hinzufügen Pflanzgefäßen in Innenräumen";
                     else if (UserLanguage == CountryCode.RU)
                         return "Разрешить в помещении длинную сеялку снаружи";
                     else
@@ -4151,9 +4151,9 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.TR)
                         return "İç mekanda uzun ekiciye izin ver";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Lassen Sie lange Pflanzgefäße im Freien drinnen";
+                        return "Erlauben Sie das Hinzufügen Pflanzgefäßen im Freien";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Разрешить открытый длинный сеялка внутри";
+                        return "Разрешить постройку наружной длинной грядки внутри базы";
                     else
                         return "Allow outdoor long planter inside";
                 case "Config_FixAquariumLighting":
@@ -4179,7 +4179,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Aktivieren Sie den Aquarium-Glüheffekt";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Включить светящийся эффект аквариума";
+                        return "Включить эффект свечения аквариума";
                     else
                         return "Enable aquarium glowing effect";
                 case "Config_PrecursorKeysResource":
@@ -4192,7 +4192,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Ressource für Herstellung von Alien-Tablets";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Ресурс изготовления планшетов пришельцев";
+                        return "Тип ресурса для изготовления скрижалей пришельцев";
                     else
                         return "Resource to craft alien tablet";
                 case "Config_PrecursorKeysResourceAmount":
@@ -4205,7 +4205,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Menge an Ressourcen für Alien-Tablets";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Количество ресурсов для создания чужой таблетки";
+                        return "Количество ресурса для создания скрижали пришельцев";
                     else
                         return "Amount of resources to craft alien tablet";
                 case "Config_RelicRecipiesResource":
@@ -4218,7 +4218,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Handwerksressource für außerirdische Relikte";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Ресурсы для создания реликвии пришельцев";
+                        return "Тип ресурса для создания реликвии пришельцев";
                     else
                         return "Resource to craft alien relic";
                 case "Config_RelicRecipiesResourceAmount":
@@ -4231,7 +4231,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Menge an Ressourcen, um Relikte herzustellen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Количество ресурсов для изготовления реликвии";
+                        return "Количество ресурса для создания реликвии пришельцев";
                     else
                         return "Amount of resources to craft alien relic";
                 case "Config_CreatureEggsResource":
@@ -4244,7 +4244,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Ressource für Herstellung von Eiern";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Ресурс для изготовления яиц существ";
+                        return "Тип ресурса для создания яиц";
                     else
                         return "Resource to craft eggs";
                 case "Config_CreatureEggsResourceAmount":
@@ -4257,7 +4257,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Menge an Ressourcen für Kreaturenei";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Количество ресурсов для создания яйца существа";
+                        return "Количество ресурса для создания яйца";
                     else
                         return "Amount of resources to craft egg";
                 case "Config_FloraRecipiesResource":
@@ -4270,7 +4270,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Ressource zum Erstellen von Samen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Ресурс для создания семян";
+                        return "Тип ресурса для создания семян";
                     else
                         return "Resource to craft seeds";
                 case "Config_FloraRecipiesResourceAmount":
@@ -4283,9 +4283,22 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Menge an Ressourcen für Saatgut";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Количество ресурсов на семена";
+                        return "Количество ресурса для создания семян";
                     else
                         return "Amount of resources to craft seed";
+                case "Config_PurplePineconeDroppedResource":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ressource donnée par pomme de pin violette";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Recurso dado por la piña morada";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Mor çam kozalakları tarafından sağlanan kaynak";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ressource von lila Tannenzapfen gegeben";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Pесурсов, даваемых фиолетовой шишкой";
+                    else
+                        return "Resource given by purple pinecone";
                 case "Config_PurplePineconeDroppedResourceAmount":
                     if (UserLanguage == CountryCode.FR)
                         return "Nb ressources données par pomme de pin violette";
@@ -4296,7 +4309,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Menge Ressourcen von lila Tannenzapfen gegeben";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Количество ресурсов, даваемых фиолетовой шишкой";
+                        return "Количество ресурса, даваемого пурпурной шишкой";
                     else
                         return "Amount of resources given by purple pinecone";
                 case "Config_GhostLeviatan_enable":
@@ -4309,7 +4322,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Leviathan, der vom Buchtenbaum laicht";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Левиафан нерестится из бухты дерева";
+                        return "Гигантское дерево-укрытие создаёт призрачных левиафанов";
                     else
                         return "Cove tree spawns ghost leviathan(s)";
                 case "Config_GhostLeviatan_maxSpawns":
@@ -4322,7 +4335,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Anzahl der zu laichenden Leviathaner";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Количество левиафанов на нерест";
+                        return "Количество создаваемых левиафанов за раз";
                     else
                         return "Leviatans to spawn before eggs disappear";
                 case "Config_GhostLeviatan_timeBeforeFirstSpawn":
@@ -4335,7 +4348,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Der erste Leviathan erscheint in";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Первый левиафан появляется в";
+                        return "Первый левиафан появляется после";
                     else
                         return "First leviatan spawn in";
                 case "Config_GhostLeviatan_spawnTimeRatio":
@@ -4348,7 +4361,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Zeit zwischen zwei Leviathan-Spawns";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Время между двумя порождениями левиафана";
+                        return "Время между созданием двух левиафанов";
                     else
                         return "Time between 2 leviatan spawns";
                 case "Config_GhostLeviatan_health":
@@ -4361,7 +4374,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Spawn Leviathan Gesundheitspunkte";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Появившиеся пункты здоровья левиафана";
+                        return "Пункты здоровья создаваемых левиафанов";
                     else
                         return "Spawned leviatan health points";
                 case "Config_OpenDecorationsModConfigurator":
@@ -4374,7 +4387,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Klicken Sie hier zum Konfigurieren";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Нажмите здесь, чтобы настроить";
+                        return "Нажмите здесь, чтобы настроить"; // Нажмите здесь, для настройки   OR  Нажмите здесь, чтобы изменить
                     else
                         return "Click here to configure";
                 default:
