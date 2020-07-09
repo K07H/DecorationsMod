@@ -96,6 +96,7 @@ namespace DecorationsMod.NewItems
             constructible.rotationEnabled = true;
             constructible.deconstructionAllowed = true;
             constructible.controlModelState = true;
+            constructible.surfaceType = VFXSurfaceTypes.electronic;
             constructible.model = model;
 
             // Add constructable bounds

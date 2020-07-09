@@ -65,11 +65,11 @@ namespace DecorationsMod.NewItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             prefab.name = this.ClassID;
 
-            Logger.Log("DEBUG: Printing WorkDeskScreen1.");
-            PrefabsHelper.PrintTransform(prefab.transform);
-
             // Get model
-            //GameObject model = prefab.FindChild("Starship_control_terminal_01");
+            GameObject model = prefab.FindChild("Starship_work_desk_screen_01");
+
+            // Scale model
+            model.transform.localScale *= 0.8f;
 
             // Remove rigid body
             GameObject.DestroyImmediate(prefab.GetComponent<Rigidbody>());
@@ -86,12 +86,6 @@ namespace DecorationsMod.NewItems
             var techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
-            // Ajust collider
-            BoxCollider[] cs = prefab.GetComponentsInChildren<BoxCollider>();
-            if (cs != null)
-                foreach (BoxCollider c in cs)
-                    c.size *= 0.9f;
-
             // Set as constructible
             Constructable constructible = prefab.AddComponent<Constructable>();
             constructible.techType = this.TechType;
@@ -99,17 +93,19 @@ namespace DecorationsMod.NewItems
             constructible.allowedInBase = true;
             constructible.allowedInSub = true;
             constructible.allowedOutside = ConfigSwitcher.AllowBuildOutside;
-            constructible.allowedOnCeiling = false;
+            constructible.allowedOnCeiling = true;
             constructible.allowedOnGround = true;
             constructible.allowedOnConstructables = true;
             constructible.rotationEnabled = true;
             constructible.deconstructionAllowed = true;
             constructible.controlModelState = true;
-            constructible.model = prefab; //model;
+            constructible.surfaceType = VFXSurfaceTypes.electronic;
+            constructible.model = model;
 
             // Add constructable bounds
             ConstructableBounds cb = prefab.AddComponent<ConstructableBounds>();
-            cb.bounds.size *= 0.9f;
+            //Logger.Log("DEBUG: Constructable bounds WDS1: x=[" + cb.bounds.extents.x.ToString() + "] y=[" + cb.bounds.extents.y.ToString() + "] z=[" + cb.bounds.extents.z.ToString() + "]");
+            //cb.bounds.size *= 0.9f;
 
             return prefab;
         }

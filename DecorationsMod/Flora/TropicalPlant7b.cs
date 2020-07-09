@@ -25,8 +25,8 @@ namespace DecorationsMod.Flora
 #endif
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("TropicalTreeName") + " (6)",
-                                                        LanguageHelper.GetFriendlyWord("TropicalTreeDescription"),
+                                                        LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (6)",
+                                                        LanguageHelper.GetFriendlyWord("TropicalPlantDescription"),
                                                         true);
 
 #if BELOWZERO
