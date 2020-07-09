@@ -24,7 +24,7 @@ namespace DecorationsMod.NewItems
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[2]
                     {
-                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.Quartz, 1),
                         new Ingredient(TechType.BigFilteredWater, 1)
                     }),
             };
@@ -34,7 +34,7 @@ namespace DecorationsMod.NewItems
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
                     {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1),
+                        new SMLHelper.V2.Crafting.Ingredient(TechType.Quartz, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.BigFilteredWater, 1)
                     }),
             };
