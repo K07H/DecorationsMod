@@ -101,7 +101,6 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     Batteries/PowerCells and their ion versions<br>
 
 ### Additional information:<br>
-Inside the **DecorationsMod** folder you will a **Configurator** shortcut which allows you to configure this mod.<br>
 You can change range, brightness and color of the customizable light item (by clicking on it and holding various keys).<br>
 You can change the size and orientation of the customizable picture frame item (also you can set its content image from the screenshot folder like any other regular picture frame).<br>
 You can switch customizable picture frames to poster mode by clicking on it while holding "F".<br>
