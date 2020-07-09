@@ -181,21 +181,16 @@ namespace DecorationsMod
                                                          TechType.SpottedLeavesPlantSeed);
 
                 var regularSmallWaterTab = regularWaterSeedsTab.AddTabNode("RegularSmallWaterTab", LanguageHelper.GetFriendlyWord("RegularSmallWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaSmall"));
-                regularSmallWaterTab.AddCraftingNode(TechType.AcidMushroomSpore,
-                                                     TechType.WhiteMushroomSpore,
-                                                     TechType.JellyPlantSeed,
-                                                     TechType.SmallFanSeed,
+                regularSmallWaterTab.AddCraftingNode(TechType.SmallFanSeed,
                                                      TechType.PurpleFanSeed,
                                                      TechType.PurpleTentacleSeed);
 
-                var decorativeMediumWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeMediumWaterTab", LanguageHelper.GetFriendlyWord("DecorativeMediumWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaRegular"));
-                decorativeMediumWaterTab.AddCraftingNode(TechType.SeaCrownSeed,
-                                                         TechType.GabeSFeatherSeed,
-                                                         TechType.RedGreenTentacleSeed,
-                                                         TechType.ShellGrassSeed);
-
-                var decorativeBigWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeBigWaterTab", LanguageHelper.GetFriendlyWord("DecorativeBigWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaBig"));
-                decorativeBigWaterTab.AddCraftingNode(TechType.BluePalmSeed,
+                var decorativeBigWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeBigWaterTab", LanguageHelper.GetFriendlyWord("DecorativeBigWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Big"));
+                decorativeBigWaterTab.AddCraftingNode(TechType.SeaCrownSeed,
+                                                      TechType.GabeSFeatherSeed,
+                                                      TechType.RedGreenTentacleSeed,
+                                                      TechType.ShellGrassSeed,
+                                                      TechType.BluePalmSeed,
                                                       TechType.EyesPlantSeed,
                                                       TechType.MembrainTreeSeed,
                                                       TechType.RedConePlantSeed,
@@ -204,7 +199,10 @@ namespace DecorationsMod
                                                       TechType.SpikePlantSeed);
 
                 var functionalBigWaterTab = regularWaterSeedsTab.AddTabNode("FunctionalBigWaterTab", LanguageHelper.GetFriendlyWord("FunctionalBigWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Functional"));
-                functionalBigWaterTab.AddCraftingNode(TechType.CreepvinePiece,
+                functionalBigWaterTab.AddCraftingNode(TechType.AcidMushroomSpore,
+                                                      TechType.WhiteMushroomSpore,
+                                                      TechType.JellyPlantSeed,
+                                                      TechType.CreepvinePiece,
                                                       TechType.CreepvineSeedCluster,
                                                       TechType.BloodOil,
                                                       TechType.PurpleBrainCoralPiece,

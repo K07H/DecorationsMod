@@ -25,11 +25,14 @@
         <TextBlock Text="{Binding Config_FloraSettings, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="22" FontWeight="Regular" Margin="15" />
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="450" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_EnableRegularAirSeeds, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <CheckBox Grid.Column="1" x:Name="CB_AddRegularAirSeeds" Width="20" Height="20" Content="" IsChecked="{Binding AddRegularAirSeeds, Mode=TwoWay}">
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnableRegularAirSeeds, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnableRegularAirSeedsDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
+            <CheckBox Grid.Column="1" x:Name="CB_AddRegularAirSeeds" Width="20" Height="20" Content="" IsChecked="{Binding AddRegularAirSeeds, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
                 </CheckBox.LayoutTransform>
@@ -37,11 +40,14 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="450" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_EnableRegularWaterSeeds, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <CheckBox Grid.Column="1" x:Name="CB_AddRegularWaterSeeds" Width="20" Height="20" Content="" IsChecked="{Binding AddRegularWaterSeeds, Mode=TwoWay}">
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnableRegularWaterSeeds, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnableRegularWaterSeedsDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
+            <CheckBox Grid.Column="1" x:Name="CB_AddRegularWaterSeeds" Width="20" Height="20" Content="" IsChecked="{Binding AddRegularWaterSeeds, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
                 </CheckBox.LayoutTransform>
@@ -49,7 +55,7 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="450" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_FloraRecipiesResource, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -57,7 +63,7 @@
         </Grid>
         <Grid Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="450" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_FloraRecipiesResourceAmount, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
@@ -65,7 +71,7 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="450" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_PurplePineconeDroppedResource, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -73,7 +79,7 @@
         </Grid>
         <Grid Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="450" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_PurplePineconeDroppedResourceAmount, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" />

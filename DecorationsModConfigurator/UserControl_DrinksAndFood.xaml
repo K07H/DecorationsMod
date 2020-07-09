@@ -9,7 +9,7 @@
              FontWeight="Light"
              FontSize="18"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             d:DesignHeight="800" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="840">
     <UserControl.Resources>
         <Style TargetType="{x:Type Grid}">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -25,11 +25,14 @@
         <TextBlock Text="{Binding Config_DrinksAndFoodSettings, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="22" FontWeight="Regular" Margin="15" />
         <Grid Margin="0,20,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_EnableNutrientBlock, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <CheckBox Grid.Column="1" x:Name="CB_EnableNutrientBlock" Width="20" Height="20" Content="" IsChecked="{Binding EnableNutrientBlock, Mode=TwoWay}">
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnableNutrientBlock, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnableNutrientBlockDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
+            <CheckBox Grid.Column="1" x:Name="CB_EnableNutrientBlock" Width="20" Height="20" Content="" IsChecked="{Binding EnableNutrientBlock, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
                 </CheckBox.LayoutTransform>
@@ -37,75 +40,75 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_BarBottle1_water, Mode=TwoWay}" Margin="15,0,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-            <Slider Grid.Column="1" x:Name="SL_BarBottle1Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle1Water}" Width="330" Value="{Binding BarBottle1Water, Mode=TwoWay}" />
+            <Slider Grid.Column="1" x:Name="SL_BarBottle1Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle1Water}" Width="310" Value="{Binding BarBottle1Water, Mode=TwoWay}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_BarBottle2_water, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-            <Slider Grid.Column="1" x:Name="SL_BarBottle2Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle2Water}" Width="330" Value="{Binding BarBottle2Water, Mode=TwoWay}" />
+            <Slider Grid.Column="1" x:Name="SL_BarBottle2Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle2Water}" Width="310" Value="{Binding BarBottle2Water, Mode=TwoWay}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_BarBottle3_water, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-            <Slider Grid.Column="1" x:Name="SL_BarBottle3Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle3Water}" Width="330" Value="{Binding BarBottle3Water, Mode=TwoWay}" />
+            <Slider Grid.Column="1" x:Name="SL_BarBottle3Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle3Water}" Width="310" Value="{Binding BarBottle3Water, Mode=TwoWay}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_BarBottle4_water, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-            <Slider Grid.Column="1" x:Name="SL_BarBottle4Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle4Water}" Width="330" Value="{Binding BarBottle4Water, Mode=TwoWay}" />
+            <Slider Grid.Column="1" x:Name="SL_BarBottle4Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle4Water}" Width="310" Value="{Binding BarBottle4Water, Mode=TwoWay}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_BarBottle5_water, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-            <Slider Grid.Column="1" x:Name="SL_BarBottle5Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle5Water}" Width="330" Value="{Binding BarBottle5Water, Mode=TwoWay}" />
+            <Slider Grid.Column="1" x:Name="SL_BarBottle5Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarBottle5Water}" Width="310" Value="{Binding BarBottle5Water, Mode=TwoWay}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_BarFood1_nutrient, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-            <Slider Grid.Column="1" x:Name="SL_BarFood1Nutrient" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarFood1Nutrient}" Width="330" Value="{Binding BarFood1Nutrient, Mode=TwoWay}" />
+            <Slider Grid.Column="1" x:Name="SL_BarFood1Nutrient" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarFood1Nutrient}" Width="310" Value="{Binding BarFood1Nutrient, Mode=TwoWay}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_BarFood1_water, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-            <Slider Grid.Column="1" x:Name="SL_BarFood1Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarFood1Water}" Width="330" Value="{Binding BarFood1Water, Mode=TwoWay}" />
+            <Slider Grid.Column="1" x:Name="SL_BarFood1Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarFood1Water}" Width="310" Value="{Binding BarFood1Water, Mode=TwoWay}" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_BarFood2_nutrient, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-            <Slider Grid.Column="1" x:Name="SL_BarFood2Nutrient" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarFood2Nutrient}" Width="330" Value="{Binding BarFood2Nutrient, Mode=TwoWay}" />
+            <Slider Grid.Column="1" x:Name="SL_BarFood2Nutrient" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarFood2Nutrient}" Width="310" Value="{Binding BarFood2Nutrient, Mode=TwoWay}" />
         </Grid>
-        <Grid>
+        <Grid Margin="0,0,0,15">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_BarFood2_water, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-            <Slider Grid.Column="1" x:Name="SL_BarFood2Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarFood2Water}" Width="330" Value="{Binding BarFood2Water, Mode=TwoWay}" />
+            <Slider Grid.Column="1" x:Name="SL_BarFood2Water" Minimum="0" Maximum="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding BarFood2Water}" Width="310" Value="{Binding BarFood2Water, Mode=TwoWay}" />
         </Grid>
     </StackPanel>
 </UserControl>

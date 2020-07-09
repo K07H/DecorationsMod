@@ -1834,7 +1834,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Kleine Bank (dekorativ und funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Малый диван";
+                        return "Малый софа";
                     else
                         return "Small bench (decorative and functional)";
                 case "SofaStr1Description":
@@ -1860,7 +1860,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Mittelgroße Bank (dekorativ und funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Средний диван";
+                        return "Средний софа";
                     else
                         return "Medium bench (decorative and functional)";
                 case "SofaStr2Description":
@@ -1886,7 +1886,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Lange Bank (dekorativ und funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Большой диван";
+                        return "Большой софа";
                     else
                         return "Long bench (decorative and functional)";
                 case "SofaStr3Description":
@@ -1912,7 +1912,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Bank-Eckelement (dekorativ und funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Угловой диван";
+                        return "Угловой софа";
                     else
                         return "Bench angle (decorative and functional)";
                 case "SofaCorner2Description":
@@ -3053,17 +3053,17 @@ namespace DecorationsMod
                         return "Big aquatic plants";
                 case "FunctionalBigWaterTab":
                     if (UserLanguage == CountryCode.FR)
-                        return "Plantes aquatiques diverses";
+                        return "Plantes aquatiques fonctionnelles";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Varias plantas acuáticas";
+                        return "Plantas acuaticas funcionales";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Çeşitli sucul bitkiler";
+                        return "Fonksiyonel su bitkileri";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Verschiedene Wasserpflanzen";
+                        return "Funktionelle Wasserpflanzen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Различные водные растения";
+                        return "Функциональные водные растения";
                     else
-                        return "Diverse aquatic plants";
+                        return "Functional aquatic plants";
                 case "LongPlanterName":
                     if (UserLanguage == CountryCode.FR)
                         return "Longue jardinière";
@@ -3906,7 +3906,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Schalte Eier frei, wenn das Spiel beginnt";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Разблокировать яйца в начале игры"; //Разблокировать яйца сразу  - *if works by loading save after adding mode//
+                        return "Разблокировать яйца в начале игры";
                     else
                         return "Unlock eggs when game starts";
                 case "Config_EggsDicoverySetting":
@@ -3924,17 +3924,17 @@ namespace DecorationsMod
                         return "Enable crafting regular eggs";
                 case "Config_EnableNutrientBlock":
                     if (UserLanguage == CountryCode.FR)
-                        return "Block de nutriments dans fabricateur de déco";
+                        return "Bloc de nutriments dans fabricateur de décorations";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Bloque de nutrientes en el fabricante";
+                        return "Bloque de nutrientes en el fabricante de decoraciones";
                     else if (UserLanguage == CountryCode.TR)
                         return "Fabrikatördeki besin bloğu";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Nährstoffblock im Hersteller";
+                        return "Ernährungsblock im Dekorationshersteller";
                     else if (UserLanguage == CountryCode.RU)
                         return "Добавить питательный батончик в изготовитель декораций";
                     else
-                        return "Add nutrient block in deco fabricator";
+                        return "Add nutrient block in decorations fabricator";
                 case "Config_EnableRegularAirSeeds":
                     if (UserLanguage == CountryCode.FR)
                         return "Graînes terrestres standardes dans fabricateur";
@@ -3971,7 +3971,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Regelmäßige Wassersamen in Flora Hersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Добавить семена водных растений в изготовитель растений";
+                        return "Добавить семена водных в изготовитель растений";
                     else
                         return "Add regular water seeds in flora fabricator";
                 case "Config_AddRegularWaterSeedsWhenDiscovered":
@@ -4387,9 +4387,36 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Klicken Sie hier zum Konfigurieren";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Нажмите здесь, чтобы настроить"; // Нажмите здесь, для настройки   OR  Нажмите здесь, чтобы изменить
+                        return "Нажмите здесь, чтобы настроить";
                     else
                         return "Click here to configure";
+                // New items:
+                case "DecorativeControlTerminalName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Terminal de contrôle";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Terminal de control";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kontrol terminali";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Steuerterminal";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Терминал управления";
+                    else
+                        return "Control terminal";
+                case "DecorativeControlTerminalDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un terminal de contrôle décoratif.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un terminal de control decorativo.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekoratif bir kontrol terminali.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein dekoratives Kontrollterminal.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный терминал управления.";
+                    else
+                        return "A decorative control terminal.";
                 default:
                     return "?";
             }

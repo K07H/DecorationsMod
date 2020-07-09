@@ -51,6 +51,7 @@ namespace DecorationsModConfigurator
         
         public string Config_DrinksAndFoodSettings { get { return LanguageHelper.GetFriendlyWord("Config_DrinksAndFoodSettings"); } set { } }
         public string Config_EnableNutrientBlock { get { return LanguageHelper.GetFriendlyWord("Config_EnableNutrientBlock"); } set { } }
+        public string Config_EnableNutrientBlockDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableNutrientBlockDescription"); } set { } }
         public string Config_BarBottle1_water { get { return LanguageHelper.GetFriendlyWord("Config_BarBottle1_water"); } set { } }
         public string Config_BarBottle2_water { get { return LanguageHelper.GetFriendlyWord("Config_BarBottle2_water"); } set { } }
         public string Config_BarBottle3_water { get { return LanguageHelper.GetFriendlyWord("Config_BarBottle3_water"); } set { } }

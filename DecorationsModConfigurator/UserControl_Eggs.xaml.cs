@@ -78,6 +78,7 @@ namespace DecorationsModConfigurator
         
         public string Config_EggsSettings { get { return LanguageHelper.GetFriendlyWord("Config_EggsSettings"); } set { } }
         public string Config_EnableRegularEggs { get { return LanguageHelper.GetFriendlyWord("Config_EnableRegularEggs"); } set { } }
+        public string Config_EnableRegularEggsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableRegularEggsDescription"); } set { } }
         public string Config_CreatureEggsResource { get { return LanguageHelper.GetFriendlyWord("Config_CreatureEggsResource"); } set { } }
         public string Config_CreatureEggsResourceAmount { get { return LanguageHelper.GetFriendlyWord("Config_CreatureEggsResourceAmount"); } set { } }
 

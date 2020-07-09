@@ -25,11 +25,14 @@
         <TextBlock Text="{Binding Config_PrecursorSettings, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="22" FontWeight="Regular" Margin="15" />
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_EnablePrecursorTab, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <CheckBox Grid.Column="1" x:Name="CB_EnablePrecursorTab" Width="20" Height="20" Content="" IsChecked="{Binding EnablePrecursorTab, Mode=TwoWay}" Checked="CB_EnablePrecursorTab_Checked" Unchecked="CB_EnablePrecursorTab_Unchecked">
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnablePrecursorTab, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnablePrecursorTabDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
+            <CheckBox Grid.Column="1" x:Name="CB_EnablePrecursorTab" Width="20" Height="20" Content="" IsChecked="{Binding EnablePrecursorTab, Mode=TwoWay}" Checked="CB_EnablePrecursorTab_Checked" Unchecked="CB_EnablePrecursorTab_Unchecked" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
                 </CheckBox.LayoutTransform>
@@ -37,11 +40,14 @@
         </Grid>
         <Grid x:Name="GRD_PrecursorKeysAll">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_PrecursorKeysAll, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <CheckBox Grid.Column="1" x:Name="CB_PrecursorKeysAll" Width="20" Height="20" Content="" IsChecked="{Binding PrecursorKeysAll, Mode=TwoWay}">
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_PrecursorKeysAll, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_PrecursorKeysAllDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
+            <CheckBox Grid.Column="1" x:Name="CB_PrecursorKeysAll" Width="20" Height="20" Content="" IsChecked="{Binding PrecursorKeysAll, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
                 </CheckBox.LayoutTransform>
@@ -49,7 +55,7 @@
         </Grid>
         <Grid x:Name="GRD_PrecursorKeys_RecipiesResource">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_PrecursorKeysResource, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -57,7 +63,7 @@
         </Grid>
         <Grid x:Name="GRD_PrecursorKeys_RecipiesResourceAmount" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_PrecursorKeysResourceAmount, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
@@ -65,7 +71,7 @@
         </Grid>
         <Grid x:Name="GRD_Relics_RecipiesResource">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_RelicRecipiesResource, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -73,7 +79,7 @@
         </Grid>
         <Grid x:Name="GRD_Relics_RecipiesResourceAmount" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_RelicRecipiesResourceAmount, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
@@ -84,7 +90,7 @@
         </StackPanel>
         <Grid x:Name="GRD_AlienRelic1Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic1Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -96,7 +102,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic2Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic2Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -108,7 +114,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic3Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic3Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -120,7 +126,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic4Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic4Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -132,7 +138,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic5Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic5Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -144,7 +150,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic6Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic6Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -156,7 +162,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic7Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic7Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -168,7 +174,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic8Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic8Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -180,7 +186,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic9Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic9Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -192,7 +198,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic10Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic10Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -204,7 +210,7 @@
         </Grid>
         <Grid x:Name="GRD_AlienRelic11Animation">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="485" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_AlienRelic11Name, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />

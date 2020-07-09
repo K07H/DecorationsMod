@@ -220,7 +220,7 @@ namespace DecorationsMod
                 barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarFood1"));
             if (DecorationItemsHelper.getTechType(decorationItems, "BarFood2") != TechType.None)
                 barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarFood2"));
-            if (ConfigSwitcher.EnableNutrientBlock && TechType.NutrientBlock != TechType.None)
+            if (ConfigSwitcher.EnableNutrientBlock)
                 barKitchenTab.AddCraftingNode(TechType.NutrientBlock);
 
             #endregion

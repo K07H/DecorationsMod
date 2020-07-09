@@ -52,9 +52,13 @@ namespace DecorationsModConfigurator
 
         public string Config_DiscoverySettings { get { return LanguageHelper.GetFriendlyWord("Config_DiscoverySettings"); } set { } }
         public string Config_EnableDiscoveryMode { get { return LanguageHelper.GetFriendlyWord("Config_EnableDiscoveryMode"); } set { } }
+        public string Config_EnableDiscoveryModeDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableDiscoveryModeDescription"); } set { } }
         public string Config_AddRegularAirSeedsWhenDiscovered { get { return LanguageHelper.GetFriendlyWord("Config_AddRegularAirSeedsWhenDiscovered"); } set { } }
+        public string Config_AddRegularAirSeedsWhenDiscoveredDescription { get { return LanguageHelper.GetFriendlyWord("Config_AddRegularAirSeedsWhenDiscoveredDescription"); } set { } }
         public string Config_AddRegularWaterSeedsWhenDiscovered { get { return LanguageHelper.GetFriendlyWord("Config_AddRegularWaterSeedsWhenDiscovered"); } set { } }
+        public string Config_AddRegularWaterSeedsWhenDiscoveredDescription { get { return LanguageHelper.GetFriendlyWord("Config_AddRegularWaterSeedsWhenDiscoveredDescription"); } set { } }
         public string Config_EggsDicoverySetting { get { return LanguageHelper.GetFriendlyWord("Config_EggsDicoverySetting"); } set { } }
+        public string Config_EggsDicoverySettingDescription { get { return LanguageHelper.GetFriendlyWord("Config_EggsDicoverySettingDescription"); } set { } }
         public string Config_WhenDiscoveriesMade { get { return LanguageHelper.GetFriendlyWord("Config_WhenDiscoveriesMade"); } set { } }
         public string Config_WhenGameStarts { get { return LanguageHelper.GetFriendlyWord("Config_WhenGameStarts"); } set { } }
         public string Config_WhenSeedPickedUpInGame { get { return LanguageHelper.GetFriendlyWord("Config_WhenSeedPickedUpInGame"); } set { } }
@@ -125,6 +129,11 @@ namespace DecorationsModConfigurator
                 if (cbi != null && !string.IsNullOrEmpty(cbi.Name))
                     this.AddItemsWhenDiscovered = (cbi.Name == "Items_WhenDiscovered");
             }
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            SP_EnableDiscoveryMod_Details.Visibility = (SP_EnableDiscoveryMod_Details.Visibility == Visibility.Collapsed) ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

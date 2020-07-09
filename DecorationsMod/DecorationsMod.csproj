@@ -191,6 +191,7 @@
     <Compile Include="FloraAquatic\RedGrass2Tall.cs" />
     <Compile Include="FloraAquatic\RedGrass3.cs" />
     <Compile Include="FloraAquatic\RedGrass3Tall.cs" />
+    <Compile Include="NewItems\DecorativeControlTerminal.cs" />
     <Compile Include="NewItems\LongPlanterB.cs" />
     <Compile Include="NewItems\EggCrabsnake.cs" />
     <Compile Include="NewItems\EggBoneshark.cs" />
@@ -396,6 +397,8 @@
     <Compile Include="NewItems\WarperPart7.cs" />
     <Compile Include="NewItems\WarperPart8.cs" />
     <Compile Include="NewItems\WarperPart9.cs" />
+    <Compile Include="NewItems\WorkDeskScreen1.cs" />
+    <Compile Include="NewItems\WorkDeskScreen2.cs" />
     <Compile Include="PlaceToolItems.cs" />
     <Compile Include="PrefabsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -422,9 +425,6 @@
     <None Include="modBZ.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EmbeddedResources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

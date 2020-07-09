@@ -62,10 +62,15 @@ namespace DecorationsModConfigurator
 
         public string Config_GhostLeviathansSettings { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviathansSettings"); } set { } }
         public string Config_GhostLeviatan_enable { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_enable"); } set { } }
+        public string Config_GhostLeviatan_enableDescription { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_enableDescription"); } set { } }
         public string Config_GhostLeviatan_health { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_health"); } set { } }
+        public string Config_GhostLeviatan_healthDescription { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_healthDescription"); } set { } }
         public string Config_GhostLeviatan_maxSpawns { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_maxSpawns"); } set { } }
+        public string Config_GhostLeviatan_maxSpawnsDescription { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_maxSpawnsDescription"); } set { } }
         public string Config_GhostLeviatan_timeBeforeFirstSpawn { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_timeBeforeFirstSpawn"); } set { } }
+        public string Config_GhostLeviatan_timeBeforeFirstSpawnDescription { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_timeBeforeFirstSpawnDescription"); } set { } }
         public string Config_GhostLeviatan_spawnTimeRatio { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_spawnTimeRatio"); } set { } }
+        public string Config_GhostLeviatan_spawnTimeRatioDescription { get { return LanguageHelper.GetFriendlyWord("Config_GhostLeviatan_spawnTimeRatioDescription"); } set { } }
 
         public void RefreshGUI() => OnPropertyChanged("");
 

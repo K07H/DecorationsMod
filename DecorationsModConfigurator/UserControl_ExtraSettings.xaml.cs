@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
@@ -57,6 +58,7 @@ namespace DecorationsModConfigurator
 
         public string Config_ExtraSettings { get { return LanguageHelper.GetFriendlyWord("Config_ExtraSettings"); } set { } }
         public string Config_UseFlatScreenResolution { get { return LanguageHelper.GetFriendlyWord("Config_UseFlatScreenResolution"); } set { } }
+        public string Config_UseFlatScreenResolutionDescription { get { return LanguageHelper.GetFriendlyWord("Config_UseFlatScreenResolutionDescription"); } set { } }
         public string Config_AsBuildable_SpecimenAnalyzer { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildable_SpecimenAnalyzer"); } set { } }
         public string Config_AsBuildable_MarkiplierDoll1 { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildable_MarkiplierDoll1"); } set { } }
         public string Config_AsBuildable_MarkiplierDoll2 { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildable_MarkiplierDoll2"); } set { } }
@@ -69,11 +71,19 @@ namespace DecorationsModConfigurator
         public string Config_AsBuildable_SofaCorner { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildable_SofaCorner"); } set { } }
         public string Config_AsBuildable_LabCart { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildable_LabCart"); } set { } }
         public string Config_AsBuildable_EmptyDesk { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildable_EmptyDesk"); } set { } }
+        public string Config_AsBuildableSettings { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildableSettings"); } set { } }
 
         public void RefreshGUI() => OnPropertyChanged("");
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            try { Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri)); }
+            catch { MessageBox.Show("Could not open URL in web browser.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
+            e.Handled = true;
+        }
     }
 }

@@ -143,7 +143,9 @@ namespace DecorationsModConfigurator
 
         public string Config_PrecursorSettings { get { return LanguageHelper.GetFriendlyWord("Config_PrecursorSettings"); } set { } }
         public string Config_EnablePrecursorTab { get { return LanguageHelper.GetFriendlyWord("Config_EnablePrecursorTab"); } set { } }
+        public string Config_EnablePrecursorTabDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnablePrecursorTabDescription"); } set { } }
         public string Config_PrecursorKeysAll { get { return LanguageHelper.GetFriendlyWord("Config_PrecursorKeysAll"); } set { } }
+        public string Config_PrecursorKeysAllDescription { get { return LanguageHelper.GetFriendlyWord("Config_PrecursorKeysAllDescription"); } set { } }
         public string Config_PrecursorKeysResource { get { return LanguageHelper.GetFriendlyWord("Config_PrecursorKeysResource"); } set { } }
         public string Config_PrecursorKeysResourceAmount { get { return LanguageHelper.GetFriendlyWord("Config_PrecursorKeysResourceAmount"); } set { } }
         public string Config_RelicRecipiesResource { get { return LanguageHelper.GetFriendlyWord("Config_RelicRecipiesResource"); } set { } }

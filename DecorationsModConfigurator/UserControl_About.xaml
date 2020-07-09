@@ -8,7 +8,7 @@
              FontWeight="Light"
              FontSize="18"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="1090">
     <UserControl.Resources>
         <Style TargetType="{x:Type Grid}">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -24,7 +24,7 @@
         <TextBlock Text="{Binding Config_About, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="22" FontWeight="Regular" Margin="15" />
         <Grid Margin="0,15,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="430" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_DecorationsModVersion, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -32,7 +32,7 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="430" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_DecorationsModConfiguratorVersion, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -40,11 +40,69 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="430" />
+                <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{Binding Config_DecorationsModAuthor, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <TextBlock Grid.Column="1" Text="OSubMarin" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
+        <Image Source="/Images/Discord/Discord.png" Width="142" Height="40" HorizontalAlignment="Center" Margin="0,30,0,0" />
+        <Grid Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_ModdingDiscordDescription, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Source="/Images/Discord/SubnauticaModding.png" Width="48" Height="48" />
+                <TextBlock Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center"><Hyperlink NavigateUri="{Binding Config_ModdingDiscordURL, Mode=TwoWay}" RequestNavigate="Hyperlink_RequestNavigate"><TextBlock TextDecorations="Underline" Text="{Binding Config_ModdingDiscordURL, Mode=TwoWay}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Trigger.Setters>
+                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                            </Trigger.Setters>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Trigger.Setters>
+                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                                            </Trigger.Setters>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                </TextBlock></Hyperlink></TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="GRD_SecondaryDiscordLink" Margin="0,15,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_ModdingDiscordSecondaryDescription, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image x:Name="IMG_SubnauticaFrance" Visibility="Collapsed" Source="/Images/Discord/SubnauticaFrance.png" Width="48" Height="48" Margin="0,0,5,0" />
+                <Image x:Name="IMG_SubnauticaWiki" Visibility="Collapsed" Source="/Images/Discord/SubnauticaWiki.png" Width="48" Height="48" Margin="0,0,5,0" />
+                <TextBlock Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center"><Hyperlink NavigateUri="{Binding Config_ModdingDiscordSecondaryURL, Mode=TwoWay}" RequestNavigate="Hyperlink_RequestNavigate"><TextBlock TextDecorations="Underline" Text="{Binding Config_ModdingDiscordSecondaryURL, Mode=TwoWay}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Trigger.Setters>
+                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                            </Trigger.Setters>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Trigger.Setters>
+                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                                            </Trigger.Setters>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                </TextBlock></Hyperlink></TextBlock>
+            </StackPanel>
         </Grid>
     </StackPanel>
 </UserControl>

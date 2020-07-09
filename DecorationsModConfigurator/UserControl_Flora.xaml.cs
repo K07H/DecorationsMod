@@ -317,7 +317,9 @@ namespace DecorationsModConfigurator
 
         public string Config_FloraSettings { get { return LanguageHelper.GetFriendlyWord("Config_FloraSettings"); } set { } }
         public string Config_EnableRegularAirSeeds { get { return LanguageHelper.GetFriendlyWord("Config_EnableRegularAirSeeds"); } set { } }
+        public string Config_EnableRegularAirSeedsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableRegularAirSeedsDescription"); } set { } }
         public string Config_EnableRegularWaterSeeds { get { return LanguageHelper.GetFriendlyWord("Config_EnableRegularWaterSeeds"); } set { } }
+        public string Config_EnableRegularWaterSeedsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableRegularWaterSeedsDescription"); } set { } }
         public string Config_FloraRecipiesResource { get { return LanguageHelper.GetFriendlyWord("Config_FloraRecipiesResource"); } set { } }
         public string Config_FloraRecipiesResourceAmount { get { return LanguageHelper.GetFriendlyWord("Config_FloraRecipiesResourceAmount"); } set { } }
         public string Config_PurplePineconeDroppedResource { get { return LanguageHelper.GetFriendlyWord("Config_PurplePineconeDroppedResource"); } set { } }

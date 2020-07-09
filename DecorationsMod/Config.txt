@@ -82,7 +82,8 @@ enableAquariumGlassGlowing=false
 # Warper parts will be available once you scanned the warper parts in precursor lab.
 # Warper specimen will be available once you scanned the warper specimen in precursor lab.
 # Alien relics will be available once you scanned them in game.
-# Red and white tablets will be available once you pickup a purple tablet in game.
+# Purple, orange and blue tablets will be available once you picked them in game.
+# Red and white tablets will be available once you picked a purple tablet in game.
 # If "false", items from this mod will be available from start (you can build/craft them immediately).
 addItemsWhenDiscovered=true
 

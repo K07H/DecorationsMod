@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -63,6 +64,9 @@ namespace DecorationsModConfigurator
                 configuratorVersion = configuratorVersion.Substring(0, pos);
             this.ConfiguratorVersion = configuratorVersion;
 
+            IMG_SubnauticaFrance.Visibility = (LanguageHelper.UserLanguage == LanguageHelper.CountryCode.FR) ? Visibility.Visible : Visibility.Collapsed;
+            IMG_SubnauticaWiki.Visibility = (LanguageHelper.UserLanguage == LanguageHelper.CountryCode.RU) ? Visibility.Visible : Visibility.Collapsed;
+
             (this.Content as FrameworkElement).DataContext = this;
         }
 
@@ -73,11 +77,28 @@ namespace DecorationsModConfigurator
         public string Config_DecorationsModVersion { get { return LanguageHelper.GetFriendlyWord("Config_DecorationsModVersion"); } set { } }
         public string Config_DecorationsModConfiguratorVersion { get { return LanguageHelper.GetFriendlyWord("Config_DecorationsModConfiguratorVersion"); } set { } }
         public string Config_DecorationsModAuthor { get { return LanguageHelper.GetFriendlyWord("Config_DecorationsModAuthor"); } set { } }
+        public string Config_ModdingDiscordDescription { get { return LanguageHelper.GetFriendlyWord("Config_ModdingDiscordDescription"); } set { } }
+        public string Config_ModdingDiscordSecondaryDescription { get { return LanguageHelper.GetFriendlyWord("Config_ModdingDiscordSecondaryDescription"); } set { } }
+        public string Config_ModdingDiscordURL { get { return LanguageHelper.GetFriendlyWord("Config_ModdingDiscordURL"); } set { } }
+        public string Config_ModdingDiscordSecondaryURL { get { return LanguageHelper.GetFriendlyWord("Config_ModdingDiscordSecondaryURL"); } set { } }
 
-        public void RefreshGUI() => OnPropertyChanged("");
+        public void RefreshGUI()
+        {
+            GRD_SecondaryDiscordLink.Visibility = (LanguageHelper.UserLanguage == LanguageHelper.CountryCode.FR || LanguageHelper.UserLanguage == LanguageHelper.CountryCode.RU) ? Visibility.Visible : Visibility.Collapsed;
+            IMG_SubnauticaFrance.Visibility = LanguageHelper.UserLanguage == LanguageHelper.CountryCode.FR ? Visibility.Visible : Visibility.Collapsed;
+            IMG_SubnauticaWiki.Visibility = LanguageHelper.UserLanguage == LanguageHelper.CountryCode.RU ? Visibility.Visible : Visibility.Collapsed;
+            OnPropertyChanged("");
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            try { Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri)); }
+            catch { MessageBox.Show("Could not open URL in web browser.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
+            e.Handled = true;
+        }
     }
 }

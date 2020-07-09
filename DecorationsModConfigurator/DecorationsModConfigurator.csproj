@@ -582,6 +582,14 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Discord\SubnauticaFrance.png" />
+    <Resource Include="Images\Discord\SubnauticaModding.png" />
+    <Resource Include="Images\Discord\SubnauticaWiki.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Discord\Discord.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo ------ Copying "$(TargetDir)$(TargetFileName)" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...

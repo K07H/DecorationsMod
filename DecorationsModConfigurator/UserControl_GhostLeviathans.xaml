@@ -9,7 +9,7 @@
              FontWeight="Light"
              FontSize="18"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="{x:Type Grid}">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -25,11 +25,14 @@
         <TextBlock Text="{Binding Config_GhostLeviathansSettings, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="22" FontWeight="Regular" Margin="15" />
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="470" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_GhostLeviatan_enable, Mode=TwoWay}" Margin="15,15,15,3" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <CheckBox Grid.Column="1" x:Name="CB_GhostLeviatan_enable" Width="20" Height="17" VerticalAlignment="Bottom" Content="" IsChecked="{Binding GhostLeviatan_enable, Mode=TwoWay}" Checked="CB_GhostLeviatan_enable_Checked" Unchecked="CB_GhostLeviatan_enable_Unchecked">
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_GhostLeviatan_enable, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_GhostLeviatan_enableDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
+            <CheckBox Grid.Column="1" x:Name="CB_GhostLeviatan_enable" Width="20" Height="17" Content="" IsChecked="{Binding GhostLeviatan_enable, Mode=TwoWay}" Checked="CB_GhostLeviatan_enable_Checked" Unchecked="CB_GhostLeviatan_enable_Unchecked" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
                 </CheckBox.LayoutTransform>
@@ -37,34 +40,46 @@
         </Grid>
         <Grid x:Name="GRD_GhostLeviatan_health">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="470" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_GhostLeviatan_health, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_GhostLeviatan_health, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_GhostLeviatan_healthDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <Slider Grid.Column="1" x:Name="SL_GhostLeviatan_health" Minimum="10" Maximum="10000" SmallChange="10" LargeChange="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding GhostLeviatan_health}" Width="330" Value="{Binding GhostLeviatan_health, Mode=TwoWay}" />
         </Grid>
         <Grid x:Name="GRD_GhostLeviatan_maxSpawns">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="470" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_GhostLeviatan_maxSpawns, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_GhostLeviatan_maxSpawns, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_GhostLeviatan_maxSpawnsDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <Slider Grid.Column="1" x:Name="SL_GhostLeviatan_maxSpawns" Minimum="1" Maximum="10" SmallChange="1" LargeChange="2" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding GhostLeviatan_maxSpawns}" Width="330" Value="{Binding GhostLeviatan_maxSpawns, Mode=TwoWay}" />
         </Grid>
         <Grid x:Name="GRD_GhostLeviatan_timeBeforeFirstSpawn">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="470" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_GhostLeviatan_timeBeforeFirstSpawn, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_GhostLeviatan_timeBeforeFirstSpawn, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_GhostLeviatan_timeBeforeFirstSpawnDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <Slider Grid.Column="1" x:Name="SL_GhostLeviatan_timeBeforeFirstSpawn" Minimum="10" Maximum="14400" SmallChange="10" LargeChange="100" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding GhostLeviatan_timeBeforeFirstSpawn}" Width="330" Value="{Binding GhostLeviatan_timeBeforeFirstSpawn, Mode=TwoWay}" />
         </Grid>
         <Grid x:Name="GRD_GhostLeviatan_spawnTimeRatio">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="470" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_GhostLeviatan_spawnTimeRatio, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_GhostLeviatan_spawnTimeRatio, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_GhostLeviatan_spawnTimeRatioDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <Slider Grid.Column="1" x:Name="SL_GhostLeviatan_spawnTimeRatio" Minimum="1" Maximum="1000" SmallChange="1" LargeChange="10" VerticalAlignment="Top" Style="{StaticResource MaterialDesignDiscreteSlider}" ToolTip="{Binding GhostLeviatan_spawnTimeRatio}" Width="330" Value="{Binding GhostLeviatan_spawnTimeRatio, Mode=TwoWay}" />
         </Grid>
     </StackPanel>

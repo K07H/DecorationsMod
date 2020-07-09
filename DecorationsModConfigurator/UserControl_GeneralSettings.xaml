@@ -104,14 +104,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_UseCompactTooltips, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, tooltips of the &quot;customizable picture frame&quot; and &quot;customizable light&quot; items will be shorter." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_UseCompactTooltips, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_UseCompactTooltipsDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_UseCompactTooltips" Width="20" Height="20" Content="" IsChecked="{Binding UseCompactTooltips, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -123,14 +119,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_LockQuickslotsWhenPlacingItem, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, it will stop switching to next tool when using mouse wheel if you are currently holding a placeable item (this allows to rotate the placeable item)." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_LockQuickslotsWhenPlacingItem, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_LockQuickslotsWhenPlacingItemDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_LockQuickslotsWhenPlacingItem" Width="20" Height="20" Content="" IsChecked="{Binding LockQuickslotsWhenPlacingItem, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -142,14 +134,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_AllowBuildOutside, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, more items from this mod will be buildable outside bases." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_AllowBuildOutside, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_AllowBuildOutsideDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_AllowBuildOutside" Width="20" Height="20" Content="" IsChecked="{Binding AllowBuildOutside, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -161,14 +149,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_AllowPlaceOutside, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, more items from this mod will be placeable outside bases." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_AllowPlaceOutside, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_AllowPlaceOutsideDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_AllowPlaceOutside" Width="20" Height="20" Content="" IsChecked="{Binding AllowPlaceOutside, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -180,14 +164,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_EnablePlaceItems, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, you will be able to place following items: coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth and first aid kit." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnablePlaceItems, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnablePlaceItemsDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_EnablePlaceItems" Width="20" Height="20" Content="" IsChecked="{Binding EnablePlaceItems, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0" Checked="CB_EnablePlaceItems_Checked" Unchecked="CB_EnablePlaceItems_Unchecked">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -199,14 +179,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_EnablePlaceBatteries, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, you will be able to place batteries, powercells, ion batteries and ion powercells where you want. Attention: you will have to manually drag-n-drop batteries/power cells to the charger (left click will not equip them)." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnablePlaceBatteries, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnablePlaceBatteriesDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_EnablePlaceBatteries" Width="20" Height="20" Content="" IsChecked="{Binding EnablePlaceBatteries, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -218,14 +194,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_EnableNewFlora, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, you will be able to build the seeds fabricator and craft seeds (all existing seeds plus new ones)." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnableNewFlora, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnableNewFloraDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_EnableNewFlora" Width="20" Height="20" Content="" IsChecked="{Binding EnableNewFlora, Mode=TwoWay}" Checked="CB_EnableNewFlora_Checked" Unchecked="CB_EnableNewFlora_Unchecked" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -237,14 +209,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_EnableNewItems, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, you will be able to build/craft the following items: lab cart, indoor long planter, outdoor long planter specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll, empty desk, eatmydiction doll, seamoth doll, exosuit doll, forklift, cargo crates, sofas, benches, stool, customizable picture frame, customizable light, warper specimen, warper parts, alien pillar, alien relics and additional lockers." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnableNewItems, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnableNewItemsDescription}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_EnableNewItems" Width="20" Height="20" Content="" IsChecked="{Binding EnableNewItems, Mode=TwoWay}" Checked="CB_EnableNewItems_Checked" Unchecked="CB_EnableNewItems_Unchecked" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -256,14 +224,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_EnableSofas, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, you will be able to build sofas." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnableSofas, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnableSofasDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_EnableSofas" Width="20" Height="20" Content="" IsChecked="{Binding EnableSofas, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -275,14 +239,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_AllowIndoorLongPlanterOutside, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, you will be able to build the indoor long planter outside bases/cyclops (tip: this allows to have land plants in water)." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_AllowIndoorLongPlanterOutside, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_AllowIndoorLongPlanterOutsideDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_EnableIndoorLongPlanterOutside" Width="20" Height="20" Content="" IsChecked="{Binding AllowIndoorLongPlanterOutside, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -294,14 +254,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_AllowOutdoorLongPlanterInside, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, you will be able to build the exterior long planter inside bases/cyclops (tip: this allows to have sea plants inside bases/cyclops)." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_AllowOutdoorLongPlanterInside, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_AllowOutdoorLongPlanterInsideDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_EnableOutdoorLongPlanterInside" Width="20" Height="20" Content="" IsChecked="{Binding AllowOutdoorLongPlanterInside, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -313,14 +269,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_FixAquariumLighting, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, the aquarium lighting will adapt depending if it's indoor or outdoor." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_FixAquariumLighting, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_FixAquariumLightingDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_FixAquariumLighting" Width="20" Height="20" Content="" IsChecked="{Binding FixAquariumLighting, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
@@ -332,14 +284,10 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding Config_EnableAquariumGlassGlowing, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1" Text="If enabled, glass of the aquariums will be glowing a little (this affects the regular aquarium and the small aquarium)." TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            </Grid>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_EnableAquariumGlassGlowing, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_EnableAquariumGlassGlowingDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StackPanel>
             <CheckBox Grid.Column="1" x:Name="CB_EnableAquariumGlassGlowing" Width="20" Height="20" Content="" IsChecked="{Binding EnableAquariumGlassGlowing, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />

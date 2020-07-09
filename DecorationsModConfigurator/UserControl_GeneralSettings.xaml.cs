@@ -103,18 +103,31 @@ namespace DecorationsModConfigurator
         public string Config_GeneralSettings { get { return LanguageHelper.GetFriendlyWord("Config_GeneralSettings"); } set { } }
         public string Config_Language { get { return LanguageHelper.GetFriendlyWord("Config_Language"); } set { } }
         public string Config_UseCompactTooltips { get { return LanguageHelper.GetFriendlyWord("Config_UseCompactTooltips"); } set { } }
+        public string Config_UseCompactTooltipsDescription { get { return LanguageHelper.GetFriendlyWord("Config_UseCompactTooltipsDescription"); } set { } }
         public string Config_LockQuickslotsWhenPlacingItem { get { return LanguageHelper.GetFriendlyWord("Config_LockQuickslotsWhenPlacingItem"); } set { } }
+        public string Config_LockQuickslotsWhenPlacingItemDescription { get { return LanguageHelper.GetFriendlyWord("Config_LockQuickslotsWhenPlacingItemDescription"); } set { } }
         public string Config_AllowBuildOutside { get { return LanguageHelper.GetFriendlyWord("Config_AllowBuildOutside"); } set { } }
+        public string Config_AllowBuildOutsideDescription { get { return LanguageHelper.GetFriendlyWord("Config_AllowBuildOutsideDescription"); } set { } }
         public string Config_AllowPlaceOutside { get { return LanguageHelper.GetFriendlyWord("Config_AllowPlaceOutside"); } set { } }
+        public string Config_AllowPlaceOutsideDescription { get { return LanguageHelper.GetFriendlyWord("Config_AllowPlaceOutsideDescription"); } set { } }
         public string Config_EnablePlaceItems { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceItems"); } set { } }
+        public string Config_EnablePlaceItemsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceItemsDescription"); } set { } }
         public string Config_EnablePlaceBatteries { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceBatteries"); } set { } }
+        public string Config_EnablePlaceBatteriesDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceBatteriesDescription"); } set { } }
         public string Config_EnableNewFlora { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewFlora"); } set { } }
+        public string Config_EnableNewFloraDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewFloraDescription"); } set { } }
         public string Config_EnableNewItems { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewItems"); } set { } }
+        public string Config_EnableNewItemsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewItemsDescription"); } set { } }
         public string Config_EnableSofas { get { return LanguageHelper.GetFriendlyWord("Config_EnableSofas"); } set { } }
+        public string Config_EnableSofasDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableSofasDescription"); } set { } }
         public string Config_AllowIndoorLongPlanterOutside { get { return LanguageHelper.GetFriendlyWord("Config_AllowIndoorLongPlanterOutside"); } set { } }
+        public string Config_AllowIndoorLongPlanterOutsideDescription { get { return LanguageHelper.GetFriendlyWord("Config_AllowIndoorLongPlanterOutsideDescription"); } set { } }
         public string Config_AllowOutdoorLongPlanterInside { get { return LanguageHelper.GetFriendlyWord("Config_AllowOutdoorLongPlanterInside"); } set { } }
+        public string Config_AllowOutdoorLongPlanterInsideDescription { get { return LanguageHelper.GetFriendlyWord("Config_AllowOutdoorLongPlanterInsideDescription"); } set { } }
         public string Config_FixAquariumLighting { get { return LanguageHelper.GetFriendlyWord("Config_FixAquariumLighting"); } set { } }
+        public string Config_FixAquariumLightingDescription { get { return LanguageHelper.GetFriendlyWord("Config_FixAquariumLightingDescription"); } set { } }
         public string Config_EnableAquariumGlassGlowing { get { return LanguageHelper.GetFriendlyWord("Config_GlowingAquariumGlass"); } set { } }
+        public string Config_EnableAquariumGlassGlowingDescription { get { return LanguageHelper.GetFriendlyWord("Config_GlowingAquariumGlassDescription"); } set { } }
 
         public void RefreshGUI() => OnPropertyChanged("");
 

@@ -12,7 +12,7 @@
         fluentwpf:AcrylicWindow.TitleBarMode="Default"
         fluentwpf:AcrylicWindow.FallbackColor="#1000b0ff"
         xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Height="542" Width="1055"
+        Height="542" Width="1090"
         MinHeight="542" MinWidth="800"
         WindowStyle="None"
         AllowsTransparency="True"

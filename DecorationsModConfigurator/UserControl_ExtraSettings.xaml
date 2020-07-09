@@ -27,13 +27,38 @@
                 <ColumnDefinition Width="550" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_UseFlatScreenResolution, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <CheckBox Grid.Column="1" x:Name="CB_UseAlternativeScreenResolution" Width="20" Height="20" Content="" IsChecked="{Binding UseAlternativeScreenResolution, Mode=TwoWay}">
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="{Binding Config_UseFlatScreenResolution, Mode=TwoWay}" Margin="15,15,15,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Config_UseFlatScreenResolutionDescription, Mode=TwoWay}" TextWrapping="Wrap" Margin="15,5,5,0" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock TextWrapping="Wrap" Margin="15,0,5,15" FontSize="14" FontStyle="Italic" Opacity="0.65" HorizontalAlignment="Left" VerticalAlignment="Center"><Hyperlink NavigateUri="https://www.nexusmods.com/subnautica/mods/207" RequestNavigate="Hyperlink_RequestNavigate">
+                    <TextBlock TextDecorations="Underline" Text="https://www.nexusmods.com/subnautica/mods/207">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.Setters>
+                                            <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Trigger.Setters>
+                                            <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock></Hyperlink></TextBlock>
+            </StackPanel>
+            <CheckBox Grid.Column="1" x:Name="CB_UseAlternativeScreenResolution" Width="20" Height="20" Content="" IsChecked="{Binding UseAlternativeScreenResolution, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,5,0,0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
                 </CheckBox.LayoutTransform>
             </CheckBox>
         </Grid>
+        <StackPanel Orientation="Vertical" Width="780" HorizontalAlignment="Left">
+            <TextBlock Text="{Binding Config_AsBuildableSettings, Mode=TwoWay}" TextWrapping="Wrap" TextDecorations="Underline" Margin="15,18,15,10" FontWeight="Regular" />
+        </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="550" />
