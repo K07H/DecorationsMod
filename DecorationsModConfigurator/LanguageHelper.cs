@@ -5257,6 +5257,58 @@ namespace DecorationsModConfigurator
                         return "Декоративный терминал управления.";
                     else
                         return "A decorative control terminal.";
+                case "WorkDeskScreen1Name":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Écran mural";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pantalla de pared";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Duvar ekranı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wandbildschirm";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенный экран";
+                    else
+                        return "Wall screen";
+                case "WorkDeskScreen1Description":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un écran mural décoratif.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una pantalla de pared decorativa.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekoratif bir duvar ekranı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein dekorativer Wandschirm.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный настенный экран.";
+                    else
+                        return "A decorative wall screen.";
+                case "WorkDeskScreen2Name":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Écran mural endommagé";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pantalla de pared dañada";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Hasarlı duvar ekranı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Beschädigter Wandbildschirm";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Поврежденный экран";
+                    else
+                        return "Damaged wall screen";
+                case "WorkDeskScreen2Description":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un écran mural décoratif endommagé.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una pantalla de pared decorativa dañada.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Hasarlı bir dekoratif duvar ekranı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein beschädigter dekorativer Wandschirm.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Поврежденный декоративный настенный экран.";
+                    else
+                        return "A damaged decorative wall screen.";
                 // Config descriptions:
                 case "Config_UseCompactTooltipsDescription":
                     if (UserLanguage == CountryCode.FR)
