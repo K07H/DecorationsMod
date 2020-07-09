@@ -72,9 +72,9 @@ namespace DecorationsModConfigurator
             else if (UserLanguage == CountryCode.TR)
                 return "Büyüme: " + progress + "%";
             else if (UserLanguage == CountryCode.DE)
-                return "Wachstum:" + progress + "%";
+                return "Wachstum: " + progress + "%";
             else if (UserLanguage == CountryCode.RU)
-                return "Рост:" + progress + "%";
+                return "Рост: " + progress + "%";
             else
                 return "Growth: " + progress + "%";
         }
