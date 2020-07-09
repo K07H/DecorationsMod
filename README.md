@@ -1,7 +1,7 @@
 # Decorations Mod for Subnautica
 ## *Multilingual (EN/FR/ES/TR/DE/RU)*
 
-<br><br>
+<br>
 
 ### Prerequisites:
 Requires QMods and SMLHelper.<br>
@@ -15,7 +15,7 @@ Requires QMods and SMLHelper.<br>
 2) Extract folder **DecorationsMod** from the archive.<br>
 3) Move folder **DecorationsMod** inside "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods*" folder.<br>
 
-<br><br>
+<br><br><br>
 
 ### Configuration instructions:
 To edit configuration, double click on **Configurator** shortcut inside folder "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod*".<br>
@@ -25,7 +25,7 @@ To edit configuration, double click on **Configurator** shortcut inside folder "
 ### Update instructions:
 Same as the installation instructions (at step 3 it will ask if you want to replace files, say **Yes**).<br>
 
-<br><br>
+<br><br><br>
 
 ### Description:
 Adds a fabricator allowing you to craft 118 new items. Adds another fabricator to craft 55 new seeds. 27 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
