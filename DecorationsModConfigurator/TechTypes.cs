@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static DecorationsModConfigurator.TechTypes;
 
 namespace DecorationsModConfigurator
@@ -29,13 +26,9 @@ namespace DecorationsModConfigurator
                     TechTypeExtensions.stringsLowercase[techType] = text.ToLower();
                 }
                 if (!TechTypeExtensions.techTypesNormal.ContainsKey(text))
-                {
                     TechTypeExtensions.techTypesNormal[text] = techType;
-                }
                 if (!TechTypeExtensions.techTypesIgnoreCase.ContainsKey(text))
-                {
                     TechTypeExtensions.techTypesIgnoreCase[text] = techType;
-                }
                 int num = (int)techType;
                 string text2 = num.ToString();
                 TechTypeExtensions.techTypeKeys.Add(techType, text2);
@@ -43,127 +36,60 @@ namespace DecorationsModConfigurator
             }
         }
 
-        // Token: 0x0600125C RID: 4700 RVA: 0x000617BC File Offset: 0x0005F9BC
         public static string AsString(this TechType techType, bool lowercase = false)
         {
             string result;
             if (lowercase)
             {
                 if (TechTypeExtensions.stringsLowercase.TryGetValue(techType, out result))
-                {
                     return result;
-                }
             }
             else if (TechTypeExtensions.stringsNormal.TryGetValue(techType, out result))
-            {
                 return result;
-            }
             int num = (int)techType;
             return num.ToString();
         }
 
-        // Token: 0x0600125D RID: 4701 RVA: 0x000617F8 File Offset: 0x0005F9F8
         public static bool FromString(string str, out TechType techType, bool ignoreCase)
         {
             if (ignoreCase)
-            {
                 return TechTypeExtensions.techTypesIgnoreCase.TryGetValue(str, out techType);
-            }
             return TechTypeExtensions.techTypesNormal.TryGetValue(str, out techType);
         }
 
-        // Token: 0x0600125E RID: 4702 RVA: 0x00061818 File Offset: 0x0005FA18
         public static string EncodeKey(this TechType techType)
         {
             string result;
             if (TechTypeExtensions.techTypeKeys.TryGetValue(techType, out result))
-            {
                 return result;
-            }
             return null;
         }
 
-        // Token: 0x0600125F RID: 4703 RVA: 0x00061838 File Offset: 0x0005FA38
         public static TechType DecodeKey(this string key)
         {
             TechType result;
             if (TechTypeExtensions.keyTechTypes.TryGetValue(key, out result))
-            {
                 return result;
-            }
             return TechType.None;
         }
 
-        /*
-        // Token: 0x06001260 RID: 4704 RVA: 0x00061858 File Offset: 0x0005FA58
-        public static bool Contains(this Language language, TechType techType)
-        {
-            return language.Contains(techType.AsString(false));
-        }
-
-        // Token: 0x06001261 RID: 4705 RVA: 0x00061868 File Offset: 0x0005FA68
-        public static bool TryGet(this Language language, TechType techType, out string result)
-        {
-            return language.TryGet(techType.AsString(false), out result);
-        }
-
-        // Token: 0x06001262 RID: 4706 RVA: 0x00061878 File Offset: 0x0005FA78
-        public static string Get(this ILanguage language, TechType techType)
-        {
-            return language.Get(techType.AsString(false));
-        }
-
-        // Token: 0x06001263 RID: 4707 RVA: 0x00061888 File Offset: 0x0005FA88
-        public static string GetOrFallback(this Language language, TechType techType, TechType fallbackTechType)
-        {
-            return language.GetOrFallback(techType.AsString(false), fallbackTechType.AsString(false));
-        }
-
-        // Token: 0x06001264 RID: 4708 RVA: 0x000618A0 File Offset: 0x0005FAA0
-        public static string GetOrFallback(this Language language, string key, TechType fallbackTechType)
-        {
-            return language.GetOrFallback(key, fallbackTechType.AsString(false));
-        }
-
-        // Token: 0x06001265 RID: 4709 RVA: 0x000618B0 File Offset: 0x0005FAB0
-        public static string GetOrFallback(this Language language, TechType techType, string fallbackKey)
-        {
-            return language.GetOrFallback(techType.AsString(false), fallbackKey);
-        }
-        */
-
-        // Token: 0x0400157C RID: 5500
         public static readonly TechTypeExtensions.TechTypeComparer sTechTypeComparer = new TechTypeExtensions.TechTypeComparer();
 
-        // Token: 0x0400157D RID: 5501
         private static Dictionary<TechType, string> stringsNormal;
-
-        // Token: 0x0400157E RID: 5502
         private static Dictionary<TechType, string> stringsLowercase;
-
-        // Token: 0x0400157F RID: 5503
         private static Dictionary<string, TechType> techTypesNormal;
-
-        // Token: 0x04001580 RID: 5504
         private static Dictionary<string, TechType> techTypesIgnoreCase;
-
-        // Token: 0x04001581 RID: 5505
         private static Dictionary<TechType, string> techTypeKeys;
-
-        // Token: 0x04001582 RID: 5506
         private static Dictionary<string, TechType> keyTechTypes;
 
-        // Token: 0x020002F6 RID: 758
         public class TechTypeComparer : IEqualityComparer<TechType>
         {
-            // Token: 0x06001266 RID: 4710 RVA: 0x000618C0 File Offset: 0x0005FAC0
             public bool Equals(TechType x, TechType y)
             {
                 int num = (int)x;
                 return num.Equals((int)y);
             }
 
-            // Token: 0x06001267 RID: 4711 RVA: 0x000618D8 File Offset: 0x0005FAD8
             public int GetHashCode(TechType techType)
             {
                 return (int)techType;

@@ -244,6 +244,11 @@
                     if (ConfigSwitcher.AddWaterSeedsWhenDiscovered && !PDAEncyclopedia.ContainsEntry("TreeLeech") && !PDAEncyclopedia.ContainsEntry("TreeMushroom") && !PDAEncyclopedia.ContainsEntry("TreeMushroomPiece"))
                         __result = false;
                 }
+                else if (techType == MarbleMelonTiny)
+                {
+                    if (ConfigSwitcher.AddAirSeedsWhenDiscovered && !PDAEncyclopedia.ContainsEntry("MelonPlant") && !PDAEncyclopedia.ContainsEntry("MelonSeed") && !PDAEncyclopedia.ContainsEntry("SmallMelon") && !PDAEncyclopedia.ContainsEntry("Melon"))
+                        __result = false;
+                }
                 else if (!ConfigSwitcher.EnableEggsAtStart)
                 {
                     if (techType == GhostLeviathanEggs)
@@ -435,6 +440,8 @@
         public static TechType CoveTree = TechType.None;
         public static TechType MushroomTree1 = TechType.None;
         public static TechType MushroomTree2 = TechType.None;
+        public static TechType MarbleMelonTiny = TechType.None;
+        public static TechType MarbleMelonTinyFruit = TechType.None;
 
         public static TechType SeamothFragment1 = TechType.None;
         public static TechType SeamothFragment2 = TechType.None;

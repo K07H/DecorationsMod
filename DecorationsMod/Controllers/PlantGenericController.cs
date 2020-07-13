@@ -15,6 +15,7 @@ namespace DecorationsMod.Controllers
         public bool RestoreRadius = false;
         public bool RestoreBoxColliders = false;
         public bool Running = false;
+        public bool IsMarbleMelonTinyFruit = false;
         public float _progress = 0.0f;
         public float _passedProgress = 0.0f;
 
@@ -30,7 +31,7 @@ namespace DecorationsMod.Controllers
 
             // Init values
             _initTimeValue = DayNightCycle.main.timePassed;
-            _progress = 0.0f;
+            _progress = IsMarbleMelonTinyFruit ? 1.0f : 0.0f;
 
             // Disable knifeable
             LiveMixin liveMixin = GetComponent<LiveMixin>();
@@ -149,7 +150,7 @@ namespace DecorationsMod.Controllers
                 else
                 {
                     // Animation
-                    _progress = ((float)(DayNightCycle.main.timePassed - _initTimeValue) / GrowthDuration) + _passedProgress;
+                    _progress = IsMarbleMelonTinyFruit ? 1.0f : ((float)(DayNightCycle.main.timePassed - _initTimeValue) / GrowthDuration) + _passedProgress;
 #if DEBUG_FLORA_ANIMATION
                     if (id != null)
                         Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");

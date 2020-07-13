@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 
 namespace DecorationsModConfigurator
@@ -99,6 +90,26 @@ namespace DecorationsModConfigurator
             try { Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri)); }
             catch { MessageBox.Show("Could not open URL in web browser.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
             e.Handled = true;
+        }
+
+        private void PrimaryMenuItem_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(Config_ModdingDiscordURL);
+        }
+
+        private void PrimaryMenuItem_Open_Click(object sender, RoutedEventArgs e)
+        {
+            HL_ModdingDiscordPrimaryLink.DoClick();
+        }
+
+        private void SecondaryMenuItem_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(Config_ModdingDiscordSecondaryURL);
+        }
+
+        private void SecondaryMenuItem_Open_Click(object sender, RoutedEventArgs e)
+        {
+            HL_ModdingDiscordSecondaryLink.DoClick();
         }
     }
 }

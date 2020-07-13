@@ -180,6 +180,7 @@
     <Compile Include="Fixers\KnownTechFixer.cs" />
     <Compile Include="Fixers\MainMenuLoadButtonFixer.cs" />
     <Compile Include="Fixers\PickupableFixer.cs" />
+    <Compile Include="Fixers\PlayerFixer.cs" />
     <Compile Include="Fixers\SpawnConsoleCommandFixer.cs" />
     <Compile Include="Fixers\uGUI_MainMenuFixer.cs" />
     <Compile Include="FloraAquatic\BloodGrassDense.cs" />
@@ -191,6 +192,8 @@
     <Compile Include="FloraAquatic\RedGrass2Tall.cs" />
     <Compile Include="FloraAquatic\RedGrass3.cs" />
     <Compile Include="FloraAquatic\RedGrass3Tall.cs" />
+    <Compile Include="Flora\MarbleMelonTiny.cs" />
+    <Compile Include="Flora\MarbleMelonTinyFruit.cs" />
     <Compile Include="NewItems\DecorativeControlTerminal.cs" />
     <Compile Include="NewItems\LongPlanterB.cs" />
     <Compile Include="NewItems\EggCrabsnake.cs" />

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -1269,6 +1268,21 @@ namespace DecorationsModConfigurator
             }
         }
 
+        private FloraConfig _MarbleMelonTiny;
+        public FloraConfig MarbleMelonTiny
+        {
+            get => _MarbleMelonTiny; set
+            {
+                if (_MarbleMelonTiny != value)
+                {
+#if DEBUG_CONFIG_CHANGED
+			Logger.Log(LOG_CONFIG_CHANGE, nameof(MarbleMelonTiny), _MarbleMelonTiny, value);
+#endif
+                    _MarbleMelonTiny = value;
+                }
+            }
+        }
+
         #endregion
 
         #region Ghost leviathans settings
@@ -1375,6 +1389,22 @@ namespace DecorationsModConfigurator
                     Logger.Log(LOG_CONFIG_CHANGE, nameof(UseAlternativeScreenResolution), _useAlternativeScreenResolution, value);
 #endif
                     _useAlternativeScreenResolution = value;
+                }
+            }
+        }
+
+        private bool _hideDeepGrandReefDegasiBase;
+        public bool HideDeepGrandReefDegasiBase
+        {
+            get => _hideDeepGrandReefDegasiBase;
+            set
+            {
+                if (_hideDeepGrandReefDegasiBase != value)
+                {
+#if DEBUG_CONFIG_CHANGED
+                    Logger.Log(LOG_CONFIG_CHANGE, nameof(HideDeepGrandReefDegasiBase), _hideDeepGrandReefDegasiBase, value);
+#endif
+                    _hideDeepGrandReefDegasiBase = value;
                 }
             }
         }
@@ -1698,6 +1728,7 @@ namespace DecorationsModConfigurator
             this._BloodGrassDense = new FloraConfig(GetFriendlyWord("RedGrassDenseName") + " (2)", "/Images/Flora/bloodgrassdense2icon.png", 1600, 60, 90, false, 1, 1, false, 0.02f);
             this._MushroomTree1 = new FloraConfig(GetFriendlyWord("MushroomTree1Name"), "/Images/Flora/mushroomtreeicon.png", 3000, 300, 140, false, 1, 1, false, 0.02f);
             this._MushroomTree2 = new FloraConfig(GetFriendlyWord("MushroomTree2Name"), "/Images/Flora/mushroomtree2icon.png", 1500, 100, 80, false, 1, 1, false, 0.02f);
+            this._MarbleMelonTiny = new FloraConfig(GetFriendlyWord("MarbleMelonTinyFruitName"), "/Images/Flora/marblemelontinyicon.png", 800, 10, 280, true, 11, 7, true, 0.02f);
 
             // Ghost leviathans settings
             this._GhostLeviatan_enable = false;
@@ -1708,6 +1739,7 @@ namespace DecorationsModConfigurator
 
             // Extra settings
             this._useAlternativeScreenResolution = false;
+            this._hideDeepGrandReefDegasiBase = false;
             this._asBuildable_SpecimenAnalyzer = true;
             this._asBuildable_MarkiplierDoll1 = true;
             this._asBuildable_MarkiplierDoll2 = true;
@@ -1723,6 +1755,50 @@ namespace DecorationsModConfigurator
         }
 
         #endregion
+
+        #region Singleton instances
+
+        // Singleton (live version)
+        private static Configuration _instance = null;
+        public static Configuration Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    string configPath = GetConfigFilePath();
+                    // If Config.txt exists
+                    if (File.Exists(configPath))
+                        _instance = LoadConfiguration(configPath);
+                    else
+                        Logger.Log("ERROR: Config file not found at [{0}].", configPath);
+                }
+                return _instance;
+            }
+        }
+
+        // Singleton (original version)
+        private static Configuration _instanceOrigin = null;
+        public static Configuration InstanceOrigin
+        {
+            get
+            {
+                if (_instanceOrigin == null)
+                {
+                    string configPath = GetConfigFilePath();
+                    // If Config.txt exists
+                    if (File.Exists(configPath))
+                        _instanceOrigin = LoadConfiguration(configPath);
+                    else
+                        Logger.Log("ERROR: Config file not found at [{0}].", configPath);
+                }
+                return _instanceOrigin;
+            }
+        }
+
+        #endregion
+
+        #region Load configuration functions
 
         public static void RefreshInstancePlantNames()
         {
@@ -1781,9 +1857,8 @@ namespace DecorationsModConfigurator
             Configuration.Instance.BloodGrassDense.PlantName = LanguageHelper.GetFriendlyWord("RedGrassDenseName") + " (2)";
             Configuration.Instance.MushroomTree1.PlantName = LanguageHelper.GetFriendlyWord("MushroomTree1Name");
             Configuration.Instance.MushroomTree2.PlantName = LanguageHelper.GetFriendlyWord("MushroomTree2Name");
+            Configuration.Instance.MarbleMelonTiny.PlantName = LanguageHelper.GetFriendlyWord("MarbleMelonTinyFruitName");
         }
-
-        #region Singleton instances
 
         public static string GetConfigFilePath()
         {
@@ -1792,48 +1867,6 @@ namespace DecorationsModConfigurator
             // Get path to Config.txt file (it's in Configurator.exe parent directory)
             return Uri.UnescapeDataString(new Uri(Path.Combine(configuratorFolder, "..\\Config.txt")).AbsolutePath);
         }
-
-        // Singleton (live version)
-        private static Configuration _instance = null;
-        public static Configuration Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    string configPath = GetConfigFilePath();
-                    // If Config.txt exists
-                    if (File.Exists(configPath))
-                        _instance = LoadConfiguration(configPath);
-                    else
-                        Logger.Log("ERROR: Config file not found at [{0}].", configPath);
-                }
-                return _instance;
-            }
-        }
-
-        // Singleton (original version)
-        private static Configuration _instanceOrigin = null;
-        public static Configuration InstanceOrigin
-        {
-            get
-            {
-                if (_instanceOrigin == null)
-                {
-                    string configPath = GetConfigFilePath();
-                    // If Config.txt exists
-                    if (File.Exists(configPath))
-                        _instanceOrigin = LoadConfiguration(configPath);
-                    else
-                        Logger.Log("ERROR: Config file not found at [{0}].", configPath);
-                }
-                return _instanceOrigin;
-            }
-        }
-
-        #endregion
-
-        #region Load configuration functions
 
         public static FloraConfig LoadFloraConfig(string configStr, string alias, string image)
         {
@@ -2102,6 +2135,8 @@ namespace DecorationsModConfigurator
                     origConfig._MushroomTree1 = LoadFloraConfig(line.Substring("config_MushroomTree1=".Length), LanguageHelper.GetFriendlyWord("MushroomTree1Name"), "/Images/Flora/mushroomtreeicon.png");
                 else if (line.StartsWith("config_MushroomTree2="))
                     origConfig._MushroomTree2 = LoadFloraConfig(line.Substring("config_MushroomTree2=".Length), LanguageHelper.GetFriendlyWord("MushroomTree2Name"), "/Images/Flora/mushroomtree2icon.png");
+                else if (line.StartsWith("config_MarbleMelonTiny="))
+                    origConfig._MarbleMelonTiny = LoadFloraConfig(line.Substring("config_MarbleMelonTiny=".Length), LanguageHelper.GetFriendlyWord("MarbleMelonTinyFruitName"), "/Images/Flora/marblemelontinyicon.png");
                 else if (line.StartsWith("GhostLeviatan_enable="))
                     origConfig._GhostLeviatan_enable = string.Compare(line.Substring("GhostLeviatan_enable=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
                 else if (line.StartsWith("GhostLeviatan_health="))
@@ -2114,6 +2149,8 @@ namespace DecorationsModConfigurator
                     origConfig._GhostLeviatan_spawnTimeRatio = (int.TryParse(line.Substring("GhostLeviatan_spawnTimeRatio=".Length), out int tmpInt) ? tmpInt : 100);
                 else if (line.StartsWith("useAlternativeScreenResolution="))
                     origConfig._useAlternativeScreenResolution = string.Compare(line.Substring("useAlternativeScreenResolution=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
+                else if (line.StartsWith("hideDeepGrandReefDegasiBase="))
+                    origConfig._hideDeepGrandReefDegasiBase = string.Compare(line.Substring("hideDeepGrandReefDegasiBase=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
                 else if (line.StartsWith("asBuildable_SpecimenAnalyzer="))
                     origConfig._asBuildable_SpecimenAnalyzer = !(string.Compare(line.Substring("asBuildable_SpecimenAnalyzer=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("asBuildable_MarkiplierDoll1="))
@@ -2398,6 +2435,8 @@ namespace DecorationsModConfigurator
                         ReplaceStr(ref configContent, currentConfig.MushroomTree1.GetConfigStr(), "\nconfig_MushroomTree1=");
                     if (!currentConfig.MushroomTree2.IsEqual(origConfig.MushroomTree2))
                         ReplaceStr(ref configContent, currentConfig.MushroomTree2.GetConfigStr(), "\nconfig_MushroomTree2=");
+                    if (!currentConfig.MarbleMelonTiny.IsEqual(origConfig.MarbleMelonTiny))
+                        ReplaceStr(ref configContent, currentConfig.MarbleMelonTiny.GetConfigStr(), "\nconfig_MarbleMelonTiny=");
                     if (currentConfig.GhostLeviatan_enable != origConfig.GhostLeviatan_enable)
                         ReplaceStr(ref configContent, currentConfig.GhostLeviatan_enable.ToString(), "\nGhostLeviatan_enable=");
                     if (currentConfig.GhostLeviatan_health != origConfig.GhostLeviatan_health)
@@ -2410,6 +2449,8 @@ namespace DecorationsModConfigurator
                         ReplaceStr(ref configContent, currentConfig.GhostLeviatan_spawnTimeRatio.ToString(), "\nGhostLeviatan_spawnTimeRatio=");
                     if (currentConfig.UseAlternativeScreenResolution != origConfig.UseAlternativeScreenResolution)
                         ReplaceStr(ref configContent, currentConfig.UseAlternativeScreenResolution.ToString(), "\nuseAlternativeScreenResolution=");
+                    if (currentConfig.HideDeepGrandReefDegasiBase != origConfig.HideDeepGrandReefDegasiBase)
+                        ReplaceStr(ref configContent, currentConfig.HideDeepGrandReefDegasiBase.ToString(), "\nhideDeepGrandReefDegasiBase=");
                     if (currentConfig.AsBuildable_SpecimenAnalyzer != origConfig.AsBuildable_SpecimenAnalyzer)
                         ReplaceStr(ref configContent, currentConfig.AsBuildable_SpecimenAnalyzer.ToString(), "\nasBuildable_SpecimenAnalyzer=");
                     if (currentConfig.AsBuildable_MarkiplierDoll1 != origConfig.AsBuildable_MarkiplierDoll1)

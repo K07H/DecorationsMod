@@ -412,6 +412,12 @@ namespace DecorationsModConfigurator
                 changes.Add("BloodGrass changed from \"" + origConfig.BloodGrass.ToString() + "\" to \"" + currentConfig.BloodGrass.ToString() + "\".");
             if (!currentConfig.BloodGrassDense.IsEqual(origConfig.BloodGrassDense))
                 changes.Add("BloodGrassDense changed from \"" + origConfig.BloodGrassDense.ToString() + "\" to \"" + currentConfig.BloodGrassDense.ToString() + "\".");
+            if (!currentConfig.MushroomTree1.IsEqual(origConfig.MushroomTree1))
+                changes.Add("MushroomTree1 changed from \"" + origConfig.MushroomTree1.ToString() + "\" to \"" + currentConfig.MushroomTree1.ToString() + "\".");
+            if (!currentConfig.MushroomTree2.IsEqual(origConfig.MushroomTree2))
+                changes.Add("MushroomTree2 changed from \"" + origConfig.MushroomTree2.ToString() + "\" to \"" + currentConfig.MushroomTree2.ToString() + "\".");
+            if (!currentConfig.MarbleMelonTiny.IsEqual(origConfig.MarbleMelonTiny))
+                changes.Add("MarbleMelonTiny changed from \"" + origConfig.MarbleMelonTiny.ToString() + "\" to \"" + currentConfig.MarbleMelonTiny.ToString() + "\".");
             if (currentConfig.GhostLeviatan_enable != origConfig.GhostLeviatan_enable)
                 changes.Add("GhostLeviatan_enable changed from \"" + origConfig.GhostLeviatan_enable.ToString() + "\" to \"" + currentConfig.GhostLeviatan_enable.ToString() + "\".");
             if (currentConfig.GhostLeviatan_health != origConfig.GhostLeviatan_health)
@@ -424,6 +430,8 @@ namespace DecorationsModConfigurator
                 changes.Add("GhostLeviatan_spawnTimeRatio changed from \"" + origConfig.GhostLeviatan_spawnTimeRatio.ToString() + "\" to \"" + currentConfig.GhostLeviatan_spawnTimeRatio.ToString() + "\".");
             if (currentConfig.UseAlternativeScreenResolution != origConfig.UseAlternativeScreenResolution)
                 changes.Add("UseAlternativeScreenResolution changed from \"" + origConfig.UseAlternativeScreenResolution.ToString() + "\" to \"" + currentConfig.UseAlternativeScreenResolution.ToString() + "\".");
+            if (currentConfig.HideDeepGrandReefDegasiBase != origConfig.HideDeepGrandReefDegasiBase)
+                changes.Add("HideDeepGrandReefDegasiBase changed from \"" + origConfig.HideDeepGrandReefDegasiBase.ToString() + "\" to \"" + currentConfig.HideDeepGrandReefDegasiBase.ToString() + "\".");
             if (currentConfig.AsBuildable_SpecimenAnalyzer != origConfig.AsBuildable_SpecimenAnalyzer)
                 changes.Add("AsBuildable_SpecimenAnalyzer changed from \"" + origConfig.AsBuildable_SpecimenAnalyzer.ToString() + "\" to \"" + currentConfig.AsBuildable_SpecimenAnalyzer.ToString() + "\".");
             if (currentConfig.AsBuildable_MarkiplierDoll1 != origConfig.AsBuildable_MarkiplierDoll1)

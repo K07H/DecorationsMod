@@ -219,7 +219,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Analysegeräte (ohne Funktion)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Не работающие анализаторы";
+                        return "Нерабочие анализаторы";
                     else
                         return "Non-functional analyzers";
                 case "LabFurnitures":
@@ -232,7 +232,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Laborausstattung";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лабораторная мебель";
+                        return "Лабораторное оборудование";
                     else
                         return "Lab furnitures";
                 case "WallMonitors":
@@ -245,7 +245,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wandmonitore";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Настенные мониторы";
+                        return "Настенные компьютеры";
                     else
                         return "Wall computers";
                 case "CircuitBoxes":
@@ -310,7 +310,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Hochspannungsrelais";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Реле высоковольтные";
+                        return "Высоковольтные реле";
                     else
                         return "High voltage electrical relays";
                 case "Toys":
@@ -336,7 +336,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Bürobedarf";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Канцелярия";
+                        return "Канцелярные предметы";
                     else
                         return "Office supplies";
                 case "Accessories":
@@ -375,7 +375,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Erbauer";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Предшественники";
+                        return "Архитекторы";
                     else
                         return "Precursor";
                 case "PrecursorWarperParts": // Ency_Precursor_LostRiverBase_WarperParts
@@ -401,7 +401,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Tafel";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Таблетки";
+                        return "Скрижали";
                     else
                         return "Tablets";
                 case "Weapons":
@@ -440,7 +440,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Leviathan";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Левиафана";
+                        return "Левиафан";
                     else
                         return "Leviathan";
                 case "FloraTab":
@@ -544,7 +544,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Amphibische Pflanzen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Растения Амфибии";
+                        return "Растения-амфибии";
                     else
                         return "Amphibious plants";
                 case "RedGrassesTab":
@@ -557,7 +557,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Blutgräser";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кровавые травы";
+                        return "Кровавая трава";
                     else
                         return "Blood grasses";
                 case "EggsTab":
@@ -570,7 +570,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Kreaturen Eier";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Существа яиц";
+                        return "Яйца существ";
                     else
                         return "Creatures eggs";
                 case "DmgCreatureEggsTab":
@@ -622,7 +622,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein umgekehrter zylindrischer Probenbehälter, wahrscheinlich nutzlos.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Стеклянный контейнер для образцов, возможно бесполезен.";
+                        return "Стеклянный контейнер для образцов, вероятно, бесполезен.";
                     else
                         return "An inverted cylindrical sample container, probably useless.";
                 case "SmallLabContainerOpenName":
@@ -648,7 +648,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Probenbehälter (offen)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Контейнер для образцов (открыт)";
+                        return "Контейнер для образцов (открытый)";
                     else
                         return "Sample container (open)";
                 case "LargeLabContainerOpenName":
@@ -687,7 +687,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Röhrenartiger Laborschrank (nicht funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лабораторная полка";
+                        return "Лабораторные полки";
                     else
                         return "Tubular laboratory shelves (non-functional)";
                 case "LabTubeDescription":
@@ -700,7 +700,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein Schrank in Form einer Röhre zur Aufbewahrung von Proben.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Декоративная лабораторная полка для образцов.";
+                        return "Декоративная стойка лабораторных полок для образцов.";
                     else
                         return "Tubular shelves for storing samples.";
                 case "LabCartName":
@@ -713,7 +713,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Laborwagen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лабораторный столик";
+                        return "Лабораторная тележка";
                     else
                         return "Lab cart";
                 case "LabCartDescription":
@@ -726,7 +726,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein Laborprobenwagen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Декоративный лабораторный столик для образцов и инструментов.";
+                        return "Декоративная лабораторная тележка для образцов и инструментов.";
                     else
                         return "A laboratory sample cart.";
                 case "LabShelfName":
@@ -843,7 +843,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Schaltkasten";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Блок цепи";
+                        return "Распределительная коробка";
                     else
                         return "Circuits box";
                 case "CircuitBox1Description":
@@ -856,7 +856,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein einfacher Schaltkasten (ermöglicht das Einschalten von elektrischen Geräten).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Коммутационный узел для подключения устройств, питающихся от сети.";
+                        return "Простая распределительная коробка (позволяет питать электрические устройства).";
                     else
                         return "A simple circuit box (allows powering of electrical devices).";
                 case "CircuitBox2Name":
@@ -908,7 +908,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein elektrisches Verbindungselement, das den Transport großer Energiemengen ermöglicht.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Реле выдерживающее большую нагрузку.";
+                        return "Компонент, позволяющий передавать большое количество энергии.";
                     else
                         return "A component allowing the transport of large amounts of energy.";
                 case "SpecimenAnalyzerName":
@@ -934,7 +934,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein Gerät zur Untersuchung von Proben, um Herstellungsmuster abzuleiten.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Позволяет изучать образцы для их выведения.";
+                        return "Позволяет изучать образцы для их последующего производства.";
                     else
                         return "Study specimens to deduce patterns of manufacture.";
                 case "SmallEmperorName":
@@ -947,7 +947,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Seeimperator-Puppe";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кукла «Императора Левиафана»";
+                        return "Кукла левиафана «Морской Император»";
                     else
                         return "Emperor leviathan doll";
                 case "SmallEmperorDescription":
@@ -960,7 +960,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Diese Seeimperator-Puppe wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Была создана для наблюдения в 4546B.";
+                        return "Эта кукла была создана по результатам научных наблюдений на 4546B.";
                     else
                         return "This emperor leviathan doll was created from observations made on 4546B.";
                 case "MarlaCatName":
@@ -978,7 +978,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Friss-meine-Aussprache-Katze.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Котенок для какой-о дикции.";
+                        return "Кукла кошки «EatMyDiction».";
                     else
                         return "Eat My Diction's cat.";
                 case "MarkiDollName":
@@ -1043,7 +1043,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Leviathan-Puppe";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Куклы Левиафана";
+                        return "Куклы Левиафанов";
                     else
                         return "Leviathan dolls";
                 case "GhostLeviathanDollName":
@@ -1069,7 +1069,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Diese Puppe eines Phantom-Leviathans wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Была создана для наблюдения в 4546B.";
+                        return "Эта кукла была создана по результатам научных наблюдений на 4546B.";
                     else
                         return "This ghost leviathan doll was created from observations made on 4546B.";
                 case "ReaperLeviathanDollName":
@@ -1082,7 +1082,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Cheliceratops-Puppe";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кукла Жнеца Левиафана";
+                        return "Кукла левиафана «Жнец»";
                     else
                         return "Reaper leviathan doll";
                 case "ReaperLeviathanDollDescription":
@@ -1095,7 +1095,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Diese Puppe eines Cheliceratops wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Была создана для наблюдения в 4546B.";
+                        return "Эта кукла была создана по результатам научных наблюдений на 4546B.";
                     else
                         return "This reaper leviathan doll was created from observations made on 4546B.";
                 case "SeaDragonDollName":
@@ -1108,7 +1108,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Seedrachen-Puppe";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кукла Морского Дракона Левиафана";
+                        return "Кукла Морского Дракона";
                     else
                         return "Sea dragon leviathan doll";
                 case "SeaDragonDollDescription":
@@ -1121,7 +1121,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Diese Puppe eines Seedrachen wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Была создана для наблюдения в 4546B.";
+                        return "Эта кукла была создана по результатам научных наблюдений на 4546B.";
                     else
                         return "This sea dragon leviathan doll was created from observations made on 4546B.";
                 case "SeaTreaderDollName":
@@ -1147,7 +1147,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Diese Puppe eines Seewanderers wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Была создана для наблюдения в 4546B.";
+                        return "Эта кукла была создана по результатам научных наблюдений на 4546B.";
                     else
                         return "This sea treader leviathan doll was created from observations made on 4546B.";
                 case "ReefBackDollName":
@@ -1173,7 +1173,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Diese Puppe eines Riffrückens wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Была создана для наблюдения в 4546B.";
+                        return "Эта кукла была создана по результатам научных наблюдений на 4546B.";
                     else
                         return "This reefback leviathan doll was created from observations made on 4546B.";
                 case "CuddleFishDollName":
@@ -1199,7 +1199,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Diese Puppe eines Knuddelfischs wurde wurde anhand der Begutachtung einer Probe von 4546B geschaffen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Была создана для наблюдения в 4546B.";
+                        return "Эта кукла была создана по результатам научных наблюдений на 4546B.";
                     else
                         return "This cuddlefish doll was created from observations made on 4546B.";
                 case "ReactorLampName":
@@ -1225,7 +1225,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine anpassbare Lampe. Kann drinnen und draußen gebaut werden." + Environment.NewLine + Environment.NewLine + "Verwendungszweck: " + GetFriendlyWord("LampTooltipCompact");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лампа с настройками. Может быть построен внутри и снаружи." + Environment.NewLine + Environment.NewLine + "Применение: " + GetFriendlyWord("LampTooltipCompact");
+                        return "Настраиваемая лампа. Может быть построена внутри и снаружи." + Environment.NewLine + Environment.NewLine + "Применение: " + GetFriendlyWord("LampTooltipCompact");
                     else
                         return "A customizable lamp. Can be built indoor and outdoor." + Environment.NewLine + Environment.NewLine + "Usage: " + GetFriendlyWord("LampTooltipCompact") + Environment.NewLine + Environment.NewLine + "PS: If you download the « Base Light Switch » mod you'll be able to turn off base default light and thus enjoy this lamp even more.";
                 case "SeamothDollName":
@@ -1238,7 +1238,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Seemotten-Spielzeug";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кукла Мотылька";
+                        return "Игрушечный Мотылёк";
                     else
                         return "Seamoth toy";
                 case "SeamothDollDescription":
@@ -1264,7 +1264,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Krebsanzug-Spielzeug";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кукла костюма КРАБ";
+                        return "Игрушечный костюм КРАБ";
                     else
                         return "PRAWN suit toy";
                 case "ExosuitDollDescription":
@@ -1277,7 +1277,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine dekorative Miniatur des Krebs-Anzuges. " + GetFriendlyWord("SwitchExosuitModel");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Декоративная кукла для интерьера. " + GetFriendlyWord("SwitchExosuitModel");
+                        return "Декоративная миниатюра костюма КРАБ. " + GetFriendlyWord("SwitchExosuitModel");
                     else
                         return "A decorative miniature of the PRAWN suit. " + GetFriendlyWord("SwitchExosuitModel");
                 case "ForkLiftDollName":
@@ -1290,7 +1290,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Gabelstapler (nicht funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Декоративный погрузчик";
+                        return "Погрузчик";
                     else
                         return "Forklift (non-functional)";
                 case "ForkLiftDollDescription":
@@ -1303,7 +1303,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein dekorativer Gabelstapler. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Техника для декорации. " + GetFriendlyWord("AdjustForkliftSize");
+                        return "Декоративный погрузчик. " + GetFriendlyWord("AdjustForkliftSize");
                     else
                         return "A decorative forklift. " + GetFriendlyWord("AdjustForkliftSize");
                 case "DrinksAndFood":
@@ -1342,7 +1342,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine Flasche mit einem leckeren Getränk.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Бутылка содержащий вкусный напиток.";
+                        return "Бутылка содержащая вкусный напиток.";
                     else
                         return "A bottle containing a delicious beverage.";
                 case "BarCup2Name":
@@ -1366,9 +1366,9 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.TR)
                         return "Titanyum bardak.";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Eine Tasse aus Titanium.";
+                        return "Eine Tasse aus titanium.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кружка сделанная из Титана.";
+                        return "Кружка сделанная из титана.";
                     else
                         return "A cup made of titanium.";
                 case "BarCup1Name":
@@ -1394,7 +1394,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine kleine Tasse aus Titanium.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Стопка сделанная из Титана.";
+                        return "Небольша стакан, сделанный из Титана.";
                     else
                         return "A small cup made of titanium.";
                 case "BarFood1Name":
@@ -1407,7 +1407,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Kleine Mahlzeit";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Малая порция еды";
+                        return "Рагу";
                     else
                         return "Small meal";
                 case "BarFood1Description":
@@ -1420,7 +1420,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine Mahlzeit aus Fisch.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Еда сделанная из рыбы.";
+                        return "Блюдо из небольших тушёных кусочков рыбы.";
                     else
                         return "A meal made of fish.";
                 case "BarFood2Name":
@@ -1433,7 +1433,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Tablett mit Essen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лоток с едой";
+                        return "Поднос с едой";
                     else
                         return "Meal tray";
                 case "BarFood2Description":
@@ -1446,7 +1446,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine komplette und ausgewogene Mahlzeit.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Комплексный обеда для полноценного питания.";
+                        return "Полноценный обед, приготовленный из доступных растений и рыбы.";
                     else
                         return "A complete and balanced meal.";
                 case "BarNapkinsName":
@@ -1472,7 +1472,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Servietten aus Fasergewebe.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Салфетки сделанные из микроволокон.";
+                        return "Салфетки сделанные из сетчатого волокна.";
                     else
                         return "Napkins made of fiber mesh.";
                 case "LabRobotArmName":
@@ -1485,7 +1485,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Roboterarm (nicht funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лабораторный робот";
+                        return "Лабораторный манипулятор(нерабочий)";
                     else
                         return "Robot arm (non-functional)";
                 case "LabRobotArmDescription":
@@ -1498,7 +1498,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein Laborroboterarm (nicht funktionsfähig).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лабораторный робот для декорации и атмосферы вашего жилья.";
+                        return "Декоратичная лабораторная рука-манипулятор (нерабочая).";
                     else
                         return "A laboratory robot arm (non-functional).";
                 case "ReaperSkullDollName":
@@ -1511,7 +1511,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Cheliceratops-Schädel";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Череп Жнеца Левиафана";
+                        return "Череп левиафана «Жнец»";
                     else
                         return "Reaper leviathan skull";
                 case "ReaperSkullDollDescription":
@@ -1524,7 +1524,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine Replik von einem Cheliceratops-Schädel.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Инсталляция черепа одного из хищников.";
+                        return "Репродукция черепа левиафана «Жнец».";
                     else
                         return "A replica of a reaper leviathan skull.";
                 case "LampTooltip":
@@ -1568,11 +1568,11 @@ namespace DecorationsModConfigurator
                         return "Нажмите, чтобы настроить:" + Environment.NewLine +
                                "Удерживайте 'R' и выберете уровень красного." + Environment.NewLine +
                                "Удерживайте 'G' и выберете уровень зеленого." + Environment.NewLine +
-                               "Удерживайте 'B' выберете уровень голубого." + Environment.NewLine +
+                               "Удерживайте 'B' выберете уровень синего." + Environment.NewLine +
                                "Удерживайте 'F' выберете уровень яркости." + Environment.NewLine +
-                               "Удерживайте 'I' выберете уровень интенсивность цвета." + Environment.NewLine +
-                               "Удерживайте 'T' выберете уровень интенсивности неоновой трубки." + Environment.NewLine +
-                               "Удерживайте 'E' выберете и измените цвет неоновой трубки." + Environment.NewLine;
+                               "Удерживайте 'I' выберете уровень интенсивность света." + Environment.NewLine +
+                               "Удерживайте 'T' выберете уровень интенсивности неона лампы." + Environment.NewLine +
+                               "Удерживайте 'E' выберете цвет неона лампы." + Environment.NewLine;
                     else
                         return "Click to turn on/off, or:" + Environment.NewLine +
                                "Hold 'R' and click to change red levels." + Environment.NewLine +
@@ -1584,7 +1584,7 @@ namespace DecorationsModConfigurator
                                "Hold 'E' and click to change neon tube color." + Environment.NewLine;
                 case "LampTooltipCompact":
                     if (UserLanguage == CountryCode.FR)
-                        return "Click: ON/OFF, R+Click: rouge, G+Click: vert, B+Click: bleu, F+Click: portée, I+Click: intensité, T+Click: intensité néon, E+Click: couleur néon";
+                        return "Clic: ON/OFF, R+Clic: rouge, G+Clic: vert, B+Clic: bleu, F+Clic: portée, I+Clic: intensité, T+Clic: intensité néon, E+Clic: couleur néon";
                     else if (UserLanguage == CountryCode.ES)
                         return "Clic: ON/OFF, R+Clic: rojos, G+Clic: verdes, B+Clic: azules, F+Clic: alcance, I+Clic: intensidad, T+Clic: neón intensidad, E+Clic: neón color";
                     else if (UserLanguage == CountryCode.TR)
@@ -1592,7 +1592,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Klicken: ON/OFF, R+klicken: Rotstufe, G+klicken: Grünstufe, B+klicken: Blaustufe, F+klicken: Lichtstärke, I+klicken: Intensität, T+klicken: Intensität der Neonröhre, E+klicken: Neonröhrenfarbe";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Нажмите: ON/OFF, R+Нажмите: красного, G+Нажмите: зеленого, B+Нажмите: голубого, F+Нажмите: яркости, I+Нажмите: интенсивность, T+Нажмите: нтенсивности неоновой, E+Нажмите: цвет неоновой";
+                        return "Нажмите: ON/OFF, R+ЛКМ: красный, G+ЛКМ: зеленый, B+ЛКМ: синий, F+ЛКМ: яркость, I+ЛКМ: интенсивность, T+ЛКМ: итенсивность неона, E+ЛКМ: цвет неона";
                     else
                         return "Click: ON/OFF, R+Click: red, G+Click: green, B+Click: blue, F+Click: range, I+Click: intensity, T+Click: Neon intensity, E+Click: Neon color";
                 case "SwitchSeamothModel":
@@ -1622,8 +1622,8 @@ namespace DecorationsModConfigurator
                         return "Klicken, um das linke Armmodell zu ändern, oder:" + Environment.NewLine +
                                "'E' drücken und klicken, um das rechte Armmodell zu wechseln" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.RU)
-                        return "Нажмите, чтобы изменить:" + Environment.NewLine +
-                               "Удерживайте 'E' и выберите, чтобы изменить модель" + Environment.NewLine;
+                        return "Нажмите, чтобы изменить модель левой руки:" + Environment.NewLine +
+                               "Удерживайте 'E' и нажмите ЛКМ, чтобы изменить модель правой руки" + Environment.NewLine;
                     else
                         return "Click to change left arm model, or:" + Environment.NewLine +
                                "Hold 'E' and click to change right arm model" + Environment.NewLine;
@@ -1637,7 +1637,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "'E' drücken und klicken, um die Größe zu ändern";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Удерживайте 'E' и выберите, чтобы изменить размер";
+                        return "Удерживайте 'E' и нажмите ЛКМ, чтобы изменить размер";
                     else
                         return "Hold 'E' and click to adjust size";
                 case "AdjustWarperSpecimenSize":
@@ -1650,7 +1650,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "'E' drücken und klicken, um die Größe zu ändern";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Удерживайте 'E' и выберите, чтобы изменить размер";
+                        return "Удерживайте 'E' и нажмите ЛКМ, чтобы изменить размер";
                     else
                         return "Hold 'E' and click to adjust size";
                 case "AdjustCargoBoxSize":
@@ -1668,7 +1668,7 @@ namespace DecorationsModConfigurator
                                "'E' drücken und klicken, um die Größe zu ändern" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.RU)
                         return "Нажмите здесь, чтобы открыть контейнер, или:" + Environment.NewLine +
-                               "Удерживайте 'E' и выберите, чтобы изменить размер" + Environment.NewLine;
+                               "Удерживайте 'E' и нажмите ЛКМ, чтобы изменить размер" + Environment.NewLine;
                     else
                         return "Click to access storage, or:" + Environment.NewLine +
                                "Hold 'E' and click to adjust size" + Environment.NewLine;
@@ -1786,7 +1786,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Clipboard";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Планше";
+                        return "Планшет";
                     else
                         return "Clipboard";
                 case "ClipboardDescription":
@@ -1799,7 +1799,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein Clipboard mit eingeheftetem Dokument.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "И снова какая-то бумаг с бюрократией.";
+                        return "И снова какая-то бумага с бюрократией.";
                     else
                         return "A clipboard containing various documents.";
                 case "PenName":
@@ -1890,7 +1890,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Kleine Bank (dekorativ und funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Малый софа";
+                        return "Малая софа";
                     else
                         return "Small bench (decorative and functional)";
                 case "SofaStr1Description":
@@ -1916,7 +1916,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Mittelgroße Bank (dekorativ und funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Средний софа";
+                        return "Средняя софа";
                     else
                         return "Medium bench (decorative and functional)";
                 case "SofaStr2Description":
@@ -1942,7 +1942,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Lange Bank (dekorativ und funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Большой софа";
+                        return "Большая софа";
                     else
                         return "Long bench (decorative and functional)";
                 case "SofaStr3Description":
@@ -1968,7 +1968,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Bank-Eckelement (dekorativ und funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Угловой софа";
+                        return "Угловая софа";
                     else
                         return "Bench angle (decorative and functional)";
                 case "SofaCorner2Description":
@@ -2035,7 +2035,7 @@ namespace DecorationsModConfigurator
                         return "Нажмите, чтобы изменить:" + Environment.NewLine +
                                "Удерживайте 'E' чтобы отрегулировать размер." + Environment.NewLine +
                                "Удерживайте 'R' чтобы повернуть рамку." + Environment.NewLine +
-                               "Удерживайте 'F' чтобы изменить форму рамки." + Environment.NewLine;
+                               "Удерживайте 'F' чтобы изменить тип рамки." + Environment.NewLine;
                     else
                         return "Click to set picture, or:" + Environment.NewLine +
                                "Hold 'E' and click to adjust size" + Environment.NewLine +
@@ -2051,7 +2051,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Klicken: Bild, E+Klicken: Größe, R+Klicken: Drehen, F+Klicken: Rahmen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Нажмите: изменить картинку, E+Нажмите: размер, R+Нажмите: повернуть, F+Нажмите: рамки";
+                        return "ЛКМ: сменить изображение, E+ЛКМ: размер, R+ЛКМ: повернуть, F+ЛКМ: тип рамки";
                     else
                         return "Click: picture, E+Click: size, R+Click: orientation, F+Click: mode";
                 case "LandTree1Name":
@@ -2077,7 +2077,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein außerirdischer Landbaum mit interessanten Eigenschaften.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Многолетнее инопланетное дерево.";
+                        return "Многолетнее инопланетное дерево, с подстветкой.";
                     else
                         return "An alien land tree variety with interesting properties.";
                 case "JungleTree1Name":
@@ -2350,7 +2350,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Klauentang";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Клешня Краба";
+                        return "Крабья клешня";
                     else
                         return "Crab Claw Kelp";
                 case "CrabClawKelpDescription":
@@ -2376,7 +2376,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Feuerkoralle";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Магнетический коралл";
+                        return "Огненный коралл";
                     else
                         return "Pyrocoral";
                 case "PyroCoralDescription": // EncyDesc_RedTipRockThings
@@ -2402,7 +2402,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Lebensbaum";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Гигантское дерево Игло";
+                        return "Гигантское дерево-укрытие";
                     else
                         return "Giant Cove Tree";
                 case "CoveTreeDescription":
@@ -2415,7 +2415,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Klon aus einem riesigen Baum, der in einer tiefen Höhle angetroffen(das einzige bekannte Exemplar seiner Art auf dem Planeten). Kann zu Land und unter Wasser gepflanzt werden.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Клон, сделанный из огромного дерева, встреченного в глубокой бухте (единственная в своем роде, встречающаяся на планете). Может быть посажен на суше и под водой.";
+                        return "Клон, сделанный из огромного дерева, встреченного в древесной бухте в биоме Затернная река(единственное в своем роде, встречающееся на планете). Может быть посажен на суше и под водой.";
                     else
                         return "Clone made from a vast tree encountered in a deep cove (the only one of its kind encountered on the planet). Can be planted on land and under water.";
                 case "DisplayCoveTreeEggs":
@@ -2428,7 +2428,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Zeige/Verstecke Eier";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Скрыть/Показать семена";
+                        return "Скрыть/Показать яйца";
                     else
                         return "Show/hide eggs";
                 case "MushroomTree1Name":
@@ -2441,7 +2441,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Riesiger Baum mit Pilzen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Гигантское дерево с грибами";
+                        return "Гигантское грибное дерево";
                     else
                         return "Giant Mushroom Tree";
                 case "MushroomTree2Name":
@@ -2480,7 +2480,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Leuchtglobus";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Плавающий камень";
+                        return "Якорный кокон";
                     else
                         return "Anchor Pod";
                 case "FloatingStoneDescription":
@@ -3130,7 +3130,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Langer Pflanzentopf";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Долгожитель";
+                        return "Длинная грядка";
                     else
                         return "Long planter";
                 case "LongPlanterDescription":
@@ -3143,7 +3143,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein langer Pflanzentopf.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Длинный плантатор.";
+                        return "Длинная грядка для разных растений.";
                     else
                         return "A long planter.";
                 case "ExteriorLongPlanterName":
@@ -3156,7 +3156,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Langer Pflanzentopf im Freien";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Длинный открытый плантатор";
+                        return "Длинная уличная грядка";
                     else
                         return "Long outdoor planter";
                 case "ExteriorLongPlanterDescription":
@@ -3169,7 +3169,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein langer Pflanzentopf im Freien. Sie können dort jede Art von Wasserpflanze pflanzen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Длинный открытый плантатор. Вы можете посадить там любой тип водных растений.";
+                        return "Длинная уличная грядка. Вы можете посадить там любой тип водных растений.";
                     else
                         return "A long outdoor planter. It can grow any type of aquatic plant.";
                 case "BarStoolName":
@@ -3195,7 +3195,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein Hocker.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Стул.";
+                        return "Просто стул.";
                     else
                         return "A stool.";
                 case "AlienRelic1Name": // Ency_PrecursorPrisonArtifact1
@@ -3507,7 +3507,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein kleiner Sockel (praktisch zum Platzieren von Reliquien).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Небольшой постамент (удобно для размещения реликвий).";
+                        return "Небольшой постамент (удобен для размещения реликвий).";
                     else
                         return "A small pedestal (handy for placing relics or any other item).";
                 case "EggSeaEmperorName": // Ency_PrecursorPrisonEggChamberEmperorEgg
@@ -3585,7 +3585,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Unausgebr\u00fctete Eier, die zu einer Tierart mit der Bezeichnung \u201ePhantom\u201c geh\u00f6ren.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Невылупившихся яиц, принадлежащих виду с обозначением «призрачный левиафан».";
+                        return "Созревающие яйца, принадлежащие виду под названием «призрачный левиафан».";
                     else
                         return "Maturing eggs belonging to the species designated 'ghost leviathan'.";
                 case "WarperPartName":
@@ -3611,7 +3611,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein wärmeres Körperteil.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Часть тела снователя.";
+                        return "Часть тела Стража.";
                     else
                         return "A warper body part.";
                 case "BigWarperPartName":
@@ -3624,7 +3624,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Warper Probe";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Образец согревателя";
+                        return "Образец Стража";
                     else
                         return "Warper Specimen";
                 case "BigWarperPartDescription":
@@ -3637,7 +3637,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein fast vollständiges Exemplar von Warper. " + GetFriendlyWord("AdjustWarperSpecimenSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Почти полный образец варпера. " + GetFriendlyWord("AdjustWarperSpecimenSize");
+                        return "Почти полный образец Стража. " + GetFriendlyWord("AdjustWarperSpecimenSize");
                     else
                         return "An almost complete specimen of warper. " + GetFriendlyWord("AdjustWarperSpecimenSize");
                 case "HangingWarperPartName":
@@ -3650,7 +3650,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Hängendes warperteil";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Часть тела хранителя приостановлена";
+                        return "Подвешенная часть Стража";
                     else
                         return "Hanging warper part";
                 case "HangingWarperPartDescription":
@@ -3663,7 +3663,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein wärmeres Körperteil.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Часть подвесного опекуна тела.";
+                        return "Подвешенная часть Стража. Удобен для изучения.";
                     else
                         return "An hanging warper body part.";
                 case "AquariumSmallName":
@@ -3689,7 +3689,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein kleines Aquarium (kann nur ein Exemplar enthalten).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Небольшой аквариум (может содержать только один экземпляр).";
+                        return "Небольшой аквариум (может содержать только один образец).";
                     else
                         return "A small aquarium (can only contain one specimen).";
                 case "RedGrassName": // Ency_BloodGrass
@@ -3702,7 +3702,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Blutgras";
                     else if (UserLanguage == CountryCode.RU)
-                        return "\u041a\u0440\u043e\u0432\u0430\u0432\u0430\u044f \u0442\u0440\u0430\u0432\u0430";
+                        return "Кровавые водоросли";
                     else
                         return "Blood grass";
                 case "RedGrassDescription": // EncyDesc_BloodGrass
@@ -3715,7 +3715,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein einfaches Seegras, das sich an seichte, sandige Umgebungen angepasst hat.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "\u041e\u0431\u044b\u0447\u043d\u0430\u044f \u043c\u043e\u0440\u0441\u043a\u0430\u044f \u0442\u0440\u0430\u0432\u0430, \u043f\u0440\u0438\u0441\u043f\u043e\u0441\u043e\u0431\u043b\u0435\u043d\u043d\u0430\u044f \u043a \u043c\u0435\u043b\u043a\u043e\u0432\u043e\u0434\u043d\u043e\u0439 \u043f\u0435\u0441\u0447\u0430\u043d\u043e\u0439 \u0441\u0440\u0435\u0434\u0435.";
+                        return "Обычная морская трава, приспособленная к мелководной песчаной среде.";
                     else
                         return "A common sea grass adapted to shallow, sandy environments.";
                 case "RedGrassTallName":
@@ -3728,22 +3728,9 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Hohes Blutgras";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Высокая кровавая трава";
+                        return "Высокие кровавые водоросли";
                     else
                         return "Tall blood grass";
-                case "SeamothFragments":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Fragments de Seamoth";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Fragmentos de Seamoth";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Seamoth Parçaları";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Seemotten Fragmente";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Фрагменты Seamoth";
-                    else
-                        return "Seamoth fragments";
                 case "RedGrassDenseName":
                     if (UserLanguage == CountryCode.FR)
                         return "Herbe sanguine dense";
@@ -3754,9 +3741,22 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Dichtes Blutgras";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Густая кровавая трава";
+                        return "Густые кровавые водоросли";
                     else
                         return "Dense blood grass";
+                case "SeamothFragments":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Fragments de Seamoth";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Fragmentos de Seamoth";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Seamoth Parçaları";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Seemotten Fragmente";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Фрагменты Мотылька";
+                    else
+                        return "Seamoth fragments";
                 case "SeamothFragmentName":
                     if (UserLanguage == CountryCode.FR)
                         return "Fragment de Seamoth";
@@ -3767,7 +3767,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Seemotten Fragment";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Фрагмент Seamoth";
+                        return "Фрагмент Мотылька";
                     else
                         return "Seamoth fragment";
                 case "SeamothFragmentDescription":
@@ -3787,7 +3787,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Icônes compactes dans le fabricateur de graines";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Íconos compactos en el fabricator de semillas";
+                        return "Íconos compactos en el fabricador de semillas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tohum yapımcısı içindeki kompakt simgeler";
                     else if (UserLanguage == CountryCode.DE)
@@ -3845,7 +3845,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Draußen platzieren lassen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Разрешить разместить снаружи";
+                        return "Разрешить размещение снаружи";
                     else
                         return "Allow to place outside";
                 case "Config_EnablePlaceItems":
@@ -3910,14 +3910,14 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Aktivieren Sie die Registerkarte « Fremde »";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Включить вкладку « Инопланетянам »";
+                        return "Включить вкладку « Архитекторов »";
                     else
                         return "Enable « Precursor » tab";
                 case "Config_PrecursorKeysAll":
                     if (UserLanguage == CountryCode.FR)
                         return "Tablettes alien dans le fabricateur de déco";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Tabletas alienígenas en el fabricator";
+                        return "Tabletas alienígenas en el fabricador";
                     else if (UserLanguage == CountryCode.TR)
                         return "Üreticiye yabancı tabletler ekleyin";
                     else if (UserLanguage == CountryCode.DE)
@@ -3930,41 +3930,15 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Œufs standard dans fabricateur de déco";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Agregue huevos regulares en el fabricator";
+                        return "Agregue huevos regulares en el fabricador";
                     else if (UserLanguage == CountryCode.TR)
                         return "Fabrikatörde düzenli yumurta ekleyin";
                     else if (UserLanguage == CountryCode.DE)
                         return "Fügen Sie normale Eier in Hersteller hinzu";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Добавить обычные яйца в изготовитель декораций";
+                        return "Добавить яйца в изготовитель декораций";
                     else
                         return "Add regular eggs in deco fabricator";
-                case "Config_EnableEggsWhenCreatureScanned":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Déverrouiller œufs quand trouvés en jeu";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Desbloquea huevos cuando los descubras en el juego";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Oyunda keşfedildiğinde yumurtaların kilidini aç";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Schalte Eier frei, wenn sie im Spiel entdeckt werden";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Разблокировать яйца, после нахождения их в игре";
-                    else
-                        return "Unlock eggs when discovered in game";
-                case "Config_EnableEggsAtStart":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Déverrouiller les œufs en début de partie";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Desbloquea huevos cuando comienza el juego";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Oyun başladığında yumurtaların kilidini aç";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Schalte Eier frei, wenn das Spiel beginnt";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Разблокировать яйца в начале игры";
-                    else
-                        return "Unlock eggs when game starts";
                 case "Config_EggsDicoverySetting":
                     if (UserLanguage == CountryCode.FR)
                         return "Activer fabrication d'œufs";
@@ -3982,7 +3956,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Bloc de nutriments dans fabricateur de décorations";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Bloque de nutrientes en el fabricator de decoraciones";
+                        return "Bloque de nutrientes en el fabricador de decoraciones";
                     else if (UserLanguage == CountryCode.TR)
                         return "Fabrikatördeki besin bloğu";
                     else if (UserLanguage == CountryCode.DE)
@@ -3995,13 +3969,13 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Graînes terrestres standardes dans fabricateur";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Semillas de aire en el fabricator de flora";
+                        return "Semillas de aire en el fabricador de semillas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Flora fabrikatöründe düzenli hava tohumları";
                     else if (UserLanguage == CountryCode.DE)
                         return "Regelmäßige Luftsamen im Pflanzenhersteller";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Добавить семена наземных в изготовитель растений";
+                        return "Добавить семена наземных растений в изготовитель растений";
                     else
                         return "Add regular air seeds in flora fabricator";
                 case "Config_AddRegularAirSeedsWhenDiscovered":
@@ -4014,14 +3988,14 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Erlaube das Herstellen von Luftsamen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Разрешить создание наземных семян";
+                        return "Разрешить создание семян наземных растений";
                     else
                         return "Enable crafting regular air seeds";
                 case "Config_EnableRegularWaterSeeds":
                     if (UserLanguage == CountryCode.FR)
                         return "Graînes aquatiques standardes dans fabricateur";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Semillas de agua regular en fabricator de flora";
+                        return "Semillas de agua regular en fabricador de semillas";
                     else if (UserLanguage == CountryCode.TR)
                         return "Flora fabrikatöründe düzenli su tohumları";
                     else if (UserLanguage == CountryCode.DE)
@@ -4040,7 +4014,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Erlaube das Herstellen von Wassersamen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Разрешить создание водных семян";
+                        return "Разрешить создание семян водных растений";
                     else
                         return "Enable crafting regular water seeds";
                 case "Config_EnableDiscoveryMode":
@@ -4079,7 +4053,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wasserwert der Riegelflasche 1";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Значение гидратации бутылки 1";
+                        return "ВОДА (Напиток 1)";
                     else
                         return "Water value for bar bottle 1";
                 case "Config_BarBottle2_water":
@@ -4092,7 +4066,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wasserwert der Riegelflasche 2";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Значение гидратации бутылки 2";
+                        return "ВОДА (Напиток 2)";
                     else
                         return "Water value for bar bottle 3";
                 case "Config_BarBottle3_water":
@@ -4105,7 +4079,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wasserwert der Riegelflasche 3";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Значение гидратации бутылки 3";
+                        return "ВОДА (Напиток 3)";
                     else
                         return "Water value for bar bottle 3";
                 case "Config_BarBottle4_water":
@@ -4118,7 +4092,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wasserwert der Riegelflasche 4";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Значение гидратации бутылки 4";
+                        return "ВОДА (Напиток 4)";
                     else
                         return "Water value for bar bottle 4";
                 case "Config_BarBottle5_water":
@@ -4131,7 +4105,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wasserwert der Riegelflasche 5";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Значение гидратации бутылки 5";
+                        return "ВОДА (Напиток 5)";
                     else
                         return "Water value for bar bottle 5";
                 case "Config_BarFood1_nutrient":
@@ -4209,7 +4183,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Erlauben Sie das Hinzufügen Pflanzgefäßen im Freien";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Разрешить постройку наружной длинной грядки внутри базы";
+                        return "Разрешить постройку уличной длинной грядки внутри базы";
                     else
                         return "Allow outdoor long planter inside";
                 case "Config_FixAquariumLighting":
@@ -4352,7 +4326,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ressource von lila Tannenzapfen gegeben";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Pесурсов, даваемых фиолетовой шишкой";
+                        return "Pесурс, даваемый пурпурной шишкой";
                     else
                         return "Resource given by purple pinecone";
                 case "Config_PurplePineconeDroppedResourceAmount":
@@ -4522,7 +4496,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn das Spiel beginnt";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Когда начинается игра";
+                        return "В начале игры";
                     else
                         return "When game starts";
                 case "Config_WhenSeedPickedUpInGame":
@@ -4535,7 +4509,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn Samen im Spiel aufgenommen werden";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Когда семя было подобрано в игре";
+                        return "После нахождения семян";
                     else
                         return "When seed has been picked up in game";
                 case "Config_WhenEggHatched":
@@ -4548,7 +4522,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn das Ei im Spiel schlüpft";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Когда яйцо вылупится в игре";
+                        return "После вылупления яйца";
                     else
                         return "When egg has been hatched in game";
                 case "Config_WhenCreatureScanned":
@@ -4574,7 +4548,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Allgemeines";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Генеральный";
+                        return "Главные";
                     else
                         return "General";
                 case "Config_TabDiscovery":
@@ -4587,7 +4561,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Entdeckung";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Oткрытие";
+                        return "Обнаружение";
                     else
                         return "Discovery";
                 case "Config_TabPrecursor":
@@ -4600,7 +4574,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Fremde";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Инопланетянин";
+                        return "Архитекторы";
                     else
                         return "Precursors";
                 case "Config_TabEggs":
@@ -4678,7 +4652,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Über";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Об";
+                        return "О Программе";
                     else
                         return "About";
                 case "Config_BtnSaveAndQuit":
@@ -4704,7 +4678,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Fremde Einstellungen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Настройки Прекурсоры";
+                        return "Настройки Архитекторов";
                     else
                         return "Precursor settings";
                 case "Config_EnablePrecursorRelicAnims":
@@ -4717,7 +4691,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Fremde-Reliktanimationen aktivieren (Deaktivieren Sie das Kontrollkästchen, um die Animation zu deaktivieren):";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Включить предшественники реликтовых анимаций (снимите флажок, чтобы отключить анимацию):";
+                        return "Включить анимацию реликвий архитекторов (снимите флажок, чтобы отключить анимацию):";
                     else
                         return "Enable precursor relic animations (untick boxes to disable animations):";
                 case "Config_EggsSettings":
@@ -4730,7 +4704,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eiereinstellungen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Настройки яйца";
+                        return "Настройки яиц";
                     else
                         return "Eggs settings";
                 case "Config_DrinksAndFoodSettings":
@@ -4743,7 +4717,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Einstellungen für Getränke und Essen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Настройки еды и напитков";
+                        return "Настройки напитков и еды";
                     else
                         return "Drinks & food settings";
                 case "Config_FloraSettings":
@@ -4795,7 +4769,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wachstumsdauer";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Продолжительность роста";
+                        return "Время роста";
                     else
                         return "Growth duration";
                 case "Config_PlantHealthPoints":
@@ -4821,7 +4795,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Bioreaktor-Ladestationen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Точки заряда биореактора";
+                        return "Количество энергии в биореакторе";
                     else
                         return "Bioreactor charge points";
                 case "Config_PlantCanEat":
@@ -4873,7 +4847,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Zersetzt";
                     else if (UserLanguage == CountryCode.RU)
-                        return "разлагает";
+                        return "Разлагается";
                     else
                         return "Decomposes";
                 case "Config_PlantDecompositionSpeed":
@@ -4899,7 +4873,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Geister-Leviathaner Einstellungen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Призрачный левиафан настройки";
+                        return "Настройки Призрачного левиафана";
                     else
                         return "Ghost leviathans settings";
                 case "Config_ExtraSettings":
@@ -4925,7 +4899,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Probenanalysator im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Анализатор образцов в меню среды обитания";
+                        return "Анализатор образцов в меню Строителя";
                     else
                         return "Specimen Analyzer in habitat builder menu";
                 case "Config_AsBuildable_MarkiplierDoll1":
@@ -4938,7 +4912,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Markiplier Doll 1 im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Markiplier Doll 1 в меню строителя среды обитания";
+                        return "Markiplier Doll 1 в меню Строителя";
                     else
                         return "Markiplier Doll 1 in habitat builder menu";
                 case "Config_AsBuildable_MarkiplierDoll2":
@@ -4951,7 +4925,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Markiplier Doll 2 im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Markiplier Doll 2 в меню строителя среды обитания";
+                        return "Markiplier Doll 2 в меню Строителя";
                     else
                         return "Markiplier Doll 2 in habitat builder menu";
                 case "Config_AsBuildable_JackSepticEyeDoll":
@@ -4964,7 +4938,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "JackSepticEye Doll im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "JackSepticEye Doll в меню строителя среды обитания";
+                        return "JackSepticEye Doll в меню Строителя";
                     else
                         return "JackSepticEye Doll in habitat builder menu";
                 case "Config_AsBuildable_EatMyDictionDoll":
@@ -4977,7 +4951,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "EatMyDiction Doll im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "EatMyDiction Doll в меню строителя среды обитания";
+                        return "Кукла EatMyDiction в меню Строителя";
                     else
                         return "EatMyDiction Doll in habitat builder menu";
                 case "Config_AsBuildable_ForkliftToy":
@@ -4990,7 +4964,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Gabelstaplerspielzeug im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Игрушечный погрузчик в меню строителя среды обитания";
+                        return "Игрушечный погрузчик в меню Строителя";
                     else
                         return "Forklift toy in habitat builder menu";
                 case "Config_AsBuildable_SofaSmall":
@@ -5003,7 +4977,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Kleines Sofa im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Маленький софа в меню строителя среды обитания";
+                        return "Маленькая софа в меню Строителя";
                     else
                         return "Small sofa in habitat builder menu";
                 case "Config_AsBuildable_SofaMedium":
@@ -5016,7 +4990,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Mittleres Sofa im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Средний софа в меню строителя среды обитания";
+                        return "Средняя софа в меню Строителя";
                     else
                         return "Medium sofa in habitat builder menu";
                 case "Config_AsBuildable_SofaBig":
@@ -5029,7 +5003,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Großes Sofa im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Большой софа в меню строителя среды обитания";
+                        return "Большой софа в меню Строителя";
                     else
                         return "Big sofa in habitat builder menu";
                 case "Config_AsBuildable_SofaCorner":
@@ -5042,7 +5016,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ecksofa im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Угловой софа в меню строителя среды обитания";
+                        return "Угловая софа в меню Строителя";
                     else
                         return "Sofa corner in habitat builder menu";
                 case "Config_AsBuildable_LabCart":
@@ -5055,7 +5029,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Laborwagen im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Лабораторная тележка в меню строителя среды обитания";
+                        return "Лабораторная тележка в меню Строителя";
                     else
                         return "Lab cart in habitat builder menu";
                 case "Config_AsBuildable_EmptyDesk":
@@ -5068,79 +5042,79 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Leerer Schreibtisch im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Пустой стол в меню строителя среды обитания";
+                        return "Пустой стол в меню Строителя";
                     else
                         return "Empty desk in habitat builder menu";
                 case "Config_AsBuildableSettings":
                     if (UserLanguage == CountryCode.FR)
                         return "Attention: Il n'est pas recommandé de modifier les paramètres ci-dessous (il est fort probable que vous perdiez certaines fonctionnalités de l'objet en plaçant celui-ci dans le fabricateur de décorations). Cochez pour rendre l'objet disponible via le constructeur d'habitat et décochez pour le rendre disponible via le fabricateur de décorations.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Advertencia: no se recomienda modificar los siguientes parámetros (es muy probable que pierda cierta funcionalidad del objeto si lo coloca en el fabricator de decoraciones). Marque para que el artículo esté disponible a través del constructor de casas y desactívelo para que esté disponible a través del fabricator de decoraciones.";
+                        return "Advertencia: no se recomienda modificar los siguientes parámetros (es muy probable que pierda cierta funcionalidad del objeto si lo coloca en el fabricador de decoraciones). Marque para que el artículo esté disponible a través del constructor de casas y desactívelo para que esté disponible a través del fabricador de decoraciones.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Uyarı: Aşağıdaki parametreleri değiştirmeniz önerilmez (dekoratör üreticisine yerleştirerek nesnenin belirli işlevlerini kaybedersiniz). Öğeyi ev üreticisi tarafından kullanılabilir hale getirmek için işaretleyin ve dekoratör aracılığıyla kullanılabilir hale getirmek için işareti kaldırın.";
                     else if (UserLanguage == CountryCode.DE)
                         return "Warnung: Es wird nicht empfohlen, die folgenden Parameter zu ändern (es ist sehr wahrscheinlich, dass Sie bestimmte Funktionen des Objekts verlieren, wenn Sie es beim Dekorateurhersteller platzieren). Aktivieren Sie das Kontrollkästchen, um das Objekt über den Home Builder verfügbar zu machen, und deaktivieren Sie es, um es über den Dekorateurhersteller verfügbar zu machen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Предупреждение: не рекомендуется изменять параметры ниже (очень вероятно, что вы потеряете определенную функциональность объекта, поместив его в изготовитель декоратора). Поставьте флажок, чтобы сделать предмет доступным через строителя дома, и снимите флажок, чтобы сделать его доступным через декоратора.";
+                        return "Предупреждение: не рекомендуется изменять параметры ниже (очень вероятно, что вы потеряете определенную функциональность объекта, поместив его в изготовитель декораций). Поставьте флажок, чтобы сделать предмет доступным в строителе, и снимите флажок, чтобы сделать его доступным в изготовителе декораций.";
                     else
                         return "Warning: It is not recommended to change settings below (there's a high chance that you loose some of the items functionalities by placing them in the decorations fabricator). Tick to make the item available through the habitat builder menu and untick to make it available through the decorations fabricator.";
                 case "Config_DecorationsModVersion":
                     if (UserLanguage == CountryCode.FR)
-                        return "Version de « Decorations Mod » :";
+                        return "Version de « Decorations Mod »";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Versión del « Decorations Mod »:";
+                        return "Versión del « Decorations Mod »";
                     else if (UserLanguage == CountryCode.TR)
-                        return "« Decorations Mod » sürümü:";
+                        return "« Decorations Mod » sürümü";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Version des « Decorations Mod »:";
+                        return "Version des « Decorations Mod »";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Версия « Decorations Mod »:";
+                        return "Версия мода « Decorations Mod »";
                     else
-                        return "Decorations Mod version:";
+                        return "Decorations Mod version";
                 case "Config_DecorationsModConfiguratorVersion":
                     if (UserLanguage == CountryCode.FR)
-                        return "Version du configurateur de « Decorations Mod » :";
+                        return "Version du configurateur de « Decorations Mod »";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Versión del configurador de « Decorations Mod »:";
+                        return "Versión del configurador de « Decorations Mod »";
                     else if (UserLanguage == CountryCode.TR)
-                        return "« Decorations Mod » yapılandırıcısının sürümü:";
+                        return "« Decorations Mod » yapılandırıcısının sürümü";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Version des Konfigurators « Decorations Mod »:";
+                        return "Version des Konfigurators « Decorations Mod »";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Версия конфигуратора « Decorations Mod »:";
+                        return "Версия конфигуратора для « Decorations Mod »";
                     else
-                        return "Decorations Mod Configurator version:";
+                        return "Decorations Mod Configurator version";
                 case "Config_DecorationsModAuthor":
                     if (UserLanguage == CountryCode.FR)
-                        return "Auteur :";
+                        return "Auteur";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Autor:";
+                        return "Autor";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yazar:";
+                        return "Yazar";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Autor:";
+                        return "Autor";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Автор:";
+                        return "Автор";
                     else
-                        return "Author:";
+                        return "Author";
                 case "Config_ModdingDiscordDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Rejoignez le serveur Discord « Subnautica Modding » pour obtenir de l'aide, des informations et plus encore (en Anglais) :";
+                        return "Rejoignez le serveur Discord « Subnautica Modding » pour obtenir de l'aide, des informations et plus encore (en Anglais)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Ingrese a la comunidad de « Subnautica Modding » para obtener asistencia, información y más (en inglés):";
+                        return "Ingrese a la comunidad de « Subnautica Modding » para obtener asistencia, información y más (en inglés)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Destek, bilgi ve daha fazlası için « Subnautica Modding » topluluğuna girin (İngilizce):";
+                        return "Destek, bilgi ve daha fazlası için « Subnautica Modding » topluluğuna girin (İngilizce)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Betreten Sie die « Subnautica Modding » Community, um Unterstützung, Informationen und mehr zu erhalten (auf Englisch):";
+                        return "Betreten Sie die « Subnautica Modding » Community, um Unterstützung, Informationen und mehr zu erhalten (auf Englisch)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Подключитесь к серверу Discord « Subnautica Modding », чтобы получить помощь, информацию и многое другое (на английском языке):";
+                        return "Подключитесь к серверу Discord « Subnautica Modding », чтобы получить помощь, информацию и многое другое (на английском языке)";
                     else
-                        return "Enter the « Subnautica Modding » community Discord server for support, informations, and more:";
+                        return "Enter the « Subnautica Modding » community Discord server for support, informations, and more";
                 case "Config_ModdingDiscordSecondaryDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Serveur Discord « Subnautica France » :";
+                        return "Serveur Discord « Subnautica France »";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Дискорд сервер « Subnautica Wiki »:";
+                        return "Discord сервер « Subnautica Wiki »";
                     else
                         return "";
                 case "Config_ModdingDiscordURL":
@@ -5162,7 +5136,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Die Konfiguration « Decorations Mod » hat sich geändert. Liste der Änderungen:";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Конфигурация « Decorations Mod » изменилась. Список изменений:";
+                        return "Настройки «Decorations Mod» были изменены. Список изменений:";
                     else
                         return "Decorations mod configuration has changed. List of changes:";
                 case "Config_CancelChangesAndQuit":
@@ -5175,7 +5149,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Abbrechen und beenden";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Отмена и выход";
+                        return "Отменить и выйти";
                     else
                         return "Cancel and exit";
                 case "Config_SaveChangesAndQuit":
@@ -5201,7 +5175,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Die Konfiguration « Decorations Mod » wurde gespeichert. Bitte starten Sie Subnautica neu, um Änderungen zu berücksichtigen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Конфигурация « Decorations Mod » была сохранена. Пожалуйста, перезапустите Subnautica, чтобы принять изменения во внимание.";
+                        return "Настройки «Decorations Mod» были сохранены. Пожалуйста, перезапустите Subnautica, чтобы изменения вступили в силу.";
                     else
                         return "The Decorations Mod configuration has been saved. Please restart Subnautica to take modifications into account.";
                 case "Config_TechTypes_Custom":
@@ -5214,7 +5188,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Benutzerdefinierten";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Персонализированный";
+                        return "Персональные";
                     else
                         return "Custom (advanced)";
                 case "Config_TechTypes_NameOrId":
@@ -5227,7 +5201,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Objektname oder ID: ";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Имя объекта или идентификатор: ";
+                        return "Имя объекта или ID объекта: ";
                     else
                         return "Tech type name or ID: ";
                 // New items:
@@ -5309,6 +5283,84 @@ namespace DecorationsModConfigurator
                         return "Поврежденный декоративный настенный экран.";
                     else
                         return "A damaged decorative wall screen.";
+                case "MarbleMelonTinyName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Graîne de petit melon marbr\u00e9";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Peque\u00f1o melom\u00e1rmol fresco";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Taze k\u00fc\u00e7\u00fck mermer kavunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Frische kleine Marmormelone";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Семя Маленькой мраморной дыни";
+                    else
+                        return "Small marblemelon seed";
+                case "MarbleMelonTinyFruitName": // SmallMelon
+                    if (UserLanguage == CountryCode.FR)
+                        return "Petit melon marbr\u00e9";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Peque\u00f1o melom\u00e1rmol";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "K\u00fc\u00e7\u00fck mermer kavunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "kleine Marmormelone";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Маленькая мраморная дыня";
+                    else
+                        return "Small marblemelon";
+                case "MarbleMelonTinyFruitDescription": // EncyDesc_MelonPlant
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cette plante collecte l'eau dans l'air plut\u00f4t que dans ses racines et produit de gros fruits charnus comestibles ayant une importante teneur en eau.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Esta planta absorbe el agua del aire en lugar de depender de su sistema de ra\u00edces, y produce grandes y jugosas frutas que son tanto comestibles como incre\u00edblemente ricas en l\u00edquidos.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu bitki, k\u00f6k sistemleri yerine havadan su toplar ve yenilebilir, y\u00fcksek su i\u00e7eren, etli, b\u00fcy\u00fck meyveler \u00fcretir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Pflanze sammelt Wasser aus der Luft, anstatt sich auf ihr Wurzelsystem zu verlassen, und erzeugt gro\u00dfe, fleischige Fr\u00fcchte, die sowohl essbar sind, als auch einen untypisch hohen Wassergehalt haben.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Это растение собирает воду из воздуха, не полагаясь на свою корневую систему, и производит большие, мясистые плоды, которые не только съедобны, но и обладают необычайно высоким содержанием воды.";
+                    else
+                        return "This plant collects water from the air rather than relying on its root system, and produces large, fleshy fruits which are both edible, and have atypically high water content.";
+                case "PickupMarbleMelonTinyFruit":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ramasser petit melon marbr\u00e9";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Recogida peque\u00f1o melom\u00e1rmol";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Pikap k\u00fc\u00e7\u00fck mermer kavunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Sammle kleine Marmormelone";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Пикап Маленькая мраморная дыня";
+                    else
+                        return "Pickup small marblemelon";
+                case "Config_HideDeepGrandReefDegasiBase":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Masquer la structure de la base Degasi (500m)";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Ocultar estructura: Hábitat de la Degasi (500m)";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yapısını gizle: Degasi Yaşam Alanı (500m)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Verstecke die Struktur von: Degasi-Basis (500 m)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Скрыть структуру: Жилище «Дегази» (500 м)";
+                    else
+                        return "Hide structure of the Degasi Habitat (500m)";
+                case "Config_HideDeepGrandReefDegasiBaseDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Si vous activez cette option, la structure de la base du Dagasi à -500m dans le biome « Profondeurs du Grand Récif » sera masquée. Cela vous permet de construire votre propre base dans ce bel emplacement de biome. La tablette orange, l'œuf de câlineur, les PDA et les boîtes de données resteront visibles et récupérables.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Si habilita esta opción, la estructura de la Hábitat de la Degasi (500m) en Gran Arrecife Profundo se ocultará. Esto le permite construir su propia hábitat en esta hermosa ubicación de bioma. Tablilla naranja, Huevo de pez monada, PDA y Caja de datos permanecerán visibles y seleccionables.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu seçeneği etkinleştirirseniz, Büyük, Derin Resif deki Degasi Yaşam Alanı (500m) yapısı gizlenir. Bu, bu güzel biyom lokasyonunda kendi üssünüzü oluşturmanıza izin verir. Turuncu tablet, Sevimli balık yumurtası, PDA ve Veri Kutusu görünür ve alınabilir kalacak.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wenn Sie diese Option aktivieren, wird die Struktur der Degasi-Basis (500 m) in Tiefseeriffs ausgeblendet. Auf diese Weise können Sie Ihre eigene Basis an diesem wunderschönen Biomstandort errichten. Orange Tafel, Knuddelfisch-Ei, PDA und Datenbox bleiben sichtbar und können abgeholt werden.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Если вы включите эту опцию, структура жилище «Дегази» (500 м) в Глубинах Большого рифа будет скрыта. Это позволяет вам построить свою собственную базу в этом красивом месте биома. Оранжевая скрижаль, Яйцо ласки, КПК и Ящик с данными останутся видимыми и могут быть обнаружены.";
+                    else
+                        return "If you enable this option, the structure of the Degasi Habitat (500m) in Deep Grand Reef will be hidden. This allows you to build your own base at this beautiful biome location. Orange Tablet, Cuddlefish Egg, PDAs and Data Boxes will remain visible and pickupable.";
                 // Config descriptions:
                 case "Config_UseCompactTooltipsDescription":
                     if (UserLanguage == CountryCode.FR)
@@ -5392,7 +5444,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, vous pourrez construire le fabricateur de graines et ainsi fabriquer des graines (toutes les graines existantes plus des nouvelles).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si está habilitado, podrá construir el fabricator de semillas y crear semillas (todas las semillas existentes más las nuevas).";
+                        return "Si está habilitado, podrá construir el fabricador de semillas y crear semillas (todas las semillas existentes más las nuevas).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Etkinleştirilirse, tohum fabrikatör ve zanaat tohumları (mevcut tüm tohumlar artı yenileri) inşa edebileceksiniz.";
                     else if (UserLanguage == CountryCode.DE)
@@ -5483,7 +5535,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Activez cette option uniquement si certains éléments du fabricateur de graines ne sont pas visibles (si ils ne rentrent pas sur l'écran). Si cela ne vous convient toujours pas, téléchargez le mod « Radial Tabs » ici:";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Habilite esto solo si algunos elementos en el fabricator de semillas no están visibles porque no caben en la pantalla. Si aún no encaja después de eso, descargue el mod « Radial Tabs » aquí:";
+                        return "Habilite esto solo si algunos elementos en el fabricador de semillas no están visibles porque no caben en la pantalla. Si aún no encaja después de eso, descargue el mod « Radial Tabs » aquí:";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bunu yalnızca Tohum Fabrikatöründeki bazı öğeler ekrana sığmadıkları için görünmüyorsa etkinleştirin. Bundan sonra hala uymuyorsa, « Radial Tabs » modunu buradan indirin:";
                     else if (UserLanguage == CountryCode.DE)
@@ -5509,7 +5561,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Choisissez si les graines terrestres sont ajoutées au fabricateur de graines dès le début de partie ou seulement après avoir ramassé la plante/graine dans le jeu (si la plante/graine n'est pas ramassable, vous devez la scanner à la place).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Elija si las semillas de tierra se agregan al fabricator de semillas desde el principio o solo después de que recogió la planta/semilla en el juego (si la planta/semilla no es recolectable, debe escanearla).";
+                        return "Elija si las semillas de tierra se agregan al fabricador de semillas desde el principio o solo después de que recogió la planta/semilla en el juego (si la planta/semilla no es recolectable, debe escanearla).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Tohumların üreticisine kara tohumlarının eklenip eklenmeyeceğini veya sadece bitki/tohumu oyundan aldıktan sonra seçin (bitki/tohum alınamazsa, onu taramanız gerekir).";
                     else if (UserLanguage == CountryCode.DE)
@@ -5522,7 +5574,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Choisissez si les graines aquatiques sont ajoutées au fabricateur de graines dès le début de partie ou seulement après avoir ramassé la plante/graine dans le jeu (si la plante/graine n'est pas ramassable, vous devrez la scanner à la place. Pour débloquer les graines d'arbres à champignons, vous devrez scanner une sangsue d'arbre ou l'arbre champignon géant).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Elija si las semillas acuáticas se agregan al fabricator de semillas desde el principio o solo después de que recogió la planta/semilla en el juego (si la planta/semilla no es recolectable, tendrá que escanearla en su lugar. Para desbloquear la semilla del hongo, tendrá que escanear una sanguijuela o el hongo gigante).";
+                        return "Elija si las semillas acuáticas se agregan al fabricador de semillas desde el principio o solo después de que recogió la planta/semilla en el juego (si la planta/semilla no es recolectable, tendrá que escanearla en su lugar. Para desbloquear la semilla del hongo, tendrá que escanear una sanguijuela o el hongo gigante).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Su tohumlarının tohum üreticisine başlangıçta mı yoksa sadece bitki/tohumu oyunda aldıktan sonra mı ekleneceğini seçin (Bitki/tohum alınamazsa, bunun yerine taramanız gerekir. Mantar ağacı tohumlarının kilidini açmak için bir ağaç sülük veya dev mantar ağacını taramanız gerekecektir).";
                     else if (UserLanguage == CountryCode.DE)
@@ -5535,7 +5587,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Choisissez si les œufs sont ajoutés au fabricateur de décorations dès le début de partie ou seulement après les avoir éclos dans une unité de confinement pour aliens, ou après avoir scanné les créatures associées. Si les œufs ne sont pas ajoutés dès le début de partie, vous devrez scanner l'Arbre de Crique Géant afin de débloquer les œufs de léviathan fantôme. De plus, pour débloquer les œufs de dragon de mer et d'empereur des mer, vous devrez trouver et scanner les œufs existants dans le jeu (ils sont situés dans des bases précurseurs).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Elija si los huevos se agregan al fabricante de decoraciones desde el inicio del juego o solo después de que los incubó en una Acuario alienígena, o después de escanear las criaturas asociadas. Si no se agregan los huevos desde el inicio del juego, tendrás que escanear el Árbol Gigante de la Ensenada para desbloquear los huevos del Fantasma Leviatán. Además, para desbloquear los huevos de Dragon Marino Leviatán y Emperador Marino Leviatán, tendrás que encontrar y escanear los huevos existentes en el juego (se encuentran en bases precursoras).";
+                        return "Elija si los huevos se agregan al fabricador de decoraciones desde el inicio del juego o solo después de que los incubó en una Acuario alienígena, o después de escanear las criaturas asociadas. Si no se agregan los huevos desde el inicio del juego, tendrás que escanear el Árbol Gigante de la Ensenada para desbloquear los huevos del Fantasma Leviatán. Además, para desbloquear los huevos de Dragon Marino Leviatán y Emperador Marino Leviatán, tendrás que encontrar y escanear los huevos existentes en el juego (se encuentran en bases precursoras).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Yumurtaların dekorasyon üreticisine oyun başlangıcından itibaren eklenmesini veya yalnızca bir Yaratık Akvaryumu yumurtadan çıkarılmasından sonra veya ilişkili yaratıkları taradıktan sonra seçin. Oyun başlangıcından itibaren yumurta eklenmezse, Hayalet Canavar yumurtalarının kilidini açmak için Kocaman kovuk ağacı nı taramanız gerekecektir. Ayrıca, Deniz ejderhası ve Deniz imparatoru canavarı yumurta kilidini açmak için oyunda mevcut yumurta bulmak ve taramak zorunda kalacaklar (prekürs bazında bulunur).";
                     else if (UserLanguage == CountryCode.DE)
@@ -5548,7 +5600,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, un nouvel onglet sera ajouté au fabricateur de décorations (contenant 11 parties de warper uniques + 11 reliques extraterrestres uniques + 5 tablettes extraterrestres uniques).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si está habilitado, habrá una nueva pestaña dentro del fabricator de decoraciones (que contiene 11 piezas warper únicas + 11 reliquias alienígenas únicas + 5 tabletas alienígenas únicas).";
+                        return "Si está habilitado, habrá una nueva pestaña dentro del fabricador de decoraciones (que contiene 11 piezas warper únicas + 11 reliquias alienígenas únicas + 5 tabletas alienígenas únicas).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Etkinleştirilirse, dekorasyon üreticisinin içinde yeni bir sekme olacaktır (11 benzersiz warper parçası + 11 benzersiz uzaylı kalıntısı + 5 benzersiz uzaylı tableti içerir).";
                     else if (UserLanguage == CountryCode.DE)
@@ -5561,7 +5613,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, toutes les tablettes alien seront disponibles dans l'onglet Précurseurs du fabricateur de décorations (si désactivée, seules les tablettes rouges et blanches seront disponibles).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si está habilitado, todas las tabletas alienígenas estarán disponibles en la pestaña Precursores del fabricator de decoraciónes (si está desactivada, solo estarán disponibles las tabletas rojas y blancas).";
+                        return "Si está habilitado, todas las tabletas alienígenas estarán disponibles en la pestaña Precursores del fabricador de decoraciónes (si está desactivada, solo estarán disponibles las tabletas rojas y blancas).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu seçenek etkinleştirilirse, tüm yabancı tabletler dekorasyon üreticisinin Öncüleri sekmesinde bulunur (devre dışı bırakılırsa, yalnızca kırmızı ve beyaz tabletler kullanılabilir).";
                     else if (UserLanguage == CountryCode.DE)
@@ -5574,7 +5626,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, vous pourrez fabriquer tous les œufs existants à partir du fabricateur de décorations (si désactivée, seuls les œufs de Dragon des Mers, d'Empereur des Mers et de Léviathan Fantôme seront disponibles dans le fabricateur de décorations).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si está habilitado, podrá fabricar todos los huevos existentes del fabricator de decoraciones (si está desactivado, solo los huevos de Fantasma Leviatán, Dragon marino leviatán y Emperador Marino Leviatán estarán disponibles en el fabricator de decoraciones).";
+                        return "Si está habilitado, podrá fabricar todos los huevos existentes del fabricador de decoraciones (si está desactivado, solo los huevos de Fantasma Leviatán, Dragon marino leviatán y Emperador Marino Leviatán estarán disponibles en el fabricador de decoraciones).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Etkinleştirilirse, dekorasyon üreticisinden mevcut tüm yumurtaları üretebileceksiniz (devre dışı bırakılmışsa, sadece Hayalet Canavar, Deniz ejderhası ve Deniz imparatoru canavarı yumurtaları dekorasyon fabrikasında bulunacaktır).";
                     else if (UserLanguage == CountryCode.DE)
@@ -5587,7 +5639,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, toutes les graines terrestres existantes seront ajoutées au fabricateur de graines (si désactivée, seules les graines terrestres fournies par ce mod seront disponibles dans le fabricateur de graines).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si esta opción está habilitada, todas las semillas de tierra existentes se agregarán al fabricator de semillas (si está desactivada, solo las semillas de tierra proporcionadas por este mod estarán disponibles en el fabricator de semillas).";
+                        return "Si esta opción está habilitada, todas las semillas de tierra existentes se agregarán al fabricador de semillas (si está desactivada, solo las semillas de tierra proporcionadas por este mod estarán disponibles en el fabricador de semillas).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu seçenek etkinleştirilirse, mevcut tüm kara tohumları tohum üreticisine eklenir (devre dışı bırakılırsa, yalnızca bu mod tarafından sağlanan kara tohumları tohum üreticisinde bulunur).";
                     else if (UserLanguage == CountryCode.DE)
@@ -5600,7 +5652,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, toutes les graines aquatiques existantes seront ajoutées au fabricateur de graines (si désactivée, seules les graines aquatiques fournies par ce mod seront disponibles dans le fabricateur de graines).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si esta opción está habilitada, todas las semillas acuáticas existentes se agregarán al fabricator de semillas (si está desactivada, solo las semillas acuáticas proporcionadas por este mod estarán disponibles en el fabricator de semillas).";
+                        return "Si esta opción está habilitada, todas las semillas acuáticas existentes se agregarán al fabricador de semillas (si está desactivada, solo las semillas acuáticas proporcionadas por este mod estarán disponibles en el fabricador de semillas).";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu seçenek etkinleştirilirse, mevcut tüm sucul tohumlar tohum üreticisine eklenecektir (devre dışı bırakılmışsa, sadece bu mod tarafından sağlanan su tohumları tohum üreticisinde bulunacaktır).";
                     else if (UserLanguage == CountryCode.DE)
@@ -5613,7 +5665,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, les Arbres de Crique Géants de ce mod (graine conçue avec le fabricateur de graines) qui sont en dessous de 100m de profondeur et dont les œufs sont visibles créeront des léviathans fantômes juvéniles après un certain temps.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si esta opción está activada, el Árbol Gigante de la Ensenada de este mod (semilla diseñada con el fabricator de semillas) que tiene menos de 100 metros de profundidad y cuyos huevos son visibles creará Fantasma Leviatán Joven después de un cierto tiempo.";
+                        return "Si esta opción está activada, el Árbol Gigante de la Ensenada de este mod (semilla diseñada con el fabricador de semillas) que tiene menos de 100 metros de profundidad y cuyos huevos son visibles creará Fantasma Leviatán Joven después de un cierto tiempo.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu seçenek etkinleştirilirse, bu modun (tohum üreticisi ile tasarlanan tohum) 100m derinliğin altında ve yumurtaları görünür olan Kocaman kovuk ağacı belirli bir süre sonra Hayalet canavar yavrusu oluşturur.";
                     else if (UserLanguage == CountryCode.DE)
@@ -5678,7 +5730,7 @@ namespace DecorationsModConfigurator
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, vous pourrez fabriquer le bloc de nutriments à partir du fabricateur de décorations. Veuillez noter que la fonction « Inclure les nouveaux objets » de l'onglet « Réglages généraux » doit être activée pour que cette option fonctionne.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si esta opción está activada, será posible crear la barrita energética en el fabricator de decoraciones. Tenga en cuenta que la función « Incluir nuevos objetos » en la pestaña « Configuración general » debe estar activada para que esta opción funcione.";
+                        return "Si esta opción está activada, será posible crear la barrita energética en el fabricador de decoraciones. Tenga en cuenta que la función « Incluir nuevos objetos » en la pestaña « Configuración general » debe estar activada para que esta opción funcione.";
                     else if (UserLanguage == CountryCode.TR)
                         return "Bu seçenek etkinleştirilirse, dekoratör üreticisinden besin öbeği yapabilirsiniz. Bu seçeneğin çalışması için « Genel Ayarlar » sekmesindeki « Yeni nesneleri dahil et » işlevinin etkinleştirilmesi gerektiğini lütfen unutmayın.";
                     else if (UserLanguage == CountryCode.DE)

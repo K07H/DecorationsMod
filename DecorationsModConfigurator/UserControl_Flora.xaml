@@ -99,6 +99,7 @@
                 </Grid>
             </StackPanel>
             <local:UserControl_FloraConfig x:Name="UC_LandTree" Margin="0,20,0,15" Plant="{Binding LandTree, Mode=TwoWay}" PlantName="{Binding LandTree.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_MarbleMelonTiny" Margin="0,0,0,15" Plant="{Binding MarbleMelonTiny, Mode=TwoWay}" PlantName="{Binding MarbleMelonTiny.PlantName, Mode=TwoWay}" />
             <local:UserControl_FloraConfig x:Name="UC_MushroomTree2" Margin="0,0,0,15" Plant="{Binding MushroomTree2, Mode=TwoWay}" PlantName="{Binding MushroomTree2.PlantName, Mode=TwoWay}" />
             <local:UserControl_FloraConfig x:Name="UC_MushroomTree1" Margin="0,0,0,15" Plant="{Binding MushroomTree1, Mode=TwoWay}" PlantName="{Binding MushroomTree1.PlantName, Mode=TwoWay}" />
             <local:UserControl_FloraConfig x:Name="UC_JungleTreeA" Margin="0,0,0,15" Plant="{Binding JungleTreeA, Mode=TwoWay}"  PlantName="{Binding JungleTreeA.PlantName, Mode=TwoWay}" />

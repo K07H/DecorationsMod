@@ -37,9 +37,9 @@ enablePlaceBatteries=true
 enableNewFlora=true
 
 # If "true", you will be able to build/craft the following items:
-# lab cart, indoor long planter, outdoor long planter specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll,
-# eatmydiction doll, empty desk, eatmydiction doll, seamoth doll, exosuit doll, forklift, cargo crates, sofas, benches, stool,
-# customizable picture frame, customizable light, warper specimen, warper parts, alien pillar, alien relics and additional lockers.
+# lab cart, indoor long planter, outdoor long planter specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll,
+# empty desk, eatmydiction doll, seamoth doll, exosuit doll, forklift, cargo crates, sofas, benches, stool, customizable picture frame,
+# customizable light, warper specimen, warper parts, alien pillar, alien relics, additional lockers, control terminal and workdesk screens.
 enableNewItems=true
 
 # If "true", you will be able to build sofas.
@@ -296,6 +296,7 @@ config_BloodGrass=1000/40/70/false/1/1/false/20
 config_BloodGrassDense=1600/60/90/false/1/1/false/20
 config_MushroomTree1=3000/300/140/false/1/1/false/20
 config_MushroomTree2=1500/100/80/false/1/1/false/20
+config_MarbleMelonTiny=800/10/280/true/11/7/true/20
 
 
 # -----------------------
@@ -331,6 +332,10 @@ GhostLeviatan_spawnTimeRatio=100
 # Set this to "true" only if some items in Seeds Fabricator are not visible because they don't fit in screen.
 # If it still doesn't fit after that, download Radial Tabs mod here: https://www.nexusmods.com/subnautica/mods/207.
 useAlternativeScreenResolution=false
+
+# Set this to "true" if you want to hide the Degasi base structure at -500m in Deep Grand Reef.
+# Hiding base structure will allow you to construct your own base in this beautiful biome location (Orange Tablet, Cuddlefish Egg, PDAs and Data Boxes will remain visible and pickupable).
+hideDeepGrandReefDegasiBase=false
 
 # If "true",  item will be available through the habitat builder menu.
 # If "false", item will be available through the decorations fabricator.

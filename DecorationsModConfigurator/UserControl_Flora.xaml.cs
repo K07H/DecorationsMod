@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static DecorationsModConfigurator.TechTypes;
 
 namespace DecorationsModConfigurator
@@ -177,6 +168,7 @@ namespace DecorationsModConfigurator
             this.BloodGrassDense = Configuration.Instance.BloodGrassDense;
             this.MushroomTree1 = Configuration.Instance.MushroomTree1;
             this.MushroomTree2 = Configuration.Instance.MushroomTree2;
+            this.MarbleMelonTiny = Configuration.Instance.MarbleMelonTiny;
 
             InitPlantCharacteristicsArray();
 
@@ -314,6 +306,7 @@ namespace DecorationsModConfigurator
         public FloraConfig BloodGrassDense { get { return Configuration.Instance.BloodGrassDense; } set { Configuration.Instance.BloodGrassDense = value; } }
         public FloraConfig MushroomTree1 { get { return Configuration.Instance.MushroomTree1; } set { Configuration.Instance.MushroomTree1 = value; } }
         public FloraConfig MushroomTree2 { get { return Configuration.Instance.MushroomTree2; } set { Configuration.Instance.MushroomTree2 = value; } }
+        public FloraConfig MarbleMelonTiny { get { return Configuration.Instance.MarbleMelonTiny; } set { Configuration.Instance.MarbleMelonTiny = value; } }
 
         public string Config_FloraSettings { get { return LanguageHelper.GetFriendlyWord("Config_FloraSettings"); } set { } }
         public string Config_EnableRegularAirSeeds { get { return LanguageHelper.GetFriendlyWord("Config_EnableRegularAirSeeds"); } set { } }
@@ -350,9 +343,12 @@ namespace DecorationsModConfigurator
         {
             if (_plantsCharacteristics == null || forceRefresh)
             {
-                _plantsCharacteristics = new UserControl_FloraConfig[55]
+                _plantsCharacteristics = new UserControl_FloraConfig[56]
                 {
                     UC_LandTree,
+                    UC_MarbleMelonTiny,
+                    UC_MushroomTree2,
+                    UC_MushroomTree1,
                     UC_JungleTreeA,
                     UC_JungleTreeB,
                     UC_TropicalTreeA,
@@ -404,9 +400,7 @@ namespace DecorationsModConfigurator
                     UC_RedGrass2Tall,
                     UC_RedGrass3Tall,
                     UC_BloodGrass,
-                    UC_BloodGrassDense,
-                    UC_MushroomTree1,
-                    UC_MushroomTree2
+                    UC_BloodGrassDense
                 };
             }
         }

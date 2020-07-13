@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DecorationsModConfigurator"
+             xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              FontWeight="Light"
              FontSize="18"
@@ -55,7 +56,26 @@
             <TextBlock Grid.Column="0" Text="{Binding Config_ModdingDiscordDescription, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
                 <Image Source="/Images/Discord/SubnauticaModding.png" Width="48" Height="48" />
-                <TextBlock Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center"><Hyperlink NavigateUri="{Binding Config_ModdingDiscordURL, Mode=TwoWay}" RequestNavigate="Hyperlink_RequestNavigate"><TextBlock TextDecorations="Underline" Text="{Binding Config_ModdingDiscordURL, Mode=TwoWay}">
+                <TextBlock Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Hyperlink x:Name="HL_ModdingDiscordPrimaryLink" NavigateUri="{Binding Config_ModdingDiscordURL, Mode=TwoWay}" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Hyperlink.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Copy link" Click="PrimaryMenuItem_Copy_Click">
+                                    <MenuItem.Icon>
+                                        <materialdesign:PackIcon Kind="ContentCopy" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Header="Open link" Click="PrimaryMenuItem_Open_Click">
+                                    <MenuItem.Icon>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialdesign:PackIcon Kind="Web" Margin="-1,0,0,0" Width="14" />
+                                            <materialdesign:PackIcon Kind="ArrowUp" Margin="-6.5,-3,0,0" Width="13" />
+                                        </StackPanel>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Hyperlink.ContextMenu>
+                        <TextBlock TextDecorations="Underline" Text="{Binding Config_ModdingDiscordURL, Mode=TwoWay}">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Style.Triggers>
@@ -72,7 +92,9 @@
                                     </Style.Triggers>
                                 </Style>
                             </TextBlock.Style>
-                </TextBlock></Hyperlink></TextBlock>
+                        </TextBlock>
+                    </Hyperlink>
+                </TextBlock>
             </StackPanel>
         </Grid>
         <Grid x:Name="GRD_SecondaryDiscordLink" Margin="0,15,0,10">
@@ -84,24 +106,45 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
                 <Image x:Name="IMG_SubnauticaFrance" Visibility="Collapsed" Source="/Images/Discord/SubnauticaFrance.png" Width="48" Height="48" Margin="0,0,5,0" />
                 <Image x:Name="IMG_SubnauticaWiki" Visibility="Collapsed" Source="/Images/Discord/SubnauticaWiki.png" Width="48" Height="48" Margin="0,0,5,0" />
-                <TextBlock Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center"><Hyperlink NavigateUri="{Binding Config_ModdingDiscordSecondaryURL, Mode=TwoWay}" RequestNavigate="Hyperlink_RequestNavigate"><TextBlock TextDecorations="Underline" Text="{Binding Config_ModdingDiscordSecondaryURL, Mode=TwoWay}">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.Setters>
-                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
-                                            </Trigger.Setters>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Trigger.Setters>
-                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
-                                            </Trigger.Setters>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                </TextBlock></Hyperlink></TextBlock>
+                <TextBlock Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Hyperlink x:Name="HL_ModdingDiscordSecondaryLink" NavigateUri="{Binding Config_ModdingDiscordSecondaryURL, Mode=TwoWay}" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Hyperlink.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Copy link" Click="SecondaryMenuItem_Copy_Click">
+                                    <MenuItem.Icon>
+                                        <materialdesign:PackIcon Kind="ContentCopy" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Header="Open link" Click="SecondaryMenuItem_Open_Click">
+                                    <MenuItem.Icon>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialdesign:PackIcon Kind="Web" Margin="-1,0,0,0" Width="14" />
+                                            <materialdesign:PackIcon Kind="ArrowUp" Margin="-6.5,-3,0,0" Width="13" />
+                                        </StackPanel>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Hyperlink.ContextMenu>
+                        <TextBlock TextDecorations="Underline" Text="{Binding Config_ModdingDiscordSecondaryURL, Mode=TwoWay}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Trigger.Setters>
+                                                    <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                                </Trigger.Setters>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="False">
+                                                <Trigger.Setters>
+                                                    <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                                                </Trigger.Setters>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                        </TextBlock>
+                    </Hyperlink>
+                </TextBlock>
             </StackPanel>
         </Grid>
     </StackPanel>

@@ -154,7 +154,8 @@ namespace DecorationsMod
                 edibleRegularAirTab.AddCraftingNode(TechType.BulboTreePiece,
                                                     TechType.PurpleVegetable,
                                                     TechType.HangingFruit,
-                                                    TechType.MelonSeed);
+                                                    TechType.MelonSeed,
+                                                    DecorationItemsHelper.getTechType(decorationItems, "MarbleMelonTiny"));
 
                 var decorativeBigAirTab = regularAirSeedsTab.AddTabNode("DecorativeBigAirTab", LanguageHelper.GetFriendlyWord("DecorativeBigAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_BigDeco"));
                 decorativeBigAirTab.AddCraftingNode(TechType.FernPalmSeed,

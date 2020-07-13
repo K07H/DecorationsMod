@@ -42,11 +42,11 @@ namespace DecorationsMod.Fixers
             {
                 if (string.IsNullOrEmpty(saveGame))
                     return; // If we reach here we don't know what is the game slot name...
-                saveDir = saveDir.Replace("/test/", "/" + saveGame + "/").Replace("\\test\\", "\\" + saveGame + "\\");
+                saveDir = saveDir.Replace("/test/", "/" + saveGame + "/").Replace("\\test\\", "\\" + saveGame + "\\").Replace('\\', '/');
             }
             if (Directory.Exists(saveDir))
             {
-                string saveFile = Path.Combine(saveDir, "discovered.txt");
+                string saveFile = Path.Combine(saveDir, "discovered.txt").Replace('\\', '/');
                 if (File.Exists(saveFile))
                 {
                     Logger.Log("INFO: Loading discoveries from \"" + saveFile + "\".");
@@ -397,63 +397,76 @@ namespace DecorationsMod.Fixers
                         KnownTechFixer.AddNotification(techType);
                 }
             }
-            if (techType != TechType.None && ConfigSwitcher.AddWaterSeedsWhenDiscovered && GameModeUtils.RequiresBlueprints())
+            if (techType != TechType.None && GameModeUtils.RequiresBlueprints())
             {
-                if (techType == CrafterLogicFixer.FloatingStone1)
+                if (ConfigSwitcher.AddWaterSeedsWhenDiscovered)
                 {
-                    if (!PDAEncyclopedia.ContainsEntry("FloatingStones"))
-                        return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
-                    else
-                        KnownTechFixer.AddNotification(techType);
+                    if (techType == CrafterLogicFixer.FloatingStone1)
+                    {
+                        if (!PDAEncyclopedia.ContainsEntry("FloatingStones"))
+                            return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                        else
+                            KnownTechFixer.AddNotification(techType);
+                    }
+                    else if (techType == CrafterLogicFixer.BrineLily)
+                    {
+                        if (!PDAEncyclopedia.ContainsEntry("BlueLostRiverLilly"))
+                            return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                        else
+                            KnownTechFixer.AddNotification(techType);
+                    }
+                    else if (techType == CrafterLogicFixer.Amoeba)
+                    {
+                        if (!PDAEncyclopedia.ContainsEntry("BlueAmoeba"))
+                            return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                        else
+                            KnownTechFixer.AddNotification(techType);
+                    }
+                    else if (techType == CrafterLogicFixer.PyroCoral1 || techType == CrafterLogicFixer.PyroCoral2 || techType == CrafterLogicFixer.PyroCoral3)
+                    {
+                        if (!PDAEncyclopedia.ContainsEntry("RedTipRockThings"))
+                            return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                        else
+                            KnownTechFixer.AddNotification(techType);
+                    }
+                    else if (techType == CrafterLogicFixer.CrabClawKelp1 || techType == CrafterLogicFixer.CrabClawKelp2 || techType == CrafterLogicFixer.CrabClawKelp3)
+                    {
+                        if (!PDAEncyclopedia.ContainsEntry("BlueTipLostRiverPlant"))
+                            return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                        else
+                            KnownTechFixer.AddNotification(techType);
+                    }
+                    else if (techType == CrafterLogicFixer.BrownTubes1 || techType == CrafterLogicFixer.BrownTubes2 || techType == CrafterLogicFixer.BrownTubes3)
+                    {
+                        if (!PDAEncyclopedia.ContainsEntry("EarthenCoralTubes"))
+                            return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                        else
+                            KnownTechFixer.AddNotification(techType);
+                    }
+                    else if (techType == CrafterLogicFixer.CoveTree)
+                    {
+                        if (!PDAEncyclopedia.ContainsEntry("TreeCoveTree"))
+                            return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                        else
+                            KnownTechFixer.AddNotification(techType, false, false, true);
+                    }
+                    else if (techType == CrafterLogicFixer.MushroomTree1 || techType == CrafterLogicFixer.MushroomTree2)
+                    {
+                        if (!PDAEncyclopedia.ContainsEntry("TreeLeech") && !PDAEncyclopedia.ContainsEntry("TreeMushroom") && !PDAEncyclopedia.ContainsEntry("TreeMushroomPiece"))
+                            return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                        else
+                            KnownTechFixer.AddNotification(techType, false, false, true);
+                    }
                 }
-                else if (techType == CrafterLogicFixer.BrineLily)
+                else if (ConfigSwitcher.AddAirSeedsWhenDiscovered)
                 {
-                    if (!PDAEncyclopedia.ContainsEntry("BlueLostRiverLilly"))
-                        return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
-                    else
-                        KnownTechFixer.AddNotification(techType);
-                }
-                else if (techType == CrafterLogicFixer.Amoeba)
-                {
-                    if (!PDAEncyclopedia.ContainsEntry("BlueAmoeba"))
-                        return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
-                    else
-                        KnownTechFixer.AddNotification(techType);
-                }
-                else if (techType == CrafterLogicFixer.PyroCoral1 || techType == CrafterLogicFixer.PyroCoral2 || techType == CrafterLogicFixer.PyroCoral3)
-                {
-                    if (!PDAEncyclopedia.ContainsEntry("RedTipRockThings"))
-                        return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
-                    else
-                        KnownTechFixer.AddNotification(techType);
-                }
-                else if (techType == CrafterLogicFixer.CrabClawKelp1 || techType == CrafterLogicFixer.CrabClawKelp2 || techType == CrafterLogicFixer.CrabClawKelp3)
-                {
-                    if (!PDAEncyclopedia.ContainsEntry("BlueTipLostRiverPlant"))
-                        return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
-                    else
-                        KnownTechFixer.AddNotification(techType);
-                }
-                else if (techType == CrafterLogicFixer.BrownTubes1 || techType == CrafterLogicFixer.BrownTubes2 || techType == CrafterLogicFixer.BrownTubes3)
-                {
-                    if (!PDAEncyclopedia.ContainsEntry("EarthenCoralTubes"))
-                        return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
-                    else
-                        KnownTechFixer.AddNotification(techType);
-                }
-                else if (techType == CrafterLogicFixer.CoveTree)
-                {
-                    if (!PDAEncyclopedia.ContainsEntry("TreeCoveTree"))
-                        return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
-                    else
-                        KnownTechFixer.AddNotification(techType, false, false, true);
-                }
-                else if (techType == CrafterLogicFixer.MushroomTree1 || techType == CrafterLogicFixer.MushroomTree2)
-                {
-                    if (!PDAEncyclopedia.ContainsEntry("TreeLeech") && !PDAEncyclopedia.ContainsEntry("TreeMushroom") && !PDAEncyclopedia.ContainsEntry("TreeMushroomPiece"))
-                        return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
-                    else
-                        KnownTechFixer.AddNotification(techType, false, false, true);
+                    if (techType == CrafterLogicFixer.MarbleMelonTiny)
+                    {
+                        if (!PDAEncyclopedia.ContainsEntry("MelonPlant") && !PDAEncyclopedia.ContainsEntry("MelonSeed") && !PDAEncyclopedia.ContainsEntry("SmallMelon") && !PDAEncyclopedia.ContainsEntry("Melon"))
+                            return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                        else
+                            KnownTechFixer.AddNotification(techType, false, false, true);
+                    }
                 }
             }
             if (techType != TechType.None && !ConfigSwitcher.EnableEggsAtStart && GameModeUtils.RequiresBlueprints())

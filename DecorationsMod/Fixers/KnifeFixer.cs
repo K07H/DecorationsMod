@@ -21,7 +21,7 @@ namespace DecorationsMod.Fixers
                 HarvestType harvestTypeFromTech = CraftData.GetHarvestTypeFromTech(techType);
 #endif
                 if ((harvestTypeFromTech == HarvestType.DamageAlive && wasAlive) || (harvestTypeFromTech == HarvestType.DamageDead && !isAlive))
-                    CraftData.AddToInventory(ConfigSwitcher.PurplePineconeDroppedResource, ConfigSwitcher.PurplePineconeDroppedResourceAmount, false, false); // Add one salt in player's inventory
+                    CraftData.AddToInventory(ConfigSwitcher.PurplePineconeDroppedResource, ConfigSwitcher.PurplePineconeDroppedResourceAmount, false, false); // This will add PurplePineconeDroppedResourceAmount of PurplePineconeDroppedResource in player's inventory
             }
         }
     }

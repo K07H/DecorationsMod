@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DecorationsModConfigurator
 {
@@ -26,6 +17,7 @@ namespace DecorationsModConfigurator
             InitializeComponent();
 
             this.UseAlternativeScreenResolution = Configuration.Instance.UseAlternativeScreenResolution;
+            this.HideDeepGrandReefDegasiBase = Configuration.Instance.HideDeepGrandReefDegasiBase;
             this.AsBuildable_SpecimenAnalyzer = Configuration.Instance.AsBuildable_SpecimenAnalyzer;
             this.AsBuildable_MarkiplierDoll1 = Configuration.Instance.AsBuildable_MarkiplierDoll1;
             this.AsBuildable_MarkiplierDoll2 = Configuration.Instance.AsBuildable_MarkiplierDoll2;
@@ -43,6 +35,7 @@ namespace DecorationsModConfigurator
         }
 
         public bool UseAlternativeScreenResolution { get { return Configuration.Instance.UseAlternativeScreenResolution; } set { Configuration.Instance.UseAlternativeScreenResolution = value; } }
+        public bool HideDeepGrandReefDegasiBase { get { return Configuration.Instance.HideDeepGrandReefDegasiBase; } set { Configuration.Instance.HideDeepGrandReefDegasiBase = value; } }
         public bool AsBuildable_SpecimenAnalyzer { get { return Configuration.Instance.AsBuildable_SpecimenAnalyzer; } set { Configuration.Instance.AsBuildable_SpecimenAnalyzer = value; } }
         public bool AsBuildable_MarkiplierDoll1 { get { return Configuration.Instance.AsBuildable_MarkiplierDoll1; } set { Configuration.Instance.AsBuildable_MarkiplierDoll1 = value; } }
         public bool AsBuildable_MarkiplierDoll2 { get { return Configuration.Instance.AsBuildable_MarkiplierDoll2; } set { Configuration.Instance.AsBuildable_MarkiplierDoll2 = value; } }
@@ -59,6 +52,8 @@ namespace DecorationsModConfigurator
         public string Config_ExtraSettings { get { return LanguageHelper.GetFriendlyWord("Config_ExtraSettings"); } set { } }
         public string Config_UseFlatScreenResolution { get { return LanguageHelper.GetFriendlyWord("Config_UseFlatScreenResolution"); } set { } }
         public string Config_UseFlatScreenResolutionDescription { get { return LanguageHelper.GetFriendlyWord("Config_UseFlatScreenResolutionDescription"); } set { } }
+        public string Config_HideDeepGrandReefDegasiBase { get { return LanguageHelper.GetFriendlyWord("Config_HideDeepGrandReefDegasiBase"); } set { } }
+        public string Config_HideDeepGrandReefDegasiBaseDescription { get { return LanguageHelper.GetFriendlyWord("Config_HideDeepGrandReefDegasiBaseDescription"); } set { } }
         public string Config_AsBuildable_SpecimenAnalyzer { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildable_SpecimenAnalyzer"); } set { } }
         public string Config_AsBuildable_MarkiplierDoll1 { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildable_MarkiplierDoll1"); } set { } }
         public string Config_AsBuildable_MarkiplierDoll2 { get { return LanguageHelper.GetFriendlyWord("Config_AsBuildable_MarkiplierDoll2"); } set { } }

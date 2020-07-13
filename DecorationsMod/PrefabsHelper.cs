@@ -274,20 +274,6 @@ namespace DecorationsMod
 
                 GameObject aquariumPrefab = Resources.Load<GameObject>("Submarine/Build/Aquarium");
 
-                /*
-                foreach (Transform tr in aquariumPrefab.transform)
-                {
-                    Logger.Log("DEBUG: Aquarium transform name=[" + tr.name + "]");
-                    foreach (Transform trb in tr)
-                    {
-                        Logger.Log("DEBUG: Aquarium sub transform name=[" + trb.name + "]");
-                        foreach (Transform trc in trb)
-                        {
-                            Logger.Log("DEBUG: Aquarium sub sub transform name=[" + trc.name + "]");
-                        }
-                    }
-                }
-                */
 #if SUBNAUTICA
                 SkyApplier[] sas = aquariumPrefab.GetComponents<SkyApplier>();
                 List<Renderer> rendsA = new List<Renderer>();

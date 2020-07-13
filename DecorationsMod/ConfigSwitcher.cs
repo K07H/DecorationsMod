@@ -72,6 +72,9 @@ namespace DecorationsMod
         // If "true", glass of the aquariums (regular and the one from this mod) will be a little glowing.
         public static bool GlowingAquariumGlass = false;
 
+        // If "true", base parts of the Degasi base in Deep Grand Reef will be hidden.
+        public static bool HideDeepGrandReefDegasiBase = false;
+
         // If "true", there will be a new tab inside decorations fabricator containing following items:
         // 11 unique warper parts, 11 unique alien relics and 5 unique alien tablets
         // Hidden by default to prevent end game spoilers.
@@ -167,6 +170,7 @@ namespace DecorationsMod
         public static CustomFlora config_BloodGrassDense = new CustomFlora(1600.0f, 60.0f, true, 0.0f, 0.0f, false, 90.0f);
         public static CustomFlora config_MushroomTree1 = new CustomFlora(3000.0f, 300.0f, true, 0.0f, 0.0f, false, 140.0f);
         public static CustomFlora config_MushroomTree2 = new CustomFlora(1500.0f, 100.0f, true, 0.0f, 0.0f, false, 80.0f);
+        public static CustomFlora config_MarbleMelonTiny = new CustomFlora(800.0f, 10.0f, true, 11.0f, 7.0f, true, 280.0f, 0.02f, false, 300.0f, true);
 
         // Add existing air seeds to the seeds fabricator
         public static bool EnableRegularAirSeeds = true;
@@ -335,6 +339,8 @@ namespace DecorationsMod
                                     ConfigSwitcher.EnableEggsAtStart = configValue; break;
                                 case "useAlternativeScreenResolution":
                                     ConfigSwitcher.UseFlatScreenResolution = configValue; break;
+                                case "hideDeepGrandReefDegasiBase":
+                                    ConfigSwitcher.HideDeepGrandReefDegasiBase = configValue; break;
                                 case "useCompactTooltips":
                                     ConfigSwitcher.UseCompactTooltips = configValue; break;
                                 case "lockQuickslotsWhenPlacingItem":
@@ -533,6 +539,8 @@ namespace DecorationsMod
                                     GetFloraConfig(ConfigSwitcher.config_MushroomTree1, configValueStr); break;
                                 case "config_MushroomTree2":
                                     GetFloraConfig(ConfigSwitcher.config_MushroomTree2, configValueStr); break;
+                                case "config_MarbleMelonTiny":
+                                    GetFloraConfig(ConfigSwitcher.config_MarbleMelonTiny, configValueStr); break;
                                 case "addRegularAirSeeds":
                                     ConfigSwitcher.EnableRegularAirSeeds = configValue; break;
                                 case "addAirSeedsWhenDiscovered":

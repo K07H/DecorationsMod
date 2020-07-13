@@ -79,13 +79,6 @@ namespace DecorationsMod.NewItems
 
             prefab.name = this.ClassID;
 
-#if DEBUG_SEAMOTH_FRAGMENTS
-            foreach (Transform tr in prefab.transform)
-                Logger.Log("DEBUG: 5 Transform name=[" + (!string.IsNullOrEmpty(tr.name) ? tr.name : "?") + "].");
-            foreach (Component comp in prefab.GetComponents<Component>())
-                Logger.Log("DEBUG: 5 Comp name=[" + (!string.IsNullOrEmpty(comp.name) ? comp.name : "?") + "] type=[" + comp.GetType().ToString() + "].");
-#endif
-
             // Translate
             foreach (Transform tr in prefab.transform)
                 tr.localPosition = new Vector3(tr.localPosition.x, tr.localPosition.y + 0.25f, tr.localPosition.z);

@@ -20,7 +20,6 @@ namespace DecorationsMod
     // DEBUG_FLORA
     // DEBUG_FLORA_ANIMATION
     // DEBUG_FLORA_ENTRY
-    // DEBUG_GROWNPLANT_FIXER
     // DEBUG_KNIFE
     // DEBUG_LAMP
     // DEBUG_STOOL
@@ -162,6 +161,9 @@ namespace DecorationsMod
                 var onHandHoverMethod = typeof(GrownPlant).GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
                 var onHandHoverPostfix = typeof(GrownPlantFixer).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(onHandHoverPostfix));
+                var plant_onHandClickMethod = typeof(GrownPlant).GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
+                var plant_onHandClickPostfix = typeof(GrownPlantFixer).GetMethod("OnHandClick_Postfix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(plant_onHandClickMethod, null, new HarmonyMethod(plant_onHandClickPostfix));
                 // Make new flora spawn as seeds when using console commands (instead of grown plants)
 #if DEBUG_HARMONY_PATCHING
                 Logger.Log("DEBUG: Making plants spawning as seeds...");
@@ -186,6 +188,13 @@ namespace DecorationsMod
                 var onHandClickMethod = typeof(Pickupable).GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
                 var onHandClickPrefix = typeof(PickupableFixer).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(onHandClickPrefix), null);
+                // Hide Degasi base (500m) if needed
+#if DEBUG_HARMONY_PATCHING
+                Logger.Log("DEBUG: Adding biome checks...");
+#endif
+                var calculateBiomeMethod = typeof(Player).GetMethod("CalculateBiome", BindingFlags.NonPublic | BindingFlags.Instance);
+                var calculateBiomePostfix = typeof(PlayerFixer).GetMethod("CalculateBiome_Postfix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(calculateBiomeMethod, null, new HarmonyMethod(calculateBiomePostfix));
             }
         }
 
