@@ -25,7 +25,7 @@ Same as the installation instructions (at step 3 it will ask if you want to repl
 <br><br>
 
 ### Description:
-Adds a fabricator allowing you to craft 118 new items. Adds another fabricator to craft 55 new seeds. 27 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
+Adds a fabricator allowing you to craft 118 new items. Adds another fabricator to craft 56 new seeds. 32 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
 
 **Adds a decoration fabricator allowing you to craft following new items (118 new items):**<br>
     5 unique posters<br>
@@ -47,15 +47,15 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     5 unique alien tablets<br>
     19 unique eggs<br>
     5 unique seamoth fragments<br>
-**Add a seeds fabricator allowing you to craft and grow following new flora (55 new seeds):**<br>
-    7 unique air plants<br>
+**Add a seeds fabricator allowing you to craft and grow following new flora (56 new seeds):**<br>
+    8 unique air plants<br>
     7 unique air trees<br>
     8 unique tropical plants<br>
     12 unique water plants<br>
     9 unique water trees<br>
     5 unique corals<br>
     7 unique amphibious plants<br>
-**Add the following new items in the habitat builder menu (29 new buildables):**<br>
+**Add the following new items in the habitat builder menu (32 new buildables):**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
     Markiplier1 doll<br>
@@ -77,6 +77,8 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     Customizable light<br>
     Long planter (handles land seeds)<br>
     Small aquarium<br>
+    2 unique workdesk screens<br>
+    Control terminal<br>
 **You will be able to place following existing items where you want:**<br>
     Coffee cup<br>
     All snacks<br>
