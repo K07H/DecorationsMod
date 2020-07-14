@@ -95,28 +95,28 @@ namespace DecorationsMod.Controllers
                     reactorRodLight.intensity = 0f;
                 else
                     reactorRodLight.intensity += 0.1f;
-                ErrorMessage.AddDebug("Lamp: Light intensity updated (" + String.Format("{0:0.00}", reactorRodLight.intensity) + "/2.5)");
+                ErrorMessage.AddDebug("Lamp: Light intensity updated (" + String.Format("{0:0.00}", reactorRodLight.intensity) + "/2.6)");
             }
             else if (Input.GetKey(KeyCode.T)) // Adjust reactor rod glow intensity
             {
                 // Get current reactor rod glow intensity
                 Color glowColor = renderer.material.GetColor("_GlowColor");
-                if (glowColor.r >= 2.5f)
+                if (glowColor.r >= 3.0f)
                 {
                     renderer.material.DisableKeyword("MARMO_EMISSION"); // Disable emission
                     renderer.material.SetColor("_GlowColor", Color.black); // Reset glow intensity
-                    ErrorMessage.AddDebug("Lamp: Center intensity updated (" + String.Format("{0:0.00}", 0.0f) + "/2.5)");
+                    ErrorMessage.AddDebug("Lamp: Center intensity updated (" + String.Format("{0:0.00}", 0.0f) + "/3.0)");
                 }
                 else if (glowColor.r == 0.0f)
                 {
                     renderer.material.EnableKeyword("MARMO_EMISSION"); // Enable emission
                     renderer.material.SetColor("_GlowColor", new Color(0.1f, 0.1f, 0.1f, 1.0f));
-                    ErrorMessage.AddDebug("Lamp: Center intensity updated (" + String.Format("{0:0.00}", 0.1f) + "/2.5)");
+                    ErrorMessage.AddDebug("Lamp: Center intensity updated (" + String.Format("{0:0.00}", 0.1f) + "/3.0)");
                 }
                 else
                 {
                     renderer.material.SetColor("_GlowColor", new Color(glowColor.r + 0.1f, glowColor.g + 0.1f, glowColor.b + 0.1f, 1.0f)); // Increase glow intensity
-                    ErrorMessage.AddDebug("Lamp: Center intensity updated (" + String.Format("{0:0.00}", (glowColor.r + 0.1f)) + "/2.5)");
+                    ErrorMessage.AddDebug("Lamp: Center intensity updated (" + String.Format("{0:0.00}", (glowColor.r + 0.1f)) + "/3.0)");
                 }
             }
             else if (Input.GetKey(KeyCode.E)) // Adjust emission map
@@ -168,9 +168,13 @@ namespace DecorationsMod.Controllers
                 savedRange = reactorRodLight.range;
 
                 // Disable emission
-                renderer.material.DisableKeyword("MARMO_EMISSION");
+                //renderer.material.DisableKeyword("MARMO_EMISSION");
+                renderer.material.DisableKeyword("MARMO_GLOW");
                 // Disable reactor rod intensity
                 renderer.material.SetColor("_GlowColor", Color.black);
+                renderer.material.SetFloat("_EnableGlow", 0);
+                renderer.material.SetFloat("_Shininess", 0.0f);
+                //renderer.material.SetFloat("_EmissionLM", 0.0f);
                 // Disable lamp itensity
                 reactorRodLight.intensity = 0.0f;
                 // Disable lamp range
@@ -191,9 +195,13 @@ namespace DecorationsMod.Controllers
             if (!isOn)
             {
                 // Restore emission
-                renderer.material.EnableKeyword("MARMO_EMISSION");
+                //renderer.material.EnableKeyword("MARMO_EMISSION");
+                renderer.material.EnableKeyword("MARMO_GLOW");
                 // Restore reactor rod intensity
                 renderer.material.SetColor("_GlowColor", savedGlowColor);
+                renderer.material.SetFloat("_EnableGlow", 1);
+                renderer.material.SetFloat("_Shininess", 10.0f);
+                //renderer.material.SetFloat("_EmissionLM", 2.5f);
                 // Restore lamp itensity
                 reactorRodLight.intensity = savedIntensity;
                 // Restore lamp range

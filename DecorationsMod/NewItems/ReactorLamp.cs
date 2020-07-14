@@ -117,7 +117,7 @@ namespace DecorationsMod.NewItems
                 this.GameObject.GetComponentsInChildren<Renderer>(renderers);
                 foreach (Renderer renderer in renderers)
                 {
-                    if (string.Compare(renderer.name, "nuclear_reactor_rod_mesh", true, CultureInfo.InvariantCulture) == 0)
+                    if (renderer.name == "nuclear_reactor_rod_mesh")
                     {
                         // Associate MarmosetUBER shader
                         renderer.sharedMaterial.shader = shader;
@@ -151,7 +151,7 @@ namespace DecorationsMod.NewItems
                         renderer.material.EnableKeyword("MARMO_SPECMAP");
                         renderer.material.EnableKeyword("_ZWRITE_ON"); // Enable Z write
                     }
-                    else if (string.Compare(renderer.name, "nuclear_reactor_rod_glass", true, CultureInfo.InvariantCulture) == 0 && glass != null)
+                    else if (renderer.name == "nuclear_reactor_rod_glass" && glass != null)
                         renderer.material = glass;
                 }
 
@@ -167,13 +167,10 @@ namespace DecorationsMod.NewItems
                 skyapplier.anchorSky = Skies.Auto;
 #else
                 var skyapplier = this.GameObject.GetComponent<SkyApplier>();
-                if (skyapplier != null)
-                    GameObject.Destroy(skyapplier);
-                var skyappliers = this.GameObject.GetComponentsInChildren<SkyApplier>();
-                if (skyappliers != null)
-                    foreach (SkyApplier sa in skyappliers)
-                        GameObject.Destroy(sa);
-                PrefabsHelper.SetDefaultSkyApplier(this.GameObject, null, Skies.Auto, false, true);
+                if (skyapplier == null)
+                    skyapplier = this.GameObject.AddComponent<SkyApplier>();
+                skyapplier.renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                skyapplier.anchorSky = Skies.Auto;
 #endif
 
                 // Add contructable
