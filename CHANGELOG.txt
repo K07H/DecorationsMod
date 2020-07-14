@@ -1,3 +1,29 @@
+
+Version 1.7.7
+This version is a quick hotfix to version 1.7.6. It fixes the Perennial Alien Tree (model was invisible) and the neon tube lighting of Customizable Lights.
+
+Version 1.7.6
+Fixed: Some lighting issues that were happening in specific situations with items like cargo crates.
+Fixed: Blue spiral thing on small mushroom tree does now have proper color.
+Fixed: The configuration tool does now have proper color when using Windows "light theme" (thanks to thefirebirdman for pointing this out and fix testing).
+Fixed: Pleaceable items are now placeable when using a controller instead of mouse & keyboard (thanks to thefirebirdman for pointing this out and fix testing).
+Modified: Outdoor long planter does now have the same model as exterior growbed.
+Modified: Lab Robot Arm will now unlock once you scanned the Alien Containment Unit (if discovery mode is enabled).
+Modified: Reorganized categories inside "Existing aquatic seeds" tab of the seeds fabricator.
+Modified: Bar bottles now requires quartz instead of glass to be crafted.
+Modifying: Currently updating Español translation with BepsDog64 (work in progress).
+Modifying: Currently updating Русский translation with Anonymous (work in progress).
+Added: You can now drop modded seeds from inventory when swimming like any regular seed.
+Added: Modding Discord servers links have been added inside the configuration tool ("About" tab).
+Added: The options inside the configuration tool now have descriptions.
+Added: Possibility of hiding the Degasi base structure in Deep Grand Reef (-500m). This allows to build your own base at this beautiful biome location.
+Added: New item: Decorative control terminal (in habitat builder).
+Added: New item: Decorative work desk screen (in habitat builder).
+Added: New item: Decorative work desk screen damaged (in habitat builder).
+Added: New seed: Small variant of the marblemelon (in seeds fabricator). "Add regular air seeds" feature needs to be enabled for it to appear.
+Added: New icons for all categories of the decorations fabricator and seeds fabricator (thanks to Mrpp777).
+Added: A hotfix for FCS Deep Driller mod (so that you can place powercells as decorations and it still works with the Deep Driller).
+
 Version 1.7.4
 Fixed: Precursor tablets now have correct recipes.
 Modified: You can now define more options for the new flora (food value, water value, decomposition rate, ...).
