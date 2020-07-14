@@ -14,7 +14,7 @@ Requires QMods and SMLHelper.<br>
 <br><br>
 
 ### Configuration instructions:
-To edit configuration, double click on **Configurator** shortcut inside folder "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod*".<br>
+To edit configuration, double click on **Configurator** shortcut inside folder "*C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod*" (or manually edit the Config text file with Notepad).<br>
 
 <br>
 
