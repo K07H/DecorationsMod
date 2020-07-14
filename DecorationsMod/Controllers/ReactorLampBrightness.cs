@@ -168,13 +168,11 @@ namespace DecorationsMod.Controllers
                 savedRange = reactorRodLight.range;
 
                 // Disable emission
-                //renderer.material.DisableKeyword("MARMO_EMISSION");
                 renderer.material.DisableKeyword("MARMO_GLOW");
                 // Disable reactor rod intensity
                 renderer.material.SetColor("_GlowColor", Color.black);
                 renderer.material.SetFloat("_EnableGlow", 0);
                 renderer.material.SetFloat("_Shininess", 0.0f);
-                //renderer.material.SetFloat("_EmissionLM", 0.0f);
                 // Disable lamp itensity
                 reactorRodLight.intensity = 0.0f;
                 // Disable lamp range
@@ -195,13 +193,11 @@ namespace DecorationsMod.Controllers
             if (!isOn)
             {
                 // Restore emission
-                //renderer.material.EnableKeyword("MARMO_EMISSION");
                 renderer.material.EnableKeyword("MARMO_GLOW");
                 // Restore reactor rod intensity
                 renderer.material.SetColor("_GlowColor", savedGlowColor);
                 renderer.material.SetFloat("_EnableGlow", 1);
                 renderer.material.SetFloat("_Shininess", 10.0f);
-                //renderer.material.SetFloat("_EmissionLM", 2.5f);
                 // Restore lamp itensity
                 reactorRodLight.intensity = savedIntensity;
                 // Restore lamp range

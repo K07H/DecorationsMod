@@ -187,14 +187,14 @@ namespace DecorationsMod.NewItems
 #endif
                 constructible.controlModelState = true;
                 constructible.deconstructionAllowed = true;
-                constructible.rotationEnabled = false;
+                constructible.rotationEnabled = true;
                 constructible.model = model;
                 constructible.techType = this.TechType;
                 constructible.enabled = true;
 
                 // Add constructable bounds
                 var bounds = this.GameObject.AddComponent<ConstructableBounds>();
-                //bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.003f, bounds.bounds.position.z);
+                bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.003f, bounds.bounds.position.z);
 
                 // Add lamp brightness controler
                 var lampBrightness = this.GameObject.AddComponent<ReactorLampBrightness>();
