@@ -203,18 +203,18 @@ namespace DecorationsMod
         {
             if (transform != null)
             {
-                bool toggle;
+                bool isNotSeed;
                 foreach (Transform tr in transform)
                 {
-                    toggle = (string.IsNullOrEmpty(tr.name) || !tr.name.StartsWith("Generic_plant_seed", true, CultureInfo.InvariantCulture));
+                    isNotSeed = (string.IsNullOrEmpty(tr.name) || !tr.name.StartsWith("Generic_plant_seed", true, CultureInfo.InvariantCulture));
                     Renderer[] renderers = tr.GetComponents<Renderer>();
                     if (renderers != null)
                         foreach (Renderer renderer in renderers)
-                            renderer.enabled = toggle;
+                            renderer.enabled = isNotSeed;
                     renderers = tr.GetAllComponentsInChildren<Renderer>();
                     if (renderers != null)
                         foreach (Renderer renderer in renderers)
-                            renderer.enabled = toggle;
+                            renderer.enabled = isNotSeed;
                 }
                 Pickupable p = transform.GetComponent<Pickupable>();
                 if (p != null)
@@ -236,18 +236,20 @@ namespace DecorationsMod
         {
             if (transform != null)
             {
-                bool toggle;
+                bool isSeed;
                 foreach (Transform tr in transform)
                 {
-                    toggle = (!string.IsNullOrEmpty(tr.name) && tr.name.StartsWith("Generic_plant_seed", true, CultureInfo.InvariantCulture));
+                    isSeed = (!string.IsNullOrEmpty(tr.name) && tr.name.StartsWith("Generic_plant_seed", true, CultureInfo.InvariantCulture));
+                    if (isSeed && classId != null && classId == "LandTree1")
+                        tr.localPosition = Vector3.zero;
                     Renderer[] renderers = tr.GetComponents<Renderer>();
                     if (renderers != null)
                         foreach (Renderer renderer in renderers)
-                            renderer.enabled = toggle;
+                            renderer.enabled = isSeed;
                     renderers = tr.GetAllComponentsInChildren<Renderer>();
                     if (renderers != null)
                         foreach (Renderer renderer in renderers)
-                            renderer.enabled = toggle;
+                            renderer.enabled = isSeed;
                 }
                 Pickupable p = transform.GetComponent<Pickupable>();
                 if (p != null)

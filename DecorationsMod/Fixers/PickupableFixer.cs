@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using UnityEngine;
+﻿using System.Reflection;
 
 namespace DecorationsMod.Fixers
 {
@@ -20,7 +17,7 @@ namespace DecorationsMod.Fixers
                 if (pid != null && !string.IsNullOrEmpty(pid.ClassId) && CustomFlora.AllPlants.Contains(pid.ClassId) && allowedToPickUpMethod != null)
                 {
                     // If hand is free and item allowed to pickup
-                    if (hand.IsFreeToInteract() && ((bool)allowedToPickUpMethod.Invoke(__instance, new object[] { }) == true))
+                    if (hand.IsFreeToInteract() && ((bool)allowedToPickUpMethod.Invoke(__instance, null) == true))
                     {
                         // Try pickup flora
                         if (Inventory.Get().Pickup(__instance, false))
@@ -56,10 +53,7 @@ namespace DecorationsMod.Fixers
 
                 // If current item is one of our new flora
                 if (pid != null && !string.IsNullOrEmpty(pid.ClassId) && CustomFlora.AllPlants.Contains(pid.ClassId))
-                {
-                    // On drop: hide plant, show seed and enable pickupable
-                    PrefabsHelper.HidePlantAndShowSeed(__instance.gameObject.transform, pid.ClassId);
-                }
+                    PrefabsHelper.HidePlantAndShowSeed(__instance.gameObject.transform, pid.ClassId); // Hide plant, show seed and enable pickupable
             }
         }
     }

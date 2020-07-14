@@ -157,8 +157,7 @@ namespace DecorationsMod.Controllers
                     else
                         Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
 #endif
-                    if (_grownPlant.gameObject.transform.localPosition.x > 4900.0f && _grownPlant.gameObject.transform.localPosition.x < 5100.0f &&
-                        _grownPlant.gameObject.transform.localPosition.z > 4900.0f && _grownPlant.gameObject.transform.localPosition.z < 5100.0f)
+                    if (_grownPlant.gameObject.transform.localPosition.x > 4500.0f && _grownPlant.gameObject.transform.localPosition.z > 4500.0f)
                     {
 #if DEBUG_FLORA
                         if (id != null)
@@ -186,9 +185,7 @@ namespace DecorationsMod.Controllers
                             // Set final size
                             _progress = 1.0f;
                             foreach (Transform tr in _grownPlant.gameObject.transform)
-                            {
                                 tr.localScale = new Vector3(_origScale.x, _origScale.y, _origScale.z);
-                            }
 
                             // Set final colliders
                             if (EnableColliders)
@@ -202,9 +199,7 @@ namespace DecorationsMod.Controllers
                                 // Enable origin colliders
                                 Collider[] colliders = _grownPlant.gameObject.GetComponentsInChildren<Collider>();
                                 foreach (Collider collider in colliders)
-                                {
                                     collider.enabled = true;
-                                }
                             }
 
                             // Enable knifeable

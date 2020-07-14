@@ -49,10 +49,8 @@ namespace DecorationsMod.Controllers
 
                     StaticPrefab.SetActive(true);
                 }
-                // Hide seed model
-                GameObject seed = _grownPlant.gameObject.FindChild("Generic_plant_seed");
-                if (seed != null)
-                    seed.GetComponent<MeshRenderer>().enabled = false;
+                // Hide seed model and show plant model
+                PrefabsHelper.ShowPlantAndHideSeed(_grownPlant.gameObject.transform);
                 // Store init values
                 _initTimeValue = DayNightCycle.main.timePassed;
                 foreach (Transform tr in go.transform)
@@ -65,9 +63,7 @@ namespace DecorationsMod.Controllers
                 }
                 // Init trees sizes
                 foreach (Transform tr in go.transform)
-                {
                     tr.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
-                }
                 Running = true;
             }
         }
@@ -139,8 +135,7 @@ namespace DecorationsMod.Controllers
                     else
                         Logger.Log("DEBUG: LandTree1Controller.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "]");
 #endif
-                    if (_grownPlant.gameObject.transform.localPosition.x > 4900.0f && _grownPlant.gameObject.transform.localPosition.x < 5100.0f &&
-                        _grownPlant.gameObject.transform.localPosition.z > 4900.0f && _grownPlant.gameObject.transform.localPosition.z < 5100.0f)
+                    if (_grownPlant.gameObject.transform.localPosition.x > 4500.0f && _grownPlant.gameObject.transform.localPosition.z > 4500.0f)
                     {
 #if DEBUG_FLORA
                         if (id != null)
@@ -155,10 +150,8 @@ namespace DecorationsMod.Controllers
                         if (_progress < 1.0f)
                         {
                             foreach (Transform tr in _grownPlant.gameObject.transform)
-                            {
                                 if (tr.name.StartsWith("Land_tree_01_static", true, CultureInfo.InvariantCulture))
                                     tr.localScale = new Vector3(_origStaticScale.x * _progress, _origStaticScale.y * _progress, _origStaticScale.z * _progress);
-                            }
                         }
                         else
                         {
@@ -171,10 +164,8 @@ namespace DecorationsMod.Controllers
                             // Set final size
                             _progress = 1.0f;
                             foreach (Transform tr in _grownPlant.gameObject.transform)
-                            {
                                 if (!tr.name.StartsWith("Land_tree_01_static", true, CultureInfo.InvariantCulture))
                                     tr.localScale = new Vector3(_origScale.x, _origScale.y, _origScale.z);
-                            }
                             // Enable knifeable
                             LiveMixin liveMixin = _grownPlant.gameObject.GetComponent<LiveMixin>();
                             liveMixin.data.knifeable = Knifeable;
