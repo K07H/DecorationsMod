@@ -116,6 +116,7 @@ All new flora is compatible with bioreactors and only the land tree is edible.<b
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
+July 14, 2020: Updated to version 1.7.7.<br>
 June 9, 2020: Updated to version 1.7.4.<br>
 May 17, 2020: Updated to version 1.7.3.<br>
 May 16, 2020: Updated to version 1.7.1.<br>
@@ -146,10 +147,13 @@ Feel free to propose new translations for this mod. You can find the up-to-date 
 @[AHK1221](https://github.com/ahk1221/) (for helping me to get into Subnautica modding)<br>
 @Revan (for mod testing)<br>
 @Inviscient (for mod testing)<br>
-@Paladyne (for the Türkçe translation)<br>
-@Verodor (for the Deutsch translation)<br>
+@Thefirebirdman (for mod testing)<br>
+@Paladyne (for the Turkish translation)<br>
+@Verodor (for the German translation)<br>
 @Krotobosha (for the Russian translation)<br>
+@BepsDog64 (for the Spanish translation)<br>
 @[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018/2019 update fixes)<br>
+@Mrpp777 (for the fabricator categories icons)<br>
 @Jason (for the 3D models)<br>
 <br>
 <br>
