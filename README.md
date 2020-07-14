@@ -148,7 +148,7 @@ Feel free to propose new translations for this mod. You can find the up-to-date 
 @Inviscient (for mod testing)<br>
 @Thefirebirdman (for mod testing)<br>
 @Paladyne (for the Turkish translation)<br>
-@Verodor (for the German translation)<br>
+@Verodor (for the Deutsch translation)<br>
 @Krotobosha (for the Russian translation)<br>
 @BepsDog64 (for the Spanish translation)<br>
 @[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018/2019 update fixes)<br>
