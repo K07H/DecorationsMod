@@ -138,7 +138,7 @@ June 5, 2018:  Updated to version 1.0.5.<br>
 June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Translations:<br>
-Currently supported: Français (FR), English (EN), Español (ES), Türkçe (TR), Deutsch (DE) and Russian (RU).<br>
+Currently supported: Français (FR), English (EN), Español (ES), Türkçe (TR), Deutsch (DE), Русский (RU).<br>
 Feel free to propose new translations for this mod. You can find the up-to-date [template here](https://github.com/K07H/DecorationsMod/blob/master/translation_template.docx?raw=true).<br>
 
 ### Special thanks:<br>
@@ -148,7 +148,7 @@ Feel free to propose new translations for this mod. You can find the up-to-date 
 @Inviscient (for mod testing)<br>
 @Thefirebirdman (for mod testing)<br>
 @Paladyne (for the Turkish translation)<br>
-@Verodor (for the Deutsch translation)<br>
+@Verodor (for the German translation)<br>
 @Krotobosha (for the Russian translation)<br>
 @BepsDog64 (for the Spanish translation)<br>
 @[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018/2019 update fixes)<br>
