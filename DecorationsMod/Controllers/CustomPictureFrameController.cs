@@ -547,6 +547,8 @@ namespace DecorationsMod.Controllers
                 PictureFrame pf = this.gameObject.GetComponent<PictureFrame>();
 
                 string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
+                if (tmpSize == null)
+                    return;
                 string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (sizes != null && sizes.Length >= 10 && sizes.Length <= 14)
                 {

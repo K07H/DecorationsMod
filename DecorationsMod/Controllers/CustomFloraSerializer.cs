@@ -143,9 +143,10 @@ namespace DecorationsMod.Controllers
                 Logger.Log("DEBUG: Saved file found for gameobject name=[" + this.gameObject.name + "]");
 #endif
                 string rawState = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
+                if (rawState == null)
+                    return;
                 string[] state = rawState.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-
-                if (state.Length == 1)
+                if (state != null && state.Length == 1)
                 {
                     float passedProgress = 0.0f;
                     if (float.TryParse(state[0], NumberStyles.Float, CultureInfo.InvariantCulture, out passedProgress))
