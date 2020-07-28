@@ -356,6 +356,8 @@ namespace DecorationsMod.Controllers
                 }
 
                 string rawState = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
+                if (rawState == null)
+                    return;
                 string[] state = rawState.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (state != null && state.Length == 8)
                 {
