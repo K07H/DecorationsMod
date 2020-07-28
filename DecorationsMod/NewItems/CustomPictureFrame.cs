@@ -180,13 +180,22 @@ namespace DecorationsMod.NewItems
             BoxCollider collider = trigger.GetComponent<BoxCollider>();
             collider.size = new Vector3(collider.size.x - 0.15f, collider.size.y - 0.15f, collider.size.z);
             collider.size = new Vector3(collider.size.y, collider.size.x, collider.size.z);
-            
-            // Update sky applier
-            var skyapplier = model.GetComponent<SkyApplier>();
-            Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
-            skyapplier.renderers = renderers;
+
+            // Update sky appliers
+            SkyApplier skyapplier = model.GetComponent<SkyApplier>();
+            SkyApplier[] sa1 = prefab.GetComponents<SkyApplier>();
+            SkyApplier[] sa2 = prefab.GetComponentsInChildren<SkyApplier>();
+            if (sa1 != null)
+                foreach (SkyApplier sa in sa1)
+                    if (sa != skyapplier)
+                        UnityEngine.Object.Destroy(sa);
+            if (sa2 != null)
+                foreach (SkyApplier sa in sa2)
+                    if (sa != skyapplier)
+                        UnityEngine.Object.Destroy(sa);
+            skyapplier.renderers = prefab.GetComponentsInChildren<Renderer>();
             skyapplier.anchorSky = Skies.Auto;
-            skyapplier.updaterIndex = 0;
+            //skyapplier.updaterIndex = 0;
             
             // Update contructable
             var constructible = prefab.GetComponent<Constructable>();

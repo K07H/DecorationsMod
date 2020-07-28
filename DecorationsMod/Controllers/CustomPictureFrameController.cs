@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -108,6 +111,7 @@ namespace DecorationsMod.Controllers
         {
             if (!__instance.enabled)
                 return true;
+            // If current item is one of our Customizable Picture Frame.
             if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)", true, CultureInfo.InvariantCulture))
             {
 
@@ -203,6 +207,8 @@ namespace DecorationsMod.Controllers
                             magnetModel.transform.localPosition = new Vector3(0f, 0f, 0f);
                         // Adjust image pos.
                         __instance.imageRenderer.transform.localPosition = new Vector3(__instance.imageRenderer.transform.localPosition.x, __instance.imageRenderer.transform.localPosition.y, __instance.imageRenderer.transform.localPosition.z - 0.0045f);
+                        // Display message to user.
+                        ErrorMessage.AddDebug("Picture Frame: Poster mode enabled.");
                     }
                     else if (magnetRenderer.enabled) // Else if we're in poster mode, switch to plain image mode.
                     {
@@ -215,6 +221,8 @@ namespace DecorationsMod.Controllers
                         // Enable bg bis
                         bgBisRenderer.enabled = !cpfController.Flipped;
                         bgPivotRenderer.enabled = cpfController.Flipped;
+                        // Display message to user.
+                        ErrorMessage.AddDebug("Picture Frame: No frame mode enabled.");
                     }
                     else // Else if we're if plain image mode, switch to picture frame mode.
                     {
@@ -229,6 +237,8 @@ namespace DecorationsMod.Controllers
                         bgPivotRenderer.enabled = false;
                         // Adjust image pos
                         __instance.imageRenderer.transform.localPosition = new Vector3(__instance.imageRenderer.transform.localPosition.x, __instance.imageRenderer.transform.localPosition.y, __instance.imageRenderer.transform.localPosition.z + 0.0045f);
+                        // Display message to user.
+                        ErrorMessage.AddDebug("Picture Frame: Picture frame mode enabled.");
                     }
 
                     return false;
@@ -236,7 +246,7 @@ namespace DecorationsMod.Controllers
                 else if (Input.GetKey(KeyCode.E))
                 {
                     // CustomPictureFrame scale ratio step
-                    float scaleRatio = 1.1f;
+                    float scaleRatio = 1.05f;
 
                     if (frame.transform.localScale.x >= 3.0f)
                     {
@@ -287,6 +297,40 @@ namespace DecorationsMod.Controllers
 
                     return false;
                 }
+                else if (Input.GetKey(KeyCode.G))
+                {
+                    PrefabIdentifier id = __instance.gameObject.GetComponent<PrefabIdentifier>();
+                    if (id != null)
+                    {
+                        cpfController.RandomImage = !cpfController.RandomImage;
+                        ErrorMessage.AddDebug("Picture Frame: Random mode " + (cpfController.RandomImage ? "enabled." : "disabled."));
+                        PictureFrameEnumHelper.SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.NoneEnumValue });
+                        __instance.fileName = null;
+                        if (cpfController.RandomImage)
+                            cpfController.SetRandomImage(id, __instance);
+                    }
+
+                    return false;
+                }
+                else if (Input.GetKey(KeyCode.T))
+                {
+                    PrefabIdentifier id = __instance.gameObject.GetComponent<PrefabIdentifier>();
+                    if (id != null)
+                    {
+                        //cpfController.Slideshow = !cpfController.Slideshow;
+                        ErrorMessage.AddDebug("Picture Frame: Slideshow mode " + (cpfController.Slideshow ? "disabled." : "enabled."));
+                        if (cpfController.Slideshow)
+                            cpfController.Slideshow = false;
+                        else
+                        {
+                            PictureFrameEnumHelper.SetStateMethod.Invoke(__instance, new object[] { PictureFrameEnumHelper.NoneEnumValue });
+                            __instance.fileName = null;
+                            cpfController.StartSlideshow(id, __instance);
+                        }
+                    }
+
+                    return false;
+                }
             }
             return true;
         }
@@ -306,10 +350,186 @@ namespace DecorationsMod.Controllers
         public Vector3 OriginMagnetScale = Vector3.zero;
 
         public bool Flipped = false;
-        
+        public bool RandomImage = false;
+        public bool Slideshow = false;
+        public List<string> SlideshowImages = new List<string>();
+
+        public float lastSlideshowChange = Time.time;
+        public float slideshowDelay = 15.0f; // Default slideshow delay (in seconds).
+        public int slideshowIndex = 0;
+        public int slideshowLastIndex = 0;
+
+        private PictureFrame _pf = null;
+        private System.Random _r = new System.Random();
+
         public void MySetState()
         {
             PictureFrameEnumHelper.SetStateMethod.Invoke(this.gameObject.GetComponent<PictureFrame>(), new object[] { PictureFrameEnumHelper.FullEnumValue });
+        }
+
+        private string GetRandomImageFromFolder(string folder)
+        {
+            string[] files = Directory.GetFiles(folder);
+            if (files != null)
+            {
+                List<string> images = new List<string>();
+                foreach (string file in files)
+                    if (Path.GetExtension(file) == ".jpg" || Path.GetExtension(file) == ".jpeg" || Path.GetExtension(file) == ".png" || Path.GetExtension(file) == ".gif")
+                        images.Add(file);
+                if (images.Count > 0)
+                    return images.ElementAt(_r.Next(0, images.Count)).Replace('\\', '/');
+            }
+            return null;
+        }
+
+        private void InitRandomMode(string folderPath)
+        {
+            this._pf.fileName = GetRandomImageFromFolder(folderPath);
+            if (this._pf.fileName != null)
+                PictureFrameEnumHelper.SetStateMethod.Invoke(this._pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
+            else
+                Logger.Log("INFO: Could not find a valid image inside custom picture frame images folder at \"" + folderPath + "\".");
+        }
+
+        private void InitSlideshowMode(string folderPath)
+        {
+            this.slideshowIndex = 0;
+            string[] files = Directory.GetFiles(folderPath);
+            if (files != null)
+            {
+                this.SlideshowImages.Clear();
+                foreach (string file in files)
+                    if (Path.GetExtension(file) == ".jpg" || Path.GetExtension(file) == ".jpeg" || Path.GetExtension(file) == ".png" || Path.GetExtension(file) == ".gif")
+                        this.SlideshowImages.Add(file);
+                if (this.SlideshowImages.Count > 0)
+                {
+                    this.SlideshowImages.Sort();
+                    if (this.RandomImage)
+                    {
+                        slideshowLastIndex = _r.Next(0, this.SlideshowImages.Count);
+                        this._pf.fileName = this.SlideshowImages.ElementAt(slideshowLastIndex).Replace('\\', '/');
+                    }
+                    else
+                        this._pf.fileName = this.SlideshowImages.First().Replace('\\', '/');
+                    PictureFrameEnumHelper.SetStateMethod.Invoke(this._pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
+                    this.lastSlideshowChange = Time.time;
+                    this.Slideshow = true;
+                }
+                else
+                    Logger.Log("INFO: Could not find any image inside custom picture frame images folder at \"" + folderPath + "\".");
+            }
+            else
+                Logger.Log("INFO: Could not find any files inside custom picture frame images folder at \"" + folderPath + "\".");
+        }
+
+        private void InitImagesFolder(PrefabIdentifier id, PictureFrame pf, bool initRandom = false, bool initSlideshow = false)
+        {
+            this._pf = pf;
+            string rootFolderPath = Path.GetFullPath(Path.Combine(FilesHelper.GetSaveFolderPath(), "pictureframes")).Replace('\\', '/');
+            if (!Directory.Exists(rootFolderPath))
+            {
+                try { Directory.CreateDirectory(rootFolderPath); }
+                catch { Logger.Log("WARNING: Could not create directory for custom picture frames at \"" + rootFolderPath + "\"."); }
+            }
+            if (Directory.Exists(rootFolderPath))
+            {
+                string folderPath = rootFolderPath + "/" + id.Id;
+                string configFilePath = folderPath + "/Config.txt";
+                if (!Directory.Exists(folderPath))
+                {
+                    try { Directory.CreateDirectory(folderPath); }
+                    catch { Logger.Log("WARNING: Could not create images directory for custom picture frame at \"" + folderPath + "\"."); }
+                    if (Directory.Exists(folderPath))
+                    {
+                        try
+                        {
+                            Vector3 pos = pf.gameObject.transform.position;
+                            string fileContent = string.Format("# Exact coordinates: {0} {1} {2}{3}# Rounded coordinates: {4} {5} {6}{3}# Value below defines the number of seconds to wait before switching to next image when slideshow mode is enabled.{3}Delay={7}",
+                                pos.x.ToString(".0##", CultureInfo.InvariantCulture),
+                                pos.y.ToString(".0##", CultureInfo.InvariantCulture),
+                                pos.z.ToString(".0##", CultureInfo.InvariantCulture),
+                                Environment.NewLine,
+                                ((int)Math.Round(pos.x, 0)).ToString(),
+                                ((int)Math.Round(pos.y, 0)).ToString(),
+                                ((int)Math.Round(pos.z, 0)).ToString(),
+                                ((int)Math.Round(this.slideshowDelay, 0)).ToString());
+                            File.WriteAllText(configFilePath, fileContent, System.Text.Encoding.UTF8);
+                        }
+                        catch { Logger.Log("WARNING: Could not add config file into custom picture frame images folder."); }
+                        try { Process.Start(folderPath); }
+                        catch { Logger.Log("WARNING: Could not open custom picture frame images folder at \"" + folderPath + "\"."); }
+                    }
+                }
+                if (Directory.Exists(folderPath))
+                {
+                    if (File.Exists(configFilePath))
+                    {
+                        string[] lines = File.ReadAllLines(configFilePath, System.Text.Encoding.UTF8);
+                        if (lines != null)
+                            foreach (string line in lines)
+                                if (line.StartsWith("Delay="))
+                                {
+                                    if (line.Length > 6 && int.TryParse(line.Substring(6), out int delay) && delay > 0)
+                                        this.slideshowDelay = delay;
+                                    else
+                                        Logger.Log("WARNING: The line \"" + line + "\" does not have a correct value (must be an integer greater than 0). Default value will be used.");
+                                    break;
+                                }
+                    }
+                    if (initRandom) // Initialize random mode
+                        InitRandomMode(folderPath);
+                    if (initSlideshow) // Initialize slideshow mode
+                        InitSlideshowMode(folderPath);
+                }
+                else
+                    Logger.Log("WARNING: Could not find custom picture frame images folder at \"" + folderPath + "\".");
+            }
+        }
+
+        public void SetNextSlideshowImage()
+        {
+            PictureFrameEnumHelper.SetStateMethod.Invoke(this._pf, new object[] { PictureFrameEnumHelper.NoneEnumValue });
+            if (this.SlideshowImages.Count <= 0)
+            {
+                this.slideshowIndex = 0;
+                this._pf.fileName = null;
+            }
+            else if (this.SlideshowImages.Count == 1)
+            {
+                this.slideshowIndex = 0;
+                this._pf.fileName = this.SlideshowImages.First().Replace('\\', '/');
+                PictureFrameEnumHelper.SetStateMethod.Invoke(this._pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
+            }
+            else if (this.SlideshowImages.Count > 1)
+            {
+                if (this.RandomImage)
+                {
+                    int rnd = slideshowLastIndex;
+                    while (rnd == slideshowLastIndex && this.SlideshowImages.Count > 1)
+                        rnd = _r.Next(0, this.SlideshowImages.Count);
+                    slideshowLastIndex = rnd;
+                    this._pf.fileName = this.SlideshowImages.ElementAt(slideshowLastIndex).Replace('\\', '/');
+                }
+                else
+                {
+                    this.slideshowIndex++;
+                    if (this.slideshowIndex >= this.SlideshowImages.Count)
+                        this.slideshowIndex = 0;
+                    this._pf.fileName = this.SlideshowImages.ElementAt(this.slideshowIndex).Replace('\\', '/');
+                }
+                PictureFrameEnumHelper.SetStateMethod.Invoke(this._pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
+            }
+            this.lastSlideshowChange = Time.time;
+        }
+
+        public void SetRandomImage(PrefabIdentifier id, PictureFrame pf) => InitImagesFolder(id, pf, true, false);
+
+        public void StartSlideshow(PrefabIdentifier id, PictureFrame pf) => InitImagesFolder(id, pf, false, true);
+
+        private void Update()
+        {
+            if (Slideshow && enabled && _pf != null && Time.time > (lastSlideshowChange + slideshowDelay))
+                SetNextSlideshowImage();
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -328,7 +548,7 @@ namespace DecorationsMod.Controllers
 
                 string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
                 string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                if (sizes.Length >= 10 || sizes.Length <= 12)
+                if (sizes != null && sizes.Length >= 10 && sizes.Length <= 14)
                 {
                     // Restore frame angles
                     string[] eulerAngles = sizes[0].Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
@@ -460,7 +680,30 @@ namespace DecorationsMod.Controllers
                             frame.transform.localPosition = updateFramePosition;
                         }
                     }
-
+                    // Restore random image mode
+                    if (sizes.Length >= 13)
+                    {
+                        this.RandomImage = (sizes[12] == "1");
+                        if (this.RandomImage)
+                        {
+                            PictureFrameEnumHelper.SetStateMethod.Invoke(pf, new object[] { PictureFrameEnumHelper.NoneEnumValue });
+                            pf.fileName = null;
+                            this.SetRandomImage(id, pf);
+                        }
+                    }
+                    // Restore slideshow mode
+                    if (sizes.Length >= 14)
+                    {
+                        bool isSlideshowOn = (sizes[13] == "1");
+                        if (!isSlideshowOn)
+                            this.Slideshow = false;
+                        else
+                        {
+                            PictureFrameEnumHelper.SetStateMethod.Invoke(pf, new object[] { PictureFrameEnumHelper.NoneEnumValue });
+                            pf.fileName = null;
+                            this.StartSlideshow(id, pf);
+                        }
+                    }
                     // Restore flip toogle
                     this.Flipped = (pf.imageRenderer.transform.localScale.x > pf.imageRenderer.transform.localScale.y);
 
@@ -495,6 +738,10 @@ namespace DecorationsMod.Controllers
                     // Refresh picture
                     PictureFrameEnumHelper.SetStateMethod.Invoke(pf, new object[] { PictureFrameEnumHelper.ThumbnailEnumValue });
                     this.Invoke("MySetState", 2f);
+
+#if DEBUG_CUSTOM_PICTURE_FRAME
+                    Logger.Log("DEBUG: Current image in picture frame: fileName=[" + (string.IsNullOrEmpty(pf.fileName) ? "?" : pf.fileName) + "]");
+#endif
                 }
             }
         }
@@ -562,6 +809,12 @@ namespace DecorationsMod.Controllers
             saveData += Convert.ToString(pf.imageRenderer.transform.localPosition.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(pf.imageRenderer.transform.localPosition.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(pf.imageRenderer.transform.localPosition.z, CultureInfo.InvariantCulture) + Environment.NewLine;
             saveData += Convert.ToString(magnetModel.transform.localScale.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(magnetModel.transform.localScale.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(magnetModel.transform.localScale.z, CultureInfo.InvariantCulture) + Environment.NewLine;
             saveData += Convert.ToString(frame.transform.localPosition.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(frame.transform.localPosition.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(frame.transform.localPosition.z, CultureInfo.InvariantCulture) + Environment.NewLine;
+
+            // Save random image mode
+            saveData += (this.RandomImage ? "1" : "0") + Environment.NewLine;
+
+            // Save slideshow mode
+            saveData += (this.Slideshow ? "1" : "0") + Environment.NewLine;
 
             // Save state to file
             File.WriteAllText(Path.Combine(saveFolder, "custompictureframe_" + id.Id + ".txt"), saveData);

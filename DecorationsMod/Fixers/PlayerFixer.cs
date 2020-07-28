@@ -15,6 +15,7 @@ namespace DecorationsMod.Fixers
         {
             if (__result != null && __result.Contains("deepGrandReef"))
             {
+                // Check if we are in Deep Grand Reef (every 20 seconds).
                 if (!lastBiomeWasDeepGrandReef || (Time.time > lastTimeCheck + 20.0f))
                 {
                     lastTimeCheck = Time.time;

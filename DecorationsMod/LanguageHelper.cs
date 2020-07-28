@@ -961,7 +961,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Jacks Klärgrube";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Маринованный глаз Джека";
+                        return "Отстойник Джека";
                     else
                         return "Jack's Septic Tank";
                 case "JackSepticEyeDescription":
@@ -974,7 +974,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein ungewöhnlicher Gegenstand.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Какой-то странный предмет.";
+                        return "Модель талисмана Septiceye Sam в банке.";
                     else
                         return "An unusual item.";
                 case "LeviathanDolls":
@@ -1234,7 +1234,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Gabelstapler (nicht funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Погрузчик";
+                        return "Грузоподъемник";
                     else
                         return "Forklift (non-functional)";
                 case "ForkLiftDollDescription":
@@ -1247,7 +1247,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein dekorativer Gabelstapler. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Декоративный погрузчик. " + GetFriendlyWord("AdjustForkliftSize");
+                        return "Декоративный грузоподъемник. " + GetFriendlyWord("AdjustForkliftSize");
                     else
                         return "A decorative forklift. " + GetFriendlyWord("AdjustForkliftSize");
                 case "DrinksAndFood":
@@ -1299,7 +1299,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Tasse";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кружка";
+                        return "Стакан";
                     else
                         return "Cup";
                 case "BarCup2Description":
@@ -1312,7 +1312,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine Tasse aus titanium.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кружка сделанная из титана.";
+                        return "Стакан, сделанный из титана.";
                     else
                         return "A cup made of titanium.";
                 case "BarCup1Name":
@@ -1338,7 +1338,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine kleine Tasse aus Titanium.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Небольша стакан, сделанный из Титана.";
+                        return "Небольша стакан, сделанный из титана.";
                     else
                         return "A small cup made of titanium.";
                 case "BarFood1Name":
@@ -1416,7 +1416,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Servietten aus Fasergewebe.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Салфетки сделанные из сетчатого волокна.";
+                        return "Салфетки, сделанные из сетчатого волокна.";
                     else
                         return "Napkins made of fiber mesh.";
                 case "LabRobotArmName":
@@ -1959,45 +1959,57 @@ namespace DecorationsMod
                         return "Cliquez pour placer une image, ou:" + Environment.NewLine +
                                "Maintenez 'E' et cliquez pour ajuster la taille" + Environment.NewLine +
                                "Maintenez 'R' et cliquez pour tourner le cadre photo" + Environment.NewLine +
-                               "Maintenez 'F' et cliquez pour passer en mode poster" + Environment.NewLine;
+                               "Maintenez 'F' et cliquez pour modifier le cadre (mode poster)" + Environment.NewLine +
+                               "Maintenez 'T' et cliquez pour activer le mode diaporama" + Environment.NewLine +
+                               "Maintenez 'G' et cliquez pour activer la selection aléatoire" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.ES)
                         return "Haga clic para establecer la imagen o:" + Environment.NewLine +
                                "Mantenga 'E' y haga clic para ajustar el tamaño" + Environment.NewLine +
                                "Mantenga 'R' y haga clic para girar el marco de la imagen" + Environment.NewLine +
-                               "Mantenga 'F' y haga clic para cambiar el marco" + Environment.NewLine;
+                               "Mantenga 'F' y haga clic para cambiar el marco" + Environment.NewLine +
+                               "Mantenga 'T' y haga clic para habilitar la presentación de diapositivas." + Environment.NewLine +
+                               "Mantenga 'G' y haga clic para habilitar la selección aleatoria" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.TR)
                         return "Görüntüyü ayarlamak için tıklayın veya:" + Environment.NewLine +
                                "Boyutu ayarlamak için 'E' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
                                "Fotoğraf çerçevesini çevirmek için 'R' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
-                               "Çerçeveyi değiştirmek için 'F' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine;
+                               "Çerçeveyi değiştirmek için 'F' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
+                               "Slayt gösterisi modunu etkinleştirmek için 'T' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
+                               "Rastgele seçimi etkinleştirmek için 'G' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.DE)
                         return "Klicken, um das Bild festzulegen, oder:" + Environment.NewLine +
                                "'E' drücken und klicken, um die Größe anzupassen." + Environment.NewLine +
                                "'R' drücken und klicken, um den Bilderrahmen zu drehen." + Environment.NewLine +
-                               "'F' drücken und klicken, um den Rahmen zu ändern." + Environment.NewLine;
+                               "'F' drücken und klicken, um den Rahmen zu ändern." + Environment.NewLine +
+                               "'T' drücken und klicken, um den Diashow-Modus zu aktivieren." + Environment.NewLine +
+                               "'G' drücken und klicken, um die zufällige Auswahl zu aktivieren." + Environment.NewLine;
                     else if (UserLanguage == CountryCode.RU)
                         return "Нажмите, чтобы изменить:" + Environment.NewLine +
                                "Удерживайте 'E' чтобы отрегулировать размер." + Environment.NewLine +
                                "Удерживайте 'R' чтобы повернуть рамку." + Environment.NewLine +
-                               "Удерживайте 'F' чтобы изменить тип рамки." + Environment.NewLine;
+                               "Удерживайте 'F' чтобы изменить тип рамки." + Environment.NewLine +
+                               "Удерживайте 'T' чтобы включить режим слайд-шоу." + Environment.NewLine +
+                               "Удерживайте 'G' чтобы включить случайный выбор изображения." + Environment.NewLine;
                     else
                         return "Click to set picture, or:" + Environment.NewLine +
                                "Hold 'E' and click to adjust size" + Environment.NewLine +
                                "Hold 'R' and click to rotate picture frame" + Environment.NewLine +
-                               "Hold 'F' and click to switch to poster mode" + Environment.NewLine;
+                               "Hold 'F' and click to change frame style (poster mode)" + Environment.NewLine +
+                               "Hold 'T' and click to enable slideshow mode" + Environment.NewLine +
+                               "Hold 'G' and click to enable random image selection" + Environment.NewLine;
                 case "CustomPictureFrameTooltipCompact":
                     if (UserLanguage == CountryCode.FR)
-                        return "Click: ajout image, E+Click: taille, R+Click: orientation, F+Click: mode";
+                        return "Click: image, E+Click: taille, R+Click: orientation, F+Click: cadre, T+Click: diaporama, G+Click: aléatoire";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Clic: imagen, E+Clic: tamaño, R+Clic: girar, F+Clic: marco";
+                        return "Clic: imagen, E+Clic: tamaño, R+Clic: girar, F+Clic: marco, T+Clic: diapositivas, G+clic: aleatorizar";
                     else if (UserLanguage == CountryCode.TR)
-                        return "tıklayın: Görüntüyü ayarlamak, E+tıklayın: Boyutu, R+tıklayın: çevirmek, F+tıklayın: çerçevesini";
+                        return "tıklayın: Görüntüyü ayarlamak, E+tıklayın: Boyutu, R+tıklayın: çevirmek, F+tıklayın: çerçevesini, T+tıklayın: slayt gösterisi, G+tıklayın: rastgele";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Klicken: Bild, E+Klicken: Größe, R+Klicken: Drehen, F+Klicken: Rahmen";
+                        return "Klicken: Bild, E+Klicken: Größe, R+Klicken: Drehen, F+Klicken: Rahmen, T+Klicken: Diashow, G+Klicken: Randomisieren";
                     else if (UserLanguage == CountryCode.RU)
-                        return "ЛКМ: сменить изображение, E+ЛКМ: размер, R+ЛКМ: повернуть, F+ЛКМ: тип рамки";
+                        return "ЛКМ: сменить изображение, E+ЛКМ: размер, R+ЛКМ: повернуть, F+ЛКМ: тип рамки, T+ЛКМ: слайд-шоу, G+ЛКМ: случайный";
                     else
-                        return "Click: picture, E+Click: size, R+Click: orientation, F+Click: mode";
+                        return "Click: picture, E+Click: size, R+Click: orientation, F+Click: frame style, T+Click: slideshow, G+Click: randomize";
                 case "LandTree1Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Arbre alien vivace";
@@ -2450,7 +2462,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Gefleckte Schilfe";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Пятнолистник";
+                        return "Пятнистый тростник";
                     else
                         return "Spotted reeds";
                 case "GreenReedsDescription":
@@ -2632,7 +2644,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Lila Tannenzapfen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Фуксевидная шишка";
+                        return "Пурпурная шишка";
                     else
                         return "Purple pinecone";
                 case "SmallDeco10Description":
@@ -2710,7 +2722,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Lila Koralle";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Фиолетовый коралл";
+                        return "Мозговой коралл";
                     else
                         return "Purple coral plant";
                 case "DecorationsEmptyDeskName":
@@ -4492,7 +4504,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Sammle kleine Marmormelone";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Пикап Маленькая мраморная дыня";
+                        return "Маленькая мраморная дыня.";
                     else
                         return "Pickup small marblemelon";
                 case "Config_HideDeepGrandReefDegasiBase":
@@ -4505,12 +4517,12 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Verstecke die Struktur von: Degasi-Basis (500 m)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Скрыть структуру: Жилище «Дегази» (500 м)";
+                        return "Скрыть сооружения: Жилище «Дегази» (500 м)";
                     else
                         return "Hide structure of the Degasi Habitat (500m)";
                 case "Config_HideDeepGrandReefDegasiBaseDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Si vous activez cette option, la structure de la base du Dagasi à -500m dans le biome « Profondeurs du Grand Récif » sera masquée. Cela vous permet de construire votre propre base dans ce bel emplacement de biome. La tablette orange, l'œuf de câlineur, les PDA et les boîtes de données resteront visibles et récupérables.";
+                        return "Si vous activez cette option, la structure de la base du Dagasi à -500m dans les Profondeurs du Grand Récif sera masquée. Cela vous permet de construire votre propre base dans ce bel emplacement de biome. La tablette orange, l'œuf de câlineur, les PDA et les boîtes de données resteront visibles et récupérables.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Si habilita esta opción, la estructura de la Hábitat de la Degasi (500m) en Gran Arrecife Profundo se ocultará. Esto le permite construir su propia hábitat en esta hermosa ubicación de bioma. Tablilla naranja, Huevo de pez monada, PDA y Caja de datos permanecerán visibles y seleccionables.";
                     else if (UserLanguage == CountryCode.TR)
@@ -4518,7 +4530,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn Sie diese Option aktivieren, wird die Struktur der Degasi-Basis (500 m) in Tiefseeriffs ausgeblendet. Auf diese Weise können Sie Ihre eigene Basis an diesem wunderschönen Biomstandort errichten. Orange Tafel, Knuddelfisch-Ei, PDA und Datenbox bleiben sichtbar und können abgeholt werden.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если вы включите эту опцию, структура жилище «Дегази» (500 м) в Глубинах Большого рифа будет скрыта. Это позволяет вам построить свою собственную базу в этом красивом месте биома. Оранжевая скрижаль, Яйцо ласки, КПК и Ящик с данными останутся видимыми и могут быть обнаружены.";
+                        return "Если вы включите эту опцию, сооружения жилища «Дегази» (500 м) в Глубоком Большом рифе будут скрыты. Это позволяет вам построить свою собственную базу в этом красивом месте биома. Оранжевая скрижаль, Яйцо ласки, КПК и Ящик с данными останутся видимыми и могут быть взяты.";
                     else
                         return "If you enable this option, the structure of the Degasi Habitat (500m) in Deep Grand Reef will be hidden. This allows you to build your own base at this beautiful biome location. Orange Tablet, Cuddlefish Egg, PDAs and Data Boxes will remain visible and pickupable.";
                 default:

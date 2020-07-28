@@ -1017,7 +1017,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Jacks Klärgrube";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Маринованный глаз Джека";
+                        return "Отстойник Джека";
                     else
                         return "Jack's Septic Tank";
                 case "JackSepticEyeDescription":
@@ -1030,7 +1030,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein ungewöhnlicher Gegenstand.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Какой-то странный предмет.";
+                        return "Модель талисмана Septiceye Sam в банке.";
                     else
                         return "An unusual item.";
                 case "LeviathanDolls":
@@ -1290,7 +1290,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Gabelstapler (nicht funktional)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Погрузчик";
+                        return "Грузоподъемник";
                     else
                         return "Forklift (non-functional)";
                 case "ForkLiftDollDescription":
@@ -1303,7 +1303,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Ein dekorativer Gabelstapler. " + GetFriendlyWord("AdjustForkliftSize");
                     else if (UserLanguage == CountryCode.RU)
-                        return "Декоративный погрузчик. " + GetFriendlyWord("AdjustForkliftSize");
+                        return "Декоративный грузоподъемник. " + GetFriendlyWord("AdjustForkliftSize");
                     else
                         return "A decorative forklift. " + GetFriendlyWord("AdjustForkliftSize");
                 case "DrinksAndFood":
@@ -1355,7 +1355,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Tasse";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кружка";
+                        return "Стакан";
                     else
                         return "Cup";
                 case "BarCup2Description":
@@ -1368,7 +1368,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine Tasse aus titanium.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Кружка сделанная из титана.";
+                        return "Стакан, сделанный из титана.";
                     else
                         return "A cup made of titanium.";
                 case "BarCup1Name":
@@ -1394,7 +1394,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Eine kleine Tasse aus Titanium.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Небольша стакан, сделанный из Титана.";
+                        return "Небольша стакан, сделанный из титана.";
                     else
                         return "A small cup made of titanium.";
                 case "BarFood1Name":
@@ -1472,7 +1472,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Servietten aus Fasergewebe.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Салфетки сделанные из сетчатого волокна.";
+                        return "Салфетки, сделанные из сетчатого волокна.";
                     else
                         return "Napkins made of fiber mesh.";
                 case "LabRobotArmName":
@@ -2015,45 +2015,57 @@ namespace DecorationsModConfigurator
                         return "Cliquez pour placer une image, ou:" + Environment.NewLine +
                                "Maintenez 'E' et cliquez pour ajuster la taille" + Environment.NewLine +
                                "Maintenez 'R' et cliquez pour tourner le cadre photo" + Environment.NewLine +
-                               "Maintenez 'F' et cliquez pour passer en mode poster" + Environment.NewLine;
+                               "Maintenez 'F' et cliquez pour modifier le cadre (mode poster)" + Environment.NewLine +
+                               "Maintenez 'T' et cliquez pour activer le mode diaporama" + Environment.NewLine +
+                               "Maintenez 'G' et cliquez pour activer la selection aléatoire" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.ES)
                         return "Haga clic para establecer la imagen o:" + Environment.NewLine +
                                "Mantenga 'E' y haga clic para ajustar el tamaño" + Environment.NewLine +
                                "Mantenga 'R' y haga clic para girar el marco de la imagen" + Environment.NewLine +
-                               "Mantenga 'F' y haga clic para cambiar el marco" + Environment.NewLine;
+                               "Mantenga 'F' y haga clic para cambiar el marco" + Environment.NewLine +
+                               "Mantenga 'T' y haga clic para habilitar la presentación de diapositivas." + Environment.NewLine +
+                               "Mantenga 'G' y haga clic para habilitar la selección aleatoria" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.TR)
                         return "Görüntüyü ayarlamak için tıklayın veya:" + Environment.NewLine +
                                "Boyutu ayarlamak için 'E' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
                                "Fotoğraf çerçevesini çevirmek için 'R' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
-                               "Çerçeveyi değiştirmek için 'F' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine;
+                               "Çerçeveyi değiştirmek için 'F' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
+                               "Slayt gösterisi modunu etkinleştirmek için 'T' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine +
+                               "Rastgele seçimi etkinleştirmek için 'G' tuşunu basılı tutun ve sol tıklayın" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.DE)
                         return "Klicken, um das Bild festzulegen, oder:" + Environment.NewLine +
                                "'E' drücken und klicken, um die Größe anzupassen." + Environment.NewLine +
                                "'R' drücken und klicken, um den Bilderrahmen zu drehen." + Environment.NewLine +
-                               "'F' drücken und klicken, um den Rahmen zu ändern." + Environment.NewLine;
+                               "'F' drücken und klicken, um den Rahmen zu ändern." + Environment.NewLine +
+                               "'T' drücken und klicken, um den Diashow-Modus zu aktivieren." + Environment.NewLine +
+                               "'G' drücken und klicken, um die zufällige Auswahl zu aktivieren." + Environment.NewLine;
                     else if (UserLanguage == CountryCode.RU)
                         return "Нажмите, чтобы изменить:" + Environment.NewLine +
                                "Удерживайте 'E' чтобы отрегулировать размер." + Environment.NewLine +
                                "Удерживайте 'R' чтобы повернуть рамку." + Environment.NewLine +
-                               "Удерживайте 'F' чтобы изменить тип рамки." + Environment.NewLine;
+                               "Удерживайте 'F' чтобы изменить тип рамки." + Environment.NewLine +
+                               "Удерживайте 'T' чтобы включить режим слайд-шоу." + Environment.NewLine +
+                               "Удерживайте 'G' чтобы включить случайный выбор изображения." + Environment.NewLine;
                     else
                         return "Click to set picture, or:" + Environment.NewLine +
                                "Hold 'E' and click to adjust size" + Environment.NewLine +
                                "Hold 'R' and click to rotate picture frame" + Environment.NewLine +
-                               "Hold 'F' and click to switch to poster mode" + Environment.NewLine;
+                               "Hold 'F' and click to change frame style (poster mode)" + Environment.NewLine +
+                               "Hold 'T' and click to enable slideshow mode" + Environment.NewLine +
+                               "Hold 'G' and click to enable random image selection" + Environment.NewLine;
                 case "CustomPictureFrameTooltipCompact":
                     if (UserLanguage == CountryCode.FR)
-                        return "Click: ajout image, E+Click: taille, R+Click: orientation, F+Click: mode";
+                        return "Click: image, E+Click: taille, R+Click: orientation, F+Click: cadre, T+Click: diaporama, G+Click: aléatoire";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Clic: imagen, E+Clic: tamaño, R+Clic: girar, F+Clic: marco";
+                        return "Clic: imagen, E+Clic: tamaño, R+Clic: girar, F+Clic: marco, T+Clic: diapositivas, G+clic: aleatorizar";
                     else if (UserLanguage == CountryCode.TR)
-                        return "tıklayın: Görüntüyü ayarlamak, E+tıklayın: Boyutu, R+tıklayın: çevirmek, F+tıklayın: çerçevesini";
+                        return "tıklayın: Görüntüyü ayarlamak, E+tıklayın: Boyutu, R+tıklayın: çevirmek, F+tıklayın: çerçevesini, T+tıklayın: slayt gösterisi, G+tıklayın: rastgele";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Klicken: Bild, E+Klicken: Größe, R+Klicken: Drehen, F+Klicken: Rahmen";
+                        return "Klicken: Bild, E+Klicken: Größe, R+Klicken: Drehen, F+Klicken: Rahmen, T+Klicken: Diashow, G+Klicken: Randomisieren";
                     else if (UserLanguage == CountryCode.RU)
-                        return "ЛКМ: сменить изображение, E+ЛКМ: размер, R+ЛКМ: повернуть, F+ЛКМ: тип рамки";
+                        return "ЛКМ: сменить изображение, E+ЛКМ: размер, R+ЛКМ: повернуть, F+ЛКМ: тип рамки, T+ЛКМ: слайд-шоу, G+ЛКМ: случайный";
                     else
-                        return "Click: picture, E+Click: size, R+Click: orientation, F+Click: mode";
+                        return "Click: picture, E+Click: size, R+Click: orientation, F+Click: frame style, T+Click: slideshow, G+Click: randomize";
                 case "LandTree1Name":
                     if (UserLanguage == CountryCode.FR)
                         return "Arbre alien vivace";
@@ -2506,7 +2518,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Gefleckte Schilfe";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Пятнолистник";
+                        return "Пятнистый тростник";
                     else
                         return "Spotted reeds";
                 case "GreenReedsDescription":
@@ -2688,7 +2700,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Lila Tannenzapfen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Фуксевидная шишка";
+                        return "Пурпурная шишка";
                     else
                         return "Purple pinecone";
                 case "SmallDeco10Description":
@@ -2766,7 +2778,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Lila Koralle";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Фиолетовый коралл";
+                        return "Мозговой коралл";
                     else
                         return "Purple coral plant";
                 case "DecorationsEmptyDeskName":
@@ -4938,7 +4950,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "JackSepticEye Doll im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "JackSepticEye Doll в меню Строителя";
+                        return "Отстойник Джека в меню Строителя";
                     else
                         return "JackSepticEye Doll in habitat builder menu";
                 case "Config_AsBuildable_EatMyDictionDoll":
@@ -4964,7 +4976,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Gabelstaplerspielzeug im Habitat Builder-Menü";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Игрушечный погрузчик в меню Строителя";
+                        return "Игрушечный грузоподъемник в меню Строителя";
                     else
                         return "Forklift toy in habitat builder menu";
                 case "Config_AsBuildable_SofaSmall":
@@ -5332,7 +5344,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Sammle kleine Marmormelone";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Пикап Маленькая мраморная дыня";
+                        return "Маленькая мраморная дыня.";
                     else
                         return "Pickup small marblemelon";
                 case "Config_HideDeepGrandReefDegasiBase":
@@ -5345,12 +5357,12 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Verstecke die Struktur von: Degasi-Basis (500 m)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Скрыть структуру: Жилище «Дегази» (500 м)";
+                        return "Скрыть сооружения: Жилище «Дегази» (500 м)";
                     else
                         return "Hide structure of the Degasi Habitat (500m)";
                 case "Config_HideDeepGrandReefDegasiBaseDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Si vous activez cette option, la structure de la base du Dagasi à -500m dans le biome « Profondeurs du Grand Récif » sera masquée. Cela vous permet de construire votre propre base dans ce bel emplacement de biome. La tablette orange, l'œuf de câlineur, les PDA et les boîtes de données resteront visibles et récupérables.";
+                        return "Si vous activez cette option, la structure de la base du Dagasi à -500m dans les Profondeurs du Grand Récif sera masquée. Cela vous permet de construire votre propre base dans ce bel emplacement de biome. La tablette orange, l'œuf de câlineur, les PDA et les boîtes de données resteront visibles et récupérables.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Si habilita esta opción, la estructura de la Hábitat de la Degasi (500m) en Gran Arrecife Profundo se ocultará. Esto le permite construir su propia hábitat en esta hermosa ubicación de bioma. Tablilla naranja, Huevo de pez monada, PDA y Caja de datos permanecerán visibles y seleccionables.";
                     else if (UserLanguage == CountryCode.TR)
@@ -5358,7 +5370,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn Sie diese Option aktivieren, wird die Struktur der Degasi-Basis (500 m) in Tiefseeriffs ausgeblendet. Auf diese Weise können Sie Ihre eigene Basis an diesem wunderschönen Biomstandort errichten. Orange Tafel, Knuddelfisch-Ei, PDA und Datenbox bleiben sichtbar und können abgeholt werden.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если вы включите эту опцию, структура жилище «Дегази» (500 м) в Глубинах Большого рифа будет скрыта. Это позволяет вам построить свою собственную базу в этом красивом месте биома. Оранжевая скрижаль, Яйцо ласки, КПК и Ящик с данными останутся видимыми и могут быть обнаружены.";
+                        return "Если вы включите эту опцию, сооружения жилища «Дегази» (500 м) в Глубоком Большом рифе будут скрыты. Это позволяет вам построить свою собственную базу в этом красивом месте биома. Оранжевая скрижаль, Яйцо ласки, КПК и Ящик с данными останутся видимыми и могут быть взяты.";
                     else
                         return "If you enable this option, the structure of the Degasi Habitat (500m) in Deep Grand Reef will be hidden. This allows you to build your own base at this beautiful biome location. Orange Tablet, Cuddlefish Egg, PDAs and Data Boxes will remain visible and pickupable.";
                 // Config descriptions:
@@ -5372,7 +5384,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, sind die QuickInfos der Elemente « Anpassbarer Bilderrahmen » und « Anpassbares Licht » kürzer.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если этот параметр включен, всплывающие подсказки для элементов «Настраиваемая рамка рисунка» и «Настраиваемые источники света» будут короче.";
+                        return "Если этот параметр включен, всплывающие подсказки для элементов «Рамка для изображений» и «Лампа (настраиваемый свет)» будут короче.";
                     else
                         return "If enabled, tooltips of the « customizable picture frame » and « customizable light » items will be shorter.";
                 case "Config_LockQuickslotsWhenPlacingItemDescription":
@@ -5385,7 +5397,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, wird bei Verwendung des Mausrads nicht mehr zum nächsten Werkzeug gewechselt, wenn Sie gerade ein platzierbares Objekt halten (dies ermöglicht das Drehen des platzierbaren Objekts).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если этот параметр включен, он перестанет переключаться на следующий инструмент при использовании колесика мыши, если в данный момент вы удерживаете размещаемый объект (это позволяет вращать размещаемый элемент).";
+                        return "Если включено, это остановит переключение на следующий инструмент при использовании колёсика мыши, если в данный момент вы удерживаете размещаемый объект (это позволяет вращать размещаемый элемент).";
                     else
                         return "If enabled, it will stop switching to next tool when using mouse wheel if you are currently holding a placeable item (this allows to rotate the placeable item).";
                 case "Config_AllowBuildOutsideDescription":
@@ -5398,7 +5410,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn aktiviert, können mehr Gegenstände aus diesem Mod außerhalb von Basen erstellt werden.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, больше предметов из этого мода можно будет собирать за пределами баз.";
+                        return "Если включено, больше предметов из этого мода можно будет строить за пределами баз.";
                     else
                         return "If enabled, more items from this mod will be buildable outside bases.";
                 case "Config_AllowPlaceOutsideDescription":
@@ -5411,7 +5423,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn aktiviert, können mehr Gegenstände aus diesem Mod außerhalb der Basen platziert werden.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, больше предметов из этого мода будут размещаться за пределами баз.";
+                        return "Если включено, больше предметов из этого мода можно будет размещать за пределами баз.";
                     else
                         return "If enabled, more items from this mod will be placeable outside bases.";
                 case "Config_EnablePlaceItemsDescription":
@@ -5424,7 +5436,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, können Sie folgende Gegenstände platzieren: Kaffeetassen, Polyanilin, Salzsäure, Benzol, Brutenzyme, Eier, Snacks, Gleitmittel, Bleichmittel, Wasserflaschen, Kabel-Kits, Computerchip, Ionenkristall, Vorläufertabletten, Stalkerzahn und Erste-Hilfe-Kasten.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, вы сможете разместить следующие предметы: кофейные чашки, полианилин, соляную кислоту, бензол, инкубационные ферменты, яйца, закуски, смазку, отбеливатель, бутылки с водой, наборы проводов, компьютерный чип, ионный кристалл, таблетки-прекурсоры, зуб сталкера и аптечка.";
+                        return "Если включено, вы сможете разместить следующие предметы: кофейные чашки, полианилин, соляную кислоту, бензол, инкубационные ферменты, яйца, чипсовые закуски, смазку, отбеливатель, бутылки с водой, наборы проводов, компьютерный чип, ионный куб, скрижали, зуб сталкера и аптечку.";
                     else
                         return "If enabled, you will be able to place following items: coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth and first aid kit.";
                 case "Config_EnablePlaceBatteriesDescription":
@@ -5437,7 +5449,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, können Sie Batterien, Powercells, Ionenbatterien und Ionen-Powercells an der gewünschten Stelle platzieren. Achtung: Sie müssen Batterien / Stromzellen manuell per Drag & Drop auf das Ladegerät ziehen (Linksklick rüstet sie nicht aus).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если этот параметр включен, вы сможете размещать батареи, элементы питания, ионные элементы питания и ионные элементы питания там, где вы хотите. Внимание: вам придется вручную перетаскивать батареи / элементы питания на зарядное устройство (щелчок левой кнопкой мыши не приведет к их установке).";
+                        return "Если этот параметр включен, вы сможете размещать батареи, энергоячейки, ионные батареи и энергоячейки, где вы хотите. Внимание: вам придется вручную перетаскивать батареи/энергоячейки в зарядное устройство (щелчок левой кнопкой мыши не приведет к их установке).";
                     else
                         return "If enabled, you will be able to place batteries, powercells, ion batteries and ion powercells where you want. Attention: you will have to manually drag-n-drop batteries/power cells to the charger (left click will not equip them).";
                 case "Config_EnableNewFloraDescription":
@@ -5450,7 +5462,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, können Sie den Samenhersteller erstellen und Samen herstellen (alle vorhandenen Samen plus neue).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, вы сможете собрать производителя семян и обработать семена (все существующие семена плюс новые).";
+                        return "Если включено, вы сможете строить изготовитель семян и создавать в нём семена (все существующие семена плюс новые).";
                     else
                         return "If enabled, you will be able to build the seeds fabricator and craft seeds (all existing seeds plus new ones).";
                 case "Config_EnableNewItemsDescription":
@@ -5463,7 +5475,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn aktiviert, können Sie die folgenden Gegenstände bauen / herstellen: Laborwagen, Innen-Langpflanzer, Außen-Langpflanzer-Probenanalysator, Markiplier-Puppe 1, Markiplier-Puppe 2, JackSepticEye-Puppe, EatMyDiction-Puppe, leerer Schreibtisch, Seamoth-Puppe , Exosuit-Puppe, Gabelstapler, Frachtkisten, Sofas, Bänke, Hocker, anpassbarer Bilderrahmen, anpassbares Licht, Warper-Exemplar, Warper-Teile, Alien-Säule, Alien-Relikte und zusätzliche Schließfächer.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, вы сможете собирать / изготавливать следующие предметы: лабораторная тележка, комнатный длинный сеялка, открытый анализатор длинных сеялок, кукла маркизер 1, кукла маркеринг 2, кукла джексептиче, кукла фудмидики, пустой стол, кукла-экзоскутер, вилочный погрузчик, грузовые ящики, диваны, скамейки, табуретка, настраиваемая рамка для фотографий, настраиваемый свет, образец снователя, детали снователя, колонна пришельцев, реликвии пришельцев и дополнительные шкафчики.";
+                        return "Если включено, вы сможете строить/изготавливать следующие предметы: лабораторная тележка, длинная грядка,наружная длинная грядка, анализатор образцов, усатая необычная кукла, необычная кукла, Отстойник Джека, кукла фудмидики, пустой стол, кукла-экзоскутер, грузоподъемник, грузовые ящики, диваны, скамейки, табуретка, рамка для изображений, лампа (настраиваемый свет), образец снователя, детали снователя, колонна пришельцев, реликвии пришельцев и дополнительные шкафчики.";
                     else
                         return "If enabled, you will be able to build/craft the following items: lab cart, indoor long planter, outdoor long planter specimen analyzer, Markiplier doll 1, Markiplier doll 2, JackSepticEye doll, EatMyDiction doll, empty desk, seamoth doll, exosuit doll, forklift, cargo crates, sofas, benches, stool, customizable picture frame, customizable light, warper specimen, warper parts, alien pillar, alien relics and additional lockers.";
                 case "Config_EnableSofasDescription":
@@ -5476,7 +5488,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn aktiviert, können Sie Sofas bauen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, вы сможете строить диваны.";
+                        return "Если включено, вы сможете строить софы.";
                     else
                         return "If enabled, you will be able to build sofas.";
                 case "Config_AllowIndoorLongPlanterOutsideDescription":
@@ -5489,7 +5501,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, können Sie den Indoor-Langpflanzer außerhalb von Basen / Zyklopen bauen (Tipp: Dies ermöglicht Landpflanzen im Wasser).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, вы сможете построить комнатную длинную сеялку за пределами баз / циклопов (совет: это позволяет сажать растения в воде).";
+                        return "Если включено, вы сможете построить длинную грядку за пределами баз/циклопов (совет: это позволяет сажать растения в воде).";
                     else
                         return "If enabled, you will be able to build the indoor long planter outside bases/cyclops (tip: this allows to have land plants in water).";
                 case "Config_AllowOutdoorLongPlanterInsideDescription":
@@ -5502,7 +5514,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, können Sie den äußeren langen Pflanzer innerhalb von Basen / Zyklopen bauen (Tipp: Dies ermöglicht es, Meerespflanzen in Basen / Zyklopen zu haben).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, вы сможете построить внешнюю длинную сеялку внутри баз / циклопов (совет: это позволяет иметь морские растения внутри баз / циклопов).";
+                        return "Если включено, вы сможете построить длинную уличную грядку внутри баз/циклопов (совет: это позволяет иметь морские растения внутри баз/циклопов).";
                     else
                         return "If enabled, you will be able to build the exterior long planter inside bases/cyclops (tip: this allows to have sea plants inside bases/cyclops).";
                 case "Config_FixAquariumLightingDescription":
@@ -5515,7 +5527,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn aktiviert, wird die Aquarienbeleuchtung in Basen / Zyklopen verbessert.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, освещение аквариума будет усилено внутри баз / циклопов.";
+                        return "Если включено, освещение аквариума будет увеличенно внутри баз/циклопов.";
                     else
                         return "If enabled, the aquarium lighting will be enhanced inside bases/cyclops.";
                 case "Config_GlowingAquariumGlassDescription":
@@ -5541,7 +5553,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Aktivieren Sie diese Option nur, wenn einige Elemente in Samenhersteller nicht sichtbar sind, da sie nicht in den Bildschirm passen. Wenn es danach immer noch nicht passt, lade den Mod « Radial Tabs » hier herunter:";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Включите это, только если некоторые элементы в Производитель семян не видны, потому что они не помещаются на экране. Если после этого он все еще не подходит, загрузите мод « Radial Tabs » здесь:";
+                        return "Включите это, только если некоторые элементы в Изготовителе семян не видны, потому что они не помещаются на экране. Если после этого они все еще не помещаются, загрузите мод « Radial Tabs » здесь:";
                     else
                         return "Enable this only if some items in Seeds Fabricator are not visible because they don't fit in screen. If it still doesn't fit after that, download Radial Tabs mod here:";
                 case "Config_EnableDiscoveryModeDescription":
@@ -5567,7 +5579,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wählen Sie, ob dem Samenhersteller von Anfang an Landsamen hinzugefügt werden sollen oder erst, nachdem Sie die Pflanze/Samen im Spiel aufgenommen haben (wenn die Pflanze/Samen nicht aufgenommen werden kann, müssen Sie sie stattdessen scannen).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Выберите, будут ли семена земли добавлены к производителю семян с самого начала или только после того, как вы подобрали растение/семя в игре (если растение/семя не поддается сбору, вам нужно вместо этого отсканировать его).";
+                        return "Выберите, будут ли семена наземных растений добавлены в изготовитель семян с самого начала или только после того, как вы подобрали растение/семя в игре (если растение/семя не поддается сбору, вам нужно вместо этого отсканировать его).";
                     else
                         return "Choose if land seeds are added to the seeds fabricator from start or only after you picked up the plant/seed in game (if the plant/seed is not pickupable you need to scan it instead).";
                 case "Config_AddRegularWaterSeedsWhenDiscoveredDescription":
@@ -5580,7 +5592,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wählen Sie, ob dem Samenhersteller von Anfang an oder erst nach dem Aufnehmen der Pflanze/Samens im Spiel Wassersamen hinzugefügt werden sollen (Wenn die Pflanze/Samen nicht aufgenommen werden kann, müssen Sie sie stattdessen scannen. Um den Pilzbaumsamen freizuschalten, müssen Sie einen Blutegel oder den riesigen Pilzbaum scannen).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Выберите, следует ли добавлять семена воды к производителю семян с самого начала или только после того, как вы подобрали растение/семя в игре (если растение/семя невозможно собрать, вам нужно будет отсканировать его. Чтобы разблокировать семя грибного дерева, вам придется сканировать пиявку или гигантское грибное дерево).";
+                        return "Выберите, следует ли добавлять семена водных растений в изготовитель семян с самого начала или только после того, как вы подобрали растение/семя в игре (если растение/семя невозможно собрать, вам нужно будет отсканировать его. Чтобы разблокировать семя грибного дерева, вам придется сканировать древесную пиявку или гигантское грибное дерево).";
                     else
                         return "Choose if water seeds are added to the seeds fabricator from start or only after you picked up the plant/seed in game (If the plant/seed is not pickupable, you will have to scan it instead. To unlock the mushroom tree seeds you will have to scan a tree leech or the giant mushroom tree).";
                 case "Config_EggsDicoverySettingDescription":
@@ -5593,7 +5605,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wählen Sie, ob dem Dekorationshersteller von Spielbeginn an Eier hinzugefügt werden oder erst, nachdem Sie sie in einer Lebensform-Zuchtbehälter geschlüpft haben oder nachdem Sie die zugehörigen Kreaturen gescannt haben. Wenn zu Beginn des Spiels keine Eier hinzugefügt werden, müssen Sie den riesiger Lebensbaum scannen, um Phantom-Eier freizuschalten. Um Seedrache und See-Imperator -Eier freizuschalten, müssen Sie die vorhandenen Eier im Spiel finden und scannen (sie befinden sich in Vorläuferbasen).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Выберите, будут ли яйца добавлены в фабрику украшений с самого начала игры, или только после того, как вы их вылупили в Большой аквариум, или после того, как вы отсканировали соответствующие существа. Если яйца не добавляются с начала игры, вам нужно будет отсканировать Гигантское дерево-укрытие, чтобы разблокировать яйца Призрачный левиафан. Кроме того, чтобы разблокировать яйца Морской дракон-левиафан и Морской император-левиафан, вам нужно будет найти и отсканировать существующие в игре яйца (они находятся на базах-предшественниках).";
+                        return "Выберите, будут ли яйца добавлены в изготовитель декораций с самого начала игры, или только после их инкубации в Большом аквариуме, или после того, как вы отсканировали соответствующее существо. Если яйца не добавлены в начале игры, для разблокировки яйц Призрачного левиафана, вам нужно будет отсканировать Гигантское дерево-укрытие. Кроме того, чтобы разблокировать яйца Морского дракона-левиафана и Морского императора-левиафана, вам нужно будет найти и отсканировать существующие в игре яйца (они находятся на базах предтечей).";
                     else
                         return "Choose if eggs are added to the decorations fabricator from game start or only after you hatched them in an alien containment unit, or after you scanned the associated creatures. If eggs are not added from game start, you will have to scan the Giant Cove Tree in order to unlock ghost leviathan eggs. Also, to unlock sea dragon and sea emperor eggs you will have to find and scan the existing eggs in game (they are located in precursor bases).";
                 case "Config_EnablePrecursorTabDescription":
@@ -5606,7 +5618,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, befindet sich im Dekorationshersteller eine neue Registerkarte (mit 11 einzigartigen Warper-Teilen + 11 einzigartigen Alien-Relikten + 5 einzigartigen Alien-Tabletten).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если эта опция включена, внутри фабрики украшений появится новая вкладка (содержащая 11 уникальных частей варперов + 11 уникальных реликвий пришельцев + 5 уникальных планшетов пришельцев).";
+                        return "Если эта опция включена, внутри изготовителя декораций появится новая вкладка (содержащая 11 уникальных частей стражей + 11 уникальных реликвий пришельцев + 5 уникальных скрижалей пришельцев).";
                     else
                         return "If enabled, there will be a new tab inside the decorations fabricator (containing 11 unique warper parts + 11 unique alien relics + 5 unique alien tablets).";
                 case "Config_PrecursorKeysAllDescription":
@@ -5619,7 +5631,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, sind alle Alien-Tabletten auf der Registerkarte Vorläufer des Dekorationsherstellers verfügbar (wenn deaktiviert, sind nur die roten und weißen Tabletten verfügbar).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если эта опция включена, все планшеты пришельцев будут доступны на вкладке Прекурсоры производителя украшений (если отключено, будут доступны только красные и белые планшеты).";
+                        return "Если эта опция включена, все скрижали пришельцев будут доступны во вкладке 'Архитекторы' в изготовителе декораций (если отключено, будут доступны только красные и белые скрижали).";
                     else
                         return "If enabled, all alien tablets will be available for craft in the Precursor tab of the decorations fabricator (if disabled, only red and white tablets will be available).";
                 case "Config_EnableRegularEggsDescription":
@@ -5632,7 +5644,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, können Sie alle vorhandenen Eier vom Dekorationshersteller herstellen (falls deaktiviert, sind im Dekorationshersteller nur die Eier Phantom, Seedrache und See-Imperator verfügbar).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если этот параметр включен, вы сможете изготовить все существующие яйца у изготовителя украшений (если он отключен, в конструкторе украшений будут доступны только яйца Призрачный левиафан, Морской дракон-левиафан и Морской император-левиафан).";
+                        return "Если этот параметр включен, вы сможете изготовить все существующие яйца в изготовителе декораций (если он отключен, в изготовителе декораций будут доступны только яйца Призрачного левиафана, Морского дракона-левиафана и Морского императора-левиафана).";
                     else
                         return "If enabled, you will be able to craft all existing eggs from the decorations fabricator (if disabled, only the sea dragon, sea emperor and ghost leviathan eggs will be available in the decorations fabricator).";
                 case "Config_EnableRegularAirSeedsDescription":
@@ -5645,7 +5657,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, werden alle vorhandenen Landsamen zum Samenhersteller hinzugefügt (wenn deaktiviert, sind nur die von diesem Mod bereitgestellten Landsamen im Samenhersteller verfügbar).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если эта опция включена, все существующие семена земли будут добавлены в производитель семян (если отключен, в создателе семян будут доступны только семена земли, предоставленные этим модом).";
+                        return "Если эта опция включена, все существующие наземные семена будут добавлены в изготовитель семян (если отключено, в изготовителе семян будут доступны только семена наземных растений, добавленные в игру этим модом).";
                     else
                         return "If enabled, all existing land seeds will be added to the seeds fabricator (if disabled, only the land seeds provided by this mod will be available in the seeds fabricator).";
                 case "Config_EnableRegularWaterSeedsDescription":
@@ -5658,7 +5670,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, werden alle vorhandenen Wassersamen dem Samenhersteller hinzugefügt (falls deaktiviert, sind nur die von diesem Mod bereitgestellten Wassersamen beim Samenhersteller verfügbar).";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если эта опция включена, все существующие водные семена будут добавлены к производителю семян (если отключено, только водные семена, предоставленные этим модом, будут доступны производителю семян).";
+                        return "Если эта опция включена, все существующие семена водных растений будут добавлены в изготовитель семян (если отключено, в изготовителе семян будут доступны только семена водных растений, добавленные в игру этим модом).";
                     else
                         return "If enabled, all existing aquatic seeds will be added to the seeds fabricator (if disabled, only the aquatic seeds provided by this mod will be available in the seeds fabricator).";
                 case "Config_GhostLeviatan_enableDescription":
@@ -5671,7 +5683,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, erzeugt der riesiger Lebensbaum dieses Mods (Samen, der vom Samenhersteller entworfen wurde), der weniger als 100m tief ist und dessen Eier sichtbar sind, nach einer bestimmten Zeit Phantom-Jungtier.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если эта опция активирована, Гигантское дерево-укрытие этого мода (семена, разработанные производителем семян), глубина которых менее 100м и чьи яйца видны, через некоторое время создаст Детёныш призрачного левиафана.";
+                        return "Если эта опция включена, Гигантские деревья-укрытия этого мода (семена, разработанные производителем семян), глубина которых более 100м и чьи яйца видны, через некоторое время будут создавать Детёнышей призрачного левиафана.";
                     else
                         return "If enabled, cove trees from this mod (seed crafted with seeds fabricator) that are below 100m depth and having eggs displayed will spawn Juvenile Ghost Leviatan after a certain amount of time.";
                 case "Config_GhostLeviatan_healthDescription":
@@ -5684,7 +5696,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Dies definiert die Gesundheitspunkte der hervorgebrachten Phantom-Jungtier.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Это определяет точки здоровья порожденных Детёныш призрачного левиафана.";
+                        return "Это определяет количество здоровья созданных Детёнышей призрачного левиафана.";
                     else
                         return "This defines the health points of spawned juvenile ghost leviathans.";
                 case "Config_GhostLeviatan_maxSpawnsDescription":
@@ -5697,7 +5709,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Dies definiert die Gesamtzahl der Phantom-Jungtier, die erstellt werden müssen, bevor die Eier vom riesiger Lebensbaum verschwinden.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Это определяет общее количество Детёныш призрачного левиафана, которое нужно создать до того, как яйца исчезнут из Гигантское дерево-укрытие.";
+                        return "Это определяет общее количество Детёнышей призрачного левиафана, которые появятся до того, как яйца исчезнут из Гигантского дерева-укрытия.";
                     else
                         return "This defines the total number of juvenile ghost leviathan that spawns before eggs disappears from the Giant Cove Tree.";
                 case "Config_GhostLeviatan_timeBeforeFirstSpawnDescription":
@@ -5710,7 +5722,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Dies legt die Mindestanzahl von Sekunden fest, die gewartet werden muss, bis der erste Phantom-Jungtier angezeigt wird.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Это устанавливает минимальное количество секунд ожидания до появления первого Детёныш призрачного левиафана.";
+                        return "Это устанавливает минимальное количество секунд ожидания до появления первого Детёныша призрачного левиафана.";
                     else
                         return "This defines the minimum number of seconds to wait before the first juvenile ghost leviathan spawns.";
                 case "Config_GhostLeviatan_spawnTimeRatioDescription":
@@ -5723,7 +5735,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Dies definiert die Wartezeit zwischen zwei Kreationen von Phantom-Jungtier. Stellen Sie es nahe 1 ein, wenn Sie eine schnelle Erstellungsrate wünschen, oder setzen Sie es auf einen hohen Wert, wenn Sie eine langsame Erstellungsrate wünschen.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Это определяет время ожидания между двумя творениями Детёныш призрачного левиафана. Установите его около 1, если вы хотите высокую скорость создания, или установите его на высокое значение, если вы хотите медленную скорость создания.";
+                        return "Это определяет время ожидания между созданием двух Детёнышей призрачного левиафана. Установите его около 1, если вы хотите высокую скорость создания, или установите его на высокое значение, если вы хотите медленную скорость создания.";
                     else
                         return "This defines the waiting time between two creations of juvenile ghost leviathan. Set it near 1 if you want fast spawn rate, or set it to a high value if you want slow spawn rate.";
                 case "Config_EnableNutrientBlockDescription":
@@ -5736,7 +5748,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.DE)
                         return "Wenn diese Option aktiviert ist, können Sie den Nährstoffblock vom Dekorateurhersteller erstellen. Bitte beachten Sie, dass die Funktion « Neue Objekte einschließen » auf der Registerkarte « Allgemeine Einstellungen » aktiviert sein muss, damit diese Option funktioniert.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если эта опция включена, вы сможете сделать Питательный батончик от производителя декоратора. Обратите внимание, что для работы этой опции должна быть активирована функция « Включить новые объекты » на вкладке « Общие настройки ».";
+                        return "Если эта опция включена, вы сможете сделать Питательный батончик в изготовителе декораций. Обратите внимание, что для работы этой опции должна быть активирована функция « Включить новые объекты » во вкладке « Общие настройки ».";
                     else
                         return "If this option is enabled, you will be able to craft the nutrient block from the decorations fabricator. Please note that you need to activate the « Enable new items » feature in « General settings » tab for this option to work.";
                 default:
