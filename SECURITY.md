@@ -9,4 +9,4 @@
 
 ## Reporting a Vulnerability
 
-If you find any security issue, please contact me.
+To report a security issue, please go to the "Issues" tab and create a new issue (don't forget to add a brief description for it).
