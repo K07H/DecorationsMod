@@ -78,7 +78,7 @@ namespace DecorationsMod.Controllers
                 string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
                 if (tmpSize == null)
                     return;
-                string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                string[] sizes = tmpSize.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (sizes != null && sizes.Length == 2)
                 {
                     GameObject model = this.gameObject.FindChild("forklift");

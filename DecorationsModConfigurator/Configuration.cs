@@ -179,6 +179,22 @@ namespace DecorationsModConfigurator
             }
         }
 
+        private bool _enableDecorativeElectronics;
+        public bool EnableDecorativeElectronics
+        {
+            get => _enableDecorativeElectronics;
+            set
+            {
+                if (_enableDecorativeElectronics != value)
+                {
+#if DEBUG_CONFIG_CHANGED
+                    Logger.Log(LOG_CONFIG_CHANGE, nameof(EnableDecorativeElectronics), _enableDecorativeElectronics, value);
+#endif
+                    _enableDecorativeElectronics = value;
+                }
+            }
+        }
+
         private bool _enableNutrientBlock;
         public bool EnableNutrientBlock
         {
@@ -1618,6 +1634,7 @@ namespace DecorationsModConfigurator
             this._enableNewFlora = true;
             this._enableNewItems = true;
             this._enableSofas = true;
+            this._enableDecorativeElectronics = true;
             this._enableNutrientBlock = true;
             this._allowIndoorLongPlanterOutside = true;
             this._allowOutdoorLongPlanterInside = true;
@@ -2188,17 +2205,23 @@ namespace DecorationsModConfigurator
             int stt = str.IndexOf(searchStt, 0, StringComparison.OrdinalIgnoreCase);
             if (stt >= 0)
             {
-                int end = str.IndexOf("\r\n", stt + searchStt.Length, StringComparison.OrdinalIgnoreCase);
+                int end = str.IndexOf(Environment.NewLine, stt + searchStt.Length, StringComparison.OrdinalIgnoreCase);
+                // Mac failsafe
                 if (end <= stt)
                     end = str.IndexOf("\n", stt + searchStt.Length, StringComparison.OrdinalIgnoreCase);
+                // Windows failsafe
+                if (end <= stt)
+                    end = str.IndexOf("\r\n", stt + searchStt.Length, StringComparison.OrdinalIgnoreCase);
                 if (end > stt)
                 {
+                    // We found setting string. Replace and return success.
                     string toReplace = str.Substring(stt, end - stt);
                     string replaceWith = searchStt + newValue;
                     str = str.Replace(toReplace, replaceWith);
                     return true;
                 }
             }
+            // If we reach here we didn't find the setting string. Return failure.
             return false;
         }
 

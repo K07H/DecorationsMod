@@ -360,7 +360,7 @@ namespace DecorationsMod.Controllers
         public int slideshowLastIndex = 0;
 
         private PictureFrame _pf = null;
-        private System.Random _r = new System.Random();
+        private readonly System.Random _r = new System.Random();
 
         public void MySetState()
         {
@@ -394,7 +394,9 @@ namespace DecorationsMod.Controllers
         private void InitSlideshowMode(string folderPath)
         {
             this.slideshowIndex = 0;
-            string[] files = Directory.GetFiles(folderPath);
+            string[] files;
+            try { files = Directory.GetFiles(folderPath); }
+            catch { files = null; }
             if (files != null)
             {
                 this.SlideshowImages.Clear();
@@ -412,14 +414,14 @@ namespace DecorationsMod.Controllers
                     else
                         this._pf.fileName = this.SlideshowImages.First().Replace('\\', '/');
                     PictureFrameEnumHelper.SetStateMethod.Invoke(this._pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
-                    this.lastSlideshowChange = Time.time;
-                    this.Slideshow = true;
                 }
                 else
                     Logger.Log("INFO: Could not find any image inside custom picture frame images folder at \"" + folderPath + "\".");
             }
             else
                 Logger.Log("INFO: Could not find any files inside custom picture frame images folder at \"" + folderPath + "\".");
+            this.lastSlideshowChange = Time.time;
+            this.Slideshow = true;
         }
 
         private void InitImagesFolder(PrefabIdentifier id, PictureFrame pf, bool initRandom = false, bool initSlideshow = false)
@@ -504,18 +506,20 @@ namespace DecorationsMod.Controllers
             {
                 if (this.RandomImage)
                 {
-                    int rnd = slideshowLastIndex;
-                    while (rnd == slideshowLastIndex && this.SlideshowImages.Count > 1)
+                    int rnd = this.slideshowLastIndex;
+                    while (rnd == this.slideshowLastIndex && this.SlideshowImages.Count > 1)
                         rnd = _r.Next(0, this.SlideshowImages.Count);
-                    slideshowLastIndex = rnd;
-                    this._pf.fileName = this.SlideshowImages.ElementAt(slideshowLastIndex).Replace('\\', '/');
+                    this.slideshowLastIndex = rnd;
+                    if (this.slideshowLastIndex < this.SlideshowImages.Count)
+                        this._pf.fileName = this.SlideshowImages.ElementAt(this.slideshowLastIndex).Replace('\\', '/');
                 }
                 else
                 {
                     this.slideshowIndex++;
                     if (this.slideshowIndex >= this.SlideshowImages.Count)
                         this.slideshowIndex = 0;
-                    this._pf.fileName = this.SlideshowImages.ElementAt(this.slideshowIndex).Replace('\\', '/');
+                    if (this.slideshowIndex < this.SlideshowImages.Count)
+                        this._pf.fileName = this.SlideshowImages.ElementAt(this.slideshowIndex).Replace('\\', '/');
                 }
                 PictureFrameEnumHelper.SetStateMethod.Invoke(this._pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
             }
@@ -528,8 +532,9 @@ namespace DecorationsMod.Controllers
 
         private void Update()
         {
-            if (Slideshow && enabled && _pf != null && Time.time > (lastSlideshowChange + slideshowDelay))
-                SetNextSlideshowImage();
+            if (Slideshow && Time.time >= (lastSlideshowChange + slideshowDelay))
+                if (enabled && _pf != null)
+                    SetNextSlideshowImage();
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -549,7 +554,7 @@ namespace DecorationsMod.Controllers
                 string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
                 if (tmpSize == null)
                     return;
-                string[] sizes = tmpSize.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                string[] sizes = tmpSize.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (sizes != null && sizes.Length >= 10 && sizes.Length <= 14)
                 {
                     // Restore frame angles

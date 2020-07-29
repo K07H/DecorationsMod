@@ -30,6 +30,7 @@ namespace DecorationsModConfigurator
                 this.EnableNewFlora = Configuration.Instance.EnableNewFlora;
                 this.EnableNewItems = Configuration.Instance.EnableNewItems;
                 this.EnableSofas = Configuration.Instance.EnableSofas;
+                this.EnableDecorativeElectronics = Configuration.Instance.EnableDecorativeElectronics;
                 this.AllowIndoorLongPlanterOutside = Configuration.Instance.AllowIndoorLongPlanterOutside;
                 this.AllowOutdoorLongPlanterInside = Configuration.Instance.AllowOutdoorLongPlanterInside;
                 this.FixAquariumLighting = Configuration.Instance.FixAquariumLighting;
@@ -87,6 +88,7 @@ namespace DecorationsModConfigurator
         public bool EnableNewFlora { get { return Configuration.Instance.EnableNewFlora; } set { Configuration.Instance.EnableNewFlora = value; RefreshMenuVisibilities(); } }
         public bool EnableNewItems { get { return Configuration.Instance.EnableNewItems; } set { Configuration.Instance.EnableNewItems = value; RefreshAddSofasVisibility(); } }
         public bool EnableSofas { get { return Configuration.Instance.EnableSofas; } set { Configuration.Instance.EnableSofas = value; } }
+        public bool EnableDecorativeElectronics { get { return Configuration.Instance.EnableDecorativeElectronics; } set { Configuration.Instance.EnableDecorativeElectronics = value; } }
         public bool AllowIndoorLongPlanterOutside { get { return Configuration.Instance.AllowIndoorLongPlanterOutside; } set { Configuration.Instance.AllowIndoorLongPlanterOutside = value; } }
         public bool AllowOutdoorLongPlanterInside { get { return Configuration.Instance.AllowOutdoorLongPlanterInside; } set { Configuration.Instance.AllowOutdoorLongPlanterInside = value; } }
         public bool FixAquariumLighting { get { return Configuration.Instance.FixAquariumLighting; } set { Configuration.Instance.FixAquariumLighting = value; } }
@@ -112,6 +114,8 @@ namespace DecorationsModConfigurator
         public string Config_EnableNewItemsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewItemsDescription"); } set { } }
         public string Config_EnableSofas { get { return LanguageHelper.GetFriendlyWord("Config_EnableSofas"); } set { } }
         public string Config_EnableSofasDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableSofasDescription"); } set { } }
+        public string Config_EnableDecorativeElectronics { get { return LanguageHelper.GetFriendlyWord("Config_EnableDecorativeElectronics"); } set { } }
+        public string Config_EnableDecorativeElectronicsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableDecorativeElectronicsDescription"); } set { } }
         public string Config_AllowIndoorLongPlanterOutside { get { return LanguageHelper.GetFriendlyWord("Config_AllowIndoorLongPlanterOutside"); } set { } }
         public string Config_AllowIndoorLongPlanterOutsideDescription { get { return LanguageHelper.GetFriendlyWord("Config_AllowIndoorLongPlanterOutsideDescription"); } set { } }
         public string Config_AllowOutdoorLongPlanterInside { get { return LanguageHelper.GetFriendlyWord("Config_AllowOutdoorLongPlanterInside"); } set { } }

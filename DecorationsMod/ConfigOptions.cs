@@ -95,16 +95,16 @@ namespace DecorationsMod
                     if (!string.IsNullOrEmpty(currentConfig))
                     {
                         string newConfig = null;
-                        if (oldStr.EndsWith("=\r\n"))
+                        if (oldStr.EndsWith("=" + Environment.NewLine))
                         {
                             string toSearch = oldStr.Substring(0, oldStr.Length - 2);
                             int stt = currentConfig.IndexOf(toSearch);
                             if (stt > 0)
                             {
-                                int end = currentConfig.IndexOf("\r\n", stt + toSearch.Length);
+                                int end = currentConfig.IndexOf(Environment.NewLine, stt + toSearch.Length);
                                 if (end > stt && end < currentConfig.Length)
                                 {
-                                    string currentVal = currentConfig.Substring(stt, (end - stt)) + "\r\n";
+                                    string currentVal = currentConfig.Substring(stt, (end - stt)) + Environment.NewLine;
                                     Logger.Log("INFO: Replacing configuration [" + currentVal + "] by [" + newStr + "].");
                                     newConfig = currentConfig.Replace(currentVal, newStr);
                                 }
@@ -234,7 +234,7 @@ namespace DecorationsMod
                         if (e.Value != ConfigSwitcher.UseCompactTooltips)
                         {
                             ConfigSwitcher.UseCompactTooltips = e.Value;
-                            UpdateConfigFile("\r\nuseCompactTooltips=" + (e.Value ? "false" : "true") + "\r\n", "\r\nuseCompactTooltips=" + (e.Value ? "true" : "false") + "\r\n");
+                            UpdateConfigFile(Environment.NewLine + "useCompactTooltips=" + (e.Value ? "false" : "true") + Environment.NewLine, Environment.NewLine + "useCompactTooltips=" + (e.Value ? "true" : "false") + Environment.NewLine);
                             MenuMessageHelper.AddMessage("Compact tooltips " + (e.Value ? "enabled" : "disabled") + ".", e.Value ? "green" : "orange");
                         }
                         break;
@@ -242,7 +242,7 @@ namespace DecorationsMod
                         if (e.Value != ConfigSwitcher.LockQuickslotsWhenPlacingItem)
                         {
                             ConfigSwitcher.LockQuickslotsWhenPlacingItem = e.Value;
-                            UpdateConfigFile("\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "false" : "true") + "\r\n", "\r\nlockQuickslotsWhenPlacingItem=" + (e.Value ? "true" : "false") + "\r\n");
+                            UpdateConfigFile(Environment.NewLine + "lockQuickslotsWhenPlacingItem=" + (e.Value ? "false" : "true") + Environment.NewLine, Environment.NewLine + "lockQuickslotsWhenPlacingItem=" + (e.Value ? "true" : "false") + Environment.NewLine);
                             MenuMessageHelper.AddMessage("Lock quickslots when placing item " + (e.Value ? "enabled" : "disabled") + ".", e.Value ? "green" : "orange");
                         }
                         break;
@@ -250,7 +250,7 @@ namespace DecorationsMod
                         if (e.Value != ConfigSwitcher.HideDeepGrandReefDegasiBase)
                         {
                             ConfigSwitcher.HideDeepGrandReefDegasiBase = e.Value;
-                            UpdateConfigFile("\r\nhideDeepGrandReefDegasiBase=" + (e.Value ? "false" : "true") + "\r\n", "\r\nhideDeepGrandReefDegasiBase=" + (e.Value ? "true" : "false") + "\r\n");
+                            UpdateConfigFile(Environment.NewLine + "hideDeepGrandReefDegasiBase=" + (e.Value ? "false" : "true") + Environment.NewLine, Environment.NewLine + "hideDeepGrandReefDegasiBase=" + (e.Value ? "true" : "false") + Environment.NewLine);
                             ConfigOptions.HideDegasiBase();
                             MenuMessageHelper.AddMessage("Hide Degasi base (500m) structure " + (e.Value ? "enabled" : "disabled") + ".", e.Value ? "green" : "orange");
                         }

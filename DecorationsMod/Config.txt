@@ -45,6 +45,9 @@ enableNewItems=true
 # If "true", you will be able to build sofas.
 enableSofas=true
 
+# If "true", you will be able to build decorative electronic furnitures (techbox, control terminal and workdesk screens).
+enableDecorativeElectronics=true
+
 # If "true", you will be able to build the indoor long planter outside bases/cyclops (tip: this allows to have land plants in water).
 allowIndoorLongPlanterOutside=true
 

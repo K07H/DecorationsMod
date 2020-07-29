@@ -320,7 +320,8 @@ namespace DecorationsMod
                 {
                     // Check if item has been enabled in Config options
                     if ((ConfigSwitcher.EnableNutrientBlock || newItem.TechType != TechType.NutrientBlock) &&
-                        (ConfigSwitcher.EnableSofas || (newItem.ClassID != "SofaStr1" && newItem.ClassID != "SofaStr2" && newItem.ClassID != "SofaStr3" && newItem.ClassID != "SofaCorner2")))
+                        (ConfigSwitcher.EnableSofas || (newItem.ClassID != "SofaStr1" && newItem.ClassID != "SofaStr2" && newItem.ClassID != "SofaStr3" && newItem.ClassID != "SofaCorner2")) &&
+                        (ConfigSwitcher.EnableDecorativeElectronics || (newItem.ClassID != "DecorativeTechBox" && newItem.ClassID != "DecorativeControlTerminal" && newItem.ClassID != "WorkDeskScreen1" && newItem.ClassID != "WorkDeskScreen2")))
                     {
                         // If decoration items from habitat builder are enabled, add everything
                         // Otherwise add only items that are not from habitat builder

@@ -145,7 +145,7 @@ namespace DecorationsMod.Controllers
                 string rawState = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
                 if (rawState == null)
                     return;
-                string[] state = rawState.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                string[] state = rawState.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (state != null && state.Length == 1)
                 {
                     float passedProgress = 0.0f;

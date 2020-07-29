@@ -54,6 +54,9 @@ namespace DecorationsMod
         // If "true", player will be able to build/craft sofas.
         public static bool EnableSofas = true;
 
+        // If "true", player will be able to build decorative electronics (tech box, control terminal and workdesk screens).
+        public static bool EnableDecorativeElectronics = true;
+
         // If "true", player will be able to craft Nutrient Blocks from the decorations fabricator.
         public static bool EnableNutrientBlock = true;
 
@@ -305,6 +308,8 @@ namespace DecorationsMod
                             ConfigSwitcher.AddItemsWhenDiscovered = configValue; break;
                         case "enableSofas":
                             ConfigSwitcher.EnableSofas = configValue; break;
+                        case "enableDecorativeElectronics":
+                            ConfigSwitcher.EnableDecorativeElectronics = configValue; break;
                         case "allowIndoorLongPlanterOutside":
                             ConfigSwitcher.AllowIndoorLongPlanterOutside = configValue; break;
                         case "allowOutdoorLongPlanterInside":
@@ -700,7 +705,7 @@ namespace DecorationsMod
                     string configFile = File.ReadAllText(configFilePath, Encoding.UTF8);
                     if (configFile != null)
                     {
-                        string[] configLines = configFile.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                        string[] configLines = configFile.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                         if (configLines != null)
                         {
                             Logger.Log("INFO: Loading configuration from \"" + configFilePath + "\"...");

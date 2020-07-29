@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 254038219
+CRC: 1261708457
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5850f8392e1d41ed84fd53e5660dd08f
+    Hash: 6c0b4086118fbb1b1c715ae2ccb5b34f
   TypeTreeHash:
     serializedVersion: 2
     Hash: eedc87be2896b4e070c2bce7ab33f497
@@ -353,6 +353,7 @@ Assets:
 - Assets/skulls.fbm/Lost_river_sea_dragon_skeleton_skull.png
 - Assets/reaperleviathanskull.fbm/Lost_river_reaper_skeleton_skull.png
 - Assets/WarperParts/warper_spec.png
+- Assets/techboxicon2.png
 - Assets/CategoryIcons/D_Furnitures.png
 - Assets/Materials/Coral_reef_red_seaweed_03.mat
 - Assets/SeaDragonEgg/Creatures_eggs_17_normal.png

@@ -93,7 +93,7 @@ namespace DecorationsMod.Controllers
                 string covetreedata = File.ReadAllText(filePath);
                 if (covetreedata == null)
                     return;
-                string[] covetreeparams = covetreedata.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                string[] covetreeparams = covetreedata.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if (covetreeparams != null && covetreeparams.Length == 1)
                 {
                     // Check if we need to display eggs

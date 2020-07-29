@@ -3795,6 +3795,7 @@ namespace DecorationsModConfigurator
                         return "\u0424\u0440\u0430\u0433\u043c\u0435\u043d\u0442 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438 \u00ab\u041c\u043e\u0442\u044b\u043b\u044c\u043a\u0430\u00bb.";
                     else
                         return "A fragment of seamoth technology.";
+                // Configuration (used by Decorations Mod and Configurator)
                 case "Config_UseFlatScreenResolution":
                     if (UserLanguage == CountryCode.FR)
                         return "Icônes compactes dans le fabricateur de graines";
@@ -4419,6 +4420,19 @@ namespace DecorationsModConfigurator
                         return "Пункты здоровья создаваемых левиафанов";
                     else
                         return "Spawned leviatan health points";
+                case "Config_HideDeepGrandReefDegasiBase":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Masquer la structure de la base Degasi (500m)";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Ocultar estructura: Hábitat de la Degasi (500m)";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Yapısını gizle: Degasi Yaşam Alanı (500m)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Verstecke die Struktur von: Degasi-Basis (500 m)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Скрыть сооружения: Жилище «Дегази» (500 м)";
+                    else
+                        return "Hide structure of the Degasi Habitat (500m)";
                 case "Config_OpenDecorationsModConfigurator":
                     if (UserLanguage == CountryCode.FR)
                         return "Cliquez ici pour configurer";
@@ -4432,7 +4446,7 @@ namespace DecorationsModConfigurator
                         return "Нажмите здесь, чтобы настроить";
                     else
                         return "Click here to configure";
-                // Configurator:
+                // Configuration names (used by Configurator only)
                 case "Config_ConfiguratorName":
                     if (UserLanguage == CountryCode.FR)
                         return "Configuration de « Decorations Mod »";
@@ -5109,26 +5123,6 @@ namespace DecorationsModConfigurator
                         return "Автор";
                     else
                         return "Author";
-                case "Config_ModdingDiscordDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Rejoignez le serveur Discord « Subnautica Modding » pour obtenir de l'aide, des informations et plus encore (en Anglais)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Ingrese a la comunidad de « Subnautica Modding » para obtener asistencia, información y más (en inglés)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Destek, bilgi ve daha fazlası için « Subnautica Modding » topluluğuna girin (İngilizce)";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Betreten Sie die « Subnautica Modding » Community, um Unterstützung, Informationen und mehr zu erhalten (auf Englisch)";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Подключитесь к серверу Discord « Subnautica Modding », чтобы получить помощь, информацию и многое другое (на английском языке)";
-                    else
-                        return "Enter the « Subnautica Modding » community Discord server for support, informations, and more";
-                case "Config_ModdingDiscordSecondaryDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Serveur Discord « Subnautica France »";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Discord сервер « Subnautica Wiki »";
-                    else
-                        return "";
                 case "Config_ModdingDiscordURL":
                         return "https://discord.gg/UpWuWwq"; // English Discord server
                 case "Config_ModdingDiscordSecondaryURL":
@@ -5216,164 +5210,20 @@ namespace DecorationsModConfigurator
                         return "Имя объекта или ID объекта: ";
                     else
                         return "Tech type name or ID: ";
-                // New items:
-                case "DecorativeControlTerminalName":
+                case "Config_EnableDecorativeElectronics":
                     if (UserLanguage == CountryCode.FR)
-                        return "Terminal de contrôle";
+                        return "Inclure les éléments électroniques décoratifs";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Terminal de control";
+                        return "Incluir electrónica decorativa";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Kontrol terminali";
+                        return "Dekoratif elektronikleri dahil et";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Steuerterminal";
+                        return "Dekorative Elektronik einschließen";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Терминал управления";
+                        return "Включить декоративную электронику";
                     else
-                        return "Control terminal";
-                case "DecorativeControlTerminalDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un terminal de contrôle décoratif.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un terminal de control decorativo.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Dekoratif bir kontrol terminali.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Ein dekoratives Kontrollterminal.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Декоративный терминал управления.";
-                    else
-                        return "A decorative control terminal.";
-                case "WorkDeskScreen1Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Écran mural";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Pantalla de pared";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Duvar ekranı";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Wandbildschirm";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Настенный экран";
-                    else
-                        return "Wall screen";
-                case "WorkDeskScreen1Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un écran mural décoratif.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una pantalla de pared decorativa.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Dekoratif bir duvar ekranı.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Ein dekorativer Wandschirm.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Декоративный настенный экран.";
-                    else
-                        return "A decorative wall screen.";
-                case "WorkDeskScreen2Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Écran mural endommagé";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Pantalla de pared dañada";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Hasarlı duvar ekranı";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Beschädigter Wandbildschirm";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Поврежденный экран";
-                    else
-                        return "Damaged wall screen";
-                case "WorkDeskScreen2Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un écran mural décoratif endommagé.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una pantalla de pared decorativa dañada.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Hasarlı bir dekoratif duvar ekranı.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Ein beschädigter dekorativer Wandschirm.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Поврежденный декоративный настенный экран.";
-                    else
-                        return "A damaged decorative wall screen.";
-                case "MarbleMelonTinyName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Graîne de petit melon marbr\u00e9";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Peque\u00f1o melom\u00e1rmol fresco";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Taze k\u00fc\u00e7\u00fck mermer kavunu";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Frische kleine Marmormelone";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Семя Маленькой мраморной дыни";
-                    else
-                        return "Small marblemelon seed";
-                case "MarbleMelonTinyFruitName": // SmallMelon
-                    if (UserLanguage == CountryCode.FR)
-                        return "Petit melon marbr\u00e9";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Peque\u00f1o melom\u00e1rmol";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "K\u00fc\u00e7\u00fck mermer kavunu";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "kleine Marmormelone";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Маленькая мраморная дыня";
-                    else
-                        return "Small marblemelon";
-                case "MarbleMelonTinyFruitDescription": // EncyDesc_MelonPlant
-                    if (UserLanguage == CountryCode.FR)
-                        return "Cette plante collecte l'eau dans l'air plut\u00f4t que dans ses racines et produit de gros fruits charnus comestibles ayant une importante teneur en eau.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Esta planta absorbe el agua del aire en lugar de depender de su sistema de ra\u00edces, y produce grandes y jugosas frutas que son tanto comestibles como incre\u00edblemente ricas en l\u00edquidos.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Bu bitki, k\u00f6k sistemleri yerine havadan su toplar ve yenilebilir, y\u00fcksek su i\u00e7eren, etli, b\u00fcy\u00fck meyveler \u00fcretir.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Diese Pflanze sammelt Wasser aus der Luft, anstatt sich auf ihr Wurzelsystem zu verlassen, und erzeugt gro\u00dfe, fleischige Fr\u00fcchte, die sowohl essbar sind, als auch einen untypisch hohen Wassergehalt haben.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Это растение собирает воду из воздуха, не полагаясь на свою корневую систему, и производит большие, мясистые плоды, которые не только съедобны, но и обладают необычайно высоким содержанием воды.";
-                    else
-                        return "This plant collects water from the air rather than relying on its root system, and produces large, fleshy fruits which are both edible, and have atypically high water content.";
-                case "PickupMarbleMelonTinyFruit":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Ramasser petit melon marbr\u00e9";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Recogida peque\u00f1o melom\u00e1rmol";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Pikap k\u00fc\u00e7\u00fck mermer kavunu";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Sammle kleine Marmormelone";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Маленькая мраморная дыня.";
-                    else
-                        return "Pickup small marblemelon";
-                case "Config_HideDeepGrandReefDegasiBase":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Masquer la structure de la base Degasi (500m)";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Ocultar estructura: Hábitat de la Degasi (500m)";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Yapısını gizle: Degasi Yaşam Alanı (500m)";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Verstecke die Struktur von: Degasi-Basis (500 m)";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Скрыть сооружения: Жилище «Дегази» (500 м)";
-                    else
-                        return "Hide structure of the Degasi Habitat (500m)";
-                case "Config_HideDeepGrandReefDegasiBaseDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Si vous activez cette option, la structure de la base du Dagasi à -500m dans les Profondeurs du Grand Récif sera masquée. Cela vous permet de construire votre propre base dans ce bel emplacement de biome. La tablette orange, l'œuf de câlineur, les PDA et les boîtes de données resteront visibles et récupérables.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Si habilita esta opción, la estructura de la Hábitat de la Degasi (500m) en Gran Arrecife Profundo se ocultará. Esto le permite construir su propia hábitat en esta hermosa ubicación de bioma. Tablilla naranja, Huevo de pez monada, PDA y Caja de datos permanecerán visibles y seleccionables.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Bu seçeneği etkinleştirirseniz, Büyük, Derin Resif deki Degasi Yaşam Alanı (500m) yapısı gizlenir. Bu, bu güzel biyom lokasyonunda kendi üssünüzü oluşturmanıza izin verir. Turuncu tablet, Sevimli balık yumurtası, PDA ve Veri Kutusu görünür ve alınabilir kalacak.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Wenn Sie diese Option aktivieren, wird die Struktur der Degasi-Basis (500 m) in Tiefseeriffs ausgeblendet. Auf diese Weise können Sie Ihre eigene Basis an diesem wunderschönen Biomstandort errichten. Orange Tafel, Knuddelfisch-Ei, PDA und Datenbox bleiben sichtbar und können abgeholt werden.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Если вы включите эту опцию, сооружения жилища «Дегази» (500 м) в Глубоком Большом рифе будут скрыты. Это позволяет вам построить свою собственную базу в этом красивом месте биома. Оранжевая скрижаль, Яйцо ласки, КПК и Ящик с данными останутся видимыми и могут быть взяты.";
-                    else
-                        return "If you enable this option, the structure of the Degasi Habitat (500m) in Deep Grand Reef will be hidden. This allows you to build your own base at this beautiful biome location. Orange Tablet, Cuddlefish Egg, PDAs and Data Boxes will remain visible and pickupable.";
-                // Config descriptions:
+                        return "Enable decorative electronics";
+                // Configuration descriptions (used by Configurator only)
                 case "Config_UseCompactTooltipsDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, les info-bulles des « cadres photo personnalisable » et des « lumières personnalisables » seront plus courtes.";
@@ -5467,7 +5317,7 @@ namespace DecorationsModConfigurator
                         return "If enabled, you will be able to build the seeds fabricator and craft seeds (all existing seeds plus new ones).";
                 case "Config_EnableNewItemsDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Si cette option est activée, vous pourrez construire/fabriquer les articles suivants: chariot de laboratoire, longue jardinière d'intérieur, longue jardinière d'extérieur, analyseur d'échantillons, poupée Markiplier 1, poupée Markiplier 2, poupée JackSepticEye, poupée EatMyDiction, bureau vide, poupée seamoth , poupée exosuit, chariot élévateur, caisses de chargement, canapés, bancs, tabouret, cadre photo personnalisable, lumière personnalisable, spécimen de chaîne, pièces de chaîne, pilier étranger, reliques étrangères et casiers supplémentaires.";
+                        return "Si cette option est activée, vous pourrez construire/fabriquer les articles suivants: chariot de laboratoire, longue jardinière d'intérieur, longue jardinière d'extérieur, analyseur d'échantillons, poupée Markiplier 1, poupée Markiplier 2, poupée JackSepticEye, poupée EatMyDiction, bureau vide, poupée seamoth , poupée exosuit, chariot élévateur, caisses de chargement, canapés, bancs, tabouret, cadre photo personnalisable, lumière personnalisable, spécimen de warper, morceaux de warper, pilier alien, reliques alien et casiers supplémentaires.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Si está habilitado, podrá construir / fabricar los siguientes artículos: carro de laboratorio, macetero largo interior, analizador de muestras de macetero largo al aire libre, muñeca Markiplier 1, muñeca Markiplier 2, muñeca JackSepticEye, muñeca de EatMyDiction, muñeca de seamoth , muñeca de exosuit, carretilla elevadora, cajas de carga, sofás, bancos, taburete, marco de imagen personalizable, luz personalizable, espécimen warper, partes warper, pilar alienígena, reliquias alienígenas y armarios adicionales.";
                     else if (UserLanguage == CountryCode.TR)
@@ -5751,6 +5601,209 @@ namespace DecorationsModConfigurator
                         return "Если эта опция включена, вы сможете сделать Питательный батончик в изготовителе декораций. Обратите внимание, что для работы этой опции должна быть активирована функция « Включить новые объекты » во вкладке « Общие настройки ».";
                     else
                         return "If this option is enabled, you will be able to craft the nutrient block from the decorations fabricator. Please note that you need to activate the « Enable new items » feature in « General settings » tab for this option to work.";
+                case "Config_EnableDecorativeElectronicsDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Si cette option est activée, vous pourrez construire des boitiers électroniques, des terminaux de contrôle et des écrans muraux de bureau.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Si está habilitada, podrás construir cajas de tecnología, terminales de control y pantallas de escritorio.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu seçenek etkinleştirilirse, teknoloji kutuları, kontrol terminalleri ve çalışma masası ekranları oluşturabilirsiniz.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wenn aktiviert, können Sie Techboxen, Steuerterminals und Schreibtischbildschirme erstellen.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Если включено, вы сможете создавать технические блоки, терминалы управления и экраны рабочего стола.";
+                    else
+                        return "If enabled, you will be able to build techbox, control terminal and workdesk screens.";
+                case "Config_ModdingDiscordDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Rejoignez le serveur Discord « Subnautica Modding » pour obtenir de l'aide, des informations et plus encore (en Anglais)";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Ingrese a la comunidad de « Subnautica Modding » para obtener asistencia, información y más (en inglés)";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Destek, bilgi ve daha fazlası için « Subnautica Modding » topluluğuna girin (İngilizce)";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Betreten Sie die « Subnautica Modding » Community, um Unterstützung, Informationen und mehr zu erhalten (auf Englisch)";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Подключитесь к серверу Discord « Subnautica Modding », чтобы получить помощь, информацию и многое другое (на английском языке)";
+                    else
+                        return "Enter the « Subnautica Modding » community Discord server for support, informations, and more";
+                case "Config_ModdingDiscordSecondaryDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Serveur Discord « Subnautica France »";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Discord сервер « Subnautica Wiki »";
+                    else
+                        return "";
+                case "Config_HideDeepGrandReefDegasiBaseDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Si vous activez cette option, la structure de la base du Dagasi à -500m dans les Profondeurs du Grand Récif sera masquée. Cela vous permet de construire votre propre base dans ce bel emplacement de biome. La tablette orange, l'œuf de câlineur, les PDA et les boîtes de données resteront visibles et récupérables.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Si habilita esta opción, la estructura de la Hábitat de la Degasi (500m) en Gran Arrecife Profundo se ocultará. Esto le permite construir su propia hábitat en esta hermosa ubicación de bioma. Tablilla naranja, Huevo de pez monada, PDA y Caja de datos permanecerán visibles y seleccionables.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu seçeneği etkinleştirirseniz, Büyük, Derin Resif deki Degasi Yaşam Alanı (500m) yapısı gizlenir. Bu, bu güzel biyom lokasyonunda kendi üssünüzü oluşturmanıza izin verir. Turuncu tablet, Sevimli balık yumurtası, PDA ve Veri Kutusu görünür ve alınabilir kalacak.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wenn Sie diese Option aktivieren, wird die Struktur der Degasi-Basis (500 m) in Tiefseeriffs ausgeblendet. Auf diese Weise können Sie Ihre eigene Basis an diesem wunderschönen Biomstandort errichten. Orange Tafel, Knuddelfisch-Ei, PDA und Datenbox bleiben sichtbar und können abgeholt werden.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Если вы включите эту опцию, сооружения жилища «Дегази» (500 м) в Глубоком Большом рифе будут скрыты. Это позволяет вам построить свою собственную базу в этом красивом месте биома. Оранжевая скрижаль, Яйцо ласки, КПК и Ящик с данными останутся видимыми и могут быть взяты.";
+                    else
+                        return "If you enable this option, the structure of the Degasi Habitat (500m) in Deep Grand Reef will be hidden. This allows you to build your own base at this beautiful biome location. Orange Tablet, Cuddlefish Egg, PDAs and Data Boxes will remain visible and pickupable.";
+                // New items (used by Decorations Mod and Configurator)
+                case "DecorativeControlTerminalName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Terminal de contrôle";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Terminal de control";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kontrol terminali";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Steuerterminal";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Терминал управления";
+                    else
+                        return "Control terminal";
+                case "DecorativeControlTerminalDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un terminal de contrôle décoratif.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un terminal de control decorativo.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekoratif bir kontrol terminali.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein dekoratives Kontrollterminal.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный терминал управления.";
+                    else
+                        return "A decorative control terminal.";
+                case "WorkDeskScreen1Name":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Écran mural";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pantalla de pared";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Duvar ekranı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wandbildschirm";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенный экран";
+                    else
+                        return "Wall screen";
+                case "WorkDeskScreen1Description":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un écran mural décoratif.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una pantalla de pared decorativa.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekoratif bir duvar ekranı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein dekorativer Wandschirm.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный настенный экран.";
+                    else
+                        return "A decorative wall screen.";
+                case "WorkDeskScreen2Name":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Écran mural endommagé";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pantalla de pared dañada";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Hasarlı duvar ekranı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Beschädigter Wandbildschirm";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Поврежденный экран";
+                    else
+                        return "Damaged wall screen";
+                case "WorkDeskScreen2Description":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un écran mural décoratif endommagé.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una pantalla de pared decorativa dañada.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Hasarlı bir dekoratif duvar ekranı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein beschädigter dekorativer Wandschirm.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Поврежденный декоративный настенный экран.";
+                    else
+                        return "A damaged decorative wall screen.";
+                case "MarbleMelonTinyName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Graîne de petit melon marbr\u00e9";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Peque\u00f1o melom\u00e1rmol fresco";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Taze k\u00fc\u00e7\u00fck mermer kavunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Frische kleine Marmormelone";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Семя Маленькой мраморной дыни";
+                    else
+                        return "Small marblemelon seed";
+                case "MarbleMelonTinyFruitName": // SmallMelon
+                    if (UserLanguage == CountryCode.FR)
+                        return "Petit melon marbr\u00e9";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Peque\u00f1o melom\u00e1rmol";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "K\u00fc\u00e7\u00fck mermer kavunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "kleine Marmormelone";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Маленькая мраморная дыня";
+                    else
+                        return "Small marblemelon";
+                case "MarbleMelonTinyFruitDescription": // EncyDesc_MelonPlant
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cette plante collecte l'eau dans l'air plut\u00f4t que dans ses racines et produit de gros fruits charnus comestibles ayant une importante teneur en eau.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Esta planta absorbe el agua del aire en lugar de depender de su sistema de ra\u00edces, y produce grandes y jugosas frutas que son tanto comestibles como incre\u00edblemente ricas en l\u00edquidos.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu bitki, k\u00f6k sistemleri yerine havadan su toplar ve yenilebilir, y\u00fcksek su i\u00e7eren, etli, b\u00fcy\u00fck meyveler \u00fcretir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Pflanze sammelt Wasser aus der Luft, anstatt sich auf ihr Wurzelsystem zu verlassen, und erzeugt gro\u00dfe, fleischige Fr\u00fcchte, die sowohl essbar sind, als auch einen untypisch hohen Wassergehalt haben.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Это растение собирает воду из воздуха, не полагаясь на свою корневую систему, и производит большие, мясистые плоды, которые не только съедобны, но и обладают необычайно высоким содержанием воды.";
+                    else
+                        return "This plant collects water from the air rather than relying on its root system, and produces large, fleshy fruits which are both edible, and have atypically high water content.";
+                case "PickupMarbleMelonTinyFruit":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ramasser petit melon marbr\u00e9";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Recogida peque\u00f1o melom\u00e1rmol";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Pikap k\u00fc\u00e7\u00fck mermer kavunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Sammle kleine Marmormelone";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Маленькая мраморная дыня.";
+                    else
+                        return "Pickup small marblemelon";
+                case "DecorativeTechBoxName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Boîtier électronique";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Carcasa electrónica";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Elektronik gövde";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Elektronikbox";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Корпус электроники";
+                    else
+                        return "Tech box";
+                case "DecorativeTechBoxDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un petit boîtier électronique décoratif contenant divers composants nécessaires au traitement des flux d'énergie et de données.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una pequeña caja electrónica decorativa que contiene varios componentes necesarios para procesar flujos de energía y datos.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Enerji ve veri akışlarını işlemek için gerekli çeşitli bileşenleri içeren küçük, dekoratif bir elektronik kutu.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine kleine dekorative Elektronikbox, die verschiedene Komponenten enthält, die zur Verarbeitung von Energie- und Datenflüssen erforderlich sind.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Небольшая декоративная электронная коробка, которая содержит различные компоненты, необходимые для обработки энергии и потоков данных.";
+                    else
+                        return "A small decorative tech box which contains various electronic components required to process energy and data streams.";
                 default:
                     return "?";
             }

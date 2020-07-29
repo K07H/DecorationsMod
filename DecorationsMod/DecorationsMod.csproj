@@ -195,6 +195,7 @@
     <Compile Include="Flora\MarbleMelonTiny.cs" />
     <Compile Include="Flora\MarbleMelonTinyFruit.cs" />
     <Compile Include="NewItems\DecorativeControlTerminal.cs" />
+    <Compile Include="NewItems\DecorativeTechBox.cs" />
     <Compile Include="NewItems\LongPlanterB.cs" />
     <Compile Include="NewItems\EggCrabsnake.cs" />
     <Compile Include="NewItems\EggBoneshark.cs" />
