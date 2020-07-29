@@ -4536,7 +4536,7 @@ namespace DecorationsMod
                         return "Tech box";
                 case "DecorativeTechBoxDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un petit boîtier électronique décoratif qui contient divers composants nécessaires pour traiter les flux d'énergie et de données.";
+                        return "Un petit boîtier électronique décoratif contenant divers composants nécessaires au traitement des flux d'énergie et de données.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Una pequeña caja electrónica decorativa que contiene varios componentes necesarios para procesar flujos de energía y datos.";
                     else if (UserLanguage == CountryCode.TR)
