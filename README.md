@@ -139,7 +139,7 @@ June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Translations:<br>
 Currently supported: Français (FR), English (EN), Español (ES), Türkçe (TR), Deutsch (DE), Русский (RU).<br>
-Feel free to propose new translations for this mod. You can find the up-to-date [template here](https://github.com/K07H/DecorationsMod/blob/master/translation_template.docx?raw=true).<br>
+Feel free to propose new translations for this mod. You can find the [template here](https://github.com/K07H/DecorationsMod/blob/master/translation_template.docx?raw=true).<br>
 
 ### Contributing to Decorations Mod:<br>
 To contribute to the Decorations mod, simply fork this repository, make your changes and create a pull request.
