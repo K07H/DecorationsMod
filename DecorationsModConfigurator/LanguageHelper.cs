@@ -3795,6 +3795,163 @@ namespace DecorationsModConfigurator
                         return "\u0424\u0440\u0430\u0433\u043c\u0435\u043d\u0442 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438 \u00ab\u041c\u043e\u0442\u044b\u043b\u044c\u043a\u0430\u00bb.";
                     else
                         return "A fragment of seamoth technology.";
+                // New elements (used by Decorations Mod and Configurator)
+                case "DecorativeControlTerminalName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Terminal de contrôle";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Terminal de control";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kontrol terminali";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Steuerterminal";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Терминал управления";
+                    else
+                        return "Control terminal";
+                case "DecorativeControlTerminalDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un terminal de contrôle décoratif.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un terminal de control decorativo.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekoratif bir kontrol terminali.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein dekoratives Kontrollterminal.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный терминал управления.";
+                    else
+                        return "A decorative control terminal.";
+                case "WorkDeskScreen1Name":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Écran mural";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pantalla de pared";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Duvar ekranı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wandbildschirm";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Настенный экран";
+                    else
+                        return "Wall screen";
+                case "WorkDeskScreen1Description":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un écran mural décoratif.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una pantalla de pared decorativa.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dekoratif bir duvar ekranı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein dekorativer Wandschirm.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративный настенный экран.";
+                    else
+                        return "A decorative wall screen.";
+                case "WorkDeskScreen2Name":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Écran mural endommagé";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Pantalla de pared dañada";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Hasarlı duvar ekranı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Beschädigter Wandbildschirm";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Поврежденный экран";
+                    else
+                        return "Damaged wall screen";
+                case "WorkDeskScreen2Description":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un écran mural décoratif endommagé.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una pantalla de pared decorativa dañada.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Hasarlı bir dekoratif duvar ekranı.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein beschädigter dekorativer Wandschirm.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Поврежденный декоративный настенный экран.";
+                    else
+                        return "A damaged decorative wall screen.";
+                case "MarbleMelonTinyName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Graîne de petit melon marbr\u00e9";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Peque\u00f1o melom\u00e1rmol fresco";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Taze k\u00fc\u00e7\u00fck mermer kavunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Frische kleine Marmormelone";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Семя Маленькой мраморной дыни";
+                    else
+                        return "Small marblemelon seed";
+                case "MarbleMelonTinyFruitName": // SmallMelon
+                    if (UserLanguage == CountryCode.FR)
+                        return "Petit melon marbr\u00e9";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Peque\u00f1o melom\u00e1rmol";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "K\u00fc\u00e7\u00fck mermer kavunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "kleine Marmormelone";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Маленькая мраморная дыня";
+                    else
+                        return "Small marblemelon";
+                case "MarbleMelonTinyFruitDescription": // EncyDesc_MelonPlant
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cette plante collecte l'eau dans l'air plut\u00f4t que dans ses racines et produit de gros fruits charnus comestibles ayant une importante teneur en eau.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Esta planta absorbe el agua del aire en lugar de depender de su sistema de ra\u00edces, y produce grandes y jugosas frutas que son tanto comestibles como incre\u00edblemente ricas en l\u00edquidos.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu bitki, k\u00f6k sistemleri yerine havadan su toplar ve yenilebilir, y\u00fcksek su i\u00e7eren, etli, b\u00fcy\u00fck meyveler \u00fcretir.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Diese Pflanze sammelt Wasser aus der Luft, anstatt sich auf ihr Wurzelsystem zu verlassen, und erzeugt gro\u00dfe, fleischige Fr\u00fcchte, die sowohl essbar sind, als auch einen untypisch hohen Wassergehalt haben.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Это растение собирает воду из воздуха, не полагаясь на свою корневую систему, и производит большие, мясистые плоды, которые не только съедобны, но и обладают необычайно высоким содержанием воды.";
+                    else
+                        return "This plant collects water from the air rather than relying on its root system, and produces large, fleshy fruits which are both edible, and have atypically high water content.";
+                case "PickupMarbleMelonTinyFruit":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Ramasser petit melon marbr\u00e9";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Recogida peque\u00f1o melom\u00e1rmol";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Pikap k\u00fc\u00e7\u00fck mermer kavunu";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Sammle kleine Marmormelone";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Маленькая мраморная дыня.";
+                    else
+                        return "Pickup small marblemelon";
+                case "DecorativeTechBoxName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Boîtier électronique";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Carcasa electrónica";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Elektronik gövde";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Elektronikbox";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Корпус электроники";
+                    else
+                        return "Tech box";
+                case "DecorativeTechBoxDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un petit boîtier électronique décoratif contenant divers composants nécessaires au traitement des flux d'énergie et de données.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una pequeña caja electrónica decorativa que contiene varios componentes necesarios para procesar flujos de energía y datos.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Enerji ve veri akışlarını işlemek için gerekli çeşitli bileşenleri içeren küçük, dekoratif bir elektronik kutu.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine kleine dekorative Elektronikbox, die verschiedene Komponenten enthält, die zur Verarbeitung von Energie- und Datenflüssen erforderlich sind.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Небольшая декоративная электронная коробка, которая содержит различные компоненты, необходимые для обработки энергии и потоков данных.";
+                    else
+                        return "A small decorative tech box which contains various electronic components required to process energy and data streams.";
                 // Configuration (used by Decorations Mod and Configurator)
                 case "Config_UseFlatScreenResolution":
                     if (UserLanguage == CountryCode.FR)
@@ -5124,12 +5281,12 @@ namespace DecorationsModConfigurator
                     else
                         return "Author";
                 case "Config_ModdingDiscordURL":
-                        return "https://discord.gg/UpWuWwq"; // English Discord server
+                    return "https://discord.gg/UpWuWwq"; // Discord server URL (English)
                 case "Config_ModdingDiscordSecondaryURL":
                     if (UserLanguage == CountryCode.FR)
-                        return "https://discord.gg/wNRcPTw"; // Français Discord server
-                    if (UserLanguage == CountryCode.RU)
-                        return "https://discord.gg/UyA4EVZ"; // Российский Discord server
+                        return "https://discord.gg/wNRcPTw"; // Discord server URL (Français)
+                    else if (UserLanguage == CountryCode.RU)
+                        return "https://discord.gg/UyA4EVZ"; // Discord server URL (Российский)
                     else
                         return "";
                 case "Config_ConfigChangedListOfChanges":
@@ -5647,163 +5804,6 @@ namespace DecorationsModConfigurator
                         return "Если вы включите эту опцию, сооружения жилища «Дегази» (500 м) в Глубоком Большом рифе будут скрыты. Это позволяет вам построить свою собственную базу в этом красивом месте биома. Оранжевая скрижаль, Яйцо ласки, КПК и Ящик с данными останутся видимыми и могут быть взяты.";
                     else
                         return "If you enable this option, the structure of the Degasi Habitat (500m) in Deep Grand Reef will be hidden. This allows you to build your own base at this beautiful biome location. Orange Tablet, Cuddlefish Egg, PDAs and Data Boxes will remain visible and pickupable.";
-                // New items (used by Decorations Mod and Configurator)
-                case "DecorativeControlTerminalName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Terminal de contrôle";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Terminal de control";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Kontrol terminali";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Steuerterminal";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Терминал управления";
-                    else
-                        return "Control terminal";
-                case "DecorativeControlTerminalDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un terminal de contrôle décoratif.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un terminal de control decorativo.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Dekoratif bir kontrol terminali.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Ein dekoratives Kontrollterminal.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Декоративный терминал управления.";
-                    else
-                        return "A decorative control terminal.";
-                case "WorkDeskScreen1Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Écran mural";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Pantalla de pared";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Duvar ekranı";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Wandbildschirm";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Настенный экран";
-                    else
-                        return "Wall screen";
-                case "WorkDeskScreen1Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un écran mural décoratif.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una pantalla de pared decorativa.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Dekoratif bir duvar ekranı.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Ein dekorativer Wandschirm.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Декоративный настенный экран.";
-                    else
-                        return "A decorative wall screen.";
-                case "WorkDeskScreen2Name":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Écran mural endommagé";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Pantalla de pared dañada";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Hasarlı duvar ekranı";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Beschädigter Wandbildschirm";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Поврежденный экран";
-                    else
-                        return "Damaged wall screen";
-                case "WorkDeskScreen2Description":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un écran mural décoratif endommagé.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una pantalla de pared decorativa dañada.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Hasarlı bir dekoratif duvar ekranı.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Ein beschädigter dekorativer Wandschirm.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Поврежденный декоративный настенный экран.";
-                    else
-                        return "A damaged decorative wall screen.";
-                case "MarbleMelonTinyName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Graîne de petit melon marbr\u00e9";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Peque\u00f1o melom\u00e1rmol fresco";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Taze k\u00fc\u00e7\u00fck mermer kavunu";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Frische kleine Marmormelone";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Семя Маленькой мраморной дыни";
-                    else
-                        return "Small marblemelon seed";
-                case "MarbleMelonTinyFruitName": // SmallMelon
-                    if (UserLanguage == CountryCode.FR)
-                        return "Petit melon marbr\u00e9";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Peque\u00f1o melom\u00e1rmol";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "K\u00fc\u00e7\u00fck mermer kavunu";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "kleine Marmormelone";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Маленькая мраморная дыня";
-                    else
-                        return "Small marblemelon";
-                case "MarbleMelonTinyFruitDescription": // EncyDesc_MelonPlant
-                    if (UserLanguage == CountryCode.FR)
-                        return "Cette plante collecte l'eau dans l'air plut\u00f4t que dans ses racines et produit de gros fruits charnus comestibles ayant une importante teneur en eau.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Esta planta absorbe el agua del aire en lugar de depender de su sistema de ra\u00edces, y produce grandes y jugosas frutas que son tanto comestibles como incre\u00edblemente ricas en l\u00edquidos.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Bu bitki, k\u00f6k sistemleri yerine havadan su toplar ve yenilebilir, y\u00fcksek su i\u00e7eren, etli, b\u00fcy\u00fck meyveler \u00fcretir.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Diese Pflanze sammelt Wasser aus der Luft, anstatt sich auf ihr Wurzelsystem zu verlassen, und erzeugt gro\u00dfe, fleischige Fr\u00fcchte, die sowohl essbar sind, als auch einen untypisch hohen Wassergehalt haben.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Это растение собирает воду из воздуха, не полагаясь на свою корневую систему, и производит большие, мясистые плоды, которые не только съедобны, но и обладают необычайно высоким содержанием воды.";
-                    else
-                        return "This plant collects water from the air rather than relying on its root system, and produces large, fleshy fruits which are both edible, and have atypically high water content.";
-                case "PickupMarbleMelonTinyFruit":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Ramasser petit melon marbr\u00e9";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Recogida peque\u00f1o melom\u00e1rmol";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Pikap k\u00fc\u00e7\u00fck mermer kavunu";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Sammle kleine Marmormelone";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Маленькая мраморная дыня.";
-                    else
-                        return "Pickup small marblemelon";
-                case "DecorativeTechBoxName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Boîtier électronique";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Carcasa electrónica";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Elektronik gövde";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Elektronikbox";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Корпус электроники";
-                    else
-                        return "Tech box";
-                case "DecorativeTechBoxDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un petit boîtier électronique décoratif contenant divers composants nécessaires au traitement des flux d'énergie et de données.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Una pequeña caja electrónica decorativa que contiene varios componentes necesarios para procesar flujos de energía y datos.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Enerji ve veri akışlarını işlemek için gerekli çeşitli bileşenleri içeren küçük, dekoratif bir elektronik kutu.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Eine kleine dekorative Elektronikbox, die verschiedene Komponenten enthält, die zur Verarbeitung von Energie- und Datenflüssen erforderlich sind.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Небольшая декоративная электронная коробка, которая содержит различные компоненты, необходимые для обработки энергии и потоков данных.";
-                    else
-                        return "A small decorative tech box which contains various electronic components required to process energy and data streams.";
                 default:
                     return "?";
             }
