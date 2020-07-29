@@ -2,7 +2,7 @@
 ## *Multilingual (EN/FR/ES/TR/DE/RU)*
 
 ### Prerequisites:
-Requires QMods and SMLHelper.<br>
+This mod requires QMods and SMLHelper.<br>
 1) Install QMods: https://www.nexusmods.com/subnautica/mods/201<br>
 2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
 
