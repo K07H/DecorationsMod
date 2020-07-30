@@ -388,11 +388,7 @@ namespace DecorationsMod
         {
             if (tr != null)
             {
-                Logger.Log("DEBUG: Transform " + indent + "name=[" + tr.name + "] scale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "]");
-#if DEBUG_SEEDS
-                if (tr.name == "Generic_plant_seed")
-                    Logger.Log("DEBUG: Transform " + indent + " => active=[" + tr.gameObject.activeSelf.ToString() + "] activeHierarchy=[" + tr.gameObject.activeInHierarchy.ToString() + "] enabled=[" + tr.GetComponent<MeshRenderer>().enabled.ToString() + "] scale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "]");
-#endif
+                Logger.Log("DEBUG: Transform " + indent + "name=[" + tr.name + "] position=[" + tr.localPosition.x.ToString() + ";" + tr.localPosition.y.ToString() + ";" + tr.localPosition.z.ToString() + "] scale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "]");
                 foreach (Component c in tr.GetComponents<Component>())
                     if (c.GetType() != typeof(Transform))
                         Logger.Log("DEBUG: Transform " + indent + " => component type=[" + c.GetType().ToString() + "] name=[" + c.name + "]");

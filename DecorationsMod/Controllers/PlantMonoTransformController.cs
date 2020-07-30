@@ -92,10 +92,8 @@ namespace DecorationsMod.Controllers
                     else
                         Logger.Log("DEBUG: PlantMonoTransformController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.gameObject.transform.localPosition.x + "] y=[" + _grownPlant.gameObject.transform.localPosition.y + "] z=[" + _grownPlant.gameObject.transform.localPosition.z + "] => Initializing");
 #endif
-                    // Hide seed model
-                    GameObject seed = _grownPlant.gameObject.FindChild("Generic_plant_seed");
-                    if (seed != null)
-                        seed.GetComponent<MeshRenderer>().enabled = false;
+                    // Hide seed model and show plant model
+                    PrefabsHelper.ShowPlantAndHideSeed(_grownPlant.gameObject.transform);
                     // Store init values
                     _initTimeValue = DayNightCycle.main.timePassed;
                     if (_origScale == Vector3.zero)
