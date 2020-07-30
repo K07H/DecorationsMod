@@ -25,7 +25,7 @@ Same as the installation instructions (at step 3 it will ask if you want to repl
 <br><br>
 
 ### Description:
-Adds a fabricator allowing you to craft 118 new items. Adds another fabricator to craft 56 new seeds. 32 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
+Adds a fabricator allowing you to craft 118 new items. Adds another fabricator to craft 56 new seeds. 33 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
 
 **Adds a decoration fabricator allowing you to craft following new items (118 new items):**<br>
     5 unique posters<br>
@@ -55,7 +55,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     9 unique water trees<br>
     5 unique corals<br>
     7 unique amphibious plants<br>
-**Add the following new items in the habitat builder menu (32 new buildables):**<br>
+**Add the following new items in the habitat builder menu (33 new buildables):**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
     Markiplier1 doll<br>
@@ -64,7 +64,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     Seamoth doll<br>
     PRAWN suit doll<br>
     Forklift toy<br>
-    Customizable picture frame<br>
+    Customizable picture frames<br>
     Customizable posters<br>
     Empty desk<br>
     Stool<br>
@@ -79,6 +79,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     Small aquarium<br>
     2 unique workdesk screens<br>
     Control terminal<br>
+    Techbox<br>
 **You will be able to place following existing items where you want:**<br>
     Coffee cup<br>
     All snacks<br>
@@ -115,6 +116,7 @@ All new flora is compatible with bioreactors and only the land tree is edible.<b
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
+July 30, 2020: Updated to version 1.7.8.<br>
 July 14, 2020: Updated to version 1.7.7.<br>
 June 9, 2020: Updated to version 1.7.4.<br>
 May 17, 2020: Updated to version 1.7.3.<br>
