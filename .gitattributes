@@ -1,1 +1,1 @@
-'DecorationsMod/Assets/decorationassets.assets' filter=lfs diff=lfs merge=lfs -text
+decorationassets.assets filter=lfs diff=lfs merge=lfs -text
