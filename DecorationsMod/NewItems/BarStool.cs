@@ -58,11 +58,6 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                /*
-                leather_metal = AssetsHelper.Assets.LoadAsset<Texture>("Stool_Leather_MetallicSmoothness");
-                leather_normal = AssetsHelper.Assets.LoadAsset<Texture>("Stool_Leather_Normal");
-                rubber_metal = AssetsHelper.Assets.LoadAsset<Texture>("Stool_Rubber_MetallicSmoothness");
-                rubber_normal = AssetsHelper.Assets.LoadAsset<Texture>("Stool_Rubber_Normal");*/
                 metal_spec = AssetsHelper.Assets.LoadAsset<Texture>("Stool_Metal_MetallicSmoothness");
                 metal_normal = AssetsHelper.Assets.LoadAsset<Texture>("Stool_Metal_Normal");
 

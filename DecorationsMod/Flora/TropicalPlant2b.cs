@@ -72,7 +72,7 @@ namespace DecorationsMod.Flora
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("tropicalplant2aicon"));
+                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("tropicalplant2bicon"));
 
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);

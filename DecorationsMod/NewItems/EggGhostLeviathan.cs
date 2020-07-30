@@ -25,7 +25,6 @@ namespace DecorationsMod.NewItems
 #else
             this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Lost_river/lost_river_cove_tree_01");
 #endif
-            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("ghost_leviathan_eggs");
 
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()

@@ -73,7 +73,6 @@ namespace DecorationsMod.NewItems
                 Texture normal1 = AssetsHelper.Assets.LoadAsset<Texture>("precursor_lab_warper_normal");
                 Texture spec1 = AssetsHelper.Assets.LoadAsset<Texture>("precursor_lab_warper_spec");
                 Texture illum1 = AssetsHelper.Assets.LoadAsset<Texture>("precursor_lab_warper_illum");
-                //Texture normal2 = AssetsHelper.Assets.LoadAsset<Texture>("precursor_lab_warper_liquid_normal");
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
