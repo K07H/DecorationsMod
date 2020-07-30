@@ -1,3 +1,20 @@
+Version 1.7.8
+Fixed: Decorative alien mushroom (from "Amphibious plants" section of the seeds fabricator) is no longer invisible.
+Fixed: Small marblemelon: Drop/pickup/harvest behaviors bugs.
+Fixed: Small marblemelon: Removed the "ghost melon" that was spawning upon harvesting.
+Fixed: Small marblemelon: Proper model is now used when it gets dropped (either seed or fruit model).
+Fixed: Customizable Picture Frame minor bug.
+Modified: Updated Русский translation.
+Modified: Some of the English names of the new flora (thanks to Div).
+Modified: The two data boxes at Degasi base (Deep Grand Reef, -500m) will now have better positions if you enable the "Hide Degasi base structure" feature.
+Modified: Customizable Picture Frame size can be defined more precisely.
+Modified: Customizable Picture Frame now has a smaller collider, which allows to place them closer to other objects (this change will not affect previously built Customizable Picture Frames).
+Added: A decorative tech-box (in "Miscellaneous" section of the habitat builder menu).
+Added: A slideshow mode for Cutomizable Picture Frame. When enabled, a new folder will be created inside "Steam/steamapps/common/Subnautica/SNAppData/SavedGames/slotXXXX/DecorationsMod/pictureframes/". It will have a unique name (which is the picture frame unique ID) and it will contain a "Config" file which holds information about the Customizable Picture Frame (location and slideshow delay). Add your images in this new folder. Also you can modify the slideshow delay value (it's the number of seconds to wait before the slideshow advances to the next image).
+Added: A randomization mode for Customizable Picture Frame. When enabled, a new folder will be created inside "Steam/steamapps/common/Subnautica/SNAppData/SavedGames/slotXXXX/DecorationsMod/pictureframes/" (unless it was already created by the slideshow feature). Add your images in this new folder. It will have a unique name (which is the picture frame unique ID) and it will contain a "Config" file which holds information about the Customizable Picture Frame (location and slideshow delay). A random image will be taken from that folder each time you restart the game, or each time the slideshow advances to the next image.
+Added: An option to enable or disable decorative electronics (control terminal, tech-box and work desk screens). See configuration of this mod.
+Other: Customizable Picture Frame slideshow/random modes demo here: https://www.youtube.com/watch?v=mR4CtHmq-iM
+Other: Reduced mod weight a little (removed old textures that are not used anymore).
 
 Version 1.7.7
 This version is a quick hotfix to version 1.7.6. It fixes the Perennial Alien Tree (model was invisible) and the neon tube lighting of Customizable Lights.
