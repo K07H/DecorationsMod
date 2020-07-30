@@ -1693,25 +1693,25 @@ namespace DecorationsModConfigurator
             this._LandTree = new FloraConfig(GetFriendlyWord("LandTree1Name"), "/Images/Flora/landtree1seedicon.png", 2400, 200, 500, true, 3, 6, false, 0.02f);
             this._JungleTreeA = new FloraConfig(GetFriendlyWord("JungleTree1Name"), "/Images/Flora/jungletree1icon.png", 2000, 120, 300, false, 1, 1, false, 0.02f);
             this._JungleTreeB = new FloraConfig(GetFriendlyWord("JungleTree2Name"), "/Images/Flora/jungletree2icon.png", 2000, 120, 300, false, 1, 1, false, 0.02f);
-            this._TropicalTreeA = new FloraConfig(GetFriendlyWord("TropicalTreeName") + " (1)", "/Images/Flora/tropicalplant3aicon.png", 1400, 100, 200, false, 1, 1, false, 0.02f);
-            this._TropicalTreeB = new FloraConfig(GetFriendlyWord("TropicalTreeName") + " (2)", "/Images/Flora/tropicalplant3bicon.png", 1400, 100, 200, false, 1, 1, false, 0.02f);
-            this._TropicalTreeC = new FloraConfig(GetFriendlyWord("TropicalTreeName") + " (3)", "/Images/Flora/tropicalplant6aicon.png", 1400, 100, 200, false, 1, 1, false, 0.02f);
-            this._TropicalTreeD = new FloraConfig(GetFriendlyWord("TropicalTreeName") + " (4)", "/Images/Flora/tropicalplant6bicon.png", 1400, 100, 200, false, 1, 1, false, 0.02f);
+            this._TropicalTreeA = new FloraConfig(GetFriendlyWord("TropicalTreeName"), "/Images/Flora/tropicalplant3aicon.png", 1400, 100, 200, false, 1, 1, false, 0.02f);
+            this._TropicalTreeB = new FloraConfig(GetFriendlyWord("TropicalTree2Name"), "/Images/Flora/tropicalplant3bicon.png", 1400, 100, 200, false, 1, 1, false, 0.02f);
+            this._TropicalTreeC = new FloraConfig(GetFriendlyWord("TropicalTree3Name"), "/Images/Flora/tropicalplant6aicon.png", 1400, 100, 200, false, 1, 1, false, 0.02f);
+            this._TropicalTreeD = new FloraConfig(GetFriendlyWord("TropicalTree4Name"), "/Images/Flora/tropicalplant6bicon.png", 1400, 100, 200, false, 1, 1, false, 0.02f);
             this._LandPlantRedA = new FloraConfig(GetFriendlyWord("LandPlant1Name"), "/Images/Flora/landplant1icon.png", 1200, 80, 100, false, 1, 1, false, 0.02f);
             this._LandPlantRedB = new FloraConfig(GetFriendlyWord("LandPlant2Name"), "/Images/Flora/landplant2icon.png", 1200, 80, 100, false, 1, 1, false, 0.02f);
             this._LandPlantA = new FloraConfig(GetFriendlyWord("LandPlant3Name"), "/Images/Flora/landplant3icon.png", 1200, 60, 70, false, 1, 1, false, 0.02f);
             this._LandPlantB = new FloraConfig(GetFriendlyWord("LandPlant4Name"), "/Images/Flora/landplant4icon.png", 1200, 60, 70, false, 1, 1, false, 0.02f);
             this._LandPlantC = new FloraConfig(GetFriendlyWord("LandPlant5Name"), "/Images/Flora/landplant5icon.png", 1200, 60, 70, false, 1, 1, false, 0.02f);
-            this._FernA = new FloraConfig(GetFriendlyWord("FernName") + " (1)", "/Images/Flora/fern2icon.png", 800, 60, 70, false, 1, 1, false, 0.02f);
-            this._FernB = new FloraConfig(GetFriendlyWord("FernName") + " (2)", "/Images/Flora/fern4icon.png", 800, 60, 70, false, 1, 1, false, 0.02f);
-            this._TropicalPlantA = new FloraConfig(GetFriendlyWord("TropicalPlantName") + " (1)", "/Images/Flora/tropicalplant1aicon.png", 1200, 60, 140, false, 1, 1, false, 0.02f);
-            this._TropicalPlantB = new FloraConfig(GetFriendlyWord("TropicalPlantName") + " (2)", "/Images/Flora/tropicalplant1bicon.png", 1200, 60, 140, false, 1, 1, false, 0.02f);
-            this._TropicalPlantC = new FloraConfig(GetFriendlyWord("TropicalPlantName") + " (3)", "/Images/Flora/tropicalplant2aicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
-            this._TropicalPlantD = new FloraConfig(GetFriendlyWord("TropicalPlantName") + " (4)", "/Images/Flora/tropicalplant2bicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
-            this._TropicalPlantE = new FloraConfig(GetFriendlyWord("TropicalPlantName") + " (5)", "/Images/Flora/tropicalplant7aicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
-            this._TropicalPlantF = new FloraConfig(GetFriendlyWord("TropicalPlantName") + " (6)", "/Images/Flora/tropicalplant7bicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
-            this._TropicalPlantG = new FloraConfig(GetFriendlyWord("TropicalPlantName") + " (7)", "/Images/Flora/tropicalplant10aicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
-            this._TropicalPlantH = new FloraConfig(GetFriendlyWord("TropicalPlantName") + " (8)", "/Images/Flora/tropicalplant10bicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
+            this._FernA = new FloraConfig(GetFriendlyWord("FernName"), "/Images/Flora/fern2icon.png", 800, 60, 70, false, 1, 1, false, 0.02f);
+            this._FernB = new FloraConfig(GetFriendlyWord("Fern2Name"), "/Images/Flora/fern4icon.png", 800, 60, 70, false, 1, 1, false, 0.02f);
+            this._TropicalPlantA = new FloraConfig(GetFriendlyWord("TropicalPlantName"), "/Images/Flora/tropicalplant1aicon.png", 1200, 60, 140, false, 1, 1, false, 0.02f);
+            this._TropicalPlantB = new FloraConfig(GetFriendlyWord("TropicalPlant2Name"), "/Images/Flora/tropicalplant1bicon.png", 1200, 60, 140, false, 1, 1, false, 0.02f);
+            this._TropicalPlantC = new FloraConfig(GetFriendlyWord("TropicalPlant3Name"), "/Images/Flora/tropicalplant2aicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
+            this._TropicalPlantD = new FloraConfig(GetFriendlyWord("TropicalPlant4Name"), "/Images/Flora/tropicalplant2bicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
+            this._TropicalPlantE = new FloraConfig(GetFriendlyWord("TropicalPlant5Name"), "/Images/Flora/tropicalplant7aicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
+            this._TropicalPlantF = new FloraConfig(GetFriendlyWord("TropicalPlant6Name"), "/Images/Flora/tropicalplant7bicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
+            this._TropicalPlantG = new FloraConfig(GetFriendlyWord("TropicalPlant7Name"), "/Images/Flora/tropicalplant10aicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
+            this._TropicalPlantH = new FloraConfig(GetFriendlyWord("TropicalPlant8Name"), "/Images/Flora/tropicalplant10bicon.png", 1200, 60, 100, false, 1, 1, false, 0.02f);
             this._CrabClawKelpA = new FloraConfig(GetFriendlyWord("CrabClawKelpName") + " (1)", "/Images/Flora/lostriverplant2icon.png", 1600, 100, 220, false, 1, 1, false, 0.02f);
             this._CrabClawKelpB = new FloraConfig(GetFriendlyWord("CrabClawKelpName") + " (2)", "/Images/Flora/lostriverplant1icon.png", 1600, 100, 220, false, 1, 1, false, 0.02f);
             this._CrabClawKelpC = new FloraConfig(GetFriendlyWord("CrabClawKelpName") + " (3)", "/Images/Flora/lostriverplant3icon.png", 1600, 100, 220, false, 1, 1, false, 0.02f);
@@ -1822,25 +1822,25 @@ namespace DecorationsModConfigurator
             Configuration.Instance.LandTree.PlantName = LanguageHelper.GetFriendlyWord("LandTree1Name");
             Configuration.Instance.JungleTreeA.PlantName = LanguageHelper.GetFriendlyWord("JungleTree1Name");
             Configuration.Instance.JungleTreeB.PlantName = LanguageHelper.GetFriendlyWord("JungleTree2Name");
-            Configuration.Instance.TropicalTreeA.PlantName = LanguageHelper.GetFriendlyWord("TropicalTreeName") + " (1)";
-            Configuration.Instance.TropicalTreeB.PlantName = LanguageHelper.GetFriendlyWord("TropicalTreeName") + " (2)";
-            Configuration.Instance.TropicalTreeC.PlantName = LanguageHelper.GetFriendlyWord("TropicalTreeName") + " (3)";
-            Configuration.Instance.TropicalTreeD.PlantName = LanguageHelper.GetFriendlyWord("TropicalTreeName") + " (4)";
+            Configuration.Instance.TropicalTreeA.PlantName = LanguageHelper.GetFriendlyWord("TropicalTreeName");
+            Configuration.Instance.TropicalTreeB.PlantName = LanguageHelper.GetFriendlyWord("TropicalTree2Name");
+            Configuration.Instance.TropicalTreeC.PlantName = LanguageHelper.GetFriendlyWord("TropicalTree3Name");
+            Configuration.Instance.TropicalTreeD.PlantName = LanguageHelper.GetFriendlyWord("TropicalTree4Name");
             Configuration.Instance.LandPlantRedA.PlantName = LanguageHelper.GetFriendlyWord("LandPlant1Name");
             Configuration.Instance.LandPlantRedB.PlantName = LanguageHelper.GetFriendlyWord("LandPlant2Name");
             Configuration.Instance.LandPlantA.PlantName = LanguageHelper.GetFriendlyWord("LandPlant3Name");
             Configuration.Instance.LandPlantB.PlantName = LanguageHelper.GetFriendlyWord("LandPlant4Name");
             Configuration.Instance.LandPlantC.PlantName = LanguageHelper.GetFriendlyWord("LandPlant5Name");
-            Configuration.Instance.FernA.PlantName = LanguageHelper.GetFriendlyWord("FernName") + " (1)";
-            Configuration.Instance.FernB.PlantName = LanguageHelper.GetFriendlyWord("FernName") + " (2)";
-            Configuration.Instance.TropicalPlantA.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (1)";
-            Configuration.Instance.TropicalPlantB.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (2)";
-            Configuration.Instance.TropicalPlantC.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (3)";
-            Configuration.Instance.TropicalPlantD.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (4)";
-            Configuration.Instance.TropicalPlantE.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (5)";
-            Configuration.Instance.TropicalPlantF.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (6)";
-            Configuration.Instance.TropicalPlantG.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (7)";
-            Configuration.Instance.TropicalPlantH.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (8)";
+            Configuration.Instance.FernA.PlantName = LanguageHelper.GetFriendlyWord("FernName");
+            Configuration.Instance.FernB.PlantName = LanguageHelper.GetFriendlyWord("Fern2Name");
+            Configuration.Instance.TropicalPlantA.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlantName");
+            Configuration.Instance.TropicalPlantB.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlant2Name");
+            Configuration.Instance.TropicalPlantC.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlant3Name");
+            Configuration.Instance.TropicalPlantD.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlant4Name");
+            Configuration.Instance.TropicalPlantE.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlant5Name");
+            Configuration.Instance.TropicalPlantF.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlant6Name");
+            Configuration.Instance.TropicalPlantG.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlant7Name");
+            Configuration.Instance.TropicalPlantH.PlantName = LanguageHelper.GetFriendlyWord("TropicalPlant8Name");
             Configuration.Instance.CrabClawKelpA.PlantName = LanguageHelper.GetFriendlyWord("CrabClawKelpName") + " (1)";
             Configuration.Instance.CrabClawKelpB.PlantName = LanguageHelper.GetFriendlyWord("CrabClawKelpName") + " (2)";
             Configuration.Instance.CrabClawKelpC.PlantName = LanguageHelper.GetFriendlyWord("CrabClawKelpName") + " (3)";
@@ -2049,13 +2049,13 @@ namespace DecorationsModConfigurator
                 else if (line.StartsWith("config_JungleTreeB="))
                     origConfig._JungleTreeB = LoadFloraConfig(line.Substring("config_JungleTreeB=".Length), LanguageHelper.GetFriendlyWord("JungleTree2Name"), "/Images/Flora/jungletree2icon.png");
                 else if (line.StartsWith("config_TropicalTreeA="))
-                    origConfig._TropicalTreeA = LoadFloraConfig(line.Substring("config_TropicalTreeA=".Length), LanguageHelper.GetFriendlyWord("TropicalTreeName") + " (1)", "/Images/Flora/tropicalplant3aicon.png");
+                    origConfig._TropicalTreeA = LoadFloraConfig(line.Substring("config_TropicalTreeA=".Length), LanguageHelper.GetFriendlyWord("TropicalTreeName"), "/Images/Flora/tropicalplant3aicon.png");
                 else if (line.StartsWith("config_TropicalTreeB="))
-                    origConfig._TropicalTreeB = LoadFloraConfig(line.Substring("config_TropicalTreeB=".Length), LanguageHelper.GetFriendlyWord("TropicalTreeName") + " (2)", "/Images/Flora/tropicalplant3bicon.png");
+                    origConfig._TropicalTreeB = LoadFloraConfig(line.Substring("config_TropicalTreeB=".Length), LanguageHelper.GetFriendlyWord("TropicalTree2Name"), "/Images/Flora/tropicalplant3bicon.png");
                 else if (line.StartsWith("config_TropicalTreeC="))
-                    origConfig._TropicalTreeC = LoadFloraConfig(line.Substring("config_TropicalTreeC=".Length), LanguageHelper.GetFriendlyWord("TropicalTreeName") + " (3)", "/Images/Flora/tropicalplant6aicon.png");
+                    origConfig._TropicalTreeC = LoadFloraConfig(line.Substring("config_TropicalTreeC=".Length), LanguageHelper.GetFriendlyWord("TropicalTree3Name"), "/Images/Flora/tropicalplant6aicon.png");
                 else if (line.StartsWith("config_TropicalTreeD="))
-                    origConfig._TropicalTreeD = LoadFloraConfig(line.Substring("config_TropicalTreeD=".Length), LanguageHelper.GetFriendlyWord("TropicalTreeName") + " (4)", "/Images/Flora/tropicalplant6bicon.png");
+                    origConfig._TropicalTreeD = LoadFloraConfig(line.Substring("config_TropicalTreeD=".Length), LanguageHelper.GetFriendlyWord("TropicalTree4Name"), "/Images/Flora/tropicalplant6bicon.png");
                 else if (line.StartsWith("config_LandPlantRedA="))
                     origConfig._LandPlantRedA = LoadFloraConfig(line.Substring("config_LandPlantRedA=".Length), LanguageHelper.GetFriendlyWord("LandPlant1Name"), "/Images/Flora/landplant1icon.png");
                 else if (line.StartsWith("config_LandPlantRedB="))
@@ -2067,25 +2067,25 @@ namespace DecorationsModConfigurator
                 else if (line.StartsWith("config_LandPlantC="))
                     origConfig._LandPlantC = LoadFloraConfig(line.Substring("config_LandPlantC=".Length), LanguageHelper.GetFriendlyWord("LandPlant5Name"), "/Images/Flora/landplant5icon.png");
                 else if (line.StartsWith("config_FernA="))
-                    origConfig._FernA = LoadFloraConfig(line.Substring("config_FernA=".Length), LanguageHelper.GetFriendlyWord("FernName") + " (1)", "/Images/Flora/fern2icon.png");
+                    origConfig._FernA = LoadFloraConfig(line.Substring("config_FernA=".Length), LanguageHelper.GetFriendlyWord("FernName"), "/Images/Flora/fern2icon.png");
                 else if (line.StartsWith("config_FernB="))
-                    origConfig._FernB = LoadFloraConfig(line.Substring("config_FernB=".Length), LanguageHelper.GetFriendlyWord("FernName") + " (2)", "/Images/Flora/fern4icon.png");
+                    origConfig._FernB = LoadFloraConfig(line.Substring("config_FernB=".Length), LanguageHelper.GetFriendlyWord("Fern2Name"), "/Images/Flora/fern4icon.png");
                 else if (line.StartsWith("config_TropicalPlantA="))
-                    origConfig._TropicalPlantA = LoadFloraConfig(line.Substring("config_TropicalPlantA=".Length), LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (1)", "/Images/Flora/tropicalplant1aicon.png");
+                    origConfig._TropicalPlantA = LoadFloraConfig(line.Substring("config_TropicalPlantA=".Length), LanguageHelper.GetFriendlyWord("TropicalPlantName"), "/Images/Flora/tropicalplant1aicon.png");
                 else if (line.StartsWith("config_TropicalPlantB="))
-                    origConfig._TropicalPlantB = LoadFloraConfig(line.Substring("config_TropicalPlantB=".Length), LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (2)", "/Images/Flora/tropicalplant1bicon.png");
+                    origConfig._TropicalPlantB = LoadFloraConfig(line.Substring("config_TropicalPlantB=".Length), LanguageHelper.GetFriendlyWord("TropicalPlant2Name"), "/Images/Flora/tropicalplant1bicon.png");
                 else if (line.StartsWith("config_TropicalPlantC="))
-                    origConfig._TropicalPlantC = LoadFloraConfig(line.Substring("config_TropicalPlantC=".Length), LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (3)", "/Images/Flora/tropicalplant2aicon.png");
+                    origConfig._TropicalPlantC = LoadFloraConfig(line.Substring("config_TropicalPlantC=".Length), LanguageHelper.GetFriendlyWord("TropicalPlant3Name"), "/Images/Flora/tropicalplant2aicon.png");
                 else if (line.StartsWith("config_TropicalPlantD="))
-                    origConfig._TropicalPlantD = LoadFloraConfig(line.Substring("config_TropicalPlantD=".Length), LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (4)", "/Images/Flora/tropicalplant2bicon.png");
+                    origConfig._TropicalPlantD = LoadFloraConfig(line.Substring("config_TropicalPlantD=".Length), LanguageHelper.GetFriendlyWord("TropicalPlant4Name"), "/Images/Flora/tropicalplant2bicon.png");
                 else if (line.StartsWith("config_TropicalPlantE="))
-                    origConfig._TropicalPlantE = LoadFloraConfig(line.Substring("config_TropicalPlantE=".Length), LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (5)", "/Images/Flora/tropicalplant7aicon.png");
+                    origConfig._TropicalPlantE = LoadFloraConfig(line.Substring("config_TropicalPlantE=".Length), LanguageHelper.GetFriendlyWord("TropicalPlant5Name"), "/Images/Flora/tropicalplant7aicon.png");
                 else if (line.StartsWith("config_TropicalPlantF="))
-                    origConfig._TropicalPlantF = LoadFloraConfig(line.Substring("config_TropicalPlantF=".Length), LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (6)", "/Images/Flora/tropicalplant7bicon.png");
+                    origConfig._TropicalPlantF = LoadFloraConfig(line.Substring("config_TropicalPlantF=".Length), LanguageHelper.GetFriendlyWord("TropicalPlant6Name"), "/Images/Flora/tropicalplant7bicon.png");
                 else if (line.StartsWith("config_TropicalPlantG="))
-                    origConfig._TropicalPlantG = LoadFloraConfig(line.Substring("config_TropicalPlantG=".Length), LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (7)", "/Images/Flora/tropicalplant10aicon.png");
+                    origConfig._TropicalPlantG = LoadFloraConfig(line.Substring("config_TropicalPlantG=".Length), LanguageHelper.GetFriendlyWord("TropicalPlant7Name"), "/Images/Flora/tropicalplant10aicon.png");
                 else if (line.StartsWith("config_TropicalPlantH="))
-                    origConfig._TropicalPlantH = LoadFloraConfig(line.Substring("config_TropicalPlantH=".Length), LanguageHelper.GetFriendlyWord("TropicalPlantName") + " (8)", "/Images/Flora/tropicalplant10bicon.png");
+                    origConfig._TropicalPlantH = LoadFloraConfig(line.Substring("config_TropicalPlantH=".Length), LanguageHelper.GetFriendlyWord("TropicalPlant8Name"), "/Images/Flora/tropicalplant10bicon.png");
                 else if (line.StartsWith("config_CrabClawKelpA="))
                     origConfig._CrabClawKelpA = LoadFloraConfig(line.Substring("config_CrabClawKelpA=".Length), LanguageHelper.GetFriendlyWord("CrabClawKelpName") + " (1)", "/Images/Flora/lostriverplant2icon.png");
                 else if (line.StartsWith("config_CrabClawKelpB="))
