@@ -12,95 +12,51 @@ namespace DecorationsMod.Fixers
 {
     public class GrownPlantFixer
     {
-        private static readonly List<string> pickedUpMelons = new List<string>();
-
-        public static void OnHandClick_Postfix(GrownPlant __instance, GUIHand hand)
+        public static bool OnHandClick_Prefix(GrownPlant __instance, GUIHand hand)
         {
             if (__instance.seed != null && __instance.seed.gameObject != null)
             {
                 PrefabIdentifier prefabID = __instance.seed.gameObject.GetComponent<PrefabIdentifier>();
                 if (prefabID == null)
-                    return;
+                    return true;
                 if (prefabID.ClassId == "MarbleMelonTiny")
                 {
                     PlantGenericController controllerA = __instance.gameObject.GetComponent<PlantGenericController>();
                     if (controllerA == null)
                         controllerA = __instance.seed.gameObject.GetComponent<PlantGenericController>();
-                    if (controllerA != null)
+                    if (controllerA != null && controllerA._progress >= 1.0f)
                     {
-                        if (controllerA._progress >= 1.0f)
+                        if (__instance.seed.currentPlanter != null && Inventory.Get().HasRoomFor(1, 1))
                         {
-                            if (__instance.seed.currentPlanter != null && Inventory.Get().HasRoomFor(1, 1))
-                            {
-                                __instance.seed.currentPlanter.RemoveItem(__instance.seed);
-
-                                Vector3 position = __instance.seed.pickupable.gameObject.transform.position;
-                                TechType techType = __instance.seed.pickupable.GetTechType();
-
-                                __instance.seed.pickupable.GetTechName();
-                                Pickupable result = __instance.seed.pickupable.Initialize();
-
-                                ProfilingUtils.BeginSample("Trigger Goal");
-                                GoalManager.main.OnCustomGoalEvent("Pickup_" + techType.AsString(false));
-                                ProfilingUtils.EndSample(null);
-                                __instance.seed.pickupable.PlayPickupSound();
-                                __instance.seed.pickupable = result;
-
-                                GameObject.Destroy(result.gameObject);
-                                GameObject fruit = CraftData.GetPrefabForTechType(CrafterLogicFixer.MarbleMelonTinyFruit, false);
-                                result = fruit.GetComponent<Pickupable>();
-                                Eatable eat = fruit.GetComponent<Eatable>();
-                                if (ConfigSwitcher.config_MarbleMelonTiny.Eatable)
-                                {
-#if SUBNAUTICA
-                                    eat.stomachVolume = 10.0f;
-                                    eat.allowOverfill = false;
-#endif
-                                    eat.decomposes = ConfigSwitcher.config_MarbleMelonTiny.Decomposes;
-                                    eat.kDecayRate = ConfigSwitcher.config_MarbleMelonTiny.KDecayRate;
-                                    eat.despawns = ConfigSwitcher.config_MarbleMelonTiny.Despawns;
-                                    eat.despawnDelay = ConfigSwitcher.config_MarbleMelonTiny.DespawnDelay;
-                                    // If it's the first time we pick this melon
-                                    if (!GrownPlantFixer.pickedUpMelons.Contains(prefabID.Id))
-                                    {
-                                        GrownPlantFixer.pickedUpMelons.Add(prefabID.Id);
-                                        // Reset food/water to initial values
-                                        eat.foodValue = ConfigSwitcher.config_MarbleMelonTiny.FoodValue;
-                                        eat.waterValue = ConfigSwitcher.config_MarbleMelonTiny.WaterValue;
-                                        eat.timeDecayStart = DayNightCycle.main.timePassedAsFloat;
-                                    }
-                                }
-                                PlantGenericController pgc = fruit.GetComponent<PlantGenericController>();
-                                pgc.IsMarbleMelonTinyFruit = true;
-
-                                InventoryItem item = new InventoryItem(result);
-                                if (!((IItemsContainer)Inventory.Get().equipment).AddItem(item))
-                                    Inventory.Get().container.UnsafeAdd(item);
-
-                                UniqueIdentifier component = result.GetComponent<UniqueIdentifier>();
-                                if (component != null)
-                                    NotificationManager.main.Add(NotificationManager.Group.Inventory, component.Id, 4f);
-		                        KnownTech.Analyze(CrafterLogicFixer.MarbleMelonTinyFruit, true);
-		                        if (global::Utils.GetSubRoot() != null)
-                                    __instance.seed.pickupable.destroyOnDeath = false;
-			                    uGUI_IconNotifier.main.Play(CrafterLogicFixer.MarbleMelonTinyFruit, uGUI_IconNotifier.AnimationType.From, null);
-		                        SkyEnvironmentChanged.Send(__instance.seed.pickupable.gameObject, Player.main.GetSkyEnvironment());
-
-                                hand.player.PlayGrab();
-                            }
+                            __instance.seed.currentPlanter.RemoveItem(__instance.seed);
+                            if (global::Utils.GetSubRoot() != null)
+                                __instance.seed.pickupable.destroyOnDeath = false;
+                            SkyEnvironmentChanged.Send(__instance.seed.pickupable.gameObject, Player.main.GetSkyEnvironment());
+                            UnityEngine.Object.Destroy(__instance.seed.pickupable.gameObject);
+                            CraftData.AddToInventorySync(CrafterLogicFixer.MarbleMelonTinyFruit, 1, false, false);
+                            hand.player.PlayGrab();
                         }
                     }
+                    return false;
                 }
                 else if (prefabID.ClassId == "MarbleMelonTinyFruit")
                 {
-                    if (__instance.seed.pickupable != null && Inventory.Get().HasRoomFor(__instance.seed.pickupable) && __instance.seed.currentPlanter != null)
+                    if (__instance.seed.currentPlanter != null && __instance.seed.pickupable != null && Inventory.Get().HasRoomFor(__instance.seed.pickupable))
                     {
-                        __instance.seed.currentPlanter.RemoveItem(__instance.seed);
-                        Inventory.Get().Pickup(__instance.seed.pickupable, false);
-                        hand.player.PlayGrab();
+                        PlantGenericController controllerA = __instance.gameObject.GetComponent<PlantGenericController>();
+                        if (controllerA == null)
+                            controllerA = __instance.seed.gameObject.GetComponent<PlantGenericController>();
+                        if (controllerA != null && controllerA._progress >= 1.0f)
+                        {
+                            __instance.seed.currentPlanter.RemoveItem(__instance.seed);
+                            Inventory.Get().Pickup(__instance.seed.pickupable, false);
+                            hand.player.PlayGrab();
+                        }
                     }
+                    return false;
                 }
             }
+            return true;
         }
 
         public static void OnHandHover_Postfix(GrownPlant __instance, GUIHand hand)
@@ -113,7 +69,9 @@ namespace DecorationsMod.Fixers
                 PrefabIdentifier prefabID = __instance.seed.gameObject.GetComponent<PrefabIdentifier>();
                 if (prefabID == null)
                     return;
+
                 // If current plant is one of our custom plants
+                bool isSmallMelon = prefabID.ClassId == "MarbleMelonTiny" || prefabID.ClassId == "MarbleMelonTinyFruit";
                 if (CustomFlora.AllPlants.Contains(prefabID.ClassId))
                 {
                     LiveMixin liveMixin = null;
@@ -179,11 +137,13 @@ namespace DecorationsMod.Fixers
                             if (liveMixin != null && liveMixin.data != null && liveMixin.knifeable)
                                 liveMixin.data.knifeable = false;
                         }
-                        else if (progress >= 1.0f && prefabID.ClassId == "MarbleMelonTiny")
+                        else if (isSmallMelon && progress >= 1.0f)
                             showMelonTooltip = true;
                     }
+                    else if (isSmallMelon && progress >= 1.0f)
+                        showMelonTooltip = true;
                 }
-                else if (prefabID.ClassId == "MarbleMelonTinyFruit")
+                else if (isSmallMelon)
                     showMelonTooltip = true;
                 if (showMelonTooltip)
                 {

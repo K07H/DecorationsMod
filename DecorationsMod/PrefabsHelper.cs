@@ -199,6 +199,24 @@ namespace DecorationsMod
             return false;
         }
 
+        private static readonly List<string> RepositionSeeds = new List<string>(new string[3]
+        {
+            "LandTree1",
+            "MarbleMelonTiny",
+            "MarbleMelonTinyFruit"
+        });
+
+        private static readonly List<string> ShowPlantWhenDropped = new List<string>(new string[1]
+        {
+            "MarbleMelonTinyFruit"
+        });
+
+        private static readonly List<string> EnableSphereColliderWhenDropped = new List<string>(new string[2]
+        {
+            "MushroomTree1",
+            "MushroomTree2"
+        });
+
         public static void ShowPlantAndHideSeed(Transform transform, string classId = null)
         {
             if (transform != null)
@@ -219,7 +237,7 @@ namespace DecorationsMod
                 Pickupable p = transform.GetComponent<Pickupable>();
                 if (p != null)
                     p.isPickupable = false;
-                if (classId != null && (classId == "MushroomTree1" || classId == "MushroomTree2"))
+                if (EnableSphereColliderWhenDropped.Contains(classId))
                 {
                     SphereCollider sc = null;
                     if (p != null && p.gameObject != null)
@@ -234,27 +252,31 @@ namespace DecorationsMod
 
         public static void HidePlantAndShowSeed(Transform transform, string classId = null)
         {
+#if DEBUG_SEEDS
+            Logger.Log("DEBUG: Entering HidePlantAndShowSeed for classId=[" + (classId ?? "?") + "]");
+#endif
             if (transform != null)
             {
                 bool isSeed;
                 foreach (Transform tr in transform)
                 {
                     isSeed = (!string.IsNullOrEmpty(tr.name) && tr.name.StartsWith("Generic_plant_seed", true, CultureInfo.InvariantCulture));
-                    if (isSeed && classId != null && classId == "LandTree1")
+                    if (isSeed && RepositionSeeds.Contains(classId))
                         tr.localPosition = Vector3.zero;
+                    bool invert = ShowPlantWhenDropped.Contains(classId);
                     Renderer[] renderers = tr.GetComponents<Renderer>();
                     if (renderers != null)
                         foreach (Renderer renderer in renderers)
-                            renderer.enabled = isSeed;
+                            renderer.enabled = invert ? !isSeed : isSeed;
                     renderers = tr.GetAllComponentsInChildren<Renderer>();
                     if (renderers != null)
                         foreach (Renderer renderer in renderers)
-                            renderer.enabled = isSeed;
+                            renderer.enabled = invert ? !isSeed : isSeed;
                 }
                 Pickupable p = transform.GetComponent<Pickupable>();
                 if (p != null)
                     p.isPickupable = true;
-                if (classId != null && (classId == "MushroomTree1" || classId == "MushroomTree2"))
+                if (EnableSphereColliderWhenDropped.Contains(classId))
                 {
                     SphereCollider sc = null;
                     if (p != null && p.gameObject != null)
@@ -264,6 +286,10 @@ namespace DecorationsMod
                     if (sc != null)
                         sc.enabled = true;
                 }
+#if DEBUG_SEEDS
+                Logger.Log("DEBUG: Printing transform for classId=[" + (classId ?? "?") + "]");
+                PrefabsHelper.PrintTransform(transform);
+#endif
             }
         }
 
@@ -362,7 +388,11 @@ namespace DecorationsMod
         {
             if (tr != null)
             {
-                Logger.Log("DEBUG: Transform " + indent + "name=[" + tr.name + "]");
+                Logger.Log("DEBUG: Transform " + indent + "name=[" + tr.name + "] scale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "]");
+#if DEBUG_SEEDS
+                if (tr.name == "Generic_plant_seed")
+                    Logger.Log("DEBUG: Transform " + indent + " => active=[" + tr.gameObject.activeSelf.ToString() + "] activeHierarchy=[" + tr.gameObject.activeInHierarchy.ToString() + "] enabled=[" + tr.GetComponent<MeshRenderer>().enabled.ToString() + "] scale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "]");
+#endif
                 foreach (Component c in tr.GetComponents<Component>())
                     if (c.GetType() != typeof(Transform))
                         Logger.Log("DEBUG: Transform " + indent + " => component type=[" + c.GetType().ToString() + "] name=[" + c.name + "]");

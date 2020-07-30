@@ -20,6 +20,7 @@ namespace DecorationsMod
     // DEBUG_FLORA
     // DEBUG_FLORA_ANIMATION
     // DEBUG_FLORA_ENTRY
+    // DEBUG_SEEDS
     // DEBUG_KNIFE
     // DEBUG_LAMP
     // DEBUG_STOOL
@@ -162,8 +163,8 @@ namespace DecorationsMod
                 var onHandHoverPostfix = typeof(GrownPlantFixer).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(onHandHoverPostfix));
                 var plant_onHandClickMethod = typeof(GrownPlant).GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
-                var plant_onHandClickPostfix = typeof(GrownPlantFixer).GetMethod("OnHandClick_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(plant_onHandClickMethod, null, new HarmonyMethod(plant_onHandClickPostfix));
+                var plant_onHandClickPrefix = typeof(GrownPlantFixer).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(plant_onHandClickMethod, new HarmonyMethod(plant_onHandClickPrefix), null);
                 // Make new flora spawn as seeds when using console commands (instead of grown plants)
 #if DEBUG_HARMONY_PATCHING
                 Logger.Log("DEBUG: Making plants spawning as seeds...");

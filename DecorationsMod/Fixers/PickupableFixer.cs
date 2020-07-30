@@ -4,7 +4,7 @@ namespace DecorationsMod.Fixers
 {
     public class PickupableFixer
     {
-        public static MethodInfo allowedToPickUpMethod = typeof(Pickupable).GetMethod("AllowedToPickUp", BindingFlags.NonPublic | BindingFlags.Instance);
+        public static readonly MethodInfo allowedToPickUpMethod = typeof(Pickupable).GetMethod("AllowedToPickUp", BindingFlags.NonPublic | BindingFlags.Instance);
 
         public static bool OnHandClick_Prefix(Pickupable __instance, GUIHand hand)
         {
@@ -14,7 +14,7 @@ namespace DecorationsMod.Fixers
                 var pid = __instance.gameObject.GetComponent<PrefabIdentifier>();
 
                 // If current item is one of our new flora
-                if (pid != null && !string.IsNullOrEmpty(pid.ClassId) && CustomFlora.AllPlants.Contains(pid.ClassId) && allowedToPickUpMethod != null)
+                if (pid != null && !string.IsNullOrEmpty(pid.ClassId) && CustomFlora.AllPlants.Contains(pid.ClassId))
                 {
                     // If hand is free and item allowed to pickup
                     if (hand.IsFreeToInteract() && ((bool)allowedToPickUpMethod.Invoke(__instance, null) == true))

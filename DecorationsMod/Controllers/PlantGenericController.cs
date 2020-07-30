@@ -15,7 +15,6 @@ namespace DecorationsMod.Controllers
         public bool RestoreRadius = false;
         public bool RestoreBoxColliders = false;
         public bool Running = false;
-        public bool IsMarbleMelonTinyFruit = false;
         public float _progress = 0.0f;
         public float _passedProgress = 0.0f;
 
@@ -31,7 +30,7 @@ namespace DecorationsMod.Controllers
 
             // Init values
             _initTimeValue = DayNightCycle.main.timePassed;
-            _progress = IsMarbleMelonTinyFruit ? 1.0f : 0.0f;
+            _progress = 0.0f;
 
             // Disable knifeable
             LiveMixin liveMixin = GetComponent<LiveMixin>();
@@ -113,9 +112,9 @@ namespace DecorationsMod.Controllers
                     }
                     // Init tree/plant size
                     foreach (Transform tr in _grownPlant.gameObject.transform)
-                    {
-                        tr.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
-                    }
+                        if (tr.name != "Generic_plant_seed")
+                            tr.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
+
                     // Init colliders size
                     if (RestoreColliders)
                     {
@@ -150,7 +149,7 @@ namespace DecorationsMod.Controllers
                 else
                 {
                     // Animation
-                    _progress = IsMarbleMelonTinyFruit ? 1.0f : ((float)(DayNightCycle.main.timePassed - _initTimeValue) / GrowthDuration) + _passedProgress;
+                    _progress = ((float)(DayNightCycle.main.timePassed - _initTimeValue) / GrowthDuration) + _passedProgress;
 #if DEBUG_FLORA_ANIMATION
                     if (id != null)
                         Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
@@ -172,7 +171,8 @@ namespace DecorationsMod.Controllers
                         if (_progress < 1.0f)
                         {
                             foreach (Transform tr in _grownPlant.gameObject.transform)
-                                tr.localScale = new Vector3(_origScale.x * _progress, _origScale.y * _progress, _origScale.z * _progress);
+                                if (tr.name != "Generic_plant_seed")
+                                    tr.localScale = new Vector3(_origScale.x * _progress, _origScale.y * _progress, _origScale.z * _progress);
                         }
                         else
                         {
@@ -185,7 +185,8 @@ namespace DecorationsMod.Controllers
                             // Set final size
                             _progress = 1.0f;
                             foreach (Transform tr in _grownPlant.gameObject.transform)
-                                tr.localScale = new Vector3(_origScale.x, _origScale.y, _origScale.z);
+                                if (tr.name != "Generic_plant_seed")
+                                    tr.localScale = new Vector3(_origScale.x, _origScale.y, _origScale.z);
 
                             // Set final colliders
                             if (EnableColliders)

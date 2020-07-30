@@ -61,9 +61,6 @@ namespace DecorationsMod.NewItems
             GameObject prefab = GameObject.Instantiate(this.GameObject);
             prefab.name = this.ClassID;
 
-            Logger.Log("DEBUG: Printing TechBox:");
-            PrefabsHelper.PrintTransform(prefab.transform);
-
             // Get model
             GameObject model = prefab.FindChild("Starship_tech_box_01_01");
 
@@ -84,14 +81,6 @@ namespace DecorationsMod.NewItems
             var techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
-            // Ajust collider
-            /*
-            BoxCollider[] cs = prefab.GetComponentsInChildren<BoxCollider>();
-            if (cs != null)
-                foreach (BoxCollider c in cs)
-                    c.size *= 0.8f;
-            */
-
             // Set as constructible
             Constructable constructible = prefab.AddComponent<Constructable>();
             constructible.techType = this.TechType;
@@ -109,8 +98,7 @@ namespace DecorationsMod.NewItems
             constructible.model = model;
 
             // Add constructable bounds
-            ConstructableBounds cb = prefab.AddComponent<ConstructableBounds>();
-            //cb.bounds.size *= 0.8f;
+            prefab.AddComponent<ConstructableBounds>();
 
             return prefab;
         }

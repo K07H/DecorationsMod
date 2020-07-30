@@ -176,10 +176,15 @@ namespace DecorationsMod.NewItems
             model = prefab.FindChild("mesh");
             model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y, model.transform.localPosition.z + 0.0055f);
 
-            // Update box collider size and rotate it
+            // Update box collider size
             BoxCollider collider = trigger.GetComponent<BoxCollider>();
-            collider.size = new Vector3(collider.size.x - 0.15f, collider.size.y - 0.15f, collider.size.z);
+            collider.size = new Vector3(collider.size.x - 0.5f, collider.size.y - 0.5f, collider.size.z);
+
+            // Rotate box collider
             collider.size = new Vector3(collider.size.y, collider.size.x, collider.size.z);
+
+            // Translate collider
+            collider.center = new Vector3(collider.center.x + 0.15f, collider.center.y, collider.center.z);
 
             // Update sky appliers
             SkyApplier skyapplier = model.GetComponent<SkyApplier>();
