@@ -2038,7 +2038,7 @@ namespace DecorationsMod
                         return "An alien land tree variety with interesting properties.";
                 case "JungleTree1Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien (1)";
+                        return "Arbre à lianes (alpha)";
                     else if (UserLanguage == CountryCode.ES)
                         return "Árbol alienígena (1)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2051,7 +2051,7 @@ namespace DecorationsMod
                         return "Rope tree (alpha)";
                 case "JungleTree1Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen alpha d'une variété d'arbre terrestre alien.";
+                        return "Spécimen alpha d'une variété alien d'arbre à lianes.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Muestra alfa de una variedad de árboles terrestres alienígena.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2061,10 +2061,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Альфа-образец разновидности инопланетного дерева.";
                     else
-                        return "Alpha specimen of an alien land tree variety.";
+                        return "Alpha specimen of an alien rope tree variety.";
                 case "JungleTree2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien (2)";
+                        return "Arbre à lianes (beta)";
                     else if (UserLanguage == CountryCode.ES)
                         return "Árbol alienígena (2)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2077,7 +2077,7 @@ namespace DecorationsMod
                         return "Rope tree (beta)";
                 case "JungleTree2Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen beta d'une variété d'arbre terrestre alien.";
+                        return "Spécimen beta d'une variété alien d'arbre à lianes.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Beta espécimen de una variedad de árboles terrestres alienígenas.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2087,10 +2087,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Бета-образец разновидности инопланетного дерева.";
                     else
-                        return "Beta specimen of an alien land tree variety.";
+                        return "Beta specimen of an alien rope tree variety.";
                 case "LandPlant1Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Plante alien bioluminescente (1)";
+                        return "Plante griffe-sang";
                     else if (UserLanguage == CountryCode.ES)
                         return "Planta alienígena bioluminiscente (1)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2103,7 +2103,7 @@ namespace DecorationsMod
                         return "Red tipped plant";
                 case "LandPlant1Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen alpha d'une variété de plante terrestre alien aux propriétés intéressantes.";
+                        return "Spécimen alpha d'une variété de plante terrestre bioluminescente.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Espécimen alfa de una variedad de plantas terrestres alienígenas con propiedades interesantes.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2116,7 +2116,7 @@ namespace DecorationsMod
                         return "Alpha specimen of a red tipped plant. It has interesting properties like bioluminescence.";
                 case "LandPlant2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Plante alien bioluminescente (2)";
+                        return "Grande plante griffe-sang";
                     else if (UserLanguage == CountryCode.ES)
                         return "Planta alienígena bioluminiscente (2)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2129,7 +2129,7 @@ namespace DecorationsMod
                         return "Tall red tipped plant";
                 case "LandPlant2Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen beta d'une variété de plante terrestre alien aux propriétés intéressantes.";
+                        return "Spécimen beta d'une variété de plante terrestre bioluminescente. Ce spécimen de plante griffe-sang est plus grand mais partage les mêmes characteristiques que le spécimen alpha.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Espécimen beta de una variedad de plantas terrestres alienígenas con propiedades interesantes.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2142,7 +2142,7 @@ namespace DecorationsMod
                         return "Beta specimen of a red tipped plant. It is taller than the alpha specimen but share the same properties.";
                 case "LandPlant3Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen de plante terrestre alien (1)";
+                        return "Buisson à branches de trèfle";
                     else if (UserLanguage == CountryCode.ES)
                         return "Espécimen de planta terrestre alienígena (1)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2155,7 +2155,7 @@ namespace DecorationsMod
                         return "Clover branches";
                 case "LandPlant3Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire alpha de plante terrestre alien.";
+                        return "Spécimen vulgaire alpha de plante alien. La forme de ses feuilles rappellent celle du trèfle observée sur Terre.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Espécimen vulgar alfa de planta terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2165,10 +2165,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Гамма-образец разновидности инопланетного растения.";
                     else
-                        return "Alpha specimen of a vulgar alien land plant.";
+                        return "Alpha specimen of a vulgar alien land plant. Its leaves shape is similar to the shape of clover leaves.";
                 case "LandPlant4Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen de plante terrestre alien (2)";
+                        return "Buisson à plumes";
                     else if (UserLanguage == CountryCode.ES)
                         return "Espécimen de planta terrestre alienígena (2)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2181,7 +2181,7 @@ namespace DecorationsMod
                         return "Feather bush";
                 case "LandPlant4Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire beta de plante terrestre alien.";
+                        return "Spécimen vulgaire beta de plante terrestre alien. La forme de ses feuilles peuvent faire penser à des plumes.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Especie Vulgar beta de planta terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2194,7 +2194,7 @@ namespace DecorationsMod
                         return "Beta specimen of a vulgar alien land plant.";
                 case "LandPlant5Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen de plante terrestre alien (3)";
+                        return "Buisson à pois";
                     else if (UserLanguage == CountryCode.ES)
                         return "Espécimen de planta terrestre alienígena (3)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2207,7 +2207,7 @@ namespace DecorationsMod
                         return "Polka dot bush";
                 case "LandPlant5Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire thêta de plante terrestre alien.";
+                        return "Spécimen vulgaire thêta de plante terrestre alien charactérisé par la présence de pois clairs sur l'ensemble de ses feuilles.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Espécimen theta de vulgar planta terrestre alienígena.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2217,16 +2217,16 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Эпсилон-образец разновидности инопланетного растения.";
                     else
-                        return "Theta specimen of a vulgar alien land plant.";
+                        return "Theta specimen of a vulgar alien land plant. It can be easily recognized thanks to the presence of bright polka dots all over its leaves.";
                 case "TropicalPlantName":
                     if (UserLanguage == CountryCode.FR)
                         return "Grand buisson tropical";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Planta alienígena tropical";
+                        return "Planta alienígena tropical (1)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Tropik bir uzaylı bitki";
+                        return "Tropik bir uzaylı bitki (1)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Tropische Alienpflanze";
+                        return "Tropische Alienpflanze (1)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Тропический куст";
                     else
@@ -2337,33 +2337,20 @@ namespace DecorationsMod
                         return "Specimen of a vulgar tropical alien plant.";
                 case "TropicalTreeName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien tropical";
+                        return "Grand arbre épineux";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Árbol alienígena tropical";
+                        return "Árbol alienígena tropical (1)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Tropik bir uzaylı ağacı";
+                        return "Tropik bir uzaylı ağacı (1)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Tropischer Alienbaum";
+                        return "Tropischer Alienbaum (1)";
                     else if (UserLanguage == CountryCode.RU)
                         return "Тропическое дерево";
                     else
                         return "Tall spiky-fern tree";
-                case "TropicalTreeDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Spécimen vulgaire d'arbre alien tropicale.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Espécimen de vulgar árbol alienígena tropical.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Tropikal uzaylı bitkisinin örneği.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Probe eines gewöhnlichen außerirdischen Tropenbaums.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Образец инопланетного тропического дерева.";
-                    else
-                        return "Specimen of a vulgar tropical alien tree. Shares charactistics with fern species observed on 4546B.";
                 case "TropicalTree2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien tropical (2)";
+                        return "Petit arbre épineux";
                     else if (UserLanguage == CountryCode.ES)
                         return "Árbol alienígena tropical (2)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2376,7 +2363,7 @@ namespace DecorationsMod
                         return "Small spiky-fern tree";
                 case "TropicalTree3Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien tropical (3)";
+                        return "Grand arbre cactus";
                     else if (UserLanguage == CountryCode.ES)
                         return "Árbol alienígena tropical (3)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2389,7 +2376,7 @@ namespace DecorationsMod
                         return "Tall cactus-fern tree";
                 case "TropicalTree4Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Arbre alien tropical (4)";
+                        return "Petit arbre cactus";
                     else if (UserLanguage == CountryCode.ES)
                         return "Árbol alienígena tropical (4)";
                     else if (UserLanguage == CountryCode.TR)
@@ -2400,6 +2387,19 @@ namespace DecorationsMod
                         return "Тропическое тета";
                     else
                         return "Small cactus-fern tree";
+                case "TropicalTreeDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Spécimen vulgaire d'arbre alien tropical. Partage des caractéristiques avec les variétés de fougères observées sur la planète 4546B.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Espécimen de vulgar árbol alienígena tropical.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tropikal uzaylı bitkisinin örneği.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Probe eines gewöhnlichen außerirdischen Tropenbaums.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Образец инопланетного тропического дерева.";
+                    else
+                        return "Specimen of a vulgar tropical alien tree. Shares charactistics with fern species observed on 4546B.";
                 case "FernName":
                     if (UserLanguage == CountryCode.FR)
                         return "Grande fougère";
@@ -2428,17 +2428,17 @@ namespace DecorationsMod
                         return "Small fern";
                 case "FernDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une fougère standard.";
+                        return "Une simple fougère.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Un helecho estándar.";
+                        return "Un simple helecho.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Standart eğrelti.";
+                        return "Basit bir eğrelti.";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Ein außerirdischer Farn.";
+                        return "Ein einfacher Farn.";
                     else if (UserLanguage == CountryCode.RU)
                         return "Обычный папоротник и даже не курится.";
                     else
-                        return "A standard fern.";
+                        return "A simple fern.";
                 case "CrabClawKelpName":
                     if (UserLanguage == CountryCode.FR)
                         return "Algue pince de crabe";
@@ -2714,7 +2714,7 @@ namespace DecorationsMod
                         return "Alien decorative mushrooms";
                 case "SmallDeco3Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Une variétée décorative de petits champignons alien. Peut être plantée sur terre et sous l'eau.";
+                        return "Une variété décorative de petits champignons alien. Peut être plantée sur terre et sous l'eau.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Una variedad decorativa de pequeños hongos alienígenas. Se puede plantar en tierra y bajo el agua.";
                     else if (UserLanguage == CountryCode.TR)
