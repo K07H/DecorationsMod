@@ -23,7 +23,7 @@ Same as the installation instructions (at step 3 it will ask if you want to repl
 <br><br>
 
 ### Description:
-Adds a fabricator allowing you to craft 118 new items. Adds another fabricator to craft 56 new seeds. 33 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
+Adds a fabricator allowing you to craft 118 new items. Adds another fabricator to craft 56 new seeds. 34 new buildables will be added to your habitat builder menu. You will also be able to place and build items where you want. Details below:
 
 **Adds a decoration fabricator allowing you to craft following new items (118 new items):**<br>
     5 unique posters<br>
@@ -53,7 +53,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     9 unique water trees<br>
     5 unique corals<br>
     7 unique amphibious plants<br>
-**Add the following new items in the habitat builder menu (33 new buildables):**<br>
+**Add the following new items in the habitat builder menu (34 new buildables):**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
     Markiplier1 doll<br>
@@ -61,6 +61,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     Specimen Analyzer<br>
     Seamoth doll<br>
     PRAWN suit doll<br>
+    Cyclops doll<br>
     Forklift toy<br>
     Customizable picture frames<br>
     Customizable posters<br>
@@ -114,6 +115,7 @@ All new flora is compatible with bioreactors and only the land tree is edible.<b
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
+August 6, 2020: Updated to version 1.7.9.<br>
 July 30, 2020: Updated to version 1.7.8.<br>
 July 14, 2020: Updated to version 1.7.7.<br>
 June 9, 2020: Updated to version 1.7.4.<br>

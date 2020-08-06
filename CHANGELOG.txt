@@ -1,3 +1,8 @@
+Version 1.7.9
+Fixed: Feature "Fix aquarium lighting" now works with the latest Subnautica update (https://unknownworlds.com/subnautica/subnautica-micro-update-released/).
+Fixed: Lighting issue that was happening on initial placement (before game restart) for following items: FirstAidKit, Lubricant, Bleach, DisinfectedWater, FilteredWater, WiringKit, AdvancedWiringKit, ComputerChip, Battery and PrecursorIonBattery.
+Added: Cyclops doll (click to interact, or hold 'E' and click to adjust size).
+
 Version 1.7.8
 Fixed: Decorative alien mushroom (from "Amphibious plants" section of the seeds fabricator) is no longer invisible.
 Fixed: Small marblemelon: Drop/pickup/harvest behaviors bugs.
