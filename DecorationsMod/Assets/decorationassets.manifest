@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 897195772
+CRC: 900096205
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 853312ec064b52cd133402005eaf71cf
+    Hash: bc5bd0d6e8f7ca6f77874deac2e95a5c
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1a6f9fd4ccc3875a34e79ba73f901f13
@@ -88,6 +88,7 @@ Assets:
 - Assets/decorativelockerclosedicon.png
 - Assets/AlienRelicsSprites/relic_04_b.png
 - Assets/circuitbox3d.png
+- Assets/cyclops/Textures/Cyclops_exterior_submarine_engine_02_normal_6938.png
 - Assets/landplant2icon.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_normal.png
 - Assets/flora_smalldeco13icon.png
@@ -124,6 +125,7 @@ Assets:
 - Assets/warper_part_10.prefab
 - Assets/seamoth.fbm/seamoth_torpedo_01_normal.png
 - Assets/warper_icon_12.png
+- Assets/cyclops/Textures/submarine_outer_hatch_01_normal_228.png
 - Assets/seatreader.fbm/Sea_Treader_01_02_normal.png
 - Assets/Lost_river_generic_skeleton_03.prefab
 - Assets/computer1.png
@@ -230,6 +232,7 @@ Assets:
 - Assets/computer3.png
 - Assets/flora.fbm/Land_tree_01_trunk_normal.png
 - Assets/circuitbox3c.png
+- Assets/cyclops/Textures/submarine_launch_bay_01_01_normal_265.png
 - Assets/barfood02icon.png
 - Assets/flora.fbm/Land_tree_01_trunk_illum.png
 - Assets/Precursor_LostRiverBase_Warper_chain_01.prefab
@@ -262,6 +265,7 @@ Assets:
 - Assets/seamoth.fbm/seamoth_storage_01_normal.png
 - Assets/sofacorner02icon.png
 - Assets/AlienRelicsSprites/relic_05_b.png
+- Assets/cyclops/Textures/submarine_steering_console_02_normal_3659.png
 - Assets/farmingtrayicon.png
 - Assets/MushroomTreeParts/Coral_reef_ball_clusters_spec.png
 - Assets/MushroomTree/Coral_reef_tree_mushrooms_02_illum.png
@@ -338,6 +342,7 @@ Assets:
 - Assets/CategoryIcons/D_Bush.png
 - Assets/seamoth.fbm/seamoth_upgrade_slots_01_normal.png
 - Assets/MushroomTreeTrunk/texture4.png
+- Assets/cyclops/Textures/cyclops_cabin_normal_204.png
 - Assets/floatingstone1icon.png
 - Assets/cargobox01b.prefab
 - Assets/barbottle02icon.png
@@ -381,6 +386,7 @@ Assets:
 - Assets/WorkDeskScreenIcon.png
 - Assets/MushroomTreeParts/Spiral_blue_thing_normal.png
 - Assets/MushroomTreeParts/Coral_reef_barnacle_suckers_normals.png
+- Assets/cyclops/Textures/cyclops_submarine_wallmods_01_normal_3719.png
 - Assets/warper_part_3.prefab
 - Assets/warper_part_11.prefab
 - Assets/reefback.fbm/coral_reef_grass_04_normal.png
@@ -392,6 +398,7 @@ Assets:
 - Assets/WarperParts/warper_normal.png
 - Assets/descent_bar_sofa_str_02.prefab
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_white.png
+- Assets/cyclops/Textures/submarine_wallmods_01_01_normal_3814.png
 - Assets/MushroomTreeTrunk/texture4normal2.png
 - Assets/barfood02.prefab
 - Assets/penholdericon.png
@@ -421,10 +428,12 @@ Assets:
 - Assets/leviathans.fbm/Ghost_Leviathan_shell_normal.png
 - Assets/seadragonskeletonicon.png
 - Assets/prawnsuit.fbm/exosuit_storage_01_colorMask.png
+- Assets/cyclops/Textures/Cyclops_exterior_submarine_details_normal_247.png
 - Assets/landtree1seedicon.png
 - Assets/labshelves.png
 - Assets/seadragoneggicon.png
 - Assets/warper_part_8.prefab
+- Assets/cyclops/Textures/Cyclops_exterior_submarine_engine_normal_7207.png
 - Assets/AlienRelicsSprites/relic_06_b.png
 - Assets/reefback.fbm/Reefback_coral_flat_normal.png
 - Assets/warper_icon_5.png
@@ -437,6 +446,7 @@ Assets:
 - Assets/landplant3icon.png
 - Assets/prawnsuit.fbm/exosuit_01_normal.png
 - Assets/barcup01icon.png
+- Assets/cyclops/Textures/submarine_steering_console_base_02_normal_4313.png
 - Assets/forklift.fbm/generic_forklift_normal.png
 - Assets/circuitbox2c.png
 - Assets/reefback.fbm/Coral_reef_red_seaweed_03_normal.png
@@ -449,6 +459,7 @@ Assets:
 - Assets/docking_clerical_folder3.prefab
 - Assets/genericskeleton2icon.png
 - Assets/prawnsuit.fbm/exosuit_01_fp_normal.png
+- Assets/CyclopsDollBase.prefab
 - Assets/tropicalplant10aicon.png
 - Assets/ghostleviathanicon.png
 - Assets/MushroomTreeParts/Coral_reef_barnacle_suckers_illum.png

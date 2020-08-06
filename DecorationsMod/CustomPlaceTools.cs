@@ -1,5 +1,7 @@
 ﻿using DecorationsMod.Controllers;
 using rail;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using UnityEngine;
 
@@ -82,6 +84,8 @@ namespace DecorationsMod
 
                 HasBeenPlaced = true;
             }
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -129,6 +133,8 @@ namespace DecorationsMod
 
                 HasBeenPlaced = true;
             }
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -176,6 +182,8 @@ namespace DecorationsMod
 
                 HasBeenPlaced = true;
             }
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -223,6 +231,8 @@ namespace DecorationsMod
 
                 HasBeenPlaced = true;
             }
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -366,6 +376,8 @@ namespace DecorationsMod
 
                 HasBeenPlaced = true;
             }
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -413,6 +425,8 @@ namespace DecorationsMod
 
                 HasBeenPlaced = true;
             }
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -460,6 +474,8 @@ namespace DecorationsMod
 
                 HasBeenPlaced = true;
             }
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -742,6 +758,8 @@ namespace DecorationsMod
 
                 HasBeenPlaced = true;
             }
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -836,6 +854,8 @@ namespace DecorationsMod
 
                 HasBeenPlaced = true;
             }
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -1058,6 +1078,8 @@ namespace DecorationsMod
             if (cpt != null)
                 cpt.Hide();
             base.OnPlace();
+            if (this.gameObject.name != null)
+                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
     }
 }

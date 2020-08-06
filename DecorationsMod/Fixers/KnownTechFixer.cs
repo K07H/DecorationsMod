@@ -146,6 +146,13 @@ namespace DecorationsMod.Fixers
                     else
                         KnownTechFixer.AddNotification(techType);
                 }
+                else if (techType == CrafterLogicFixer.CyclopsDoll)
+                {
+                    if (KnownTech.GetTechUnlockState(TechType.Cyclops) != TechUnlockState.Available)
+                        return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);
+                    else
+                        KnownTechFixer.AddNotification(techType);
+                }
                 else if (techType == CrafterLogicFixer.CuddleFishDoll)
                 {
                     if (!PDAEncyclopedia.ContainsEntry("CuteFish"))

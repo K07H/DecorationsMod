@@ -1554,8 +1554,8 @@ namespace DecorationsMod
                         return "Switch model";
                 case "SwitchExosuitModel":
                     if (UserLanguage == CountryCode.FR)
-                        return "Cliquez pour changer le modèle de bras gauche, ou:" + Environment.NewLine +
-                               "Maintenez 'E' et cliquez pour change le modèle de bras droit" + Environment.NewLine;
+                        return "Cliquez pour changer le modèle de bras gauche, ou :" + Environment.NewLine +
+                               "Maintenez 'E' et cliquez pour changer le modèle de bras droit" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.ES)
                         return "Haga clic para cambiar el modelo de brazo izquierdo, o:" + Environment.NewLine +
                                "Mantenga 'E' y haga clic para cambiar al modelo de brazo derecho" + Environment.NewLine;
@@ -1599,7 +1599,7 @@ namespace DecorationsMod
                         return "Hold 'E' and click to adjust size";
                 case "AdjustCargoBoxSize":
                     if (UserLanguage == CountryCode.FR)
-                        return "Cliquez pour accéder au stockage, ou:" + Environment.NewLine +
+                        return "Cliquez pour accéder au stockage, ou :" + Environment.NewLine +
                                "Maintenez 'E' et cliquez pour modifier la taille" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.ES)
                         return "Haga clic para acceder al almacenamiento, o:" + Environment.NewLine +
@@ -1956,7 +1956,7 @@ namespace DecorationsMod
                         return "Wall-mounted customizable frame." + Environment.NewLine + Environment.NewLine + "Usage: " + GetFriendlyWord("CustomPictureFrameTooltipCompact");
                 case "CustomPictureFrameTooltip":
                     if (UserLanguage == CountryCode.FR)
-                        return "Cliquez pour placer une image, ou:" + Environment.NewLine +
+                        return "Cliquez pour placer une image, ou :" + Environment.NewLine +
                                "Maintenez 'E' et cliquez pour ajuster la taille" + Environment.NewLine +
                                "Maintenez 'R' et cliquez pour tourner le cadre photo" + Environment.NewLine +
                                "Maintenez 'F' et cliquez pour modifier le cadre (mode poster)" + Environment.NewLine +
@@ -4039,6 +4039,77 @@ namespace DecorationsMod
                         return "Небольшая декоративная электронная коробка, которая содержит различные компоненты, необходимые для обработки энергии и потоков данных.";
                     else
                         return "A small decorative tech box which contains various electronic components required to process energy and data streams.";
+                case "CyclopsDollName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Jouet Cyclops";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Juguete del Cyclops";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Cyclops oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Zyklop-Spielzeug";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Игрушечный Циклоп";
+                    else
+                        return "Cyclops toy";
+                case "CyclopsDollDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une miniature décorative du Cyclops. Utilisation : " + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una miniatura decorativa de Cyclops. Uso: " + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Minyatür Cyclops oyuncağı. Kullanımı: " + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine dekorative Miniatur der Zyklop. Verwendungszweck: " + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративная миниатюра Циклоп. Применение: " + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else
+                        return "A decorative miniature of the Cyclops. Usage: " + GetFriendlyWord("CyclopsDollTooltipCompact");
+                case "CyclopsDollTooltip":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cliquez pour interagir, ou :" + Environment.NewLine +
+                               "Maintenez 'E' et cliquez pour modifier la taille" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Haga clic para interactuar o:" + Environment.NewLine +
+                               "Mantenga 'E' y haga clic para cambiar el tamaño" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Etkileşim için tıklayın veya:" + Environment.NewLine +
+                               "Büyüklüğü ayarlamak için 'E' tuşuna basarken sol tıklayın" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken Sie hier, um zu interagieren, oder:" + Environment.NewLine +
+                               "'E' drücken und klicken, um die Größe zu ändern" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Нажмите, чтобы взаимодействовать, или:" + Environment.NewLine +
+                               "Удерживайте 'E' и нажмите ЛКМ, чтобы изменить размер" + Environment.NewLine;
+                    else
+                        return "Click to interact, or:" + Environment.NewLine +
+                               "Hold 'E' and click to adjust size" + Environment.NewLine;
+                case "CyclopsDollTooltipCompact":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Click: interagir, E+Click: taille";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Click: interactuar, E+Click: tamaño";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tıklayın: etkileşim, E+Tıklayın: boyut";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken: interagieren, E+Klicken: Größe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "ЛКМ: взаимодействовать, E+ЛКМ: размер";
+                    else
+                        return "Click: interact, E+Click: size";
+                case "CyclopsSize":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Taille du Cyclops: ";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Tamaño de Cyclops: ";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Cyclops boyutu: ";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Zyklopengröße: ";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Размер Циклоп: ";
+                    else
+                        return "Cyclops size: ";
                 // Configuration (used by Decorations Mod and Configurator)
                 case "Config_UseFlatScreenResolution":
                     if (UserLanguage == CountryCode.FR)

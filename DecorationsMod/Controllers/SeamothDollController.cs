@@ -20,20 +20,16 @@ namespace DecorationsMod.Controllers
             Renderer rend = extra.GetComponent<Renderer>();
 
             Renderer[] renderers = extras.GetAllComponentsInChildren<Renderer>();
-            
+
             if (rend.enabled)
             {
                 foreach (Renderer renderer in renderers)
-                {
                     renderer.enabled = false;
-                }
             }
             else
             {
                 foreach (Renderer renderer in renderers)
-                {
                     renderer.enabled = true;
-                }
             }
         }
 

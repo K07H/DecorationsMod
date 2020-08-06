@@ -16,6 +16,11 @@
                     if (ConfigSwitcher.AddItemsWhenDiscovered && KnownTech.GetTechUnlockState(TechType.Exosuit) != TechUnlockState.Available)
                         __result = false;
                 }
+                else if (techType == CyclopsDoll)
+                {
+                    if (ConfigSwitcher.AddItemsWhenDiscovered && KnownTech.GetTechUnlockState(TechType.Cyclops) != TechUnlockState.Available)
+                        __result = false;
+                }
                 else if (techType == CuddleFishDoll)
                 {
                     if (ConfigSwitcher.AddItemsWhenDiscovered && !PDAEncyclopedia.ContainsEntry("CuteFish"))
@@ -365,6 +370,7 @@
 
         public static TechType SeamothDoll = TechType.None;
         public static TechType ExosuitDoll = TechType.None;
+        public static TechType CyclopsDoll = TechType.None;
 
         public static TechType CuddleFishDoll = TechType.None;
         public static TechType GhostLeviathanDoll = TechType.None;

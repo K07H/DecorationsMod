@@ -1,6 +1,6 @@
 ﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
-using Harmony;
+using HarmonyLib;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;

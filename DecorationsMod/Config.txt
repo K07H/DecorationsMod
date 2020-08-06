@@ -38,8 +38,8 @@ enableNewFlora=true
 
 # If "true", you will be able to build/craft the following items:
 # lab cart, indoor long planter, outdoor long planter specimen analyzer, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll,
-# empty desk, eatmydiction doll, seamoth doll, exosuit doll, forklift, cargo crates, sofas, benches, stool, customizable picture frame,
-# customizable light, warper specimen, warper parts, alien pillar, alien relics, additional lockers, control terminal and workdesk screens.
+# empty desk, eatmydiction doll, seamoth doll, exosuit doll, cyclops doll, forklift, cargo crates, sofas, benches, stool, customizable picture frame,
+# customizable light, warper specimen, warper parts, alien pillar, alien relics, additional lockers, control terminal, techbox and workdesk screens.
 enableNewItems=true
 
 # If "true", you will be able to build sofas.

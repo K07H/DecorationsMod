@@ -4095,6 +4095,77 @@ namespace DecorationsModConfigurator
                         return "Небольшая декоративная электронная коробка, которая содержит различные компоненты, необходимые для обработки энергии и потоков данных.";
                     else
                         return "A small decorative tech box which contains various electronic components required to process energy and data streams.";
+                case "CyclopsDollName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Jouet Cyclops";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Juguete del Cyclops";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Cyclops oyuncağı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Zyklop-Spielzeug";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Игрушечный Циклоп";
+                    else
+                        return "Cyclops toy";
+                case "CyclopsDollDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une miniature décorative du Cyclops. Utilisation :" + Environment.NewLine + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una miniatura decorativa de Cyclops. Uso:" + Environment.NewLine + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Minyatür Cyclops oyuncağı. Kullanımı:" + Environment.NewLine + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine dekorative Miniatur der Zyklop. Verwendungszweck:" + Environment.NewLine + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Декоративная миниатюра Циклоп. Применение:" + Environment.NewLine + GetFriendlyWord("CyclopsDollTooltipCompact");
+                    else
+                        return "A decorative miniature of the Cyclops. Usage:" + Environment.NewLine + GetFriendlyWord("CyclopsDollTooltipCompact");
+                case "CyclopsDollTooltip":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Cliquez pour interagir, ou :" + Environment.NewLine +
+                               "Maintenez 'E' et cliquez pour modifier la taille" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Haga clic para interactuar o:" + Environment.NewLine +
+                               "Mantenga 'E' y haga clic para cambiar el tamaño" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Etkileşim için tıklayın veya:" + Environment.NewLine +
+                               "Büyüklüğü ayarlamak için 'E' tuşuna basarken sol tıklayın" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken Sie hier, um zu interagieren, oder:" + Environment.NewLine +
+                               "'E' drücken und klicken, um die Größe zu ändern" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Нажмите, чтобы взаимодействовать, или:" + Environment.NewLine +
+                               "Удерживайте 'E' и нажмите ЛКМ, чтобы изменить размер" + Environment.NewLine;
+                    else
+                        return "Click to interact, or:" + Environment.NewLine +
+                               "Hold 'E' and click to adjust size" + Environment.NewLine;
+                case "CyclopsDollTooltipCompact":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Click: interagir, E+Click: taille";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Click: interactuar, E+Click: tamaño";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Tıklayın: etkileşim, E+Tıklayın: boyut";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klicken: interagieren, E+Klicken: Größe";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "ЛКМ: взаимодействовать, E+ЛКМ: размер";
+                    else
+                        return "Click: interact, E+Click: size";
+                case "CyclopsSize":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Taille du Cyclops: ";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Tamaño de Cyclops: ";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Cyclops boyutu: ";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Zyklopengröße: ";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Размер Циклоп: ";
+                    else
+                        return "Cyclops size: ";
                 // Configuration (used by Decorations Mod and Configurator)
                 case "Config_UseFlatScreenResolution":
                     if (UserLanguage == CountryCode.FR)
@@ -5617,17 +5688,17 @@ namespace DecorationsModConfigurator
                         return "If enabled, you will be able to build the seeds fabricator and craft seeds (all existing seeds plus new ones).";
                 case "Config_EnableNewItemsDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Si cette option est activée, vous pourrez construire/fabriquer les articles suivants: chariot de laboratoire, longue jardinière d'intérieur, longue jardinière d'extérieur, analyseur d'échantillons, poupée Markiplier 1, poupée Markiplier 2, poupée JackSepticEye, poupée EatMyDiction, bureau vide, poupée seamoth , poupée exosuit, chariot élévateur, caisses de chargement, canapés, bancs, tabouret, cadre photo personnalisable, lumière personnalisable, spécimen de warper, morceaux de warper, pilier alien, reliques alien et casiers supplémentaires.";
+                        return "Si cette option est activée, vous pourrez construire/fabriquer les articles suivants: chariot de laboratoire, longue jardinière d'intérieur, longue jardinière d'extérieur, analyseur d'échantillons, poupée Markiplier 1, poupée Markiplier 2, poupée JackSepticEye, poupée EatMyDiction, bureau vide, jouet seamoth , jouet PRAWN, jouet cyclops, chariot élévateur, caisses de chargement, canapés, bancs, tabouret, cadre photo personnalisable, lumière personnalisable, spécimen de warper, morceaux de warper, pilier alien, reliques alien, casiers supplémentaires, terminal de contrôle, techbox et écrans de bureau.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si está habilitado, podrá construir / fabricar los siguientes artículos: carro de laboratorio, macetero largo interior, analizador de muestras de macetero largo al aire libre, muñeca Markiplier 1, muñeca Markiplier 2, muñeca JackSepticEye, muñeca de EatMyDiction, muñeca de seamoth , muñeca de exosuit, carretilla elevadora, cajas de carga, sofás, bancos, taburete, marco de imagen personalizable, luz personalizable, espécimen warper, partes warper, pilar alienígena, reliquias alienígenas y armarios adicionales.";
+                        return "Si está habilitado, podrá construir / fabricar los siguientes artículos: carro de laboratorio, macetero largo interior, analizador de muestras de macetero largo al aire libre, muñeca Markiplier 1, muñeca Markiplier 2, muñeca JackSepticEye, muñeca de EatMyDiction, muñeca de seamoth , muñeca de exosuit, muñeca de cyclops, carretilla elevadora, cajas de carga, sofás, bancos, taburete, marco de imagen personalizable, luz personalizable, espécimen warper, partes warper, pilar alienígena, reliquias alienígenas, casilleros adicionales, terminal de control, techbox y pantallas de escritorio.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Etkinleştirilirse, aşağıdaki öğeleri oluşturabilir / üretebilirsiniz: laboratuvar arabası, kapalı uzun ekici, açık uzun ekici numune analizörü, Markiplier bebek 1, Markiplier bebek 2, JackSepticEye bebek, EatMyDiction bebek, boş masa, dikiş bebek , exosuit bebek, forklift, kargo kasaları, kanepeler, banklar, tabure, özelleştirilebilir resim çerçevesi, özelleştirilebilir ışık, warper örneği, warper parçaları, uzaylı ayağı, uzaylı kalıntıları ve ek dolaplar.";
+                        return "Etkinleştirilirse, aşağıdaki öğeleri oluşturabilir / üretebilirsiniz: laboratuvar arabası, kapalı uzun ekici, açık uzun ekici numune analizörü, Markiplier bebek 1, Markiplier bebek 2, JackSepticEye bebek, EatMyDiction bebek, boş masa, dikiş bebek , exosuit bebek, cyclops bebek, forklift, kargo kasaları, kanepeler, banklar, tabure, özelleştirilebilir resim çerçevesi, özelleştirilebilir ışık, warper örneği, warper parçaları, uzaylı ayağı, uzaylı kalıntıları, ek dolaplar, kontrol terminali, techbox ve çalışma masası ekranları.";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Wenn aktiviert, können Sie die folgenden Gegenstände bauen / herstellen: Laborwagen, Innen-Langpflanzer, Außen-Langpflanzer-Probenanalysator, Markiplier-Puppe 1, Markiplier-Puppe 2, JackSepticEye-Puppe, EatMyDiction-Puppe, leerer Schreibtisch, Seamoth-Puppe , Exosuit-Puppe, Gabelstapler, Frachtkisten, Sofas, Bänke, Hocker, anpassbarer Bilderrahmen, anpassbares Licht, Warper-Exemplar, Warper-Teile, Alien-Säule, Alien-Relikte und zusätzliche Schließfächer.";
+                        return "Wenn aktiviert, können Sie die folgenden Gegenstände bauen / herstellen: Laborwagen, Innen-Langpflanzer, Außen-Langpflanzer-Probenanalysator, Markiplier-Puppe 1, Markiplier-Puppe 2, JackSepticEye-Puppe, EatMyDiction-Puppe, leerer Schreibtisch, Seemotte-Puppe , Krebs-Puppe, Zyklop-Puppe, Gabelstapler, Frachtkisten, Sofas, Bänke, Hocker, anpassbarer Bilderrahmen, anpassbares Licht, Warper-Exemplar, Warper-Teile, Alien-Säule, Alien-Relikte, zusätzliche Schließfächer, Steuerterminal, Techbox und Workdesk-Bildschirme.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если включено, вы сможете строить/изготавливать следующие предметы: лабораторная тележка, длинная грядка,наружная длинная грядка, анализатор образцов, усатая необычная кукла, необычная кукла, Отстойник Джека, кукла фудмидики, пустой стол, кукла-экзоскутер, грузоподъемник, грузовые ящики, диваны, скамейки, табуретка, рамка для изображений, лампа (настраиваемый свет), образец снователя, детали снователя, колонна пришельцев, реликвии пришельцев и дополнительные шкафчики.";
+                        return "Если включено, вы сможете строить/изготавливать следующие предметы: лабораторная тележка, длинная грядка,наружная длинная грядка, анализатор образцов, усатая необычная кукла, необычная кукла, Отстойник Джека, кукла фудмидики, пустой стол, кукла-Мотылёк, кукла-КРАБ, кукла-Циклоп, грузоподъемник, грузовые ящики, диваны, скамейки, табуретка, рамка для изображений, лампа (настраиваемый свет), образец снователя, детали снователя, колонна пришельцев, реликвии пришельцев, дополнительные шкафчики, контрольный терминал, экраны techbox и workdesk.";
                     else
-                        return "If enabled, you will be able to build/craft the following items: lab cart, indoor long planter, outdoor long planter specimen analyzer, Markiplier doll 1, Markiplier doll 2, JackSepticEye doll, EatMyDiction doll, empty desk, seamoth doll, exosuit doll, forklift, cargo crates, sofas, benches, stool, customizable picture frame, customizable light, warper specimen, warper parts, alien pillar, alien relics and additional lockers.";
+                        return "If enabled, you will be able to build/craft the following items: lab cart, indoor long planter, outdoor long planter specimen analyzer, Markiplier doll 1, Markiplier doll 2, JackSepticEye doll, EatMyDiction doll, empty desk, seamoth doll, exosuit doll, cyclops doll, forklift, cargo crates, sofas, benches, stool, customizable picture frame, customizable light, warper specimen, warper parts, alien pillar, alien relics, additional lockers, control terminal, techbox and workdesk screens.";
                 case "Config_EnableSofasDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, vous pourrez construire des canapés.";

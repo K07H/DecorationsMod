@@ -1,5 +1,5 @@
 ﻿using DecorationsMod.Fixers;
-using Harmony;
+using HarmonyLib;
 using QModManager.API;
 using System;
 using System.Collections.Generic;
@@ -25,11 +25,12 @@ namespace DecorationsMod
     // DEBUG_LAMP
     // DEBUG_STOOL
     // DEBUG_SEAMOTH_FRAGMENTS
+    // DEBUG_CYCLOPS_DOLL
 
     public class DecorationsMod
     {
         // Harmony stuff
-        internal static HarmonyInstance HarmonyInstance = null;
+        internal static Harmony HarmonyInstance = null;
 
         // List of modded items
         public static List<IDecorationItem> DecorationItems = null;
@@ -38,7 +39,7 @@ namespace DecorationsMod
         public static void Patch()
         {
             // 1) INITIALIZE HARMONY
-            if ((HarmonyInstance = HarmonyInstance.Create("com.osubmarin.decorationsmod")) == null)
+            if ((HarmonyInstance = new Harmony("com.osubmarin.decorationsmod")) == null)
             {
                 Logger.Log("ERROR: Unable to initialize Harmony!");
                 return;
@@ -109,13 +110,26 @@ namespace DecorationsMod
             var addItemMethod = typeof(Aquarium).GetMethod("AddItem", BindingFlags.NonPublic | BindingFlags.Instance);
             var addItemPostfix = typeof(AquariumFixer).GetMethod("AddItem_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(addItemMethod, null, new HarmonyMethod(addItemPostfix));
+            var removeItemMethod = typeof(Aquarium).GetMethod("RemoveItem", BindingFlags.NonPublic | BindingFlags.Instance);
+            var removeItemPrefix = typeof(AquariumFixer).GetMethod("RemoveItem_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(removeItemMethod, new HarmonyMethod(removeItemPrefix), null);
             // Fix alternative use for placeable items
+#if DEBUG_HARMONY_PATCHING
+            Logger.Log("DEBUG: Fixing alternative use for placeable items...");
+#endif
             if (ConfigSwitcher.EnablePlaceItems)
             {
                 var getAltUseItemActionMethod = typeof(Inventory).GetMethod("GetAltUseItemAction", BindingFlags.Public | BindingFlags.Instance);
                 var getAltUseItemActionPrefix = typeof(InventoryFixer).GetMethod("GetAltUseItemAction_Prefix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(getAltUseItemActionMethod, new HarmonyMethod(getAltUseItemActionPrefix), null);
             }
+            // Fix colors for custom fabricators icons
+#if DEBUG_HARMONY_PATCHING
+            Logger.Log("DEBUG: Fixing colors for custom fabricators icons...");
+#endif
+            var createIconMethod = typeof(uGUI_CraftNode).GetMethod("CreateIcon", BindingFlags.NonPublic | BindingFlags.Instance);
+            var createIconPostfix = typeof(uGUI_CraftNodeFixer).GetMethod("CreateIcon_Postfix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(createIconMethod, null, new HarmonyMethod(createIconPostfix));
             // Setup new items unlock conditions
 #if DEBUG_HARMONY_PATCHING
             Logger.Log("DEBUG: Setting up new items unlock conditions...");
@@ -148,10 +162,10 @@ namespace DecorationsMod
             HarmonyInstance.Patch(saveGameMethod, null, new HarmonyMethod(saveGamePostfix));
             if (ConfigSwitcher.EnableNewFlora)
             {
+                // Give salt when purple pinecone is cut
 #if DEBUG_HARMONY_PATCHING
                 Logger.Log("DEBUG: Setting up purple pinecone harvested material...");
 #endif
-                // Give salt when purple pinecone is cut
                 var giveResourceOnDamageMethod = typeof(Knife).GetMethod("GiveResourceOnDamage", BindingFlags.NonPublic | BindingFlags.Instance);
                 var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(giveResourceOnDamageMethod, null, new HarmonyMethod(giveResourceOnDamagePostfix));
@@ -456,12 +470,14 @@ namespace DecorationsMod
         }
 
         /// <summary>List of tooltip language strings.</summary>
-        private static readonly string[] tooltips = new string[11]
+        private static readonly string[] tooltips = new string[13]
         {
             "LampTooltip",
             "LampTooltipCompact",
             "SwitchSeamothModel",
             "SwitchExosuitModel",
+            "CyclopsDollTooltip",
+            "CyclopsDollTooltipCompact",
             "AdjustCargoBoxSize",
             "AdjustForkliftSize",
             "AdjustWarperSpecimenSize",

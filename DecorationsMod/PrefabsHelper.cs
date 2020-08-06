@@ -1,6 +1,7 @@
 ﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 using UnityEngine;
 
 namespace DecorationsMod
@@ -363,25 +364,96 @@ namespace DecorationsMod
             }
         }
 
-        // Gets called when adding a new fish into our small aquarium (or when adding a new fish into the regular aquarium if "FixAquariumLighting" is enabled)
-        public static void FixAquariumFishesSkyApplier(GameObject aquariumAnimRoot)
+        // Gets called when adding or removing a new fish into our small aquarium (or when adding a new fish into the regular aquarium if "FixAquariumLighting" is enabled)
+        public static void FixAquariumFishesSkyApplier(GameObject aquariumAnimRoot, bool remove = false)
         {
             if (aquariumAnimRoot != null)
                 foreach (Transform tr in aquariumAnimRoot.transform)
                     foreach (Transform ctr in tr)
                         if (ctr.childCount > 0 && !string.IsNullOrEmpty(ctr.name) && ctr.name.StartsWith("fish_attach", true, CultureInfo.InvariantCulture))
-                            foreach (Transform fish in ctr)
-                                if (fish.gameObject != null)
+                        {
+                            SkyApplier sa = ctr.GetComponent<SkyApplier>();
+                            if (ctr.gameObject != null)
+                            {
+                                if (sa == null)
+                                    sa = ctr.gameObject.GetComponent<SkyApplier>();
+                                if (sa == null)
+                                    sa = ctr.gameObject.AddComponent<SkyApplier>();
+                            }
+                            if (sa != null)
+                            {
+                                if (remove)
                                 {
-                                    SkyApplier sa = fish.GetComponent<SkyApplier>();
-                                    if (sa == null)
-                                        sa = fish.gameObject.AddComponent<SkyApplier>();
                                     sa.anchorSky = Skies.Auto;
-                                    sa.renderers = fish.GetAllComponentsInChildren<Renderer>();
+                                    sa.renderers = new Renderer[] { };
                                     sa.dynamic = true;
                                     sa.updaterIndex = 0;
                                     sa.enabled = true;
                                 }
+                                else
+                                {
+                                    List<Renderer> rends = new List<Renderer>();
+                                    foreach (Transform fish in ctr)
+                                    {
+                                        if (fish.gameObject != null)
+                                        {
+                                            Renderer[] tmpRends = fish.GetAllComponentsInChildren<Renderer>();
+                                            if (tmpRends != null)
+                                                foreach (Renderer tmpRend in tmpRends)
+                                                    rends.Add(tmpRend);
+                                        }
+                                    }
+                                    sa.anchorSky = Skies.Auto;
+                                    sa.renderers = rends.ToArray();
+                                    sa.dynamic = true;
+                                    sa.updaterIndex = 0;
+                                    sa.enabled = true;
+                                    sa.RefreshDirtySky();
+                                }
+                            }
+                        }
+        }
+
+        // object name, model
+        private static readonly Dictionary<string, string> _placeToolSAFix = new Dictionary<string, string>()
+        {
+            { "FirstAidKit", "model" },
+            { "Lubricant", "model" },
+            { "Bleach", "model" },
+            { "DisinfectedWater", "model" },
+            { "FilteredWater", "model" },
+            { "WiringKit", "model" },
+            { "AdvancedWiringKit", "model" },
+            { "ComputerChip", "model" },
+            { "Battery", "model" },
+            { "PrecursorIonBattery", "model" },
+        };
+
+        public static void FixPlaceToolSkyAppliers(GameObject go)
+        {
+            foreach (KeyValuePair<string, string> placeTool in _placeToolSAFix)
+                if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture))
+                {
+                    GameObject model = go.FindChild(placeTool.Value);
+                    if (model != null)
+                    {
+                        SkyApplier[] sas = model.GetComponents<SkyApplier>();
+                        if (sas != null && sas.Length == 1)
+                        {
+                            sas[0].renderers = new Renderer[] { };
+                            SkyApplier sa = model.AddComponent<SkyApplier>();
+                            if (sa != null)
+                            {
+                                sa.anchorSky = Skies.Auto;
+                                sa.renderers = model.GetAllComponentsInChildren<MeshRenderer>();
+                                sa.dynamic = true;
+                                sa.updaterIndex = 0;
+                                sa.enabled = true;
+                                sa.RefreshDirtySky();
+                            }
+                        }
+                    }
+                }
         }
 
         public static void PrintTransform(Transform tr, string indent = "\t")

@@ -7,15 +7,17 @@ namespace DecorationsMod.Controllers
 {
     public class ReactorLampBrightness : HandTarget, IHandTarget, IProtoEventListener
     {
-        private readonly Texture yellow = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");
-        private readonly Texture orange = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_orange");
-        private readonly Texture red = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_red");
-        private readonly Texture pink = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_pink");
-        private readonly Texture purple = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_purple");
-        private readonly Texture blue = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_blue");
-        private readonly Texture cyan = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum");
-        private readonly Texture green = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green");
-        private readonly Texture white = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
+        private static readonly FMODAsset _lightsOffAsset = AssetsHelper.CreateAsset("2102", "95b877e8-2ccd-451d-ab5f-fc654feab173", "event:/sub/cyclops/lights_off");
+        private static readonly FMODAsset _lightsOnAsset = AssetsHelper.CreateAsset("2103", "5384ec29-f493-4ac1-9f74-2c0b14d61440", "event:/sub/cyclops/lights_on");
+        private static readonly Texture yellow = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_yellow");
+        private static readonly Texture orange = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_orange");
+        private static readonly Texture red = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_red");
+        private static readonly Texture pink = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_pink");
+        private static readonly Texture purple = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_purple");
+        private static readonly Texture blue = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_blue");
+        private static readonly Texture cyan = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum");
+        private static readonly Texture green = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_green");
+        private static readonly Texture white = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
 
         private bool isOn = true;
         private float savedIntensity = -1.0f;
@@ -179,10 +181,8 @@ namespace DecorationsMod.Controllers
                 reactorRodLight.range = 0.0f;
 
                 // Play sound
-#pragma warning disable CS0618
                 if (!noSound)
-                    FMODUWE.PlayOneShot("event:/sub/cyclops/lights_off", MainCamera.camera.transform.position, 1f);
-#pragma warning restore CS0618
+                    FMODUWE.PlayOneShot(_lightsOffAsset, MainCamera.camera.transform.position, 1f);
 
                 isOn = false;
             }
@@ -204,10 +204,8 @@ namespace DecorationsMod.Controllers
                 reactorRodLight.range = savedRange;
 
                 // Play sound
-#pragma warning disable CS0618
                 if (!noSound)
-                    FMODUWE.PlayOneShot("event:/sub/cyclops/lights_on", MainCamera.camera.transform.position, 1f);
-#pragma warning restore CS0618
+                    FMODUWE.PlayOneShot(_lightsOnAsset, MainCamera.camera.transform.position, 1f);
 
                 isOn = true;
             }
