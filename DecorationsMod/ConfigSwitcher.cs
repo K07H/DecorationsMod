@@ -10,7 +10,7 @@ namespace DecorationsMod
     {
         // THESE ARE DEFAULT SETTING.
         // They are automatically overwritten when getting configuration from Config.txt file.
-        // They will be used only if they are missing from the Config.txt file, if they are incorrectly formatted in Config.txt file or if Config.txt file is missing.
+        // They will be used only if they are missing from the Config.txt file, if they are incorrectly formatted or if Config.txt file is missing.
         #region Settings
 
         // Dummy value to display info in game menu options.
@@ -234,7 +234,9 @@ namespace DecorationsMod
         public static bool AlienRelic11Animation = true;
 
         #endregion
-        
+
+        #region Load config
+
         // Utility function to parse flora configuration element.
         private static bool GetFloraConfig(CustomFlora customFlora, string configStr)
         {
@@ -711,6 +713,10 @@ namespace DecorationsMod
                 Logger.Log("WARNING: Cannot find configuration file path. Default settings will be used.");
         }
 
+        #endregion
+
+        #region Update config
+
         /// <summary>Updates a string by another inside Config.txt file.</summary>
         /// <param name="oldStr">The string that needs to be replaced.</param>
         /// <param name="newStr">The new string to write.</param>
@@ -753,5 +759,7 @@ namespace DecorationsMod
                 }
             }
         }
+
+        #endregion
     }
 }
