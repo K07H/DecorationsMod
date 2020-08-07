@@ -4674,7 +4674,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Игрушечный Циклоп";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "";
+                        return "Cyclops speelgoed";
                     else
                         return "Cyclops toy";
                 case "CyclopsDollDescription":
@@ -4689,7 +4689,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Декоративная миниатюра Циклоп. Применение:" + Environment.NewLine + GetFriendlyWord("CyclopsDollTooltipCompact");
                     else if (UserLanguage == CountryCode.NL)
-                    	return "";
+                        return "Een decoratief miniatuur van de Cyclops. Gebruik: ";
                     else
                         return "A decorative miniature of the Cyclops. Usage:" + Environment.NewLine + GetFriendlyWord("CyclopsDollTooltipCompact");
                 case "CyclopsDollTooltip":
@@ -4708,6 +4708,9 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Нажмите, чтобы взаимодействовать, или:" + Environment.NewLine +
                                "Удерживайте 'E' и нажмите ЛКМ, чтобы изменить размер" + Environment.NewLine;
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Klik om te gebruiken, of:" + Environment.NewLine +
+                               "Houd 'E' vast en klik om de grootte aan te passen" + Environment.NewLine;
                     else
                         return "Click to interact, or:" + Environment.NewLine +
                                "Hold 'E' and click to adjust size" + Environment.NewLine;
@@ -4723,7 +4726,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "ЛКМ: взаимодействовать, E+ЛКМ: размер";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "";
+                        return "Klikken: gebruiken, E+klikken: grootte";
                     else
                         return "Click: interact, E+Click: size";
                 case "CyclopsSize":
@@ -4738,7 +4741,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Размер Циклоп: ";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "";
+                        return "Cyclops grootte: ";
                     else
                         return "Cyclops size: ";
                 // Configuration (used by Decorations Mod and Configurator)
@@ -5189,7 +5192,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Разрешить строить длинную грядку вне базы";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Sta binnen lange planter buiten toe"; // ?
+                    	return "Sta binnen lange planter buiten toe";
                     else
                         return "Allow indoor long planter outside";
                 case "Config_AllowOutdoorLongPlanterInside":
@@ -5204,7 +5207,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.RU)
                         return "Разрешить постройку уличной длинной грядки внутри базы";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Sta buiten lange planter binnen toe"; // ?
+                    	return "Sta buiten lange planter binnen toe";
                     else
                         return "Allow outdoor long planter inside";
                 case "Config_FixAquariumLighting":
