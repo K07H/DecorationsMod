@@ -1,5 +1,5 @@
 # Decorations Mod for Subnautica
-## *Multilingual (EN/FR/ES/TR/DE/RU)*
+## *Multilingual (DE/EN/ES/FR/NL/RU/TR)*
 
 ### Prerequisites:
 This mod requires QMods and SMLHelper.<br>
@@ -140,7 +140,7 @@ June 5, 2018:  Updated to version 1.0.5.<br>
 June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Translations:<br>
-Currently supported: Français (FR), English (EN), Español (ES), Türkçe (TR), Deutsch (DE), Русский (RU).<br>
+Currently supported: Deutsch (DE), English (EN), Español (ES), Français (FR), Nederlands (NL), Русский (RU), Türkçe (TR).<br>
 Feel free to propose new translations for this mod. You can find the [template here](https://github.com/K07H/DecorationsMod/blob/master/translation_template.docx?raw=true).<br>
 
 ### Contributing:<br>
@@ -157,6 +157,7 @@ Alternatively see the GitHub documentation on [creating a pull request](https://
 @Verodor (for the German translation)<br>
 @Krotobosha (for the Russian translation)<br>
 @BepsDog64 (for the Spanish translation)<br>
+@Olivier (for the Nederlands translation)<br>
 @[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018/2019 update fixes)<br>
 @Mrpp777 (for the fabricator categories icons)<br>
 @Jason (for the 3D models)<br>
