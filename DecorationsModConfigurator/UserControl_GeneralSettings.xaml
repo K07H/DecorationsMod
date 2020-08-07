@@ -77,6 +77,16 @@
                         <TextBlock Text="Français" VerticalAlignment="Center" Margin="5,0,0,0" />
                     </StackPanel>
                 </ComboBoxItem>
+                <ComboBoxItem Name="lang_nl">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle RadiusX="3" RadiusY="3" Width="22" Height="15" Margin="5">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/NL.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="Nederlands" VerticalAlignment="Center" Margin="5,0,0,0" />
+                    </StackPanel>
+                </ComboBoxItem>
                 <ComboBoxItem Name="lang_ru">
                     <StackPanel Orientation="Horizontal">
                         <Rectangle RadiusX="3" RadiusY="3" Width="22" Height="15" Margin="5">

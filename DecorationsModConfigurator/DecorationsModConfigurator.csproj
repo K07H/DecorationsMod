@@ -593,6 +593,9 @@
   <ItemGroup>
     <Resource Include="Images\Flora\marblemelontinyicon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NL.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo ------ Copying "$(TargetDir)$(TargetFileName)" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...

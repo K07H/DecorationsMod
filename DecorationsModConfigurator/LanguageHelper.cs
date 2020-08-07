@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace DecorationsModConfigurator
@@ -17,32 +18,34 @@ namespace DecorationsModConfigurator
             NL = 6
         };
 
-        /// <summary>Returns default country code.</summary>
-        public static CountryCode GetDefaultCountryCode() => GetCountryCodeFromLabel(CultureInfo.InstalledUICulture?.TwoLetterISOLanguageName);
+        /// <summary>Supported country codes and their associated ISO 639-1 label.</summary>
+        public static readonly Dictionary<CountryCode, string> CountryCodes = new Dictionary<CountryCode, string>()
+        {
+            { CountryCode.EN, "en" },
+            { CountryCode.FR, "fr" },
+            { CountryCode.ES, "es" },
+            { CountryCode.DE, "de" },
+            { CountryCode.RU, "ru" },
+            { CountryCode.TR, "tr" },
+            { CountryCode.NL, "nl" }
+        };
 
         /// <summary>Returns country code from language label.</summary>
         /// <param name="label">Language label.</param>
-        /// <returns>Returns the associated country code.</returns>
-        public static CountryCode GetCountryCodeFromLabel(string label)
+        /// <returns>Returns the associated country code (if not found, returns English country code).</returns>
+        private static CountryCode GetCountryCodeFromLabel(string label)
         {
             if (!string.IsNullOrEmpty(label) && label.Length == 2)
-            {
-                if (string.Compare(label, "fr", true, CultureInfo.InvariantCulture) == 0)
-                    return CountryCode.FR;
-                else if (string.Compare(label, "ru", true, CultureInfo.InvariantCulture) == 0)
-                    return CountryCode.RU;
-                else if (string.Compare(label, "tr", true, CultureInfo.InvariantCulture) == 0)
-                    return CountryCode.TR;
-                else if (string.Compare(label, "de", true, CultureInfo.InvariantCulture) == 0)
-                    return CountryCode.DE;
-                else if (string.Compare(label, "es", true, CultureInfo.InvariantCulture) == 0)
-                    return CountryCode.ES;
-                else if (string.Compare(label, "nl", true, CultureInfo.InvariantCulture) == 0)
-                    return CountryCode.NL;
-            }
+                foreach (KeyValuePair<CountryCode, string> c in CountryCodes)
+                    if (string.Compare(label, c.Value, true, CultureInfo.InvariantCulture) == 0)
+                        return c.Key;
             return CountryCode.EN;
         }
 
+        /// <summary>Returns default country code.</summary>
+        private static CountryCode GetDefaultCountryCode() => GetCountryCodeFromLabel(CultureInfo.InstalledUICulture?.TwoLetterISOLanguageName);
+
+        /// <summary>Returns currently set country code from configuration (or default country code from operating system if not set).</summary>
         public static CountryCode Lang()
         {
             switch (Configuration.Instance.Language)
@@ -66,8 +69,11 @@ namespace DecorationsModConfigurator
             }
         }
 
+        /// <summary>Current language.</summary>
         public static CountryCode UserLanguage = Lang();
 
+        /// <summary>Returns growing tooltip text based on selected language.</summary>
+        /// <param name="progress">The growth progression (in percents).</param>
         public static string GetFriendlyGrowingTooltip(int progress)
         {
             if (UserLanguage == CountryCode.FR)
@@ -86,6 +92,8 @@ namespace DecorationsModConfigurator
                 return "Growth: " + progress + "%";
         }
 
+        /// <summary>Returns translated text based on selected language.</summary>
+        /// <param name="word">The ID of the text to translate.</param>
         public static string GetFriendlyWord(string word)
         {
             switch (word)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -2520,23 +2521,16 @@ namespace DecorationsModConfigurator
 
         #region Language functions
 
-        /// <summary>Supported languages.</summary>
-        public static string[] AvailableLanguages = new string[6] { "en", "fr", "es", "de", "ru", "tr" };
-
-        /// <summary>Returns default language.</summary>
-        public static string GetDefaultLanguage() => GetLanguage(CultureInfo.InstalledUICulture?.TwoLetterISOLanguageName);
-
-        /// <summary>Returns country code from language label.</summary>
-        /// <param name="label">Language label.</param>
-        /// <returns>Returns the associated country code.</returns>
-        public static string GetLanguage(string label)
+        /// <summary>Returns 2-letter country code or "auto" base on operating system.</summary>
+        public static string GetDefaultLanguage()
         {
+            string label = CultureInfo.InstalledUICulture?.TwoLetterISOLanguageName;
             if (!string.IsNullOrEmpty(label) && label.Length == 2)
             {
                 label = label.ToLowerInvariant();
-                foreach (string lang in AvailableLanguages)
-                    if (label == lang)
-                        return lang;
+                foreach (KeyValuePair<CountryCode, string> c in CountryCodes)
+                    if (label == c.Value)
+                        return label;
             }
             return "auto";
         }

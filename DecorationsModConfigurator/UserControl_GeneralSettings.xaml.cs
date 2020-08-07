@@ -67,11 +67,14 @@ namespace DecorationsModConfigurator
                     case "fr":
                         ComboBox_Language.SelectedIndex = 4; // FR
                         break;
+                    case "nl":
+                        ComboBox_Language.SelectedIndex = 5; // NL
+                        break;
                     case "ru":
-                        ComboBox_Language.SelectedIndex = 5; // RU
+                        ComboBox_Language.SelectedIndex = 6; // RU
                         break;
                     case "tr":
-                        ComboBox_Language.SelectedIndex = 6; // TR
+                        ComboBox_Language.SelectedIndex = 7; // TR
                         break;
                     default:
                         ComboBox_Language.SelectedIndex = 0; // AUTO
