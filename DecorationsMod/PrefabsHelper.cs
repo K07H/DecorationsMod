@@ -469,5 +469,97 @@ namespace DecorationsMod
                     PrintTransform(child, newIndent);
             }
         }
+
+        #region Degasi bases
+
+        private static readonly List<KeyValuePair<string, Vector3>> DegasiBaseParts = new List<KeyValuePair<string, Vector3>>(new KeyValuePair<string, Vector3>[25]
+        {
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02", new Vector3(-641.4045f, -505.624f, -939.858f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02(Clone)", new Vector3(-641.4045f, -505.624f, -939.858f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02", new Vector3(-640.7137f, -506.242f, -939.9625f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02(Clone)", new Vector3(-640.7137f, -506.242f, -939.9625f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02", new Vector3(-640.0577f, -505.959f, -947.2491f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02(Clone)", new Vector3(-640.0577f, -505.959f, -947.2491f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-658.4609f, -513.24f, -956.6729f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-635.91f, -512.54f, -951.6974f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-647.5078f, -507.28f, -940.6493f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-641.94f, -509.04f, -943.72f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-641.94f, -509.04f, -943.72f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-635.91f, -502.04f, -951.6974f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-647.97f, -502.04f, -935.7426f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-633.9626f, -512.54f, -937.6899f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-641.94f, -512.54f, -943.72f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-641.94f, -502.04f, -943.72f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02(Placeholder)", new Vector3(-641.4045f, -505.624f, -939.858f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02(Placeholder)", new Vector3(-640.7137f, -506.242f, -939.9625f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02(Placeholder)", new Vector3(-640.0577f, -505.959f, -947.2491f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-641.94f, -505.54f, -943.72f)),
+            new KeyValuePair<string, Vector3>("BaseCell", new Vector3(-641.94f, -509.04f, -943.72f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02", new Vector3(-642.637f, -506.784f, -940.607f)),
+            new KeyValuePair<string, Vector3>("biodome_lab_containers_open_02(Clone)", new Vector3(-642.637f, -506.784f, -940.607f)),
+            new KeyValuePair<string, Vector3>("SwimChargeFinsDataBox(Clone)", new Vector3(-643.7737f, -509.9037f, -941.8508f)),
+            new KeyValuePair<string, Vector3>("CyclopsShieldModuleDataBox(Clone)", new Vector3(-635.1158f, -502.727f, -951.423f))
+        });
+
+        private static void HideSwimChargeFinsDataBox(GameObject obj, Vector3 origPos)
+        {
+            if (ConfigSwitcher.HideDeepGrandReefDegasiBase)
+            {
+                if (KnownTech.Contains(TechType.SwimChargeFins))
+                    UnityEngine.Object.Destroy(obj);
+                else
+                    obj.transform.position = new Vector3(-643.7737f, -512.1037f, -941.8508f);
+            }
+            else
+                obj.transform.position = origPos;
+        }
+
+        private static void HideCyclopsShieldModuleDataBox(GameObject obj, Vector3 origPos)
+        {
+            if (ConfigSwitcher.HideDeepGrandReefDegasiBase)
+            {
+                if (KnownTech.Contains(TechType.CyclopsShieldModule))
+                    UnityEngine.Object.Destroy(obj);
+                else
+                    obj.transform.position = new Vector3(-644.7737f, -512.2037f, -941.8508f);
+            }
+            else
+                obj.transform.position = origPos;
+        }
+
+        private static void ApplyDegasiVisibility(GameObject obj)
+        {
+            Vector3 pos;
+            string name;
+            try { pos = obj.transform.position; name = obj.name; }
+            catch { pos = Vector3.zero; name = null; }
+            if (name != null && pos != Vector3.zero)
+            {
+                foreach (KeyValuePair<string, Vector3> part in DegasiBaseParts)
+                    if (part.Key == name &&
+                        pos.x > part.Value.x - 1.0f && pos.x < part.Value.x + 1.0f &&
+                        pos.y > part.Value.y - 1.0f && pos.y < part.Value.y + 1.0f &&
+                        pos.z > part.Value.z - 1.0f && pos.z < part.Value.z + 1.0f)
+                    {
+                        if (part.Key == "SwimChargeFinsDataBox(Clone)")
+                            HideSwimChargeFinsDataBox(obj, part.Value);
+                        else if (part.Key == "CyclopsShieldModuleDataBox(Clone)")
+                            HideCyclopsShieldModuleDataBox(obj, part.Value);
+                        else if ((ConfigSwitcher.HideDeepGrandReefDegasiBase && obj.activeSelf) ||
+                            (!ConfigSwitcher.HideDeepGrandReefDegasiBase && !obj.activeSelf))
+                            obj.SetActive(!ConfigSwitcher.HideDeepGrandReefDegasiBase);
+                    }
+            }
+        }
+
+        public static void HideDegasiBase()
+        {
+            GameObject[] objs = GameObject.FindObjectsOfType<GameObject>();
+            if (objs != null)
+                foreach (GameObject obj in objs)
+                    ApplyDegasiVisibility(obj);
+        }
+
+        #endregion
     }
 }

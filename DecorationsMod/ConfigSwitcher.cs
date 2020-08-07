@@ -363,56 +363,48 @@ namespace DecorationsMod
                         case "precursorKeysAll":
                             ConfigSwitcher.PrecursorKeysAll = configValue; break;
                         case "precursorKeys_RecipiesResource":
-                            tmpresource = TechType.None;
                             if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
                                 ConfigSwitcher.PrecursorKeysResource = tmpresource;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid resource type for precursor keys recipies. Default resource will be used.");
                             break;
                         case "precursorKeys_RecipiesResourceAmount":
-                            tmpVal = -1;
                             if (int.TryParse(configValueStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal) && tmpVal >= 1 && tmpVal <= 10)
                                 ConfigSwitcher.PrecursorKeysResourceAmount = tmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid resource amount for precursor keys recipies. Default amount will be used.");
                             break;
                         case "relics_RecipiesResource":
-                            tmpresource = TechType.None;
                             if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
                                 ConfigSwitcher.RelicRecipiesResource = tmpresource;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid resource type for relics recipies. Default resource will be used.");
                             break;
                         case "relics_RecipiesResourceAmount":
-                            tmpVal = -1;
                             if (int.TryParse(configValueStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal) && tmpVal >= 1 && tmpVal <= 10)
                                 ConfigSwitcher.RelicRecipiesResourceAmount = tmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid resource amount for relics recipies. Default amount will be used.");
                             break;
                         case "creatureEggs_RecipiesResource":
-                            tmpresource = TechType.None;
                             if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
                                 ConfigSwitcher.CreatureEggsResource = tmpresource;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid resource type for creature eggs recipies. Default resource will be used.");
                             break;
                         case "creatureEggs_RecipiesResourceAmount":
-                            tmpVal = -1;
                             if (int.TryParse(configValueStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal) && tmpVal >= 1 && tmpVal <= 10)
                                 ConfigSwitcher.CreatureEggsResourceAmount = tmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid resource amount for creature eggs recipies. Default amount will be used.");
                             break;
                         case "flora_RecipiesResource":
-                            tmpresource = TechType.None;
                             if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
                                 ConfigSwitcher.FloraRecipiesResource = tmpresource;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid resource type for flora recipies. Default resource will be used.");
                             break;
                         case "flora_RecipiesResourceAmount":
-                            tmpVal = -1;
                             if (int.TryParse(configValueStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal) && tmpVal >= 1 && tmpVal <= 10)
                                 ConfigSwitcher.FloraRecipiesResourceAmount = tmpVal;
                             else
@@ -541,28 +533,24 @@ namespace DecorationsMod
                         case "GhostLeviatan_enable":
                             GhostLeviatan_enable = configValue; break;
                         case "GhostLeviatan_maxSpawns":
-                            tmpVal = -1;
                             if (int.TryParse(configValueStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal) && tmpVal >= 1 && tmpVal <= 10)
                                 ConfigSwitcher.GhostLeviatan_maxSpawns = tmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for ghost leviathan max spawns. Default amount will be used.");
                             break;
                         case "GhostLeviatan_timeBeforeFirstSpawn":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 10.0f && fTmpVal <= 14400.0f)
                                 ConfigSwitcher.GhostLeviatan_timeBeforeFirstSpawn = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid value for the time before first ghost leviathan spawns. Default value will be used.");
                             break;
                         case "GhostLeviatan_spawnTimeRatio":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1f && fTmpVal <= 1000.0f)
                                 ConfigSwitcher.GhostLeviatan_spawnTimeRatio = fTmpVal * 0.01f;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid value for ghost leviathan spawn time ratio. Default value will be used.");
                             break;
                         case "GhostLeviatan_health":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 10.0f && fTmpVal <= 20000.0f)
                                 ConfigSwitcher.GhostLeviatan_health = fTmpVal;
                             else
@@ -591,77 +579,66 @@ namespace DecorationsMod
                         case "alienRelic11Animation":
                             AlienRelic11Animation = configValue; break;
                         case "barBottle1Water":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarBottle1Value = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for bar bottle 1 water points. Default amount will be used.");
                             break;
                         case "barBottle2Water":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarBottle2Value = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for bar bottle 2 water points. Default amount will be used.");
                             break;
                         case "barBottle3Water":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarBottle3Value = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for bar bottle 3 water points. Default amount will be used.");
                             break;
                         case "barBottle4Water":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarBottle4Value = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for bar bottle 4 water points. Default amount will be used.");
                             break;
                         case "barBottle5Water":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarBottle5Value = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for bar bottle 5 water points. Default amount will be used.");
                             break;
                         case "barFood1Nutrient":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarFood1FoodValue = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for bar food 1 nutrient points. Default amount will be used.");
                             break;
                         case "barFood1Water":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarFood1WaterValue = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for bar food 1 water points. Default amount will be used.");
                             break;
                         case "barFood2Nutrient":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarFood2FoodValue = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for bar food 2 nutrient points. Default amount will be used.");
                             break;
                         case "barFood2Water":
-                            fTmpVal = -1.0f;
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarFood2WaterValue = fTmpVal;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for bar food 2 water points. Default amount will be used.");
                             break;
                         case "purplePineconeDroppedResource":
-                            tmpresource = TechType.None;
                             if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
                                 ConfigSwitcher.PurplePineconeDroppedResource = tmpresource;
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid resource type for purple pinecone harvested resource. Default resource will be used.");
                             break;
                         case "purplePineconeDroppedResourceAmount":
-                            tmpVal = -1;
                             if (int.TryParse(configValueStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal) && tmpVal >= 1 && tmpVal <= 10)
                                 ConfigSwitcher.PurplePineconeDroppedResourceAmount = tmpVal;
                             else
@@ -732,6 +709,49 @@ namespace DecorationsMod
             }
             else
                 Logger.Log("WARNING: Cannot find configuration file path. Default settings will be used.");
+        }
+
+        /// <summary>Updates a string by another inside Config.txt file.</summary>
+        /// <param name="oldStr">The string that needs to be replaced.</param>
+        /// <param name="newStr">The new string to write.</param>
+        public static void UpdateConfigFile(string oldStr, string newStr)
+        {
+            if (!string.IsNullOrEmpty(oldStr) && !string.IsNullOrEmpty(newStr) && !string.IsNullOrEmpty(ConfigSwitcher.configFilePath) && File.Exists(ConfigSwitcher.configFilePath))
+            {
+                try
+                {
+                    string currentConfig = File.ReadAllText(ConfigSwitcher.configFilePath, Encoding.UTF8);
+                    if (!string.IsNullOrEmpty(currentConfig))
+                    {
+                        string newConfig = null;
+                        if (oldStr.EndsWith("=" + Environment.NewLine))
+                        {
+                            string toSearch = oldStr.Substring(0, oldStr.Length - 2);
+                            int stt = currentConfig.IndexOf(toSearch);
+                            if (stt > 0)
+                            {
+                                int end = currentConfig.IndexOf(Environment.NewLine, stt + toSearch.Length);
+                                if (end > stt && end < currentConfig.Length)
+                                {
+                                    string currentVal = currentConfig.Substring(stt, (end - stt)) + Environment.NewLine;
+                                    Logger.Log("INFO: Replacing configuration [" + currentVal + "] by [" + newStr + "].");
+                                    newConfig = currentConfig.Replace(currentVal, newStr);
+                                }
+                            }
+                        }
+                        else
+                            newConfig = currentConfig.Replace(oldStr, newStr);
+                        if (newConfig != null)
+                            File.WriteAllText(ConfigSwitcher.configFilePath, newConfig, Encoding.UTF8);
+                    }
+                }
+                catch
+                {
+                    string error = "An error happened while updating config file at \"" + ConfigSwitcher.configFilePath + "\"!";
+                    Logger.Log("ERROR: " + error);
+                    MenuMessageHelper.AddMessage(error, "red");
+                }
+            }
         }
     }
 }

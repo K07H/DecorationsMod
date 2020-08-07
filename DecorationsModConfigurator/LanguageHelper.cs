@@ -209,7 +209,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.RU)
                         return "Лабораторные элементы";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "";
+                    	return "Laboratorium-elementen";
                     else
                         return "Laboratory elements";
                 case "GlassContainers":
@@ -1859,7 +1859,7 @@ namespace DecorationsModConfigurator
                 case "SwitchExosuitModel":
                     if (UserLanguage == CountryCode.FR)
                         return "Cliquez pour changer le modèle de bras gauche, ou:" + Environment.NewLine +
-                               "Maintenez 'E' et cliquez pour change le modèle de bras droit" + Environment.NewLine;
+                               "Maintenez 'E' et cliquez pour changer le modèle de bras droit" + Environment.NewLine;
                     else if (UserLanguage == CountryCode.ES)
                         return "Haga clic para cambiar el modelo de brazo izquierdo, o:" + Environment.NewLine +
                                "Mantenga 'E' y haga clic para cambiar al modelo de brazo derecho" + Environment.NewLine;

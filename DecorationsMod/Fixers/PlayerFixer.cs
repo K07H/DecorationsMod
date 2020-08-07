@@ -20,7 +20,7 @@ namespace DecorationsMod.Fixers
                 {
                     lastTimeCheck = Time.time;
                     lastBiomeWasDeepGrandReef = true;
-                    ConfigOptions.HideDegasiBase();
+                    PrefabsHelper.HideDegasiBase();
                 }
             }
             else

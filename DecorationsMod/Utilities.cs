@@ -32,7 +32,7 @@ namespace DecorationsMod
     public static class RegionHelper
     {
         /// <summary>Supported languages.</summary>
-        public static string[] AvailableLanguages = new string[6] { "en", "fr", "es", "de", "ru", "tr" };
+        public static string[] AvailableLanguages = new string[7] { "en", "fr", "es", "de", "ru", "tr", "nl" };
 
         /// <summary>Supported country codes.</summary>
         public enum CountryCode
@@ -42,7 +42,8 @@ namespace DecorationsMod
             ES = 2,
             DE = 3,
             RU = 4,
-            TR = 5
+            TR = 5,
+            NL = 6
         };
 
         /// <summary>Returns default country code.</summary>
@@ -65,6 +66,8 @@ namespace DecorationsMod
                     return CountryCode.DE;
                 else if (string.Compare(label, "es", true, CultureInfo.InvariantCulture) == 0)
                     return CountryCode.ES;
+                else if (string.Compare(label, "nl", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.NL;
             }
             return CountryCode.EN;
         }
@@ -86,6 +89,8 @@ namespace DecorationsMod
                     return "ru";
                 case CountryCode.TR:
                     return "tr";
+                case CountryCode.NL:
+                    return "nl";
                 default:
                     return "en";
             }
