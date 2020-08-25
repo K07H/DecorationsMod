@@ -97,6 +97,7 @@ namespace DecorationsMod.NewItems
             constructable.allowedOutside = true;
             constructable.allowedInBase = ConfigSwitcher.AllowOutdoorLongPlanterInside;
             constructable.allowedInSub = ConfigSwitcher.AllowOutdoorLongPlanterInside;
+            constructable.placeMinDistance = 0.8f;
 
             // Update constructable bounds
             ConstructableBounds bounds = prefab.GetComponent<ConstructableBounds>();

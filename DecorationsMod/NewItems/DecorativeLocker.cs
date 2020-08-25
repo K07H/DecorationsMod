@@ -159,6 +159,7 @@ namespace DecorationsMod.NewItems
             constructible.deconstructionAllowed = true;
             constructible.controlModelState = true;
             constructible.model = model;
+            constructible.placeMinDistance = 0.6f;
 
             // Add constructable bounds
             ConstructableBounds bounds = prefab.AddComponent<ConstructableBounds>();

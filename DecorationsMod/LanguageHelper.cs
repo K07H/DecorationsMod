@@ -8,6 +8,24 @@ namespace DecorationsMod
         /// <summary>Current language.</summary>
         public static CountryCode UserLanguage = RegionHelper.GetDefaultCountryCode();
 
+        /// <summary>List of tooltip language strings.</summary>
+        public static readonly string[] Tooltips = new string[13]
+        {
+            "LampTooltip",
+            "LampTooltipCompact",
+            "SwitchSeamothModel",
+            "SwitchExosuitModel",
+            "CyclopsDollTooltip",
+            "CyclopsDollTooltipCompact",
+            "AdjustCargoBoxSize",
+            "AdjustForkliftSize",
+            "AdjustWarperSpecimenSize",
+            "DisplayCoveTreeEggs",
+            "CustomPictureFrameTooltip",
+            "CustomPictureFrameTooltipCompact",
+            "OpenCustomStorage"
+        };
+
         /// <summary>Returns growing tooltip text based on selected language.</summary>
         /// <param name="progress">The growth progression (in percents).</param>
         public static string GetFriendlyGrowingTooltip(int progress)
@@ -1415,19 +1433,19 @@ namespace DecorationsMod
                         return "A decorative miniature of the PRAWN suit. " + GetFriendlyWord("SwitchExosuitModel");
                 case "ForkLiftDollName":
                     if (UserLanguage == CountryCode.FR)
-                        return "Monte-charge (non fonctionnel)";
+                        return "Jouet monte-charge";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Montacargas (no funcional)";
+                        return "Juguete del montacargas";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Forklift (yararsız)";
+                        return "Forklift oyuncak";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Gabelstapler (nicht funktional)";
+                        return "Gabelstaplerspielzeug";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Грузоподъемник";
+                        return "Игрушка Грузоподъемник";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Heftruck (niet functioneel)";
+                        return "Heftruck speelgoed";
                     else
-                        return "Forklift (non-functional)";
+                        return "Forklift toy";
                 case "ForkLiftDollDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Un monte-charge décoratif. " + GetFriendlyWord("AdjustForkliftSize");
@@ -2108,19 +2126,19 @@ namespace DecorationsMod
                         return "Unnecessary documents.";
                 case "SofaStr1Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Petit banc (décoratif et fonctionnel)";
+                        return "Petit banc";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Asiento pequeño (decorativo y funcional)";
+                        return "Asiento pequeño";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Küçük oturak (dekoratif ve işlevsel)";
+                        return "Küçük oturak";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Kleine Bank (dekorativ und funktional)";
+                        return "Kleine Bank";
                     else if (UserLanguage == CountryCode.RU)
                         return "Малая софа";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Kleine bank (decoratief en functioneel)";
+                        return "Kleine bank";
                     else
-                        return "Small bench (decorative and functional)";
+                        return "Small bench";
                 case "SofaStr1Description":
                     if (UserLanguage == CountryCode.FR)
                         return "Un petit banc : Esthétique et pratique pour se reposer.";
@@ -2138,19 +2156,19 @@ namespace DecorationsMod
                         return "A small bench: Aesthetic and practical to rest.";
                 case "SofaStr2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Banc moyen (décoratif et fonctionnel)";
+                        return "Banc moyen";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Asiento mediano (decorativo y funcional)";
+                        return "Asiento mediano";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Orta boyutlu oturak (dekoratif ve işlevsel)";
+                        return "Orta boyutlu oturak";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Mittelgroße Bank (dekorativ und funktional)";
+                        return "Mittelgroße Bank";
                     else if (UserLanguage == CountryCode.RU)
                         return "Средняя софа";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Middelgrote bank (decoratief en functioneel)";
+                        return "Middelgrote bank";
                     else
-                        return "Medium bench (decorative and functional)";
+                        return "Medium bench";
                 case "SofaStr2Description":
                     if (UserLanguage == CountryCode.FR)
                         return "Un banc moyen : Esthétique et pratique pour se reposer.";
@@ -2168,19 +2186,19 @@ namespace DecorationsMod
                         return "A medium bench: Aesthetic and practical to rest.";
                 case "SofaStr3Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Banc large (décoratif et fonctionnel)";
+                        return "Banc large";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Asiento grande (decorativo y funcional)";
+                        return "Asiento grande";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Uzun oturak (dekoratif ve işlevsel)";
+                        return "Uzun oturak";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Lange Bank (dekorativ und funktional)";
+                        return "Lange Bank";
                     else if (UserLanguage == CountryCode.RU)
                         return "Большая софа";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Lange bank (decoratief en functioneel)"; 
+                        return "Lange bank";
                     else
-                        return "Long bench (decorative and functional)";
+                        return "Long bench";
                 case "SofaStr3Description":
                     if (UserLanguage == CountryCode.FR)
                         return "Un banc large : Esthétique et pratique pour se reposer.";
@@ -2198,19 +2216,19 @@ namespace DecorationsMod
                         return "A long bench: Aesthetic and practical to rest.";
                 case "SofaCorner2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Angle de banc (décoratif et fonctionnel)";
+                        return "Angle de banc";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Asiento angulado (decorativo y funcional)";
+                        return "Asiento angulado";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Açılı oturak (dekoratif ve işlevsel)";
+                        return "Açılı oturak";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Bank-Eckelement (dekorativ und funktional)";
+                        return "Bank-Eckelement";
                     else if (UserLanguage == CountryCode.RU)
                         return "Угловая софа";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Bank hoek (decoratief en functioneel)";
+                        return "Bank hoek";
                     else
-                        return "Bench angle (decorative and functional)";
+                        return "Bench angle";
                 case "SofaCorner2Description":
                     if (UserLanguage == CountryCode.FR)
                         return "Un angle de banc : Esthétique et pratique pour se reposer.";
@@ -4646,7 +4664,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.NL)
                     	return "Elektronica doos";
                     else
-                        return "Tech box";
+                        return "Decorative techbox";
                 case "DecorativeTechBoxDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Un petit boîtier électronique décoratif contenant divers composants nécessaires au traitement des flux d'énergie et de données.";
@@ -4744,6 +4762,81 @@ namespace DecorationsMod
                         return "Cyclops grootte: ";
                     else
                         return "Cyclops size: ";
+                case "CyclopsHatchConnectorName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Trappe d'amarrage pour Cyclops";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Trampilla de amarre para Cyclops";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Cyclops için demirleme";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Festmacherluke für Zyklop";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Швартовочный люк для Циклоп";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Aanlegluik voor Cyclops";
+                    else
+                        return "Cyclops docking hatch";
+                case "CyclopsHatchConnectorDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Un module permettant l'amarrage du Cyclops à une base. Facilite les déplacements et permet la recharge des batteries.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Un módulo para amarrar el Cyclops a una base. Facilita los viajes y permite recargar las baterías.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Cyclops'u bir üsse bağlamak için bir modül. Seyahat etmeyi kolaylaştırır ve pillerin yeniden şarj edilmesini sağlar.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Ein Modul zum Festmachen der Zyklop an einer Basis. Erleichtert das Reisen und ermöglicht das Aufladen von Batterien.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Модуль для швартовки Циклоп к базе. Облегчает поездки и позволяет заряжать батареи.";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Een module voor het afmeren van de Cyclops aan een basis. Vergemakkelijkt reizen en zorgt ervoor dat batterijen kunnen worden opgeladen.";
+                    else
+                        return "A module for mooring the Cyclops to a base. Allows quick base/Cyclops transitions and recharges Cyclops batteries.";
+                case "ClimbIntoCyclops":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Grimper dans le Cyclops";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Sube al Cyclops";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Cyclops'a tırmanın";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Klettere in die Zyklop";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Подняться в Циклоп";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Klim in de Cyclops";
+                    else
+                        return "Climb into Cyclops";
+                case "OutdoorLadderName":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Échelle d'extérieur";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Escalera exterior";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Açık hava merdiveni";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Außenleiter";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лестница снаружи";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Buitenladder";
+                    else
+                        return "Outdoor ladder";
+                case "OutdoorLadderDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Une échelle d'extérieur. Doit être construite sur une fondation. Utilisez la molette pour faire pivoter. Maintenez 'T' pour inverser la connexion (au-dessus/en-dessous de la fondation).";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Una escalera exterior. Debe construirse sobre una base. Usa la rueda del mouse para rotar. Mantenga presionada la tecla 'T' para invertir la conexión (arriba/abajo de la base).";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Dış mekan merdiveni. Bir temel üzerine inşa edilmelidir. Döndürmek için fare tekerleğini kullanın. Bağlantıyı tersine çevirmek için 'T'yi basılı tutun (temelin üstünde/altında).";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Eine Außenleiter. Muss auf einem Fundament gebaut werden. Verwenden Sie das Mausrad zum Drehen. Halten Sie 'T' gedrückt, um die Verbindung umzukehren (über/unter dem Fundament).";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Лестница снаружи. Должен быть построен на фундаменте. Для вращения используйте колесо мыши. Удерживайте «T», чтобы перевернуть соединение (выше/ниже фундамента).";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Een buitenladder. Moet op een fundament worden gebouwd. Gebruik het muiswiel om te draaien. Houd 'T' ingedrukt om de verbinding om te keren (boven/onder fundering).";
+                    else
+                        return "An outdoor ladder. Has to be built on a foundation. Use mouse wheel to rotate. Hold 'T' to invert connection (above/below foundation).";
                 // Configuration (used by Decorations Mod and Configurator)
                 case "Config_UseFlatScreenResolution":
                     if (UserLanguage == CountryCode.FR)
@@ -4852,19 +4945,19 @@ namespace DecorationsMod
                         return "Enable batteries placing";
                 case "Config_EnableNewItems":
                     if (UserLanguage == CountryCode.FR)
-                        return "Inclure les nouveaux objets";
+                        return "Nouveaux objets dans constructeur d'habitât";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Incluir nuevos objetos";
+                        return "Nuevos elementos en constructor de hábitats";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Yeni nesneler dahil et";
+                        return "Ev yaşam alanı yapıcısı yeni öğeler";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Neue Objekte einschließen";
+                        return "Neue Gegenstände im Konstruktionswerkzeug";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Включить новые объекты";
+                        return "Новые элементы в строитель";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Zet nieuwe objecten aan";
+                        return "Voeg nieuwe items toe aan de habitat bouwer";
                     else
-                        return "Enable new items";
+                        return "Enable new items in habitat builder";
                 case "Config_EnableNewFlora":
                     if (UserLanguage == CountryCode.FR)
                         return "Inclure les nouvelles plantes";

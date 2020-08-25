@@ -284,13 +284,13 @@ namespace DecorationsMod.Controllers
                 Directory.CreateDirectory(saveFolder);
 
             GameObject model = this.gameObject.FindChild("CyclopsDoll");
-            string toSave = string.Format("{0}{3}{1}{3}{2}{3}",
+            string toSave = string.Format(CultureInfo.InvariantCulture, "{0}{3}{1}{3}{2}{3}",
                 Convert.ToString(model.transform.localScale.x, CultureInfo.InvariantCulture),
                 Convert.ToString(model.transform.localScale.y, CultureInfo.InvariantCulture),
                 Convert.ToString(model.transform.localScale.z, CultureInfo.InvariantCulture),
                 Environment.NewLine);
             BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
-            toSave += string.Format("{0}{3}{1}{3}{2}{3}",
+            toSave += string.Format(CultureInfo.InvariantCulture, "{0}{3}{1}{3}{2}{3}",
                 Convert.ToString(collider.size.x, CultureInfo.InvariantCulture),
                 Convert.ToString(collider.size.y, CultureInfo.InvariantCulture),
                 Convert.ToString(collider.size.z, CultureInfo.InvariantCulture),

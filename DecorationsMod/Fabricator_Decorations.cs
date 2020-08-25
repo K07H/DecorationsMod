@@ -493,6 +493,7 @@ namespace DecorationsMod
             constructible.allowedOnConstructables = false;
             constructible.controlModelState = true;
             constructible.techType = this.TechType;
+            constructible.placeMinDistance = 0.5f;
 
             // Set the custom texture
             SkinnedMeshRenderer skinnedMeshRenderer = fabricatorPrefab.GetComponentInChildren<SkinnedMeshRenderer>();

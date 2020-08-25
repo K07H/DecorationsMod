@@ -17,9 +17,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed</Dependencies>
-    <BepInExDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx</BepInExDir>
-    <ModdingHelperDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper</ModdingHelperDir>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
+    <BepInExDir>$(SubnauticaDir)\BepInEx</BepInExDir>
+    <ModdingHelperDir>$(SubnauticaDir)\QMods\Modding Helper</ModdingHelperDir>
+    <AssemblyCSharpFpPath>$(Dependencies)\Assembly-CSharp-firstpass.dll</AssemblyCSharpFpPath>
+    <AssemblyCSharpPath>$(Dependencies)\Assembly-CSharp.dll</AssemblyCSharpPath>
     <OutputPath>bin\DebugSN\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SUBNAUTICA;DEBUG_FLORA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -28,9 +31,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseSN|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed</Dependencies>
-    <BepInExDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx</BepInExDir>
-    <ModdingHelperDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper</ModdingHelperDir>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
+    <BepInExDir>$(SubnauticaDir)\BepInEx</BepInExDir>
+    <ModdingHelperDir>$(SubnauticaDir)\QMods\Modding Helper</ModdingHelperDir>
+    <AssemblyCSharpFpPath>$(Dependencies)\Assembly-CSharp-firstpass.dll</AssemblyCSharpFpPath>
+    <AssemblyCSharpPath>$(Dependencies)\Assembly-CSharp.dll</AssemblyCSharpPath>
     <OutputPath>bin\ReleaseSN\</OutputPath>
     <DefineConstants>SUBNAUTICA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -40,9 +46,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\SubnauticaZero_Data\Managed</Dependencies>
-    <BepInExDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\BepInEx</BepInExDir>
-    <ModdingHelperDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\SMLHelper_BZ</ModdingHelperDir>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero</SubnauticaDir>
+    <Dependencies>$(SubnauticaDir)\SubnauticaZero_Data\Managed</Dependencies>
+    <BepInExDir>$(SubnauticaDir)\BepInEx</BepInExDir>
+    <ModdingHelperDir>$(SubnauticaDir)\QMods\SMLHelper_BZ</ModdingHelperDir>
+    <AssemblyCSharpFpPath>$(Dependencies)\publicized_assemblies\Assembly-CSharp-firstpass_publicized.dll</AssemblyCSharpFpPath>
+    <AssemblyCSharpPath>$(Dependencies)\publicized_assemblies\Assembly-CSharp_publicized.dll</AssemblyCSharpPath>
     <OutputPath>bin\DebugBZ\</OutputPath>
     <DefineConstants>TRACE;DEBUG;BELOWZERO;DEBUG_ITEMS_REGISTRATION;DEBUG_HARMONY_PATCHING;DEBUG_STOOL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -51,9 +60,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseBZ|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <Dependencies>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\SubnauticaZero_Data\Managed</Dependencies>
-    <BepInExDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\BepInEx</BepInExDir>
-    <ModdingHelperDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\SMLHelper_BZ</ModdingHelperDir>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero</SubnauticaDir>
+    <Dependencies>$(SubnauticaDir)\SubnauticaZero_Data\Managed</Dependencies>
+    <BepInExDir>$(SubnauticaDir)\BepInEx</BepInExDir>
+    <ModdingHelperDir>$(SubnauticaDir)\QMods\SMLHelper_BZ</ModdingHelperDir>
+    <AssemblyCSharpFpPath>$(Dependencies)\publicized_assemblies\Assembly-CSharp-firstpass_publicized.dll</AssemblyCSharpFpPath>
+    <AssemblyCSharpPath>$(Dependencies)\publicized_assemblies\Assembly-CSharp_publicized.dll</AssemblyCSharpPath>
     <OutputPath>bin\ReleaseBZ\</OutputPath>
     <DefineConstants>BELOWZERO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -67,19 +79,19 @@
       <HintPath>$(BepInExDir)\core\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>$(Dependencies)\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>$(AssemblyCSharpFpPath)</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>$(Dependencies)\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(AssemblyCSharpPath)</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Condition="'$(Configuration)' == 'DebugBZ'" Include="AssetsTools.NET">
-      <HintPath>$(Dependencies)\AssetsTools.NET.dll</HintPath>
+      <HintPath>$(BepInExDir)\patchers\QModManager\AssetsTools.NET.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Condition="'$(Configuration)' == 'ReleaseBZ'" Include="AssetsTools.NET">
-      <HintPath>$(Dependencies)\AssetsTools.NET.dll</HintPath>
+      <HintPath>$(BepInExDir)\patchers\QModManager\AssetsTools.NET.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="LitJson">
@@ -93,7 +105,7 @@
     <Reference Include="QModInstaller">
       <HintPath>$(BepInExDir)\plugins\QModManager\QModInstaller.dll</HintPath>
     </Reference>
-	<Reference Include="SMLHelper">
+    <Reference Include="SMLHelper">
       <HintPath>$(ModdingHelperDir)\SMLHelper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -165,6 +177,7 @@
     <Compile Include="Controllers\ForkliftController.cs" />
     <Compile Include="Controllers\GhostLeviatanSpawner.cs" />
     <Compile Include="Controllers\DecorativeLockerController.cs" />
+    <Compile Include="Controllers\OutdoorLadderController.cs" />
     <Compile Include="Controllers\PlantMonoTransformController.cs" />
     <Compile Include="Controllers\PlantGenericController.cs" />
     <Compile Include="Controllers\LandTree1Controller.cs" />
@@ -187,6 +200,7 @@
     <Compile Include="Fixers\KnownTechFixer.cs" />
     <Compile Include="Fixers\MainMenuLoadButtonFixer.cs" />
     <Compile Include="Fixers\PickupableFixer.cs" />
+    <Compile Include="Fixers\PictureFrameFixer.cs" />
     <Compile Include="Fixers\PlayerFixer.cs" />
     <Compile Include="Fixers\SpawnConsoleCommandFixer.cs" />
     <Compile Include="Fixers\uGUI_CraftNodeFixer.cs" />
@@ -202,6 +216,7 @@
     <Compile Include="FloraAquatic\RedGrass3Tall.cs" />
     <Compile Include="Flora\MarbleMelonTiny.cs" />
     <Compile Include="Flora\MarbleMelonTinyFruit.cs" />
+    <Compile Include="MyHarmony.cs" />
     <Compile Include="NewItems\CyclopsDoll.cs" />
     <Compile Include="NewItems\DecorativeControlTerminal.cs" />
     <Compile Include="NewItems\DecorativeTechBox.cs" />
@@ -334,6 +349,7 @@
     <Compile Include="Flora\LandTree1.cs" />
     <Compile Include="NewItems\LongPlanterA.cs" />
     <Compile Include="NewItems\NutrientBlock.cs" />
+    <Compile Include="NewItems\OutdoorLadder.cs" />
     <Compile Include="NewItems\PaperTrash.cs" />
     <Compile Include="NewItems\Pen.cs" />
     <Compile Include="NewItems\PenHolder.cs" />

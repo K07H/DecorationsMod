@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -38,11 +39,52 @@ namespace DecorationsMod
         // Attention: If this option is enabled, you'll have to manually drag-n-drop batteries/power cells to the charger (left click won't work to equip).
         public static bool EnablePlaceBatteries = false;
 
-        // If "true", player will be able to build/craft the following new items:      
-        // lab cart, alien pillar, indoor long planter, outdoor long planter specimen analyzer, markiplier doll 1, markiplier doll 2
-        // jacksepticeye doll, eatmydiction doll, empty desk, eatmydiction doll, seamoth doll, exosuit doll, forklift, cargo crates
-        // sofas, benches, stool, customizable picture frame, customizable light, warper specimen and additional lockers.
+        // If "true", player will be able to build the following new items:      
+        // lab cart, specimen analyzer, small aquarium,  indoor long planter, outdoor long planter, markiplier doll 1, markiplier doll 2, jacksepticeye doll, 
+        // eatmydiction doll, marla cat doll, seamoth doll, exosuit doll, cyclops doll, forklift doll, empty desk, bar stool, customizable picture frame, 
+        // customizable light, warper specimen, alien pillar, control terminal, decorative techbox, outdoor ladder, cyclops dockcking hatch, 
+        // 2 different workdesk screens, 3 different lockers, 3 different cargo crates, 2 different benches and 4 different sofas.
         public static bool EnableNewItems = true;
+        public static readonly List<string> HabitatBuilderItems = new List<string>(new string[37]
+        {
+            "AlienPillar1",
+            "AquariumSmall",
+            "BarStool",
+            "BenchMedium",
+            "BenchSmall",
+            "CargoBox01_damaged",
+            "CargoBox01a",
+            "CargoBox01b",
+            "CustomPictureFrame",
+            "CyclopsDoll",
+            "DecorationsEmptyDesk",
+            "DecorationsSpecimenAnalyzer",
+            "DecorativeControlTerminal",
+            "DecorativeLocker",
+            "DecorativeLockerClosed",
+            "DecorativeLockerDoor",
+            "DecorativeTechBox",
+            "MarlaCat",
+            "ExosuitDoll",
+            "ForkLiftDoll",
+            "JackSepticEyeDoll",
+            "LabCart",
+            "ALongPlanter",
+            "LongPlanterB",
+            "MarkiDoll1",
+            "MarkiDoll2",
+            "ReactorLamp",
+            "SeamothDoll",
+            "SofaCorner2",
+            "SofaStr1",
+            "SofaStr2",
+            "SofaStr3",
+            "WarperPart1",
+            "WorkDeskScreen1",
+            "WorkDeskScreen2",
+            "OutdoorLadder",
+            "CyclopsHatchConnector"
+        });
 
         // If "true", new items will be added to fabricators/builder tool only if some similar items have been discovered in game.
         // Works for following items: sofas, benches, stool, long planters, customizable picture frame, customizable light, alien pillar, warper parts and warper specimen.
@@ -53,6 +95,9 @@ namespace DecorationsMod
 
         // If "true", player will be able to build/craft sofas.
         public static bool EnableSofas = true;
+
+        // If "true", player will be able to build new base parts.
+        public static bool EnableCustomBaseParts = true;
 
         // If "true", player will be able to build decorative electronics (tech box, control terminal and workdesk screens).
         public static bool EnableDecorativeElectronics = true;
@@ -237,7 +282,20 @@ namespace DecorationsMod
 
         #region Load config
 
-        // Utility function to parse flora configuration element.
+        /// <summary>Utility function to parse habitat builder's enabled items.</summary>
+        private static void GetHabitatBuilderConfig(string configStr)
+        {
+            if (!string.IsNullOrWhiteSpace(configStr))
+            {
+                ConfigSwitcher.HabitatBuilderItems.Clear();
+                string[] items = configStr.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+                if (items != null)
+                    foreach (string item in items)
+                        ConfigSwitcher.HabitatBuilderItems.Add(item);
+            }
+        }
+
+        /// <summary>Utility function to parse flora configuration element.</summary>
         private static bool GetFloraConfig(CustomFlora customFlora, string configStr)
         {
             bool success = true;
@@ -306,12 +364,16 @@ namespace DecorationsMod
                             ConfigSwitcher.EnableNewFlora = configValue; break;
                         case "enableNewItems":
                             ConfigSwitcher.EnableNewItems = configValue; break;
+                        case "habitatBuilderItems":
+                            ConfigSwitcher.GetHabitatBuilderConfig(configValueStr); break;
                         case "addItemsWhenDiscovered":
                             ConfigSwitcher.AddItemsWhenDiscovered = configValue; break;
                         case "enableSofas":
                             ConfigSwitcher.EnableSofas = configValue; break;
                         case "enableDecorativeElectronics":
                             ConfigSwitcher.EnableDecorativeElectronics = configValue; break;
+                        case "enableCustomBaseParts":
+                            ConfigSwitcher.EnableCustomBaseParts = configValue; break;
                         case "allowIndoorLongPlanterOutside":
                             ConfigSwitcher.AllowIndoorLongPlanterOutside = configValue; break;
                         case "allowOutdoorLongPlanterInside":
@@ -698,6 +760,12 @@ namespace DecorationsMod
                                 ConfigSwitcher.EnableRegularWaterSeeds = false;
                                 ConfigSwitcher.AddAirSeedsWhenDiscovered = false;
                                 ConfigSwitcher.AddWaterSeedsWhenDiscovered = false;
+                            }
+                            // If habitat builder items have been disabled, disable all features related to it.
+                            if (!ConfigSwitcher.EnableNewItems)
+                            {
+                                ConfigSwitcher.EnableDecorativeElectronics = false;
+                                ConfigSwitcher.EnableCustomBaseParts = false;
                             }
                         }
                         else

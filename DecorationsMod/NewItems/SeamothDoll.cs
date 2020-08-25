@@ -233,6 +233,7 @@ namespace DecorationsMod.NewItems
                 constructable.rotationEnabled = true;
                 constructable.model = model;
                 constructable.techType = this.TechType;
+                constructable.placeMinDistance = 0.6f;
                 constructable.enabled = true;
                 
                 // Add constructable bounds

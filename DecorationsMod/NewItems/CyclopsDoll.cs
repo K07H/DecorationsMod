@@ -23,6 +23,8 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("CyclopsDollDescription"),
                                                         true);
 
+            this.IsHabitatBuilder = true;
+
             CrafterLogicFixer.CyclopsDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
@@ -189,6 +191,7 @@ namespace DecorationsMod.NewItems
                 constructable.model = model;
                 constructable.techType = this.TechType;
                 constructable.surfaceType = VFXSurfaceTypes.metal;
+                constructable.placeMinDistance = 0.6f;
                 constructable.enabled = true;
 
                 // Add constructable bounds

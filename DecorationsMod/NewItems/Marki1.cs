@@ -142,6 +142,7 @@ namespace DecorationsMod.NewItems
                 constructible.allowedOutside = ConfigSwitcher.AllowBuildOutside;
                 constructible.controlModelState = true;
                 constructible.model = model;
+                constructible.placeMinDistance = 0.5f;
             }
 
             return prefab;

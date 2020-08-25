@@ -18,6 +18,8 @@ namespace DecorationsMod.NewItems
                                                         LanguageHelper.GetFriendlyWord("DecorativeControlTerminalDescription"),
                                                         true);
 
+            this.IsHabitatBuilder = true;
+
 #if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
             {
@@ -98,6 +100,7 @@ namespace DecorationsMod.NewItems
             constructible.controlModelState = true;
             constructible.surfaceType = VFXSurfaceTypes.electronic;
             constructible.model = model;
+            constructible.placeMinDistance = 0.6f;
 
             // Add constructable bounds
             ConstructableBounds cb = prefab.AddComponent<ConstructableBounds>();

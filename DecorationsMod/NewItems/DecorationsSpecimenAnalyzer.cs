@@ -174,8 +174,9 @@ namespace DecorationsMod.NewItems
                 constructible.allowedOnConstructables = false;
                 constructible.deconstructionAllowed = true;
                 constructible.controlModelState = true;
-                constructible.enabled = true;
                 constructible.techType = this.TechType;
+                constructible.placeMinDistance = 1.0f;
+                constructible.enabled = true;
             }
 
             return prefab;

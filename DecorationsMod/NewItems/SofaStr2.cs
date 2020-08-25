@@ -183,6 +183,7 @@ namespace DecorationsMod.NewItems
                 constructible.rotationEnabled = true;
                 constructible.model = prefab.FindChild("descent_bar_sofa_str_02(Clone)");
                 constructible.techType = this.TechType;
+                constructible.placeMinDistance = 0.8f;
                 constructible.enabled = true;
 
                 // Update constructable bounds

@@ -6,9 +6,12 @@ namespace DecorationsMod.Fixers
     {
 		public static bool OnErrorConfirmed_Prefix(bool confirmed, string saveGame)
 		{
-			// Load added notifications if needed.
+			// Load added notifications and outdoor ladder directions if needed.
 			if (confirmed)
+			{
 				KnownTechFixer.LoadAddedNotifications(saveGame);
+				ConstructableFixer.LoadLadderDirections(saveGame);
+			}
 			// Give back execution to original function.
 			return true;
 		}
@@ -41,9 +44,12 @@ namespace DecorationsMod.Fixers
 				Logger.Log("ERROR: Exception caught while retrieving game info. Exception=[" + ex.ToString() + "]");
 				gameInfo = null;
 			}
-			// Load added notifications if needed.
+			// Load added notifications and outdoor ladder directions if needed.
 			if (gameInfo != null)
+			{
 				KnownTechFixer.LoadAddedNotifications(slotName);
+				ConstructableFixer.LoadLadderDirections(slotName);
+			}
 			// Give back execution to original function.
 			return true;
 		}

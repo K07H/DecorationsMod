@@ -131,12 +131,12 @@ namespace DecorationsMod.NewItems
                 placeTool.allowedOnWalls = false;
                 placeTool.allowedOutside = ConfigSwitcher.AllowPlaceOutside;
                 placeTool.rotationEnabled = true;
-                placeTool.enabled = true;
                 placeTool.hasAnimations = false;
                 placeTool.hasBashAnimation = false;
                 placeTool.hasFirstUseAnimation = false;
                 placeTool.mainCollider = collider;
                 placeTool.pickupable = pickupable;
+                placeTool.enabled = true;
 
                 // Add fabricating animation
                 VFXFabricating fabricating = prefab.FindChild("Starship_work_desk_01_empty").AddComponent<VFXFabricating>();
@@ -161,6 +161,7 @@ namespace DecorationsMod.NewItems
                 constructible.deconstructionAllowed = true;
                 constructible.controlModelState = true;
                 constructible.model = prefab.FindChild("Starship_work_desk_01_empty");
+                constructible.placeMinDistance = 0.6f;
             }
 
             return prefab;

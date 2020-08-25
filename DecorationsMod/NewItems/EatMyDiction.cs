@@ -137,6 +137,7 @@ namespace DecorationsMod.NewItems
             {
                 Constructable constructible = prefab.GetComponent<Constructable>();
                 constructible.allowedOutside = ConfigSwitcher.AllowBuildOutside;
+                constructible.placeMinDistance = 0.5f;
             }
 
             return prefab;

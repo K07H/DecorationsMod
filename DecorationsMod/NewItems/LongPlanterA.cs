@@ -85,11 +85,10 @@ namespace DecorationsMod.NewItems
             sc.height = 2;
 
             // Update constructable
+            Constructable constructable = prefab.GetComponent<Constructable>();
+            constructable.placeMinDistance = 0.8f;
             if (ConfigSwitcher.AllowIndoorLongPlanterOutside)
-            {
-                Constructable constructable = prefab.GetComponent<Constructable>();
                 constructable.allowedOutside = true;
-            }
 
             // Update constructable bounds
             ConstructableBounds bounds = prefab.GetComponent<ConstructableBounds>();

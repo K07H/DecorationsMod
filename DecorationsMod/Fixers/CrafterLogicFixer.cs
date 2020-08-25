@@ -454,5 +454,7 @@
         public static TechType SeamothFragment3 = TechType.None;
         public static TechType SeamothFragment4 = TechType.None;
         public static TechType SeamothFragment5 = TechType.None;
+
+        public static TechType OutdoorLadder = TechType.None;
     }
 }

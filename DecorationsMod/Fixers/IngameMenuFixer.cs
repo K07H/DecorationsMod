@@ -5,6 +5,7 @@
         public static void SaveGame_Postfix()
         {
             KnownTechFixer.SaveAddedNotifications();
+            ConstructableFixer.SaveLadderDirections();
         }
     }
 }

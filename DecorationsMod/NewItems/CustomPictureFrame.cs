@@ -75,17 +75,9 @@ namespace DecorationsMod.NewItems
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe"));
 
-                // Override OnHandHover
-                var pictureFrameType = typeof(PictureFrame);
-                var onHandHoverMethod = pictureFrameType.GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
-                var postfix = typeof(PictureFramePatch).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
-                DecorationsMod.HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(postfix));
-                
-                // Override OnHandClick
-                var onHandClickMethod = pictureFrameType.GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
-                var prefix = typeof(PictureFramePatch).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
-                DecorationsMod.HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(prefix), null);
-                
+                // Patch with harmony
+                MyHarmony.PatchPictureFrames();
+
                 this.IsRegistered = true;
             }
         }
@@ -205,6 +197,7 @@ namespace DecorationsMod.NewItems
             // Update contructable
             var constructible = prefab.GetComponent<Constructable>();
             constructible.techType = this.TechType;
+            constructible.placeMinDistance = 0.4f;
 
             PictureFrame pf = prefab.GetComponent<PictureFrame>();
 

@@ -118,6 +118,8 @@ namespace DecorationsMod.NewItems
             constructible.deconstructionAllowed = true;
             constructible.controlModelState = true;
             constructible.model = prefab.FindChild("precursor_deco_props_01");
+            constructible.placeMinDistance = 0.6f;
+            constructible.enabled = true;
 
             // Add constructable bounds
             prefab.AddComponent<ConstructableBounds>();

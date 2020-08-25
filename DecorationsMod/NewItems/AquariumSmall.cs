@@ -440,6 +440,7 @@ namespace DecorationsMod.NewItems
             constructable.rotationEnabled = true;
             //constructable.model = model;
             constructable.techType = this.TechType;
+            constructable.placeMinDistance = 0.5f;
             constructable.enabled = true;
 
 #if DEBUG_AQUARIUM

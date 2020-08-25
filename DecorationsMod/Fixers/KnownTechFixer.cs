@@ -37,13 +37,7 @@ namespace DecorationsMod.Fixers
 
         public static void LoadAddedNotifications(string saveGame)
         {
-            string saveDir = FilesHelper.GetSaveFolderPath();
-            if (saveDir.Contains("/test/") || saveDir.Contains("\\test\\"))
-            {
-                if (string.IsNullOrEmpty(saveGame))
-                    return; // If we reach here we don't know what is the game slot name...
-                saveDir = saveDir.Replace("/test/", "/" + saveGame + "/").Replace("\\test\\", "\\" + saveGame + "\\").Replace('\\', '/');
-            }
+            string saveDir = FilesHelper.GetSaveFolderPath(saveGame);
             if (Directory.Exists(saveDir))
             {
                 string saveFile = Path.Combine(saveDir, "discovered.txt").Replace('\\', '/');
@@ -53,35 +47,28 @@ namespace DecorationsMod.Fixers
                     int cnt = 0;
                     string[] lines = File.ReadAllLines(saveFile, Encoding.UTF8);
                     if (lines != null && lines.Length > 0)
-                    {
                         foreach (string line in lines)
-                        {
                             if (line.Length > 5 && line.Contains("="))
                             {
                                 string[] splitted = line.Split(new char[] { '=' }, StringSplitOptions.None);
-                                if (splitted != null && splitted.Length == 2)
+                                if (splitted != null && splitted.Length == 2 && int.TryParse(splitted[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out int techTypeId) && techTypeId >= 0)
                                 {
-                                    if (int.TryParse(splitted[0], out int techTypeId) && techTypeId >= 0)
-                                    {
-                                        bool discovered = !(string.Compare(splitted[1], "false", true, CultureInfo.InvariantCulture) == 0);
-                                        if (AddedNotifications.ContainsKey(techTypeId))
-                                            AddedNotifications[techTypeId] = discovered;
-                                        else
-                                            AddedNotifications.Add(techTypeId, discovered);
-                                        if (discovered)
-                                            ++cnt;
-                                    }
+                                    bool discovered = !(string.Compare(splitted[1], "false", true, CultureInfo.InvariantCulture) == 0);
+                                    if (AddedNotifications.ContainsKey(techTypeId))
+                                        AddedNotifications[techTypeId] = discovered;
+                                    else
+                                        AddedNotifications.Add(techTypeId, discovered);
+                                    if (discovered)
+                                        ++cnt;
                                 }
                             }
-                        }
-                    }
                     Logger.Log("INFO: Discoveries loaded. Player made {0}/{1} discoveries ({2} remaining).", cnt, AddedNotifications.Count, AddedNotifications.Count - cnt);
                 }
                 else
                     Logger.Log("INFO: No discoveries saved at \"" + saveFile + "\".");
             }
             else
-                Logger.Log("INFO: No discoveries directory saved at \"" + saveDir + "\".");
+                Logger.Log("INFO: No save directory found for discoveries at \"" + saveDir + "\".");
         }
 
         public static void SaveAddedNotifications()
@@ -95,7 +82,7 @@ namespace DecorationsMod.Fixers
                 {
                     if (notif.Value)
                     {
-                        toSave += string.Format("{0}={1}{2}", notif.Key, notif.Value, Environment.NewLine);
+                        toSave += string.Format(CultureInfo.InvariantCulture, "{0}={1}{2}", notif.Key, notif.Value, Environment.NewLine);
                         toLog += notif.Key.ToString() + ";";
                         ++cnt;
                     }

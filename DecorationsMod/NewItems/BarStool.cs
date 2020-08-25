@@ -211,6 +211,7 @@ namespace DecorationsMod.NewItems
             constructible.rotationEnabled = true;
             constructible.model = prefab.FindChild("bar_stool(Clone)");
             constructible.techType = this.TechType;
+            constructible.placeMinDistance = 0.6f;
             constructible.enabled = true;
 
 #if DEBUG_STOOL

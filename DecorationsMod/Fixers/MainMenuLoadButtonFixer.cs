@@ -4,9 +4,12 @@
     {
 		public static bool Load_Prefix(MainMenuLoadButton __instance)
 		{
-			// Load added notifications if needed.
+			// Load added notifications and outdoor ladder directions if needed.
 			if (!__instance.IsEmpty())
+			{
 				KnownTechFixer.LoadAddedNotifications(__instance.saveGame);
+				ConstructableFixer.LoadLadderDirections(__instance.saveGame);
+			}
 			// Give back execution to original function.
 			return true;
 		}

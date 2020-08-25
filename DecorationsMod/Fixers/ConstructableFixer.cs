@@ -1,4 +1,9 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Text;
 using UnityEngine;
 
 namespace DecorationsMod.Fixers
@@ -38,5 +43,111 @@ namespace DecorationsMod.Fixers
             reason = null;
             return true;
         }
-    }
+	
+        /// <summary>Holds ladders directions.</summary>
+        public static readonly Dictionary<string, KeyValuePair<int, bool>> LadderDirections = new Dictionary<string, KeyValuePair<int, bool>>();
+
+        public static void LoadLadderDirections(string saveGame)
+        {
+            string saveDir = FilesHelper.GetSaveFolderPath(saveGame);
+            if (Directory.Exists(saveDir))
+            {
+                string saveFile = Path.Combine(saveDir, "outdoorladders.txt").Replace('\\', '/');
+                if (File.Exists(saveFile))
+                {
+                    Logger.Log("INFO: Loading outdoor ladder directions from \"" + saveFile + "\".");
+                    int cnt = 0;
+                    string[] lines = File.ReadAllLines(saveFile, Encoding.UTF8);
+                    if (lines != null && lines.Length > 0)
+                    {
+                        foreach (string line in lines)
+                        {
+                            if (line.Length > 3 && line.Contains("="))
+                            {
+                                string[] splitted = line.Split(new char[] { '=' }, StringSplitOptions.None);
+                                if (splitted != null && splitted.Length == 3)
+                                {
+                                    string pid = splitted[0];
+                                    bool inverted = splitted[2] == "1";
+                                    if (int.TryParse(splitted[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out int direction) && direction >= 0 && direction <= 3)
+                                    {
+                                        LadderDirections[pid] = new KeyValuePair<int, bool>(direction, inverted);
+                                        ++cnt;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Logger.Log("INFO: {0} outdoor ladder directions were loaded.", cnt);
+                }
+                else
+                    Logger.Log("INFO: No outdoor ladder directions saved at \"" + saveFile + "\".");
+            }
+            else
+                Logger.Log("INFO: No save directory found for outdoor ladders at \"" + saveDir + "\".");
+        }
+
+        public static void SaveLadderDirections()
+        {
+            int cnt = 0;
+            string toSave = "";
+            if (LadderDirections != null && LadderDirections.Count > 0)
+                foreach (KeyValuePair<string, KeyValuePair<int, bool>> direction in LadderDirections)
+                {
+                    toSave += string.Format(CultureInfo.InvariantCulture, "{0}={1}={2}{3}", direction.Key, direction.Value.Key.ToString(), direction.Value.Value ? "1" : "0", Environment.NewLine);
+                    cnt++;
+                }
+            if (!string.IsNullOrEmpty(toSave))
+            {
+                string saveDir = FilesHelper.GetSaveFolderPath();
+                if (!Directory.Exists(saveDir))
+                    Directory.CreateDirectory(saveDir);
+                string saveFile = Path.Combine(saveDir, "outdoorladders.txt");
+                Logger.Log("INFO: Saving {0} outdoor ladder directions to \"{1}\".", cnt, saveFile);
+                File.WriteAllText(saveFile, toSave, Encoding.UTF8);
+            }
+        }
+
+        //private static float GetConstructInterval()
+        private static readonly MethodInfo _GetConstructInterval = typeof(Constructable).GetMethod("GetConstructInterval", BindingFlags.NonPublic | BindingFlags.Static);
+        //protected void UpdateMaterial()
+        private static readonly MethodInfo _UpdateMaterial = typeof(Constructable).GetMethod("UpdateMaterial", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        //private List<TechType> resourceMap;
+        private static readonly FieldInfo _resourceMapField = typeof(Constructable).GetField("resourceMap", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        public static void Construct_Postfix(Constructable __instance)
+        {
+            //Logger.Log("DEBUG: Entering Construct_Postfix");
+            //if (__instance.gameObject?.transform != null)
+            //{
+            //    Logger.Log("DEBUG: Printing constructable transform in Postfix.");
+            //    DebugTools.PrintTransform(__instance.gameObject.transform);
+            //}
+            // If current object being built is our Outdoor Ladder.
+            if (__instance.techType == CrafterLogicFixer.OutdoorLadder)
+            {
+                GameObject ladder = __instance.gameObject;
+                if (ladder != null)
+                {
+                    PrefabIdentifier pid = ladder.GetComponent<PrefabIdentifier>();
+                    if (pid != null)
+                    {
+                        Transform modelTr = ladder.FindChild("OutdoorLadderModel")?.transform;
+                        if (modelTr != null)
+                        {
+                            Vector3 modelPos = modelTr.position;
+                            if (BuilderFixer.TempLadderDirections.ContainsKey(modelPos))
+                            {
+                                int direction = BuilderFixer.TempLadderDirections[modelPos].Key;
+                                bool inverted = BuilderFixer.TempLadderDirections[modelPos].Value;
+                                LadderDirections[pid.Id] = new KeyValuePair<int, bool>(direction, inverted);
+                            }
+                        }
+                    }
+                }
+                BuilderFixer.TempLadderDirections.Clear();
+            }
+        }
+	}
 }

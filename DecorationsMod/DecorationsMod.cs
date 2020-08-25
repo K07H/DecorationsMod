@@ -29,9 +29,6 @@ namespace DecorationsMod
 
     public class DecorationsMod
     {
-        // Harmony stuff
-        internal static Harmony HarmonyInstance = null;
-
         // List of modded items
         public static List<IDecorationItem> DecorationItems = null;
 
@@ -39,11 +36,8 @@ namespace DecorationsMod
         public static void Patch()
         {
             // 1) INITIALIZE HARMONY
-            if ((HarmonyInstance = new Harmony("com.osubmarin.decorationsmod")) == null)
-            {
-                Logger.Log("ERROR: Unable to initialize Harmony!");
+            if (!MyHarmony.Initialize())
                 return;
-            }
 
             // 2) LOAD CONFIGURATION
             ConfigSwitcher.LoadConfiguration();
@@ -59,225 +53,36 @@ namespace DecorationsMod
                 PlaceToolItems.MakeItemsPlaceable();
 
             // 6) REGISTER DECORATIONS FABRICATOR
+            Logger.Log("INFO: Registering decorations fabricator...");
             Fabricator_Decorations decorationsFabricator = new Fabricator_Decorations();
             decorationsFabricator.RegisterDecorationsFabricator(DecorationsMod.DecorationItems);
 
             // 7) REGISTER FLORA FABRICATOR
             if (ConfigSwitcher.EnableNewFlora)
             {
+                Logger.Log("INFO: Registering seeds fabricator...");
                 Fabricator_Flora floraFabricator = new Fabricator_Flora();
                 floraFabricator.RegisterFloraFabricator(DecorationsMod.DecorationItems);
             }
 
             // 8) HARMONY PATCHING
-            HarmonyPatchAll();
+            MyHarmony.PatchAll();
 
-            // 9) ENHANCEMENTS
+            // 9) VARIOUS ENHANCEMENTS
             if (ConfigSwitcher.FixAquariumLighting)
                 PrefabsHelper.FixAquariumSkyApplier();
-            FixFCSMods();
+            MyHarmony.FixFCSMods();
 
             // 10) SETUP IN GAME OPTIONS MENU
             Logger.Log("INFO: Setting up in-game options menu...");
             SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
         }
 
-        /// <summary>Patches Subnautica DLL with Harmony.</summary>
-        private static void HarmonyPatchAll()
-        {
-            Logger.Log("INFO: Patching with Harmony...");
-            // Fix cargo crates items-containers
-#if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Fixing cargo crates item containers...");
-#endif
-            var onProtoDeserializeObjectTreeMethod = typeof(StorageContainer).GetMethod("OnProtoDeserializeObjectTree", BindingFlags.Public | BindingFlags.Instance);
-            var onProtoDeserializeObjectTreePostfix = typeof(StorageContainerFixer).GetMethod("OnProtoDeserializeObjectTree_Postfix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(onProtoDeserializeObjectTreeMethod, null, new HarmonyMethod(onProtoDeserializeObjectTreePostfix));
-            // Failsafe on lockers and cargo crates deconstruction
-#if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Adding failsafe on lockers and cargo crates deconstruction...");
-#endif
-            var canDeconstructMethod = typeof(Constructable).GetMethod("CanDeconstruct", BindingFlags.Public | BindingFlags.Instance);
-            var canDeconstructPrefix = typeof(ConstructableFixer).GetMethod("CanDeconstruct_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(canDeconstructMethod, new HarmonyMethod(canDeconstructPrefix), null);
-            // Fix equipment types for batteries, power cells, and their ion versions
-            if (ConfigSwitcher.EnablePlaceBatteries)
-                PatchBatteries();
-            // Fix aquarium sky appliers
-#if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Fixing aquarium sky appliers...");
-#endif
-            var addItemMethod = typeof(Aquarium).GetMethod("AddItem", BindingFlags.NonPublic | BindingFlags.Instance);
-            var addItemPostfix = typeof(AquariumFixer).GetMethod("AddItem_Postfix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(addItemMethod, null, new HarmonyMethod(addItemPostfix));
-            var removeItemMethod = typeof(Aquarium).GetMethod("RemoveItem", BindingFlags.NonPublic | BindingFlags.Instance);
-            var removeItemPrefix = typeof(AquariumFixer).GetMethod("RemoveItem_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(removeItemMethod, new HarmonyMethod(removeItemPrefix), null);
-            // Fix alternative use for placeable items
-#if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Fixing alternative use for placeable items...");
-#endif
-            if (ConfigSwitcher.EnablePlaceItems)
-            {
-                var getAltUseItemActionMethod = typeof(Inventory).GetMethod("GetAltUseItemAction", BindingFlags.Public | BindingFlags.Instance);
-                var getAltUseItemActionPrefix = typeof(InventoryFixer).GetMethod("GetAltUseItemAction_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(getAltUseItemActionMethod, new HarmonyMethod(getAltUseItemActionPrefix), null);
-            }
-            // Fix colors for custom fabricators icons
-#if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Fixing colors for custom fabricators icons...");
-#endif
-            var createIconMethod = typeof(uGUI_CraftNode).GetMethod("CreateIcon", BindingFlags.NonPublic | BindingFlags.Instance);
-            var createIconPostfix = typeof(uGUI_CraftNodeFixer).GetMethod("CreateIcon_Postfix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(createIconMethod, null, new HarmonyMethod(createIconPostfix));
-            // Setup new items unlock conditions
-#if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Setting up new items unlock conditions...");
-#endif
-            var isCraftRecipeUnlockedMethod = typeof(CrafterLogic).GetMethod("IsCraftRecipeUnlocked", BindingFlags.Public | BindingFlags.Static);
-            var isCraftRecipeUnlockedPostfix = typeof(CrafterLogicFixer).GetMethod("IsCraftRecipeUnlocked_Postfix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(isCraftRecipeUnlockedMethod, null, new HarmonyMethod(isCraftRecipeUnlockedPostfix));
-            var getTechUnlockStateMethod = typeof(KnownTech).GetMethod("GetTechUnlockState", new Type[] { typeof(TechType), typeof(int).MakeByRefType(), typeof(int).MakeByRefType() }); //, BindingFlags.Public | BindingFlags.Static);
-            var getTechUnlockStatePrefix = typeof(KnownTechFixer).GetMethod("GetTechUnlockState_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(getTechUnlockStateMethod, new HarmonyMethod(getTechUnlockStatePrefix), null);
-            // Load added "new item" notifications when game loads
-#if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Setting up loading of added \"new item\" notifications...");
-#endif
-            var loadMostRecentSavedGameMethod = typeof(uGUI_MainMenu).GetMethod("LoadMostRecentSavedGame", BindingFlags.NonPublic | BindingFlags.Instance);
-            var loadMostRecentSavedGamePrefix = typeof(uGUI_MainMenuFixer).GetMethod("LoadMostRecentSavedGame_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(loadMostRecentSavedGameMethod, new HarmonyMethod(loadMostRecentSavedGamePrefix), null);
-            var onErrorConfirmedMethod = typeof(uGUI_MainMenu).GetMethod("OnErrorConfirmed", BindingFlags.NonPublic | BindingFlags.Instance);
-            var onErrorConfirmedPrefix = typeof(uGUI_MainMenuFixer).GetMethod("OnErrorConfirmed_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(onErrorConfirmedMethod, new HarmonyMethod(onErrorConfirmedPrefix), null);
-            var loadMethod = typeof(MainMenuLoadButton).GetMethod("Load", BindingFlags.Public | BindingFlags.Instance);
-            var loadPrefix = typeof(MainMenuLoadButtonFixer).GetMethod("Load_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(loadMethod, new HarmonyMethod(loadPrefix), null);
-            // Save added "new item" notifications when game saves
-#if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Setting up saving of added \"new item\" notifications...");
-#endif
-            var saveGameMethod = typeof(IngameMenu).GetMethod("SaveGame", BindingFlags.Public | BindingFlags.Instance);
-            var saveGamePostfix = typeof(IngameMenuFixer).GetMethod("SaveGame_Postfix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(saveGameMethod, null, new HarmonyMethod(saveGamePostfix));
-            if (ConfigSwitcher.EnableNewFlora)
-            {
-                // Give salt when purple pinecone is cut
-#if DEBUG_HARMONY_PATCHING
-                Logger.Log("DEBUG: Setting up purple pinecone harvested material...");
-#endif
-                var giveResourceOnDamageMethod = typeof(Knife).GetMethod("GiveResourceOnDamage", BindingFlags.NonPublic | BindingFlags.Instance);
-                var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(giveResourceOnDamageMethod, null, new HarmonyMethod(giveResourceOnDamagePostfix));
-                // Change custom plants tooltips
-#if DEBUG_HARMONY_PATCHING
-                Logger.Log("DEBUG: Setting up plant tooltips...");
-#endif
-                var onHandHoverMethod = typeof(GrownPlant).GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
-                var onHandHoverPostfix = typeof(GrownPlantFixer).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(onHandHoverPostfix));
-                var plant_onHandClickMethod = typeof(GrownPlant).GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
-                var plant_onHandClickPrefix = typeof(GrownPlantFixer).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(plant_onHandClickMethod, new HarmonyMethod(plant_onHandClickPrefix), null);
-                // Make new flora spawn as seeds when using console commands (instead of grown plants)
-#if DEBUG_HARMONY_PATCHING
-                Logger.Log("DEBUG: Making plants spawning as seeds...");
-#endif
-                var onConsoleCommand_itemMethod = typeof(InventoryConsoleCommands).GetMethod("OnConsoleCommand_item", BindingFlags.NonPublic | BindingFlags.Instance);
-                var onConsoleCommand_itemPrefix = typeof(InventoryConsoleCommandsFixer).GetMethod("OnConsoleCommand_item_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(onConsoleCommand_itemMethod, new HarmonyMethod(onConsoleCommand_itemPrefix), null);
-                var onConsoleCommand_spawnMethod = typeof(SpawnConsoleCommand).GetMethod("OnConsoleCommand_spawn", BindingFlags.NonPublic | BindingFlags.Instance);
-                var onConsoleCommand_spawnPrefix = typeof(SpawnConsoleCommandFixer).GetMethod("OnConsoleCommand_spawn_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(onConsoleCommand_spawnMethod, new HarmonyMethod(onConsoleCommand_spawnPrefix), null);
-                // Handles pland/seed state upon drop and pickup
-#if DEBUG_HARMONY_PATCHING
-                Logger.Log("DEBUG: Setting up plants interactions...");
-#endif
-#if SUBNAUTICA
-                var dropMethod = typeof(Pickupable).GetMethod("Drop", new Type[] { typeof(Vector3), typeof(Vector3), typeof(bool) });
-#else
-                var dropMethod = typeof(Pickupable).GetMethod("Drop", new Type[] { typeof(Vector3), typeof(Vector3) });
-#endif
-                var dropPostfix = typeof(PickupableFixer).GetMethod("Drop_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(dropMethod, null, new HarmonyMethod(dropPostfix));
-                var onHandClickMethod = typeof(Pickupable).GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
-                var onHandClickPrefix = typeof(PickupableFixer).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(onHandClickPrefix), null);
-                // Hide Degasi base (500m) if needed
-#if DEBUG_HARMONY_PATCHING
-                Logger.Log("DEBUG: Adding biome checks...");
-#endif
-                var calculateBiomeMethod = typeof(Player).GetMethod("CalculateBiome", BindingFlags.NonPublic | BindingFlags.Instance);
-                var calculateBiomePostfix = typeof(PlayerFixer).GetMethod("CalculateBiome_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(calculateBiomeMethod, null, new HarmonyMethod(calculateBiomePostfix));
-            }
-        }
-
-        private static bool _patchedBatteries = false;
-        /// <summary>This will make batteries and powercells placeable (uses Harmony).</summary>
-        public static void PatchBatteries()
-        {
-            if (!_patchedBatteries)
-            {
-#if DEBUG_HARMONY_PATCHING
-                Logger.Log("DEBUG: Making batteries and powercells placeable...");
-#endif
-                var allowedToAddMethod = typeof(Equipment).GetMethod("AllowedToAdd", BindingFlags.Public | BindingFlags.Instance);
-                var allowedToAddPrefix = typeof(EquipmentFixer).GetMethod("AllowedToAdd_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(allowedToAddMethod, new HarmonyMethod(allowedToAddPrefix), null);
-                var addOrSwapMethod = typeof(Inventory).GetMethod("AddOrSwap", new Type[] { typeof(InventoryItem), typeof(Equipment), typeof(string) });
-                var addOrSwapPrefix = typeof(InventoryFixer).GetMethod("AddOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(addOrSwapMethod, new HarmonyMethod(addOrSwapPrefix), null);
-                var canSwitchOrSwapMethod = typeof(uGUI_Equipment).GetMethod("CanSwitchOrSwap", BindingFlags.Public | BindingFlags.Instance);
-                var canSwitchOrSwapPrefix = typeof(uGUI_EquipmentFixer).GetMethod("CanSwitchOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(canSwitchOrSwapMethod, new HarmonyMethod(canSwitchOrSwapPrefix), null);
-
-                _patchedBatteries = true;
-            }
-        }
-
-        /// <summary>This will make FCS mods compatible with the "Place batteries/powercells" feature.</summary>
-        private static void FixFCSMods()
-        {
-            IQMod modFCS1 = QModServices.Main.FindModById("FCSAIPowerCellSocket");
-            if (modFCS1 != null && modFCS1.ParsedVersion != null && modFCS1.ParsedVersion.ToString() == "1.2.3" && modFCS1.LoadedAssembly != null)
-            {
-                Logger.Log("INFO: Alterra Industrial Powercell Socket mod version 1.2.3 detected: Applying fix...");
-                Type[] types = modFCS1.LoadedAssembly.GetTypes();
-                if (types != null)
-                    foreach (Type t in types)
-                        if (t.Name != null && t.Name == "AIPowerCellSocketPowerManager")
-                        {
-                            MethodInfo isAllowedToAddMethod = t.GetMethod("IsAllowedToAdd", BindingFlags.NonPublic | BindingFlags.Instance);
-                            MethodInfo isAllowedToAddPrefix = typeof(FCSModsFixer).GetMethod("IsAllowedToAdd_Powercell_Prefix", BindingFlags.Public | BindingFlags.Static);
-                            HarmonyInstance.Patch(isAllowedToAddMethod, new HarmonyMethod(isAllowedToAddPrefix), null);
-                            Logger.Log("INFO: Alterra Industrial Powercell Socket mod successfully fixed.");
-                            break;
-                        }
-            }
-            IQMod modFCS2 = QModServices.Main.FindModById("FCSDeepDriller");
-            if (modFCS2 != null && modFCS2.ParsedVersion != null && modFCS2.ParsedVersion.ToString() == "1.2.5" && modFCS2.LoadedAssembly != null)
-            {
-                Logger.Log("INFO: Alterra Industrial Deep Driller mod version 1.2.5 detected: Applying fix...");
-                Type[] types = modFCS2.LoadedAssembly.GetTypes();
-                if (types != null)
-                    foreach (Type t in types)
-                        if (t.Name != null && t.Name == "FCSDeepDrillerBatteryController")
-                        {
-                            MethodInfo isAllowedToAddMethod = t.GetMethod("IsAllowedToAdd", BindingFlags.NonPublic | BindingFlags.Instance);
-                            MethodInfo isAllowedToAddPrefix = typeof(FCSModsFixer).GetMethod("IsAllowedToAdd_Driller_Prefix", BindingFlags.Public | BindingFlags.Static);
-                            HarmonyInstance.Patch(isAllowedToAddMethod, new HarmonyMethod(isAllowedToAddPrefix), null);
-                            Logger.Log("INFO: Alterra Industrial Deep Driller mod successfully fixed.");
-                            break;
-                        }
-            }
-        }
-
         /// <summary>Registers language strings based on user language.</summary>
         public static void RegisterLanguageStrings()
         {
             // Register tooltips
-            foreach (string tooltip in DecorationsMod.tooltips)
+            foreach (string tooltip in LanguageHelper.Tooltips)
                 SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(tooltip, LanguageHelper.GetFriendlyWord(tooltip));
             // Register configuration strings
             foreach (string configOption in ConfigOptions.LanguageStrings)
@@ -292,8 +97,8 @@ namespace DecorationsMod
             Logger.Log("INFO: Registering items...");
 
             // Get the list of modified existing items
-            var existingItems = from t in Assembly.GetExecutingAssembly().GetTypes() 
-                                where t.IsClass && t.Namespace == "DecorationsMod.ExistingItems" 
+            var existingItems = from t in Assembly.GetExecutingAssembly().GetTypes()
+                                where t.IsClass && t.Namespace == "DecorationsMod.ExistingItems"
                                 select t;
 
             // Register modified existing items
@@ -320,8 +125,8 @@ namespace DecorationsMod
             }
 
             // Get the list of new items
-            var newItems = from t in Assembly.GetExecutingAssembly().GetTypes() 
-                           where t.IsClass && t.Namespace == "DecorationsMod.NewItems" 
+            var newItems = from t in Assembly.GetExecutingAssembly().GetTypes()
+                           where t.IsClass && t.Namespace == "DecorationsMod.NewItems"
                            select t;
 
             // Register new items
@@ -334,13 +139,12 @@ namespace DecorationsMod
                 if (newItem.GameObject != null)
                 {
                     // Check if item has been enabled in Config options
-                    if ((ConfigSwitcher.EnableNutrientBlock || newItem.TechType != TechType.NutrientBlock) &&
-                        (ConfigSwitcher.EnableSofas || (newItem.ClassID != "SofaStr1" && newItem.ClassID != "SofaStr2" && newItem.ClassID != "SofaStr3" && newItem.ClassID != "SofaCorner2")) &&
-                        (ConfigSwitcher.EnableDecorativeElectronics || (newItem.ClassID != "DecorativeTechBox" && newItem.ClassID != "DecorativeControlTerminal" && newItem.ClassID != "WorkDeskScreen1" && newItem.ClassID != "WorkDeskScreen2")))
+                    if ((ConfigSwitcher.EnableNutrientBlock || newItem.TechType != TechType.NutrientBlock) && (ConfigSwitcher.EnableSofas || (newItem.ClassID != "SofaStr1" && newItem.ClassID != "SofaStr2" && newItem.ClassID != "SofaStr3" && newItem.ClassID != "SofaCorner2")))
                     {
-                        // If decoration items from habitat builder are enabled, add everything
-                        // Otherwise add only items that are not from habitat builder
-                        if (ConfigSwitcher.EnableNewItems || !newItem.IsHabitatBuilder)
+                        if (!newItem.IsHabitatBuilder ||
+                            (ConfigSwitcher.EnableNewItems && ConfigSwitcher.HabitatBuilderItems.Contains(newItem.ClassID) &&
+                                (ConfigSwitcher.EnableDecorativeElectronics || (newItem.ClassID != "DecorativeTechBox" && newItem.ClassID != "DecorativeControlTerminal" && newItem.ClassID != "WorkDeskScreen1" && newItem.ClassID != "WorkDeskScreen2")) &&
+                                (ConfigSwitcher.EnableCustomBaseParts || (newItem.ClassID != "OutdoorLadder" && newItem.ClassID != "CyclopsHatchConnector"))))
                         {
                             newItem.RegisterItem();
                             result.Add(newItem);
@@ -468,23 +272,5 @@ namespace DecorationsMod
             SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(techType, techTypeRecipe);
 #endif
         }
-
-        /// <summary>List of tooltip language strings.</summary>
-        private static readonly string[] tooltips = new string[13]
-        {
-            "LampTooltip",
-            "LampTooltipCompact",
-            "SwitchSeamothModel",
-            "SwitchExosuitModel",
-            "CyclopsDollTooltip",
-            "CyclopsDollTooltipCompact",
-            "AdjustCargoBoxSize",
-            "AdjustForkliftSize",
-            "AdjustWarperSpecimenSize",
-            "DisplayCoveTreeEggs",
-            "CustomPictureFrameTooltip",
-            "CustomPictureFrameTooltipCompact",
-            "OpenCustomStorage"
-        };
     }
 }

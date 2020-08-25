@@ -8,16 +8,7 @@ namespace DecorationsMod
 {
     public static class PrefabsHelper
     {
-        /*
-        SMLHelper.V2.Handlers.ItemActionHandler.RegisterLeftClickAction(this.TechType, delegate (InventoryItem i)
-        {
-            //Inventory.Get().debugQuickSlots = true;
-            Inventory.Get().quickSlots.Unbind(1);
-            Inventory.Get().quickSlots.Bind(1, i);
-            Inventory.Get().quickSlots.Select(1);
-            Inventory.Get().quickSlots.Update();
-        }, "Click here");
-        */
+        #region Prefab
 
         public static bool SetDefaultPickupable(GameObject gameObj, bool isPickupable = true, bool destroyOnDeath = false, bool isValidHandTarget = false, bool attached = false,
             TechType overrideTechType = TechType.None, bool overrideTechUsed = false)
@@ -180,6 +171,81 @@ namespace DecorationsMod
             return true;
         }
 
+        private static GameObject _objPositioner = null;
+        public static Vector3 Translate(Vector3 pos, Quaternion rot, Vector3 to, Space space = Space.Self)
+        {
+            Vector3 result = pos;
+            if (_objPositioner == null)
+                _objPositioner = new GameObject("dummyPositioner");
+            if (_objPositioner != null)
+            {
+                _objPositioner.transform.position = pos;
+                _objPositioner.transform.rotation = rot;
+                _objPositioner.transform.Translate(to, space);
+                result = _objPositioner.transform.position;
+            }
+            return result;
+        }
+
+        public static bool IsNear(Vector3 a, Vector3 b)
+        {
+            if (a.x < (b.x + 0.1f) && a.x > (b.x - 0.1f))
+                if (a.y < (b.y + 0.1f) && a.y > (b.y - 0.1f))
+                    if (a.z < (b.z + 0.1f) && a.z > (b.z - 0.1f))
+                        return true;
+            return false;
+        }
+
+        #endregion
+
+        #region PlaceTools sky appliers
+
+        // object name, model
+        private static readonly Dictionary<string, string> _placeToolSAFix = new Dictionary<string, string>()
+        {
+            { "FirstAidKit", "model" },
+            { "Lubricant", "model" },
+            { "Bleach", "model" },
+            { "DisinfectedWater", "model" },
+            { "FilteredWater", "model" },
+            { "WiringKit", "model" },
+            { "AdvancedWiringKit", "model" },
+            { "ComputerChip", "model" },
+            { "Battery", "model" },
+            { "PrecursorIonBattery", "model" },
+        };
+
+        public static void FixPlaceToolSkyAppliers(GameObject go)
+        {
+            foreach (KeyValuePair<string, string> placeTool in _placeToolSAFix)
+                if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture))
+                {
+                    GameObject model = go.FindChild(placeTool.Value);
+                    if (model != null)
+                    {
+                        SkyApplier[] sas = model.GetComponents<SkyApplier>();
+                        if (sas != null && sas.Length == 1)
+                        {
+                            sas[0].renderers = new Renderer[] { };
+                            SkyApplier sa = model.AddComponent<SkyApplier>();
+                            if (sa != null)
+                            {
+                                sa.anchorSky = Skies.Auto;
+                                sa.renderers = model.GetAllComponentsInChildren<MeshRenderer>();
+                                sa.dynamic = true;
+                                sa.updaterIndex = 0;
+                                sa.enabled = true;
+                                sa.RefreshDirtySky();
+                            }
+                        }
+                    }
+                }
+        }
+
+        #endregion
+
+        #region Seeds/plants
+
         private static GameObject _genericSeed = null;
         public static bool AddNewGenericSeed(ref GameObject go)
         {
@@ -287,12 +353,12 @@ namespace DecorationsMod
                     if (sc != null)
                         sc.enabled = true;
                 }
-#if DEBUG_SEEDS
-                Logger.Log("DEBUG: Printing transform for classId=[" + (classId ?? "?") + "]");
-                PrefabsHelper.PrintTransform(transform);
-#endif
             }
         }
+
+        #endregion
+
+        #region Aquariums
 
         private static bool _aquariumSkyApplierFixed = false; // This to ensure we fix sky appliers only once.
         public static void FixAquariumSkyApplier()
@@ -414,61 +480,7 @@ namespace DecorationsMod
                         }
         }
 
-        // object name, model
-        private static readonly Dictionary<string, string> _placeToolSAFix = new Dictionary<string, string>()
-        {
-            { "FirstAidKit", "model" },
-            { "Lubricant", "model" },
-            { "Bleach", "model" },
-            { "DisinfectedWater", "model" },
-            { "FilteredWater", "model" },
-            { "WiringKit", "model" },
-            { "AdvancedWiringKit", "model" },
-            { "ComputerChip", "model" },
-            { "Battery", "model" },
-            { "PrecursorIonBattery", "model" },
-        };
-
-        public static void FixPlaceToolSkyAppliers(GameObject go)
-        {
-            foreach (KeyValuePair<string, string> placeTool in _placeToolSAFix)
-                if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture))
-                {
-                    GameObject model = go.FindChild(placeTool.Value);
-                    if (model != null)
-                    {
-                        SkyApplier[] sas = model.GetComponents<SkyApplier>();
-                        if (sas != null && sas.Length == 1)
-                        {
-                            sas[0].renderers = new Renderer[] { };
-                            SkyApplier sa = model.AddComponent<SkyApplier>();
-                            if (sa != null)
-                            {
-                                sa.anchorSky = Skies.Auto;
-                                sa.renderers = model.GetAllComponentsInChildren<MeshRenderer>();
-                                sa.dynamic = true;
-                                sa.updaterIndex = 0;
-                                sa.enabled = true;
-                                sa.RefreshDirtySky();
-                            }
-                        }
-                    }
-                }
-        }
-
-        public static void PrintTransform(Transform tr, string indent = "\t")
-        {
-            if (tr != null)
-            {
-                Logger.Log("DEBUG: Transform " + indent + "name=[" + tr.name + "] position=[" + tr.localPosition.x.ToString() + ";" + tr.localPosition.y.ToString() + ";" + tr.localPosition.z.ToString() + "] scale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "]");
-                foreach (Component c in tr.GetComponents<Component>())
-                    if (c.GetType() != typeof(Transform))
-                        Logger.Log("DEBUG: Transform " + indent + " => component type=[" + c.GetType().ToString() + "] name=[" + c.name + "]");
-                string newIndent = indent + "\t";
-                foreach (Transform child in tr)
-                    PrintTransform(child, newIndent);
-            }
-        }
+        #endregion
 
         #region Degasi bases
 
