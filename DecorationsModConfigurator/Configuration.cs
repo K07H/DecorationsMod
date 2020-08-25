@@ -148,6 +148,42 @@ namespace DecorationsModConfigurator
             }
         }
 
+        private bool _fixAquariumLighting;
+        public bool FixAquariumLighting
+        {
+            get => _fixAquariumLighting;
+            set
+            {
+                if (_fixAquariumLighting != value)
+                {
+#if DEBUG_CONFIG_CHANGED
+                    Logger.Log(LOG_CONFIG_CHANGE, nameof(FixAquariumLighting), _fixAquariumLighting, value);
+#endif
+                    _fixAquariumLighting = value;
+                }
+            }
+        }
+
+        private bool _enableAquariumGlassGlowing;
+        public bool EnableAquariumGlassGlowing
+        {
+            get => _enableAquariumGlassGlowing;
+            set
+            {
+                if (_enableAquariumGlassGlowing != value)
+                {
+#if DEBUG_CONFIG_CHANGED
+                    Logger.Log(LOG_CONFIG_CHANGE, nameof(EnableAquariumGlassGlowing), _enableAquariumGlassGlowing, value);
+#endif
+                    _enableAquariumGlassGlowing = value;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Habitat builder settings
+
         private bool _enableNewItems;
         public bool EnableNewItems
         {
@@ -196,18 +232,18 @@ namespace DecorationsModConfigurator
             }
         }
 
-        private bool _enableNutrientBlock;
-        public bool EnableNutrientBlock
+        private bool _enableCustomBaseParts;
+        public bool EnableCustomBaseParts
         {
-            get => _enableNutrientBlock;
+            get => _enableCustomBaseParts;
             set
             {
-                if (_enableNutrientBlock != value)
+                if (_enableCustomBaseParts != value)
                 {
 #if DEBUG_CONFIG_CHANGED
-                    Logger.Log(LOG_CONFIG_CHANGE, nameof(EnableNutrientBlock), _enableNutrientBlock, value);
+                    Logger.Log(LOG_CONFIG_CHANGE, nameof(EnableCustomBaseParts), _enableCustomBaseParts, value);
 #endif
-                    _enableNutrientBlock = value;
+                    _enableCustomBaseParts = value;
                 }
             }
         }
@@ -244,34 +280,18 @@ namespace DecorationsModConfigurator
             }
         }
 
-        private bool _fixAquariumLighting;
-        public bool FixAquariumLighting
+        private string _habitatBuilderItems;
+        public string HabitatBuilderItems
         {
-            get => _fixAquariumLighting;
+            get => _habitatBuilderItems;
             set
             {
-                if (_fixAquariumLighting != value)
+                if (_habitatBuilderItems != value)
                 {
 #if DEBUG_CONFIG_CHANGED
-                    Logger.Log(LOG_CONFIG_CHANGE, nameof(FixAquariumLighting), _fixAquariumLighting, value);
+                    Logger.Log(LOG_CONFIG_CHANGE, nameof(HabitatBuilderItems), _habitatBuilderItems, value);
 #endif
-                    _fixAquariumLighting = value;
-                }
-            }
-        }
-
-        private bool _enableAquariumGlassGlowing;
-        public bool EnableAquariumGlassGlowing
-        {
-            get => _enableAquariumGlassGlowing;
-            set
-            {
-                if (_enableAquariumGlassGlowing != value)
-                {
-#if DEBUG_CONFIG_CHANGED
-                    Logger.Log(LOG_CONFIG_CHANGE, nameof(EnableAquariumGlassGlowing), _enableAquariumGlassGlowing, value);
-#endif
-                    _enableAquariumGlassGlowing = value;
+                    _habitatBuilderItems = value;
                 }
             }
         }
@@ -691,6 +711,22 @@ namespace DecorationsModConfigurator
         #endregion
 
         #region Drinks & food settings
+        
+        private bool _enableNutrientBlock;
+        public bool EnableNutrientBlock
+        {
+            get => _enableNutrientBlock;
+            set
+            {
+                if (_enableNutrientBlock != value)
+                {
+#if DEBUG_CONFIG_CHANGED
+                    Logger.Log(LOG_CONFIG_CHANGE, nameof(EnableNutrientBlock), _enableNutrientBlock, value);
+#endif
+                    _enableNutrientBlock = value;
+                }
+            }
+        }
 
         private int _barBottle1Water;
         public int BarBottle1Water
@@ -1631,16 +1667,19 @@ namespace DecorationsModConfigurator
             this._allowBuildOutside = true;
             this._allowPlaceOutside = true;
             this._enablePlaceItems = true;
-            this._enablePlaceBatteries = false;
+            this._enablePlaceBatteries = true;
             this._enableNewFlora = true;
+            this._fixAquariumLighting = true;
+            this._enableAquariumGlassGlowing = false;
+
+            // Habitat builder settings
             this._enableNewItems = true;
             this._enableSofas = true;
             this._enableDecorativeElectronics = true;
-            this._enableNutrientBlock = true;
+            this._enableCustomBaseParts = true;
             this._allowIndoorLongPlanterOutside = true;
             this._allowOutdoorLongPlanterInside = true;
-            this._fixAquariumLighting = true;
-            this._enableAquariumGlassGlowing = false;
+            this._habitatBuilderItems = "AlienPillar1/AquariumSmall/BarStool/BenchMedium/BenchSmall/CargoBox01_damaged/CargoBox01a/CargoBox01b/CustomPictureFrame/CyclopsDoll/DecorationsEmptyDesk/DecorationsSpecimenAnalyzer/DecorativeControlTerminal/DecorativeLocker/DecorativeLockerClosed/DecorativeLockerDoor/DecorativeTechBox/MarlaCat/ExosuitDoll/ForkLiftDoll/JackSepticEyeDoll/LabCart/ALongPlanter/LongPlanterB/MarkiDoll1/MarkiDoll2/ReactorLamp/SeamothDoll/SofaCorner2/SofaStr1/SofaStr2/SofaStr3/WarperPart1/WorkDeskScreen1/WorkDeskScreen2/OutdoorLadder";
 
             // Discovery settings
             this._addItemsWhenDiscovered = true;
@@ -1674,6 +1713,7 @@ namespace DecorationsModConfigurator
             this._creatureEggs_RecipiesResourceAmount = 5;
 
             // Drinks & food settings
+            this._enableNutrientBlock = true;
             this._barBottle1Water = 20;
             this._barBottle2Water = 20;
             this._barBottle3Water = 40;
@@ -1953,6 +1993,12 @@ namespace DecorationsModConfigurator
                     origConfig._enableNewItems = !(string.Compare(line.Substring("enableNewItems=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("enableSofas="))
                     origConfig._enableSofas = !(string.Compare(line.Substring("enableSofas=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
+                else if (line.StartsWith("enableDecorativeElectronics="))
+                    origConfig._enableDecorativeElectronics = !(string.Compare(line.Substring("enableDecorativeElectronics=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
+                else if (line.StartsWith("enableCustomBaseParts="))
+                    origConfig._enableCustomBaseParts = !(string.Compare(line.Substring("enableCustomBaseParts=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
+                else if (line.StartsWith("habitatBuilderItems="))
+                    origConfig._habitatBuilderItems = line.Substring("habitatBuilderItems=".Length);
                 else if (line.StartsWith("enableNutrientBlock="))
                     origConfig._enableNutrientBlock = !(string.Compare(line.Substring("enableNutrientBlock=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("allowIndoorLongPlanterOutside="))
@@ -1980,11 +2026,11 @@ namespace DecorationsModConfigurator
                 else if (line.StartsWith("precursorKeys_RecipiesResource="))
                     origConfig._precursorKeys_RecipiesResource = line.Substring("precursorKeys_RecipiesResource=".Length);
                 else if (line.StartsWith("precursorKeys_RecipiesResourceAmount="))
-                    origConfig._precursorKeys_RecipiesResourceAmount = (int.TryParse(line.Substring("precursorKeys_RecipiesResourceAmount=".Length), out int tmpInt) ? tmpInt : 1);
+                    origConfig._precursorKeys_RecipiesResourceAmount = (int.TryParse(line.Substring("precursorKeys_RecipiesResourceAmount=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 1);
                 else if (line.StartsWith("relics_RecipiesResource="))
                     origConfig._relics_RecipiesResource = line.Substring("relics_RecipiesResource=".Length);
                 else if (line.StartsWith("relics_RecipiesResourceAmount="))
-                    origConfig._relics_RecipiesResourceAmount = (int.TryParse(line.Substring("relics_RecipiesResourceAmount=".Length), out int tmpInt) ? tmpInt : 1);
+                    origConfig._relics_RecipiesResourceAmount = (int.TryParse(line.Substring("relics_RecipiesResourceAmount=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 1);
                 else if (line.StartsWith("alienRelic1Animation="))
                     origConfig._alienRelic1Animation = !(string.Compare(line.Substring("alienRelic1Animation=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("alienRelic2Animation="))
@@ -2012,25 +2058,25 @@ namespace DecorationsModConfigurator
                 else if (line.StartsWith("creatureEggs_RecipiesResource="))
                     origConfig._creatureEggs_RecipiesResource = line.Substring("creatureEggs_RecipiesResource=".Length);
                 else if (line.StartsWith("creatureEggs_RecipiesResourceAmount="))
-                    origConfig._creatureEggs_RecipiesResourceAmount = (int.TryParse(line.Substring("creatureEggs_RecipiesResourceAmount=".Length), out int tmpInt) ? tmpInt : 5);
+                    origConfig._creatureEggs_RecipiesResourceAmount = (int.TryParse(line.Substring("creatureEggs_RecipiesResourceAmount=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 5);
                 else if (line.StartsWith("barBottle1Water="))
-                    origConfig._barBottle1Water = (int.TryParse(line.Substring("barBottle1Water=".Length), out int tmpInt) ? tmpInt : 20);
+                    origConfig._barBottle1Water = (int.TryParse(line.Substring("barBottle1Water=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 20);
                 else if (line.StartsWith("barBottle2Water="))
-                    origConfig._barBottle2Water = (int.TryParse(line.Substring("barBottle2Water=".Length), out int tmpInt) ? tmpInt : 20);
+                    origConfig._barBottle2Water = (int.TryParse(line.Substring("barBottle2Water=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 20);
                 else if (line.StartsWith("barBottle3Water="))
-                    origConfig._barBottle3Water = (int.TryParse(line.Substring("barBottle3Water=".Length), out int tmpInt) ? tmpInt : 40);
+                    origConfig._barBottle3Water = (int.TryParse(line.Substring("barBottle3Water=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 40);
                 else if (line.StartsWith("barBottle4Water="))
-                    origConfig._barBottle4Water = (int.TryParse(line.Substring("barBottle4Water=".Length), out int tmpInt) ? tmpInt : 40);
+                    origConfig._barBottle4Water = (int.TryParse(line.Substring("barBottle4Water=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 40);
                 else if (line.StartsWith("barBottle5Water="))
-                    origConfig._barBottle5Water = (int.TryParse(line.Substring("barBottle5Water=".Length), out int tmpInt) ? tmpInt : 40);
+                    origConfig._barBottle5Water = (int.TryParse(line.Substring("barBottle5Water=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 40);
                 else if (line.StartsWith("barFood1Nutrient="))
-                    origConfig._barFood1Nutrient = (int.TryParse(line.Substring("barFood1Nutrient=".Length), out int tmpInt) ? tmpInt : 40);
+                    origConfig._barFood1Nutrient = (int.TryParse(line.Substring("barFood1Nutrient=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 40);
                 else if (line.StartsWith("barFood1Water="))
-                    origConfig._barFood1Water = (int.TryParse(line.Substring("barFood1Water=".Length), out int tmpInt) ? tmpInt : 10);
+                    origConfig._barFood1Water = (int.TryParse(line.Substring("barFood1Water=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 10);
                 else if (line.StartsWith("barFood2Nutrient="))
-                    origConfig._barFood2Nutrient = (int.TryParse(line.Substring("barFood2Nutrient=".Length), out int tmpInt) ? tmpInt : 55);
+                    origConfig._barFood2Nutrient = (int.TryParse(line.Substring("barFood2Nutrient=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 55);
                 else if (line.StartsWith("barFood2Water="))
-                    origConfig._barFood2Water = (int.TryParse(line.Substring("barFood2Water=".Length), out int tmpInt) ? tmpInt : 25);
+                    origConfig._barFood2Water = (int.TryParse(line.Substring("barFood2Water=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 25);
                 else if (line.StartsWith("addRegularAirSeeds="))
                     origConfig._addRegularAirSeeds = !(string.Compare(line.Substring("addRegularAirSeeds=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("addRegularWaterSeeds="))
@@ -2038,11 +2084,11 @@ namespace DecorationsModConfigurator
                 else if (line.StartsWith("flora_RecipiesResource="))
                     origConfig._flora_RecipiesResource = line.Substring("flora_RecipiesResource=".Length);
                 else if (line.StartsWith("flora_RecipiesResourceAmount="))
-                    origConfig._flora_RecipiesResourceAmount = (int.TryParse(line.Substring("flora_RecipiesResourceAmount=".Length), out int tmpInt) ? tmpInt : 5);
+                    origConfig._flora_RecipiesResourceAmount = (int.TryParse(line.Substring("flora_RecipiesResourceAmount=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 5);
                 else if (line.StartsWith("purplePineconeDroppedResource="))
                     origConfig._purplePineconeDroppedResource = line.Substring("purplePineconeDroppedResource=".Length);
                 else if (line.StartsWith("purplePineconeDroppedResourceAmount="))
-                    origConfig._purplePineconeDroppedResourceAmount = (int.TryParse(line.Substring("purplePineconeDroppedResourceAmount=".Length), out int tmpInt) ? tmpInt : 1);
+                    origConfig._purplePineconeDroppedResourceAmount = (int.TryParse(line.Substring("purplePineconeDroppedResourceAmount=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 1);
                 else if (line.StartsWith("config_LandTree="))
                     origConfig._LandTree = LoadFloraConfig(line.Substring("config_LandTree=".Length), LanguageHelper.GetFriendlyWord("LandTree1Name"), "/Images/Flora/landtree1seedicon.png");
                 else if (line.StartsWith("config_JungleTreeA="))
@@ -2158,13 +2204,13 @@ namespace DecorationsModConfigurator
                 else if (line.StartsWith("GhostLeviatan_enable="))
                     origConfig._GhostLeviatan_enable = string.Compare(line.Substring("GhostLeviatan_enable=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
                 else if (line.StartsWith("GhostLeviatan_health="))
-                    origConfig._GhostLeviatan_health = (int.TryParse(line.Substring("GhostLeviatan_health=".Length), out int tmpInt) ? tmpInt : 2000);
+                    origConfig._GhostLeviatan_health = (int.TryParse(line.Substring("GhostLeviatan_health=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 2000);
                 else if (line.StartsWith("GhostLeviatan_maxSpawns="))
-                    origConfig._GhostLeviatan_maxSpawns = (int.TryParse(line.Substring("GhostLeviatan_maxSpawns=".Length), out int tmpInt) ? tmpInt : 2);
+                    origConfig._GhostLeviatan_maxSpawns = (int.TryParse(line.Substring("GhostLeviatan_maxSpawns=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 2);
                 else if (line.StartsWith("GhostLeviatan_timeBeforeFirstSpawn="))
-                    origConfig._GhostLeviatan_timeBeforeFirstSpawn = (int.TryParse(line.Substring("GhostLeviatan_timeBeforeFirstSpawn=".Length), out int tmpInt) ? tmpInt : 1200);
+                    origConfig._GhostLeviatan_timeBeforeFirstSpawn = (int.TryParse(line.Substring("GhostLeviatan_timeBeforeFirstSpawn=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 1200);
                 else if (line.StartsWith("GhostLeviatan_spawnTimeRatio="))
-                    origConfig._GhostLeviatan_spawnTimeRatio = (int.TryParse(line.Substring("GhostLeviatan_spawnTimeRatio=".Length), out int tmpInt) ? tmpInt : 100);
+                    origConfig._GhostLeviatan_spawnTimeRatio = (int.TryParse(line.Substring("GhostLeviatan_spawnTimeRatio=".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int tmpInt) ? tmpInt : 100);
                 else if (line.StartsWith("useAlternativeScreenResolution="))
                     origConfig._useAlternativeScreenResolution = string.Compare(line.Substring("useAlternativeScreenResolution=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
                 else if (line.StartsWith("hideDeepGrandReefDegasiBase="))
@@ -2242,113 +2288,119 @@ namespace DecorationsModConfigurator
                     if (string.Compare(currentConfig.Language, origConfig.Language, true, CultureInfo.InvariantCulture) != 0)
                         ReplaceStr(ref configContent, currentConfig.Language, "\nlanguage=");
                     if (currentConfig.UseCompactTooltips != origConfig.UseCompactTooltips)
-                        ReplaceStr(ref configContent, currentConfig.UseCompactTooltips.ToString(), "\nuseCompactTooltips=");
+                        ReplaceStr(ref configContent, currentConfig.UseCompactTooltips.ToString(CultureInfo.InvariantCulture), "\nuseCompactTooltips=");
                     if (currentConfig.LockQuickslotsWhenPlacingItem != origConfig.LockQuickslotsWhenPlacingItem)
-                        ReplaceStr(ref configContent, currentConfig.LockQuickslotsWhenPlacingItem.ToString(), "\nlockQuickslotsWhenPlacingItem=");
+                        ReplaceStr(ref configContent, currentConfig.LockQuickslotsWhenPlacingItem.ToString(CultureInfo.InvariantCulture), "\nlockQuickslotsWhenPlacingItem=");
                     if (currentConfig.AllowBuildOutside != origConfig.AllowBuildOutside)
-                        ReplaceStr(ref configContent, currentConfig.AllowBuildOutside.ToString(), "\nallowBuildOutside=");
+                        ReplaceStr(ref configContent, currentConfig.AllowBuildOutside.ToString(CultureInfo.InvariantCulture), "\nallowBuildOutside=");
                     if (currentConfig.AllowPlaceOutside != origConfig.AllowPlaceOutside)
-                        ReplaceStr(ref configContent, currentConfig.AllowPlaceOutside.ToString(), "\nallowPlaceOutside=");
+                        ReplaceStr(ref configContent, currentConfig.AllowPlaceOutside.ToString(CultureInfo.InvariantCulture), "\nallowPlaceOutside=");
                     if (currentConfig.EnablePlaceItems != origConfig.EnablePlaceItems)
-                        ReplaceStr(ref configContent, currentConfig.EnablePlaceItems.ToString(), "\nenablePlaceItems=");
+                        ReplaceStr(ref configContent, currentConfig.EnablePlaceItems.ToString(CultureInfo.InvariantCulture), "\nenablePlaceItems=");
                     if (currentConfig.EnablePlaceBatteries != origConfig.EnablePlaceBatteries)
-                        ReplaceStr(ref configContent, currentConfig.EnablePlaceBatteries.ToString(), "\nenablePlaceBatteries=");
+                        ReplaceStr(ref configContent, currentConfig.EnablePlaceBatteries.ToString(CultureInfo.InvariantCulture), "\nenablePlaceBatteries=");
                     if (currentConfig.EnableNewFlora != origConfig.EnableNewFlora)
-                        ReplaceStr(ref configContent, currentConfig.EnableNewFlora.ToString(), "\nenableNewFlora=");
+                        ReplaceStr(ref configContent, currentConfig.EnableNewFlora.ToString(CultureInfo.InvariantCulture), "\nenableNewFlora=");
                     if (currentConfig.EnableNewItems != origConfig.EnableNewItems)
-                        ReplaceStr(ref configContent, currentConfig.EnableNewItems.ToString(), "\nenableNewItems=");
+                        ReplaceStr(ref configContent, currentConfig.EnableNewItems.ToString(CultureInfo.InvariantCulture), "\nenableNewItems=");
                     if (currentConfig.EnableSofas != origConfig.EnableSofas)
-                        ReplaceStr(ref configContent, currentConfig.EnableSofas.ToString(), "\nenableSofas=");
+                        ReplaceStr(ref configContent, currentConfig.EnableSofas.ToString(CultureInfo.InvariantCulture), "\nenableSofas=");
+                    if (currentConfig.EnableDecorativeElectronics != origConfig.EnableDecorativeElectronics)
+                        ReplaceStr(ref configContent, currentConfig.EnableDecorativeElectronics.ToString(CultureInfo.InvariantCulture), "\nenableDecorativeElectronics=");
+                    if (currentConfig.EnableCustomBaseParts != origConfig.EnableCustomBaseParts)
+                        ReplaceStr(ref configContent, currentConfig.EnableCustomBaseParts.ToString(CultureInfo.InvariantCulture), "\nenableCustomBaseParts=");
+                    if (currentConfig.HabitatBuilderItems != origConfig.HabitatBuilderItems)
+                        ReplaceStr(ref configContent, currentConfig.HabitatBuilderItems, "\nhabitatBuilderItems=");
                     if (currentConfig.AllowIndoorLongPlanterOutside != origConfig.AllowIndoorLongPlanterOutside)
-                        ReplaceStr(ref configContent, currentConfig.AllowIndoorLongPlanterOutside.ToString(), "\nallowIndoorLongPlanterOutside=");
+                        ReplaceStr(ref configContent, currentConfig.AllowIndoorLongPlanterOutside.ToString(CultureInfo.InvariantCulture), "\nallowIndoorLongPlanterOutside=");
                     if (currentConfig.AllowOutdoorLongPlanterInside != origConfig.AllowOutdoorLongPlanterInside)
-                        ReplaceStr(ref configContent, currentConfig.AllowOutdoorLongPlanterInside.ToString(), "\nallowOutdoorLongPlanterInside=");
+                        ReplaceStr(ref configContent, currentConfig.AllowOutdoorLongPlanterInside.ToString(CultureInfo.InvariantCulture), "\nallowOutdoorLongPlanterInside=");
                     if (currentConfig.FixAquariumLighting != origConfig.FixAquariumLighting)
-                        ReplaceStr(ref configContent, currentConfig.FixAquariumLighting.ToString(), "\nfixAquariumLighting=");
+                        ReplaceStr(ref configContent, currentConfig.FixAquariumLighting.ToString(CultureInfo.InvariantCulture), "\nfixAquariumLighting=");
                     if (currentConfig.EnableAquariumGlassGlowing != origConfig.EnableAquariumGlassGlowing)
-                        ReplaceStr(ref configContent, currentConfig.EnableAquariumGlassGlowing.ToString(), "\nenableAquariumGlassGlowing=");
+                        ReplaceStr(ref configContent, currentConfig.EnableAquariumGlassGlowing.ToString(CultureInfo.InvariantCulture), "\nenableAquariumGlassGlowing=");
                     if (currentConfig.AddItemsWhenDiscovered != origConfig.AddItemsWhenDiscovered)
-                        ReplaceStr(ref configContent, currentConfig.AddItemsWhenDiscovered.ToString(), "\naddItemsWhenDiscovered=");
+                        ReplaceStr(ref configContent, currentConfig.AddItemsWhenDiscovered.ToString(CultureInfo.InvariantCulture), "\naddItemsWhenDiscovered=");
                     if (currentConfig.AddAirSeedsWhenDiscovered != origConfig.AddAirSeedsWhenDiscovered)
-                        ReplaceStr(ref configContent, currentConfig.AddAirSeedsWhenDiscovered.ToString(), "\naddAirSeedsWhenDiscovered=");
+                        ReplaceStr(ref configContent, currentConfig.AddAirSeedsWhenDiscovered.ToString(CultureInfo.InvariantCulture), "\naddAirSeedsWhenDiscovered=");
                     if (currentConfig.AddWaterSeedsWhenDiscovered != origConfig.AddWaterSeedsWhenDiscovered)
-                        ReplaceStr(ref configContent, currentConfig.AddWaterSeedsWhenDiscovered.ToString(), "\naddWaterSeedsWhenDiscovered=");
+                        ReplaceStr(ref configContent, currentConfig.AddWaterSeedsWhenDiscovered.ToString(CultureInfo.InvariantCulture), "\naddWaterSeedsWhenDiscovered=");
                     if (currentConfig.AddEggsWhenCreatureScanned != origConfig.AddEggsWhenCreatureScanned)
-                        ReplaceStr(ref configContent, currentConfig.AddEggsWhenCreatureScanned.ToString(), "\naddEggsWhenCreatureScanned=");
+                        ReplaceStr(ref configContent, currentConfig.AddEggsWhenCreatureScanned.ToString(CultureInfo.InvariantCulture), "\naddEggsWhenCreatureScanned=");
                     if (currentConfig.AddEggsAtStart != origConfig.AddEggsAtStart)
-                        ReplaceStr(ref configContent, currentConfig.AddEggsAtStart.ToString(), "\naddEggsAtStart=");
+                        ReplaceStr(ref configContent, currentConfig.AddEggsAtStart.ToString(CultureInfo.InvariantCulture), "\naddEggsAtStart=");
                     if (currentConfig.EnablePrecursorTab != origConfig.EnablePrecursorTab)
-                        ReplaceStr(ref configContent, currentConfig.EnablePrecursorTab.ToString(), "\nenablePrecursorTab=");
+                        ReplaceStr(ref configContent, currentConfig.EnablePrecursorTab.ToString(CultureInfo.InvariantCulture), "\nenablePrecursorTab=");
                     if (currentConfig.PrecursorKeysAll != origConfig.PrecursorKeysAll)
-                        ReplaceStr(ref configContent, currentConfig.PrecursorKeysAll.ToString(), "\nprecursorKeysAll=");
+                        ReplaceStr(ref configContent, currentConfig.PrecursorKeysAll.ToString(CultureInfo.InvariantCulture), "\nprecursorKeysAll=");
                     if (string.Compare(currentConfig.PrecursorKeys_RecipiesResource, origConfig.PrecursorKeys_RecipiesResource, true, CultureInfo.InvariantCulture) != 0)
                         ReplaceStr(ref configContent, currentConfig.PrecursorKeys_RecipiesResource, "\nprecursorKeys_RecipiesResource=");
                     if (currentConfig.PrecursorKeys_RecipiesResourceAmount != origConfig.PrecursorKeys_RecipiesResourceAmount)
-                        ReplaceStr(ref configContent, currentConfig.PrecursorKeys_RecipiesResourceAmount.ToString(), "\nprecursorKeys_RecipiesResourceAmount=");
+                        ReplaceStr(ref configContent, currentConfig.PrecursorKeys_RecipiesResourceAmount.ToString(CultureInfo.InvariantCulture), "\nprecursorKeys_RecipiesResourceAmount=");
                     if (string.Compare(currentConfig.Relics_RecipiesResource, origConfig.Relics_RecipiesResource, true, CultureInfo.InvariantCulture) != 0)
                         ReplaceStr(ref configContent, currentConfig.Relics_RecipiesResource, "\nrelics_RecipiesResource=");
                     if (currentConfig.Relics_RecipiesResourceAmount != origConfig.Relics_RecipiesResourceAmount)
-                        ReplaceStr(ref configContent, currentConfig.Relics_RecipiesResourceAmount.ToString(), "\nrelics_RecipiesResourceAmount=");
+                        ReplaceStr(ref configContent, currentConfig.Relics_RecipiesResourceAmount.ToString(CultureInfo.InvariantCulture), "\nrelics_RecipiesResourceAmount=");
                     if (currentConfig.AlienRelic1Animation != origConfig.AlienRelic1Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic1Animation.ToString(), "\nalienRelic1Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic1Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic1Animation=");
                     if (currentConfig.AlienRelic2Animation != origConfig.AlienRelic2Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic2Animation.ToString(), "\nalienRelic2Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic2Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic2Animation=");
                     if (currentConfig.AlienRelic3Animation != origConfig.AlienRelic3Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic3Animation.ToString(), "\nalienRelic3Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic3Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic3Animation=");
                     if (currentConfig.AlienRelic4Animation != origConfig.AlienRelic4Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic4Animation.ToString(), "\nalienRelic4Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic4Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic4Animation=");
                     if (currentConfig.AlienRelic5Animation != origConfig.AlienRelic5Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic5Animation.ToString(), "\nalienRelic5Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic5Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic5Animation=");
                     if (currentConfig.AlienRelic6Animation != origConfig.AlienRelic6Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic6Animation.ToString(), "\nalienRelic6Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic6Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic6Animation=");
                     if (currentConfig.AlienRelic7Animation != origConfig.AlienRelic7Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic7Animation.ToString(), "\nalienRelic7Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic7Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic7Animation=");
                     if (currentConfig.AlienRelic8Animation != origConfig.AlienRelic8Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic8Animation.ToString(), "\nalienRelic8Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic8Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic8Animation=");
                     if (currentConfig.AlienRelic9Animation != origConfig.AlienRelic9Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic9Animation.ToString(), "\nalienRelic9Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic9Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic9Animation=");
                     if (currentConfig.AlienRelic10Animation != origConfig.AlienRelic10Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic10Animation.ToString(), "\nalienRelic10Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic10Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic10Animation=");
                     if (currentConfig.AlienRelic11Animation != origConfig.AlienRelic11Animation)
-                        ReplaceStr(ref configContent, currentConfig.AlienRelic11Animation.ToString(), "\nalienRelic11Animation=");
+                        ReplaceStr(ref configContent, currentConfig.AlienRelic11Animation.ToString(CultureInfo.InvariantCulture), "\nalienRelic11Animation=");
                     if (currentConfig.EnableAllEggs != origConfig.EnableAllEggs)
-                        ReplaceStr(ref configContent, currentConfig.EnableAllEggs.ToString(), "\nenableAllEggs=");
+                        ReplaceStr(ref configContent, currentConfig.EnableAllEggs.ToString(CultureInfo.InvariantCulture), "\nenableAllEggs=");
                     if (string.Compare(currentConfig.CreatureEggs_RecipiesResource, origConfig.CreatureEggs_RecipiesResource, true, CultureInfo.InvariantCulture) != 0)
                         ReplaceStr(ref configContent, currentConfig.CreatureEggs_RecipiesResource, "\ncreatureEggs_RecipiesResource=");
                     if (currentConfig.CreatureEggs_RecipiesResourceAmount != origConfig.CreatureEggs_RecipiesResourceAmount)
-                        ReplaceStr(ref configContent, currentConfig.CreatureEggs_RecipiesResourceAmount.ToString(), "\ncreatureEggs_RecipiesResourceAmount=");
+                        ReplaceStr(ref configContent, currentConfig.CreatureEggs_RecipiesResourceAmount.ToString(CultureInfo.InvariantCulture), "\ncreatureEggs_RecipiesResourceAmount=");
                     if (currentConfig.EnableNutrientBlock != origConfig.EnableNutrientBlock)
-                        ReplaceStr(ref configContent, currentConfig.EnableNutrientBlock.ToString(), "\nenableNutrientBlock=");
+                        ReplaceStr(ref configContent, currentConfig.EnableNutrientBlock.ToString(CultureInfo.InvariantCulture), "\nenableNutrientBlock=");
                     if (currentConfig.BarBottle1Water != origConfig.BarBottle1Water)
-                        ReplaceStr(ref configContent, currentConfig.BarBottle1Water.ToString(), "\nbarBottle1Water=");
+                        ReplaceStr(ref configContent, currentConfig.BarBottle1Water.ToString(CultureInfo.InvariantCulture), "\nbarBottle1Water=");
                     if (currentConfig.BarBottle2Water != origConfig.BarBottle2Water)
-                        ReplaceStr(ref configContent, currentConfig.BarBottle2Water.ToString(), "\nbarBottle2Water=");
+                        ReplaceStr(ref configContent, currentConfig.BarBottle2Water.ToString(CultureInfo.InvariantCulture), "\nbarBottle2Water=");
                     if (currentConfig.BarBottle3Water != origConfig.BarBottle3Water)
-                        ReplaceStr(ref configContent, currentConfig.BarBottle3Water.ToString(), "\nbarBottle3Water=");
+                        ReplaceStr(ref configContent, currentConfig.BarBottle3Water.ToString(CultureInfo.InvariantCulture), "\nbarBottle3Water=");
                     if (currentConfig.BarBottle4Water != origConfig.BarBottle4Water)
-                        ReplaceStr(ref configContent, currentConfig.BarBottle4Water.ToString(), "\nbarBottle4Water=");
+                        ReplaceStr(ref configContent, currentConfig.BarBottle4Water.ToString(CultureInfo.InvariantCulture), "\nbarBottle4Water=");
                     if (currentConfig.BarBottle5Water != origConfig.BarBottle5Water)
-                        ReplaceStr(ref configContent, currentConfig.BarBottle5Water.ToString(), "\nbarBottle5Water=");
+                        ReplaceStr(ref configContent, currentConfig.BarBottle5Water.ToString(CultureInfo.InvariantCulture), "\nbarBottle5Water=");
                     if (currentConfig.BarFood1Nutrient != origConfig.BarFood1Nutrient)
-                        ReplaceStr(ref configContent, currentConfig.BarFood1Nutrient.ToString(), "\nbarFood1Nutrient=");
+                        ReplaceStr(ref configContent, currentConfig.BarFood1Nutrient.ToString(CultureInfo.InvariantCulture), "\nbarFood1Nutrient=");
                     if (currentConfig.BarFood1Water != origConfig.BarFood1Water)
-                        ReplaceStr(ref configContent, currentConfig.BarFood1Water.ToString(), "\nbarFood1Water=");
+                        ReplaceStr(ref configContent, currentConfig.BarFood1Water.ToString(CultureInfo.InvariantCulture), "\nbarFood1Water=");
                     if (currentConfig.BarFood2Nutrient != origConfig.BarFood2Nutrient)
-                        ReplaceStr(ref configContent, currentConfig.BarFood2Nutrient.ToString(), "\nbarFood2Nutrient=");
+                        ReplaceStr(ref configContent, currentConfig.BarFood2Nutrient.ToString(CultureInfo.InvariantCulture), "\nbarFood2Nutrient=");
                     if (currentConfig.BarFood2Water != origConfig.BarFood2Water)
-                        ReplaceStr(ref configContent, currentConfig.BarFood2Water.ToString(), "\nbarFood2Water=");
+                        ReplaceStr(ref configContent, currentConfig.BarFood2Water.ToString(CultureInfo.InvariantCulture), "\nbarFood2Water=");
                     if (currentConfig.AddRegularAirSeeds != origConfig.AddRegularAirSeeds)
-                        ReplaceStr(ref configContent, currentConfig.AddRegularAirSeeds.ToString(), "\naddRegularAirSeeds=");
+                        ReplaceStr(ref configContent, currentConfig.AddRegularAirSeeds.ToString(CultureInfo.InvariantCulture), "\naddRegularAirSeeds=");
                     if (currentConfig.AddRegularWaterSeeds != origConfig.AddRegularWaterSeeds)
-                        ReplaceStr(ref configContent, currentConfig.AddRegularWaterSeeds.ToString(), "\naddRegularWaterSeeds=");
+                        ReplaceStr(ref configContent, currentConfig.AddRegularWaterSeeds.ToString(CultureInfo.InvariantCulture), "\naddRegularWaterSeeds=");
                     if (string.Compare(currentConfig.Flora_RecipiesResource, origConfig.Flora_RecipiesResource, true, CultureInfo.InvariantCulture) != 0)
                         ReplaceStr(ref configContent, currentConfig.Flora_RecipiesResource, "\nflora_RecipiesResource=");
                     if (currentConfig.Flora_RecipiesResourceAmount != origConfig.Flora_RecipiesResourceAmount)
-                        ReplaceStr(ref configContent, currentConfig.Flora_RecipiesResourceAmount.ToString(), "\nflora_RecipiesResourceAmount=");
+                        ReplaceStr(ref configContent, currentConfig.Flora_RecipiesResourceAmount.ToString(CultureInfo.InvariantCulture), "\nflora_RecipiesResourceAmount=");
                     if (string.Compare(currentConfig.PurplePineconeDroppedResource, origConfig.PurplePineconeDroppedResource, true, CultureInfo.InvariantCulture) != 0)
                         ReplaceStr(ref configContent, currentConfig.PurplePineconeDroppedResource, "\npurplePineconeDroppedResource=");
                     if (currentConfig.PurplePineconeDroppedResourceAmount != origConfig.PurplePineconeDroppedResourceAmount)
-                        ReplaceStr(ref configContent, currentConfig.PurplePineconeDroppedResourceAmount.ToString(), "\npurplePineconeDroppedResourceAmount=");
+                        ReplaceStr(ref configContent, currentConfig.PurplePineconeDroppedResourceAmount.ToString(CultureInfo.InvariantCulture), "\npurplePineconeDroppedResourceAmount=");
                     if (!currentConfig.LandTree.IsEqual(origConfig.LandTree))
                         ReplaceStr(ref configContent, currentConfig.LandTree.GetConfigStr(), "\nconfig_LandTree=");
                     if (!currentConfig.JungleTreeA.IsEqual(origConfig.JungleTreeA))
@@ -2462,43 +2514,43 @@ namespace DecorationsModConfigurator
                     if (!currentConfig.MarbleMelonTiny.IsEqual(origConfig.MarbleMelonTiny))
                         ReplaceStr(ref configContent, currentConfig.MarbleMelonTiny.GetConfigStr(), "\nconfig_MarbleMelonTiny=");
                     if (currentConfig.GhostLeviatan_enable != origConfig.GhostLeviatan_enable)
-                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_enable.ToString(), "\nGhostLeviatan_enable=");
+                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_enable.ToString(CultureInfo.InvariantCulture), "\nGhostLeviatan_enable=");
                     if (currentConfig.GhostLeviatan_health != origConfig.GhostLeviatan_health)
-                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_health.ToString(), "\nGhostLeviatan_health=");
+                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_health.ToString(CultureInfo.InvariantCulture), "\nGhostLeviatan_health=");
                     if (currentConfig.GhostLeviatan_maxSpawns != origConfig.GhostLeviatan_maxSpawns)
-                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_maxSpawns.ToString(), "\nGhostLeviatan_maxSpawns=");
+                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_maxSpawns.ToString(CultureInfo.InvariantCulture), "\nGhostLeviatan_maxSpawns=");
                     if (currentConfig.GhostLeviatan_timeBeforeFirstSpawn != origConfig.GhostLeviatan_timeBeforeFirstSpawn)
-                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_timeBeforeFirstSpawn.ToString(), "\nGhostLeviatan_timeBeforeFirstSpawn=");
+                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_timeBeforeFirstSpawn.ToString(CultureInfo.InvariantCulture), "\nGhostLeviatan_timeBeforeFirstSpawn=");
                     if (currentConfig.GhostLeviatan_spawnTimeRatio != origConfig.GhostLeviatan_spawnTimeRatio)
-                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_spawnTimeRatio.ToString(), "\nGhostLeviatan_spawnTimeRatio=");
+                        ReplaceStr(ref configContent, currentConfig.GhostLeviatan_spawnTimeRatio.ToString(CultureInfo.InvariantCulture), "\nGhostLeviatan_spawnTimeRatio=");
                     if (currentConfig.UseAlternativeScreenResolution != origConfig.UseAlternativeScreenResolution)
-                        ReplaceStr(ref configContent, currentConfig.UseAlternativeScreenResolution.ToString(), "\nuseAlternativeScreenResolution=");
+                        ReplaceStr(ref configContent, currentConfig.UseAlternativeScreenResolution.ToString(CultureInfo.InvariantCulture), "\nuseAlternativeScreenResolution=");
                     if (currentConfig.HideDeepGrandReefDegasiBase != origConfig.HideDeepGrandReefDegasiBase)
-                        ReplaceStr(ref configContent, currentConfig.HideDeepGrandReefDegasiBase.ToString(), "\nhideDeepGrandReefDegasiBase=");
+                        ReplaceStr(ref configContent, currentConfig.HideDeepGrandReefDegasiBase.ToString(CultureInfo.InvariantCulture), "\nhideDeepGrandReefDegasiBase=");
                     if (currentConfig.AsBuildable_SpecimenAnalyzer != origConfig.AsBuildable_SpecimenAnalyzer)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SpecimenAnalyzer.ToString(), "\nasBuildable_SpecimenAnalyzer=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SpecimenAnalyzer.ToString(CultureInfo.InvariantCulture), "\nasBuildable_SpecimenAnalyzer=");
                     if (currentConfig.AsBuildable_MarkiplierDoll1 != origConfig.AsBuildable_MarkiplierDoll1)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_MarkiplierDoll1.ToString(), "\nasBuildable_MarkiplierDoll1=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_MarkiplierDoll1.ToString(CultureInfo.InvariantCulture), "\nasBuildable_MarkiplierDoll1=");
                     if (currentConfig.AsBuildable_MarkiplierDoll2 != origConfig.AsBuildable_MarkiplierDoll2)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_MarkiplierDoll2.ToString(), "\nasBuildable_MarkiplierDoll2=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_MarkiplierDoll2.ToString(CultureInfo.InvariantCulture), "\nasBuildable_MarkiplierDoll2=");
                     if (currentConfig.AsBuildable_JackSepticEyeDoll != origConfig.AsBuildable_JackSepticEyeDoll)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_JackSepticEyeDoll.ToString(), "\nasBuildable_JackSepticEyeDoll=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_JackSepticEyeDoll.ToString(CultureInfo.InvariantCulture), "\nasBuildable_JackSepticEyeDoll=");
                     if (currentConfig.AsBuildable_EatMyDictionDoll != origConfig.AsBuildable_EatMyDictionDoll)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_EatMyDictionDoll.ToString(), "\nasBuildable_EatMyDictionDoll=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_EatMyDictionDoll.ToString(CultureInfo.InvariantCulture), "\nasBuildable_EatMyDictionDoll=");
                     if (currentConfig.AsBuildable_ForkliftToy != origConfig.AsBuildable_ForkliftToy)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_ForkliftToy.ToString(), "\nasBuildable_ForkliftToy=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_ForkliftToy.ToString(CultureInfo.InvariantCulture), "\nasBuildable_ForkliftToy=");
                     if (currentConfig.AsBuildable_SofaSmall != origConfig.AsBuildable_SofaSmall)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SofaSmall.ToString(), "\nasBuildable_SofaSmall=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SofaSmall.ToString(CultureInfo.InvariantCulture), "\nasBuildable_SofaSmall=");
                     if (currentConfig.AsBuildable_SofaMedium != origConfig.AsBuildable_SofaMedium)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SofaMedium.ToString(), "\nasBuildable_SofaMedium=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SofaMedium.ToString(CultureInfo.InvariantCulture), "\nasBuildable_SofaMedium=");
                     if (currentConfig.AsBuildable_SofaBig != origConfig.AsBuildable_SofaBig)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SofaBig.ToString(), "\nasBuildable_SofaBig=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SofaBig.ToString(CultureInfo.InvariantCulture), "\nasBuildable_SofaBig=");
                     if (currentConfig.AsBuildable_SofaCorner != origConfig.AsBuildable_SofaCorner)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SofaCorner.ToString(), "\nasBuildable_SofaCorner=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_SofaCorner.ToString(CultureInfo.InvariantCulture), "\nasBuildable_SofaCorner=");
                     if (currentConfig.AsBuildable_LabCart != origConfig.AsBuildable_LabCart)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_LabCart.ToString(), "\nasBuildable_LabCart=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_LabCart.ToString(CultureInfo.InvariantCulture), "\nasBuildable_LabCart=");
                     if (currentConfig.AsBuildable_EmptyDesk != origConfig.AsBuildable_EmptyDesk)
-                        ReplaceStr(ref configContent, currentConfig.AsBuildable_EmptyDesk.ToString(), "\nasBuildable_EmptyDesk=");
+                        ReplaceStr(ref configContent, currentConfig.AsBuildable_EmptyDesk.ToString(CultureInfo.InvariantCulture), "\nasBuildable_EmptyDesk=");
 
                     try
                     {
@@ -2536,5 +2588,60 @@ namespace DecorationsModConfigurator
         }
 
         #endregion
+
+        public bool IsItemEnabled(string itemName)
+        {
+            if (!string.IsNullOrEmpty(_habitatBuilderItems))
+            {
+                string[] items = _habitatBuilderItems.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+                if (items != null)
+                    foreach (string item in items)
+                        if (item == itemName)
+                            return true;
+            }
+            return false;
+        }
+
+        public void AddItem(string itemName)
+        {
+            string[] items = _habitatBuilderItems.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            if (items != null)
+            {
+                foreach (string item in items)
+                    if (item == itemName)
+                        return;
+                _habitatBuilderItems += ("/" + itemName);
+            }
+            else
+                _habitatBuilderItems = itemName;
+        }
+
+        public void RemoveItem(string itemName)
+        {
+            if (!string.IsNullOrEmpty(_habitatBuilderItems))
+            {
+                string[] items = _habitatBuilderItems.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+                if (items != null)
+                {
+                    List<string> itemsList = new List<string>();
+                    foreach (string item in items)
+                        if (item != itemName)
+                            itemsList.Add(item);
+                    bool first = true;
+                    string newItemsList = "";
+                    foreach (string s in itemsList)
+                    {
+                        if (first)
+                        {
+                            newItemsList += s;
+                            first = false;
+                        }
+                        else
+                            newItemsList += ("/" + s);
+                    }
+                    _habitatBuilderItems = newItemsList;
+                }
+            }
+        }
     }
 }

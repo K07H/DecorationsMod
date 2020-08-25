@@ -39,7 +39,7 @@ enableNewFlora=true
 # If "true", you will be able to build the following items:
 # lab cart, specimen analyzer, small aquarium,  indoor long planter, outdoor long planter, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll, marla cat doll, 
 # seamoth doll, exosuit doll, cyclops doll, forklift doll, empty desk, bar stool, customizable picture frame, customizable light, warper specimen, alien pillar, control terminal, 
-# decorative techbox, outdoor ladder, cyclops docking hatch, 2 different workdesk screens, 3 different lockers, 3 different cargo crates, 2 different benches and 4 different sofas.
+# decorative techbox, outdoor ladder, 2 different workdesk screens, 3 different lockers, 3 different cargo crates, 2 different benches and 4 different sofas.
 enableNewItems=true
 
 # If "true", you will be able to build sofas.
@@ -48,7 +48,7 @@ enableSofas=true
 # If "true", you will be able to build decorative electronic furnitures (decorative techbox, control terminal and workdesk screens).
 enableDecorativeElectronics=true
 
-# If "true", you will be able to build new base parts (outdoor ladder and cyclops docking hatch).
+# If "true", you will be able to build outdoor ladders.
 enableCustomBaseParts=true
 
 # If "true", you will be able to build the indoor long planter outside bases/cyclops (tip: this allows to have land plants in water).
@@ -64,7 +64,7 @@ fixAquariumLighting=true
 enableAquariumGlassGlowing=false
 
 # On the line below you can remove from the list items that you don't want to be added in your habitat builder tool.
-habitatBuilderItems=AlienPillar1/AquariumSmall/BarStool/BenchMedium/BenchSmall/CargoBox01_damaged/CargoBox01a/CargoBox01b/CustomPictureFrame/CyclopsDoll/DecorationsEmptyDesk/DecorationsSpecimenAnalyzer/DecorativeControlTerminal/DecorativeLocker/DecorativeLockerClosed/DecorativeLockerDoor/DecorativeTechBox/MarlaCat/ExosuitDoll/ForkLiftDoll/JackSepticEyeDoll/LabCart/ALongPlanter/LongPlanterB/MarkiDoll1/MarkiDoll2/ReactorLamp/SeamothDoll/SofaCorner2/SofaStr1/SofaStr2/SofaStr3/WarperPart1/WorkDeskScreen1/WorkDeskScreen2/OutdoorLadder/CyclopsHatchConnector
+habitatBuilderItems=AlienPillar1/AquariumSmall/BarStool/BenchMedium/BenchSmall/CargoBox01_damaged/CargoBox01a/CargoBox01b/CustomPictureFrame/CyclopsDoll/DecorationsEmptyDesk/DecorationsSpecimenAnalyzer/DecorativeControlTerminal/DecorativeLocker/DecorativeLockerClosed/DecorativeLockerDoor/DecorativeTechBox/MarlaCat/ExosuitDoll/ForkLiftDoll/JackSepticEyeDoll/LabCart/ALongPlanter/LongPlanterB/MarkiDoll1/MarkiDoll2/ReactorLamp/SeamothDoll/SofaCorner2/SofaStr1/SofaStr2/SofaStr3/WarperPart1/WorkDeskScreen1/WorkDeskScreen2/OutdoorLadder
 
 # -----------------------
 #     DISCOVERY MODES

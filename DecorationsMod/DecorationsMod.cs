@@ -144,7 +144,7 @@ namespace DecorationsMod
                         if (!newItem.IsHabitatBuilder ||
                             (ConfigSwitcher.EnableNewItems && ConfigSwitcher.HabitatBuilderItems.Contains(newItem.ClassID) &&
                                 (ConfigSwitcher.EnableDecorativeElectronics || (newItem.ClassID != "DecorativeTechBox" && newItem.ClassID != "DecorativeControlTerminal" && newItem.ClassID != "WorkDeskScreen1" && newItem.ClassID != "WorkDeskScreen2")) &&
-                                (ConfigSwitcher.EnableCustomBaseParts || (newItem.ClassID != "OutdoorLadder" && newItem.ClassID != "CyclopsHatchConnector"))))
+                                (ConfigSwitcher.EnableCustomBaseParts || newItem.ClassID != "OutdoorLadder")))
                         {
                             newItem.RegisterItem();
                             result.Add(newItem);

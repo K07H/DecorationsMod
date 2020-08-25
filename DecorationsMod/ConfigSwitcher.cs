@@ -42,10 +42,10 @@ namespace DecorationsMod
         // If "true", player will be able to build the following new items:      
         // lab cart, specimen analyzer, small aquarium,  indoor long planter, outdoor long planter, markiplier doll 1, markiplier doll 2, jacksepticeye doll, 
         // eatmydiction doll, marla cat doll, seamoth doll, exosuit doll, cyclops doll, forklift doll, empty desk, bar stool, customizable picture frame, 
-        // customizable light, warper specimen, alien pillar, control terminal, decorative techbox, outdoor ladder, cyclops dockcking hatch, 
-        // 2 different workdesk screens, 3 different lockers, 3 different cargo crates, 2 different benches and 4 different sofas.
+        // customizable light, warper specimen, alien pillar, control terminal, decorative techbox, outdoor ladder, 2 different workdesk screens, 
+        // 3 different lockers, 3 different cargo crates, 2 different benches and 4 different sofas.
         public static bool EnableNewItems = true;
-        public static readonly List<string> HabitatBuilderItems = new List<string>(new string[37]
+        public static readonly List<string> HabitatBuilderItems = new List<string>(new string[36]
         {
             "AlienPillar1",
             "AquariumSmall",
@@ -82,8 +82,7 @@ namespace DecorationsMod
             "WarperPart1",
             "WorkDeskScreen1",
             "WorkDeskScreen2",
-            "OutdoorLadder",
-            "CyclopsHatchConnector"
+            "OutdoorLadder"
         });
 
         // If "true", new items will be added to fabricators/builder tool only if some similar items have been discovered in game.

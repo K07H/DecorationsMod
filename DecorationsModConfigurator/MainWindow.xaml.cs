@@ -18,6 +18,7 @@ namespace DecorationsModConfigurator
         // Pages
         private static UserControl_HomePage HomePage = null;
         private static UserControl_GeneralSettings GeneralSettingsPage = null;
+        private static UserControl_HabitatBuilder HabitatBuilderPage = null;
         private static UserControl_Discovery DiscoveryPage = null;
         private static UserControl_Precursor PrecursorPage = null;
         private static UserControl_Eggs EggsPage = null;
@@ -30,6 +31,7 @@ namespace DecorationsModConfigurator
         // Properties
         //public string Config_ConfiguratorName { get { return LanguageHelper.GetFriendlyWord("Config_ConfiguratorName"); } set { } }
         public string Config_TabGeneral { get { return LanguageHelper.GetFriendlyWord("Config_TabGeneral"); } set { } }
+        public string Config_TabHabitatBuilder { get { return LanguageHelper.GetFriendlyWord("Config_TabHabitatBuilder"); } set { } }
         public string Config_TabDiscovery { get { return LanguageHelper.GetFriendlyWord("Config_TabDiscovery"); } set { } }
         public string Config_TabPrecursor { get { return LanguageHelper.GetFriendlyWord("Config_TabPrecursor"); } set { } }
         public string Config_TabEggs { get { return LanguageHelper.GetFriendlyWord("Config_TabEggs"); } set { } }
@@ -59,14 +61,15 @@ namespace DecorationsModConfigurator
         {
             HOME = 0,
             GENERAL_SETTINGS = 1,
-            DISCOVERY = 2,
-            PRECURSOR = 3,
-            EGGS = 4,
-            DRINKS_AND_FOOD = 5,
-            FLORA = 6,
-            GHOST_LEVIATHANS = 7,
-            EXTRA_SETTINGS = 8,
-            ABOUT = 9
+            HABITAT_BUILDER = 2,
+            DISCOVERY = 3,
+            PRECURSOR = 4,
+            EGGS = 5,
+            DRINKS_AND_FOOD = 6,
+            FLORA = 7,
+            GHOST_LEVIATHANS = 8,
+            EXTRA_SETTINGS = 9,
+            ABOUT = 10
         }
 
         public void SwitchPage(PageId toPage)
@@ -74,6 +77,11 @@ namespace DecorationsModConfigurator
             Stack_Main.Children.Clear();
             switch (toPage)
             {
+                case PageId.HABITAT_BUILDER:
+                    if (HabitatBuilderPage == null)
+                        HabitatBuilderPage = new UserControl_HabitatBuilder();
+                    Stack_Main.Children.Add(HabitatBuilderPage);
+                    break;
                 case PageId.DISCOVERY:
                     if (DiscoveryPage == null)
                         DiscoveryPage = new UserControl_Discovery();
@@ -130,6 +138,9 @@ namespace DecorationsModConfigurator
                 selected = selected.Substring(3);
                 switch (selected)
                 {
+                    case "HabitatBuilder":
+                        SwitchPage(PageId.HABITAT_BUILDER);
+                        break;
                     case "Discovery":
                         SwitchPage(PageId.DISCOVERY);
                         break;
@@ -166,6 +177,8 @@ namespace DecorationsModConfigurator
             // Refresh window pages
             if (GeneralSettingsPage != null)
                 GeneralSettingsPage.RefreshGUI();
+            if (HabitatBuilderPage != null)
+                HabitatBuilderPage.RefreshGUI();
             if (DiscoveryPage != null)
                 DiscoveryPage.RefreshGUI();
             if (PrecursorPage != null)
@@ -216,6 +229,12 @@ namespace DecorationsModConfigurator
                 changes.Add("EnableNewItems changed from \"" + origConfig.EnableNewItems.ToString() + "\" to \"" + currentConfig.EnableNewItems.ToString() + "\".");
             if (currentConfig.EnableSofas != origConfig.EnableSofas)
                 changes.Add("EnableSofas changed from \"" + origConfig.EnableSofas.ToString() + "\" to \"" + currentConfig.EnableSofas.ToString() + "\".");
+            if (currentConfig.EnableDecorativeElectronics != origConfig.EnableDecorativeElectronics)
+                changes.Add("EnableDecorativeElectronics changed from \"" + origConfig.EnableDecorativeElectronics.ToString() + "\" to \"" + currentConfig.EnableDecorativeElectronics.ToString() + "\".");
+            if (currentConfig.EnableCustomBaseParts != origConfig.EnableCustomBaseParts)
+                changes.Add("EnableCustomBaseParts changed from \"" + origConfig.EnableCustomBaseParts.ToString() + "\" to \"" + currentConfig.EnableCustomBaseParts.ToString() + "\".");
+            if (currentConfig.HabitatBuilderItems != origConfig.HabitatBuilderItems)
+                changes.Add("HabitatBuilderItems changed from \"" + origConfig.HabitatBuilderItems.ToString() + "\" to \"" + currentConfig.HabitatBuilderItems.ToString() + "\".");
             if (currentConfig.AllowIndoorLongPlanterOutside != origConfig.AllowIndoorLongPlanterOutside)
                 changes.Add("AllowIndoorLongPlanterOutside changed from \"" + origConfig.AllowIndoorLongPlanterOutside.ToString() + "\" to \"" + currentConfig.AllowIndoorLongPlanterOutside.ToString() + "\".");
             if (currentConfig.AllowOutdoorLongPlanterInside != origConfig.AllowOutdoorLongPlanterInside)

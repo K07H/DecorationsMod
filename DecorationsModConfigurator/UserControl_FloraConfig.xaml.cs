@@ -150,16 +150,7 @@ namespace DecorationsModConfigurator
         private int _BioreactorCharge;
         public int BioreactorCharge { get { return _BioreactorCharge; } set { if (_BioreactorCharge != value) { _BioreactorCharge = value; FloraConfig changedPlant = new FloraConfig(this.Plant); changedPlant.BioreactorCharge = value; this.Plant = changedPlant; } } }
         private bool _CanEat;
-        public bool CanEat { get { return _CanEat; } set 
-            { 
-                if (_CanEat != value) 
-                { 
-                    _CanEat = value; 
-                    FloraConfig changedPlant = new FloraConfig(this.Plant); 
-                    changedPlant.CanEat = value; 
-                    this.Plant = changedPlant; 
-                } 
-            } }
+        public bool CanEat { get { return _CanEat; } set { if (_CanEat != value) { _CanEat = value; FloraConfig changedPlant = new FloraConfig(this.Plant); changedPlant.CanEat = value; this.Plant = changedPlant; } } }
         private int _NutrientsAmount;
         public int NutrientsAmount { get { return _NutrientsAmount; } set { if (_NutrientsAmount != value) { _NutrientsAmount = value; FloraConfig changedPlant = new FloraConfig(this.Plant); changedPlant.NutrientsAmount = value; this.Plant = changedPlant; } } }
         private int _WaterAmount;

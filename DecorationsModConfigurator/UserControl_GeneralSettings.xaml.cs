@@ -28,21 +28,12 @@ namespace DecorationsModConfigurator
                 this.EnablePlaceItems = Configuration.Instance.EnablePlaceItems;
                 this.EnablePlaceBatteries = Configuration.Instance.EnablePlaceBatteries;
                 this.EnableNewFlora = Configuration.Instance.EnableNewFlora;
-                this.EnableNewItems = Configuration.Instance.EnableNewItems;
-                this.EnableSofas = Configuration.Instance.EnableSofas;
-                this.EnableDecorativeElectronics = Configuration.Instance.EnableDecorativeElectronics;
-                this.AllowIndoorLongPlanterOutside = Configuration.Instance.AllowIndoorLongPlanterOutside;
-                this.AllowOutdoorLongPlanterInside = Configuration.Instance.AllowOutdoorLongPlanterInside;
                 this.FixAquariumLighting = Configuration.Instance.FixAquariumLighting;
                 this.EnableAquariumGlassGlowing = Configuration.Instance.EnableAquariumGlassGlowing;
             }
-            catch (Exception ex)
-            {
-                Logger.Log("ERROR: Could not load data from configuration. Exception=[" + ex.ToString() + "]");
-            }
+            catch (Exception ex) { Logger.Log("ERROR: Could not load data from configuration. Exception=[" + ex.ToString() + "]"); }
 
             RefreshMenuVisibilities();
-            RefreshAddSofasVisibility();
 
             (this.Content as FrameworkElement).DataContext = this;
         }
@@ -89,11 +80,6 @@ namespace DecorationsModConfigurator
         public bool EnablePlaceItems { get { return Configuration.Instance.EnablePlaceItems; } set { Configuration.Instance.EnablePlaceItems = value; } }
         public bool EnablePlaceBatteries { get { return Configuration.Instance.EnablePlaceBatteries; } set { Configuration.Instance.EnablePlaceBatteries = value; } }
         public bool EnableNewFlora { get { return Configuration.Instance.EnableNewFlora; } set { Configuration.Instance.EnableNewFlora = value; RefreshMenuVisibilities(); } }
-        public bool EnableNewItems { get { return Configuration.Instance.EnableNewItems; } set { Configuration.Instance.EnableNewItems = value; RefreshAddSofasVisibility(); } }
-        public bool EnableSofas { get { return Configuration.Instance.EnableSofas; } set { Configuration.Instance.EnableSofas = value; } }
-        public bool EnableDecorativeElectronics { get { return Configuration.Instance.EnableDecorativeElectronics; } set { Configuration.Instance.EnableDecorativeElectronics = value; } }
-        public bool AllowIndoorLongPlanterOutside { get { return Configuration.Instance.AllowIndoorLongPlanterOutside; } set { Configuration.Instance.AllowIndoorLongPlanterOutside = value; } }
-        public bool AllowOutdoorLongPlanterInside { get { return Configuration.Instance.AllowOutdoorLongPlanterInside; } set { Configuration.Instance.AllowOutdoorLongPlanterInside = value; } }
         public bool FixAquariumLighting { get { return Configuration.Instance.FixAquariumLighting; } set { Configuration.Instance.FixAquariumLighting = value; } }
         public bool EnableAquariumGlassGlowing { get { return Configuration.Instance.EnableAquariumGlassGlowing; } set { Configuration.Instance.EnableAquariumGlassGlowing = value; } }
 
@@ -113,16 +99,6 @@ namespace DecorationsModConfigurator
         public string Config_EnablePlaceBatteriesDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceBatteriesDescription"); } set { } }
         public string Config_EnableNewFlora { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewFlora"); } set { } }
         public string Config_EnableNewFloraDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewFloraDescription"); } set { } }
-        public string Config_EnableNewItems { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewItems"); } set { } }
-        public string Config_EnableNewItemsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewItemsDescription"); } set { } }
-        public string Config_EnableSofas { get { return LanguageHelper.GetFriendlyWord("Config_EnableSofas"); } set { } }
-        public string Config_EnableSofasDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableSofasDescription"); } set { } }
-        public string Config_EnableDecorativeElectronics { get { return LanguageHelper.GetFriendlyWord("Config_EnableDecorativeElectronics"); } set { } }
-        public string Config_EnableDecorativeElectronicsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableDecorativeElectronicsDescription"); } set { } }
-        public string Config_AllowIndoorLongPlanterOutside { get { return LanguageHelper.GetFriendlyWord("Config_AllowIndoorLongPlanterOutside"); } set { } }
-        public string Config_AllowIndoorLongPlanterOutsideDescription { get { return LanguageHelper.GetFriendlyWord("Config_AllowIndoorLongPlanterOutsideDescription"); } set { } }
-        public string Config_AllowOutdoorLongPlanterInside { get { return LanguageHelper.GetFriendlyWord("Config_AllowOutdoorLongPlanterInside"); } set { } }
-        public string Config_AllowOutdoorLongPlanterInsideDescription { get { return LanguageHelper.GetFriendlyWord("Config_AllowOutdoorLongPlanterInsideDescription"); } set { } }
         public string Config_FixAquariumLighting { get { return LanguageHelper.GetFriendlyWord("Config_FixAquariumLighting"); } set { } }
         public string Config_FixAquariumLightingDescription { get { return LanguageHelper.GetFriendlyWord("Config_FixAquariumLightingDescription"); } set { } }
         public string Config_EnableAquariumGlassGlowing { get { return LanguageHelper.GetFriendlyWord("Config_GlowingAquariumGlass"); } set { } }
@@ -147,24 +123,6 @@ namespace DecorationsModConfigurator
                 MainWindow mw = (MainWindow)mainWindow;
                 mw.RefreshGUI();
             }
-        }
-
-        public void RefreshAddSofasVisibility()
-        {
-            Visibility visibility = (CB_EnableNewItems.IsChecked != null && CB_EnableNewItems.IsChecked.HasValue && CB_EnableNewItems.IsChecked.Value) ? Visibility.Visible : Visibility.Collapsed;
-            GRD_AddSofas.Visibility = visibility;
-            GRD_EnableIndoorLongPlanterOutside.Visibility = visibility;
-            GRD_EnableOutdoorLongPlanterInside.Visibility = visibility;
-        }
-
-        private void CB_EnableNewItems_Checked(object sender, RoutedEventArgs e)
-        {
-            RefreshAddSofasVisibility();
-        }
-
-        private void CB_EnableNewItems_Unchecked(object sender, RoutedEventArgs e)
-        {
-            RefreshAddSofasVisibility();
         }
 
         private UIElement GetParentOfType<T>(DependencyObject obj)

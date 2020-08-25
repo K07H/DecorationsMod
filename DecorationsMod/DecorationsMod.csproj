@@ -193,6 +193,7 @@
     <Compile Include="Controllers\ExosuitDollController.cs" />
     <Compile Include="ExistingItems\PosterPeng.cs" />
     <Compile Include="Fixers\AquariumFixer.cs" />
+    <Compile Include="Fixers\BuilderFixer.cs" />
     <Compile Include="Fixers\CrafterLogicFixer.cs" />
     <Compile Include="Fixers\FCSModsFixer.cs" />
     <Compile Include="Fixers\IngameMenuFixer.cs" />

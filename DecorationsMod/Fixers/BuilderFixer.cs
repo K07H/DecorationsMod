@@ -13,6 +13,7 @@ namespace DecorationsMod.Fixers
 		private static readonly FieldInfo _placeLayerMask = typeof(Builder).GetField("placeLayerMask", BindingFlags.NonPublic | BindingFlags.Static);
 		//private static float placeMaxDistance;
 		private static readonly FieldInfo _placeMaxDistance = typeof(Builder).GetField("placeMaxDistance", BindingFlags.NonPublic | BindingFlags.Static);
+		/*
 		//private static Renderer[] renderers;
 		private static readonly FieldInfo _renderers = typeof(Builder).GetField("renderers", BindingFlags.NonPublic | BindingFlags.Static);
 		//private static Material ghostStructureMaterial;
@@ -47,6 +48,7 @@ namespace DecorationsMod.Fixers
 		private static readonly FieldInfo _ghostModelScale = typeof(Builder).GetField("ghostModelScale", BindingFlags.NonPublic | BindingFlags.Static);
 		//private static void InitBounds(GameObject gameObject)
 		private static readonly MethodInfo _InitBounds = typeof(Builder).GetMethod("InitBounds", BindingFlags.NonPublic | BindingFlags.Static);
+		*/
 		//private static void SetupRenderers(GameObject gameObject, bool interior)
 		//private static readonly MethodInfo _SetupRenderers = typeof(Builder).GetMethod("SetupRenderers", BindingFlags.NonPublic | BindingFlags.Static);
 		//private static void CreatePowerPreview(TechType constructableTechType, GameObject ghostModel)
@@ -291,6 +293,7 @@ namespace DecorationsMod.Fixers
 			}
         }
 
+		/*
 		// private static bool CreateGhost()
 		public static bool CreateGhost_Prefix(ref bool __result)
 		{
@@ -345,6 +348,7 @@ namespace DecorationsMod.Fixers
 			else
 				return true;
 		}
+		*/
 		/*
 		public static bool CreateGhost_Prefix(ref bool __result)
         {

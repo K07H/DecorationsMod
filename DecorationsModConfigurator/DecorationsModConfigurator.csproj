@@ -132,6 +132,12 @@
     <Compile Include="UserControl_GhostLeviathans.xaml.cs">
       <DependentUpon>UserControl_GhostLeviathans.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl_HabitatBuilder.xaml.cs">
+      <DependentUpon>UserControl_HabitatBuilder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_HabitatBuilderItem.xaml.cs">
+      <DependentUpon>UserControl_HabitatBuilderItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl_HomePage.xaml.cs">
       <DependentUpon>UserControl_HomePage.xaml</DependentUpon>
     </Compile>
@@ -189,6 +195,14 @@
     <Page Include="UserControl_GhostLeviathans.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_HabitatBuilder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_HabitatBuilderItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl_HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>

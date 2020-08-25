@@ -65,7 +65,7 @@ namespace DecorationsModConfigurator
 
         public string GetConfigStr()
         {
-            return string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}",
+            return string.Format(CultureInfo.InvariantCulture, "{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}",
                 this.GrowthDuration,
                 this.HealthPoints,
                 this.BioreactorCharge,
@@ -90,7 +90,7 @@ namespace DecorationsModConfigurator
                 this.DecompositionSpeed != to.DecompositionSpeed);
         }
 
-        public override string ToString() => string.Format("Plant \"{0}\": GrowthDuration=[{1}] HealthPoints=[{2}] BioreactorCharge=[{3}] CanEat=[{4}] Nutrients=[{5}] Water=[{6}] Decomposes[{7}] DecompositionSpeed=[{8}] Image=[{9}]", PlantName, GrowthDuration, HealthPoints, BioreactorCharge, CanEat, NutrientsAmount, WaterAmount, Decomposes, DecompositionSpeed, PlantImagePath);
+        public override string ToString() => string.Format(CultureInfo.InvariantCulture, "Plant \"{0}\": GrowthDuration=[{1}] HealthPoints=[{2}] BioreactorCharge=[{3}] CanEat=[{4}] Nutrients=[{5}] Water=[{6}] Decomposes[{7}] DecompositionSpeed=[{8}] Image=[{9}]", PlantName, GrowthDuration, HealthPoints, BioreactorCharge, CanEat, NutrientsAmount, WaterAmount, Decomposes, DecompositionSpeed, PlantImagePath);
     }
 
     /// <summary>

@@ -4762,51 +4762,6 @@ namespace DecorationsMod
                         return "Cyclops grootte: ";
                     else
                         return "Cyclops size: ";
-                case "CyclopsHatchConnectorName":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Trappe d'amarrage pour Cyclops";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Trampilla de amarre para Cyclops";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Cyclops için demirleme";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Festmacherluke für Zyklop";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Швартовочный люк для Циклоп";
-                    else if (UserLanguage == CountryCode.NL)
-                        return "Aanlegluik voor Cyclops";
-                    else
-                        return "Cyclops docking hatch";
-                case "CyclopsHatchConnectorDescription":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Un module permettant l'amarrage du Cyclops à une base. Facilite les déplacements et permet la recharge des batteries.";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Un módulo para amarrar el Cyclops a una base. Facilita los viajes y permite recargar las baterías.";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Cyclops'u bir üsse bağlamak için bir modül. Seyahat etmeyi kolaylaştırır ve pillerin yeniden şarj edilmesini sağlar.";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Ein Modul zum Festmachen der Zyklop an einer Basis. Erleichtert das Reisen und ermöglicht das Aufladen von Batterien.";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Модуль для швартовки Циклоп к базе. Облегчает поездки и позволяет заряжать батареи.";
-                    else if (UserLanguage == CountryCode.NL)
-                        return "Een module voor het afmeren van de Cyclops aan een basis. Vergemakkelijkt reizen en zorgt ervoor dat batterijen kunnen worden opgeladen.";
-                    else
-                        return "A module for mooring the Cyclops to a base. Allows quick base/Cyclops transitions and recharges Cyclops batteries.";
-                case "ClimbIntoCyclops":
-                    if (UserLanguage == CountryCode.FR)
-                        return "Grimper dans le Cyclops";
-                    else if (UserLanguage == CountryCode.ES)
-                        return "Sube al Cyclops";
-                    else if (UserLanguage == CountryCode.TR)
-                        return "Cyclops'a tırmanın";
-                    else if (UserLanguage == CountryCode.DE)
-                        return "Klettere in die Zyklop";
-                    else if (UserLanguage == CountryCode.RU)
-                        return "Подняться в Циклоп";
-                    else if (UserLanguage == CountryCode.NL)
-                        return "Klim in de Cyclops";
-                    else
-                        return "Climb into Cyclops";
                 case "OutdoorLadderName":
                     if (UserLanguage == CountryCode.FR)
                         return "Échelle d'extérieur";

@@ -187,6 +187,7 @@ namespace DecorationsMod
             return result;
         }
 
+        /*
         public static bool IsNear(Vector3 a, Vector3 b)
         {
             if (a.x < (b.x + 0.1f) && a.x > (b.x - 0.1f))
@@ -195,6 +196,10 @@ namespace DecorationsMod
                         return true;
             return false;
         }
+        */
+        public static bool IsNear(Vector3 a, Vector3 b) => !(a.x < (b.x - 0.1f) || a.x > (b.x + 0.1f) || a.y < (b.y - 0.1f) || a.y > (b.y + 0.1f) || a.z < (b.z - 0.1f) || a.z > (b.z + 0.1f));
+
+        public static bool IsNearB(Vector3 a, Vector3 b) => !(a.x < (b.x - 1.0f) || a.x > (b.x + 1.0f) || a.y < (b.y - 1.0f) || a.y > (b.y + 1.0f) || a.z < (b.z - 1.0f) || a.z > (b.z + 1.0f));
 
         #endregion
 
@@ -548,10 +553,7 @@ namespace DecorationsMod
             if (name != null && pos != Vector3.zero)
             {
                 foreach (KeyValuePair<string, Vector3> part in DegasiBaseParts)
-                    if (part.Key == name &&
-                        pos.x > part.Value.x - 1.0f && pos.x < part.Value.x + 1.0f &&
-                        pos.y > part.Value.y - 1.0f && pos.y < part.Value.y + 1.0f &&
-                        pos.z > part.Value.z - 1.0f && pos.z < part.Value.z + 1.0f)
+                    if (part.Key == name && IsNearB(pos, part.Value))
                     {
                         if (part.Key == "SwimChargeFinsDataBox(Clone)")
                             HideSwimChargeFinsDataBox(obj, part.Value);

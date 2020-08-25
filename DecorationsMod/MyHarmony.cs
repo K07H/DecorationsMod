@@ -177,68 +177,6 @@ namespace DecorationsMod
                 var checkSurfaceTypeMethod = typeof(Builder).GetMethod("CheckSurfaceType", BindingFlags.NonPublic | BindingFlags.Static);
                 var checkSurfaceTypePostfix = typeof(BuilderFixer).GetMethod("CheckSurfaceType_Postfix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(checkSurfaceTypeMethod, null, new HarmonyMethod(checkSurfaceTypePostfix));
-
-                // Useful for debug base parts:
-                //var updateAllowedMethod = typeof(Builder).GetMethod("UpdateAllowed", BindingFlags.NonPublic | BindingFlags.Static);
-                //var updateAllowedPrefix = typeof(BuilderFixer).GetMethod("UpdateAllowed_Prefix", BindingFlags.Public | BindingFlags.Static);
-                //HarmonyInstance.Patch(updateAllowedMethod, new HarmonyMethod(updateAllowedPrefix), null);
-
-                // Handle Cyclops Docking Hatch
-                var onPointerClickMethod = typeof(uGUI_BuilderMenu).GetMethod("OnPointerClick", BindingFlags.Public | BindingFlags.Instance);
-                var onPointerClickPrefix = typeof(uGUI_BuilderMenuFixer).GetMethod("OnPointerClick_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(onPointerClickMethod, new HarmonyMethod(onPointerClickPrefix), null);
-                var createGhostMethod = typeof(Builder).GetMethod("CreateGhost", BindingFlags.NonPublic | BindingFlags.Static);
-                var createGhostPrefix = typeof(BuilderFixer).GetMethod("CreateGhost_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(createGhostMethod, new HarmonyMethod(createGhostPrefix), null);
-                var placeMethod = typeof(BaseGhost).GetMethod("Place", BindingFlags.Public | BindingFlags.Instance);
-                var placePrefix = typeof(BaseGhostFixer).GetMethod("Place_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(placeMethod, new HarmonyMethod(placePrefix), null);
-                var buildConnectorGeometryMethod = typeof(Base).GetMethod("BuildConnectorGeometry", BindingFlags.NonPublic | BindingFlags.Instance);
-                var buildConnectorGeometryPostfix = typeof(BaseFixer).GetMethod("BuildConnectorGeometry_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(buildConnectorGeometryMethod, null, new HarmonyMethod(buildConnectorGeometryPostfix));
-                var buildCorridorGeometryMethod = typeof(Base).GetMethod("BuildCorridorGeometry", BindingFlags.NonPublic | BindingFlags.Instance);
-                var buildCorridorGeometryPostfix = typeof(BaseFixer).GetMethod("BuildCorridorGeometry_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(buildCorridorGeometryMethod, null, new HarmonyMethod(buildCorridorGeometryPostfix));
-                var updateMethod = typeof(SubControl).GetMethod("Update", BindingFlags.NonPublic | BindingFlags.Instance);
-                var updatePrefix = typeof(SubControlFixer).GetMethod("Update_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(updateMethod, new HarmonyMethod(updatePrefix), null);
-                // Handle Cyclops stabilization
-                var fixedUpdateMethod = typeof(Stabilizer).GetMethod("FixedUpdate", BindingFlags.Public | BindingFlags.Instance);
-                var fixedUpdatePostfix = typeof(StabilizerFixer).GetMethod("FixedUpdate_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(fixedUpdateMethod, null, new HarmonyMethod(fixedUpdatePostfix));
-                // Handle Cyclops entry hatch
-                var onHandClickMethod = typeof(CinematicModeTriggerBase).GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
-                var onHandClickPrefix = typeof(CinematicModeTriggerBaseFixer).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(onHandClickPrefix), null);
-                var onTriggerExitMethod = typeof(CyclopsEntryHatch).GetMethod("OnTriggerExit", BindingFlags.NonPublic | BindingFlags.Instance);
-                var onTriggerExitPrefix = typeof(CyclopsEntryHatchFixer).GetMethod("OnTriggerExit_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(onTriggerExitMethod, new HarmonyMethod(onTriggerExitPrefix), null);
-                // Handle Cyclops powercells charge
-                var updateThermalReactorChargeMethod = typeof(SubRoot).GetMethod("UpdateThermalReactorCharge", BindingFlags.NonPublic | BindingFlags.Instance);
-                var updateThermalReactorChargePrefix = typeof(SubRootFixer).GetMethod("UpdateThermalReactorCharge_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(updateThermalReactorChargeMethod, new HarmonyMethod(updateThermalReactorChargePrefix), null);
-                // Handle Cyclops entry hatch deconstruct
-                var deconstructMethod = typeof(Constructable).GetMethod("Deconstruct", BindingFlags.Public | BindingFlags.Instance);
-                var deconstructPrefix = typeof(ConstructableFixer).GetMethod("Deconstruct_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(deconstructMethod, new HarmonyMethod(deconstructPrefix), null);
-                //protected bool InitializeModelCopy()
-                var initializeModelCopyMethod = typeof(ConstructableBase).GetMethod("InitializeModelCopy", BindingFlags.NonPublic | BindingFlags.Instance);
-                var initializeModelCopyPrefix = typeof(ConstructableFixer).GetMethod("InitializeModelCopy_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(initializeModelCopyMethod, new HarmonyMethod(initializeModelCopyPrefix), null);
-
-                //var updateAllowedMethod = typeof(Builder).GetMethod("UpdateAllowed", BindingFlags.NonPublic | BindingFlags.Static);
-                //var updateAllowedPostfix = typeof(BuilderFixer).GetMethod("UpdateAllowed_Postfix", BindingFlags.Public | BindingFlags.Static);
-                //HarmonyInstance.Patch(updateAllowedMethod, null, new HarmonyMethod(updateAllowedPostfix));
-
-                //var updateMaterialMethod = typeof(Constructable).GetMethod("UpdateMaterial", BindingFlags.NonPublic | BindingFlags.Instance);
-                //var updateMaterialPrefix = typeof(ConstructableFixer).GetMethod("UpdateMaterial_Prefix", BindingFlags.Public | BindingFlags.Static);
-                //HarmonyInstance.Patch(updateMaterialMethod, new HarmonyMethod(updateMaterialPrefix), null);
-                //var registerCorridorsMethod = typeof(Base).GetMethod("RegisterCorridors", BindingFlags.NonPublic | BindingFlags.Static);
-                //var registerCorridorsPostfix = typeof(BaseFixer).GetMethod("RegisterCorridors_Postfix", BindingFlags.Public | BindingFlags.Static);
-                //HarmonyInstance.Patch(registerCorridorsMethod, null, new HarmonyMethod(registerCorridorsPostfix));
-                //var spawnPieceMethod = typeof(Base).GetMethod("SpawnPiece", new Type[] { Type.GetType(BaseFixer.BasePiece, false, true), typeof(Int3), typeof(Quaternion), typeof(Base.Direction?) });
-                //var spawnPiecePrefix = typeof(BaseFixer).GetMethod("SpawnPiece_Prefix", BindingFlags.Public | BindingFlags.Static);
-                //HarmonyInstance.Patch(spawnPieceMethod, new HarmonyMethod(spawnPiecePrefix), null);
             }
         }
 
