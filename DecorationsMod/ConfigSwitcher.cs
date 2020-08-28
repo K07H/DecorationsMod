@@ -351,80 +351,43 @@ namespace DecorationsMod
 
                     switch (configKey)
                     {
-                        case "allowBuildOutside":
-                            ConfigSwitcher.AllowBuildOutside = configValue; break;
-                        case "allowPlaceOutside":
-                            ConfigSwitcher.AllowPlaceOutside = configValue; break;
-                        case "enablePlaceItems":
-                            ConfigSwitcher.EnablePlaceItems = configValue; break;
-                        case "enablePlaceBatteries":
-                            ConfigSwitcher.EnablePlaceBatteries = configValue; break;
-                        case "enableNewFlora":
-                            ConfigSwitcher.EnableNewFlora = configValue; break;
-                        case "enableNewItems":
-                            ConfigSwitcher.EnableNewItems = configValue; break;
-                        case "habitatBuilderItems":
-                            ConfigSwitcher.GetHabitatBuilderConfig(configValueStr); break;
-                        case "addItemsWhenDiscovered":
-                            ConfigSwitcher.AddItemsWhenDiscovered = configValue; break;
-                        case "enableSofas":
-                            ConfigSwitcher.EnableSofas = configValue; break;
-                        case "enableDecorativeElectronics":
-                            ConfigSwitcher.EnableDecorativeElectronics = configValue; break;
-                        case "enableCustomBaseParts":
-                            ConfigSwitcher.EnableCustomBaseParts = configValue; break;
-                        case "allowIndoorLongPlanterOutside":
-                            ConfigSwitcher.AllowIndoorLongPlanterOutside = configValue; break;
-                        case "allowOutdoorLongPlanterInside":
-                            ConfigSwitcher.AllowOutdoorLongPlanterInside = configValue; break;
-                        case "enablePrecursorTab":
-                            ConfigSwitcher.EnablePrecursorTab = configValue; break;
-                        case "enableNutrientBlock":
-                            ConfigSwitcher.EnableNutrientBlock = configValue; break;
-                        case "enableAllEggs":
-                            ConfigSwitcher.EnableRegularEggs = configValue; break;
-                        case "addEggsWhenCreatureScanned":
-                            ConfigSwitcher.EnableEggsWhenCreatureScanned = configValue; break;
-                        case "addEggsAtStart":
-                            ConfigSwitcher.EnableEggsAtStart = configValue; break;
-                        case "useAlternativeScreenResolution":
-                            ConfigSwitcher.UseFlatScreenResolution = configValue; break;
-                        case "hideDeepGrandReefDegasiBase":
-                            ConfigSwitcher.HideDeepGrandReefDegasiBase = configValue; break;
-                        case "useCompactTooltips":
-                            ConfigSwitcher.UseCompactTooltips = configValue; break;
-                        case "lockQuickslotsWhenPlacingItem":
-                            ConfigSwitcher.LockQuickslotsWhenPlacingItem = configValue; break;
-                        case "fixAquariumLighting":
-                            ConfigSwitcher.FixAquariumLighting = configValue; break;
-                        case "enableAquariumGlassGlowing":
-                            ConfigSwitcher.GlowingAquariumGlass = configValue; break;
-                        case "asBuildable_SpecimenAnalyzer":
-                            ConfigSwitcher.SpecimenAnalyzer_asBuildable = configValue; break;
-                        case "asBuildable_MarkiplierDoll1":
-                            ConfigSwitcher.MarkiDoll1_asBuildable = configValue; break;
-                        case "asBuildable_MarkiplierDoll2":
-                            ConfigSwitcher.MarkiDoll2_asBuildable = configValue; break;
-                        case "asBuildable_JackSepticEyeDoll":
-                            ConfigSwitcher.JackSepticEye_asBuildable = configValue; break;
-                        case "asBuildable_EatMyDictionDoll":
-                            ConfigSwitcher.EatMyDiction_asBuidable = configValue; break;
-                        case "asBuildable_ForkliftToy":
-                            ConfigSwitcher.Forklift_asBuidable = configValue; break;
-                        case "asBuildable_SofaSmall":
-                            ConfigSwitcher.SofaStr1_asBuidable = configValue; break;
-                        case "asBuildable_SofaMedium":
-                            ConfigSwitcher.SofaStr2_asBuidable = configValue; break;
-                        case "asBuildable_SofaBig":
-                            ConfigSwitcher.SofaStr3_asBuidable = configValue; break;
-                        case "asBuildable_SofaCorner":
-                            ConfigSwitcher.SofaCorner2_asBuidable = configValue; break;
-                        case "asBuildable_LabCart":
-                            ConfigSwitcher.LabCart_asBuildable = configValue; break;
-                        case "asBuildable_EmptyDesk":
-                            ConfigSwitcher.EmptyDesk_asBuildable = configValue; break;
-                        case "precursorKeysAll":
-                            ConfigSwitcher.PrecursorKeysAll = configValue; break;
+                        case "allowBuildOutside": ConfigSwitcher.AllowBuildOutside = configValue; break;
+                        case "allowPlaceOutside": ConfigSwitcher.AllowPlaceOutside = configValue; break;
+                        case "enablePlaceItems": ConfigSwitcher.EnablePlaceItems = configValue; break;
+                        case "enablePlaceBatteries": ConfigSwitcher.EnablePlaceBatteries = configValue; break;
+                        case "enableNewFlora": ConfigSwitcher.EnableNewFlora = configValue; break;
+                        case "enableNewItems": ConfigSwitcher.EnableNewItems = configValue; break;
+                        case "habitatBuilderItems": ConfigSwitcher.GetHabitatBuilderConfig(configValueStr); break;
+                        case "addItemsWhenDiscovered": ConfigSwitcher.AddItemsWhenDiscovered = configValue; break;
+                        case "enableSofas": ConfigSwitcher.EnableSofas = configValue; break;
+                        case "enableDecorativeElectronics": ConfigSwitcher.EnableDecorativeElectronics = configValue; break;
+                        case "enableCustomBaseParts": ConfigSwitcher.EnableCustomBaseParts = configValue; break;
+                        case "allowIndoorLongPlanterOutside": ConfigSwitcher.AllowIndoorLongPlanterOutside = configValue; break;
+                        case "allowOutdoorLongPlanterInside": ConfigSwitcher.AllowOutdoorLongPlanterInside = configValue; break;
+                        case "enablePrecursorTab": ConfigSwitcher.EnablePrecursorTab = configValue; break;
+                        case "enableNutrientBlock": ConfigSwitcher.EnableNutrientBlock = configValue; break;
+                        case "enableAllEggs": ConfigSwitcher.EnableRegularEggs = configValue; break;
+                        case "addEggsWhenCreatureScanned": ConfigSwitcher.EnableEggsWhenCreatureScanned = configValue; break;
+                        case "addEggsAtStart": ConfigSwitcher.EnableEggsAtStart = configValue; break;
+                        case "useAlternativeScreenResolution": ConfigSwitcher.UseFlatScreenResolution = configValue; break;
+                        case "hideDeepGrandReefDegasiBase": ConfigSwitcher.HideDeepGrandReefDegasiBase = configValue; break;
+                        case "useCompactTooltips": ConfigSwitcher.UseCompactTooltips = configValue; break;
+                        case "lockQuickslotsWhenPlacingItem": ConfigSwitcher.LockQuickslotsWhenPlacingItem = configValue; break;
+                        case "fixAquariumLighting": ConfigSwitcher.FixAquariumLighting = configValue; break;
+                        case "enableAquariumGlassGlowing": ConfigSwitcher.GlowingAquariumGlass = configValue; break;
+                        case "asBuildable_SpecimenAnalyzer": ConfigSwitcher.SpecimenAnalyzer_asBuildable = configValue; break;
+                        case "asBuildable_MarkiplierDoll1": ConfigSwitcher.MarkiDoll1_asBuildable = configValue; break;
+                        case "asBuildable_MarkiplierDoll2": ConfigSwitcher.MarkiDoll2_asBuildable = configValue; break;
+                        case "asBuildable_JackSepticEyeDoll": ConfigSwitcher.JackSepticEye_asBuildable = configValue; break;
+                        case "asBuildable_EatMyDictionDoll": ConfigSwitcher.EatMyDiction_asBuidable = configValue; break;
+                        case "asBuildable_ForkliftToy": ConfigSwitcher.Forklift_asBuidable = configValue; break;
+                        case "asBuildable_SofaSmall": ConfigSwitcher.SofaStr1_asBuidable = configValue; break;
+                        case "asBuildable_SofaMedium": ConfigSwitcher.SofaStr2_asBuidable = configValue; break;
+                        case "asBuildable_SofaBig": ConfigSwitcher.SofaStr3_asBuidable = configValue; break;
+                        case "asBuildable_SofaCorner": ConfigSwitcher.SofaCorner2_asBuidable = configValue; break;
+                        case "asBuildable_LabCart": ConfigSwitcher.LabCart_asBuildable = configValue; break;
+                        case "asBuildable_EmptyDesk": ConfigSwitcher.EmptyDesk_asBuildable = configValue; break;
+                        case "precursorKeysAll": ConfigSwitcher.PrecursorKeysAll = configValue; break;
                         case "precursorKeys_RecipiesResource":
                             if (TechTypeExtensions.FromString(configValueStr, out tmpresource, true) && tmpresource != TechType.None)
                                 ConfigSwitcher.PrecursorKeysResource = tmpresource;
@@ -473,128 +436,67 @@ namespace DecorationsMod
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid resource amount for flora recipies. Default amount will be used.");
                             break;
-                        case "config_LandTree":
-                            GetFloraConfig(ConfigSwitcher.config_LandTree1, configValueStr); break;
-                        case "config_JungleTreeA":
-                            GetFloraConfig(ConfigSwitcher.config_JungleTree1, configValueStr); break;
-                        case "config_JungleTreeB":
-                            GetFloraConfig(ConfigSwitcher.config_JungleTree2, configValueStr); break;
-                        case "config_TropicalTreeA":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalTreeA, configValueStr); break;
-                        case "config_TropicalTreeB":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalTreeB, configValueStr); break;
-                        case "config_TropicalTreeC":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalTreeC, configValueStr); break;
-                        case "config_TropicalTreeD":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalTreeD, configValueStr); break;
-                        case "config_LandPlantRedA":
-                            GetFloraConfig(ConfigSwitcher.config_LandPlant1, configValueStr); break;
-                        case "config_LandPlantRedB":
-                            GetFloraConfig(ConfigSwitcher.config_LandPlant2, configValueStr); break;
-                        case "config_LandPlantA":
-                            GetFloraConfig(ConfigSwitcher.config_LandPlant3, configValueStr); break;
-                        case "config_LandPlantB":
-                            GetFloraConfig(ConfigSwitcher.config_LandPlant4, configValueStr); break;
-                        case "config_LandPlantC":
-                            GetFloraConfig(ConfigSwitcher.config_LandPlant5, configValueStr); break;
-                        case "config_FernA":
-                            GetFloraConfig(ConfigSwitcher.config_Fern2, configValueStr); break;
-                        case "config_FernB":
-                            GetFloraConfig(ConfigSwitcher.config_Fern4, configValueStr); break;
-                        case "config_TropicalPlantA":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalPlantA, configValueStr); break;
-                        case "config_TropicalPlantB":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalPlantB, configValueStr); break;
-                        case "config_TropicalPlantC":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalPlantC, configValueStr); break;
-                        case "config_TropicalPlantD":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalPlantD, configValueStr); break;
-                        case "config_TropicalPlantE":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalPlantE, configValueStr); break;
-                        case "config_TropicalPlantF":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalPlantF, configValueStr); break;
-                        case "config_TropicalPlantG":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalPlantG, configValueStr); break;
-                        case "config_TropicalPlantH":
-                            GetFloraConfig(ConfigSwitcher.config_TropicalPlantH, configValueStr); break;
-                        case "config_CrabClawKelpA":
-                            GetFloraConfig(ConfigSwitcher.config_CrabClawKelp2, configValueStr); break;
-                        case "config_CrabClawKelpB":
-                            GetFloraConfig(ConfigSwitcher.config_CrabClawKelp1, configValueStr); break;
-                        case "config_CrabClawKelpC":
-                            GetFloraConfig(ConfigSwitcher.config_CrabClawKelp3, configValueStr); break;
-                        case "config_PyroCoralA":
-                            GetFloraConfig(ConfigSwitcher.config_PyroCoral1, configValueStr); break;
-                        case "config_PyroCoralB":
-                            GetFloraConfig(ConfigSwitcher.config_PyroCoral2, configValueStr); break;
-                        case "config_PyroCoralC":
-                            GetFloraConfig(ConfigSwitcher.config_PyroCoral3, configValueStr); break;
-                        case "config_CoveTree":
-                            GetFloraConfig(ConfigSwitcher.config_CoveTree1, configValueStr); break;
-                        case "config_SpottedReedsA":
-                            GetFloraConfig(ConfigSwitcher.config_GreenReeds1, configValueStr); break;
-                        case "config_SpottedReedsB":
-                            GetFloraConfig(ConfigSwitcher.config_GreenReeds6, configValueStr); break;
-                        case "config_BrineLily":
-                            GetFloraConfig(ConfigSwitcher.config_LostRiverPlant2, configValueStr); break;
-                        case "config_LostRiverPlant":
-                            GetFloraConfig(ConfigSwitcher.config_LostRiverPlant4, configValueStr); break;
-                        case "config_CoralReefPlantMiddle":
-                            GetFloraConfig(ConfigSwitcher.config_PlantMiddle11, configValueStr); break;
-                        case "config_SmallMushroomsDeco":
-                            GetFloraConfig(ConfigSwitcher.config_SmallDeco3, configValueStr); break;
-                        case "config_FloatingStone":
-                            GetFloraConfig(ConfigSwitcher.config_FloatingStone1, configValueStr); break;
-                        case "config_BrownCoralTubesA":
-                            GetFloraConfig(ConfigSwitcher.config_BrownCoralTubes1, configValueStr); break;
-                        case "config_BrownCoralTubesB":
-                            GetFloraConfig(ConfigSwitcher.config_BrownCoralTubes2, configValueStr); break;
-                        case "config_BrownCoralTubesC":
-                            GetFloraConfig(ConfigSwitcher.config_BrownCoralTubes3, configValueStr); break;
-                        case "config_BlueCoralTubes":
-                            GetFloraConfig(ConfigSwitcher.config_BlueCoralTubes1, configValueStr); break;
-                        case "config_PurplePinecone":
-                            GetFloraConfig(ConfigSwitcher.config_SmallDeco10, configValueStr); break;
-                        case "config_CoralPlantYellow":
-                            GetFloraConfig(ConfigSwitcher.config_SmallDeco11, configValueStr); break;
-                        case "config_CoralPlantGreen":
-                            GetFloraConfig(ConfigSwitcher.config_SmallDeco13, configValueStr); break;
-                        case "config_CoralPlantBlue":
-                            GetFloraConfig(ConfigSwitcher.config_SmallDeco14, configValueStr); break;
-                        case "config_CoralPlantRed":
-                            GetFloraConfig(ConfigSwitcher.config_SmallDeco15Red, configValueStr); break;
-                        case "config_CoralPlantPurple":
-                            GetFloraConfig(ConfigSwitcher.config_SmallDeco17Purple, configValueStr); break;
-                        case "config_BloodGrass":
-                            GetFloraConfig(ConfigSwitcher.config_BloodGrassRed, configValueStr); break;
-                        case "config_RedGrass1":
-                            GetFloraConfig(ConfigSwitcher.config_RedGrass1, configValueStr); break;
-                        case "config_RedGrass2":
-                            GetFloraConfig(ConfigSwitcher.config_RedGrass2, configValueStr); break;
-                        case "config_RedGrass2Tall":
-                            GetFloraConfig(ConfigSwitcher.config_RedGrass2Tall, configValueStr); break;
-                        case "config_RedGrass3":
-                            GetFloraConfig(ConfigSwitcher.config_RedGrass3, configValueStr); break;
-                        case "config_RedGrass3Tall":
-                            GetFloraConfig(ConfigSwitcher.config_RedGrass3Tall, configValueStr); break;
-                        case "config_BloodGrassDense":
-                            GetFloraConfig(ConfigSwitcher.config_BloodGrassDense, configValueStr); break;
-                        case "config_MushroomTree1":
-                            GetFloraConfig(ConfigSwitcher.config_MushroomTree1, configValueStr); break;
-                        case "config_MushroomTree2":
-                            GetFloraConfig(ConfigSwitcher.config_MushroomTree2, configValueStr); break;
-                        case "config_MarbleMelonTiny":
-                            GetFloraConfig(ConfigSwitcher.config_MarbleMelonTiny, configValueStr); break;
-                        case "addRegularAirSeeds":
-                            ConfigSwitcher.EnableRegularAirSeeds = configValue; break;
-                        case "addAirSeedsWhenDiscovered":
-                            ConfigSwitcher.AddAirSeedsWhenDiscovered = configValue; break;
-                        case "addRegularWaterSeeds":
-                            ConfigSwitcher.EnableRegularWaterSeeds = configValue; break;
-                        case "addWaterSeedsWhenDiscovered":
-                            ConfigSwitcher.AddWaterSeedsWhenDiscovered = configValue; break;
-                        case "GhostLeviatan_enable":
-                            GhostLeviatan_enable = configValue; break;
+                        case "config_LandTree": GetFloraConfig(ConfigSwitcher.config_LandTree1, configValueStr); break;
+                        case "config_JungleTreeA": GetFloraConfig(ConfigSwitcher.config_JungleTree1, configValueStr); break;
+                        case "config_JungleTreeB": GetFloraConfig(ConfigSwitcher.config_JungleTree2, configValueStr); break;
+                        case "config_TropicalTreeA": GetFloraConfig(ConfigSwitcher.config_TropicalTreeA, configValueStr); break;
+                        case "config_TropicalTreeB": GetFloraConfig(ConfigSwitcher.config_TropicalTreeB, configValueStr); break;
+                        case "config_TropicalTreeC": GetFloraConfig(ConfigSwitcher.config_TropicalTreeC, configValueStr); break;
+                        case "config_TropicalTreeD": GetFloraConfig(ConfigSwitcher.config_TropicalTreeD, configValueStr); break;
+                        case "config_LandPlantRedA": GetFloraConfig(ConfigSwitcher.config_LandPlant1, configValueStr); break;
+                        case "config_LandPlantRedB": GetFloraConfig(ConfigSwitcher.config_LandPlant2, configValueStr); break;
+                        case "config_LandPlantA": GetFloraConfig(ConfigSwitcher.config_LandPlant3, configValueStr); break;
+                        case "config_LandPlantB": GetFloraConfig(ConfigSwitcher.config_LandPlant4, configValueStr); break;
+                        case "config_LandPlantC": GetFloraConfig(ConfigSwitcher.config_LandPlant5, configValueStr); break;
+                        case "config_FernA": GetFloraConfig(ConfigSwitcher.config_Fern2, configValueStr); break;
+                        case "config_FernB": GetFloraConfig(ConfigSwitcher.config_Fern4, configValueStr); break;
+                        case "config_TropicalPlantA": GetFloraConfig(ConfigSwitcher.config_TropicalPlantA, configValueStr); break;
+                        case "config_TropicalPlantB": GetFloraConfig(ConfigSwitcher.config_TropicalPlantB, configValueStr); break;
+                        case "config_TropicalPlantC": GetFloraConfig(ConfigSwitcher.config_TropicalPlantC, configValueStr); break;
+                        case "config_TropicalPlantD": GetFloraConfig(ConfigSwitcher.config_TropicalPlantD, configValueStr); break;
+                        case "config_TropicalPlantE": GetFloraConfig(ConfigSwitcher.config_TropicalPlantE, configValueStr); break;
+                        case "config_TropicalPlantF": GetFloraConfig(ConfigSwitcher.config_TropicalPlantF, configValueStr); break;
+                        case "config_TropicalPlantG": GetFloraConfig(ConfigSwitcher.config_TropicalPlantG, configValueStr); break;
+                        case "config_TropicalPlantH": GetFloraConfig(ConfigSwitcher.config_TropicalPlantH, configValueStr); break;
+                        case "config_CrabClawKelpA": GetFloraConfig(ConfigSwitcher.config_CrabClawKelp2, configValueStr); break;
+                        case "config_CrabClawKelpB": GetFloraConfig(ConfigSwitcher.config_CrabClawKelp1, configValueStr); break;
+                        case "config_CrabClawKelpC": GetFloraConfig(ConfigSwitcher.config_CrabClawKelp3, configValueStr); break;
+                        case "config_PyroCoralA": GetFloraConfig(ConfigSwitcher.config_PyroCoral1, configValueStr); break;
+                        case "config_PyroCoralB": GetFloraConfig(ConfigSwitcher.config_PyroCoral2, configValueStr); break;
+                        case "config_PyroCoralC": GetFloraConfig(ConfigSwitcher.config_PyroCoral3, configValueStr); break;
+                        case "config_CoveTree": GetFloraConfig(ConfigSwitcher.config_CoveTree1, configValueStr); break;
+                        case "config_SpottedReedsA": GetFloraConfig(ConfigSwitcher.config_GreenReeds1, configValueStr); break;
+                        case "config_SpottedReedsB": GetFloraConfig(ConfigSwitcher.config_GreenReeds6, configValueStr); break;
+                        case "config_BrineLily": GetFloraConfig(ConfigSwitcher.config_LostRiverPlant2, configValueStr); break;
+                        case "config_LostRiverPlant": GetFloraConfig(ConfigSwitcher.config_LostRiverPlant4, configValueStr); break;
+                        case "config_CoralReefPlantMiddle": GetFloraConfig(ConfigSwitcher.config_PlantMiddle11, configValueStr); break;
+                        case "config_SmallMushroomsDeco": GetFloraConfig(ConfigSwitcher.config_SmallDeco3, configValueStr); break;
+                        case "config_FloatingStone": GetFloraConfig(ConfigSwitcher.config_FloatingStone1, configValueStr); break;
+                        case "config_BrownCoralTubesA": GetFloraConfig(ConfigSwitcher.config_BrownCoralTubes1, configValueStr); break;
+                        case "config_BrownCoralTubesB": GetFloraConfig(ConfigSwitcher.config_BrownCoralTubes2, configValueStr); break;
+                        case "config_BrownCoralTubesC": GetFloraConfig(ConfigSwitcher.config_BrownCoralTubes3, configValueStr); break;
+                        case "config_BlueCoralTubes": GetFloraConfig(ConfigSwitcher.config_BlueCoralTubes1, configValueStr); break;
+                        case "config_PurplePinecone": GetFloraConfig(ConfigSwitcher.config_SmallDeco10, configValueStr); break;
+                        case "config_CoralPlantYellow": GetFloraConfig(ConfigSwitcher.config_SmallDeco11, configValueStr); break;
+                        case "config_CoralPlantGreen": GetFloraConfig(ConfigSwitcher.config_SmallDeco13, configValueStr); break;
+                        case "config_CoralPlantBlue": GetFloraConfig(ConfigSwitcher.config_SmallDeco14, configValueStr); break;
+                        case "config_CoralPlantRed": GetFloraConfig(ConfigSwitcher.config_SmallDeco15Red, configValueStr); break;
+                        case "config_CoralPlantPurple": GetFloraConfig(ConfigSwitcher.config_SmallDeco17Purple, configValueStr); break;
+                        case "config_BloodGrass": GetFloraConfig(ConfigSwitcher.config_BloodGrassRed, configValueStr); break;
+                        case "config_RedGrass1": GetFloraConfig(ConfigSwitcher.config_RedGrass1, configValueStr); break;
+                        case "config_RedGrass2": GetFloraConfig(ConfigSwitcher.config_RedGrass2, configValueStr); break;
+                        case "config_RedGrass2Tall": GetFloraConfig(ConfigSwitcher.config_RedGrass2Tall, configValueStr); break;
+                        case "config_RedGrass3": GetFloraConfig(ConfigSwitcher.config_RedGrass3, configValueStr); break;
+                        case "config_RedGrass3Tall": GetFloraConfig(ConfigSwitcher.config_RedGrass3Tall, configValueStr); break;
+                        case "config_BloodGrassDense": GetFloraConfig(ConfigSwitcher.config_BloodGrassDense, configValueStr); break;
+                        case "config_MushroomTree1": GetFloraConfig(ConfigSwitcher.config_MushroomTree1, configValueStr); break;
+                        case "config_MushroomTree2": GetFloraConfig(ConfigSwitcher.config_MushroomTree2, configValueStr); break;
+                        case "config_MarbleMelonTiny": GetFloraConfig(ConfigSwitcher.config_MarbleMelonTiny, configValueStr); break;
+                        case "addRegularAirSeeds": ConfigSwitcher.EnableRegularAirSeeds = configValue; break;
+                        case "addAirSeedsWhenDiscovered": ConfigSwitcher.AddAirSeedsWhenDiscovered = configValue; break;
+                        case "addRegularWaterSeeds": ConfigSwitcher.EnableRegularWaterSeeds = configValue; break;
+                        case "addWaterSeedsWhenDiscovered": ConfigSwitcher.AddWaterSeedsWhenDiscovered = configValue; break;
+                        case "GhostLeviatan_enable": GhostLeviatan_enable = configValue; break;
                         case "GhostLeviatan_maxSpawns":
                             if (int.TryParse(configValueStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal) && tmpVal >= 1 && tmpVal <= 10)
                                 ConfigSwitcher.GhostLeviatan_maxSpawns = tmpVal;
@@ -619,28 +521,17 @@ namespace DecorationsMod
                             else
                                 Logger.Log("WARNING: \"" + configValueStr + "\" is not a valid amount for ghost leviathan health points. Default amount will be used.");
                             break;
-                        case "alienRelic1Animation":
-                            AlienRelic1Animation = configValue; break;
-                        case "alienRelic2Animation":
-                            AlienRelic2Animation = configValue; break;
-                        case "alienRelic3Animation":
-                            AlienRelic3Animation = configValue; break;
-                        case "alienRelic4Animation":
-                            AlienRelic4Animation = configValue; break;
-                        case "alienRelic5Animation":
-                            AlienRelic5Animation = configValue; break;
-                        case "alienRelic6Animation":
-                            AlienRelic6Animation = configValue; break;
-                        case "alienRelic7Animation":
-                            AlienRelic7Animation = configValue; break;
-                        case "alienRelic8Animation":
-                            AlienRelic8Animation = configValue; break;
-                        case "alienRelic9Animation":
-                            AlienRelic9Animation = configValue; break;
-                        case "alienRelic10Animation":
-                            AlienRelic10Animation = configValue; break;
-                        case "alienRelic11Animation":
-                            AlienRelic11Animation = configValue; break;
+                        case "alienRelic1Animation": AlienRelic1Animation = configValue; break;
+                        case "alienRelic2Animation": AlienRelic2Animation = configValue; break;
+                        case "alienRelic3Animation": AlienRelic3Animation = configValue; break;
+                        case "alienRelic4Animation": AlienRelic4Animation = configValue; break;
+                        case "alienRelic5Animation": AlienRelic5Animation = configValue; break;
+                        case "alienRelic6Animation": AlienRelic6Animation = configValue; break;
+                        case "alienRelic7Animation": AlienRelic7Animation = configValue; break;
+                        case "alienRelic8Animation": AlienRelic8Animation = configValue; break;
+                        case "alienRelic9Animation": AlienRelic9Animation = configValue; break;
+                        case "alienRelic10Animation": AlienRelic10Animation = configValue; break;
+                        case "alienRelic11Animation": AlienRelic11Animation = configValue; break;
                         case "barBottle1Water":
                             if (float.TryParse(configValueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out fTmpVal) && fTmpVal >= 1.0f && fTmpVal <= 100.0f)
                                 ConfigSwitcher.BarBottle1Value = fTmpVal;
