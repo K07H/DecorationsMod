@@ -149,6 +149,10 @@ namespace DecorationsMod
                             newItem.RegisterItem();
                             result.Add(newItem);
                         }
+#if DEBUG_ITEMS_REGISTRATION
+                        else
+                            Logger.Log("INFO: Skipping registration for item type=[{0}]", newItemType.Name);
+#endif
                     }
                 }
 #if DEBUG_ITEMS_REGISTRATION

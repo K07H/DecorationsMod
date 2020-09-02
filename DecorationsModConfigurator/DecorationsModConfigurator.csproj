@@ -38,6 +38,15 @@
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\configurator.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +57,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\</SubnauticaDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,20 +69,29 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\</SubnauticaDir>
   </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugBZ|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugBZ\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\</SubnauticaDir>
   </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup>
-    <ApplicationIcon>Images\configurator.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseBZ|AnyCPU'">
+    <OutputPath>bin\ReleaseBZ\</OutputPath>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <WarningLevel>2</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\</SubnauticaDir>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentWPF, Version=0.8.0.6, Culture=neutral, processorArchitecture=MSIL">
@@ -612,49 +631,28 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo ------ Copying "$(TargetDir)$(TargetFileName)" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...
-xcopy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\" /Y
-echo ------ Copying "$(TargetDir)$(TargetFileName).manifest" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...
-xcopy "$(TargetDir)$(TargetFileName).manifest" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\" /Y
-echo ------ Copying "$(TargetDir)FluentWPF.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...
-xcopy "$(TargetDir)FluentWPF.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\" /Y
-echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...
-xcopy "$(TargetDir)MaterialDesignColors.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\" /Y
-echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\"...
-xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\" /Y
-
-echo ------ Copying "$(TargetDir)$(TargetFileName)" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\" /Y
-echo ------ Copying "$(TargetDir)$(TargetFileName).manifest" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)$(TargetFileName).manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\" /Y
-echo ------ Copying "$(TargetDir)FluentWPF.dll" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)FluentWPF.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\" /Y
-echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)MaterialDesignColors.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\" /Y
-echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Configurator\" /Y
-
-echo ------ Copying "$(TargetDir)$(TargetFileName)" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\"...
-xcopy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\" /Y
-echo ------ Copying "$(TargetDir)$(TargetFileName).manifest" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\"...
-xcopy "$(TargetDir)$(TargetFileName).manifest" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\" /Y
-echo ------ Copying "$(TargetDir)FluentWPF.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\"...
-xcopy "$(TargetDir)FluentWPF.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\" /Y
-echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\"...
-xcopy "$(TargetDir)MaterialDesignColors.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\" /Y
-echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\"...
-xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)BZ\Configurator\" /Y
-
-echo ------ Copying "$(TargetDir)$(TargetFileName)" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\" /Y
-echo ------ Copying "$(TargetDir)$(TargetFileName).manifest" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)$(TargetFileName).manifest" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\" /Y
-echo ------ Copying "$(TargetDir)FluentWPF.dll" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)FluentWPF.dll" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\" /Y
-echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)MaterialDesignColors.dll" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\" /Y
-echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\"...
-xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Configurator\" /Y
+    <PostBuildEvent>SET CONFIGURATOREXPATH=$(SubnauticaDir)QMods\DecorationsMod\Configurator\
+SET CONFIGURATOREXDEBUGPATH=$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\
+echo ------ Copying "$(TargetDir)$(TargetFileName)" to "%25CONFIGURATOREXDEBUGPATH%25"
+xcopy "$(TargetDir)$(TargetFileName)" "%25CONFIGURATOREXDEBUGPATH%25" /Y
+echo ------ Copying "$(TargetDir)$(TargetFileName).manifest" to "%25CONFIGURATOREXDEBUGPATH%25"
+xcopy "$(TargetDir)$(TargetFileName).manifest" "%25CONFIGURATOREXDEBUGPATH%25" /Y
+echo ------ Copying "$(TargetDir)FluentWPF.dll" to "%25CONFIGURATOREXDEBUGPATH%25"
+xcopy "$(TargetDir)FluentWPF.dll" "%25CONFIGURATOREXDEBUGPATH%25" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "%25CONFIGURATOREXDEBUGPATH%25"
+xcopy "$(TargetDir)MaterialDesignColors.dll" "%25CONFIGURATOREXDEBUGPATH%25" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "%25CONFIGURATOREXDEBUGPATH%25"
+xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "%25CONFIGURATOREXDEBUGPATH%25" /Y
+echo ------ Copying "$(TargetDir)$(TargetFileName)" to "%25CONFIGURATOREXPATH%25"
+xcopy "$(TargetDir)$(TargetFileName)" "%25CONFIGURATOREXPATH%25" /Y
+echo ------ Copying "$(TargetDir)$(TargetFileName).manifest" to "%25CONFIGURATOREXPATH%25"
+xcopy "$(TargetDir)$(TargetFileName).manifest" "%25CONFIGURATOREXPATH%25" /Y
+echo ------ Copying "$(TargetDir)FluentWPF.dll" to "%25CONFIGURATOREXPATH%25"
+xcopy "$(TargetDir)FluentWPF.dll" "%25CONFIGURATOREXPATH%25" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignColors.dll" to "%25CONFIGURATOREXPATH%25"
+xcopy "$(TargetDir)MaterialDesignColors.dll" "%25CONFIGURATOREXPATH%25" /Y
+echo ------ Copying "$(TargetDir)MaterialDesignThemes.Wpf.dll" to "%25CONFIGURATOREXPATH%25"
+xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "%25CONFIGURATOREXPATH%25" /Y
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

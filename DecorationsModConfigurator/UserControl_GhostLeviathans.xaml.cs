@@ -14,11 +14,11 @@ namespace DecorationsModConfigurator
         {
             InitializeComponent();
 
-            this.GhostLeviatan_enable = false;
-            this.GhostLeviatan_health = 2000;
-            this.GhostLeviatan_maxSpawns = 2;
-            this.GhostLeviatan_timeBeforeFirstSpawn = 1200;
-            this.GhostLeviatan_spawnTimeRatio = 100;
+            this.GhostLeviatan_enable = Configuration.Instance.GhostLeviatan_enable;
+            this.GhostLeviatan_health = Configuration.Instance.GhostLeviatan_health;
+            this.GhostLeviatan_maxSpawns = Configuration.Instance.GhostLeviatan_maxSpawns;
+            this.GhostLeviatan_timeBeforeFirstSpawn = Configuration.Instance.GhostLeviatan_timeBeforeFirstSpawn;
+            this.GhostLeviatan_spawnTimeRatio = Configuration.Instance.GhostLeviatan_spawnTimeRatio;
 
             RefreshFieldsVisibility();
 

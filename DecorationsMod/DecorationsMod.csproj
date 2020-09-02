@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DecorationsMod</RootNamespace>
     <AssemblyName>DecorationsMod</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -24,9 +24,10 @@
     <AssemblyCSharpFpPath>$(Dependencies)\Assembly-CSharp-firstpass.dll</AssemblyCSharpFpPath>
     <AssemblyCSharpPath>$(Dependencies)\Assembly-CSharp.dll</AssemblyCSharpPath>
     <OutputPath>bin\DebugSN\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SUBNAUTICA;DEBUG_FLORA</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SUBNAUTICA;DEBUG_ITEMS_REGISTRATION</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseSN|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -41,6 +42,7 @@
     <DefineConstants>SUBNAUTICA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugBZ|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,6 +58,7 @@
     <DefineConstants>TRACE;DEBUG;BELOWZERO;DEBUG_ITEMS_REGISTRATION;DEBUG_HARMONY_PATCHING;DEBUG_STOOL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseBZ|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -70,6 +73,7 @@
     <DefineConstants>BELOWZERO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>configurator.ico</ApplicationIcon>
@@ -458,97 +462,64 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo ------ Decorations Mod compilation success.
-if $(ConfigurationName) == DebugSN (
-echo ------ Copying "$(TargetPath)" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
-xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)mod.json" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
-xcopy "$(TargetDir)mod.json" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)Config.txt" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
-xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-echo ------ Copying "$(ProjectDir)Configurator.lnk" to "$(TargetDir)"...
-xcopy "$(ProjectDir)Configurator.lnk" "$(TargetDir)" /Y
-echo ------ Copying "$(ProjectDir)Configurator.lnk" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
-xcopy "$(ProjectDir)Configurator.lnk" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-)
-if $(ConfigurationName) == ReleaseSN (
-echo ------ Copying "$(TargetPath)" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
-xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)mod.json" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
-xcopy "$(TargetDir)mod.json" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)Config.txt" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
-xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\Assets\" /Y
-echo ------ Copying "$(ProjectDir)Configurator.lnk" to "$(TargetDir)"...
-xcopy "$(ProjectDir)Configurator.lnk" "$(TargetDir)" /Y
-echo ------ Copying "$(ProjectDir)Configurator.lnk" to "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\"...
-xcopy "$(ProjectDir)Configurator.lnk" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\DecorationsMod\" /Y
-)
-if $(ConfigurationName) == DebugBZ (
-echo ------ Copying "$(TargetPath)" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
-xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)modBZ.json" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
-xcopy "$(TargetDir)modBZ.json" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
-echo ------ Deleting previous copy of "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\mod.json"...
-del /F /Q "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\mod.json"
-echo ------ Renaming "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\modBZ.json" to "mod.json"...
-ren "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\modBZ.json" "mod.json"
-echo ------ Copying "$(TargetDir)Config.txt" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
-xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\" /Y
-echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\" /Y
-echo ------ Copying "$(ProjectDir)Configurator.lnk" to "$(TargetDir)"...
-xcopy "$(ProjectDir)Configurator.lnk" "$(TargetDir)" /Y
-echo ------ Copying "$(ProjectDir)Configurator.lnk" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
-xcopy "$(ProjectDir)Configurator.lnk" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
-)
-if $(ConfigurationName) == ReleaseBZ (
-echo ------ Copying "$(TargetPath)" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
-xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)modBZ.json" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
-xcopy "$(TargetDir)modBZ.json" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
-echo ------ Deleting previous copy of "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\mod.json"...
-del /F /Q "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\mod.json"
-echo ------ Renaming "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\modBZ.json" to "mod.json"...
-ren "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\modBZ.json" "mod.json"
-echo ------ Copying "$(TargetDir)Config.txt" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
-xcopy "$(TargetDir)Config.txt" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
-echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.assets" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\" /Y
-echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.manifest" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\Assets\" /Y
-echo ------ Copying "$(ProjectDir)Configurator.lnk" to "$(TargetDir)"...
-xcopy "$(ProjectDir)Configurator.lnk" "$(TargetDir)" /Y
-echo ------ Copying "$(ProjectDir)Configurator.lnk" to "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\"...
-xcopy "$(ProjectDir)Configurator.lnk" "C:\Program Files (x86)\Steam\steamapps\common\SubnauticaZero\QMods\DecorationsMod\" /Y
-)</PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>IF EXIST "G:\MyPropulsionArm\Assets\AssetBundles" (
-IF EXIST "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets" (
-IF EXIST "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets" (
-echo ------ Deleting previous copy of "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets"...
-del /F /Q "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets"
+    <PreBuildEvent>echo ------ Importing latest assets for Decorations Mod...
+SET UNITYPROJECTPATH=G:\MyPropulsionArm\Assets\AssetBundles\
+IF EXIST "%25UNITYPROJECTPATH%25" (
+IF EXIST "%25UNITYPROJECTPATH%25decorationassets" (
+IF EXIST "%25UNITYPROJECTPATH%25decorationassets.assets" (
+echo ------ Deleting previous copy of "%25UNITYPROJECTPATH%25decorationassets.assets"...
+del /F /Q "%25UNITYPROJECTPATH%25decorationassets.assets"
 )
 )
-IF NOT EXIST "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets" (
-echo ------ Renaming latest assets from "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets" to "decorationassets.assets"...
-ren "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets" "decorationassets.assets"
+IF NOT EXIST "%25UNITYPROJECTPATH%25decorationassets.assets" (
+echo ------ Renaming latest assets from "%25UNITYPROJECTPATH%25decorationassets" to "decorationassets.assets"...
+ren "%25UNITYPROJECTPATH%25decorationassets" "decorationassets.assets"
 )
-echo ------ Copying "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets" to "$(ProjectDir)Assets\"...
-xcopy "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.assets" "$(ProjectDir)Assets\" /Y /d
-echo ------ Copying "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.manifest" to "$(ProjectDir)Assets\"...
-xcopy "G:\MyPropulsionArm\Assets\AssetBundles\decorationassets.manifest" "$(ProjectDir)Assets\" /Y /d
+echo ------ Copying "%25UNITYPROJECTPATH%25decorationassets.assets" to "$(ProjectDir)Assets\"...
+xcopy "%25UNITYPROJECTPATH%25decorationassets.assets" "$(ProjectDir)Assets\" /Y /d
+echo ------ Copying "%25UNITYPROJECTPATH%25decorationassets.manifest" to "$(ProjectDir)Assets\"...
+xcopy "%25UNITYPROJECTPATH%25decorationassets.manifest" "$(ProjectDir)Assets\" /Y /d
 )
 echo ------ Compiling Decorations Mod...</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>echo ------ Decorations Mod compiled successfully.
+SET DECORATIONSMODPATH=$(SubnauticaDir)\QMods\DecorationsMod\
+echo ------ Copying "$(TargetPath)" to "%25DECORATIONSMODPATH%25"...
+xcopy "$(TargetPath)" "%25DECORATIONSMODPATH%25" /Y
+echo ------ Copying "$(TargetDir)Config.txt" to "%25DECORATIONSMODPATH%25"...
+xcopy "$(TargetDir)Config.txt" "%25DECORATIONSMODPATH%25" /Y
+echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "%25DECORATIONSMODPATH%25Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.assets" "%25DECORATIONSMODPATH%25Assets\" /Y
+echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "%25DECORATIONSMODPATH%25Assets\"...
+xcopy "$(TargetDir)Assets\decorationassets.manifest" "%25DECORATIONSMODPATH%25Assets\" /Y
+echo ------ Copying "$(ProjectDir)Configurator.lnk" to "$(TargetDir)"...
+xcopy "$(ProjectDir)Configurator.lnk" "$(TargetDir)" /Y
+echo ------ Copying "$(ProjectDir)Configurator.lnk" to "%25DECORATIONSMODPATH%25"...
+xcopy "$(ProjectDir)Configurator.lnk" "%25DECORATIONSMODPATH%25" /Y
+if $(ConfigurationName) == DebugSN (
+echo ------ Copying "$(TargetDir)mod.json" to "%25DECORATIONSMODPATH%25"...
+xcopy "$(TargetDir)mod.json" "%25DECORATIONSMODPATH%25" /Y
+)
+if $(ConfigurationName) == ReleaseSN (
+echo ------ Copying "$(TargetDir)mod.json" to "%25DECORATIONSMODPATH%25"...
+xcopy "$(TargetDir)mod.json" "%25DECORATIONSMODPATH%25" /Y
+)
+if $(ConfigurationName) == DebugBZ (
+echo ------ Copying "$(TargetDir)modBZ.json" to "%25DECORATIONSMODPATH%25"...
+xcopy "$(TargetDir)modBZ.json" "%25DECORATIONSMODPATH%25" /Y
+echo ------ Deleting previous copy of "%25DECORATIONSMODPATH%25mod.json"...
+del /F /Q "%25DECORATIONSMODPATH%25mod.json"
+echo ------ Renaming "%25DECORATIONSMODPATH%25modBZ.json" to "mod.json"...
+ren "%25DECORATIONSMODPATH%25modBZ.json" "mod.json"
+)
+if $(ConfigurationName) == ReleaseBZ (
+echo ------ Copying "$(TargetDir)modBZ.json" to "%25DECORATIONSMODPATH%25"...
+xcopy "$(TargetDir)modBZ.json" "%25DECORATIONSMODPATH%25" /Y
+echo ------ Deleting previous copy of "%25DECORATIONSMODPATH%25mod.json"...
+del /F /Q "%25DECORATIONSMODPATH%25mod.json"
+echo ------ Renaming "%25DECORATIONSMODPATH%25modBZ.json" to "mod.json"...
+ren "%25DECORATIONSMODPATH%25modBZ.json" "mod.json"
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>

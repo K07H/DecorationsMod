@@ -496,7 +496,7 @@ namespace DecorationsMod
                         case "addAirSeedsWhenDiscovered": ConfigSwitcher.AddAirSeedsWhenDiscovered = configValue; break;
                         case "addRegularWaterSeeds": ConfigSwitcher.EnableRegularWaterSeeds = configValue; break;
                         case "addWaterSeedsWhenDiscovered": ConfigSwitcher.AddWaterSeedsWhenDiscovered = configValue; break;
-                        case "GhostLeviatan_enable": GhostLeviatan_enable = configValue; break;
+                        case "GhostLeviatan_enable": ConfigSwitcher.GhostLeviatan_enable = configValue; break;
                         case "GhostLeviatan_maxSpawns":
                             if (int.TryParse(configValueStr, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal) && tmpVal >= 1 && tmpVal <= 10)
                                 ConfigSwitcher.GhostLeviatan_maxSpawns = tmpVal;

@@ -46,8 +46,7 @@ namespace DecorationsMod
             HarmonyInstance.Patch(canDeconstructMethod, new HarmonyMethod(canDeconstructPrefix), null);
             var constructMethod = typeof(Constructable).GetMethod("Construct", BindingFlags.Public | BindingFlags.Instance);
             var constructPostfix = typeof(ConstructableFixer).GetMethod("Construct_Postfix", BindingFlags.Public | BindingFlags.Static);
-            var constructPrefix = typeof(ConstructableFixer).GetMethod("Construct_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(constructMethod, new HarmonyMethod(constructPrefix), new HarmonyMethod(constructPostfix));
+            HarmonyInstance.Patch(constructMethod, null, new HarmonyMethod(constructPostfix));
             // Fix equipment types for batteries, power cells, and their ion versions
             if (ConfigSwitcher.EnablePlaceBatteries)
                 PatchBatteries();

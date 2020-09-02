@@ -33,7 +33,7 @@ namespace DecorationsMod.Controllers
             // Get max spawns value from Config.txt file
             this.maxSpawns = ConfigSwitcher.GhostLeviatan_maxSpawns;
 
-            base.InvokeRepeating("UpdateSpawn", 0f, 2f);
+            base.InvokeRepeating("UpdateSpawn", 0f, 6f);
         }
         
         private void UpdateSpawn()

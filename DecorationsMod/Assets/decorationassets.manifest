@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1651726036
+CRC: 1845922885
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 932cf7a0b39118aa795dd803ca035e19
+    Hash: 82bd6e9601bb144571240f50b3ed6ba7
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1a6f9fd4ccc3875a34e79ba73f901f13
@@ -143,6 +143,7 @@ Assets:
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon_colorMask.png
 - Assets/seamoth.fbm/power_cell_01_normal.png
 - Assets/CategoryIcons/D_Functional.png
+- Assets/OutdoorLadder/OutdoorLadder.prefab
 - Assets/MushroomTreeParts/Coral_reef_small_deco_06_normal.png
 - Assets/circuitbox3.png
 - Assets/CategoryIcons/D_Electronics.png
@@ -245,6 +246,7 @@ Assets:
 - Assets/CategoryIcons/D_Accessories.png
 - Assets/ReaperLeviathan.prefab
 - Assets/prawnsuit.fbm/exosuit_01_colorMask.png
+- Assets/OutdoorLadder/base_ladder_01_normal.png
 - Assets/tropicalplant7bicon.png
 - Assets/genericskeleton1icon.png
 - Assets/barsofa.fbm/descent_bar_sofa_01_spec.png
@@ -301,6 +303,7 @@ Assets:
 - Assets/Materials/new_wall_monitor_screen_material.mat
 - Assets/MushroomTreeParts/Spiral_blue_thing.png
 - Assets/submarine_fabricator_purple.png
+- Assets/OutdoorLadder/base_ladder_01.png
 - Assets/tropicalplant10bicon.png
 - Assets/bloodgrassicon.png
 - Assets/pyrocoral1icon.png
