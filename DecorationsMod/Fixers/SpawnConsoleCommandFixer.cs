@@ -10,13 +10,9 @@ namespace DecorationsMod.Fixers
             {
                 string text = (string)n.data[0];
                 if (UWE.Utils.TryParseEnum<TechType>(text, out TechType techType) && techType != TechType.None)
-                {
                     if (CraftData.IsAllowed(techType))
-                    {
                         foreach (IDecorationItem item in DecorationsMod.DecorationItems)
-                        {
-                            // If item being spawned is one of our decoration items.
-                            if (techType == item.TechType)
+                            if (techType == item.TechType) // If item being spawned is one of our decoration items.
                             {
                                 // If item being spawned is one of our new flora.
                                 if (!string.IsNullOrEmpty(item.ClassID) && CustomFlora.AllPlants.Contains(item.ClassID))
@@ -49,9 +45,6 @@ namespace DecorationsMod.Fixers
                                 }
                                 break;
                             }
-                        }
-                    }
-                }
             }
             // Give back execution to original function.
             return true;

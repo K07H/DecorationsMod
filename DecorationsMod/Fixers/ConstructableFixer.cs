@@ -8,8 +8,11 @@ using UnityEngine;
 
 namespace DecorationsMod.Fixers
 {
-    public class ConstructableFixer
+    public static class ConstructableFixer
     {
+        /// <summary>Holds ladders directions.</summary>
+        public static readonly Dictionary<string, KeyValuePair<int, bool>> LadderDirections = new Dictionary<string, KeyValuePair<int, bool>>();
+
         public static bool CanDeconstruct_Prefix(Constructable __instance, ref bool __result, out string reason)
         {
             string techTypeStr = __instance.techType.AsString();
@@ -43,9 +46,33 @@ namespace DecorationsMod.Fixers
             reason = null;
             return true;
         }
-	
-        /// <summary>Holds ladders directions.</summary>
-        public static readonly Dictionary<string, KeyValuePair<int, bool>> LadderDirections = new Dictionary<string, KeyValuePair<int, bool>>();
+
+        public static void Construct_Postfix(Constructable __instance)
+        {
+            if (__instance.techType == CrafterLogicFixer.OutdoorLadder)
+            {
+                GameObject ladder = __instance.gameObject;
+                if (ladder != null)
+                {
+                    PrefabIdentifier pid = ladder.GetComponent<PrefabIdentifier>();
+                    if (pid != null)
+                    {
+                        Transform modelTr = ladder.FindChild("OutdoorLadderModel")?.transform;
+                        if (modelTr != null)
+                        {
+                            Vector3 modelPos = modelTr.position;
+                            if (BuilderFixer.TempLadderDirections.ContainsKey(modelPos))
+                            {
+                                int direction = BuilderFixer.TempLadderDirections[modelPos].Key;
+                                bool inverted = BuilderFixer.TempLadderDirections[modelPos].Value;
+                                LadderDirections[pid.Id] = new KeyValuePair<int, bool>(direction, inverted);
+                            }
+                        }
+                    }
+                }
+                BuilderFixer.TempLadderDirections.Clear();
+            }
+        }
 
         public static void LoadLadderDirections(string saveGame)
         {
@@ -107,47 +134,5 @@ namespace DecorationsMod.Fixers
                 File.WriteAllText(saveFile, toSave, Encoding.UTF8);
             }
         }
-
-        //private static float GetConstructInterval()
-        private static readonly MethodInfo _GetConstructInterval = typeof(Constructable).GetMethod("GetConstructInterval", BindingFlags.NonPublic | BindingFlags.Static);
-        //protected void UpdateMaterial()
-        private static readonly MethodInfo _UpdateMaterial = typeof(Constructable).GetMethod("UpdateMaterial", BindingFlags.NonPublic | BindingFlags.Instance);
-
-        //private List<TechType> resourceMap;
-        private static readonly FieldInfo _resourceMapField = typeof(Constructable).GetField("resourceMap", BindingFlags.NonPublic | BindingFlags.Instance);
-
-        public static void Construct_Postfix(Constructable __instance)
-        {
-            //Logger.Log("DEBUG: Entering Construct_Postfix");
-            //if (__instance.gameObject?.transform != null)
-            //{
-            //    Logger.Log("DEBUG: Printing constructable transform in Postfix.");
-            //    DebugTools.PrintTransform(__instance.gameObject.transform);
-            //}
-            // If current object being built is our Outdoor Ladder.
-            if (__instance.techType == CrafterLogicFixer.OutdoorLadder)
-            {
-                GameObject ladder = __instance.gameObject;
-                if (ladder != null)
-                {
-                    PrefabIdentifier pid = ladder.GetComponent<PrefabIdentifier>();
-                    if (pid != null)
-                    {
-                        Transform modelTr = ladder.FindChild("OutdoorLadderModel")?.transform;
-                        if (modelTr != null)
-                        {
-                            Vector3 modelPos = modelTr.position;
-                            if (BuilderFixer.TempLadderDirections.ContainsKey(modelPos))
-                            {
-                                int direction = BuilderFixer.TempLadderDirections[modelPos].Key;
-                                bool inverted = BuilderFixer.TempLadderDirections[modelPos].Value;
-                                LadderDirections[pid.Id] = new KeyValuePair<int, bool>(direction, inverted);
-                            }
-                        }
-                    }
-                }
-                BuilderFixer.TempLadderDirections.Clear();
-            }
-        }
-	}
+    }
 }

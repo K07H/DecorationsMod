@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.Controllers
@@ -44,6 +45,16 @@ namespace DecorationsMod.Controllers
             {
                 this.hasEggs = flag;
                 this.timeNextSpawn = this.CalculateTimeNextSpawn();
+                if (this.hasEggs && this.timeNextSpawn > 0f)
+                {
+                    TimeSpan t = TimeSpan.FromSeconds(this.timeNextSpawn - Time.time);
+                    if (t.Hours > 0)
+                        ErrorMessage.AddDebug(string.Format("Next ghost leviathan will spawn in {0} hour{1} {2} minute{3} and {4} second{5}.", t.Hours, t.Hours > 1 ? "s" : "", t.Minutes, t.Minutes > 1 ? "s" : "", t.Seconds, t.Seconds > 1 ? "s" : ""));
+                    else if (t.Minutes > 0)
+                        ErrorMessage.AddDebug(string.Format("Next ghost leviathan will spawn in {0} minute{1} and {2} second{3}.", t.Minutes, t.Minutes > 1 ? "s" : "", t.Seconds, t.Seconds > 1 ? "s" : ""));
+                    else
+                        ErrorMessage.AddDebug(string.Format("Next ghost leviathan will spawn in {0} seconds.", t.Seconds));
+                }
             }
 
             if (this.hasEggs && this.timeNextSpawn > 0f && Time.time > this.timeNextSpawn && this.TryGetSpawnPosition(this.gameObject.transform.position, out Vector3 position))

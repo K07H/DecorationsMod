@@ -698,7 +698,7 @@ namespace DecorationsMod
                                 if (end > stt && end < currentConfig.Length)
                                 {
                                     string currentVal = currentConfig.Substring(stt, (end - stt)) + Environment.NewLine;
-                                    Logger.Log("INFO: Replacing configuration [" + currentVal + "] by [" + newStr + "].");
+                                    Logger.Log("INFO: Replacing configuration [" + currentVal.Replace(Environment.NewLine, "") + "] by [" + newStr.Replace(Environment.NewLine, "") + "].");
                                     newConfig = currentConfig.Replace(currentVal, newStr);
                                 }
                             }

@@ -106,9 +106,7 @@ namespace DecorationsMod.NewItems
             constructible.placeMinDistance = 0.6f;
 
             // Add constructable bounds
-            ConstructableBounds cb = prefab.AddComponent<ConstructableBounds>();
-            //Logger.Log("DEBUG: Constructable bounds WDS1: x=[" + cb.bounds.extents.x.ToString() + "] y=[" + cb.bounds.extents.y.ToString() + "] z=[" + cb.bounds.extents.z.ToString() + "]");
-            //cb.bounds.size *= 0.9f;
+            prefab.AddComponent<ConstructableBounds>();
 
             return prefab;
         }
