@@ -53,7 +53,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     9 unique water trees<br>
     5 unique corals<br>
     7 unique amphibious plants<br>
-**Add the following new items in the habitat builder menu (34 new buildables):**<br>
+**Add the following new items in the habitat builder menu (35 new buildables):**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
     Markiplier1 doll<br>
@@ -79,6 +79,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     2 unique workdesk screens<br>
     Control terminal<br>
     Techbox<br>
+    Outdoor ladder<br>
 **You will be able to place following existing items where you want:**<br>
     Coffee cup<br>
     All snacks<br>
