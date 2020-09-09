@@ -2,7 +2,7 @@
   "Id": "DecorationsMod",
   "DisplayName": "DecorationsMod",
   "Author": "OSubMarin",
-  "Version": "1.8.1",
+  "Version": "1.8.2",
   "Dependencies": [ "0Harmony.dll", "SMLHelper.dll" ],
   "Enable": true,
   "Game": "BelowZero",

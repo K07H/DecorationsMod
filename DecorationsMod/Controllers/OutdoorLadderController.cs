@@ -31,12 +31,12 @@ namespace DecorationsMod.Controllers
             if (direction == 0)
                 newDir = model.transform.forward;
             else
-                newDir = Quaternion.Euler(0, 180.0f, 0) * model.transform.forward * -1.2f;
-            float heightRange = inverted ? 2.8f : 2.7f;
+                newDir = Quaternion.Euler(0.0f, 180.0f, 0.0f) * model.transform.forward * -1.2f;
+            float heightRange = inverted ? 2.9f : 2.8f;
             if (Player.main.transform.position.y < model.transform.position.y + heightRange)
-                Player.main.SetPosition(new Vector3(model.transform.position.x, model.transform.position.y + heightRange, model.transform.position.z) + (newDir * -0.5f));
+                Player.main.SetPosition(new Vector3(model.transform.position.x, model.transform.position.y + heightRange, model.transform.position.z) + (newDir * -0.6f));
             else
-                Player.main.SetPosition(new Vector3(model.transform.position.x, model.transform.position.y - 0.7f, model.transform.position.z) + (newDir * 0.5f));
+                Player.main.SetPosition(new Vector3(model.transform.position.x, model.transform.position.y - 0.7f, model.transform.position.z) + (newDir * 0.6f));
             Player.main.OnPlayerPositionCheat();
         }
 

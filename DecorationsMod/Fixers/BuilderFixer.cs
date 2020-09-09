@@ -155,21 +155,18 @@ namespace DecorationsMod.Fixers
 			{
 				GameObject ghostModel = (GameObject)_ghostModel.GetValue(null);
 				// If there's a hit and object being built is our Outdoor Ladder.
-				if (ghostModel?.name != null)
+				if (ghostModel?.name != null && ghostModel.name.StartsWith("OutdoorLadderModel"))
 				{
-					if (ghostModel.name.StartsWith("OutdoorLadderModel"))
-					{
-						Transform aimTransform = Builder.GetAimTransform();
-						float pmd = (float)_placeMaxDistance.GetValue(null);
-						LayerMask lm = (LayerMask)_placeLayerMask.GetValue(null);
-						bool allowed = false;
-						// If our Outdoor Ladder is being placed on a foundation.
-						if (Physics.Raycast(aimTransform.position, aimTransform.forward, out RaycastHit hit, pmd, lm.value, QueryTriggerInteraction.Ignore))
-							if (hit.collider?.gameObject != null && hit.collider.gameObject.transform?.name == "BaseFoundationPlatform")
-								allowed = true;
-						if (!allowed)
-							__result = false;
-					}
+					Transform aimTransform = Builder.GetAimTransform();
+					float pmd = (float)_placeMaxDistance.GetValue(null);
+					LayerMask lm = (LayerMask)_placeLayerMask.GetValue(null);
+					bool allowed = false;
+					// If our Outdoor Ladder is being placed on a foundation.
+					if (Physics.Raycast(aimTransform.position, aimTransform.forward, out RaycastHit hit, pmd, lm.value, QueryTriggerInteraction.Ignore))
+						if (hit.collider?.gameObject != null && hit.collider.gameObject.transform?.name == "BaseFoundationPlatform")
+							allowed = true;
+					if (!allowed)
+						__result = false;
 				}
 			}
         }

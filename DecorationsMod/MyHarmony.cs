@@ -91,9 +91,9 @@ namespace DecorationsMod
             var getTechUnlockStateMethod = typeof(KnownTech).GetMethod("GetTechUnlockState", new Type[] { typeof(TechType), typeof(int).MakeByRefType(), typeof(int).MakeByRefType() }); //, BindingFlags.Public | BindingFlags.Static);
             var getTechUnlockStatePrefix = typeof(KnownTechFixer).GetMethod("GetTechUnlockState_Prefix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(getTechUnlockStateMethod, new HarmonyMethod(getTechUnlockStatePrefix), null);
-            // Load added "new item" notifications when game loads
+            // Load added "new item" notifications and ladders positions when game loads
 #if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Setting up loading of added \"new item\" notifications...");
+            Logger.Log("DEBUG: Setting up data-loading for notifications and ladders...");
 #endif
             var loadMostRecentSavedGameMethod = typeof(uGUI_MainMenu).GetMethod("LoadMostRecentSavedGame", BindingFlags.NonPublic | BindingFlags.Instance);
             var loadMostRecentSavedGamePrefix = typeof(uGUI_MainMenuFixer).GetMethod("LoadMostRecentSavedGame_Prefix", BindingFlags.Public | BindingFlags.Static);
@@ -104,13 +104,16 @@ namespace DecorationsMod
             var loadMethod = typeof(MainMenuLoadButton).GetMethod("Load", BindingFlags.Public | BindingFlags.Instance);
             var loadPrefix = typeof(MainMenuLoadButtonFixer).GetMethod("Load_Prefix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(loadMethod, new HarmonyMethod(loadPrefix), null);
-            // Save added "new item" notifications when game saves
+            // Save added "new item" notifications and ladders positions when game saves
 #if DEBUG_HARMONY_PATCHING
-            Logger.Log("DEBUG: Setting up saving of added \"new item\" notifications...");
+            Logger.Log("DEBUG: Setting up data-saving for notifications and ladders...");
 #endif
             var saveGameMethod = typeof(IngameMenu).GetMethod("SaveGame", BindingFlags.Public | BindingFlags.Instance);
             var saveGamePostfix = typeof(IngameMenuFixer).GetMethod("SaveGame_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(saveGameMethod, null, new HarmonyMethod(saveGamePostfix));
+            var onYesMethod = typeof(IngameMenuQuitConfirmation).GetMethod("OnYes", BindingFlags.Public | BindingFlags.Instance);
+            var onYesPrefix = typeof(IngameMenuQuitConfirmationFixer).GetMethod("OnYes_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(onYesMethod, new HarmonyMethod(onYesPrefix), null);
             // Handles "Hide Degasi base (500m)" feature
 #if DEBUG_HARMONY_PATCHING
                 Logger.Log("DEBUG: Adding biome checks...");

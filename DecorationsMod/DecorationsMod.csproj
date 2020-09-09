@@ -201,6 +201,7 @@
     <Compile Include="Fixers\CrafterLogicFixer.cs" />
     <Compile Include="Fixers\FCSModsFixer.cs" />
     <Compile Include="Fixers\IngameMenuFixer.cs" />
+    <Compile Include="Fixers\IngameMenuQuitConfirmationFixer.cs" />
     <Compile Include="Fixers\InventoryConsoleCommandsFixer.cs" />
     <Compile Include="Fixers\KnownTechFixer.cs" />
     <Compile Include="Fixers\MainMenuLoadButtonFixer.cs" />
@@ -490,7 +491,7 @@ xcopy "$(TargetPath)" "%25DECORATIONSMODPATH%25" /Y
 echo ------ Copying "$(TargetDir)Config.txt" to "%25DECORATIONSMODPATH%25"...
 xcopy "$(TargetDir)Config.txt" "%25DECORATIONSMODPATH%25" /Y
 echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "%25DECORATIONSMODPATH%25Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.assets" "%25DECORATIONSMODPATH%25Assets\" /Y
+xcopy "$(TargetDir)Assets\decorationassets.assets" "%25DECORATIONSMODPATH%25Assets\" /Y /d
 echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "%25DECORATIONSMODPATH%25Assets\"...
 xcopy "$(TargetDir)Assets\decorationassets.manifest" "%25DECORATIONSMODPATH%25Assets\" /Y
 echo ------ Copying "$(ProjectDir)Configurator.lnk" to "$(TargetDir)"...

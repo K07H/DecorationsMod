@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace DecorationsMod
@@ -187,19 +188,8 @@ namespace DecorationsMod
             return result;
         }
 
-        /*
-        public static bool IsNear(Vector3 a, Vector3 b)
-        {
-            if (a.x < (b.x + 0.1f) && a.x > (b.x - 0.1f))
-                if (a.y < (b.y + 0.1f) && a.y > (b.y - 0.1f))
-                    if (a.z < (b.z + 0.1f) && a.z > (b.z - 0.1f))
-                        return true;
-            return false;
-        }
-        */
-        public static bool IsNear(Vector3 a, Vector3 b) => !(a.x < (b.x - 0.1f) || a.x > (b.x + 0.1f) || a.y < (b.y - 0.1f) || a.y > (b.y + 0.1f) || a.z < (b.z - 0.1f) || a.z > (b.z + 0.1f));
-
-        public static bool IsNearB(Vector3 a, Vector3 b) => !(a.x < (b.x - 1.0f) || a.x > (b.x + 1.0f) || a.y < (b.y - 1.0f) || a.y > (b.y + 1.0f) || a.z < (b.z - 1.0f) || a.z > (b.z + 1.0f));
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNear(Vector3 a, Vector3 b) => a.x > (b.x - 1.0f) && a.x < (b.x + 1.0f) && a.y > (b.y - 1.0f) && a.y < (b.y + 1.0f) && a.z > (b.z - 1.0f) && a.z < (b.z + 1.0f);
 
         #endregion
 
@@ -553,7 +543,7 @@ namespace DecorationsMod
             if (name != null && pos != Vector3.zero)
             {
                 foreach (KeyValuePair<string, Vector3> part in DegasiBaseParts)
-                    if (part.Key == name && IsNearB(pos, part.Value))
+                    if (part.Key == name && IsNear(pos, part.Value))
                     {
                         if (part.Key == "SwimChargeFinsDataBox(Clone)")
                             HideSwimChargeFinsDataBox(obj, part.Value);

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
 using System.Text;
 using UnityEngine;
 
@@ -86,9 +85,7 @@ namespace DecorationsMod.Fixers
                     int cnt = 0;
                     string[] lines = File.ReadAllLines(saveFile, Encoding.UTF8);
                     if (lines != null && lines.Length > 0)
-                    {
                         foreach (string line in lines)
-                        {
                             if (line.Length > 3 && line.Contains("="))
                             {
                                 string[] splitted = line.Split(new char[] { '=' }, StringSplitOptions.None);
@@ -103,8 +100,6 @@ namespace DecorationsMod.Fixers
                                     }
                                 }
                             }
-                        }
-                    }
                     Logger.Log("INFO: {0} outdoor ladder directions were loaded.", cnt);
                 }
                 else

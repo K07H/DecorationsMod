@@ -4,7 +4,7 @@ namespace DecorationsMod.Fixers
 {
     public class PickupableFixer
     {
-        public static readonly MethodInfo allowedToPickUpMethod = typeof(Pickupable).GetMethod("AllowedToPickUp", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo allowedToPickUpMethod = typeof(Pickupable).GetMethod("AllowedToPickUp", BindingFlags.NonPublic | BindingFlags.Instance);
 
         public static bool OnHandClick_Prefix(Pickupable __instance, GUIHand hand)
         {

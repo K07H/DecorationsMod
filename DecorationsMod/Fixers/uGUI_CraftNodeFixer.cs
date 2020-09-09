@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+#if !BELOWZERO
 using System.Reflection;
-using System.Text;
+#endif
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace DecorationsMod.Fixers
 {
@@ -58,7 +56,7 @@ namespace DecorationsMod.Fixers
         private static readonly Color FPressed = new Color(0.28235f, 1f, 0f);
 
         /// <summary>Contains crafting node IDs of the decorations fabricator.</summary>
-        private static List<string> DecorationNodes = new List<string>(new string[26]
+        private static readonly List<string> DecorationNodes = new List<string>(new string[26]
         {
             "LabElements",
             "Electronics",
@@ -89,7 +87,7 @@ namespace DecorationsMod.Fixers
         });
 
         /// <summary>Contains crafting node IDs of the flora fabricator.</summary>
-        private static List<string> FloraNodes = new List<string>(new string[19]
+        private static readonly List<string> FloraNodes = new List<string>(new string[19]
         {
             "AirSeedsTab", // ConfigSwitcher.UseFlatScreenResolution
             "WaterSeedsTab", // ConfigSwitcher.UseFlatScreenResolution

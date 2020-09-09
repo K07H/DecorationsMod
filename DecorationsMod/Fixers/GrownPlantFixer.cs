@@ -1,11 +1,4 @@
 ﻿using DecorationsMod.Controllers;
-using SMLHelper.V2.Utility;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
-using UWE;
 
 namespace DecorationsMod.Fixers
 {

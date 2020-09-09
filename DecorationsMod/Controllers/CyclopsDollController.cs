@@ -296,6 +296,11 @@ namespace DecorationsMod.Controllers
                 Convert.ToString(collider.size.z, CultureInfo.InvariantCulture),
                 Environment.NewLine);
             toSave += Convert.ToString(sizeStep, CultureInfo.InvariantCulture) + Environment.NewLine;
+            toSave += string.Format(CultureInfo.InvariantCulture, "{0}{3}{1}{3}{2}{3}",
+                Convert.ToString(model.transform.localPosition.x, CultureInfo.InvariantCulture),
+                Convert.ToString(model.transform.localPosition.y, CultureInfo.InvariantCulture),
+                Convert.ToString(model.transform.localPosition.z, CultureInfo.InvariantCulture),
+                Environment.NewLine);
 
             File.WriteAllText(Path.Combine(saveFolder, "cyclopsdoll_" + id.Id + ".txt"), toSave);
         }
@@ -318,7 +323,7 @@ namespace DecorationsMod.Controllers
                 if (tmpSize == null)
                     return;
                 string[] sizes = tmpSize.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                if (sizes != null && sizes.Length == 7)
+                if (sizes != null && sizes.Length >= 7) // Backward compat (used to be 7 lines)
                 {
                     GameObject model = this.gameObject.FindChild("CyclopsDoll");
                     if (model != null)
@@ -337,6 +342,13 @@ namespace DecorationsMod.Controllers
                         collider.size = new Vector3(colliderSizeX, colliderSizeY, colliderSizeZ);
                     }
                     sizeStep = int.Parse(sizes[6], CultureInfo.InvariantCulture);
+                    if (sizes.Length == 10) // Current format (10 lines)
+                    {
+                        float posX = float.Parse(sizes[7], CultureInfo.InvariantCulture);
+                        float posY = float.Parse(sizes[8], CultureInfo.InvariantCulture);
+                        float posZ = float.Parse(sizes[9], CultureInfo.InvariantCulture);
+                        model.transform.localPosition = new Vector3(posX, posY, posZ);
+                    }
                 }
             }
         }

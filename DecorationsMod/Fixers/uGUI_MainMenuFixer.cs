@@ -41,7 +41,7 @@ namespace DecorationsMod.Fixers
 			}
 			catch (Exception ex)
 			{
-				Logger.Log("ERROR: Exception caught while retrieving game info. Exception=[" + ex.ToString() + "]");
+				Logger.Log("WARNING: Exception caught while retrieving game info. Exception=[" + ex.ToString() + "]");
 				gameInfo = null;
 			}
 			// Load added notifications and outdoor ladder directions if needed.

@@ -85,12 +85,10 @@ namespace DecorationsMod.NewItems
                                 tmpMat.SetTexture("_BumpMap", normal1);
 #if SUBNAUTICA
                                 tmpMat.SetTexture("_Illum", illum1);
-                                tmpMat.SetFloat("_EmissionLM", 0.1f); // Emissive from power
-#endif
-                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
-#if SUBNAUTICA
+                                tmpMat.SetFloat("_EmissionLM", 0.05f);
                                 tmpMat.EnableKeyword("MARMO_EMISSION");
 #endif
+                                tmpMat.EnableKeyword("MARMO_NORMALMAP");
                                 tmpMat.EnableKeyword("_ZWRITE_ON");
                             }
                         }
