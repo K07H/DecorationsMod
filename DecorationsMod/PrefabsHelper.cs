@@ -188,7 +188,6 @@ namespace DecorationsMod
             return result;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNear(Vector3 a, Vector3 b) => a.x > (b.x - 1.0f) && a.x < (b.x + 1.0f) && a.y > (b.y - 1.0f) && a.y < (b.y + 1.0f) && a.z > (b.z - 1.0f) && a.z < (b.z + 1.0f);
 
         #endregion
