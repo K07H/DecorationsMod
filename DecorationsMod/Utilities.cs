@@ -26,16 +26,16 @@ namespace DecorationsMod
 
     internal static class FilesHelper
     {
-        public static string GetSaveFolderPath() => Path.Combine(Path.Combine(@".\SNAppData\SavedGames\", SaveLoadManager.main.GetCurrentSlot()), "DecorationsMod").Replace('\\', '/');
+        public static string GetSaveFolderPath() => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "../../SNAppData/SavedGames/", SaveLoadManager.main.GetCurrentSlot(), "DecorationsMod").Replace('\\', '/');
 
         public static string GetSaveFolderPath(string saveGame)
         {
             string saveDir = FilesHelper.GetSaveFolderPath();
-            if (saveDir.Contains("/test/") || saveDir.Contains("\\test\\"))
+            if (saveDir.Contains("/test/"))
             {
                 if (string.IsNullOrEmpty(saveGame))
                     return null; // If we reach here we don't know what is the game slot name...
-                saveDir = saveDir.Replace("/test/", "/" + saveGame + "/").Replace("\\test\\", "\\" + saveGame + "\\");
+                saveDir = saveDir.Replace("/test/", "/" + saveGame + "/");
             }
             return saveDir.Replace('\\', '/');
         }

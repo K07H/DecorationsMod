@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using UnityEngine;
 
 namespace DecorationsMod.Controllers
@@ -298,13 +299,13 @@ namespace DecorationsMod.Controllers
                 if ((id = GetComponentInParent<PrefabIdentifier>()) == null)
                     return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "custompictureframe_" + id.Id + ".txt");
+            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "custompictureframe_" + id.Id + ".txt").Replace('\\', '/');
             if (File.Exists(filePath))
             {
                 GameObject frame = this.gameObject.FindChild("mesh");
                 PictureFrame pf = this.gameObject.GetComponent<PictureFrame>();
 
-                string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
+                string tmpSize = File.ReadAllText(filePath, Encoding.UTF8).Replace(',', '.'); // Replace , with . for backward compatibility.
                 if (tmpSize == null)
                     return;
                 string[] sizes = tmpSize.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
@@ -577,7 +578,7 @@ namespace DecorationsMod.Controllers
             saveData += (this.Slideshow ? "1" : "0") + Environment.NewLine;
 
             // Save state to file
-            File.WriteAllText(Path.Combine(saveFolder, "custompictureframe_" + id.Id + ".txt"), saveData);
+            File.WriteAllText(Path.Combine(saveFolder, "custompictureframe_" + id.Id + ".txt").Replace('\\', '/'), saveData, Encoding.UTF8);
         }
     }
 }

@@ -211,6 +211,7 @@
     <Compile Include="Fixers\SpawnConsoleCommandFixer.cs" />
     <Compile Include="Fixers\uGUI_CraftNodeFixer.cs" />
     <Compile Include="Fixers\uGUI_MainMenuFixer.cs" />
+    <Compile Include="Fixers\DECOuGUI_SignInputFixer.cs" />
     <Compile Include="FloraAquatic\BloodGrassDense.cs" />
     <Compile Include="FloraAquatic\BloodGrassRed.cs" />
     <Compile Include="FloraAquatic\MushroomTree1.cs" />

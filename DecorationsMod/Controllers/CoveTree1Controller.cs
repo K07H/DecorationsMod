@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace DecorationsMod.Controllers
@@ -65,7 +66,7 @@ namespace DecorationsMod.Controllers
 #if DEBUG_COVE_TREE
                 Logger.Log("DEBUG: OnProtoSerialize covetree: Found grown plant. Eggs active=[" + eggs.activeSelf + "]");
 #endif
-                File.WriteAllText(Path.Combine(saveFolder, "covetree_" + id.Id + ".txt"), (eggs.activeSelf ? "1" : "0"));
+                File.WriteAllText(Path.Combine(saveFolder, "covetree_" + id.Id + ".txt").Replace('\\', '/'), eggs.activeSelf ? "1" : "0", Encoding.UTF8);
             }
 #if DEBUG_COVE_TREE
             else
@@ -87,10 +88,10 @@ namespace DecorationsMod.Controllers
 #if DEBUG_COVE_TREE
             Logger.Log("DEBUG: OnProtoDeserialize covetree: Loading saved file");
 #endif
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "covetree_" + id.Id + ".txt");
+            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "covetree_" + id.Id + ".txt").Replace('\\', '/');
             if (File.Exists(filePath))
             {
-                string covetreedata = File.ReadAllText(filePath);
+                string covetreedata = File.ReadAllText(filePath, Encoding.UTF8);
                 if (covetreedata == null)
                     return;
                 string[] covetreeparams = covetreedata.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);

@@ -40,7 +40,7 @@ namespace DecorationsMod.Fixers
                                             }
                                         }
                                     }
-                                    // Dont call original function if item being spawned is one of our new flora.
+                                    // Dont call origin function if item being spawned is one of our new flora.
                                     return false;
                                 }
                                 break;
@@ -49,7 +49,7 @@ namespace DecorationsMod.Fixers
                     }
                 }
             }
-            // Give back execution to original function.
+            // Give back execution to origin function.
             return true;
         }
     }

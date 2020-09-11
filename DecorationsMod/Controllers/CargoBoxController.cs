@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace DecorationsMod.Controllers
@@ -102,7 +103,7 @@ namespace DecorationsMod.Controllers
 #if DEBUG_CARGO_CRATES
             Logger.Log("DEBUG: Serialize(): Saving cargo crates nbItems=[" + _storageContainer?.container?.count + "] size=[" + Convert.ToString(model.transform.localScale.y, CultureInfo.InvariantCulture) + "] collider x=[" + Convert.ToString(collider.size.x, CultureInfo.InvariantCulture) + "] y=[" + Convert.ToString(collider.size.y, CultureInfo.InvariantCulture) + "] z=[" + Convert.ToString(collider.size.z, CultureInfo.InvariantCulture) + "].");
 #endif
-            File.WriteAllText(Path.Combine(saveFolder, "cargocrate_" + id.Id + ".txt"), saveData);
+            File.WriteAllText(Path.Combine(saveFolder, "cargocrate_" + id.Id + ".txt").Replace('\\', '/'), saveData, Encoding.UTF8);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -116,15 +117,14 @@ namespace DecorationsMod.Controllers
             Logger.Log("DEBUG: Deserialize(): PrefabID=[" + id.Id + "]");
 #endif
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "cargocrate_" + id.Id + ".txt");
-
+            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "cargocrate_" + id.Id + ".txt").Replace('\\', '/');
             if (File.Exists(filePath))
             {
 
 #if DEBUG_CARGO_CRATES
                 Logger.Log("DEBUG: Deserialize() A");
 #endif
-                string tmpSize = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
+                string tmpSize = File.ReadAllText(filePath, Encoding.UTF8).Replace(',', '.'); // Replace , with . for backward compatibility.
                 if (tmpSize == null)
                     return;
                 string[] sizes = tmpSize.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);

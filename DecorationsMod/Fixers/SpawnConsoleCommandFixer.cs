@@ -40,13 +40,13 @@ namespace DecorationsMod.Fixers
                                     }
                                     else
                                         ErrorMessage.AddDebug("Could not find prefab for TechType = " + techType);
-                                    // Dont call original function if item being spawned is one of our new flora.
+                                    // Dont call origin function if item being spawned is one of our new flora.
                                     return false;
                                 }
                                 break;
                             }
             }
-            // Give back execution to original function.
+            // Give back execution to origin function.
             return true;
         }
     }

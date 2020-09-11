@@ -222,7 +222,7 @@ namespace DecorationsMod.Controllers
                 {
                     int rnd = UnityEngine.Random.Range(0, Sounds.Count);
                     if (lastSoundId >= 0)
-                        while (rnd == lastSoundId && Sounds.Count > 1)
+                        while (rnd == lastSoundId && Sounds.Count > 1 && (rnd < 0 || rnd >= Sounds.Count))
                             rnd = UnityEngine.Random.Range(0, Sounds.Count);
                     if (rnd >= 0 && rnd < Sounds.Count)
                     {
@@ -302,7 +302,7 @@ namespace DecorationsMod.Controllers
                 Convert.ToString(model.transform.localPosition.z, CultureInfo.InvariantCulture),
                 Environment.NewLine);
 
-            File.WriteAllText(Path.Combine(saveFolder, "cyclopsdoll_" + id.Id + ".txt"), toSave);
+            File.WriteAllText(Path.Combine(saveFolder, "cyclopsdoll_" + id.Id + ".txt").Replace('\\', '/'), toSave, Encoding.UTF8);
         }
 
         #endregion
@@ -316,10 +316,10 @@ namespace DecorationsMod.Controllers
                 if ((id = GetComponent<PrefabIdentifier>()) == null)
                     return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "cyclopsdoll_" + id.Id + ".txt");
+            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "cyclopsdoll_" + id.Id + ".txt").Replace('\\', '/');
             if (File.Exists(filePath))
             {
-                string tmpSize = File.ReadAllText(filePath);
+                string tmpSize = File.ReadAllText(filePath, Encoding.UTF8);
                 if (tmpSize == null)
                     return;
                 string[] sizes = tmpSize.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);

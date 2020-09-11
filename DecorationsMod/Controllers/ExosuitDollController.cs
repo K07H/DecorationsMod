@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace DecorationsMod.Controllers
@@ -367,7 +368,7 @@ namespace DecorationsMod.Controllers
             else // Right hand arm
                 state += "4";
             
-            File.WriteAllText(Path.Combine(saveFolder, "prawnsuitdoll_" + id.Id + ".txt"), state);
+            File.WriteAllText(Path.Combine(saveFolder, "prawnsuitdoll_" + id.Id + ".txt").Replace('\\', '/'), state, Encoding.UTF8);
         }
 
         // Load seamoth doll state
@@ -378,10 +379,10 @@ namespace DecorationsMod.Controllers
                 if ((id = GetComponent<PrefabIdentifier>()) == null)
                     return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "prawnsuitdoll_" + id.Id + ".txt");
+            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "prawnsuitdoll_" + id.Id + ".txt").Replace('\\', '/');
             if (File.Exists(filePath))
             {
-                string state = File.ReadAllText(filePath).Trim();
+                string state = File.ReadAllText(filePath, Encoding.UTF8).Trim();
                 if (state.Length == 2)
                 {
                     string rightArmState = state.Substring(0, 1);

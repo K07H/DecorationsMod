@@ -36,11 +36,11 @@ namespace DecorationsMod.Fixers
                         else
                             ErrorMessage.AddWarning(Language.main.Get("InventoryFull")); 
                     }
-                    // Don't call original function if current item is one of our new flora
+                    // Don't call origin function if current item is one of our new flora
                     return false;
                 }
             }
-            // Give back execution to original function
+            // Give back execution to origin function
             return true;
         }
 

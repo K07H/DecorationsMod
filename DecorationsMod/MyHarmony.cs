@@ -262,5 +262,18 @@ namespace DecorationsMod
                         }
             }
         }
+
+        public static void FixSignInput()
+        {
+#if DEBUG_HARMONY_PATCHING
+            Logger.Log("DEBUG: Fixing uGUI_SignInput loading...");
+#endif
+            var updateScaleMethod = typeof(uGUI_SignInput).GetMethod("UpdateScale", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (updateScaleMethod != null)
+            {
+                var updateScalePostfix = typeof(DECOuGUI_SignInputFixer).GetMethod("DECOUpdateScale_Postfix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(updateScaleMethod, null, new HarmonyMethod(updateScalePostfix));
+            }
+        }
     }
 }

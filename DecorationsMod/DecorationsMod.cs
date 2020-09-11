@@ -71,6 +71,7 @@ namespace DecorationsMod
             // 9) VARIOUS ENHANCEMENTS
             if (ConfigSwitcher.FixAquariumLighting)
                 PrefabsHelper.FixAquariumSkyApplier();
+            MyHarmony.FixSignInput();
             MyHarmony.FixFCSMods();
 
             // 10) SETUP IN GAME OPTIONS MENU

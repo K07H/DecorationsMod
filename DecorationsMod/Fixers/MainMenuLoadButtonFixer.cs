@@ -10,7 +10,7 @@
 				KnownTechFixer.LoadAddedNotifications(__instance.saveGame);
 				ConstructableFixer.LoadLadderDirections(__instance.saveGame);
 			}
-			// Give back execution to original function.
+			// Give back execution to origin function.
 			return true;
 		}
 	}

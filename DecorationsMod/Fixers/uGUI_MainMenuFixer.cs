@@ -12,7 +12,7 @@ namespace DecorationsMod.Fixers
 				KnownTechFixer.LoadAddedNotifications(saveGame);
 				ConstructableFixer.LoadLadderDirections(saveGame);
 			}
-			// Give back execution to original function.
+			// Give back execution to origin function.
 			return true;
 		}
 
@@ -50,7 +50,7 @@ namespace DecorationsMod.Fixers
 				KnownTechFixer.LoadAddedNotifications(slotName);
 				ConstructableFixer.LoadLadderDirections(slotName);
 			}
-			// Give back execution to original function.
+			// Give back execution to origin function.
 			return true;
 		}
 	}

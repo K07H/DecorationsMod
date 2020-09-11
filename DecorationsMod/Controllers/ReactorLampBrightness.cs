@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace DecorationsMod.Controllers
@@ -313,14 +314,16 @@ namespace DecorationsMod.Controllers
                 string green = Convert.ToString(reactorRodLight.color.g, CultureInfo.InvariantCulture);
                 string blue = Convert.ToString(reactorRodLight.color.b, CultureInfo.InvariantCulture);
                 
-                File.WriteAllText(Path.Combine(saveFolder, "reactorlamp_" + id.Id + ".txt"), range + Environment.NewLine +
-                    intensity + Environment.NewLine +
-                    rodColor + Environment.NewLine +
-                    red + Environment.NewLine +
-                    green + Environment.NewLine +
-                    blue + Environment.NewLine +
-                    glowColor + Environment.NewLine +
-                    (turnedOn ? "0" : "1"));
+                File.WriteAllText(Path.Combine(saveFolder, "reactorlamp_" + id.Id + ".txt").Replace('\\', '/'), 
+                        range + Environment.NewLine +
+                        intensity + Environment.NewLine +
+                        rodColor + Environment.NewLine +
+                        red + Environment.NewLine +
+                        green + Environment.NewLine +
+                        blue + Environment.NewLine +
+                        glowColor + Environment.NewLine +
+                        (turnedOn ? "0" : "1"),
+                    Encoding.UTF8);
 
                 if (turnedOn)
                     SwitchLampOff(renderer, reactorRodLight, true);
@@ -338,7 +341,7 @@ namespace DecorationsMod.Controllers
                     if ((id = this.gameObject.GetComponent<PrefabIdentifier>()) == null)
                         return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "reactorlamp_" + id.Id + ".txt");
+            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "reactorlamp_" + id.Id + ".txt").Replace('\\', '/');
             if (File.Exists(filePath))
             {
                 var reactorRodLight = this.gameObject.GetComponentInChildren<Light>();
@@ -353,7 +356,7 @@ namespace DecorationsMod.Controllers
                     }
                 }
 
-                string rawState = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
+                string rawState = File.ReadAllText(filePath, Encoding.UTF8).Replace(',', '.'); // Replace , with . for backward compatibility.
                 if (rawState == null)
                     return;
                 string[] state = rawState.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);

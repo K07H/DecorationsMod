@@ -625,7 +625,7 @@ namespace DecorationsMod
         public static void LoadConfiguration()
         {
             // Get config file path
-            configFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Config.txt");
+            configFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Config.txt").Replace('\\', '/');
             //UriBuilder assemblyUri = new UriBuilder(Assembly.GetExecutingAssembly().CodeBase);
             //configFilePath = Path.GetDirectoryName(Uri.UnescapeDataString(assemblyUri.Path)).Replace('\\', '/') + "/Config.txt";
 

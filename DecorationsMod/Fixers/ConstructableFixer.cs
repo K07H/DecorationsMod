@@ -124,7 +124,7 @@ namespace DecorationsMod.Fixers
                 string saveDir = FilesHelper.GetSaveFolderPath();
                 if (!Directory.Exists(saveDir))
                     Directory.CreateDirectory(saveDir);
-                string saveFile = Path.Combine(saveDir, "outdoorladders.txt");
+                string saveFile = Path.Combine(saveDir, "outdoorladders.txt").Replace('\\', '/');
                 Logger.Log("INFO: Saving {0} outdoor ladder directions to \"{1}\".", cnt, saveFile);
                 File.WriteAllText(saveFile, toSave, Encoding.UTF8);
             }

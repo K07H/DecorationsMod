@@ -93,7 +93,7 @@ namespace DecorationsMod.Fixers
                 string saveDir = FilesHelper.GetSaveFolderPath();
                 if (!Directory.Exists(saveDir))
                     Directory.CreateDirectory(saveDir);
-                string saveFile = Path.Combine(saveDir, "discovered.txt");
+                string saveFile = Path.Combine(saveDir, "discovered.txt").Replace('\\', '/');
                 if (toLog.EndsWith(";"))
                     toLog = toLog.Substring(0, toLog.Length - 1);
                 Logger.Log("INFO: Saving {0}/{1} discoveries to \"{2}\" (Discovered TechTypes: {3}).", cnt, AddedNotifications.Count, saveFile, toLog);
@@ -114,7 +114,7 @@ namespace DecorationsMod.Fixers
         /// <param name="techType">The tech type of the item.</param>
         /// <param name="unlocked">The number of currently unlocked fragments.</param>
         /// <param name="total">The total number of fragments to unlock before the item gets unlocked.</param>
-        /// <returns>Returns false if current item is an item from this mod (original function not called), and returns true otherwise (original function is called).</returns>
+        /// <returns>Returns false if current item is an item from this mod (origin function not called), and returns true otherwise (origin function is called).</returns>
         public static bool GetTechUnlockState_Prefix(ref TechUnlockState __result, TechType techType, ref int unlocked, ref int total)
         {
             if (techType != TechType.None && ConfigSwitcher.AddItemsWhenDiscovered && GameModeUtils.RequiresBlueprints())

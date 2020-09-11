@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace DecorationsMod.Controllers
@@ -57,11 +58,16 @@ namespace DecorationsMod.Controllers
                 {
                     // Open save directory
                     string saveFolder = FilesHelper.GetSaveFolderPath();
-                    if (!Directory.Exists(saveFolder))
-                        Directory.CreateDirectory(saveFolder);
+                    if (!saveFolder.Contains("/test/"))
+                    {
+                        if (!Directory.Exists(saveFolder))
+                            Directory.CreateDirectory(saveFolder);
 
-                    // Save custom flora state
-                    File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress, CultureInfo.InvariantCulture));
+                        // Save custom flora state
+                        File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt").Replace('\\', '/'), Convert.ToString(progress, CultureInfo.InvariantCulture), Encoding.UTF8);
+                    }
+                    else
+                        Logger.Log("WARNING: Cannot save custom flora state: Save game folder path \"" + saveFolder + "\" is incorrect.");
                 }
             }
             else
@@ -107,11 +113,16 @@ namespace DecorationsMod.Controllers
                     {
                         // Open save directory
                         string saveFolder = FilesHelper.GetSaveFolderPath();
-                        if (!Directory.Exists(saveFolder))
-                            Directory.CreateDirectory(saveFolder);
+                        if (!saveFolder.Contains("/test/"))
+                        {
+                            if (!Directory.Exists(saveFolder))
+                                Directory.CreateDirectory(saveFolder);
 
-                        // Save custom flora state
-                        File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress, CultureInfo.InvariantCulture));
+                            // Save custom flora state
+                            File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt").Replace('\\', '/'), Convert.ToString(progress, CultureInfo.InvariantCulture), Encoding.UTF8);
+                        }
+                        else
+                            Logger.Log("WARNING: Cannot save custom flora state: Save game folder path \"" + saveFolder + "\" is incorrect.");
                     }
                 }
 #if DEBUG_FLORA
@@ -136,13 +147,13 @@ namespace DecorationsMod.Controllers
             Logger.Log("DEBUG: Entering onProtoDeserialize for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "customflora_" + id.Id + ".txt");
+            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "customflora_" + id.Id + ".txt").Replace('\\', '/');
             if (File.Exists(filePath))
             {
 #if DEBUG_FLORA
                 Logger.Log("DEBUG: Saved file found for gameobject name=[" + this.gameObject.name + "]");
 #endif
-                string rawState = File.ReadAllText(filePath).Replace(',', '.'); // Replace , with . for backward compatibility.
+                string rawState = File.ReadAllText(filePath, Encoding.UTF8).Replace(',', '.'); // Replace , with . for backward compatibility.
                 if (rawState == null)
                     return;
                 string[] state = rawState.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);

@@ -83,7 +83,7 @@ namespace DecorationsMod
         private static Process Configurator { get; set; }
 
         /// <summary>Returns the path to Decorations Mod configuration tool executable.</summary>
-        private static string ConfiguratorPath() => Path.Combine(@".\QMods\DecorationsMod\Configurator\", "DecorationsModConfigurator.exe");
+        private static string ConfiguratorPath() => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Configurator/", "DecorationsModConfigurator.exe").Replace('\\', '/');
 
         /// <summary>This method gets called when a toggle value changes.</summary>
         /// <param name="sender">The object that raised the event.</param>
