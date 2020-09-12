@@ -9,9 +9,7 @@ namespace DecorationsMod.Fixers
     /// That's because this fix is applied as a postfix method (in other words, signs are fixed after their initial loading failure).
     /// A benefit from this is that it does not prevent modders from applying further modifications to the <see cref="uGUI_SignInput.UpdateScale"/> method.
     /// </summary>
-#pragma warning disable IDE1006
     internal static class DECOuGUI_SignInputFixer
-#pragma warning restore IDE1006
     {
         /// <summary>
         /// This function is patched into the game using Harmony.
@@ -40,9 +38,7 @@ namespace DecorationsMod.Fixers
         /// <summary>
         /// This function gets called by <see cref="Awake"/> method.
         /// </summary>
-#pragma warning disable IDE0051
         private void DECORestoreSignState()
-#pragma warning restore IDE0051
         {
             // If current MonoBehaviour is enabled and if this component has a valid parent.
             if (enabled && transform != null && transform.parent != null)
