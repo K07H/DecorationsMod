@@ -103,7 +103,7 @@ namespace DecorationsMod.Controllers
 #if DEBUG_CARGO_CRATES
             Logger.Log("DEBUG: Serialize(): Saving cargo crates nbItems=[" + _storageContainer?.container?.count + "] size=[" + Convert.ToString(model.transform.localScale.y, CultureInfo.InvariantCulture) + "] collider x=[" + Convert.ToString(collider.size.x, CultureInfo.InvariantCulture) + "] y=[" + Convert.ToString(collider.size.y, CultureInfo.InvariantCulture) + "] z=[" + Convert.ToString(collider.size.z, CultureInfo.InvariantCulture) + "].");
 #endif
-            File.WriteAllText(Path.Combine(saveFolder, "cargocrate_" + id.Id + ".txt").Replace('\\', '/'), saveData, Encoding.UTF8);
+            File.WriteAllText(FilesHelper.Combine(saveFolder, "cargocrate_" + id.Id + ".txt"), saveData, Encoding.UTF8);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -117,7 +117,7 @@ namespace DecorationsMod.Controllers
             Logger.Log("DEBUG: Deserialize(): PrefabID=[" + id.Id + "]");
 #endif
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "cargocrate_" + id.Id + ".txt").Replace('\\', '/');
+            string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "cargocrate_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
 

@@ -142,6 +142,7 @@ namespace DecorationsModConfigurator
             this.PyroCoralB = Configuration.Instance.PyroCoralB;
             this.PyroCoralC = Configuration.Instance.PyroCoralC;
             this.CoveTree = Configuration.Instance.CoveTree;
+            this.GiantCoveTree = Configuration.Instance.GiantCoveTree;
             this.SpottedReedsA = Configuration.Instance.SpottedReedsA;
             this.SpottedReedsB = Configuration.Instance.SpottedReedsB;
             this.BrineLily = Configuration.Instance.BrineLily;
@@ -280,6 +281,7 @@ namespace DecorationsModConfigurator
         public FloraConfig PyroCoralB { get { return Configuration.Instance.PyroCoralB; } set { Configuration.Instance.PyroCoralB = value; } }
         public FloraConfig PyroCoralC { get { return Configuration.Instance.PyroCoralC; } set { Configuration.Instance.PyroCoralC = value; } }
         public FloraConfig CoveTree { get { return Configuration.Instance.CoveTree; } set { Configuration.Instance.CoveTree = value; } }
+        public FloraConfig GiantCoveTree { get { return Configuration.Instance.GiantCoveTree; } set { Configuration.Instance.GiantCoveTree = value; } }
         public FloraConfig SpottedReedsA { get { return Configuration.Instance.SpottedReedsA; } set { Configuration.Instance.SpottedReedsA = value; } }
         public FloraConfig SpottedReedsB { get { return Configuration.Instance.SpottedReedsB; } set { Configuration.Instance.SpottedReedsB = value; } }
         public FloraConfig BrineLily { get { return Configuration.Instance.BrineLily; } set { Configuration.Instance.BrineLily = value; } }
@@ -343,7 +345,7 @@ namespace DecorationsModConfigurator
         {
             if (_plantsCharacteristics == null || forceRefresh)
             {
-                _plantsCharacteristics = new UserControl_FloraConfig[56]
+                _plantsCharacteristics = new UserControl_FloraConfig[57]
                 {
                     UC_LandTree,
                     UC_MarbleMelonTiny,
@@ -377,6 +379,7 @@ namespace DecorationsModConfigurator
                     UC_PyroCoralB,
                     UC_PyroCoralC,
                     UC_CoveTree,
+                    UC_GiantCoveTree,
                     UC_SpottedReedsA,
                     UC_SpottedReedsB,
                     UC_BrineLily,

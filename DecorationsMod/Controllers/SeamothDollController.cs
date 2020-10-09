@@ -63,7 +63,7 @@ namespace DecorationsMod.Controllers
             GameObject model = this.gameObject.FindChild("Model").FindChild("Submersible_SeaMoth_extras").FindChild("Submersible_seaMoth_geo 1").FindChild("seaMoth_storage_01_L_geo");
             Renderer rend = model.GetComponent<Renderer>();
             
-            File.WriteAllText(Path.Combine(saveFolder, "seamothdoll_" + id.Id + ".txt").Replace('\\', '/'), rend.enabled ? "1" : "0", Encoding.UTF8);
+            File.WriteAllText(FilesHelper.Combine(saveFolder, "seamothdoll_" + id.Id + ".txt"), rend.enabled ? "1" : "0", Encoding.UTF8);
         }
 
         // Load seamoth doll state
@@ -74,7 +74,7 @@ namespace DecorationsMod.Controllers
                 if ((id = GetComponent<PrefabIdentifier>()) == null)
                     return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "seamothdoll_" + id.Id + ".txt").Replace('\\', '/');
+            string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "seamothdoll_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
                 string state = File.ReadAllText(filePath, Encoding.UTF8).Trim();

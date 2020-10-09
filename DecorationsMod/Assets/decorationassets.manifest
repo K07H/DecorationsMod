@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1845922885
+CRC: 4274919391
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 82bd6e9601bb144571240f50b3ed6ba7
+    Hash: bd749ae448cc1e6d40ccb29e3559e6c0
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1a6f9fd4ccc3875a34e79ba73f901f13
@@ -73,6 +73,7 @@ Assets:
 - Assets/tubularaquarium3icon.png
 - Assets/redgrass3icon.png
 - Assets/reaperskullicon.png
+- Assets/covetreeicon.png
 - Assets/circuitbox2b.png
 - Assets/descent_bar_sofa_str_03.prefab
 - Assets/lostriverplant5icon.png
@@ -80,7 +81,7 @@ Assets:
 - Assets/revertpictureframe.png
 - Assets/leviathans.fbm/Sea_Dragon_01_02_normal.png
 - Assets/reactorrod.fbm/nuclear_reactor_rod_illum_yellow.png
-- Assets/covetreeicon.png
+- Assets/covetree2icon.png
 - Assets/barfood01.prefab
 - Assets/seamoth.fbm/power_cell_01_spec.png
 - Assets/decorativelockericon.png

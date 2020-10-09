@@ -2126,7 +2126,7 @@ namespace DecorationsMod
                         return "Unnecessary documents.";
                 case "SofaStr1Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Petit banc";
+                        return "Petit sofa";
                     else if (UserLanguage == CountryCode.ES)
                         return "Asiento pequeño";
                     else if (UserLanguage == CountryCode.TR)
@@ -2138,10 +2138,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.NL)
                         return "Kleine bank";
                     else
-                        return "Small bench";
+                        return "Small sofa";
                 case "SofaStr1Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un petit banc : Esthétique et pratique pour se reposer.";
+                        return "Un petit sofa : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Un asiento pequeño: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2153,10 +2153,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.NL)
                     	return "Een kleine bank: Estetisch en praktisch om te rusten.";
                     else
-                        return "A small bench: Aesthetic and practical to rest.";
+                        return "A small sofa: Aesthetic and practical to rest.";
                 case "SofaStr2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Banc moyen";
+                        return "Sofa moyen";
                     else if (UserLanguage == CountryCode.ES)
                         return "Asiento mediano";
                     else if (UserLanguage == CountryCode.TR)
@@ -2168,10 +2168,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.NL)
                         return "Middelgrote bank";
                     else
-                        return "Medium bench";
+                        return "Medium sofa";
                 case "SofaStr2Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un banc moyen : Esthétique et pratique pour se reposer.";
+                        return "Un sofa moyen : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Un asiento mediano: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2183,10 +2183,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.NL)
                     	return "Een middelgrote bank: Estetisch en praktisch om te rusten.";
                     else
-                        return "A medium bench: Aesthetic and practical to rest.";
+                        return "A medium sofa: Aesthetic and practical to rest.";
                 case "SofaStr3Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Banc large";
+                        return "Sofa large";
                     else if (UserLanguage == CountryCode.ES)
                         return "Asiento grande";
                     else if (UserLanguage == CountryCode.TR)
@@ -2198,10 +2198,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.NL)
                         return "Lange bank";
                     else
-                        return "Long bench";
+                        return "Long sofa";
                 case "SofaStr3Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un banc large : Esthétique et pratique pour se reposer.";
+                        return "Un sofa large : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Un asiento grande: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2213,10 +2213,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.NL)
                     	return "Een lange bank: Estetisch en praktisch om te rusten.";
                     else
-                        return "A long bench: Aesthetic and practical to rest.";
+                        return "A long sofa: Aesthetic and practical to rest.";
                 case "SofaCorner2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Angle de banc";
+                        return "Angle de sofa";
                     else if (UserLanguage == CountryCode.ES)
                         return "Asiento angulado";
                     else if (UserLanguage == CountryCode.TR)
@@ -2228,10 +2228,10 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.NL)
                         return "Bank hoek";
                     else
-                        return "Bench angle";
+                        return "Sofa angle";
                 case "SofaCorner2Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un angle de banc : Esthétique et pratique pour se reposer.";
+                        return "Un angle de sofa : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Un asiento angulado: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2243,7 +2243,7 @@ namespace DecorationsMod
                     else if (UserLanguage == CountryCode.NL)
                     	return "Een bank hoek: Estetisch en praktisch om te rusten";
                     else
-                        return "A bench angle: Aesthetic and practical to rest.";
+                        return "A sofa angle: Aesthetic and practical to rest.";
                 case "CustomPictureFrameName":
                     if (UserLanguage == CountryCode.FR)
                         return "Cadre photo personnalisable";
@@ -2896,13 +2896,28 @@ namespace DecorationsMod
                         return "This coral species is unlike any other encountered on 4546B. It relies on magma flow rather than water current to deliver nutrients.";
                 case "CoveTreeName":
                     if (UserLanguage == CountryCode.FR)
+                        return "Arbre de crique";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Árbol de la Ensenada";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kovuk Ağacı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Lebensbaum";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Дерево-укрытие";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Grot boom";
+                    else
+                        return "Cove Tree";
+                case "GiantCoveTreeName":
+                    if (UserLanguage == CountryCode.FR)
                         return "Arbre de crique géant";
                     else if (UserLanguage == CountryCode.ES)
                         return "Árbol Gigante de la Ensenada";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dev Kovuk Ağacı";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Lebensbaum";
+                        return "Riesiger Lebensbaum";
                     else if (UserLanguage == CountryCode.RU)
                         return "Гигантское дерево-укрытие";
                     else if (UserLanguage == CountryCode.NL)
@@ -4883,6 +4898,21 @@ namespace DecorationsMod
                     	return "Zet objecten plaatsen aan";
                     else
                         return "Enable items placing";
+                case "Config_EnablePlaceMaterials":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Activer le placement des matériaux";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Habilitar la colocación de materiales";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Malzemelerin yerleştirilmesini etkinleştirin";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Materialplatzierung aktivieren";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Включить размещение материалов";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Maak het plaatsen van materialen mogelijk";
+                    else
+                        return "Enable materials placing";
                 case "Config_EnablePlaceBatteries":
                     if (UserLanguage == CountryCode.FR)
                         return "Autoriser le placement de batteries";
@@ -5080,13 +5110,13 @@ namespace DecorationsMod
                         return "Items discovery mode";
                 case "Config_EnableSofas":
                     if (UserLanguage == CountryCode.FR)
-                        return "Inclure les canapés";
+                        return "Inclure les sofas";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Incluir canapés";
+                        return "Incluir sofás";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kanepeleri dahil et";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Canapes einschließen";
+                        return "Sofas einschließen";
                     else if (UserLanguage == CountryCode.RU)
                         return "Добавить софы";
                     else if (UserLanguage == CountryCode.NL)
@@ -5170,7 +5200,7 @@ namespace DecorationsMod
                         return "Water value for bar bottle 5";
                 case "Config_BarFood1_nutrient":
                     if (UserLanguage == CountryCode.FR)
-                        return "Valeur nutritive nourriture de bar 1";
+                        return "Valeur nutritive du plateau repas 1";
                     else if (UserLanguage == CountryCode.ES)
                         return "Valor nutritivo para comida de bar 1";
                     else if (UserLanguage == CountryCode.TR)
@@ -5185,7 +5215,7 @@ namespace DecorationsMod
                         return "Nutrients value for bar food 1";
                 case "Config_BarFood1_water":
                     if (UserLanguage == CountryCode.FR)
-                        return "Valeur en eau de nourriture de bar 1";
+                        return "Valeur en eau du plateau repas 1";
                     else if (UserLanguage == CountryCode.ES)
                         return "Valor del agua para comida de bar 1";
                     else if (UserLanguage == CountryCode.TR)
@@ -5200,7 +5230,7 @@ namespace DecorationsMod
                         return "Water value for bar food 1";
                 case "Config_BarFood2_nutrient":
                     if (UserLanguage == CountryCode.FR)
-                        return "Valeur nutritive nourriture de bar 2";
+                        return "Valeur nutritive du plateau repas 2";
                     else if (UserLanguage == CountryCode.ES)
                         return "Valor nutritivo para comida de bar 2";
                     else if (UserLanguage == CountryCode.TR)
@@ -5215,7 +5245,7 @@ namespace DecorationsMod
                         return "Nutrient value for bar food 2";
                 case "Config_BarFood2_water":
                     if (UserLanguage == CountryCode.FR)
-                        return "Valeur en eau de nourriture de bar 2";
+                        return "Valeur en eau du plateau repas 2";
                     else if (UserLanguage == CountryCode.ES)
                         return "Valor del agua para comida de bar 2";
                     else if (UserLanguage == CountryCode.TR)

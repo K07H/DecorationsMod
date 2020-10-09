@@ -383,6 +383,8 @@ namespace DecorationsModConfigurator
                 changes.Add("PyroCoralC changed from \"" + origConfig.PyroCoralC.ToString() + "\" to \"" + currentConfig.PyroCoralC.ToString() + "\".");
             if (!currentConfig.CoveTree.IsEqual(origConfig.CoveTree))
                 changes.Add("CoveTree changed from \"" + origConfig.CoveTree.ToString() + "\" to \"" + currentConfig.CoveTree.ToString() + "\".");
+            if (!currentConfig.GiantCoveTree.IsEqual(origConfig.GiantCoveTree))
+                changes.Add("GiantCoveTree changed from \"" + origConfig.GiantCoveTree.ToString() + "\" to \"" + currentConfig.GiantCoveTree.ToString() + "\".");
             if (!currentConfig.SpottedReedsA.IsEqual(origConfig.SpottedReedsA))
                 changes.Add("SpottedReedsA changed from \"" + origConfig.SpottedReedsA.ToString() + "\" to \"" + currentConfig.SpottedReedsA.ToString() + "\".");
             if (!currentConfig.SpottedReedsB.IsEqual(origConfig.SpottedReedsB))

@@ -22,11 +22,61 @@ namespace DecorationsMod
                 text = string.Format(text, args);
             Console.WriteLine($"[DecorationsMod] {text}");
         }
+
+#if DEBUG
+        internal static void PrintObject(System.Object o, string indent = "\t")
+        {
+            Type type = o.GetType();
+            string init = "DEBUG: Component [" + type.Name + "] " + indent;
+            Logger.Log(init + "Attributes:");
+            FieldInfo[] fi = type.GetFields();
+            if (fi == null || fi.Length <= 0)
+                Logger.Log(init + " None");
+            else
+                foreach (FieldInfo f in fi)
+                {
+                    string val;
+                    try { val = f.GetValue(o)?.ToString(); if (val == null) val = "null"; }
+                    catch { val = "?"; }
+                    Logger.Log(init + " * " + f.ToString() + " = " + val);
+                }
+            Logger.Log(init + "Properties:");
+            PropertyInfo[] pi = type.GetProperties();
+            if (pi == null || pi.Length <= 0)
+                Logger.Log(init + " None");
+            else
+                foreach (PropertyInfo p in pi)
+                {
+                    string val;
+                    try { val = p.GetValue(o, null)?.ToString(); if (val == null) val = "null"; }
+                    catch { val = "?"; }
+                    Logger.Log(init + " * " + p.ToString() + " = " + val);
+                }
+        }
+
+        internal static void PrintTransform(Transform tr, bool details = false, string indent = "\t")
+        {
+            if (tr != null)
+            {
+                Logger.Log("DEBUG: Transform " + indent + "name=[" + tr.name + "] localPos=[" + tr.localPosition.x.ToString() + ";" + tr.localPosition.y.ToString() + ";" + tr.localPosition.z.ToString() + "] localAngles=[" + tr.localEulerAngles.x.ToString() + ";" + tr.localEulerAngles.y.ToString() + ";" + tr.localEulerAngles.z.ToString() + "] localScale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "] pos=[" + tr.position.x.ToString() + ";" + tr.position.y.ToString() + ";" + tr.position.z.ToString() + "] angles=[" + tr.eulerAngles.x.ToString() + ";" + tr.eulerAngles.y.ToString() + ";" + tr.eulerAngles.z.ToString() + "]");
+                foreach (Component c in tr.GetComponents<Component>())
+                    if (c.GetType() != typeof(Transform))
+                    {
+                        Logger.Log("DEBUG: Transform " + indent + " => component type=[" + c.GetType().ToString() + "] name=[" + c.name + "]");
+                        if (details)
+                            PrintObject(c, indent + "\t");
+                    }
+                string newIndent = indent + "\t";
+                foreach (Transform child in tr)
+                    PrintTransform(child, details, newIndent);
+            }
+        }
+#endif
     }
 
     internal static class FilesHelper
     {
-        public static string GetSaveFolderPath() => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "../../SNAppData/SavedGames/", SaveLoadManager.main.GetCurrentSlot(), "DecorationsMod").Replace('\\', '/');
+        public static string GetSaveFolderPath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "../../SNAppData/SavedGames/", SaveLoadManager.main.GetCurrentSlot(), "DecorationsMod")).Replace('\\', '/');
 
         public static string GetSaveFolderPath(string saveGame)
         {
@@ -39,6 +89,9 @@ namespace DecorationsMod
             }
             return saveDir.Replace('\\', '/');
         }
+
+        public static string Combine(string path1, string path2) => Path.Combine(path1, path2).Replace('\\', '/');
+        public static string Combine(string path1, string path2, string path3) => Path.Combine(path1, path2, path3).Replace('\\', '/');
     }
 
     public static class RegionHelper

@@ -86,7 +86,8 @@ namespace DecorationsMod.NewItems
             prefabId.ClassId = this.ClassID;
 
             // Retrieve collider
-            Collider collider = prefab.GetComponentInChildren<Collider>();
+            Collider collider = prefab.GetComponent<BoxCollider>();
+            collider.isTrigger = true;
 
             // We can pick this item
             var pickupable = prefab.GetComponent<Pickupable>();

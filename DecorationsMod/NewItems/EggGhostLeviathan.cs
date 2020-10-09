@@ -80,8 +80,8 @@ namespace DecorationsMod.NewItems
 
             // Get sub objects
             GameObject model = prefab.FindChild("lost_river_cove_tree_01");
-            GameObject eggs = model.FindChild("lost_river_cove_tree_01_eggs");
-            GameObject shells = model.FindChild("lost_river_cove_tree_01_eggs_shells");
+            //GameObject eggs = model.FindChild("lost_river_cove_tree_01_eggs");
+            //GameObject shells = model.FindChild("lost_river_cove_tree_01_eggs_shells");
 
             // Scale model
             model.transform.localScale *= 0.08f;

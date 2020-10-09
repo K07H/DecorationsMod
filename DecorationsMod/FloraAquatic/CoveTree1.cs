@@ -1,5 +1,6 @@
 ﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,7 +40,7 @@ namespace DecorationsMod.FloraAquatic
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
                     {
-                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount * 2)
+                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, Convert.ToInt32((float)ConfigSwitcher.FloraRecipiesResourceAmount * 1.4f))
                     }),
             };
 #else
@@ -47,7 +48,7 @@ namespace DecorationsMod.FloraAquatic
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount * 2)
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, Convert.ToInt32((float)ConfigSwitcher.FloraRecipiesResourceAmount * 1.4f))
                 }),
             };
 #endif

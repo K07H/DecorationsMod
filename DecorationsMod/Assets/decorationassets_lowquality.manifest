@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2094845105
+CRC: 3462586912
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1ce8c864ede3fad454299d8fdddb731a
+    Hash: e7575113d771f9ec2be2a6c75fa7265f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1a6f9fd4ccc3875a34e79ba73f901f13
@@ -139,6 +139,7 @@ Assets:
 - Assets/MushroomTreeParts/Coral_reef_barnacle_suckers_spec.png
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon_colorMask.png
 - Assets/seamoth.fbm/power_cell_01_normal.png
+- Assets/OutdoorLadder/OutdoorLadder.prefab
 - Assets/MushroomTreeParts/Coral_reef_small_deco_06_normal.png
 - Assets/circuitbox3.png
 - Assets/leviathans.fbm/Sea_Dragon_01_01_spec.png
@@ -240,6 +241,7 @@ Assets:
 - Assets/ReaperLeviathan.prefab
 - Assets/prawnsuit.fbm/exosuit_01_colorMask.png
 - Assets/CategoryIcons/D_OfficeMaterials.png
+- Assets/OutdoorLadder/base_ladder_01_normal.png
 - Assets/CategoryIcons/D_Skeleton.png
 - Assets/tropicalplant7bicon.png
 - Assets/genericskeleton1icon.png
@@ -295,6 +297,7 @@ Assets:
 - Assets/MushroomTreeParts/Spiral_blue_thing.png
 - Assets/submarine_fabricator_purple.png
 - Assets/CategoryIcons/D_ToysAccessories.png
+- Assets/OutdoorLadder/base_ladder_01.png
 - Assets/tropicalplant10bicon.png
 - Assets/CategoryIcons/D_BigDeco.png
 - Assets/bloodgrassicon.png
@@ -397,6 +400,7 @@ Assets:
 - Assets/MushroomTreeTrunk/texture4normal2.png
 - Assets/barfood02.prefab
 - Assets/penholdericon.png
+- Assets/covetree2icon.png
 - Assets/landplant5icon.png
 - Assets/prawnsuitdoll.prefab
 - Assets/prawnsuit.fbm/Exosuit_Arm_Propulsion_Cannon_illum.png

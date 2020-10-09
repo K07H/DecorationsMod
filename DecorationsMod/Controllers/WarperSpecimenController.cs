@@ -90,7 +90,7 @@ namespace DecorationsMod.Controllers
                         Convert.ToString(collider.size.y, CultureInfo.InvariantCulture) + "/" +
                         Convert.ToString(collider.size.z, CultureInfo.InvariantCulture);
 
-                    File.WriteAllText(Path.Combine(saveFolder, "warperspecimen_" + id.Id + ".txt").Replace('\\', '/'), size, Encoding.UTF8);
+                    File.WriteAllText(FilesHelper.Combine(saveFolder, "warperspecimen_" + id.Id + ".txt"), size, Encoding.UTF8);
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace DecorationsMod.Controllers
                 if ((id = GetComponent<PrefabIdentifier>()) == null)
                     return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "warperspecimen_" + id.Id + ".txt").Replace('\\', '/');
+            string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "warperspecimen_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
                 string tmpSize = File.ReadAllText(filePath, Encoding.UTF8).Replace(',', '.'); // Replace , with . for backward compatibility.

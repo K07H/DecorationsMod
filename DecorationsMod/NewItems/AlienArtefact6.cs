@@ -104,9 +104,7 @@ namespace DecorationsMod.NewItems
             //rb.detectCollisions = false;
 
             // Update sky applier
-            var applier = prefab.GetComponent<SkyApplier>();
-            applier.anchorSky = Skies.Auto;
-            applier.updaterIndex = 0;
+            PrefabsHelper.ReplaceSkyApplier(prefab);
 
             // Adjust colliders
             var collider = prefab.GetComponent<CapsuleCollider>();

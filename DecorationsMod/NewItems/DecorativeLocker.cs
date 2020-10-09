@@ -123,7 +123,7 @@ namespace DecorationsMod.NewItems
             collider.center = new Vector3(0.0f, 1.0f, 0.0f);
 
             // Update large world entity
-            PrefabsHelper.SetDefaultLargeWorldEntity(prefab);
+            PrefabsHelper.UpdateExistingLargeWorldEntities(prefab);
 
             // Update sky applier
 #if BELOWZERO

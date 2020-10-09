@@ -26,9 +26,12 @@ namespace DecorationsMod
             return true;
         }
 
+        private static bool _allPatched = false;
         /// <summary>Patches Subnautica DLL with Harmony.</summary>
         public static void PatchAll()
         {
+            if (_allPatched)
+                return;
             Logger.Log("INFO: Patching with Harmony...");
             // Fix cargo crates items-containers
 #if DEBUG_HARMONY_PATCHING
@@ -111,9 +114,12 @@ namespace DecorationsMod
             var saveGameMethod = typeof(IngameMenu).GetMethod("SaveGame", BindingFlags.Public | BindingFlags.Instance);
             var saveGamePostfix = typeof(IngameMenuFixer).GetMethod("SaveGame_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(saveGameMethod, null, new HarmonyMethod(saveGamePostfix));
-            var onYesMethod = typeof(IngameMenuQuitConfirmation).GetMethod("OnYes", BindingFlags.Public | BindingFlags.Instance);
-            var onYesPrefix = typeof(IngameMenuQuitConfirmationFixer).GetMethod("OnYes_Prefix", BindingFlags.Public | BindingFlags.Static);
-            HarmonyInstance.Patch(onYesMethod, new HarmonyMethod(onYesPrefix), null);
+            var quitGameMethod = typeof(IngameMenu).GetMethod("QuitGame", BindingFlags.Public | BindingFlags.Instance);
+            var quitGamePostfix = typeof(IngameMenuFixer).GetMethod("QuitGame_Postfix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(quitGameMethod, null, new HarmonyMethod(quitGamePostfix));
+            //var onYesMethod = typeof(IngameMenuQuitConfirmation).GetMethod("OnYes", BindingFlags.Public | BindingFlags.Instance);
+            //var onYesPrefix = typeof(IngameMenuQuitConfirmationFixer).GetMethod("OnYes_Prefix", BindingFlags.Public | BindingFlags.Static);
+            //HarmonyInstance.Patch(onYesMethod, new HarmonyMethod(onYesPrefix), null);
             // Handles "Hide Degasi base (500m)" feature
 #if DEBUG_HARMONY_PATCHING
                 Logger.Log("DEBUG: Adding biome checks...");
@@ -180,91 +186,78 @@ namespace DecorationsMod
                 var checkSurfaceTypePostfix = typeof(BuilderFixer).GetMethod("CheckSurfaceType_Postfix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(checkSurfaceTypeMethod, null, new HarmonyMethod(checkSurfaceTypePostfix));
             }
+            _allPatched = true;
         }
 
         private static bool _patchedBatteries = false;
         /// <summary>This will make batteries and powercells placeable.</summary>
         public static void PatchBatteries()
         {
-            if (!_patchedBatteries)
-            {
+            if (_patchedBatteries)
+                return;
 #if DEBUG_HARMONY_PATCHING
-                Logger.Log("DEBUG: Making batteries and powercells placeable...");
+            Logger.Log("DEBUG: Making batteries and powercells placeable...");
 #endif
-                var allowedToAddMethod = typeof(Equipment).GetMethod("AllowedToAdd", BindingFlags.Public | BindingFlags.Instance);
-                var allowedToAddPrefix = typeof(EquipmentFixer).GetMethod("AllowedToAdd_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(allowedToAddMethod, new HarmonyMethod(allowedToAddPrefix), null);
-                var addOrSwapMethod = typeof(Inventory).GetMethod("AddOrSwap", new Type[] { typeof(InventoryItem), typeof(Equipment), typeof(string) });
-                var addOrSwapPrefix = typeof(InventoryFixer).GetMethod("AddOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(addOrSwapMethod, new HarmonyMethod(addOrSwapPrefix), null);
-                var canSwitchOrSwapMethod = typeof(uGUI_Equipment).GetMethod("CanSwitchOrSwap", BindingFlags.Public | BindingFlags.Instance);
-                var canSwitchOrSwapPrefix = typeof(uGUI_EquipmentFixer).GetMethod("CanSwitchOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(canSwitchOrSwapMethod, new HarmonyMethod(canSwitchOrSwapPrefix), null);
+            var allowedToAddMethod = typeof(Equipment).GetMethod("AllowedToAdd", BindingFlags.Public | BindingFlags.Instance);
+            var allowedToAddPrefix = typeof(EquipmentFixer).GetMethod("AllowedToAdd_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(allowedToAddMethod, new HarmonyMethod(allowedToAddPrefix), null);
+            var addOrSwapMethod = typeof(Inventory).GetMethod("AddOrSwap", new Type[] { typeof(InventoryItem), typeof(Equipment), typeof(string) });
+            var addOrSwapPrefix = typeof(InventoryFixer).GetMethod("AddOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(addOrSwapMethod, new HarmonyMethod(addOrSwapPrefix), null);
+            var canSwitchOrSwapMethod = typeof(uGUI_Equipment).GetMethod("CanSwitchOrSwap", BindingFlags.Public | BindingFlags.Instance);
+            var canSwitchOrSwapPrefix = typeof(uGUI_EquipmentFixer).GetMethod("CanSwitchOrSwap_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(canSwitchOrSwapMethod, new HarmonyMethod(canSwitchOrSwapPrefix), null);
 
-                _patchedBatteries = true;
-            }
+            _patchedBatteries = true;
         }
 
         private static bool _patchedPictureFrame = false;
         /// <summary>This will enable advanced features for our customizable picture frame.</summary>
         public static void PatchPictureFrames()
         {
-            if (!_patchedPictureFrame)
-            {
-                // Override OnHandHover
-                var pictureFrameType = typeof(PictureFrame);
-                var onHandHoverMethod = pictureFrameType.GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
-                var postfix = typeof(PictureFrameFixer).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(postfix));
+            if (_patchedPictureFrame)
+                return;
 
-                // Override OnHandClick
-                var onHandClickMethod = pictureFrameType.GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
-                var prefix = typeof(PictureFrameFixer).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
-                HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(prefix), null);
+            // Override OnHandHover
+            var pictureFrameType = typeof(PictureFrame);
+            var onHandHoverMethod = pictureFrameType.GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
+            var postfix = typeof(PictureFrameFixer).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(onHandHoverMethod, null, new HarmonyMethod(postfix));
 
-                _patchedPictureFrame = true;
-            }
+            // Override OnHandClick
+            var onHandClickMethod = pictureFrameType.GetMethod("OnHandClick", BindingFlags.Public | BindingFlags.Instance);
+            var prefix = typeof(PictureFrameFixer).GetMethod("OnHandClick_Prefix", BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(prefix), null);
+
+            _patchedPictureFrame = true;
         }
 
-        /// <summary>This will make FCS mods compatible with the "Place batteries/powercells" feature.</summary>
-        public static void FixFCSMods()
+        private static bool _fixedAutoLoadMod = false;
+        /// <summary>This wil enforce loading process when AutoLoad mod is present.</summary>
+        public static void FixAutoLoadMod()
         {
-            IQMod modFCS1 = QModServices.Main.FindModById("FCSAIPowerCellSocket");
-            if (modFCS1 != null && modFCS1.ParsedVersion != null && modFCS1.ParsedVersion.ToString() == "1.2.3" && modFCS1.LoadedAssembly != null)
+            if (_fixedAutoLoadMod)
+                return;
+
+            IQMod autoLoadMod = QModServices.Main.FindModById("Straitjacket.Subnautica.Mods.AutoLoad");
+            if (autoLoadMod != null && autoLoadMod.Enable)
             {
-                Logger.Log("INFO: Alterra Industrial Powercell Socket mod version 1.2.3 detected: Applying fix...");
-                Type[] types = modFCS1.LoadedAssembly.GetTypes();
-                if (types != null)
-                    foreach (Type t in types)
-                        if (t.Name != null && t.Name == "AIPowerCellSocketPowerManager")
-                        {
-                            MethodInfo isAllowedToAddMethod = t.GetMethod("IsAllowedToAdd", BindingFlags.NonPublic | BindingFlags.Instance);
-                            MethodInfo isAllowedToAddPrefix = typeof(FCSModsFixer).GetMethod("IsAllowedToAdd_Powercell_Prefix", BindingFlags.Public | BindingFlags.Static);
-                            HarmonyInstance.Patch(isAllowedToAddMethod, new HarmonyMethod(isAllowedToAddPrefix), null);
-                            Logger.Log("INFO: Alterra Industrial Powercell Socket mod successfully fixed.");
-                            break;
-                        }
+#if DEBUG_HARMONY_PATCHING
+                Logger.Log("DEBUG: Fixing for AutoLoad mod...");
+#endif
+                var beginAsyncSceneLoadMethod = typeof(uGUI_SceneLoading).GetMethod("BeginAsyncSceneLoad", BindingFlags.Public | BindingFlags.Instance);
+                var beginAsyncSceneLoadPrefix = typeof(AutoLoadModFixer).GetMethod("BeginAsyncSceneLoad_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(beginAsyncSceneLoadMethod, new HarmonyMethod(beginAsyncSceneLoadPrefix), null);
             }
-            IQMod modFCS2 = QModServices.Main.FindModById("FCSDeepDriller");
-            if (modFCS2 != null && modFCS2.ParsedVersion != null && modFCS2.ParsedVersion.ToString() == "1.2.5" && modFCS2.LoadedAssembly != null)
-            {
-                Logger.Log("INFO: Alterra Industrial Deep Driller mod version 1.2.5 detected: Applying fix...");
-                Type[] types = modFCS2.LoadedAssembly.GetTypes();
-                if (types != null)
-                    foreach (Type t in types)
-                        if (t.Name != null && t.Name == "FCSDeepDrillerBatteryController")
-                        {
-                            MethodInfo isAllowedToAddMethod = t.GetMethod("IsAllowedToAdd", BindingFlags.NonPublic | BindingFlags.Instance);
-                            MethodInfo isAllowedToAddPrefix = typeof(FCSModsFixer).GetMethod("IsAllowedToAdd_Driller_Prefix", BindingFlags.Public | BindingFlags.Static);
-                            HarmonyInstance.Patch(isAllowedToAddMethod, new HarmonyMethod(isAllowedToAddPrefix), null);
-                            Logger.Log("INFO: Alterra Industrial Deep Driller mod successfully fixed.");
-                            break;
-                        }
-            }
+            _fixedAutoLoadMod = true;
         }
 
+        private static bool _fixedSignInput = false;
+        /// <summary>This will fix sign input loading vanilla bug.</summary>
         public static void FixSignInput()
         {
+            if (_fixedSignInput)
+                return;
 #if DEBUG_HARMONY_PATCHING
             Logger.Log("DEBUG: Fixing uGUI_SignInput loading...");
 #endif
@@ -274,6 +267,7 @@ namespace DecorationsMod
                 var updateScalePostfix = typeof(DECOuGUI_SignInputFixer).GetMethod("DECOUpdateScale_Postfix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(updateScaleMethod, null, new HarmonyMethod(updateScalePostfix));
             }
+            _fixedSignInput = true;
         }
     }
 }

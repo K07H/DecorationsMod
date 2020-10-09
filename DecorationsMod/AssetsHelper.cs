@@ -7,7 +7,7 @@ namespace DecorationsMod
     public static class AssetsHelper
     {
         // Load AssetBundles (they must only be loaded once).
-        public static readonly AssetBundle Assets = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets/decorationassets.assets").Replace('\\', '/'));
+        public static readonly AssetBundle Assets = AssetBundle.LoadFromFile(FilesHelper.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets/decorationassets.assets"));
 
         // Creates an audio asset.
         public static FMODAsset CreateAsset(string id, string name, string path)

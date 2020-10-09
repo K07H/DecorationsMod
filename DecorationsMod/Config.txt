@@ -15,7 +15,7 @@ language=auto
 useCompactTooltips=false
 
 # If "true", it will stop switching to next quickslot tool if you are currently holding a placeable item and using mouse wheel (this allows to rotate the placeable item with mouse wheel).
-lockQuickslotsWhenPlacingItem=true
+lockQuickslotsWhenPlacingItem=false
 
 # If "true", more items from this mod will be buildable outside bases.
 allowBuildOutside=true
@@ -23,14 +23,21 @@ allowBuildOutside=true
 # If "true", more items from this mod will be placeable outside bases.
 allowPlaceOutside=true
 
-# If "true" you will be able to place following items:
+# If "true" you will be able to place following items where you want (on desks, tables, and so on):
 # coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, 
 # water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth, first aid kit
 enablePlaceItems=true
 
+# If "true" you will be able to place following items where you want:
+# silicone rubber, fiber mesh, synthetic fiber, aerogel, titanium ingot, plasteel ingot, glass, enameled glass, copper wire, alien feces, titanium, cave sulfur,
+# copper ore, crystalline sulfur, diamond, gold, kyanite, lead, lithium, magnetite, nickel, quartz, ruby, salt, silver, uraninite crystal, blood oil,
+# coral tube sample and table coral sample.
+# Please note that option "enablePlaceItems" needs to be set to "true" for this option to work.
+enablePlaceMaterials=true
+
 # If "true", you will be able to place batteries, powercells, ion batteries and ion powercells where you want (note that option "enablePlaceItems" needs to be set to "true" for this to work).
 # Be careful using this option: if enabled, you will have to manually drag-n-drop batteries/power cells to the charger (left click won't equip them).
-enablePlaceBatteries=true
+enablePlaceBatteries=false
 
 # If "true", you will be able to build the seeds fabricator and to craft seeds.
 # The seeds fabricator can be used to craft all existing seeds plus new ones (55 different seeds in total).
@@ -278,6 +285,7 @@ config_PyroCoralA=2000/130/300/false/1/1/false/20
 config_PyroCoralB=2000/130/300/false/1/1/false/20
 config_PyroCoralC=2000/130/300/false/1/1/false/20
 config_CoveTree=3000/300/400/false/1/1/false/20
+config_GiantCoveTree=5000/500/500/false/1/1/false/20
 config_SpottedReedsA=1000/60/120/false/1/1/false/20
 config_SpottedReedsB=1000/60/120/false/1/1/false/20
 config_BrineLily=1400/100/120/false/1/1/false/20

@@ -11,11 +11,11 @@ namespace DecorationsMod
     {
         #region Prefab
 
-        public static bool SetDefaultPickupable(GameObject gameObj, bool isPickupable = true, bool destroyOnDeath = false, bool isValidHandTarget = false, bool attached = false,
+        public static void SetDefaultPickupable(GameObject gameObj, bool isPickupable = true, bool destroyOnDeath = false, bool isValidHandTarget = false, bool attached = false,
             TechType overrideTechType = TechType.None, bool overrideTechUsed = false)
         {
             if (gameObj == null)
-                return false;
+                return;
             Pickupable pickupable = gameObj.GetComponent<Pickupable>();
             if (pickupable == null)
                 pickupable = gameObj.AddComponent<Pickupable>();
@@ -36,14 +36,13 @@ namespace DecorationsMod
             pickupable.hideFlags = HideFlags.None;
             pickupable.useGUILayout = true;
             pickupable.enabled = true;
-            return true;
         }
 
-        public static bool SetDefaultPlaceTool(GameObject gameObj, Collider mainCollider = null, Pickupable pickupable = null,
+        public static void SetDefaultPlaceTool(GameObject gameObj, Collider mainCollider = null, Pickupable pickupable = null,
             bool onCeiling = false, bool onWalls = false, bool onBase = false, bool alignWithSurface = false)
         {
             if (gameObj == null)
-                return false;
+                return;
 
             if (gameObj.GetComponent<CustomPlaceToolController>() == null)
                 gameObj.AddComponent<CustomPlaceToolController>();
@@ -99,15 +98,13 @@ namespace DecorationsMod
             placeTool.hideFlags = HideFlags.None;
             placeTool.useGUILayout = true;
             placeTool.enabled = true;
-
-            return true;
         }
 
-        public static bool SetDefaultRigidBody(GameObject gameObj, CollisionDetectionMode collisionDetectionMode = CollisionDetectionMode.Discrete,
+        public static void SetDefaultRigidBody(GameObject gameObj, CollisionDetectionMode collisionDetectionMode = CollisionDetectionMode.Discrete,
             float mass = 1f, float drag = 0f, float angularDrag = 0.05f, bool detectCollisions = true)
         {
             if (gameObj == null)
-                return false;
+                return;
             Rigidbody rigidBody = gameObj.GetComponent<Rigidbody>();
             if (rigidBody == null)
                 rigidBody = gameObj.AddComponent<Rigidbody>();
@@ -133,13 +130,12 @@ namespace DecorationsMod
             rigidBody.maxAngularVelocity = 7f;
             rigidBody.solverVelocityIterations = 1;
             rigidBody.hideFlags = HideFlags.None;
-            return true;
         }
 
-        public static bool SetDefaultLargeWorldEntity(GameObject gameObj, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Near, int updaterIndex = 0)
+        public static void SetDefaultLargeWorldEntity(GameObject gameObj, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Near, int updaterIndex = 0)
         {
             if (gameObj == null)
-                return false;
+                return;
             LargeWorldEntity lwe = gameObj.GetComponent<LargeWorldEntity>();
             if (lwe == null)
                 lwe = gameObj.AddComponent<LargeWorldEntity>();
@@ -148,14 +144,40 @@ namespace DecorationsMod
             lwe.hideFlags = HideFlags.None;
             lwe.useGUILayout = true;
             lwe.enabled = true;
-            return true;
         }
 
-        public static bool SetDefaultSkyApplier(GameObject gameObj, Renderer[] renderers = null, Skies anchorSky = Skies.Auto,
+        public static void UpdateExistingLargeWorldEntities(GameObject gameObj, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Near, int updaterIndex = -1)
+        {
+            if (gameObj == null)
+                return;
+            LargeWorldEntity[] entities = gameObj.GetComponentsInChildren<LargeWorldEntity>();
+            if (entities != null)
+                foreach (LargeWorldEntity lwe in entities)
+                {
+                    lwe.cellLevel = cellLevel;
+                    if (updaterIndex >= 0)
+                        lwe.updaterIndex = updaterIndex;
+                }
+        }
+
+        public static void ReplaceSkyApplier(GameObject gameObj, bool getInChildren = false)
+        {
+            if (gameObj == null)
+                return;
+            SkyApplier sa = getInChildren ? gameObj.GetComponentInChildren<SkyApplier>() : gameObj.GetComponent<SkyApplier>();
+            if (sa != null)
+                Object.DestroyImmediate(sa);
+            sa = gameObj.AddComponent<SkyApplier>();
+            sa.renderers = gameObj.GetComponentsInChildren<Renderer>();
+            sa.anchorSky = Skies.Auto;
+            sa.enabled = true;
+        }
+
+        public static void SetDefaultSkyApplier(GameObject gameObj, Renderer[] renderers = null, Skies anchorSky = Skies.Auto,
             bool dynamic = false, bool emissiveFromPower = false)
         {
             if (gameObj == null)
-                return false;
+                return;
             SkyApplier applier = gameObj.GetComponent<SkyApplier>();
             if (applier == null)
                 applier = gameObj.AddComponent<SkyApplier>();
@@ -169,7 +191,6 @@ namespace DecorationsMod
             applier.hideFlags = HideFlags.None;
             applier.useGUILayout = true;
             applier.enabled = true;
-            return true;
         }
 
         private static GameObject _objPositioner = null;
@@ -207,10 +228,21 @@ namespace DecorationsMod
             { "ComputerChip", "model" },
             { "Battery", "model" },
             { "PrecursorIonBattery", "model" },
+            { "Silicone", "model" },
+            { "FiberMesh", "model" },
+            { "TitaniumIngot", "model" },
+            { "PlasteelIngot", "model" },
+            { "Glass", "model" },
+            { "EnameledGlass", "model" },
+            { "CopperWire", "model" },
+            { "SeaTreaderPoop", "sea_treader_poop_01" }
         };
 
         public static void FixPlaceToolSkyAppliers(GameObject go)
         {
+#if DEBUG_PLACE_TOOL
+            Logger.Log("DEBUG: FIX PT-SA: goName=[" + go.name + "]");
+#endif
             foreach (KeyValuePair<string, string> placeTool in _placeToolSAFix)
                 if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture))
                 {
@@ -218,6 +250,8 @@ namespace DecorationsMod
                     if (model != null)
                     {
                         SkyApplier[] sas = model.GetComponents<SkyApplier>();
+                        if (sas == null || sas.Length != 1)
+                            sas = model.GetComponentsInParent<SkyApplier>();
                         if (sas != null && sas.Length == 1)
                         {
                             sas[0].renderers = new Renderer[] { };
@@ -225,18 +259,43 @@ namespace DecorationsMod
                             if (sa != null)
                             {
                                 sa.anchorSky = Skies.Auto;
-                                sa.renderers = model.GetAllComponentsInChildren<MeshRenderer>();
+                                Renderer[] rends = model.GetAllComponentsInChildren<Renderer>();
+                                if (rends == null || rends.Length <= 0)
+                                    rends = model.GetComponents<Renderer>();
+                                sa.renderers = rends;
                                 sa.dynamic = true;
                                 sa.updaterIndex = 0;
+                                if (placeTool.Key == "PlasteelIngot" || placeTool.Key == "TitaniumIngot" || placeTool.Key == "CopperWire" || placeTool.Key == "Glass" || placeTool.Key == "EnameledGlass" || placeTool.Key == "SeaTreaderPoop")
+                                    sa.emissiveFromPower = true;
                                 sa.enabled = true;
                                 sa.RefreshDirtySky();
                             }
+#if DEBUG_PLACE_TOOL
+                            else
+                            {
+                                Logger.Log("DEBUG: FIX PT-SA: SkyApplier 1 do not match! sasLength=[" + (sas != null ? sas.Length.ToString() : "null") + "] goName=[" + go.name + "] modelName=[" + model.name + "]");
+                                Logger.PrintTransform(go.transform);
+                            }
+                        }
+                        else
+                        {
+                            Logger.Log("DEBUG: FIX PT-SA: SkyAppliers 2 do not match! sasLength=[" + (sas != null ? sas.Length.ToString() : "null") + "] goName=[" + go.name + "] modelName=[" + model.name + "]");
+                            Logger.PrintTransform(go.transform);
                         }
                     }
+                    else
+                    {
+                        Logger.Log("DEBUG: FIX PT-SA: Could not find model!");
+                        Logger.PrintTransform(go.transform);
+                    }
+#else
+                        }
+                    }
+#endif
                 }
         }
 
-        #endregion
+#endregion
 
         #region Seeds/plants
 

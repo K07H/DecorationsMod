@@ -2,11 +2,15 @@
   "Id": "DecorationsMod",
   "DisplayName": "DecorationsMod",
   "Author": "OSubMarin",
-  "Version": "1.8.5",
-  "Requires": [ "0Harmony.dll", "SMLHelper.dll" ],
+  "Version": "1.9.0",
+  "VersionDependencies": { 
+    "SMLHelper": "2.5"
+  },
   "Enable": true,
   "Game": "Subnautica",
   "AssemblyName": "DecorationsMod.dll",
   "EntryMethod": "DecorationsMod.QPatch.Patch",
-  "Config": {}
+  "NexusId": {
+    "Subnautica": "102"
+  }
 }

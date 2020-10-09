@@ -259,6 +259,7 @@ namespace DecorationsMod
             var amphibiousPlantsTab = rootNode.AddTabNode("AmphibiousPlantsTab", LanguageHelper.GetFriendlyWord("AmphibiousPlantsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AmphibiousPlants"));
             amphibiousPlantsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SmallDeco3"),
                                                 DecorationItemsHelper.getTechType(decorationItems, "CoveTree1"),
+                                                DecorationItemsHelper.getTechType(decorationItems, "CoveTree2"),
                                                 DecorationItemsHelper.getTechType(decorationItems, "SmallDeco11"),
                                                 DecorationItemsHelper.getTechType(decorationItems, "SmallDeco13"),
                                                 DecorationItemsHelper.getTechType(decorationItems, "SmallDeco14"),

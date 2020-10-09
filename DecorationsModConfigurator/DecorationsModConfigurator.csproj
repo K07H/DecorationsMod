@@ -629,6 +629,9 @@
   <ItemGroup>
     <Resource Include="Images\NL.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flora\covetree2icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SET CONFIGURATOREXPATH=$(SubnauticaDir)QMods\DecorationsMod\Configurator\

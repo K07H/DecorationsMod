@@ -2172,7 +2172,7 @@ namespace DecorationsModConfigurator
                         return "Unnecessary documents.";
                 case "SofaStr1Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Petit banc";
+                        return "Petit sofa";
                     else if (UserLanguage == CountryCode.ES)
                         return "Asiento pequeño";
                     else if (UserLanguage == CountryCode.TR)
@@ -2184,10 +2184,10 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Kleine bank";
                     else
-                        return "Small bench";
+                        return "Small sofa";
                 case "SofaStr1Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un petit banc : Esthétique et pratique pour se reposer.";
+                        return "Un petit sofa : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Un asiento pequeño: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2199,10 +2199,10 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Een kleine bank: Estetisch en praktisch om te rusten.";
                     else
-                        return "A small bench: Aesthetic and practical to rest.";
+                        return "A small sofa: Aesthetic and practical to rest.";
                 case "SofaStr2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Banc moyen";
+                        return "Sofa moyen";
                     else if (UserLanguage == CountryCode.ES)
                         return "Asiento mediano";
                     else if (UserLanguage == CountryCode.TR)
@@ -2214,10 +2214,10 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Middelgrote bank";
                     else
-                        return "Medium bench";
+                        return "Medium sofa";
                 case "SofaStr2Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un banc moyen : Esthétique et pratique pour se reposer.";
+                        return "Un sofa moyen : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Un asiento mediano: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2229,10 +2229,10 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Een middelgrote bank: Estetisch en praktisch om te rusten.";
                     else
-                        return "A medium bench: Aesthetic and practical to rest.";
+                        return "A medium sofa: Aesthetic and practical to rest.";
                 case "SofaStr3Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Banc large";
+                        return "Sofa large";
                     else if (UserLanguage == CountryCode.ES)
                         return "Asiento grande";
                     else if (UserLanguage == CountryCode.TR)
@@ -2244,10 +2244,10 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Lange bank"; 
                     else
-                        return "Long bench";
+                        return "Long sofa";
                 case "SofaStr3Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un banc large : Esthétique et pratique pour se reposer.";
+                        return "Un sofa large : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Un asiento grande: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2259,10 +2259,10 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Een lange bank: Estetisch en praktisch om te rusten.";
                     else
-                        return "A long bench: Aesthetic and practical to rest.";
+                        return "A long sofa: Aesthetic and practical to rest.";
                 case "SofaCorner2Name":
                     if (UserLanguage == CountryCode.FR)
-                        return "Angle de banc";
+                        return "Angle de sofa";
                     else if (UserLanguage == CountryCode.ES)
                         return "Asiento angulado";
                     else if (UserLanguage == CountryCode.TR)
@@ -2274,10 +2274,10 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Bank hoek";
                     else
-                        return "Bench angle";
+                        return "Sofa angle";
                 case "SofaCorner2Description":
                     if (UserLanguage == CountryCode.FR)
-                        return "Un angle de banc : Esthétique et pratique pour se reposer.";
+                        return "Un angle de sofa : Esthétique et pratique pour se reposer.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Un asiento angulado: Estético y práctico para un descanso.";
                     else if (UserLanguage == CountryCode.TR)
@@ -2289,7 +2289,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Een bank hoek: Estetisch en praktisch om te rusten";
                     else
-                        return "A bench angle: Aesthetic and practical to rest.";
+                        return "A sofa angle: Aesthetic and practical to rest.";
                 case "CustomPictureFrameName":
                     if (UserLanguage == CountryCode.FR)
                         return "Cadre photo personnalisable";
@@ -2942,17 +2942,32 @@ namespace DecorationsModConfigurator
                         return "This coral species is unlike any other encountered on 4546B. It relies on magma flow rather than water current to deliver nutrients.";
                 case "CoveTreeName":
                     if (UserLanguage == CountryCode.FR)
+                        return "Arbre de crique";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Árbol de la Ensenada";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Kovuk Ağacı";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Lebensbaum";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Дерево-укрытие";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Grot boom";
+                    else
+                        return "Cove Tree";
+                case "GiantCoveTreeName":
+                    if (UserLanguage == CountryCode.FR)
                         return "Arbre de crique géant";
                     else if (UserLanguage == CountryCode.ES)
                         return "Árbol Gigante de la Ensenada";
                     else if (UserLanguage == CountryCode.TR)
                         return "Dev Kovuk Ağacı";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Lebensbaum";
+                        return "Riesiger Lebensbaum";
                     else if (UserLanguage == CountryCode.RU)
                         return "Гигантское дерево-укрытие";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Gigantische grot boom";
+                        return "Gigantische grot boom";
                     else
                         return "Giant Cove Tree";
                 case "CoveTreeDescription":
@@ -4929,6 +4944,21 @@ namespace DecorationsModConfigurator
                     	return "Zet objecten plaatsen aan";
                     else
                         return "Enable items placing";
+                case "Config_EnablePlaceMaterials":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Activer le placement des matériaux";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Habilitar la colocación de materiales";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Malzemelerin yerleştirilmesini etkinleştirin";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Materialplatzierung aktivieren";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Включить размещение материалов";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Maak het plaatsen van materialen mogelijk";
+                    else
+                        return "Enable materials placing";
                 case "Config_EnablePlaceBatteries":
                     if (UserLanguage == CountryCode.FR)
                         return "Autoriser le placement de batteries";
@@ -5126,13 +5156,13 @@ namespace DecorationsModConfigurator
                         return "Items discovery mode";
                 case "Config_EnableSofas":
                     if (UserLanguage == CountryCode.FR)
-                        return "Inclure les canapés";
+                        return "Inclure les sofas";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Incluir canapés";
+                        return "Incluir sofás";
                     else if (UserLanguage == CountryCode.TR)
                         return "Kanepeleri dahil et";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Canapes einschließen";
+                        return "Sofas einschließen";
                     else if (UserLanguage == CountryCode.RU)
                         return "Добавить софы";
                     else if (UserLanguage == CountryCode.NL)
@@ -5637,19 +5667,19 @@ namespace DecorationsModConfigurator
                         return "Habitat builder settings";
                 case "Config_HabitatBuilderElementsSettings":
                     if (UserLanguage == CountryCode.FR)
-                        return "Ci-dessous, vous pouvez choisir quels éléments seront ajoutés à votre constructeur d'habitât:";
+                        return "Ci-dessous, vous pouvez choisir quels éléments seront ajoutés à votre constructeur d'habitât (attention: les éléments désactivés ici ne seront plus ajoutés au jeu, donc si vous les aviez construit ils ne seront plus fonctionnels à moins que vous ne les réactiviez).";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Elija los elementos a continuación para agregarlos a su menú de constructor de hábitats:";
+                        return "Elija los elementos a continuación para agregarlos a su menú de constructor de hábitats (nota: los elementos deshabilitados aquí ya no se agregarán al juego, por lo que si se han creado, no funcionarán a menos que los vuelva a encender).";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Aşağıda, Yaşam alanı yapıcısı menüsüne hangi öğelerin ekleneceğini seçebilirsiniz:";
+                        return "Aşağıda, Yaşam alanı yapıcısı menüsüne hangi öğelerin ekleneceğini seçebilirsiniz (not: burada devre dışı bırakılan öğeler artık oyuna eklenmeyecek, bu nedenle oluşturulmuşlarsa, yeniden etkinleştirmediğiniz sürece artık çalışmayacaklar).";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Unten können Sie auswählen, welche Elemente Ihrem Konstruktionswerkzeug hinzugefügt werden sollen:";
+                        return "Unten können Sie auswählen, welche Elemente Ihrem Konstruktionswerkzeug hinzugefügt werden sollen. (Hinweis: Hier deaktivierte Elemente werden nicht mehr zum Spiel hinzugefügt. Wenn sie erstellt wurden, funktionieren sie nur noch, wenn Sie sie wieder aktivieren.)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Ниже вы можете выбрать, какие элементы будут добавлены в меню Строитель:";
+                        return "Ниже вы можете выбрать, какие элементы будут добавлены в меню Строитель (примечание: отключенные здесь предметы больше не будут добавляться в игру, поэтому, если они были построены, они больше не будут работать, если вы не включите их повторно).";
                     else if (UserLanguage == CountryCode.NL)
-                        return "Hieronder kunt u kiezen welke items worden toegevoegd aan uw habitat bouwer menu:";
+                        return "Hieronder kunt u kiezen welke items worden toegevoegd aan uw habitat bouwer menu (opmerking: items die hier zijn uitgeschakeld, worden niet langer aan het spel toegevoegd, dus als ze zijn gebouwd, werken ze niet meer tenzij je ze opnieuw inschakelt).";
                     else
-                        return "Below you can choose which items will be added to your habitat builder menu:";
+                        return "Below you can choose which items will be added to your habitat builder menu (note: items disabled here will no longer be added to the game, so if they have been built they will no longer work unless you re-enable them).";
                 case "Config_DiscoverySettings":
                     if (UserLanguage == CountryCode.FR)
                         return "Réglages de découverte";
@@ -6622,7 +6652,7 @@ namespace DecorationsModConfigurator
                         return "If enabled, more items from this mod will be placeable outside bases.";
                 case "Config_EnablePlaceItemsDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Si cette option est activée, vous pourrez positionner les objets suivants: tasses de café, polyaniline, acide chlorhydrique, benzène, enzymes d'éclosion, œufs, snacks, lubrifiant, eau de Javel, bouteilles d'eau, kits de câblage, processeurs, cristal ionique, tablettes, dent de rôdeur et kit de premiers soins.";
+                        return "Si cette option est activée, vous pourrez placer les objets suivants: tasses de café, polyaniline, acide chlorhydrique, benzène, enzymes d'éclosion, œufs, snacks, lubrifiant, eau de Javel, bouteilles d'eau, kits de câblage, processeurs, cristal ionique, tablettes, dent de rôdeur et kit de premiers soins.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Si está habilitado, podrá colocar los siguientes artículos: tazas de café, polianilina, ácido clorhídrico, benceno, enzimas de incubación, huevos, refrigerios, lubricante, lejía, botellas de agua, kits de cableado, chip de computadora, cristal de iones, tabletas precursoras, diente acosador y botiquín de primeros auxilios.";
                     else if (UserLanguage == CountryCode.TR)
@@ -6635,6 +6665,21 @@ namespace DecorationsModConfigurator
                     	return "Wanneer aangezet, kan je de volgende objecten plaatsen: coffee bekers, polyaniline, zoutzuur, benzeen, enzymen, eieren, snacks, glijmiddel, bleek, water flessen, kabelset, computer chips, ion crystal, precursor tablet, stalker tand, en eerste hulp kit.";
                     else
                         return "If enabled, you will be able to place following items: coffee cups, polyaniline, hydrochloric acid, benzene, hatching enzymes, eggs, snacks, lubricant, bleach, water bottles, wiring kits, computer chip, ion crystal, precursor tablets, stalker tooth and first aid kit.";
+                case "Config_EnablePlaceMaterialsDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Si cette option est activée, vous pourrez placer les objets suivants: silicone, maille de fibre, fibre synthétique, aérogel, lingot de titane, lingot de plastacier, verre, verre émaillé, bobine de cuivre, excréments alien, titane, soufre des cavernes, cuivre, soufre cristallin, diamant, or, kyanite, plomb, lithium, magnétite, nickel, quartz, rubis, sel, argent, cristal d'uraninite, huile sanguine, échantillon de corail-table et échantillon de corail tubulaire.";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Si esta opción está habilitada, podrá colocar los siguientes elementos: caucho de silicona, malla de fibra, fibra sintética, aerogel, lingote de titanio, lingote de plastiacero, vidrio, vidrio esmaltado, alambre de cobre, heces extrañas, titanio, azufre de cueva, mineral de cobre , azufre cristalino, diamante, oro, cianita, plomo, litio, magnetita, níquel, cuarzo, rubí, sal, plata, cristal de uraninita, aceite de sangre, muestra de tubo de coral y muestra de coral de mesa.";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Bu seçenek etkinleştirilirse, şu öğeleri yerleştirebilirsiniz: silikon kauçuk, fiber ağ, sentetik fiber, aerojel, titanyum külçe, plastik külçe, cam, emaye cam, bakır tel, yabancı dışkı, titanyum, mağara kükürt, bakır cevheri , kristal kükürt, elmas, altın, kiyanit, kurşun, lityum, manyetit, nikel, kuvars, yakut, tuz, gümüş, uranit kristali, kan yağı, mercan tüpü numunesi ve sofra mercan numunesi.";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Wenn diese Option aktiviert ist, können Sie folgende Gegenstände platzieren: Silikonkautschuk, Fasernetz, synthetische Fasern, Aerogel, Titanbarren, Plasteelbarren, Glas, emailliertes Glas, Kupferdraht, Fremdkot, Titan, Höhlenschwefel, Kupfererz kristalliner Schwefel, Diamant, Gold, Zyanit, Blei, Lithium, Magnetit, Nickel, Quarz, Rubin, Salz, Silber, Uraninitkristall, Blutöl, Korallenröhrchenprobe und Tischkorallenprobe.";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Если эта опция включена, вы сможете разместить следующие предметы: силиконовый каучук, волокнистая сетка, синтетическое волокно, аэрогель, титановый слиток, слиток пластали, стекло, эмалированное стекло, медная проволока, инородные фекалии, титан, пещерная сера, медная руда , кристаллическая сера, алмаз, золото, кианит, свинец, литий, магнетит, никель, кварц, рубин, соль, серебро, кристалл уранинита, масло крови, образец коралловой трубки и образец столового коралла.";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "Als deze optie is ingeschakeld, kunt u de volgende items plaatsen: siliconenrubber, vezelgaas, synthetische vezels, aerogel, titanium staaf, kunststof staaf, glas, geëmailleerd glas, koperdraad, buitenaardse uitwerpselen, titanium, grotzwavel, kopererts , kristallijne zwavel, diamant, goud, kyaniet, lood, lithium, magnetiet, nikkel, kwarts, robijn, zout, zilver, uraninietkristal, bloedolie, koraalbuismonster en tafelkoraalmonster.";
+                    else
+                        return "If enabled, you will be able to place following items: silicone rubber, fiber mesh, synthetic fiber, aerogel, titanium ingot, plasteel ingot, glass, enameled glass, copper wire, alien feces, titanium, cave sulfur, copper ore, crystalline sulfur, diamond, gold, kyanite, lead, lithium, magnetite, nickel, quartz, ruby, salt, silver, uraninite crystal, blood oil, coral tube sample and table coral sample.";
                 case "Config_EnablePlaceBatteriesDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, vous pourrez placer les batteries, batteries hautes capacité, batteries ioniques et batteries hautes capacité ioniques où vous le souhaitez. Attention: Si vous activez cette option vous devrez faire glisser manuellement les batteries vers le chargeur (un simple clic gauche ne les équipera pas).";
@@ -6649,7 +6694,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Wanneer aangezet, kan je batterijen, krachtcellen, ion batterijen, en ion krachtcellen plaatsen waar je wilt. Attentie: je moet handmatig de batterijen/krachtcellen naar de oplader slepen en droppen (linker muis knop zal niet werken).";
                     else
-                        return "If enabled, you will be able to place batteries, powercells, ion batteries and ion powercells where you want. Attention: you will have to manually drag-n-drop batteries/power cells to the charger (left click will not equip them).";
+                        return "If enabled, you will be able to place batteries, powercells, ion batteries and ion powercells where you want. Warning: If enabled, you will have to manually drag-n-drop batteries/power cells to the charger (left click will not equip them).";
                 case "Config_EnableNewFloraDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, vous pourrez construire le fabricateur de graines et ainsi fabriquer des graines (toutes les graines existantes plus des nouvelles).";
@@ -6667,7 +6712,7 @@ namespace DecorationsModConfigurator
                         return "If enabled, you will be able to build the seeds fabricator and craft seeds (all existing seeds plus new ones).";
                 case "Config_EnableNewItemsDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Si cette option est activée, vous pourrez construire les objets suivants: chariot de laboratoire, analyseur d'échantillons décoratif, petit aquarium, jardinière longue d'intérieur, jardinière longue d'extérieur, poupée markiplier 1, poupée markiplier 2, poupée jacksepticeye, poupée eatmydiction, poupée chat marla, jouet Seamoth, jouet PRAWN, jouet Cyclops, jouet chariot élévateur, bureau vide, tabouret de bar, cadre photo personnalisable, lumière personnalisable, spécimen de warper, pilier précurseur, terminal de contrôle décoratif, boîtier électronique décoratif, échelle d'extérieur, trappe d'amarrage pour Cyclops, 2 écrans de bureau différents, 3 casiers différents, 3 caisses de chargement différentes, 2 bancs différents et 4 canapés différents.";
+                        return "Si cette option est activée, vous pourrez construire les objets suivants: chariot de laboratoire, analyseur d'échantillons décoratif, petit aquarium, jardinière longue d'intérieur, jardinière longue d'extérieur, poupée markiplier 1, poupée markiplier 2, poupée jacksepticeye, poupée eatmydiction, poupée chat marla, jouet Seamoth, jouet PRAWN, jouet Cyclops, jouet chariot élévateur, bureau vide, tabouret de bar, cadre photo personnalisable, lumière personnalisable, spécimen de warper, pilier précurseur, terminal de contrôle décoratif, boîtier électronique décoratif, échelle d'extérieur, trappe d'amarrage pour Cyclops, 2 écrans de bureau, 3 casiers, 3 caisses de chargement, 2 bancs et 4 sofas différents.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Si está habilitado, podrá construir / fabricar los siguientes artículos: carro de laboratorio, macetero largo interior, analizador de muestras de macetero largo al aire libre, muñeca Markiplier 1, muñeca Markiplier 2, muñeca JackSepticEye, muñeca de EatMyDiction, muñeca de seamoth , muñeca de exosuit, muñeca de cyclops, carretilla elevadora, cajas de carga, sofás, bancos, taburete, marco de imagen personalizable, luz personalizable, espécimen warper, partes warper, pilar alienígena, reliquias alienígenas, casilleros adicionales, terminal de control, carcasa electrónica, pantallas de escritorio y escalera exterior.";
                     else if (UserLanguage == CountryCode.TR)
@@ -6679,10 +6724,10 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.NL)
                     	return "Wanner aangezet, kan je de volgende objecten bouwen/maken: labaratorium wagem, binnen lange planter, buiten lange planter, exemplaar analyseerder, Markiplier pop 1, Markiplier pop 2, JackSepticEye pop, EatMyDiction pop, leeg bureau, seamoth pop, PRAWN pop, heftruck, vrachtkisten, sofa's, banken, stoel, aanpasbaar foto frame, aanpasbare verlichting, warper exemplaar, warper onderdelen, alien pilaar, alien relikwie, aanvullende kluisjes, bedieningsterminal, elektronica doos, werkplanningsschermen en buitenladder.";
                     else
-                        return "If enabled, you will be able to build/craft the following items: lab cart, specimen analyzer, small aquarium, indoor long planter, outdoor long planter, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll, marla cat doll, seamoth doll, exosuit doll, cyclops doll, forklift doll, empty desk, bar stool, customizable picture frame, customizable light, warper specimen, alien pillar, control terminal, decorative techbox, outdoor ladder, cyclops docking hatch, 2 different workdesk screens, 3 different lockers, 3 different cargo crates, 2 different benches and 4 different sofas.";
+                        return "If enabled, you will be able to build/craft the following items: lab cart, specimen analyzer, small aquarium, indoor long planter, outdoor long planter, markiplier doll 1, markiplier doll 2, jacksepticeye doll, eatmydiction doll, marla cat doll, seamoth doll, exosuit doll, cyclops doll, forklift doll, empty desk, bar stool, customizable picture frame, customizable light, warper specimen, alien pillar, control terminal, decorative techbox, outdoor ladder, cyclops docking hatch, 2 workdesk screens, 3 lockers, 3 cargo crates, 2 benches and 4 sofas.";
                 case "Config_EnableSofasDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Si cette option est activée, vous pourrez construire des canapés.";
+                        return "Si cette option est activée, vous pourrez construire des sofas.";
                     else if (UserLanguage == CountryCode.ES)
                         return "Si está habilitada, podrás construir sofás.";
                     else if (UserLanguage == CountryCode.TR)
@@ -6982,19 +7027,19 @@ namespace DecorationsModConfigurator
                         return "This defines the waiting time between two creations of juvenile ghost leviathan. Set it near 1 if you want fast spawn rate, or set it to a high value if you want slow spawn rate.";
                 case "Config_EnableNutrientBlockDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Si cette option est activée, vous pourrez fabriquer le bloc de nutriments à partir du fabricateur de décorations. Veuillez noter que la fonction « Inclure les nouveaux objets » de l'onglet « Réglages généraux » doit être activée pour que cette option fonctionne.";
+                        return "Si cette option est activée, vous pourrez fabriquer le bloc de nutriments à partir du fabricateur de décorations. Veuillez noter que la fonction « Inclure les nouveaux objets » de l'onglet « Constructeur d'habitât » doit être activée pour que cette option fonctionne.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si esta opción está activada, será posible crear la barrita energética en el fabricador de decoraciones. Tenga en cuenta que la función « Incluir nuevos objetos » en la pestaña « Configuración general » debe estar activada para que esta opción funcione.";
+                        return "Si esta opción está activada, será posible crear la barrita energética en el fabricador de decoraciones. Tenga en cuenta que la función « Incluir nuevos objetos » en la pestaña « Constructor de hábitats » debe estar activada para que esta opción funcione.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Bu seçenek etkinleştirilirse, dekoratör üreticisinden besin öbeği yapabilirsiniz. Bu seçeneğin çalışması için « Genel Ayarlar » sekmesindeki « Yeni nesneleri dahil et » işlevinin etkinleştirilmesi gerektiğini lütfen unutmayın.";
+                        return "Bu seçenek etkinleştirilirse, dekoratör üreticisinden besin öbeği yapabilirsiniz. Bu seçeneğin çalışması için « Yaşam alanı yapıcısı » sekmesindeki « Yeni nesneleri dahil et » işlevinin etkinleştirilmesi gerektiğini lütfen unutmayın.";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Wenn diese Option aktiviert ist, können Sie den Nährstoffblock vom Dekorateurhersteller erstellen. Bitte beachten Sie, dass die Funktion « Neue Objekte einschließen » auf der Registerkarte « Allgemeine Einstellungen » aktiviert sein muss, damit diese Option funktioniert.";
+                        return "Wenn diese Option aktiviert ist, können Sie den Nährstoffblock vom Dekorateurhersteller erstellen. Bitte beachten Sie, dass die Funktion « Neue Objekte einschließen » auf der Registerkarte « Konstruktionswerkzeug » aktiviert sein muss, damit diese Option funktioniert.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если эта опция включена, вы сможете сделать Питательный батончик в изготовителе декораций. Обратите внимание, что для работы этой опции должна быть активирована функция « Включить новые объекты » во вкладке « Общие настройки ».";
+                        return "Если эта опция включена, вы сможете сделать Питательный батончик в изготовителе декораций. Обратите внимание, что для работы этой опции должна быть активирована функция « Включить новые объекты » во вкладке « Строитель ».";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Wanneer aangezet, kan je de voedingsblok maken via de decoraties fabriceerder. Je moet eerst de « Zet nieuwe objecten aan » in « Algemene instellingen » aanzetten voordat dit werkt  ";
+                    	return "Wanneer aangezet, kan je de voedingsblok maken via de decoraties fabriceerder. Je moet eerst de « Zet nieuwe objecten aan » in « Habitat bouwer » aanzetten voordat dit werkt  ";
                     else
-                        return "If this option is enabled, you will be able to craft the nutrient block from the decorations fabricator. Please note that you need to activate the « Enable new items » feature in « General settings » tab for this option to work.";
+                        return "If this option is enabled, you will be able to craft the nutrient block from the decorations fabricator. Please note that you need to activate the « Enable new items » feature in « Habitat builder » tab for this option to work.";
                 case "Config_EnableDecorativeElectronicsDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, vous pourrez construire des boitiers électroniques, des terminaux de contrôle et des écrans muraux de bureau.";

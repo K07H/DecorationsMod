@@ -299,7 +299,7 @@ namespace DecorationsMod.Controllers
                 if ((id = GetComponentInParent<PrefabIdentifier>()) == null)
                     return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "custompictureframe_" + id.Id + ".txt").Replace('\\', '/');
+            string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "custompictureframe_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
                 GameObject frame = this.gameObject.FindChild("mesh");
@@ -578,7 +578,7 @@ namespace DecorationsMod.Controllers
             saveData += (this.Slideshow ? "1" : "0") + Environment.NewLine;
 
             // Save state to file
-            File.WriteAllText(Path.Combine(saveFolder, "custompictureframe_" + id.Id + ".txt").Replace('\\', '/'), saveData, Encoding.UTF8);
+            File.WriteAllText(FilesHelper.Combine(saveFolder, "custompictureframe_" + id.Id + ".txt"), saveData, Encoding.UTF8);
         }
     }
 }

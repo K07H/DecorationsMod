@@ -239,7 +239,7 @@
                     if (ConfigSwitcher.AddWaterSeedsWhenDiscovered && !PDAEncyclopedia.ContainsEntry("EarthenCoralTubes"))
                         __result = false;
                 }
-                else if (techType == CoveTree)
+                else if (techType == CoveTree || techType == GiantCoveTree)
                 {
                     if (ConfigSwitcher.AddWaterSeedsWhenDiscovered && !PDAEncyclopedia.ContainsEntry("TreeCoveTree"))
                         __result = false;
@@ -444,6 +444,7 @@
         public static TechType BrownTubes2 = TechType.None;
         public static TechType BrownTubes3 = TechType.None;
         public static TechType CoveTree = TechType.None;
+        public static TechType GiantCoveTree = TechType.None;
         public static TechType MushroomTree1 = TechType.None;
         public static TechType MushroomTree2 = TechType.None;
         public static TechType MarbleMelonTiny = TechType.None;

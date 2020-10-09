@@ -133,8 +133,8 @@ namespace DecorationsMod.NewItems
             // Update sky applier
             PrefabsHelper.SetDefaultSkyApplier(prefab);
 
-            // Set large world entity
-            PrefabsHelper.SetDefaultLargeWorldEntity(prefab);
+            // Update large world entity
+            PrefabsHelper.UpdateExistingLargeWorldEntities(prefab);
 
             // We can pick this item
             PrefabsHelper.SetDefaultPickupable(prefab);

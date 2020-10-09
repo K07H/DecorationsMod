@@ -110,20 +110,18 @@ namespace DecorationsMod.NewItems
             */
 
             // Update sky applier
-            var applier = prefab.GetComponent<SkyApplier>();
-            if (applier == null)
-                applier = prefab.AddComponent<SkyApplier>();
-            applier.anchorSky = Skies.Auto;
-            applier.updaterIndex = 0;
+            PrefabsHelper.ReplaceSkyApplier(prefab);
 
             // Scale collider
             var collider = prefab.GetComponent<CapsuleCollider>();
             collider.radius = 0.1f;
             collider.height = 0.2f;
             collider.contactOffset = 0.1f;
+            collider.isTrigger = true;
             var cCollider = prefab.GetComponentInChildren<CapsuleCollider>();
-            collider.radius *= 0.4f;
-            collider.height *= 0.4f;
+            cCollider.radius *= 0.4f;
+            cCollider.height *= 0.4f;
+            cCollider.isTrigger = true;
 
             // We can pick this item
             var pickupable = prefab.GetComponent<Pickupable>();

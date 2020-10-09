@@ -26,6 +26,7 @@ namespace DecorationsMod
     // DEBUG_STOOL
     // DEBUG_SEAMOTH_FRAGMENTS
     // DEBUG_CYCLOPS_DOLL
+    // DEBUG_PLACE_TOOL
 
     public class DecorationsMod
     {
@@ -67,14 +68,14 @@ namespace DecorationsMod
 
             // 8) HARMONY PATCHING
             MyHarmony.PatchAll();
-
-            // 9) VARIOUS ENHANCEMENTS
+            // Various enhancements.
             if (ConfigSwitcher.FixAquariumLighting)
                 PrefabsHelper.FixAquariumSkyApplier();
             MyHarmony.FixSignInput();
-            MyHarmony.FixFCSMods();
+            // Mods compatibility.
+            MyHarmony.FixAutoLoadMod();
 
-            // 10) SETUP IN GAME OPTIONS MENU
+            // 9) SETUP IN GAME OPTIONS MENU
             Logger.Log("INFO: Setting up in-game options menu...");
             SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
         }

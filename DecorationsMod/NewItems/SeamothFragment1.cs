@@ -133,8 +133,9 @@ namespace DecorationsMod.NewItems
                         GameObject.DestroyImmediate(c);
                 collider = prefab.AddComponent<BoxCollider>();
             }
-            collider.size = new Vector3(0.4f, 0.7f, 0.4f);
-            collider.center = new Vector3(collider.center.x + 0.6f, collider.center.y + 0.2f, collider.center.z + 0.1f);
+            collider.size = new Vector3(0.7f, 0.7f, 0.7f);
+            collider.center = new Vector3(collider.center.x + 0.8f, collider.center.y + 0.6f, collider.center.z + 1.0f);
+            collider.isTrigger = true;
             
             // We can pick this item
             var pickupable = prefab.GetComponent<Pickupable>();
@@ -164,6 +165,9 @@ namespace DecorationsMod.NewItems
             placeTool.hasFirstUseAnimation = false;
             placeTool.mainCollider = collider;
             placeTool.pickupable = pickupable;
+
+            // Update sky applier
+            PrefabsHelper.ReplaceSkyApplier(prefab, true);
 
             // Add fabricating animation
             var fabricating = prefab.AddComponent<VFXFabricating>();

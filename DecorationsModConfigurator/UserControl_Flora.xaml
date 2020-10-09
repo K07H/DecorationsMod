@@ -130,6 +130,7 @@
             <local:UserControl_FloraConfig x:Name="UC_PyroCoralB" Margin="0,0,0,15" Plant="{Binding PyroCoralB, Mode=TwoWay}" PlantName="{Binding PyroCoralB.PlantName, Mode=TwoWay}" />
             <local:UserControl_FloraConfig x:Name="UC_PyroCoralC" Margin="0,0,0,15" Plant="{Binding PyroCoralC, Mode=TwoWay}" PlantName="{Binding PyroCoralC.PlantName, Mode=TwoWay}" />
             <local:UserControl_FloraConfig x:Name="UC_CoveTree" Margin="0,0,0,15" Plant="{Binding CoveTree, Mode=TwoWay}" PlantName="{Binding CoveTree.PlantName, Mode=TwoWay}" />
+            <local:UserControl_FloraConfig x:Name="UC_GiantCoveTree" Margin="0,0,0,15" Plant="{Binding GiantCoveTree, Mode=TwoWay}" PlantName="{Binding GiantCoveTree.PlantName, Mode=TwoWay}" />
             <local:UserControl_FloraConfig x:Name="UC_SpottedReedsA" Margin="0,0,0,15" Plant="{Binding SpottedReedsA, Mode=TwoWay}" PlantName="{Binding SpottedReedsA.PlantName, Mode=TwoWay}" />
             <local:UserControl_FloraConfig x:Name="UC_SpottedReedsB" Margin="0,0,0,15" Plant="{Binding SpottedReedsB, Mode=TwoWay}" PlantName="{Binding SpottedReedsB.PlantName, Mode=TwoWay}" />
             <local:UserControl_FloraConfig x:Name="UC_BrineLily" Margin="0,0,0,15" Plant="{Binding BrineLily, Mode=TwoWay}" PlantName="{Binding BrineLily.PlantName, Mode=TwoWay}" />

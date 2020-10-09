@@ -37,38 +37,44 @@ namespace DecorationsMod.Fixers
 
         public static void LoadAddedNotifications(string saveGame)
         {
+            AddedNotifications.Clear();
             string saveDir = FilesHelper.GetSaveFolderPath(saveGame);
-            if (Directory.Exists(saveDir))
+            if (saveDir != null)
             {
-                string saveFile = Path.Combine(saveDir, "discovered.txt").Replace('\\', '/');
-                if (File.Exists(saveFile))
+                if (Directory.Exists(saveDir))
                 {
-                    Logger.Log("INFO: Loading discoveries from \"" + saveFile + "\".");
-                    int cnt = 0;
-                    string[] lines = File.ReadAllLines(saveFile, Encoding.UTF8);
-                    if (lines != null && lines.Length > 0)
-                        foreach (string line in lines)
-                            if (line.Length > 5 && line.Contains("="))
-                            {
-                                string[] splitted = line.Split(new char[] { '=' }, StringSplitOptions.None);
-                                if (splitted != null && splitted.Length == 2 && int.TryParse(splitted[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out int techTypeId) && techTypeId >= 0)
+                    string saveFile = FilesHelper.Combine(saveDir, "discovered.txt");
+                    if (File.Exists(saveFile))
+                    {
+                        Logger.Log("INFO: Loading discoveries from \"" + saveFile + "\".");
+                        int cnt = 0;
+                        string[] lines = File.ReadAllLines(saveFile, Encoding.UTF8);
+                        if (lines != null && lines.Length > 0)
+                            foreach (string line in lines)
+                                if (line.Length > 5 && line.Contains("="))
                                 {
-                                    bool discovered = !(string.Compare(splitted[1], "false", true, CultureInfo.InvariantCulture) == 0);
-                                    if (AddedNotifications.ContainsKey(techTypeId))
-                                        AddedNotifications[techTypeId] = discovered;
-                                    else
-                                        AddedNotifications.Add(techTypeId, discovered);
-                                    if (discovered)
-                                        ++cnt;
+                                    string[] splitted = line.Split(new char[] { '=' }, StringSplitOptions.None);
+                                    if (splitted != null && splitted.Length == 2 && int.TryParse(splitted[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out int techTypeId) && techTypeId >= 0)
+                                    {
+                                        bool discovered = !(string.Compare(splitted[1], "false", true, CultureInfo.InvariantCulture) == 0);
+                                        if (AddedNotifications.ContainsKey(techTypeId))
+                                            AddedNotifications[techTypeId] = discovered;
+                                        else
+                                            AddedNotifications.Add(techTypeId, discovered);
+                                        if (discovered)
+                                            ++cnt;
+                                    }
                                 }
-                            }
-                    Logger.Log("INFO: Discoveries loaded. Player made {0}/{1} discoveries ({2} remaining).", cnt, AddedNotifications.Count, AddedNotifications.Count - cnt);
+                        Logger.Log("INFO: Discoveries loaded. Player made {0}/{1} discoveries ({2} remaining).", cnt, AddedNotifications.Count, AddedNotifications.Count - cnt);
+                    }
+                    else
+                        Logger.Log("INFO: No discoveries saved at \"" + saveFile + "\".");
                 }
                 else
-                    Logger.Log("INFO: No discoveries saved at \"" + saveFile + "\".");
+                    Logger.Log("INFO: No save directory found for discoveries at \"" + saveDir + "\".");
             }
             else
-                Logger.Log("INFO: No save directory found for discoveries at \"" + saveDir + "\".");
+                Logger.Log("INFO: Could not find save slot for discoveries.");
         }
 
         public static void SaveAddedNotifications()
@@ -93,7 +99,7 @@ namespace DecorationsMod.Fixers
                 string saveDir = FilesHelper.GetSaveFolderPath();
                 if (!Directory.Exists(saveDir))
                     Directory.CreateDirectory(saveDir);
-                string saveFile = Path.Combine(saveDir, "discovered.txt").Replace('\\', '/');
+                string saveFile = FilesHelper.Combine(saveDir, "discovered.txt");
                 if (toLog.EndsWith(";"))
                     toLog = toLog.Substring(0, toLog.Length - 1);
                 Logger.Log("INFO: Saving {0}/{1} discoveries to \"{2}\" (Discovered TechTypes: {3}).", cnt, AddedNotifications.Count, saveFile, toLog);
@@ -437,7 +443,7 @@ namespace DecorationsMod.Fixers
                         else
                             KnownTechFixer.AddNotification(techType);
                     }
-                    else if (techType == CrafterLogicFixer.CoveTree)
+                    else if (techType == CrafterLogicFixer.CoveTree || techType == CrafterLogicFixer.GiantCoveTree)
                     {
                         if (!PDAEncyclopedia.ContainsEntry("TreeCoveTree"))
                             return KnownTechFixer.LockReturn(ref __result, ref unlocked, ref total);

@@ -95,15 +95,13 @@ namespace DecorationsMod.NewItems
             // Clean all the crap
             GameObject.DestroyImmediate(prefab.GetComponent<Rigidbody>());
             GameObject.DestroyImmediate(prefab.GetComponent<ConstructionObstacle>());
-            GameObject.DestroyImmediate(prefab.GetComponent<LargeWorldEntity>());
 
             // Set large world entity
-            PrefabsHelper.SetDefaultLargeWorldEntity(prefab);
+            prefab.GetComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
             // Ajust collider
             BoxCollider c = prefab.GetComponentInChildren<BoxCollider>();
             c.size = new Vector3(c.size.x * 0.5f, c.size.y, c.size.z * 0.5f);
-
             // Set as constructible
             Constructable constructible = prefab.AddComponent<Constructable>();
             constructible.techType = this.TechType;

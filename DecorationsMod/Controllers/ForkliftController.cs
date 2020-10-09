@@ -63,7 +63,7 @@ namespace DecorationsMod.Controllers
             BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
             size += Environment.NewLine + Convert.ToString(collider.size.y, CultureInfo.InvariantCulture);
 
-            File.WriteAllText(Path.Combine(saveFolder, "forklift_" + id.Id + ".txt").Replace('\\', '/'), size, Encoding.UTF8);
+            File.WriteAllText(FilesHelper.Combine(saveFolder, "forklift_" + id.Id + ".txt"), size, Encoding.UTF8);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
@@ -73,7 +73,7 @@ namespace DecorationsMod.Controllers
                 if ((id = GetComponent<PrefabIdentifier>()) == null)
                     return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "forklift_" + id.Id + ".txt").Replace('\\', '/');
+            string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "forklift_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
                 string tmpSize = File.ReadAllText(filePath, Encoding.UTF8).Replace(',', '.'); // Replace , with . for backward compatibility.

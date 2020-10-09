@@ -59,7 +59,7 @@ namespace DecorationsMod.NewItems
                 prefabId.ClassId = this.ClassID;
 
                 // Add large world entity
-                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject, LargeWorldEntity.CellLevel.Global);
+                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject, LargeWorldEntity.CellLevel.Far);
 
                 // Add tech tag
                 var techTag = this.GameObject.AddComponent<TechTag>();

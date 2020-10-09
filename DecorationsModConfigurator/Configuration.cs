@@ -116,6 +116,22 @@ namespace DecorationsModConfigurator
             }
         }
 
+        private bool _enablePlaceMaterials;
+        public bool EnablePlaceMaterials
+        {
+            get => _enablePlaceMaterials;
+            set
+            {
+                if (_enablePlaceMaterials != value)
+                {
+#if DEBUG_CONFIG_CHANGED
+                    Logger.Log(LOG_CONFIG_CHANGE, nameof(EnablePlaceMaterials), _enablePlaceMaterials, value);
+#endif
+                    _enablePlaceMaterials = value;
+                }
+            }
+        }
+
         private bool _enablePlaceBatteries;
         public bool EnablePlaceBatteries
         {
@@ -1147,6 +1163,12 @@ namespace DecorationsModConfigurator
 			Logger.Log(LOG_CONFIG_CHANGE, nameof(CoveTree), _CoveTree, value);
 #endif
 			_CoveTree = value; } } }
+        private FloraConfig _GiantCoveTree;
+        public FloraConfig GiantCoveTree { get => _GiantCoveTree; set { if (_GiantCoveTree != value) {
+#if DEBUG_CONFIG_CHANGED
+			Logger.Log(LOG_CONFIG_CHANGE, nameof(GiantCoveTree), _GiantCoveTree, value);
+#endif
+			_GiantCoveTree = value; } } }
         private FloraConfig _SpottedReedsA;
         public FloraConfig SpottedReedsA { get => _SpottedReedsA; set { if (_SpottedReedsA != value) {
 #if DEBUG_CONFIG_CHANGED
@@ -1663,11 +1685,12 @@ namespace DecorationsModConfigurator
             // General settings
             this._language = GetDefaultLanguage();
             this._useCompactTooltips = false;
-            this._lockQuickslotsWhenPlacingItem = true;
+            this._lockQuickslotsWhenPlacingItem = false;
             this._allowBuildOutside = true;
             this._allowPlaceOutside = true;
             this._enablePlaceItems = true;
-            this._enablePlaceBatteries = true;
+            this._enablePlaceMaterials = true;
+            this._enablePlaceBatteries = false;
             this._enableNewFlora = true;
             this._fixAquariumLighting = true;
             this._enableAquariumGlassGlowing = false;
@@ -1760,6 +1783,7 @@ namespace DecorationsModConfigurator
             this._PyroCoralB = new FloraConfig(GetFriendlyWord("PyroCoralName") + " (2)", "/Images/Flora/pyrocoral2icon.png", 2000, 130, 300, false, 1, 1, false, 0.02f);
             this._PyroCoralC = new FloraConfig(GetFriendlyWord("PyroCoralName") + " (3)", "/Images/Flora/pyrocoral3icon.png", 2000, 130, 300, false, 1, 1, false, 0.02f);
             this._CoveTree = new FloraConfig(GetFriendlyWord("CoveTreeName"), "/Images/Flora/covetreeicon.png", 3000, 300, 400, false, 1, 1, false, 0.02f);
+            this._GiantCoveTree = new FloraConfig(GetFriendlyWord("GiantCoveTreeName"), "/Images/Flora/covetree2icon.png", 5000, 500, 500, false, 1, 1, false, 0.02f);
             this._SpottedReedsA = new FloraConfig(GetFriendlyWord("GreenReedsName") + " (1)", "/Images/Flora/spottedreeds1icon.png", 1000, 60, 120, false, 1, 1, false, 0.02f);
             this._SpottedReedsB = new FloraConfig(GetFriendlyWord("GreenReedsName") + " (2)", "/Images/Flora/spottedreedsicon.png", 1000, 60, 120, false, 1, 1, false, 0.02f);
             this._BrineLily = new FloraConfig(GetFriendlyWord("BrineLilyName"), "/Images/Flora/lostriverplant4icon.png", 1400, 100, 120, false, 1, 1, false, 0.02f);
@@ -1889,6 +1913,7 @@ namespace DecorationsModConfigurator
             Configuration.Instance.PyroCoralB.PlantName = LanguageHelper.GetFriendlyWord("PyroCoralName") + " (2)";
             Configuration.Instance.PyroCoralC.PlantName = LanguageHelper.GetFriendlyWord("PyroCoralName") + " (3)";
             Configuration.Instance.CoveTree.PlantName = LanguageHelper.GetFriendlyWord("CoveTreeName");
+            Configuration.Instance.GiantCoveTree.PlantName = LanguageHelper.GetFriendlyWord("GiantCoveTreeName");
             Configuration.Instance.SpottedReedsA.PlantName = LanguageHelper.GetFriendlyWord("GreenReedsName") + " (1)";
             Configuration.Instance.SpottedReedsB.PlantName = LanguageHelper.GetFriendlyWord("GreenReedsName") + " (2)";
             Configuration.Instance.BrineLily.PlantName = LanguageHelper.GetFriendlyWord("BrineLilyName");
@@ -1978,15 +2003,17 @@ namespace DecorationsModConfigurator
                 else if (line.StartsWith("useCompactTooltips="))
                     origConfig._useCompactTooltips = string.Compare(line.Substring("useCompactTooltips=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
                 else if (line.StartsWith("lockQuickslotsWhenPlacingItem="))
-                    origConfig._lockQuickslotsWhenPlacingItem = !(string.Compare(line.Substring("lockQuickslotsWhenPlacingItem=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
+                    origConfig._lockQuickslotsWhenPlacingItem = string.Compare(line.Substring("lockQuickslotsWhenPlacingItem=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
                 else if (line.StartsWith("allowBuildOutside="))
                     origConfig._allowBuildOutside = !(string.Compare(line.Substring("allowBuildOutside=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("allowPlaceOutside="))
                     origConfig._allowPlaceOutside = !(string.Compare(line.Substring("allowPlaceOutside=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("enablePlaceItems="))
                     origConfig._enablePlaceItems = !(string.Compare(line.Substring("enablePlaceItems=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
+                else if (line.StartsWith("enablePlaceMaterials="))
+                    origConfig._enablePlaceMaterials = !(string.Compare(line.Substring("enablePlaceMaterials=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("enablePlaceBatteries="))
-                    origConfig._enablePlaceBatteries = !(string.Compare(line.Substring("enablePlaceBatteries=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
+                    origConfig._enablePlaceBatteries = string.Compare(line.Substring("enablePlaceBatteries=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
                 else if (line.StartsWith("enableNewFlora="))
                     origConfig._enableNewFlora = !(string.Compare(line.Substring("enableNewFlora=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("enableNewItems="))
@@ -2147,6 +2174,8 @@ namespace DecorationsModConfigurator
                     origConfig._PyroCoralC = LoadFloraConfig(line.Substring("config_PyroCoralC=".Length), LanguageHelper.GetFriendlyWord("PyroCoralName") + " (3)", "/Images/Flora/pyrocoral3icon.png");
                 else if (line.StartsWith("config_CoveTree="))
                     origConfig._CoveTree = LoadFloraConfig(line.Substring("config_CoveTree=".Length), LanguageHelper.GetFriendlyWord("CoveTreeName"), "/Images/Flora/covetreeicon.png");
+                else if (line.StartsWith("config_GiantCoveTree="))
+                    origConfig._GiantCoveTree = LoadFloraConfig(line.Substring("config_GiantCoveTree=".Length), LanguageHelper.GetFriendlyWord("GiantCoveTreeName"), "/Images/Flora/covetree2icon.png");
                 else if (line.StartsWith("config_SpottedReedsA="))
                     origConfig._SpottedReedsA = LoadFloraConfig(line.Substring("config_SpottedReedsA=".Length), LanguageHelper.GetFriendlyWord("GreenReedsName") + " (1)", "/Images/Flora/spottedreeds1icon.png");
                 else if (line.StartsWith("config_SpottedReedsB="))
@@ -2297,6 +2326,8 @@ namespace DecorationsModConfigurator
                         ReplaceStr(ref configContent, currentConfig.AllowPlaceOutside.ToString(CultureInfo.InvariantCulture), "\nallowPlaceOutside=");
                     if (currentConfig.EnablePlaceItems != origConfig.EnablePlaceItems)
                         ReplaceStr(ref configContent, currentConfig.EnablePlaceItems.ToString(CultureInfo.InvariantCulture), "\nenablePlaceItems=");
+                    if (currentConfig.EnablePlaceMaterials != origConfig.EnablePlaceMaterials)
+                        ReplaceStr(ref configContent, currentConfig.EnablePlaceMaterials.ToString(CultureInfo.InvariantCulture), "\nenablePlaceMaterials=");
                     if (currentConfig.EnablePlaceBatteries != origConfig.EnablePlaceBatteries)
                         ReplaceStr(ref configContent, currentConfig.EnablePlaceBatteries.ToString(CultureInfo.InvariantCulture), "\nenablePlaceBatteries=");
                     if (currentConfig.EnableNewFlora != origConfig.EnableNewFlora)
@@ -2459,6 +2490,8 @@ namespace DecorationsModConfigurator
                         ReplaceStr(ref configContent, currentConfig.PyroCoralC.GetConfigStr(), "\nconfig_PyroCoralC=");
                     if (!currentConfig.CoveTree.IsEqual(origConfig.CoveTree))
                         ReplaceStr(ref configContent, currentConfig.CoveTree.GetConfigStr(), "\nconfig_CoveTree=");
+                    if (!currentConfig.GiantCoveTree.IsEqual(origConfig.GiantCoveTree))
+                        ReplaceStr(ref configContent, currentConfig.GiantCoveTree.GetConfigStr(), "\nconfig_GiantCoveTree=");
                     if (!currentConfig.SpottedReedsA.IsEqual(origConfig.SpottedReedsA))
                         ReplaceStr(ref configContent, currentConfig.SpottedReedsA.GetConfigStr(), "\nconfig_SpottedReedsA=");
                     if (!currentConfig.SpottedReedsB.IsEqual(origConfig.SpottedReedsB))

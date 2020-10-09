@@ -302,7 +302,7 @@ namespace DecorationsMod.Controllers
                 Convert.ToString(model.transform.localPosition.z, CultureInfo.InvariantCulture),
                 Environment.NewLine);
 
-            File.WriteAllText(Path.Combine(saveFolder, "cyclopsdoll_" + id.Id + ".txt").Replace('\\', '/'), toSave, Encoding.UTF8);
+            File.WriteAllText(FilesHelper.Combine(saveFolder, "cyclopsdoll_" + id.Id + ".txt"), toSave, Encoding.UTF8);
         }
 
         #endregion
@@ -316,7 +316,7 @@ namespace DecorationsMod.Controllers
                 if ((id = GetComponent<PrefabIdentifier>()) == null)
                     return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "cyclopsdoll_" + id.Id + ".txt").Replace('\\', '/');
+            string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "cyclopsdoll_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
                 string tmpSize = File.ReadAllText(filePath, Encoding.UTF8);

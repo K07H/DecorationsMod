@@ -128,22 +128,11 @@ namespace DecorationsMod.NewItems
             // Disable renderers
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
             foreach (Renderer rend in renderers)
-            {
                 rend.enabled = false;
-            }
-            newsofaPrefab.transform.parent = prefab.transform;
-            newsofaPrefab.transform.localPosition = new Vector3(0, 0f, 0);
-            newsofaPrefab.transform.localScale = new Vector3(3.48f, 3.48f, 3.48f);
-            newsofaPrefab.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
-            newsofaPrefab.SetActive(true);
-
-            // Get bench
-            var bench = prefab.GetComponent<Bench>();
-            bench.cinematicController.animatedTransform.localPosition = new Vector3(bench.cinematicController.animatedTransform.localPosition.x, bench.cinematicController.animatedTransform.localPosition.y, bench.cinematicController.animatedTransform.localPosition.z + 0.31f);
 
             // Set proper shaders
             Shader shader = Shader.Find("MarmosetUBER");
-            renderers = prefab.GetComponentsInChildren<Renderer>();
+            renderers = newsofaPrefab.GetComponentsInChildren<Renderer>();
             foreach (Renderer renderer in renderers)
             {
                 foreach (Material tmpMat in renderer.materials)
@@ -161,12 +150,21 @@ namespace DecorationsMod.NewItems
                     }
                 }
             }
+            newsofaPrefab.transform.parent = prefab.transform;
+            newsofaPrefab.transform.localPosition = new Vector3(0, 0f, 0);
+            newsofaPrefab.transform.localScale = new Vector3(3.48f, 3.48f, 3.48f);
+            newsofaPrefab.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
+            newsofaPrefab.SetActive(true);
 
-            // Update sky applier
-            var skyapplier = prefab.GetComponent<SkyApplier>();
-            skyapplier.renderers = renderers;
-            skyapplier.anchorSky = Skies.Auto;
-            skyapplier.updaterIndex = 0;
+            // Get bench
+            var bench = prefab.GetComponent<Bench>();
+            bench.cinematicController.animatedTransform.localPosition = new Vector3(bench.cinematicController.animatedTransform.localPosition.x, bench.cinematicController.animatedTransform.localPosition.y, bench.cinematicController.animatedTransform.localPosition.z + 0.31f);
+
+            // Set sky applier
+            SkyApplier sa = prefab.AddComponent<SkyApplier>();
+            sa.renderers = renderers;
+            sa.anchorSky = Skies.Auto;
+            sa.enabled = true;
 
             if (ConfigSwitcher.SofaStr2_asBuidable)
             {

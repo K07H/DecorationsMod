@@ -1,4 +1,4 @@
-﻿namespace DecorationsMod.Fixers
+﻿/*namespace DecorationsMod.Fixers
 {
     public static class IngameMenuQuitConfirmationFixer
     {
@@ -14,3 +14,4 @@
         }
     }
 }
+*/

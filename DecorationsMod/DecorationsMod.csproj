@@ -24,7 +24,7 @@
     <AssemblyCSharpFpPath>$(Dependencies)\Assembly-CSharp-firstpass.dll</AssemblyCSharpFpPath>
     <AssemblyCSharpPath>$(Dependencies)\Assembly-CSharp.dll</AssemblyCSharpPath>
     <OutputPath>bin\DebugSN\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SUBNAUTICA;DEBUG_ITEMS_REGISTRATION</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SUBNAUTICA;DEBUG_ITEMS_REGISTRATION;DEBUG_HARMONY_PATCHING</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -197,9 +197,9 @@
     <Compile Include="Controllers\ExosuitDollController.cs" />
     <Compile Include="ExistingItems\PosterPeng.cs" />
     <Compile Include="Fixers\AquariumFixer.cs" />
+    <Compile Include="Fixers\AutoLoadModFixer.cs" />
     <Compile Include="Fixers\BuilderFixer.cs" />
     <Compile Include="Fixers\CrafterLogicFixer.cs" />
-    <Compile Include="Fixers\FCSModsFixer.cs" />
     <Compile Include="Fixers\IngameMenuFixer.cs" />
     <Compile Include="Fixers\IngameMenuQuitConfirmationFixer.cs" />
     <Compile Include="Fixers\InventoryConsoleCommandsFixer.cs" />
@@ -214,6 +214,7 @@
     <Compile Include="Fixers\DECOuGUI_SignInputFixer.cs" />
     <Compile Include="FloraAquatic\BloodGrassDense.cs" />
     <Compile Include="FloraAquatic\BloodGrassRed.cs" />
+    <Compile Include="FloraAquatic\CoveTree2.cs" />
     <Compile Include="FloraAquatic\MushroomTree1.cs" />
     <Compile Include="FloraAquatic\MushroomTree2.cs" />
     <Compile Include="FloraAquatic\RedGrass1.cs" />
@@ -470,58 +471,176 @@ IF EXIST "%25UNITYPROJECTPATH%25" (
 IF EXIST "%25UNITYPROJECTPATH%25decorationassets" (
 IF EXIST "%25UNITYPROJECTPATH%25decorationassets.assets" (
 echo ------ Deleting previous copy of "%25UNITYPROJECTPATH%25decorationassets.assets"...
-del /F /Q "%25UNITYPROJECTPATH%25decorationassets.assets"
+DEL /F /Q "%25UNITYPROJECTPATH%25decorationassets.assets"
 )
 )
 IF NOT EXIST "%25UNITYPROJECTPATH%25decorationassets.assets" (
 echo ------ Renaming latest assets from "%25UNITYPROJECTPATH%25decorationassets" to "decorationassets.assets"...
-ren "%25UNITYPROJECTPATH%25decorationassets" "decorationassets.assets"
+REN "%25UNITYPROJECTPATH%25decorationassets" "decorationassets.assets"
 )
 echo ------ Copying "%25UNITYPROJECTPATH%25decorationassets.assets" to "$(ProjectDir)Assets\"...
-xcopy "%25UNITYPROJECTPATH%25decorationassets.assets" "$(ProjectDir)Assets\" /Y
+XCOPY "%25UNITYPROJECTPATH%25decorationassets.assets" "$(ProjectDir)Assets\" /Y
 echo ------ Copying "%25UNITYPROJECTPATH%25decorationassets.manifest" to "$(ProjectDir)Assets\"...
-xcopy "%25UNITYPROJECTPATH%25decorationassets.manifest" "$(ProjectDir)Assets\" /Y
+XCOPY "%25UNITYPROJECTPATH%25decorationassets.manifest" "$(ProjectDir)Assets\" /Y
+)
+SET LQUNITYPROJECTPATH=G:\MyPropulsionArm_LQ2\Assets\AssetBundles\
+IF EXIST "%25LQUNITYPROJECTPATH%25" (
+IF EXIST "%25LQUNITYPROJECTPATH%25decorationassets" (
+IF EXIST "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.assets" (
+echo ------ Deleting previous copy of "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.assets"...
+DEL /F /Q "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.assets"
+)
+)
+IF EXIST "%25LQUNITYPROJECTPATH%25decorationassets" (
+IF EXIST "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.manifest" (
+echo ------ Deleting previous copy of "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.manifest"...
+DEL /F /Q "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.manifest"
+)
+)
+IF NOT EXIST "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.assets" (
+echo ------ Renaming latest assets from "%25LQUNITYPROJECTPATH%25decorationassets" to "decorationassets_lowquality.assets"...
+REN "%25LQUNITYPROJECTPATH%25decorationassets" "decorationassets_lowquality.assets"
+)
+IF NOT EXIST "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.manifest" (
+echo ------ Renaming latest assets from "%25LQUNITYPROJECTPATH%25decorationassets.manifest" to "decorationassets_lowquality.manifest"...
+REN "%25LQUNITYPROJECTPATH%25decorationassets.manifest" "decorationassets_lowquality.manifest"
+)
+echo ------ Copying "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.assets" to "$(ProjectDir)Assets\"...
+XCOPY "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.assets" "$(ProjectDir)Assets\" /Y
+echo ------ Copying "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.manifest" to "$(ProjectDir)Assets\"...
+XCOPY "%25LQUNITYPROJECTPATH%25decorationassets_lowquality.manifest" "$(ProjectDir)Assets\" /Y
 )
 echo ------ Compiling Decorations Mod...</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>echo ------ Decorations Mod compiled successfully.
+SET ZIPLOC=C:\Program Files\7-Zip\7z.exe
+SET MODNAME=DecorationsMod
+IF $(ConfigurationName) == DebugBZ (
+SET MODNAME=DecorationsModBZ
+)
+IF $(ConfigurationName) == ReleaseBZ (
+SET MODNAME=DecorationsModBZ
+)
+SET OUTPUTDIR=$(TargetDir)%25MODNAME%25\
+SET OUTPUTFILE=$(TargetDir)%25MODNAME%25.zip
+SET OUTPUTFILELQ=$(TargetDir)%25MODNAME%25_LQ.zip
+IF EXIST "%25ZIPLOC%25" (
+IF EXIST "%25OUTPUTDIR%25" (
+RMDIR /S /Q "%25OUTPUTDIR%25"
+)
+)
+IF EXIST "%25ZIPLOC%25" (
+IF EXIST "%25OUTPUTFILE%25" (
+DEL /F /Q "%25OUTPUTFILE%25"
+)
+IF EXIST "%25OUTPUTFILELQ%25" (
+DEL /F /Q "%25OUTPUTFILELQ%25"
+)
+)
+IF $(ConfigurationName) == ReleaseSN (
+IF EXIST "%25ZIPLOC%25" (
+echo ------ Publishing Decorations Mod to "%25OUTPUTFILE%25"...
+MKDIR "%25OUTPUTDIR%25"
+MKDIR "%25OUTPUTDIR%25\Assets"
+MKDIR "%25OUTPUTDIR%25\Configurator"
+XCOPY "$(TargetDir)DecorationsMod.dll" "%25OUTPUTDIR%25" /Y
+XCOPY "$(TargetDir)mod.json" "%25OUTPUTDIR%25" /Y
+XCOPY "$(ProjectDir)Config.txt" "%25OUTPUTDIR%25" /Y
+XCOPY "$(ProjectDir)Configurator.lnk" "%25OUTPUTDIR%25" /Y
+XCOPY "$(ProjectDir)Assets\decorationassets.assets" "%25OUTPUTDIR%25Assets\" /Y
+XCOPY "$(ProjectDir)Assets\decorationassets.manifest" "%25OUTPUTDIR%25Assets\" /Y
+XCOPY "$(TargetDir)Configurator\DecorationsModConfigurator.exe" "%25OUTPUTDIR%25Configurator\" /Y
+XCOPY "$(TargetDir)Configurator\DecorationsModConfigurator.exe.manifest" "%25OUTPUTDIR%25Configurator\" /Y
+XCOPY "$(TargetDir)Configurator\FluentWPF.dll" "%25OUTPUTDIR%25Configurator\" /Y
+XCOPY "$(TargetDir)Configurator\MaterialDesignColors.dll" "%25OUTPUTDIR%25Configurator\" /Y
+XCOPY "$(TargetDir)Configurator\MaterialDesignThemes.Wpf.dll" "%25OUTPUTDIR%25Configurator\" /Y
+"%25ZIPLOC%25" a -tzip "%25OUTPUTFILE%25" "%25OUTPUTDIR%25"
+echo ------ Decorations Mod successfully published to "%25OUTPUTFILE%25".
+echo ------ Publishing Decorations Mod to "%25OUTPUTFILELQ%25"...
+DEL /F /Q "%25OUTPUTDIR%25Assets\decorationassets.assets"
+DEL /F /Q "%25OUTPUTDIR%25Assets\decorationassets.manifest"
+XCOPY "$(ProjectDir)Assets\decorationassets_lowquality.assets" "%25OUTPUTDIR%25Assets\" /Y
+XCOPY "$(ProjectDir)Assets\decorationassets_lowquality.manifest" "%25OUTPUTDIR%25Assets\" /Y
+REN "%25OUTPUTDIR%25Assets\decorationassets_lowquality.assets" "decorationassets.assets"
+REN "%25OUTPUTDIR%25Assets\decorationassets_lowquality.manifest" "decorationassets.manifest"
+"%25ZIPLOC%25" a -tzip "%25OUTPUTFILELQ%25" "%25OUTPUTDIR%25"
+echo ------ Decorations Mod successfully published to "%25OUTPUTFILELQ%25".
+RMDIR /S /Q "%25OUTPUTDIR%25"
+)
+)
+IF $(ConfigurationName) == ReleaseBZ (
+IF EXIST "%25ZIPLOC%25" (
+echo ------ Publishing Decorations Mod BZ to "%25OUTPUTFILE%25"...
+MKDIR "%25OUTPUTDIR%25"
+MKDIR "%25OUTPUTDIR%25\Assets"
+MKDIR "%25OUTPUTDIR%25\Configurator"
+XCOPY "$(TargetDir)DecorationsMod.dll" "%25OUTPUTDIR%25" /Y
+XCOPY "$(TargetDir)modBZ.json" "%25OUTPUTDIR%25" /Y
+REN "%25OUTPUTDIR%25modBZ.json" "mod.json"
+XCOPY "$(ProjectDir)Config.txt" "%25OUTPUTDIR%25" /Y
+XCOPY "$(ProjectDir)Configurator.lnk" "%25OUTPUTDIR%25" /Y
+XCOPY "$(ProjectDir)Assets\decorationassets.assets" "%25OUTPUTDIR%25Assets\" /Y
+XCOPY "$(ProjectDir)Assets\decorationassets.manifest" "%25OUTPUTDIR%25Assets\" /Y
+XCOPY "$(TargetDir)Configurator\DecorationsModConfigurator.exe" "%25OUTPUTDIR%25Configurator\" /Y
+XCOPY "$(TargetDir)Configurator\DecorationsModConfigurator.exe.manifest" "%25OUTPUTDIR%25Configurator\" /Y
+XCOPY "$(TargetDir)Configurator\FluentWPF.dll" "%25OUTPUTDIR%25Configurator\" /Y
+XCOPY "$(TargetDir)Configurator\MaterialDesignColors.dll" "%25OUTPUTDIR%25Configurator\" /Y
+XCOPY "$(TargetDir)Configurator\MaterialDesignThemes.Wpf.dll" "%25OUTPUTDIR%25Configurator\" /Y
+"%25ZIPLOC%25" a -tzip "%25OUTPUTFILE%25" "%25OUTPUTDIR%25"
+echo ------ Decorations Mod BZ successfully published to "%25OUTPUTFILE%25".
+echo ------ Publishing Decorations Mod BZ to "%25OUTPUTFILELQ%25"...
+DEL /F /Q "%25OUTPUTDIR%25Assets\decorationassets.assets"
+DEL /F /Q "%25OUTPUTDIR%25Assets\decorationassets.manifest"
+XCOPY "$(ProjectDir)Assets\decorationassets_lowquality.assets" "%25OUTPUTDIR%25Assets\" /Y
+XCOPY "$(ProjectDir)Assets\decorationassets_lowquality.manifest" "%25OUTPUTDIR%25Assets\" /Y
+REN "%25OUTPUTDIR%25Assets\decorationassets_lowquality.assets" "decorationassets.assets"
+REN "%25OUTPUTDIR%25Assets\decorationassets_lowquality.manifest" "decorationassets.manifest"
+"%25ZIPLOC%25" a -tzip "%25OUTPUTFILELQ%25" "%25OUTPUTDIR%25"
+echo ------ Decorations Mod BZ successfully published to "%25OUTPUTFILELQ%25".
+RMDIR /S /Q "%25OUTPUTDIR%25"
+)
+)
 SET DECORATIONSMODPATH=$(SubnauticaDir)\QMods\DecorationsMod\
+IF EXIST "%25DECORATIONSMODPATH%25" (
+echo ------ Deploying Decorations Mod to "%25DECORATIONSMODPATH%25"...
 echo ------ Copying "$(TargetPath)" to "%25DECORATIONSMODPATH%25"...
-xcopy "$(TargetPath)" "%25DECORATIONSMODPATH%25" /Y
+XCOPY "$(TargetPath)" "%25DECORATIONSMODPATH%25" /Y
 echo ------ Copying "$(TargetDir)Config.txt" to "%25DECORATIONSMODPATH%25"...
-xcopy "$(TargetDir)Config.txt" "%25DECORATIONSMODPATH%25" /Y
+XCOPY "$(TargetDir)Config.txt" "%25DECORATIONSMODPATH%25" /Y
 echo ------ Copying "$(TargetDir)Assets\decorationassets.assets" to "%25DECORATIONSMODPATH%25Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.assets" "%25DECORATIONSMODPATH%25Assets\" /Y
+XCOPY "$(TargetDir)Assets\decorationassets.assets" "%25DECORATIONSMODPATH%25Assets\" /Y
 echo ------ Copying "$(TargetDir)Assets\decorationassets.manifest" to "%25DECORATIONSMODPATH%25Assets\"...
-xcopy "$(TargetDir)Assets\decorationassets.manifest" "%25DECORATIONSMODPATH%25Assets\" /Y
+XCOPY "$(TargetDir)Assets\decorationassets.manifest" "%25DECORATIONSMODPATH%25Assets\" /Y
 echo ------ Copying "$(ProjectDir)Configurator.lnk" to "$(TargetDir)"...
-xcopy "$(ProjectDir)Configurator.lnk" "$(TargetDir)" /Y
+XCOPY "$(ProjectDir)Configurator.lnk" "$(TargetDir)" /Y
 echo ------ Copying "$(ProjectDir)Configurator.lnk" to "%25DECORATIONSMODPATH%25"...
-xcopy "$(ProjectDir)Configurator.lnk" "%25DECORATIONSMODPATH%25" /Y
-if $(ConfigurationName) == DebugSN (
+XCOPY "$(ProjectDir)Configurator.lnk" "%25DECORATIONSMODPATH%25" /Y
+IF $(ConfigurationName) == DebugSN (
 echo ------ Copying "$(TargetDir)mod.json" to "%25DECORATIONSMODPATH%25"...
-xcopy "$(TargetDir)mod.json" "%25DECORATIONSMODPATH%25" /Y
+XCOPY "$(TargetDir)mod.json" "%25DECORATIONSMODPATH%25" /Y
 )
-if $(ConfigurationName) == ReleaseSN (
+IF $(ConfigurationName) == ReleaseSN (
 echo ------ Copying "$(TargetDir)mod.json" to "%25DECORATIONSMODPATH%25"...
-xcopy "$(TargetDir)mod.json" "%25DECORATIONSMODPATH%25" /Y
+XCOPY "$(TargetDir)mod.json" "%25DECORATIONSMODPATH%25" /Y
 )
-if $(ConfigurationName) == DebugBZ (
+IF $(ConfigurationName) == DebugBZ (
 echo ------ Copying "$(TargetDir)modBZ.json" to "%25DECORATIONSMODPATH%25"...
-xcopy "$(TargetDir)modBZ.json" "%25DECORATIONSMODPATH%25" /Y
+XCOPY "$(TargetDir)modBZ.json" "%25DECORATIONSMODPATH%25" /Y
 echo ------ Deleting previous copy of "%25DECORATIONSMODPATH%25mod.json"...
-del /F /Q "%25DECORATIONSMODPATH%25mod.json"
+DEL /F /Q "%25DECORATIONSMODPATH%25mod.json"
 echo ------ Renaming "%25DECORATIONSMODPATH%25modBZ.json" to "mod.json"...
-ren "%25DECORATIONSMODPATH%25modBZ.json" "mod.json"
+REN "%25DECORATIONSMODPATH%25modBZ.json" "mod.json"
 )
-if $(ConfigurationName) == ReleaseBZ (
+IF $(ConfigurationName) == ReleaseBZ (
 echo ------ Copying "$(TargetDir)modBZ.json" to "%25DECORATIONSMODPATH%25"...
-xcopy "$(TargetDir)modBZ.json" "%25DECORATIONSMODPATH%25" /Y
+XCOPY "$(TargetDir)modBZ.json" "%25DECORATIONSMODPATH%25" /Y
 echo ------ Deleting previous copy of "%25DECORATIONSMODPATH%25mod.json"...
-del /F /Q "%25DECORATIONSMODPATH%25mod.json"
+DEL /F /Q "%25DECORATIONSMODPATH%25mod.json"
 echo ------ Renaming "%25DECORATIONSMODPATH%25modBZ.json" to "mod.json"...
-ren "%25DECORATIONSMODPATH%25modBZ.json" "mod.json"
+REN "%25DECORATIONSMODPATH%25modBZ.json" "mod.json"
+)
+echo ------ Decorations Mod has been deployed to "%25DECORATIONSMODPATH%25".
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

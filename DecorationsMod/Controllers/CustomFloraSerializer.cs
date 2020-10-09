@@ -64,7 +64,7 @@ namespace DecorationsMod.Controllers
                             Directory.CreateDirectory(saveFolder);
 
                         // Save custom flora state
-                        File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt").Replace('\\', '/'), Convert.ToString(progress, CultureInfo.InvariantCulture), Encoding.UTF8);
+                        File.WriteAllText(FilesHelper.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress, CultureInfo.InvariantCulture), Encoding.UTF8);
                     }
                     else
                         Logger.Log("WARNING: Cannot save custom flora state: Save game folder path \"" + saveFolder + "\" is incorrect.");
@@ -119,7 +119,7 @@ namespace DecorationsMod.Controllers
                                 Directory.CreateDirectory(saveFolder);
 
                             // Save custom flora state
-                            File.WriteAllText(Path.Combine(saveFolder, "customflora_" + id.Id + ".txt").Replace('\\', '/'), Convert.ToString(progress, CultureInfo.InvariantCulture), Encoding.UTF8);
+                            File.WriteAllText(FilesHelper.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress, CultureInfo.InvariantCulture), Encoding.UTF8);
                         }
                         else
                             Logger.Log("WARNING: Cannot save custom flora state: Save game folder path \"" + saveFolder + "\" is incorrect.");
@@ -147,7 +147,7 @@ namespace DecorationsMod.Controllers
             Logger.Log("DEBUG: Entering onProtoDeserialize for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "customflora_" + id.Id + ".txt").Replace('\\', '/');
+            string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "customflora_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
 #if DEBUG_FLORA

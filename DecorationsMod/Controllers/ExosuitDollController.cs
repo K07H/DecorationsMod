@@ -368,7 +368,7 @@ namespace DecorationsMod.Controllers
             else // Right hand arm
                 state += "4";
             
-            File.WriteAllText(Path.Combine(saveFolder, "prawnsuitdoll_" + id.Id + ".txt").Replace('\\', '/'), state, Encoding.UTF8);
+            File.WriteAllText(FilesHelper.Combine(saveFolder, "prawnsuitdoll_" + id.Id + ".txt"), state, Encoding.UTF8);
         }
 
         // Load seamoth doll state
@@ -379,7 +379,7 @@ namespace DecorationsMod.Controllers
                 if ((id = GetComponent<PrefabIdentifier>()) == null)
                     return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "prawnsuitdoll_" + id.Id + ".txt").Replace('\\', '/');
+            string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "prawnsuitdoll_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
                 string state = File.ReadAllText(filePath, Encoding.UTF8).Trim();

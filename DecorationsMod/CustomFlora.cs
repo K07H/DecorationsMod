@@ -9,7 +9,7 @@ namespace DecorationsMod
 
     public class CustomFlora
     {
-        public static readonly List<string> AllPlants = new List<string>(new string[57] {
+        public static readonly List<string> AllPlants = new List<string>(new string[58] {
             "Fern2",
             "Fern4",
             "JungleTree1",
@@ -33,6 +33,7 @@ namespace DecorationsMod
             "TropicalPlant10a",
             "TropicalPlant10b",
             "CoveTree1",
+            "CoveTree2",
             "CrabClawKelp1",
             "CrabClawKelp2",
             "CrabClawKelp3",
@@ -66,7 +67,7 @@ namespace DecorationsMod
             "MushroomTree1",
             "MushroomTree2",
             "MarbleMelonTiny",
-            "MarbleMelonTinyFruit"
+            "MarbleMelonTinyFruit" // Not plant
         });
 
         // Default values

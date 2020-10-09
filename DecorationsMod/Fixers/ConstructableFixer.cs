@@ -75,38 +75,44 @@ namespace DecorationsMod.Fixers
 
         public static void LoadLadderDirections(string saveGame)
         {
+            LadderDirections.Clear();
             string saveDir = FilesHelper.GetSaveFolderPath(saveGame);
-            if (Directory.Exists(saveDir))
+            if (saveDir != null)
             {
-                string saveFile = Path.Combine(saveDir, "outdoorladders.txt").Replace('\\', '/');
-                if (File.Exists(saveFile))
+                if (Directory.Exists(saveDir))
                 {
-                    Logger.Log("INFO: Loading outdoor ladder directions from \"" + saveFile + "\".");
-                    int cnt = 0;
-                    string[] lines = File.ReadAllLines(saveFile, Encoding.UTF8);
-                    if (lines != null && lines.Length > 0)
-                        foreach (string line in lines)
-                            if (line.Length > 3 && line.Contains("="))
-                            {
-                                string[] splitted = line.Split(new char[] { '=' }, StringSplitOptions.None);
-                                if (splitted != null && splitted.Length == 3)
+                    string saveFile = FilesHelper.Combine(saveDir, "outdoorladders.txt");
+                    if (File.Exists(saveFile))
+                    {
+                        Logger.Log("INFO: Loading outdoor ladder directions from \"" + saveFile + "\".");
+                        int cnt = 0;
+                        string[] lines = File.ReadAllLines(saveFile, Encoding.UTF8);
+                        if (lines != null && lines.Length > 0)
+                            foreach (string line in lines)
+                                if (line.Length > 3 && line.Contains("="))
                                 {
-                                    string pid = splitted[0];
-                                    bool inverted = splitted[2] == "1";
-                                    if (int.TryParse(splitted[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out int direction) && direction >= 0 && direction <= 3)
+                                    string[] splitted = line.Split(new char[] { '=' }, StringSplitOptions.None);
+                                    if (splitted != null && splitted.Length == 3)
                                     {
-                                        LadderDirections[pid] = new KeyValuePair<int, bool>(direction, inverted);
-                                        ++cnt;
+                                        string pid = splitted[0];
+                                        bool inverted = splitted[2] == "1";
+                                        if (int.TryParse(splitted[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out int direction) && direction >= 0 && direction <= 3)
+                                        {
+                                            LadderDirections[pid] = new KeyValuePair<int, bool>(direction, inverted);
+                                            ++cnt;
+                                        }
                                     }
                                 }
-                            }
-                    Logger.Log("INFO: {0} outdoor ladder directions were loaded.", cnt);
+                        Logger.Log("INFO: {0} outdoor ladder directions were loaded.", cnt);
+                    }
+                    else
+                        Logger.Log("INFO: No outdoor ladder directions saved at \"" + saveFile + "\".");
                 }
                 else
-                    Logger.Log("INFO: No outdoor ladder directions saved at \"" + saveFile + "\".");
+                    Logger.Log("INFO: No save directory found for outdoor ladders at \"" + saveDir + "\".");
             }
             else
-                Logger.Log("INFO: No save directory found for outdoor ladders at \"" + saveDir + "\".");
+                Logger.Log("INFO: Could not find save slot for outdoor ladders.");
         }
 
         public static void SaveLadderDirections()
@@ -124,7 +130,7 @@ namespace DecorationsMod.Fixers
                 string saveDir = FilesHelper.GetSaveFolderPath();
                 if (!Directory.Exists(saveDir))
                     Directory.CreateDirectory(saveDir);
-                string saveFile = Path.Combine(saveDir, "outdoorladders.txt").Replace('\\', '/');
+                string saveFile = FilesHelper.Combine(saveDir, "outdoorladders.txt");
                 Logger.Log("INFO: Saving {0} outdoor ladder directions to \"{1}\".", cnt, saveFile);
                 File.WriteAllText(saveFile, toSave, Encoding.UTF8);
             }

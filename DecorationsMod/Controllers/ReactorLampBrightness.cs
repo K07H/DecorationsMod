@@ -314,7 +314,7 @@ namespace DecorationsMod.Controllers
                 string green = Convert.ToString(reactorRodLight.color.g, CultureInfo.InvariantCulture);
                 string blue = Convert.ToString(reactorRodLight.color.b, CultureInfo.InvariantCulture);
                 
-                File.WriteAllText(Path.Combine(saveFolder, "reactorlamp_" + id.Id + ".txt").Replace('\\', '/'), 
+                File.WriteAllText(FilesHelper.Combine(saveFolder, "reactorlamp_" + id.Id + ".txt"), 
                         range + Environment.NewLine +
                         intensity + Environment.NewLine +
                         rodColor + Environment.NewLine +
@@ -341,7 +341,7 @@ namespace DecorationsMod.Controllers
                     if ((id = this.gameObject.GetComponent<PrefabIdentifier>()) == null)
                         return;
 
-            string filePath = Path.Combine(FilesHelper.GetSaveFolderPath(), "reactorlamp_" + id.Id + ".txt").Replace('\\', '/');
+            string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "reactorlamp_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
                 var reactorRodLight = this.gameObject.GetComponentInChildren<Light>();

@@ -23,7 +23,7 @@ namespace DecorationsMod
             SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(techType, QuickSlotType.Selectable);
         }
 
-        public static void MakeSnacksPlaceable()
+        private static void MakeSnacksPlaceable()
         {
             GameObject snack1 = Resources.Load<GameObject>("WorldEntities/Food/Snack1");
             if (snack1 != null)
@@ -79,7 +79,7 @@ namespace DecorationsMod
         }
 
         private static bool _batteriesMadePlaceable = false;
-        public static void MakeBatteriesPlaceable()
+        private static void MakeBatteriesPlaceable()
         {
             if (!_batteriesMadePlaceable)
             {
@@ -130,6 +130,256 @@ namespace DecorationsMod
 
                 _batteriesMadePlaceable = true;
             }
+        }
+
+#if BELOWZERO
+        private static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
+        {
+            { "WorldEntities/Crafting/Silicone", TechType.Silicone },
+            { "WorldEntities/Crafting/FiberMesh", TechType.FiberMesh },
+            { "WorldEntities/Crafting/aramidfibers", TechType.AramidFibers },
+            { "WorldEntities/Crafting/aerogel", TechType.Aerogel },
+            { "WorldEntities/Crafting/TitaniumIngot", TechType.TitaniumIngot },
+            { "WorldEntities/Crafting/PlasteelIngot", TechType.PlasteelIngot },
+            { "WorldEntities/Crafting/Glass", TechType.Glass },
+            { "WorldEntities/Crafting/EnameledGlass", TechType.EnameledGlass },
+            { "WorldEntities/Crafting/CopperWire", TechType.CopperWire },
+
+            { "WorldEntities/EnvironmentResources/SeaTreaderPoop", TechType.SeaTreaderPoop },
+            //{ "WorldEntities/Alterra/Supplies/metal1", TechType.ScrapMetal },
+            //{ "WorldEntities/Alterra/Supplies/metal2", TechType.ScrapMetal },
+            //{ "WorldEntities/Alterra/Supplies/metal3", TechType.ScrapMetal },
+            //{ "WorldEntities/Alterra/Supplies/metal4", TechType.ScrapMetal },
+            { "WorldEntities/EnvironmentResources/titanium", TechType.Titanium },
+            { "WorldEntities/EnvironmentResources/crashpowder", TechType.CrashPowder },
+            { "WorldEntities/EnvironmentResources/copper", TechType.Copper },
+            { "WorldEntities/EnvironmentResources/sulphurcrystal", TechType.Sulphur },
+            { "WorldEntities/EnvironmentResources/diamond", TechType.Diamond },
+            { "WorldEntities/EnvironmentResources/gold", TechType.Gold },
+            { "WorldEntities/EnvironmentResources/kyanite", TechType.Kyanite },
+            { "WorldEntities/EnvironmentResources/lead", TechType.Lead },
+            { "WorldEntities/EnvironmentResources/lithium", TechType.Lithium },
+            { "WorldEntities/EnvironmentResources/magnetite", TechType.Magnetite },
+            { "WorldEntities/EnvironmentResources/nickel", TechType.Nickel },
+            { "WorldEntities/EnvironmentResources/quartz", TechType.Quartz },
+            { "WorldEntities/EnvironmentResources/aluminumoxide", TechType.AluminumOxide },
+            { "WorldEntities/EnvironmentResources/salt", TechType.Salt },
+            { "WorldEntities/EnvironmentResources/silver", TechType.Silver },
+            { "WorldEntities/EnvironmentResources/uraninitecrystal", TechType.UraniniteCrystal },
+            
+            { "WorldEntities/EnvironmentResources/bloodoil", TechType.BloodOil },
+            //{ "WorldEntities/Seeds/CreepvineSeed", TechType.CreepvineSeedCluster },
+
+            //{ "WorldEntities/Seeds/PurpleBrainCoralPiece", TechType.PurpleBrainCoralPiece },
+            { "WorldEntities/Flora/Shared/JeweledDiskPiece", TechType.JeweledDiskPiece },
+            { "WorldEntities/Flora/Shared/JeweledDiskPieceBlue", TechType.BlueJeweledDisk },
+            { "WorldEntities/Flora/Shared/JeweledDiskPieceGreen", TechType.GreenJeweledDisk },
+            { "WorldEntities/Flora/Shared/JeweledDiskPieceRed", TechType.RedJeweledDisk },
+            { "WorldEntities/Flora/Shared/CoralChunk", TechType.CoralChunk },
+            //{ "WorldEntities/Creatures/GasPod", TechType.GasPod },
+        };
+#else
+        private static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
+        {
+            { "worldentities/natural/silicone", TechType.Silicone },
+            { "worldentities/natural/fibermesh", TechType.FiberMesh },
+            { "worldentities/natural/aramidfibers", TechType.AramidFibers },
+            { "worldentities/natural/aerogel", TechType.Aerogel },
+            { "worldentities/natural/titaniumingot", TechType.TitaniumIngot },
+            { "worldentities/natural/plasteelingot", TechType.PlasteelIngot },
+            { "worldentities/natural/glass", TechType.Glass },
+            { "worldentities/natural/enameledglass", TechType.EnameledGlass },
+            { "worldentities/natural/copperwire", TechType.CopperWire },
+
+            { "worldentities/natural/seatreaderpoop", TechType.SeaTreaderPoop },
+            //{ "worldentities/natural/metal1", TechType.ScrapMetal },
+            //{ "worldentities/natural/metal2", TechType.ScrapMetal },
+            //{ "worldentities/natural/metal3", TechType.ScrapMetal },
+            //{ "worldentities/natural/metal4", TechType.ScrapMetal },
+            { "worldentities/natural/titanium", TechType.Titanium },
+            { "worldentities/natural/crashpowder", TechType.CrashPowder },
+            { "worldentities/natural/copper", TechType.Copper },
+            { "worldentities/natural/sulphurcrystal", TechType.Sulphur },
+            { "worldentities/natural/diamond", TechType.Diamond },
+            { "worldentities/natural/gold", TechType.Gold },
+            { "worldentities/natural/kyanite", TechType.Kyanite },
+            { "worldentities/natural/lead", TechType.Lead },
+            { "worldentities/natural/lithium", TechType.Lithium },
+            { "worldentities/natural/magnetite", TechType.Magnetite },
+            { "worldentities/natural/nickel", TechType.Nickel },
+            { "worldentities/natural/quartz", TechType.Quartz },
+            { "worldentities/natural/aluminumoxide", TechType.AluminumOxide },
+            { "worldentities/natural/salt", TechType.Salt },
+            { "worldentities/natural/silver", TechType.Silver },
+            { "worldentities/natural/uraninitecrystal", TechType.UraniniteCrystal },
+
+            { "worldentities/natural/bloodoil", TechType.BloodOil },
+            //{ "worldentities/natural/creepvineseedcluster", TechType.CreepvineSeedCluster },
+
+            //{ "worldentities/seeds/purplebraincoralpiece", TechType.PurpleBrainCoralPiece },
+            { "worldentities/doodads/coral_reef/jeweleddiskpiece", TechType.JeweledDiskPiece },
+            { "worldentities/doodads/coral_reef/coralchunk", TechType.CoralChunk },
+            //{ "worldentities/creatures/gaspod", TechType.GasPod },
+        };
+#endif
+
+        private static void MakeMaterialPlaceable(TechType materialTechType, string materialPath)
+        {
+            GameObject mat = Resources.Load<GameObject>(materialPath);
+            if (mat != null)
+            {
+                if (materialTechType == TechType.FiberMesh)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<FiberMesh_PT>();
+                }
+                else if (materialTechType == TechType.AramidFibers)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<AramidFibers_PT>();
+                }
+                else if (materialTechType == TechType.SeaTreaderPoop)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<SeaTreaderPoop_PT>();
+                }
+                else if (materialTechType == TechType.Diamond)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Diamond_PT>();
+                }
+                else if (materialTechType == TechType.Lithium)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Lithium_PT>();
+                }
+                else if (materialTechType == TechType.Magnetite)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Magnetite_PT>();
+                }
+                else if (materialTechType == TechType.Nickel)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Nickel_PT>();
+                }
+                else if (materialTechType == TechType.Quartz)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Quartz_PT>();
+                }
+                else if (materialTechType == TechType.Sulphur)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Sulphur_PT>();
+                }
+                else if (materialTechType == TechType.Glass)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Glass_PT>();
+                }
+                else if (materialTechType == TechType.EnameledGlass)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<EnameledGlass_PT>();
+                }
+                else if (materialTechType == TechType.PlasteelIngot)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<PlasteelIngot_PT>();
+                }
+                else if (materialTechType == TechType.Silicone)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Silicone_PT>();
+                }
+                else if (materialTechType == TechType.CopperWire)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<CopperWire_PT>();
+                }
+                else if (materialTechType == TechType.Silver)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Silver_PT>();
+                }
+                else if (materialTechType == TechType.Gold)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Gold_PT>();
+                }
+                else if (materialTechType == TechType.Salt)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Salt_PT>();
+                }
+                else if (materialTechType == TechType.BloodOil)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<BloodOil_PT>();
+                }
+                else if (materialTechType == TechType.Titanium)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Titanium_PT>();
+                }
+                else if (materialTechType == TechType.Lead)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Lead_PT>();
+                }
+                else if (materialTechType == TechType.UraniniteCrystal)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<UraniniteCrystal_PT>();
+                }
+                else if (materialTechType == TechType.Kyanite)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Kyanite_PT>();
+                }
+                else if (materialTechType == TechType.JeweledDiskPiece)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<JeweledDiskPiece_PT>();
+                }
+                else if (materialTechType == TechType.AluminumOxide)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<AluminumOxide_PT>();
+                }
+                else if (materialTechType == TechType.CoralChunk)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<CoralChunk_PT>();
+                }
+                else if (materialTechType == TechType.Copper)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<Copper_PT>();
+                }
+                else if (materialTechType == TechType.TitaniumIngot)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<TitaniumIngot_PT>();
+                }
+                else if (materialTechType == TechType.CrashPowder)
+                {
+                    mat.AddComponent<CustomPlaceToolController>();
+                    mat.AddComponent<CrashPowder_PT>();
+                }
+                MakeItemPlaceable(materialTechType, mat);
+            }
+#if DEBUG_ITEMS_REGISTRATION
+            else
+                Logger.Log("WARNING: Could not load type[{0}]", materialPath);
+#endif
+        }
+
+        private static void MakeRemainingMaterialsPlaceable()
+        {
+            foreach (KeyValuePair<string, TechType> mat in _materials)
+                MakeMaterialPlaceable(mat.Value, mat.Key);
         }
 
         private static bool _madeItemsPlaceable = false;
@@ -325,6 +575,10 @@ namespace DecorationsMod
                 else
                     Logger.Log("WARNING: Could not load type[{0}]", "PrecursorIonCrystal");
 #endif
+
+                // Other materials
+                if (ConfigSwitcher.EnablePlaceOtherMaterials)
+                    MakeRemainingMaterialsPlaceable();
 
                 // Others
 #if SUBNAUTICA

@@ -39,6 +39,11 @@ namespace DecorationsMod
         // Attention: If this option is enabled, you'll have to manually drag-n-drop batteries/power cells to the charger (left click won't work to equip).
         public static bool EnablePlaceBatteries = false;
 
+        // If "true" player will be able to place following items: silicone rubber, fiber mesh, synthetic fiber, aerogel, titanium ingot, plasteel ingot,
+        // glass, enameled glass, copper wire, alien feces, titanium, cave sulfur, copper ore, crystalline sulfur, diamond, gold, kyanite, lead, lithium,
+        // magnetite, nickel, quartz, ruby, salt, silver, uraninite crystal, blood oil, coral tube sample and table coral sample.
+        public static bool EnablePlaceOtherMaterials = true;
+
         // If "true", player will be able to build the following new items:      
         // lab cart, specimen analyzer, small aquarium,  indoor long planter, outdoor long planter, markiplier doll 1, markiplier doll 2, jacksepticeye doll, 
         // eatmydiction doll, marla cat doll, seamoth doll, exosuit doll, cyclops doll, forklift doll, empty desk, bar stool, customizable picture frame, 
@@ -191,6 +196,7 @@ namespace DecorationsMod
         public static CustomFlora config_PyroCoral2 = new CustomFlora(2000.0f, 130.0f, true, 0.0f, 0.0f, false, 300.0f);
         public static CustomFlora config_PyroCoral3 = new CustomFlora(2000.0f, 130.0f, true, 0.0f, 0.0f, false, 300.0f);
         public static CustomFlora config_CoveTree1 = new CustomFlora(3000.0f, 300.0f, true, 0.0f, 0.0f, false, 400.0f);
+        public static CustomFlora config_CoveTree2 = new CustomFlora(5000.0f, 500.0f, true, 0.0f, 0.0f, false, 500.0f);
         public static CustomFlora config_GreenReeds1 = new CustomFlora(1000.0f, 60.0f, true, 0.0f, 0.0f, false, 120.0f);
         public static CustomFlora config_GreenReeds6 = new CustomFlora(1000.0f, 60.0f, true, 0.0f, 0.0f, false, 120.0f);
         public static CustomFlora config_LostRiverPlant2 = new CustomFlora(1400.0f, 100.0f, true, 0.0f, 0.0f, false, 120.0f);
@@ -355,6 +361,7 @@ namespace DecorationsMod
                         case "allowPlaceOutside": ConfigSwitcher.AllowPlaceOutside = configValue; break;
                         case "enablePlaceItems": ConfigSwitcher.EnablePlaceItems = configValue; break;
                         case "enablePlaceBatteries": ConfigSwitcher.EnablePlaceBatteries = configValue; break;
+                        case "enablePlaceMaterials": ConfigSwitcher.EnablePlaceOtherMaterials = configValue; break;
                         case "enableNewFlora": ConfigSwitcher.EnableNewFlora = configValue; break;
                         case "enableNewItems": ConfigSwitcher.EnableNewItems = configValue; break;
                         case "habitatBuilderItems": ConfigSwitcher.GetHabitatBuilderConfig(configValueStr); break;
@@ -465,6 +472,7 @@ namespace DecorationsMod
                         case "config_PyroCoralB": GetFloraConfig(ConfigSwitcher.config_PyroCoral2, configValueStr); break;
                         case "config_PyroCoralC": GetFloraConfig(ConfigSwitcher.config_PyroCoral3, configValueStr); break;
                         case "config_CoveTree": GetFloraConfig(ConfigSwitcher.config_CoveTree1, configValueStr); break;
+                        case "config_GiantCoveTree": GetFloraConfig(ConfigSwitcher.config_CoveTree2, configValueStr); break;
                         case "config_SpottedReedsA": GetFloraConfig(ConfigSwitcher.config_GreenReeds1, configValueStr); break;
                         case "config_SpottedReedsB": GetFloraConfig(ConfigSwitcher.config_GreenReeds6, configValueStr); break;
                         case "config_BrineLily": GetFloraConfig(ConfigSwitcher.config_LostRiverPlant2, configValueStr); break;
@@ -625,7 +633,7 @@ namespace DecorationsMod
         public static void LoadConfiguration()
         {
             // Get config file path
-            configFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Config.txt").Replace('\\', '/');
+            configFilePath = FilesHelper.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Config.txt");
             //UriBuilder assemblyUri = new UriBuilder(Assembly.GetExecutingAssembly().CodeBase);
             //configFilePath = Path.GetDirectoryName(Uri.UnescapeDataString(assemblyUri.Path)).Replace('\\', '/') + "/Config.txt";
 
