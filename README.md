@@ -95,18 +95,22 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     All materials (benzene, bleach, computer chip, hydrochloric acid, ion cube, lubricant, polyaniline, stalker tooth, wiring kit, advanced wiring kit, silicone rubber, fiber mesh, synthetic fiber, aerogel, titanium ingot, plasteel ingot, glass, enameled glass, copper wire, alien feces, titanium, cave sulfur, copper ore, crystalline sulfur, diamond, gold, kyanite, lead, lithium, magnetite, nickel, quartz, ruby, salt, silver, uraninite crystal, blood oil, coral tube sample and table coral sample).<br>
 
 ### Additional information:<br>
-You can change range, brightness and color of the customizable light item (by clicking on it and holding various keys).<br>
+You can change range, brightness and color of the customizable light item by clicking it and holding various keys (also it can built indoor or outdoor).<br>
 You can change the size and orientation of the customizable picture frame item (also you can set its content image from the screenshot folder like any other regular picture frame).<br>
-You can switch customizable picture frames to poster mode by clicking on it while holding "F".<br>
-You can change seamoth doll model by clicking on it.<br>
-You can change PRAWN suit doll model by clicking on it.<br>
-You can change cargo crates and forklift sizes by clicking on them.<br>
-You can change computers labels by clicking on them.<br>
-You can display or hide the giant cove tree eggs by clicking on it (hidden by default).<br>
-You can add all existing seeds to the seeds fabricator by modifying options inside the Config.txt file.<br>
-Both long planters can be build inside or outside bases/cyclops.<br>
+You can switch customizable picture frames to poster, random or slideshow modes (by clicking it while holding "F", "G" or "T").<br>
+You can interact with the Seamoth, PRAWN suit and Cyclops toys by clicking them.<br>
+You can change cargo crates, warper specimen, forklift toy and Cyclops toy sizes by clicking them while holding "E".<br>
+You can change computers and screens labels by clicking them.<br>
+You can display or hide the giant cove tree eggs by clicking them (hidden by default).<br>
+Giant cove trees that you plant below 100m and have eggs displayed will spawn ghost leviathans if you enable the option in mod config.<br>
+The audio effects of the alien relics sometimes stay at their initial position so you need to save and restart Subnautica for the audio effects to take their new positions into account.<br>
 All items can be rotated and placed in any base or cyclops.<br>
-All new flora is compatible with bioreactors and only the land tree is edible.<br>
+For an easier placement of items, you can temporarily enable the "Lock quickslots when placing item" feature in the options menu (in "Mods" tab).<br>
+Note that if you place raw materials as decorations, stalkers will try to come and steal them (even if they are placed in a base).<br>
+All new flora is compatible with bioreactors and fully configurable (growth duration, health points, nutrient points, etc).<br>
+Both long planters can be built indoor or outdoor (tip: you can use this to have land plants in water or sea plants in bases/cyclops).<br>
+To unlock every items instantly you can change "Discovery settings" in configuration, or use commands "unlockall" + "ency all".<br>
+To grow plants instantly you can use command "day".<br>
 
 <br><br>
 
