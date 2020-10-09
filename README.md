@@ -108,8 +108,12 @@ Both long planters can be build inside or outside bases/cyclops.<br>
 All items can be rotated and placed in any base or cyclops.<br>
 All new flora is compatible with bioreactors and only the land tree is edible.<br>
 
+<br><br>
+
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
+October 9, 2020: Updated to version 1.9.0.<br>
+September 10, 2020: Updated to version 1.8.4.<br>
 August 6, 2020: Updated to version 1.7.9.<br>
 July 30, 2020: Updated to version 1.7.8.<br>
 July 14, 2020: Updated to version 1.7.7.<br>
