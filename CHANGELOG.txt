@@ -1,3 +1,31 @@
+Version 1.9.0
+Fixed: Crafting precursor tablets/weapons/relics inside the Cyclops could make collision bugs.
+Fixed: Crafting sea dragon skeleton inside the Cyclops could make collision bugs.
+Fixed: "LargeWorldEntity error" spam in log file (was affecting Precursor Pedestal, Decorative Locker No Door, Decorative Locker Door Open, Decorative Locker Door Closed, Ghost Leviathan Egg and Sea Emperor Egg). Thanks to Keiser for the tests.
+Fixed: "SkyApplier error" spam in log file (was affecting Precursor Relics and Precursor Weapons). Thanks to Keiser for the tests.
+Fixed: Seamoth fragments models were not receiving light from base/Cyclops.
+Modified: "Lock quickslots when placing item" and "Enable batteries/powercells placing" features are now disabled by default to avoid confusion.
+Modified: Pickup trigger box of the ancient earth blade and all seamoth fragments (it is now easier to pick them).
+Added: Compatibility with "AutoLoad" mod.
+Added: Now fully supports "VersionChecker" and "QMod SAM" mods.
+Added: Giant version of the Cove Tree (in seeds fabricator).
+Added: You can now place following items where you want (on desks, tables, etc): silicone rubber, fiber mesh, synthetic fiber, aerogel, titanium ingot, plasteel ingot, glass, enameled glass, copper wire, alien feces, titanium, cave sulfur, copper ore, crystalline sulfur, diamond, gold, kyanite, lead, lithium, magnetite, nickel, quartz, ruby, salt, silver, uraninite crystal, blood oil, coral tube sample and table coral sample.
+
+Version 1.8.4
+Hotfix to version 1.8.3 (configuration path bug).
+
+Version 1.8.3
+Hotfix to version 1.8.2 (some assets were missing).
+
+Version 1.8.2
+Fixed: In some cases the Cyclops toy was not repositioning properly upon reloading saved game.
+Fixed: Some data (like custom notifications) were not properly saved in hardcore mode.
+Fixed: The "Hide Degasi sea base" feature was not working when "Enable new flora" feature was disabled.
+Fixed: Few configuration settings like ghost leviathan feature were not saved or applied properly.
+Modified: More relevant names/descriptions for some of the items.
+Added: Outdoor ladder (in Exterior Modules section of the habitat builder).
+Added: You can now select individually which items will be added to your habitat builder (from the Configurator).
+
 Version 1.8.0
 Added: New language: Nederlands (NL), thanks to Olivier.
 
