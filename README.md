@@ -45,14 +45,14 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     5 unique alien tablets<br>
     19 unique eggs<br>
     5 unique seamoth fragments<br>
-**Add a seeds fabricator allowing you to craft and grow following new flora (56 new seeds):**<br>
+**Add a seeds fabricator allowing you to craft and grow following new flora (57 new seeds):**<br>
     8 unique air plants<br>
     7 unique air trees<br>
     8 unique tropical plants<br>
     12 unique water plants<br>
     9 unique water trees<br>
     5 unique corals<br>
-    7 unique amphibious plants<br>
+    8 unique amphibious plants<br>
 **Add the following new items in the habitat builder menu (35 new buildables):**<br>
     EatMyDiction doll<br>
     JackSepticEye doll<br>
@@ -81,24 +81,18 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     Techbox<br>
     Outdoor ladder<br>
 **You will be able to place following existing items where you want:**<br>
-    Coffee cup<br>
-    All snacks<br>
-    Nutrient block<br>
-    All water bottles<br>
+    All precursor tablets<br>
+    All precursor relics<br>
+    All precursor weapons<br>
     All eggs<br>
-    First aid kit<br>
-    Benzene<br>
-    Hydrochloric acid<br>
-    Polyaniline<br>
-    Hatching enzymes<br>
-    Bleach<br>
-    Lubricant<br>
-    Stalker tooth<br>
-    Computer chip<br>
-    Wiring kits<br>
-    Ion cube<br>
-    All alien tablets<br>
+    All snacks<br>
+    All water bottles<br>
     Batteries/PowerCells and their ion versions<br>
+    Coffee cup<br>
+    First aid kit<br>
+    Hatching enzymes<br>
+    Nutrient block<br>
+    All materials (benzene, bleach, computer chip, hydrochloric acid, ion cube, lubricant, polyaniline, stalker tooth, wiring kit, advanced wiring kit, silicone rubber, fiber mesh, synthetic fiber, aerogel, titanium ingot, plasteel ingot, glass, enameled glass, copper wire, alien feces, titanium, cave sulfur, copper ore, crystalline sulfur, diamond, gold, kyanite, lead, lithium, magnetite, nickel, quartz, ruby, salt, silver, uraninite crystal, blood oil, coral tube sample and table coral sample).<br>
 
 ### Additional information:<br>
 You can change range, brightness and color of the customizable light item (by clicking on it and holding various keys).<br>
