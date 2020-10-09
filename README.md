@@ -163,6 +163,6 @@ Alternatively see the GitHub documentation on [creating a pull request](https://
 <br>
 <br>
 <br>
-*"It may be prudent to separate work and leisure spaces to maximize productivity.<br>
-Treat this space as your home, but never forget that it is not." PDA Log Entry E6*
+<p align="center">*"It may be prudent to separate work and leisure spaces to maximize productivity.<br>
+Treat this space as your home, but never forget that it is not." PDA Log Entry E6*</p>
 
