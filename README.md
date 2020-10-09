@@ -80,7 +80,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     Control terminal<br>
     Techbox<br>
     Outdoor ladder<br>
-**You will be able to place following existing items where you want:**<br>
+**You will be able to place following existing items where you want (on desks, tables, and so on):**<br>
     All precursor tablets<br>
     All precursor relics<br>
     All precursor weapons<br>
