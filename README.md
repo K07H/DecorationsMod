@@ -96,7 +96,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
 
 ### Additional information:<br>
 You can change range, brightness and color of the lamp (customizable light) by clicking it and holding various keys. It can built indoor or outdoor.<br>
-You can change the size and orientation of the customizable picture frame (also you can set its content image from the screenshot folder like any other regular picture frame).<br>
+You can change the size and orientation of the customizable picture frame, and you can set its content image from the screenshot folder like any other regular picture frame.<br>
 You can switch customizable picture frames to poster, random or slideshow modes (by clicking it while holding "F", "G" or "T").<br>
 You can interact with the Seamoth, PRAWN suit and Cyclops toys by clicking them.<br>
 You can change cargo crates, warper specimen, forklift toy and Cyclops toy sizes by clicking them while holding "E".<br>
