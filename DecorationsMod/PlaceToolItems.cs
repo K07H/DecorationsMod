@@ -182,7 +182,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Snack2");
+                Logger.Log("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack2");
 #endif
             GameObject snack3 = Resources.Load<GameObject>("WorldEntities/Food/Snack3");
             if (snack3 != null)
@@ -193,7 +193,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Snack3");
+                Logger.Log("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack3");
 #endif
 
             // Swap Snack2 and Snack3 techtypes (as tooltips do not match models)
@@ -244,7 +244,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type[{0}]", batteryPath);
+                Logger.Log("WARNING: Could not load type [{0}]", batteryPath);
 #endif
         }
 
@@ -397,7 +397,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type[{0}]", materialPath);
+                Logger.Log("WARNING: Could not load type [{0}]", materialPath);
 #endif
         }
 
@@ -450,7 +450,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type[{0}]", itemPath);
+                Logger.Log("WARNING: Could not load type [{0}]", itemPath);
 #endif
         }
 

@@ -120,30 +120,30 @@ namespace DecorationsMod
                 tropicalPlantTab = rootNode.AddTabNode("TropicalPlantTab", LanguageHelper.GetFriendlyWord("TropicalPlantTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_TropicalPlants"));
             }
             // Plant Air
-            plantAirTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LandPlant1"),
-                                        DecorationItemsHelper.getTechType(decorationItems, "LandPlant2"),
-                                        DecorationItemsHelper.getTechType(decorationItems, "LandPlant3"),
-                                        DecorationItemsHelper.getTechType(decorationItems, "LandPlant4"),
-                                        DecorationItemsHelper.getTechType(decorationItems, "LandPlant5"));
+            plantAirTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LandPlant1"),
+                                        PrefabsHelper.GetTechType(decorationItems, "LandPlant2"),
+                                        PrefabsHelper.GetTechType(decorationItems, "LandPlant3"),
+                                        PrefabsHelper.GetTechType(decorationItems, "LandPlant4"),
+                                        PrefabsHelper.GetTechType(decorationItems, "LandPlant5"));
             // Tree Air
-            treeAirTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LandTree1"),
-                                       DecorationItemsHelper.getTechType(decorationItems, "JungleTree1"),
-                                       DecorationItemsHelper.getTechType(decorationItems, "JungleTree2"),
-                                       DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant3a"),
-                                       DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant3b"),
-                                       DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant6a"),
-                                       DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant6b"));
+            treeAirTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LandTree1"),
+                                       PrefabsHelper.GetTechType(decorationItems, "JungleTree1"),
+                                       PrefabsHelper.GetTechType(decorationItems, "JungleTree2"),
+                                       PrefabsHelper.GetTechType(decorationItems, "TropicalPlant3a"),
+                                       PrefabsHelper.GetTechType(decorationItems, "TropicalPlant3b"),
+                                       PrefabsHelper.GetTechType(decorationItems, "TropicalPlant6a"),
+                                       PrefabsHelper.GetTechType(decorationItems, "TropicalPlant6b"));
             // Tropical
-            tropicalPlantTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant1a"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant1b"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant2a"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant2b"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant7a"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant7b"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant10a"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "TropicalPlant10b"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "Fern2"),
-                                             DecorationItemsHelper.getTechType(decorationItems, "Fern4"));
+            tropicalPlantTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "TropicalPlant1a"),
+                                             PrefabsHelper.GetTechType(decorationItems, "TropicalPlant1b"),
+                                             PrefabsHelper.GetTechType(decorationItems, "TropicalPlant2a"),
+                                             PrefabsHelper.GetTechType(decorationItems, "TropicalPlant2b"),
+                                             PrefabsHelper.GetTechType(decorationItems, "TropicalPlant7a"),
+                                             PrefabsHelper.GetTechType(decorationItems, "TropicalPlant7b"),
+                                             PrefabsHelper.GetTechType(decorationItems, "TropicalPlant10a"),
+                                             PrefabsHelper.GetTechType(decorationItems, "TropicalPlant10b"),
+                                             PrefabsHelper.GetTechType(decorationItems, "Fern2"),
+                                             PrefabsHelper.GetTechType(decorationItems, "Fern4"));
 
             // Existing air seeds from the game
             if (ConfigSwitcher.EnableRegularAirSeeds)
@@ -155,7 +155,7 @@ namespace DecorationsMod
                                                     TechType.PurpleVegetable,
                                                     TechType.HangingFruit,
                                                     TechType.MelonSeed,
-                                                    DecorationItemsHelper.getTechType(decorationItems, "MarbleMelonTiny"));
+                                                    PrefabsHelper.GetTechType(decorationItems, "MarbleMelonTiny"));
 
                 var decorativeBigAirTab = regularAirSeedsTab.AddTabNode("DecorativeBigAirTab", LanguageHelper.GetFriendlyWord("DecorativeBigAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_BigDeco"));
                 decorativeBigAirTab.AddCraftingNode(TechType.FernPalmSeed,
@@ -230,49 +230,49 @@ namespace DecorationsMod
                 treeWaterTab = rootNode.AddTabNode("TreeWaterTab", LanguageHelper.GetFriendlyWord("TreeWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaticTrees"));
             }
             // Plant Water
-            plantWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GreenReeds1"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "GreenReeds6"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "LostRiverPlant2"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "LostRiverPlant4"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "PlantMiddle11"));
+            plantWaterTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "GreenReeds1"),
+                                          PrefabsHelper.GetTechType(decorationItems, "GreenReeds6"),
+                                          PrefabsHelper.GetTechType(decorationItems, "LostRiverPlant2"),
+                                          PrefabsHelper.GetTechType(decorationItems, "LostRiverPlant4"),
+                                          PrefabsHelper.GetTechType(decorationItems, "PlantMiddle11"));
             var redGrassesTab = plantWaterTab.AddTabNode("RedGrassesTab", LanguageHelper.GetFriendlyWord("RedGrassesTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Grass"));
-            redGrassesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BloodGrassRed"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "BloodGrassDense"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass1"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass2"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass2Tall"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass3"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "RedGrass3Tall")); 
+            redGrassesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BloodGrassRed"),
+                                          PrefabsHelper.GetTechType(decorationItems, "BloodGrassDense"),
+                                          PrefabsHelper.GetTechType(decorationItems, "RedGrass1"),
+                                          PrefabsHelper.GetTechType(decorationItems, "RedGrass2"),
+                                          PrefabsHelper.GetTechType(decorationItems, "RedGrass2Tall"),
+                                          PrefabsHelper.GetTechType(decorationItems, "RedGrass3"),
+                                          PrefabsHelper.GetTechType(decorationItems, "RedGrass3Tall")); 
 
             // Tree Water
-            treeWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MushroomTree2"),
-                                         DecorationItemsHelper.getTechType(decorationItems, "MushroomTree1"),
-                                         DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp2"),
-                                         DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp1"),
-                                         DecorationItemsHelper.getTechType(decorationItems, "CrabClawKelp3"),
-                                         DecorationItemsHelper.getTechType(decorationItems, "PyroCoral1"),
-                                         DecorationItemsHelper.getTechType(decorationItems, "PyroCoral2"),
-                                         DecorationItemsHelper.getTechType(decorationItems, "PyroCoral3"),
-                                         DecorationItemsHelper.getTechType(decorationItems, "FloatingStone1"));
+            treeWaterTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "MushroomTree2"),
+                                         PrefabsHelper.GetTechType(decorationItems, "MushroomTree1"),
+                                         PrefabsHelper.GetTechType(decorationItems, "CrabClawKelp2"),
+                                         PrefabsHelper.GetTechType(decorationItems, "CrabClawKelp1"),
+                                         PrefabsHelper.GetTechType(decorationItems, "CrabClawKelp3"),
+                                         PrefabsHelper.GetTechType(decorationItems, "PyroCoral1"),
+                                         PrefabsHelper.GetTechType(decorationItems, "PyroCoral2"),
+                                         PrefabsHelper.GetTechType(decorationItems, "PyroCoral3"),
+                                         PrefabsHelper.GetTechType(decorationItems, "FloatingStone1"));
 
             // Amphibious plants
             var amphibiousPlantsTab = rootNode.AddTabNode("AmphibiousPlantsTab", LanguageHelper.GetFriendlyWord("AmphibiousPlantsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AmphibiousPlants"));
-            amphibiousPlantsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SmallDeco3"),
-                                                DecorationItemsHelper.getTechType(decorationItems, "CoveTree1"),
-                                                DecorationItemsHelper.getTechType(decorationItems, "CoveTree2"),
-                                                DecorationItemsHelper.getTechType(decorationItems, "SmallDeco11"),
-                                                DecorationItemsHelper.getTechType(decorationItems, "SmallDeco13"),
-                                                DecorationItemsHelper.getTechType(decorationItems, "SmallDeco14"),
-                                                DecorationItemsHelper.getTechType(decorationItems, "SmallDeco15Red"),
-                                                DecorationItemsHelper.getTechType(decorationItems, "SmallDeco17Purple"));
+            amphibiousPlantsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SmallDeco3"),
+                                                PrefabsHelper.GetTechType(decorationItems, "CoveTree1"),
+                                                PrefabsHelper.GetTechType(decorationItems, "CoveTree2"),
+                                                PrefabsHelper.GetTechType(decorationItems, "SmallDeco11"),
+                                                PrefabsHelper.GetTechType(decorationItems, "SmallDeco13"),
+                                                PrefabsHelper.GetTechType(decorationItems, "SmallDeco14"),
+                                                PrefabsHelper.GetTechType(decorationItems, "SmallDeco15Red"),
+                                                PrefabsHelper.GetTechType(decorationItems, "SmallDeco17Purple"));
 
             // Coral Water
             var coralWaterTab = rootNode.AddTabNode("CoralWaterTab", LanguageHelper.GetFriendlyWord("CoralWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Corals"));
-            coralWaterTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BrownCoralTubes1"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "BrownCoralTubes2"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "BrownCoralTubes3"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "BlueCoralTubes1"),
-                                          DecorationItemsHelper.getTechType(decorationItems, "SmallDeco10"));
+            coralWaterTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BrownCoralTubes1"),
+                                          PrefabsHelper.GetTechType(decorationItems, "BrownCoralTubes2"),
+                                          PrefabsHelper.GetTechType(decorationItems, "BrownCoralTubes3"),
+                                          PrefabsHelper.GetTechType(decorationItems, "BlueCoralTubes1"),
+                                          PrefabsHelper.GetTechType(decorationItems, "SmallDeco10"));
 
             return rootNode;
         }

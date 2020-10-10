@@ -417,7 +417,6 @@
     <Compile Include="NewItems\LabContainer4.cs" />
     <Compile Include="NewItems\LabTube.cs" />
     <Compile Include="NewItems\SeaEmperorDoll.cs" />
-    <Compile Include="DecorationItemsHelper.cs" />
     <Compile Include="NewItems\AquariumSmall.cs" />
     <Compile Include="NewItems\WallMonitor1.cs" />
     <Compile Include="NewItems\WallMonitor2.cs" />

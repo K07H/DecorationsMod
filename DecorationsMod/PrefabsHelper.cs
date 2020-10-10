@@ -11,6 +11,19 @@ namespace DecorationsMod
     {
         #region Prefab
 
+        /// <summary>
+        /// Returns decoration item TechType giving the list of decoration items and the item's classID.
+        /// </summary>
+        public static TechType GetTechType(List<IDecorationItem> decorationItems, string classID)
+        {
+            foreach (IDecorationItem item in decorationItems)
+            {
+                if (string.Compare(item.ClassID, classID, true, CultureInfo.InvariantCulture) == 0)
+                    return item.TechType;
+            }
+            return 0;
+        }
+
         public static void SetDefaultPickupable(GameObject gameObj, bool isPickupable = true, bool destroyOnDeath = false, bool isValidHandTarget = false, bool attached = false,
             TechType overrideTechType = TechType.None, bool overrideTechUsed = false)
         {

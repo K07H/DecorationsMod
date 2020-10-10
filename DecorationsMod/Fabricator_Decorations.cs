@@ -113,33 +113,33 @@ namespace DecorationsMod
 
             // Open glass containers
             var openedGlassConteinersTab = labEquipmentTab.AddTabNode("OpenedGlassContainers", LanguageHelper.GetFriendlyWord("OpenedGlassContainers"), AssetsHelper.Assets.LoadAsset<Sprite>("D_OpenGlass"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen3") != TechType.None)
-                openedGlassConteinersTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen3"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen2") != TechType.None)
-                openedGlassConteinersTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen2"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen1") != TechType.None)
-                openedGlassConteinersTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabContainerOpen1"));
+            if (PrefabsHelper.GetTechType(decorationItems, "LabContainerOpen3") != TechType.None)
+                openedGlassConteinersTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LabContainerOpen3"));
+            if (PrefabsHelper.GetTechType(decorationItems, "LabContainerOpen2") != TechType.None)
+                openedGlassConteinersTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LabContainerOpen2"));
+            if (PrefabsHelper.GetTechType(decorationItems, "LabContainerOpen1") != TechType.None)
+                openedGlassConteinersTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LabContainerOpen1"));
 
             // Glass containers
             var glassContainersTab = labEquipmentTab.AddTabNode("GlassContainers", LanguageHelper.GetFriendlyWord("GlassContainers"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Glass"));
             glassContainersTab.AddCraftingNode(TechType.LabContainer,
                                                 TechType.LabContainer2,
                                                 TechType.LabContainer3);
-            if (DecorationItemsHelper.getTechType(decorationItems, "LabContainer4") != TechType.None)
-                glassContainersTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabContainer4"));
+            if (PrefabsHelper.GetTechType(decorationItems, "LabContainer4") != TechType.None)
+                glassContainersTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LabContainer4"));
 
             // Furnitures
             var labFurnituresTab = labEquipmentTab.AddTabNode("LabFurnitures", LanguageHelper.GetFriendlyWord("LabFurnitures"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Furnitures"));
-            if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "DecorationsSpecimenAnalyzer") != TechType.None)
-                labFurnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationsSpecimenAnalyzer"));
-            if (!ConfigSwitcher.LabCart_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "LabCart") != TechType.None)
-                labFurnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabCart"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "LabShelf") != TechType.None)
-                labFurnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabShelf"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "DecorationLabTube") != TechType.None)
-                labFurnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationLabTube"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "LabRobotArm") != TechType.None)
-                labFurnituresTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "LabRobotArm"));
+            if (!ConfigSwitcher.SpecimenAnalyzer_asBuildable && PrefabsHelper.GetTechType(decorationItems, "DecorationsSpecimenAnalyzer") != TechType.None)
+                labFurnituresTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "DecorationsSpecimenAnalyzer"));
+            if (!ConfigSwitcher.LabCart_asBuildable && PrefabsHelper.GetTechType(decorationItems, "LabCart") != TechType.None)
+                labFurnituresTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LabCart"));
+            if (PrefabsHelper.GetTechType(decorationItems, "LabShelf") != TechType.None)
+                labFurnituresTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LabShelf"));
+            if (PrefabsHelper.GetTechType(decorationItems, "DecorationLabTube") != TechType.None)
+                labFurnituresTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "DecorationLabTube"));
+            if (PrefabsHelper.GetTechType(decorationItems, "LabRobotArm") != TechType.None)
+                labFurnituresTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LabRobotArm"));
 
             #endregion
 
@@ -149,77 +149,77 @@ namespace DecorationsMod
 
             // Wall monitors
             var wallMonitorsTab = electronicsTab.AddTabNode("WallMonitors", LanguageHelper.GetFriendlyWord("WallMonitors"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Monitor"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WallMonitor1") != TechType.None)
-                wallMonitorsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WallMonitor1"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WallMonitor2") != TechType.None)
-                wallMonitorsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WallMonitor2"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "WallMonitor3") != TechType.None)
-                wallMonitorsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WallMonitor3"));
+            if (PrefabsHelper.GetTechType(decorationItems, "WallMonitor1") != TechType.None)
+                wallMonitorsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WallMonitor1"));
+            if (PrefabsHelper.GetTechType(decorationItems, "WallMonitor2") != TechType.None)
+                wallMonitorsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WallMonitor2"));
+            if (PrefabsHelper.GetTechType(decorationItems, "WallMonitor3") != TechType.None)
+                wallMonitorsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WallMonitor3"));
 
             // Circuit boxes
             var circuitBoxesTab = electronicsTab.AddTabNode("CircuitBoxes", LanguageHelper.GetFriendlyWord("CircuitBoxes"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Box"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1b") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox1b"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2b") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2b"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2c") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2c"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2d") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox2d"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3b") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3b"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3c") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3c"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3d") != TechType.None)
-                circuitBoxesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CircuitBox3d"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox1") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox1"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox1b") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox1b"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox2") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox2"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox2b") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox2b"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox2c") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox2c"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox2d") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox2d"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox3") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox3"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox3b") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox3b"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox3c") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox3c"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CircuitBox3d") != TechType.None)
+                circuitBoxesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CircuitBox3d"));
 
             //var circuitBoxTab1 = electronicsTab.AddTabNode("CircuitBoxTab1", LanguageHelper.GetFriendlyWord("CircuitBoxTab1"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox2"));
             //var circuitBoxTab2 = electronicsTab.AddTabNode("CircuitBoxTab2", LanguageHelper.GetFriendlyWord("CircuitBoxTab2"), AssetsHelper.Assets.LoadAsset<Sprite>("circuitbox3"));
 
             // Seamoth fragments
             var seamothFragmentsTab = electronicsTab.AddTabNode("SeamothFragments", LanguageHelper.GetFriendlyWord("SeamothFragments"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Seamoth"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment1") != TechType.None)
-                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment1"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment2") != TechType.None)
-                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment2"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment3") != TechType.None)
-                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment3"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment4") != TechType.None)
-                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment4"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment5") != TechType.None)
-                seamothFragmentsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeamothFragment5"));
+            if (PrefabsHelper.GetTechType(decorationItems, "SeamothFragment1") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeamothFragment1"));
+            if (PrefabsHelper.GetTechType(decorationItems, "SeamothFragment2") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeamothFragment2"));
+            if (PrefabsHelper.GetTechType(decorationItems, "SeamothFragment3") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeamothFragment3"));
+            if (PrefabsHelper.GetTechType(decorationItems, "SeamothFragment4") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeamothFragment4"));
+            if (PrefabsHelper.GetTechType(decorationItems, "SeamothFragment5") != TechType.None)
+                seamothFragmentsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeamothFragment5"));
 
             #endregion
 
             #region DRINKS & FOOD
 
             var barKitchenTab = rootNode.AddTabNode("DrinksAndFood", LanguageHelper.GetFriendlyWord("DrinksAndFood"), AssetsHelper.Assets.LoadAsset<Sprite>("D_FoodandDrink"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarCup1") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarCup1"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarCup2") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarCup2"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarNapkins") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarNapkins"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarBottle1") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarBottle1"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarBottle2") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarBottle2"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarBottle3") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarBottle3"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarBottle4") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarBottle4"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarBottle5") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarBottle5"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarFood1") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarFood1"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "BarFood2") != TechType.None)
-                barKitchenTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "BarFood2"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarCup1") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarCup1"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarCup2") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarCup2"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarNapkins") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarNapkins"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarBottle1") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarBottle1"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarBottle2") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarBottle2"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarBottle3") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarBottle3"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarBottle4") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarBottle4"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarBottle5") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarBottle5"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarFood1") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarFood1"));
+            if (PrefabsHelper.GetTechType(decorationItems, "BarFood2") != TechType.None)
+                barKitchenTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BarFood2"));
             if (ConfigSwitcher.EnableNutrientBlock)
                 barKitchenTab.AddCraftingNode(TechType.NutrientBlock);
 
@@ -232,56 +232,56 @@ namespace DecorationsMod
             {
                 // Warpers
                 var warperTab = precursorTab.AddTabNode("PrecursorWarperParts", LanguageHelper.GetFriendlyWord("PrecursorWarperParts"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Warper"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart2") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart2"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart3") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart3"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart4") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart4"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart12") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart12"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart5") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart5"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart6") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart6"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart7") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart7"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart8") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart8"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart9") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart9"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart10") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart10"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "WarperPart11") != TechType.None)
-                    warperTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "WarperPart11"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart2") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart2"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart3") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart3"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart4") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart4"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart12") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart12"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart5") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart5"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart6") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart6"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart7") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart7"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart8") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart8"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart9") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart9"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart10") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart10"));
+                if (PrefabsHelper.GetTechType(decorationItems, "WarperPart11") != TechType.None)
+                    warperTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "WarperPart11"));
 
                 // Weapons
                 var weaponsTab = precursorTab.AddTabNode("PrecursorWeapons", LanguageHelper.GetFriendlyWord("Weapons"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Weapons"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact6") != TechType.None)
-                    weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact6"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact7") != TechType.None)
-                    weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact7"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact8") != TechType.None)
-                    weaponsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact8"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact6") != TechType.None)
+                    weaponsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact6"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact7") != TechType.None)
+                    weaponsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact7"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact8") != TechType.None)
+                    weaponsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact8"));
 
                 // Artefacts
                 var artefactsTab = precursorTab.AddTabNode("PrecursorRelics", LanguageHelper.GetFriendlyWord("Relics"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Relics"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact1") != TechType.None)
-                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact1"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact2") != TechType.None)
-                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact2"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact3") != TechType.None)
-                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact3"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact4") != TechType.None)
-                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact4"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact5") != TechType.None)
-                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact5"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact9") != TechType.None)
-                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact9"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact10") != TechType.None)
-                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact10"));
-                if (DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact11") != TechType.None)
-                    artefactsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "AlienArtefact11"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact1") != TechType.None)
+                    artefactsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact1"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact2") != TechType.None)
+                    artefactsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact2"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact3") != TechType.None)
+                    artefactsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact3"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact4") != TechType.None)
+                    artefactsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact4"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact5") != TechType.None)
+                    artefactsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact5"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact9") != TechType.None)
+                    artefactsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact9"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact10") != TechType.None)
+                    artefactsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact10"));
+                if (PrefabsHelper.GetTechType(decorationItems, "AlienArtefact11") != TechType.None)
+                    artefactsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "AlienArtefact11"));
 
                 // Keys
                 var keysTab = precursorTab.AddTabNode("PrecursorKeys", LanguageHelper.GetFriendlyWord("PrecursorKeys"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Tablets"));
@@ -298,10 +298,10 @@ namespace DecorationsMod
 
             // Damaging creatures
             var dmgCreatureEggsTab = eggsTab.AddTabNode("DmgCreatureEggsTab", LanguageHelper.GetFriendlyWord("DmgCreatureEggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Aggressive"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "EggSeaDragon") != TechType.None)
-                dmgCreatureEggsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "EggSeaDragon"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "EggsGhostLeviathan") != TechType.None)
-                dmgCreatureEggsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "EggsGhostLeviathan"));
+            if (PrefabsHelper.GetTechType(decorationItems, "EggSeaDragon") != TechType.None)
+                dmgCreatureEggsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "EggSeaDragon"));
+            if (PrefabsHelper.GetTechType(decorationItems, "EggsGhostLeviathan") != TechType.None)
+                dmgCreatureEggsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "EggsGhostLeviathan"));
             if (ConfigSwitcher.EnableRegularEggs)
             {
                 dmgCreatureEggsTab.AddCraftingNode(TechType.BonesharkEgg,
@@ -319,8 +319,8 @@ namespace DecorationsMod
 
             // Non-damaging creatures
             var nonDmgCreatureEggsTab = eggsTab.AddTabNode("NonDmgCreatureEggsTab", LanguageHelper.GetFriendlyWord("NonDmgCreatureEggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Peacefull"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "EggSeaEmperor") != TechType.None)
-                nonDmgCreatureEggsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "EggSeaEmperor"));
+            if (PrefabsHelper.GetTechType(decorationItems, "EggSeaEmperor") != TechType.None)
+                nonDmgCreatureEggsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "EggSeaEmperor"));
             if (ConfigSwitcher.EnableRegularEggs)
             {
                 nonDmgCreatureEggsTab.AddCraftingNode(TechType.JellyrayEgg,
@@ -340,55 +340,55 @@ namespace DecorationsMod
 
             // Leviathan dolls
             ModCraftTreeTab faunaTab = leviathansTab.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Dolls"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll") != TechType.None)
-                faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReefBackDoll"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll") != TechType.None)
-                faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaTreaderDoll"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "ReaperLeviathanDoll") != TechType.None)
-                faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReaperLeviathanDoll"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "GhostLeviathanDoll") != TechType.None)
-                faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GhostLeviathanDoll"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "SeaDragonDoll") != TechType.None)
-                faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaDragonDoll"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll") != TechType.None)
-                faunaTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaEmperorDoll"));
+            if (PrefabsHelper.GetTechType(decorationItems, "ReefBackDoll") != TechType.None)
+                faunaTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "ReefBackDoll"));
+            if (PrefabsHelper.GetTechType(decorationItems, "SeaTreaderDoll") != TechType.None)
+                faunaTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeaTreaderDoll"));
+            if (PrefabsHelper.GetTechType(decorationItems, "ReaperLeviathanDoll") != TechType.None)
+                faunaTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "ReaperLeviathanDoll"));
+            if (PrefabsHelper.GetTechType(decorationItems, "GhostLeviathanDoll") != TechType.None)
+                faunaTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "GhostLeviathanDoll"));
+            if (PrefabsHelper.GetTechType(decorationItems, "SeaDragonDoll") != TechType.None)
+                faunaTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeaDragonDoll"));
+            if (PrefabsHelper.GetTechType(decorationItems, "SeaEmperorDoll") != TechType.None)
+                faunaTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeaEmperorDoll"));
 
             // Leviathan skeletons
             ModCraftTreeTab skeletonsTab = leviathansTab.AddTabNode("SkeletonsParts", LanguageHelper.GetFriendlyWord("GenericSkeletonName"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Skeleton"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton1") != TechType.None)
-                skeletonsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton1"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton2") != TechType.None)
-                skeletonsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton2"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton3") != TechType.None)
-                skeletonsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "GenericSkeleton3"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "ReaperSkullDoll") != TechType.None)
-                skeletonsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReaperSkullDoll"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "ReaperSkeletonDoll") != TechType.None)
-                skeletonsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ReaperSkeletonDoll"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "SeaDragonSkeleton") != TechType.None)
-                skeletonsTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SeaDragonSkeleton"));
+            if (PrefabsHelper.GetTechType(decorationItems, "GenericSkeleton1") != TechType.None)
+                skeletonsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "GenericSkeleton1"));
+            if (PrefabsHelper.GetTechType(decorationItems, "GenericSkeleton2") != TechType.None)
+                skeletonsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "GenericSkeleton2"));
+            if (PrefabsHelper.GetTechType(decorationItems, "GenericSkeleton3") != TechType.None)
+                skeletonsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "GenericSkeleton3"));
+            if (PrefabsHelper.GetTechType(decorationItems, "ReaperSkullDoll") != TechType.None)
+                skeletonsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "ReaperSkullDoll"));
+            if (PrefabsHelper.GetTechType(decorationItems, "ReaperSkeletonDoll") != TechType.None)
+                skeletonsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "ReaperSkeletonDoll"));
+            if (PrefabsHelper.GetTechType(decorationItems, "SeaDragonSkeleton") != TechType.None)
+                skeletonsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeaDragonSkeleton"));
 
             #endregion
 
             #region OFFICE SUPPLIES
 
             var officeSuppliesTab = rootNode.AddTabNode("OfficeSupplies", LanguageHelper.GetFriendlyWord("OfficeSupplies"), AssetsHelper.Assets.LoadAsset<Sprite>("D_OfficeMaterials"));
-            if (!ConfigSwitcher.EmptyDesk_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "DecorationsEmptyDesk") != TechType.None)
-                officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorationsEmptyDesk"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "Folder1") != TechType.None)
-                officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "Folder1"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "Folder3") != TechType.None)
-                officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "Folder3"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "Clipboard") != TechType.None)
-                officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "Clipboard"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "PaperTrash") != TechType.None)
-                officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "PaperTrash"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "Pen") != TechType.None)
-                officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "Pen"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "PenHolder") != TechType.None)
-                officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "PenHolder"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "DecorativePDA") != TechType.None)
-                officeSuppliesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "DecorativePDA"));
+            if (!ConfigSwitcher.EmptyDesk_asBuildable && PrefabsHelper.GetTechType(decorationItems, "DecorationsEmptyDesk") != TechType.None)
+                officeSuppliesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "DecorationsEmptyDesk"));
+            if (PrefabsHelper.GetTechType(decorationItems, "Folder1") != TechType.None)
+                officeSuppliesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "Folder1"));
+            if (PrefabsHelper.GetTechType(decorationItems, "Folder3") != TechType.None)
+                officeSuppliesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "Folder3"));
+            if (PrefabsHelper.GetTechType(decorationItems, "Clipboard") != TechType.None)
+                officeSuppliesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "Clipboard"));
+            if (PrefabsHelper.GetTechType(decorationItems, "PaperTrash") != TechType.None)
+                officeSuppliesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "PaperTrash"));
+            if (PrefabsHelper.GetTechType(decorationItems, "Pen") != TechType.None)
+                officeSuppliesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "Pen"));
+            if (PrefabsHelper.GetTechType(decorationItems, "PenHolder") != TechType.None)
+                officeSuppliesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "PenHolder"));
+            if (PrefabsHelper.GetTechType(decorationItems, "DecorativePDA") != TechType.None)
+                officeSuppliesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "DecorativePDA"));
 
             #endregion
 
@@ -401,18 +401,18 @@ namespace DecorationsMod
             toysTab.AddCraftingNode(TechType.StarshipSouvenir,
                                     TechType.ArcadeGorgetoy,
                                     TechType.ToyCar);
-            if (!ConfigSwitcher.Forklift_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "ForkLiftDoll") != TechType.None)
-                toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "ForkLiftDoll"));
-            if (DecorationItemsHelper.getTechType(decorationItems, "CuddleFishDoll") != TechType.None)
-                toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "CuddleFishDoll"));
-            if (!ConfigSwitcher.MarkiDoll1_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "MarkiDoll1") != TechType.None)
-                toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarkiDoll1"));
-            if (!ConfigSwitcher.MarkiDoll2_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "MarkiDoll2") != TechType.None)
-                toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarkiDoll2"));
-            if (!ConfigSwitcher.JackSepticEye_asBuildable && DecorationItemsHelper.getTechType(decorationItems, "JackSepticEyeDoll") != TechType.None)
-                toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "JackSepticEyeDoll"));
-            if (!ConfigSwitcher.EatMyDiction_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "MarlaCat") != TechType.None)
-                toysTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "MarlaCat"));
+            if (!ConfigSwitcher.Forklift_asBuidable && PrefabsHelper.GetTechType(decorationItems, "ForkLiftDoll") != TechType.None)
+                toysTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "ForkLiftDoll"));
+            if (PrefabsHelper.GetTechType(decorationItems, "CuddleFishDoll") != TechType.None)
+                toysTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "CuddleFishDoll"));
+            if (!ConfigSwitcher.MarkiDoll1_asBuildable && PrefabsHelper.GetTechType(decorationItems, "MarkiDoll1") != TechType.None)
+                toysTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "MarkiDoll1"));
+            if (!ConfigSwitcher.MarkiDoll2_asBuildable && PrefabsHelper.GetTechType(decorationItems, "MarkiDoll2") != TechType.None)
+                toysTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "MarkiDoll2"));
+            if (!ConfigSwitcher.JackSepticEye_asBuildable && PrefabsHelper.GetTechType(decorationItems, "JackSepticEyeDoll") != TechType.None)
+                toysTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "JackSepticEyeDoll"));
+            if (!ConfigSwitcher.EatMyDiction_asBuidable && PrefabsHelper.GetTechType(decorationItems, "MarlaCat") != TechType.None)
+                toysTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "MarlaCat"));
 
             // Posters
             var postersTab = patTab.AddTabNode("Posters", LanguageHelper.GetFriendlyWord("Posters"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Posters"));
@@ -430,14 +430,14 @@ namespace DecorationsMod
             accessoriesTab.AddCraftingNode(TechType.LuggageBag);
             if (ConfigSwitcher.EnableSofas)
             {
-                if (!ConfigSwitcher.SofaStr1_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaStr1") != TechType.None)
-                    accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr1"));
-                if (!ConfigSwitcher.SofaStr2_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaStr2") != TechType.None)
-                    accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr2"));
-                if (!ConfigSwitcher.SofaStr3_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaStr3") != TechType.None)
-                    accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaStr3"));
-                if (!ConfigSwitcher.SofaCorner2_asBuidable && DecorationItemsHelper.getTechType(decorationItems, "SofaCorner2") != TechType.None)
-                    accessoriesTab.AddCraftingNode(DecorationItemsHelper.getTechType(decorationItems, "SofaCorner2"));
+                if (!ConfigSwitcher.SofaStr1_asBuidable && PrefabsHelper.GetTechType(decorationItems, "SofaStr1") != TechType.None)
+                    accessoriesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SofaStr1"));
+                if (!ConfigSwitcher.SofaStr2_asBuidable && PrefabsHelper.GetTechType(decorationItems, "SofaStr2") != TechType.None)
+                    accessoriesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SofaStr2"));
+                if (!ConfigSwitcher.SofaStr3_asBuidable && PrefabsHelper.GetTechType(decorationItems, "SofaStr3") != TechType.None)
+                    accessoriesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SofaStr3"));
+                if (!ConfigSwitcher.SofaCorner2_asBuidable && PrefabsHelper.GetTechType(decorationItems, "SofaCorner2") != TechType.None)
+                    accessoriesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SofaCorner2"));
             }
             accessoriesTab.AddCraftingNode(TechType.Cap1,
                                            TechType.Cap2);
