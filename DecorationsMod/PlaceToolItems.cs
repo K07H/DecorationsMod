@@ -8,6 +8,143 @@ namespace DecorationsMod
 {
     public static class PlaceToolItems
     {
+        private static readonly Dictionary<string, TechType> _batteries = new Dictionary<string, TechType>
+        {
+            { "WorldEntities/Tools/PowerCell", TechType.PowerCell },
+            { "WorldEntities/Tools/Battery", TechType.Battery },
+            { "WorldEntities/Tools/PrecursorIonPowerCell", TechType.PrecursorIonPowerCell },
+            { "WorldEntities/Tools/PrecursorIonBattery", TechType.PrecursorIonBattery }
+        };
+
+#if BELOWZERO
+        private static readonly Dictionary<string, TechType> _items = new Dictionary<string, TechType>
+        {
+            { "WorldEntities/Crafting/bleach", TechType.Bleach },
+            { "WorldEntities/Crafting/lubricant", TechType.Lubricant },
+            { "WorldEntities/Crafting/polyaniline", TechType.Polyaniline },
+            { "WorldEntities/Crafting/benzene", TechType.Benzene },
+            { "WorldEntities/Crafting/hydrochloricacid", TechType.HydrochloricAcid },
+            { "WorldEntities/Crafting/HatchingEnzymes", TechType.HatchingEnzymes },
+            { "WorldEntities/Food/Coffee", TechType.Coffee },
+            { "WorldEntities/Food/BigFilteredWater", TechType.BigFilteredWater },
+            { "WorldEntities/Food/DisinfectedWater", TechType.DisinfectedWater },
+            { "WorldEntities/Food/FilteredWater", TechType.FilteredWater },
+            { "WorldEntities/Crafting/WiringKit", TechType.WiringKit },
+            { "WorldEntities/Crafting/AdvancedWiringKit", TechType.AdvancedWiringKit },
+            { "WorldEntities/EnvironmentResources/ComputerChip", TechType.ComputerChip },
+            { "WorldEntities/EnvironmentResources/PrecursorIonCrystal", TechType.PrecursorIonCrystal },
+            { "WorldEntities/EnvironmentResources/StalkerTooth", TechType.StalkerTooth },
+            { "WorldEntities/Crafting/FirstAidKit", TechType.FirstAidKit },
+        };
+
+        private static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
+        {
+            { "WorldEntities/Crafting/Silicone", TechType.Silicone },
+            { "WorldEntities/Crafting/FiberMesh", TechType.FiberMesh },
+            { "WorldEntities/Crafting/aramidfibers", TechType.AramidFibers },
+            { "WorldEntities/Crafting/aerogel", TechType.Aerogel },
+            { "WorldEntities/Crafting/TitaniumIngot", TechType.TitaniumIngot },
+            { "WorldEntities/Crafting/PlasteelIngot", TechType.PlasteelIngot },
+            { "WorldEntities/Crafting/Glass", TechType.Glass },
+            { "WorldEntities/Crafting/EnameledGlass", TechType.EnameledGlass },
+            { "WorldEntities/Crafting/CopperWire", TechType.CopperWire },
+
+            { "WorldEntities/EnvironmentResources/SeaTreaderPoop", TechType.SeaTreaderPoop },
+            { "WorldEntities/EnvironmentResources/titanium", TechType.Titanium },
+            { "WorldEntities/EnvironmentResources/crashpowder", TechType.CrashPowder },
+            { "WorldEntities/EnvironmentResources/copper", TechType.Copper },
+            { "WorldEntities/EnvironmentResources/sulphurcrystal", TechType.Sulphur },
+            { "WorldEntities/EnvironmentResources/diamond", TechType.Diamond },
+            { "WorldEntities/EnvironmentResources/gold", TechType.Gold },
+            { "WorldEntities/EnvironmentResources/kyanite", TechType.Kyanite },
+            { "WorldEntities/EnvironmentResources/lead", TechType.Lead },
+            { "WorldEntities/EnvironmentResources/lithium", TechType.Lithium },
+            { "WorldEntities/EnvironmentResources/magnetite", TechType.Magnetite },
+            { "WorldEntities/EnvironmentResources/nickel", TechType.Nickel },
+            { "WorldEntities/EnvironmentResources/quartz", TechType.Quartz },
+            { "WorldEntities/EnvironmentResources/aluminumoxide", TechType.AluminumOxide },
+            { "WorldEntities/EnvironmentResources/salt", TechType.Salt },
+            { "WorldEntities/EnvironmentResources/silver", TechType.Silver },
+            { "WorldEntities/EnvironmentResources/uraninitecrystal", TechType.UraniniteCrystal },
+            //{ "WorldEntities/Alterra/Supplies/metal1", TechType.ScrapMetal },
+            //{ "WorldEntities/Alterra/Supplies/metal2", TechType.ScrapMetal },
+            //{ "WorldEntities/Alterra/Supplies/metal3", TechType.ScrapMetal },
+            //{ "WorldEntities/Alterra/Supplies/metal4", TechType.ScrapMetal },
+            
+            { "WorldEntities/EnvironmentResources/bloodoil", TechType.BloodOil },
+            { "WorldEntities/Flora/Shared/JeweledDiskPiece", TechType.JeweledDiskPiece },
+            { "WorldEntities/Flora/Shared/JeweledDiskPieceBlue", TechType.BlueJeweledDisk },
+            { "WorldEntities/Flora/Shared/JeweledDiskPieceGreen", TechType.GreenJeweledDisk },
+            { "WorldEntities/Flora/Shared/JeweledDiskPieceRed", TechType.RedJeweledDisk },
+            { "WorldEntities/Flora/Shared/CoralChunk", TechType.CoralChunk },
+            //{ "WorldEntities/Seeds/CreepvineSeed", TechType.CreepvineSeedCluster },
+            //{ "WorldEntities/Seeds/PurpleBrainCoralPiece", TechType.PurpleBrainCoralPiece },
+            //{ "WorldEntities/Creatures/GasPod", TechType.GasPod },
+        };
+#else
+        private static readonly Dictionary<string, TechType> _items = new Dictionary<string, TechType>
+        {
+            { "WorldEntities/Natural/bleach", TechType.Bleach },
+            { "WorldEntities/Natural/lubricant", TechType.Lubricant },
+            { "WorldEntities/Natural/polyaniline", TechType.Polyaniline },
+            { "WorldEntities/Natural/benzene", TechType.Benzene },
+            { "WorldEntities/Natural/hydrochloricacid", TechType.HydrochloricAcid },
+            { "WorldEntities/Natural/HatchingEnzymes", TechType.HatchingEnzymes },
+            { "WorldEntities/Food/Coffee", TechType.Coffee },
+            { "WorldEntities/Food/BigFilteredWater", TechType.BigFilteredWater },
+            { "WorldEntities/Food/DisinfectedWater", TechType.DisinfectedWater },
+            { "WorldEntities/Food/FilteredWater", TechType.FilteredWater },
+            { "WorldEntities/Natural/wiringkit", TechType.WiringKit },
+            { "WorldEntities/Natural/advancedwiringkit", TechType.AdvancedWiringKit },
+            { "WorldEntities/Natural/computerchip", TechType.ComputerChip },
+            { "WorldEntities/Natural/PrecursorIonCrystal", TechType.PrecursorIonCrystal },
+            { "WorldEntities/Natural/stalkertooth", TechType.StalkerTooth },
+            { "WorldEntities/Natural/firstaidkit", TechType.FirstAidKit },
+        };
+
+        private static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
+        {
+            { "WorldEntities/Natural/silicone", TechType.Silicone },
+            { "WorldEntities/Natural/fibermesh", TechType.FiberMesh },
+            { "WorldEntities/Natural/aramidfibers", TechType.AramidFibers },
+            { "WorldEntities/Natural/aerogel", TechType.Aerogel },
+            { "WorldEntities/Natural/titaniumingot", TechType.TitaniumIngot },
+            { "WorldEntities/Natural/plasteelingot", TechType.PlasteelIngot },
+            { "WorldEntities/Natural/glass", TechType.Glass },
+            { "WorldEntities/Natural/enameledglass", TechType.EnameledGlass },
+            { "WorldEntities/Natural/copperwire", TechType.CopperWire },
+
+            { "WorldEntities/Natural/seatreaderpoop", TechType.SeaTreaderPoop },
+            { "WorldEntities/Natural/titanium", TechType.Titanium },
+            { "WorldEntities/Natural/crashpowder", TechType.CrashPowder },
+            { "WorldEntities/Natural/copper", TechType.Copper },
+            { "WorldEntities/Natural/sulphurcrystal", TechType.Sulphur },
+            { "WorldEntities/Natural/diamond", TechType.Diamond },
+            { "WorldEntities/Natural/gold", TechType.Gold },
+            { "WorldEntities/Natural/kyanite", TechType.Kyanite },
+            { "WorldEntities/Natural/lead", TechType.Lead },
+            { "WorldEntities/Natural/lithium", TechType.Lithium },
+            { "WorldEntities/Natural/magnetite", TechType.Magnetite },
+            { "WorldEntities/Natural/nickel", TechType.Nickel },
+            { "WorldEntities/Natural/quartz", TechType.Quartz },
+            { "WorldEntities/Natural/aluminumoxide", TechType.AluminumOxide },
+            { "WorldEntities/Natural/salt", TechType.Salt },
+            { "WorldEntities/Natural/silver", TechType.Silver },
+            { "WorldEntities/Natural/uraninitecrystal", TechType.UraniniteCrystal },
+            //{ "WorldEntities/Natural/metal1", TechType.ScrapMetal },
+            //{ "WorldEntities/Natural/metal2", TechType.ScrapMetal },
+            //{ "WorldEntities/Natural/metal3", TechType.ScrapMetal },
+            //{ "WorldEntities/Natural/metal4", TechType.ScrapMetal },
+
+            { "WorldEntities/Natural/bloodoil", TechType.BloodOil },
+            { "WorldEntities/doodads/coral_reef/jeweleddiskpiece", TechType.JeweledDiskPiece },
+            { "WorldEntities/doodads/coral_reef/coralchunk", TechType.CoralChunk },
+            //{ "worldentities/Natural/creepvineseedcluster", TechType.CreepvineSeedCluster },
+            //{ "worldentities/seeds/purplebraincoralpiece", TechType.PurpleBrainCoralPiece },
+            //{ "worldentities/creatures/gaspod", TechType.GasPod },
+        };
+#endif
+
         private static void MakeItemPlaceable(TechType techType, GameObject item, Collider collider = null)
         {
             // We can pick this item
@@ -78,150 +215,38 @@ namespace DecorationsMod
             }
         }
 
-        private static bool _batteriesMadePlaceable = false;
-        private static void MakeBatteriesPlaceable()
+        private static void MakeBatteryPlaceable(TechType batteryTechType, string batteryPath)
         {
-            if (!_batteriesMadePlaceable)
+            GameObject obj = Resources.Load<GameObject>(batteryPath);
+            if (obj != null)
             {
-                GameObject powercell = Resources.Load<GameObject>("WorldEntities/Tools/PowerCell");
-                if (powercell != null)
+                if (batteryTechType == TechType.PowerCell)
                 {
-                    powercell.AddComponent<CustomPlaceToolController>();
-                    powercell.AddComponent<PowerCell_PT>();
-                    MakeItemPlaceable(TechType.PowerCell, powercell);
+                    obj.AddComponent<CustomPlaceToolController>();
+                    obj.AddComponent<PowerCell_PT>();
                 }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Tools/PowerCell");
-#endif
-                GameObject battery = Resources.Load<GameObject>("WorldEntities/Tools/Battery");
-                if (battery != null)
+                else if (batteryTechType == TechType.Battery)
                 {
-                    battery.AddComponent<CustomPlaceToolController>();
-                    battery.AddComponent<Battery_PT>();
-                    MakeItemPlaceable(TechType.Battery, battery);
+                    obj.AddComponent<CustomPlaceToolController>();
+                    obj.AddComponent<Battery_PT>();
                 }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Tools/PowerCell");
-#endif
-                GameObject ionpowercell = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonPowerCell");
-                if (ionpowercell != null)
+                else if (batteryTechType == TechType.PrecursorIonPowerCell)
                 {
-                    ionpowercell.AddComponent<CustomPlaceToolController>();
-                    ionpowercell.AddComponent<IonPowerCell_PT>();
-                    MakeItemPlaceable(TechType.PrecursorIonPowerCell, ionpowercell);
+                    obj.AddComponent<CustomPlaceToolController>();
+                    obj.AddComponent<IonPowerCell_PT>();
                 }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Tools/PrecursorIonPowerCell");
-#endif
-                GameObject ionbattery = Resources.Load<GameObject>("WorldEntities/Tools/PrecursorIonBattery");
-                if (ionbattery != null)
+                else if (batteryTechType == TechType.PrecursorIonBattery)
                 {
-                    ionbattery.AddComponent<CustomPlaceToolController>();
-                    ionbattery.AddComponent<IonBattery_PT>();
-                    MakeItemPlaceable(TechType.PrecursorIonBattery, ionbattery);
+                    obj.AddComponent<CustomPlaceToolController>();
+                    obj.AddComponent<IonBattery_PT>();
                 }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Tools/PrecursorIonBattery");
-#endif
-
-                _batteriesMadePlaceable = true;
+                MakeItemPlaceable(batteryTechType, batteryPath);
             }
-        }
-
-#if BELOWZERO
-        private static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
-        {
-            { "WorldEntities/Crafting/Silicone", TechType.Silicone },
-            { "WorldEntities/Crafting/FiberMesh", TechType.FiberMesh },
-            { "WorldEntities/Crafting/aramidfibers", TechType.AramidFibers },
-            { "WorldEntities/Crafting/aerogel", TechType.Aerogel },
-            { "WorldEntities/Crafting/TitaniumIngot", TechType.TitaniumIngot },
-            { "WorldEntities/Crafting/PlasteelIngot", TechType.PlasteelIngot },
-            { "WorldEntities/Crafting/Glass", TechType.Glass },
-            { "WorldEntities/Crafting/EnameledGlass", TechType.EnameledGlass },
-            { "WorldEntities/Crafting/CopperWire", TechType.CopperWire },
-
-            { "WorldEntities/EnvironmentResources/SeaTreaderPoop", TechType.SeaTreaderPoop },
-            //{ "WorldEntities/Alterra/Supplies/metal1", TechType.ScrapMetal },
-            //{ "WorldEntities/Alterra/Supplies/metal2", TechType.ScrapMetal },
-            //{ "WorldEntities/Alterra/Supplies/metal3", TechType.ScrapMetal },
-            //{ "WorldEntities/Alterra/Supplies/metal4", TechType.ScrapMetal },
-            { "WorldEntities/EnvironmentResources/titanium", TechType.Titanium },
-            { "WorldEntities/EnvironmentResources/crashpowder", TechType.CrashPowder },
-            { "WorldEntities/EnvironmentResources/copper", TechType.Copper },
-            { "WorldEntities/EnvironmentResources/sulphurcrystal", TechType.Sulphur },
-            { "WorldEntities/EnvironmentResources/diamond", TechType.Diamond },
-            { "WorldEntities/EnvironmentResources/gold", TechType.Gold },
-            { "WorldEntities/EnvironmentResources/kyanite", TechType.Kyanite },
-            { "WorldEntities/EnvironmentResources/lead", TechType.Lead },
-            { "WorldEntities/EnvironmentResources/lithium", TechType.Lithium },
-            { "WorldEntities/EnvironmentResources/magnetite", TechType.Magnetite },
-            { "WorldEntities/EnvironmentResources/nickel", TechType.Nickel },
-            { "WorldEntities/EnvironmentResources/quartz", TechType.Quartz },
-            { "WorldEntities/EnvironmentResources/aluminumoxide", TechType.AluminumOxide },
-            { "WorldEntities/EnvironmentResources/salt", TechType.Salt },
-            { "WorldEntities/EnvironmentResources/silver", TechType.Silver },
-            { "WorldEntities/EnvironmentResources/uraninitecrystal", TechType.UraniniteCrystal },
-            
-            { "WorldEntities/EnvironmentResources/bloodoil", TechType.BloodOil },
-            //{ "WorldEntities/Seeds/CreepvineSeed", TechType.CreepvineSeedCluster },
-
-            //{ "WorldEntities/Seeds/PurpleBrainCoralPiece", TechType.PurpleBrainCoralPiece },
-            { "WorldEntities/Flora/Shared/JeweledDiskPiece", TechType.JeweledDiskPiece },
-            { "WorldEntities/Flora/Shared/JeweledDiskPieceBlue", TechType.BlueJeweledDisk },
-            { "WorldEntities/Flora/Shared/JeweledDiskPieceGreen", TechType.GreenJeweledDisk },
-            { "WorldEntities/Flora/Shared/JeweledDiskPieceRed", TechType.RedJeweledDisk },
-            { "WorldEntities/Flora/Shared/CoralChunk", TechType.CoralChunk },
-            //{ "WorldEntities/Creatures/GasPod", TechType.GasPod },
-        };
-#else
-        private static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
-        {
-            { "worldentities/natural/silicone", TechType.Silicone },
-            { "worldentities/natural/fibermesh", TechType.FiberMesh },
-            { "worldentities/natural/aramidfibers", TechType.AramidFibers },
-            { "worldentities/natural/aerogel", TechType.Aerogel },
-            { "worldentities/natural/titaniumingot", TechType.TitaniumIngot },
-            { "worldentities/natural/plasteelingot", TechType.PlasteelIngot },
-            { "worldentities/natural/glass", TechType.Glass },
-            { "worldentities/natural/enameledglass", TechType.EnameledGlass },
-            { "worldentities/natural/copperwire", TechType.CopperWire },
-
-            { "worldentities/natural/seatreaderpoop", TechType.SeaTreaderPoop },
-            //{ "worldentities/natural/metal1", TechType.ScrapMetal },
-            //{ "worldentities/natural/metal2", TechType.ScrapMetal },
-            //{ "worldentities/natural/metal3", TechType.ScrapMetal },
-            //{ "worldentities/natural/metal4", TechType.ScrapMetal },
-            { "worldentities/natural/titanium", TechType.Titanium },
-            { "worldentities/natural/crashpowder", TechType.CrashPowder },
-            { "worldentities/natural/copper", TechType.Copper },
-            { "worldentities/natural/sulphurcrystal", TechType.Sulphur },
-            { "worldentities/natural/diamond", TechType.Diamond },
-            { "worldentities/natural/gold", TechType.Gold },
-            { "worldentities/natural/kyanite", TechType.Kyanite },
-            { "worldentities/natural/lead", TechType.Lead },
-            { "worldentities/natural/lithium", TechType.Lithium },
-            { "worldentities/natural/magnetite", TechType.Magnetite },
-            { "worldentities/natural/nickel", TechType.Nickel },
-            { "worldentities/natural/quartz", TechType.Quartz },
-            { "worldentities/natural/aluminumoxide", TechType.AluminumOxide },
-            { "worldentities/natural/salt", TechType.Salt },
-            { "worldentities/natural/silver", TechType.Silver },
-            { "worldentities/natural/uraninitecrystal", TechType.UraniniteCrystal },
-
-            { "worldentities/natural/bloodoil", TechType.BloodOil },
-            //{ "worldentities/natural/creepvineseedcluster", TechType.CreepvineSeedCluster },
-
-            //{ "worldentities/seeds/purplebraincoralpiece", TechType.PurpleBrainCoralPiece },
-            { "worldentities/doodads/coral_reef/jeweleddiskpiece", TechType.JeweledDiskPiece },
-            { "worldentities/doodads/coral_reef/coralchunk", TechType.CoralChunk },
-            //{ "worldentities/creatures/gaspod", TechType.GasPod },
-        };
+#if DEBUG_ITEMS_REGISTRATION
+            else
+                Logger.Log("WARNING: Could not load type[{0}]", batteryPath);
 #endif
+        }
 
         private static void MakeMaterialPlaceable(TechType materialTechType, string materialPath)
         {
@@ -376,10 +401,57 @@ namespace DecorationsMod
 #endif
         }
 
-        private static void MakeRemainingMaterialsPlaceable()
+        private static void MakeItemPlaceable(TechType itemTechType, string itemPath)
         {
-            foreach (KeyValuePair<string, TechType> mat in _materials)
-                MakeMaterialPlaceable(mat.Value, mat.Key);
+            GameObject item = Resources.Load<GameObject>(itemPath);
+            if (item != null)
+            {
+                if (itemTechType == TechType.Bleach)
+                {
+                    item.AddComponent<CustomPlaceToolController>();
+                    item.AddComponent<Bleach_PT>();
+                }
+                else if (itemTechType == TechType.Lubricant)
+                {
+                    item.AddComponent<CustomPlaceToolController>();
+                    item.AddComponent<Lubricant_PT>();
+                }
+                else if (itemTechType == TechType.DisinfectedWater)
+                {
+                    item.AddComponent<CustomPlaceToolController>();
+                    item.AddComponent<DisinfectedWater_PT>();
+                }
+                else if (itemTechType == TechType.FilteredWater)
+                {
+                    item.AddComponent<CustomPlaceToolController>();
+                    item.AddComponent<FilteredWater_PT>();
+                }
+                else if (itemTechType == TechType.WiringKit)
+                {
+                    item.AddComponent<CustomPlaceToolController>();
+                    item.AddComponent<WiringKit_PT>();
+                }
+                else if (itemTechType == TechType.AdvancedWiringKit)
+                {
+                    item.AddComponent<CustomPlaceToolController>();
+                    item.AddComponent<AdvancedWiringKit_PT>();
+                }
+                else if (itemTechType == TechType.ComputerChip)
+                {
+                    item.AddComponent<CustomPlaceToolController>();
+                    item.AddComponent<ComputerChip_PT>();
+                }
+                else if (itemTechType == TechType.StalkerTooth)
+                {
+                    item.AddComponent<CustomPlaceToolController>();
+                    item.AddComponent<StalkerTooth_PT>();
+                }
+                MakeItemPlaceable(itemTechType, item);
+            }
+#if DEBUG_ITEMS_REGISTRATION
+            else
+                Logger.Log("WARNING: Could not load type[{0}]", itemPath);
+#endif
         }
 
         private static bool _madeItemsPlaceable = false;
@@ -389,225 +461,22 @@ namespace DecorationsMod
             {
                 Logger.Log("INFO: Making items placeable/pickupable...");
 
-                // Chimicals
-#if SUBNAUTICA
-                GameObject bleach = Resources.Load<GameObject>("WorldEntities/Natural/bleach");
-#else
-                GameObject bleach = Resources.Load<GameObject>("WorldEntities/Crafting/Bleach");
-#endif
-                if (bleach != null)
-                {
-                    bleach.AddComponent<CustomPlaceToolController>();
-                    bleach.AddComponent<Bleach_PT>();
-                    MakeItemPlaceable(TechType.Bleach, bleach);
-                }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "bleach");
-#endif
-
-#if SUBNAUTICA
-                GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Natural/lubricant");
-#else
-                GameObject lubricant = Resources.Load<GameObject>("WorldEntities/Crafting/Lubricant");
-#endif
-                if (lubricant != null)
-                {
-                    lubricant.AddComponent<CustomPlaceToolController>();
-                    lubricant.AddComponent<Lubricant_PT>();
-                    MakeItemPlaceable(TechType.Lubricant, lubricant);
-                }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "lubricant");
-#endif
-
-#if SUBNAUTICA
-                GameObject polyaniline = Resources.Load<GameObject>("WorldEntities/Natural/polyaniline");
-#else
-                GameObject polyaniline = Resources.Load<GameObject>("WorldEntities/Crafting/polyaniline");
-#endif
-                if (polyaniline != null)
-                    MakeItemPlaceable(TechType.Polyaniline, polyaniline);
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "polyaniline");
-#endif
-
-#if SUBNAUTICA
-                GameObject benzene = Resources.Load<GameObject>("WorldEntities/Natural/benzene");
-#else
-                GameObject benzene = Resources.Load<GameObject>("WorldEntities/Crafting/benzene");
-#endif
-                if (benzene != null)
-                    MakeItemPlaceable(TechType.Benzene, benzene);
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "benzene");
-#endif
-
-#if SUBNAUTICA
-                GameObject hydrochloricacid = Resources.Load<GameObject>("WorldEntities/Natural/hydrochloricacid");
-#else
-                GameObject hydrochloricacid = Resources.Load<GameObject>("WorldEntities/Crafting/hydrochloricacid");
-#endif
-                if (hydrochloricacid != null)
-                    MakeItemPlaceable(TechType.HydrochloricAcid, hydrochloricacid);
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "hydrochloricacid");
-#endif
-
-#if SUBNAUTICA
-                GameObject hatchingenzymes = Resources.Load<GameObject>("WorldEntities/Natural/HatchingEnzymes");
-#else
-                GameObject hatchingenzymes = Resources.Load<GameObject>("WorldEntities/Crafting/HatchingEnzymes");
-#endif
-                if (hatchingenzymes != null)
-                    MakeItemPlaceable(TechType.HatchingEnzymes, hatchingenzymes);
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "HatchingEnzymes");
-#endif
-
-                // Food & water
-                GameObject coffee = Resources.Load<GameObject>("WorldEntities/Food/Coffee");
-                if (coffee != null)
-                    MakeItemPlaceable(TechType.Coffee, coffee);
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "Coffee");
-#endif
-                GameObject bigfilteredwater = Resources.Load<GameObject>("WorldEntities/Food/BigFilteredWater");
-                if (bigfilteredwater != null)
-                    MakeItemPlaceable(TechType.BigFilteredWater, bigfilteredwater);
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "BigFilteredWater");
-#endif
-                GameObject disinfectedwater = Resources.Load<GameObject>("WorldEntities/Food/DisinfectedWater");
-                if (disinfectedwater != null)
-                {
-                    disinfectedwater.AddComponent<CustomPlaceToolController>();
-                    disinfectedwater.AddComponent<DisinfectedWater_PT>();
-                    MakeItemPlaceable(TechType.DisinfectedWater, disinfectedwater);
-                }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "DisinfectedWater");
-#endif
-                GameObject filteredwater = Resources.Load<GameObject>("WorldEntities/Food/FilteredWater");
-                if (filteredwater != null)
-                {
-                    filteredwater.AddComponent<CustomPlaceToolController>();
-                    filteredwater.AddComponent<FilteredWater_PT>();
-                    MakeItemPlaceable(TechType.FilteredWater, filteredwater);
-                }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "FilteredWater");
-#endif
+                // Decorative items
+                foreach (KeyValuePair<string, TechType> it in _items)
+                    MakeItemPlaceable(it.Value, it.Key);
 
                 // Snacks
                 MakeSnacksPlaceable();
 
-                // Electronics
-#if SUBNAUTICA
-                GameObject wiringkit = Resources.Load<GameObject>("WorldEntities/Natural/wiringkit");
-#else
-                GameObject wiringkit = Resources.Load<GameObject>("WorldEntities/Crafting/WiringKit");
-#endif
-                if (wiringkit != null)
-                {
-                    wiringkit.AddComponent<CustomPlaceToolController>();
-                    wiringkit.AddComponent<WiringKit_PT>();
-                    MakeItemPlaceable(TechType.WiringKit, wiringkit);
-                }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "wiringkit");
-#endif
-
-#if SUBNAUTICA
-                GameObject advancedwiringkit = Resources.Load<GameObject>("WorldEntities/Natural/advancedwiringkit");
-#else
-                GameObject advancedwiringkit = Resources.Load<GameObject>("WorldEntities/Crafting/AdvancedWiringKit");
-#endif
-                if (advancedwiringkit != null)
-                {
-                    advancedwiringkit.AddComponent<CustomPlaceToolController>();
-                    advancedwiringkit.AddComponent<AdvancedWiringKit_PT>();
-                    MakeItemPlaceable(TechType.AdvancedWiringKit, advancedwiringkit);
-                }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "advancedwiringkit");
-#endif
-
-#if SUBNAUTICA
-                GameObject computerchip = Resources.Load<GameObject>("WorldEntities/Natural/computerchip");
-#else
-                GameObject computerchip = Resources.Load<GameObject>("WorldEntities/EnvironmentResources/ComputerChip");
-#endif
-                if (computerchip != null)
-                {
-                    computerchip.AddComponent<CustomPlaceToolController>();
-                    computerchip.AddComponent<ComputerChip_PT>();
-                    MakeItemPlaceable(TechType.ComputerChip, computerchip);
-                }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "computerchip");
-#endif
-
+                // Batteries/powercells
                 if (ConfigSwitcher.EnablePlaceBatteries)
-                    MakeBatteriesPlaceable();
-
-                // Precursor
-#if SUBNAUTICA
-                GameObject ionCrystal = Resources.Load<GameObject>("WorldEntities/Natural/PrecursorIonCrystal");
-#else
-                GameObject ionCrystal = Resources.Load<GameObject>("WorldEntities/EnvironmentResources/PrecursorIonCrystal");
-#endif
-                if (ionCrystal != null)
-                    MakeItemPlaceable(TechType.PrecursorIonCrystal, ionCrystal);
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "PrecursorIonCrystal");
-#endif
+                    foreach (KeyValuePair<string, TechType> k in _batteries)
+                        MakeBatteryPlaceable(k.Value, k.Key);
 
                 // Other materials
                 if (ConfigSwitcher.EnablePlaceOtherMaterials)
-                    MakeRemainingMaterialsPlaceable();
-
-                // Others
-#if SUBNAUTICA
-                GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/Natural/stalkertooth");
-#else
-                GameObject stalkertooth = Resources.Load<GameObject>("WorldEntities/EnvironmentResources/StalkerTooth");
-#endif
-                if (stalkertooth != null)
-                {
-                    stalkertooth.AddComponent<CustomPlaceToolController>();
-                    stalkertooth.AddComponent<StalkerTooth_PT>();
-                    MakeItemPlaceable(TechType.StalkerTooth, stalkertooth);
-                }
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "stalkertooth");
-#endif
-
-#if SUBNAUTICA
-                GameObject firstaidkit = Resources.Load<GameObject>("WorldEntities/Natural/firstaidkit");
-#else
-                GameObject firstaidkit = Resources.Load<GameObject>("WorldEntities/Crafting/FirstAidKit");
-#endif
-                if (firstaidkit != null)
-                    MakeItemPlaceable(TechType.FirstAidKit, firstaidkit);
-#if DEBUG_ITEMS_REGISTRATION
-                else
-                    Logger.Log("WARNING: Could not load type[{0}]", "firstaidkit");
-#endif
+                    foreach (KeyValuePair<string, TechType> mat in _materials)
+                        MakeMaterialPlaceable(mat.Value, mat.Key);
 
                 _madeItemsPlaceable = true;
             }
