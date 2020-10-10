@@ -95,7 +95,7 @@ Adds a fabricator allowing you to craft 118 new items. Adds another fabricator t
     All materials (benzene, bleach, computer chip, hydrochloric acid, ion cube, lubricant, polyaniline, stalker tooth, wiring kit, advanced wiring kit, silicone rubber, fiber mesh, synthetic fiber, aerogel, titanium ingot, plasteel ingot, glass, enameled glass, copper wire, alien feces, titanium, cave sulfur, copper ore, crystalline sulfur, diamond, gold, kyanite, lead, lithium, magnetite, nickel, quartz, ruby, salt, silver, uraninite crystal, blood oil, coral tube sample and table coral sample).<br>
 
 ### Additional information:<br>
-You can change range, brightness and color of the customizable light item by clicking it and holding various keys (also it can built indoor or outdoor).<br>
+You can change range, brightness and color of the customizable light item by clicking it and holding various keys. It can built indoor or outdoor.<br>
 You can change the size and orientation of the customizable picture frame item (also you can set its content image from the screenshot folder like any other regular picture frame).<br>
 You can switch customizable picture frames to poster, random or slideshow modes (by clicking it while holding "F", "G" or "T").<br>
 You can interact with the Seamoth, PRAWN suit and Cyclops toys by clicking them.<br>
