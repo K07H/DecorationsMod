@@ -6682,19 +6682,19 @@ namespace DecorationsModConfigurator
                         return "If enabled, you will be able to place following items: silicone rubber, fiber mesh, synthetic fiber, aerogel, titanium ingot, plasteel ingot, glass, enameled glass, copper wire, alien feces, titanium, cave sulfur, copper ore, crystalline sulfur, diamond, gold, kyanite, lead, lithium, magnetite, nickel, quartz, ruby, salt, silver, uraninite crystal, blood oil, coral tube sample and table coral sample.";
                 case "Config_EnablePlaceBatteriesDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Si cette option est activée, vous pourrez placer les batteries, batteries hautes capacité, batteries ioniques et batteries hautes capacité ioniques où vous le souhaitez. Attention: Si vous activez cette option vous devrez faire glisser manuellement les batteries vers le chargeur (un simple clic gauche ne les équipera pas).";
+                        return "Si cette option est activée, vous pourrez placer les batteries, batteries hautes capacité, batteries ioniques et batteries hautes capacité ioniques où vous le souhaitez.";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Si está habilitado, podrá colocar baterías, células de energía, baterías de iones y células de energía de iones donde lo desee. Atención: deberá arrastrar y soltar manualmente las baterías / celdas de energía al cargador (el clic izquierdo no las equipará).";
+                        return "Si está habilitado, podrá colocar baterías, células de energía, baterías de iones y células de energía de iones donde lo desee.";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Etkinleştirilirse, pilleri, güç hücrelerini, iyon pillerini ve iyon güç hücrelerini istediğiniz yere yerleştirebilirsiniz. Dikkat: pilleri / güç hücrelerini şarj cihazına manuel olarak sürükleyip bırakmanız gerekecektir (sol tıklama onları donatmayacaktır).";
+                        return "Etkinleştirilirse, pilleri, güç hücrelerini, iyon pillerini ve iyon güç hücrelerini istediğiniz yere yerleştirebilirsiniz.";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Wenn diese Option aktiviert ist, können Sie Batterien, Powercells, Ionenbatterien und Ionen-Powercells an der gewünschten Stelle platzieren. Achtung: Sie müssen Batterien / Stromzellen manuell per Drag & Drop auf das Ladegerät ziehen (Linksklick rüstet sie nicht aus).";
+                        return "Wenn diese Option aktiviert ist, können Sie Batterien, Powercells, Ionenbatterien und Ionen-Powercells an der gewünschten Stelle platzieren.";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Если этот параметр включен, вы сможете размещать батареи, энергоячейки, ионные батареи и энергоячейки, где вы хотите. Внимание: вам придется вручную перетаскивать батареи/энергоячейки в зарядное устройство (щелчок левой кнопкой мыши не приведет к их установке).";
+                        return "Если этот параметр включен, вы сможете размещать батареи, энергоячейки, ионные батареи и энергоячейки, где вы хотите.";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Wanneer aangezet, kan je batterijen, krachtcellen, ion batterijen, en ion krachtcellen plaatsen waar je wilt. Attentie: je moet handmatig de batterijen/krachtcellen naar de oplader slepen en droppen (linker muis knop zal niet werken).";
+                    	return "Wanneer aangezet, kan je batterijen, krachtcellen, ion batterijen, en ion krachtcellen plaatsen waar je wilt.";
                     else
-                        return "If enabled, you will be able to place batteries, powercells, ion batteries and ion powercells where you want. Warning: If enabled, you will have to manually drag-n-drop batteries/power cells to the charger (left click will not equip them).";
+                        return "If enabled, you will be able to place batteries, powercells, ion batteries and ion powercells where you want.";
                 case "Config_EnableNewFloraDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Si cette option est activée, vous pourrez construire le fabricateur de graines et ainsi fabriquer des graines (toutes les graines existantes plus des nouvelles).";
