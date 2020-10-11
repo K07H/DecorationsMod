@@ -205,6 +205,7 @@
     <Compile Include="Fixers\InventoryConsoleCommandsFixer.cs" />
     <Compile Include="Fixers\KnownTechFixer.cs" />
     <Compile Include="Fixers\MainMenuLoadButtonFixer.cs" />
+    <Compile Include="Fixers\ModdedBatteriesFixer.cs" />
     <Compile Include="Fixers\PickupableFixer.cs" />
     <Compile Include="Fixers\PictureFrameFixer.cs" />
     <Compile Include="Fixers\PlayerFixer.cs" />

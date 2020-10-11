@@ -240,6 +240,7 @@ namespace DecorationsMod
             { "AdvancedWiringKit", "model" },
             { "ComputerChip", "model" },
             { "Battery", "model" },
+            { "LithiumIonBattery", "model" },
             { "PrecursorIonBattery", "model" },
             { "Silicone", "model" },
             { "FiberMesh", "model" },
@@ -267,7 +268,7 @@ namespace DecorationsMod
                             sas = model.GetComponentsInParent<SkyApplier>();
                         if (sas != null && sas.Length == 1)
                         {
-                            sas[0].renderers = new Renderer[] { };
+                            Object.DestroyImmediate(sas[0]); // Prevent accumulation of SkyAppliers
                             SkyApplier sa = model.AddComponent<SkyApplier>();
                             if (sa != null)
                             {

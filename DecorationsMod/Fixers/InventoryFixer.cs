@@ -1,4 +1,6 @@
-﻿namespace DecorationsMod.Fixers
+﻿using System.Collections.Generic;
+
+namespace DecorationsMod.Fixers
 {
     public class InventoryFixer
     {
@@ -10,8 +12,9 @@
             if (item == null)
                 return true;
             TechType techType = item.GetTechType();
-            if (techType == TechType.Battery || techType == TechType.PrecursorIonBattery ||
-                techType == TechType.PowerCell || techType == TechType.PrecursorIonPowerCell)
+            bool isBattery = ModdedBatteriesFixer.BatteriesTechTypes().Contains(techType);
+            bool isPowercell = ModdedBatteriesFixer.PowercellsTechTypes().Contains(techType);
+            if (isBattery || isPowercell)
             {
                 IItemsContainer container = itemA.container;
                 if (container == null)
@@ -21,11 +24,7 @@
                 string empty = string.Empty;
                 if (flag && !equipment.GetItemSlot(item, ref empty))
                     return true;
-#if BELOWZERO
-                EquipmentType equipmentType = TechData.GetEquipmentType(techType);
-#else
-                EquipmentType equipmentType = CraftData.GetEquipmentType(techType);
-#endif
+                EquipmentType equipmentType = isPowercell ? EquipmentType.PowerCellCharger : EquipmentType.BatteryCharger;
                 if (string.IsNullOrEmpty(slotB))
                     equipmentB.GetCompatibleSlot(equipmentType, out slotB);
                 if (string.IsNullOrEmpty(slotB))
@@ -81,48 +80,102 @@
                     if (item.CanDrag(false))
                     {
                         __result = ItemAction.Switch;
+#if DEBUG_PLACE_TOOL
+                        Logger.Log("DEBUG: AltUse returns SWITCH for " + (item.item != null ? item.item.GetTechType().AsString(false) : "?"));
+#endif
                         return false;
                     }
                 }
                 else if (container == __instance.container && Inventory.CanDropItemHere(item.item, false))
                 {
                     __result = ItemAction.Drop;
+#if DEBUG_PLACE_TOOL
+                    Logger.Log("DEBUG: AltUse returns DROP for " + (item.item != null ? item.item.GetTechType().AsString(false) : "?"));
+#endif
                     return false;
                 }
-                if (item.item != null && ConfigSwitcher.EnablePlaceItems && Inventory.main.GetCanBindItem(item) && GameInput.GetPrimaryDevice() == GameInput.Device.Controller)
+                if (GameInput.GetPrimaryDevice() == GameInput.Device.Controller)
                 {
-                    TechType techType = item.item.GetTechType();
-                    if (techType == TechType.Bleach ||
-                        techType == TechType.Lubricant ||
-                        techType == TechType.Polyaniline ||
-                        techType == TechType.Benzene ||
-                        techType == TechType.HydrochloricAcid ||
-                        techType == TechType.HatchingEnzymes ||
-                        techType == TechType.Coffee ||
-                        techType == TechType.BigFilteredWater ||
-                        techType == TechType.DisinfectedWater ||
-                        techType == TechType.FilteredWater ||
-                        techType == TechType.WiringKit ||
-                        techType == TechType.AdvancedWiringKit ||
-                        techType == TechType.ComputerChip ||
-                        techType == TechType.PrecursorIonCrystal ||
-                        techType == TechType.StalkerTooth ||
-                        techType == TechType.FirstAidKit ||
-                        techType == TechType.Snack1 ||
-                        techType == TechType.Snack2 ||
-                        techType == TechType.Snack3)
+                    if (item.item != null && ConfigSwitcher.EnablePlaceItems && Inventory.main.GetCanBindItem(item))
                     {
-                        __result = ItemAction.Assign;
-                        return false;
+                        TechType techType = item.item.GetTechType();
+                        if (techType == TechType.Bleach ||
+                            techType == TechType.Lubricant ||
+                            techType == TechType.Polyaniline ||
+                            techType == TechType.Benzene ||
+                            techType == TechType.HydrochloricAcid ||
+                            techType == TechType.HatchingEnzymes ||
+                            techType == TechType.Coffee ||
+                            techType == TechType.BigFilteredWater ||
+                            techType == TechType.DisinfectedWater ||
+                            techType == TechType.FilteredWater ||
+                            techType == TechType.WiringKit ||
+                            techType == TechType.AdvancedWiringKit ||
+                            techType == TechType.ComputerChip ||
+                            techType == TechType.PrecursorIonCrystal ||
+                            techType == TechType.StalkerTooth ||
+                            techType == TechType.FirstAidKit ||
+                            techType == TechType.Snack1 ||
+                            techType == TechType.Snack2 ||
+                            techType == TechType.Snack3)
+                        {
+#if DEBUG_PLACE_TOOL
+                            Logger.Log("DEBUG: AltUse returns ASSIGN 1 for " + techType.AsString(false));
+#endif
+                            __result = ItemAction.Assign;
+                            return false;
+                        }
+                        else if (ConfigSwitcher.EnablePlaceBatteries && ModdedBatteriesFixer.Chargeable(techType))
+                        {
+#if DEBUG_PLACE_TOOL
+                            Logger.Log("DEBUG: AltUse returns ASSIGN 2 for " + techType.AsString(false));
+#endif
+                            __result = ItemAction.Assign;
+                            return false;
+                        }
+                        else if (ConfigSwitcher.EnablePlaceOtherMaterials)
+                            foreach (KeyValuePair<string, TechType> it in PlaceToolItems._materials)
+                                if (techType == it.Value)
+                                {
+#if DEBUG_PLACE_TOOL
+                                    Logger.Log("DEBUG: AltUse returns ASSIGN 3 for " + techType.AsString(false));
+#endif
+                                    __result = ItemAction.Assign;
+                                    return false;
+                                }
                     }
-                    else if (ConfigSwitcher.EnablePlaceBatteries &&
-                             (techType == TechType.PowerCell ||
-                              techType == TechType.Battery ||
-                              techType == TechType.PrecursorIonPowerCell ||
-                              techType == TechType.PrecursorIonBattery))
+                }
+                else
+                {
+                    if (item.item != null && ConfigSwitcher.EnablePlaceItems && ConfigSwitcher.EnablePlaceBatteries)
                     {
-                        __result = ItemAction.Assign;
-                        return false;
+                        TechType techType = item.item.GetTechType();
+                        bool isBattery = ModdedBatteriesFixer.BatteriesTechTypes().Contains(techType);
+                        bool isPowercell = ModdedBatteriesFixer.PowercellsTechTypes().Contains(techType);
+                        if (isBattery || isPowercell)
+                        {
+                            if (flag2)
+                            {
+                                Equipment equipment = oppositeContainer as Equipment;
+                                EquipmentType equipmentType = isPowercell ? EquipmentType.PowerCellCharger : EquipmentType.BatteryCharger;
+                                if (equipment.GetFreeSlot(equipmentType, out string text))
+                                {
+#if DEBUG_PLACE_TOOL
+                                    Logger.Log("DEBUG: AltUse returns EQUIP for " + techType.AsString(false));
+#endif
+                                    __result = ItemAction.Equip;
+                                    return false;
+                                }
+                                if (equipment.GetCompatibleSlot(equipmentType, out text))
+                                {
+#if DEBUG_PLACE_TOOL
+                                    Logger.Log("DEBUG: AltUse returns SWAP for " + techType.AsString(false));
+#endif
+                                    __result = ItemAction.Swap;
+                                    return false;
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -6,27 +6,35 @@
         {
             TechType objTechType = pickupable.GetTechType();
             EquipmentType slotType = Equipment.GetSlotType(slot);
-            if (slotType == EquipmentType.BatteryCharger && (objTechType == TechType.Battery || objTechType == TechType.PrecursorIonBattery))
+            if (slotType == EquipmentType.BatteryCharger && ModdedBatteriesFixer.BatteriesTechTypes().Contains(objTechType))
             {
 #if BELOWZERO
-                if (TechData.GetEquipmentType(objTechType) == EquipmentType.Hand)
+                EquipmentType eType = TechData.GetEquipmentType(objTechType);
 #else
-                if (CraftData.GetEquipmentType(objTechType) == EquipmentType.Hand)
+                EquipmentType eType = CraftData.GetEquipmentType(objTechType);
 #endif
+                if (eType == EquipmentType.Hand || eType == EquipmentType.BatteryCharger)
                 {
+#if DEBUG_PLACE_TOOL
+                    Logger.Log("DEBUG: AllowedToAdd battery charger for " + objTechType.AsString(false));
+#endif
                     bool result = ((IItemsContainer)__instance).AllowedToAdd(pickupable, verbose);
                     __result = result;
                     return false;
                 }
             }
-            else if (slotType == EquipmentType.PowerCellCharger && (objTechType == TechType.PowerCell || objTechType == TechType.PrecursorIonPowerCell))
+            else if (slotType == EquipmentType.PowerCellCharger && ModdedBatteriesFixer.PowercellsTechTypes().Contains(objTechType))
             {
 #if BELOWZERO
-                if (TechData.GetEquipmentType(objTechType) == EquipmentType.Hand)
+                EquipmentType eType = TechData.GetEquipmentType(objTechType);
 #else
-                if (CraftData.GetEquipmentType(objTechType) == EquipmentType.Hand)
+                EquipmentType eType = CraftData.GetEquipmentType(objTechType);
 #endif
+                if (eType == EquipmentType.Hand || eType == EquipmentType.PowerCellCharger)
                 {
+#if DEBUG_PLACE_TOOL
+                    Logger.Log("DEBUG: AllowedToAdd powercell charger for " + objTechType.AsString(false));
+#endif
                     __result = ((IItemsContainer)__instance).AllowedToAdd(pickupable, verbose);
                     return false;
                 }

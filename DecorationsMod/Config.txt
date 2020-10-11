@@ -37,7 +37,7 @@ enablePlaceMaterials=true
 
 # If "true", you will be able to place batteries, powercells, ion batteries and ion powercells where you want (note that option "enablePlaceItems" needs to be set to "true" for this to work).
 # Be careful using this option: if enabled, you will have to manually drag-n-drop batteries/power cells to the charger (left click won't equip them).
-enablePlaceBatteries=false
+enablePlaceBatteries=true
 
 # If "true", you will be able to build the seeds fabricator and to craft seeds.
 # The seeds fabricator can be used to craft all existing seeds plus new ones (55 different seeds in total).

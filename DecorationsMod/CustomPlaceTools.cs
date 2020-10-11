@@ -59,7 +59,7 @@ namespace DecorationsMod
             this.RotateZ = rotateZ;
         }
 
-        public GenericPlaceTool_PT(float posX = 0.0f, float posY = 0.0f, float posZ = 0.0f, string modelName = "model", float rotX = 0.0f, float rotY = 0.0f, float rotZ = 0.0f)
+        public GenericPlaceTool_PT(float posX = 0.0f, float posY = 0.0f, float posZ = 0.0f, string modelName = "model", float rotX = 0.0f, float rotY = 0.0f, float rotZ = 0.0f, float modelScale = 1.0f)
         {
             this.ModelName = modelName;
             this.PositionX = posX;
@@ -68,6 +68,7 @@ namespace DecorationsMod
             this.RotateX = rotX;
             this.RotateY = rotY;
             this.RotateZ = rotZ;
+            this.ModelScale = modelScale;
         }
 
         #endregion
@@ -301,14 +302,14 @@ namespace DecorationsMod
         public Battery_PT() : base(0.0f, 0.069f, 0.0f, "model") { }
     }
 
+    public class LithiumIonBattery_PT : GenericPlaceTool_PT
+    {
+        public LithiumIonBattery_PT() : base(0.0f, 0.069f, 0.0f, "model", 0.0f, 0.0f, 0.0f, 0.9f) { }
+    }
+
     public class PowerCell_PT : GenericPlaceTool_PT
     {
         public PowerCell_PT() : base(0.0f, 0.138f, 0.0f, "engine_power_cell_01") { }
-    }
-
-    public class IonBattery_PT : GenericPlaceTool_PT
-    {
-        public IonBattery_PT() : base(0.0f, 0.069f, 0.0f, "model") { }
     }
 
     public class IonPowerCell_PT : GenericPlaceTool_PT
@@ -587,8 +588,6 @@ namespace DecorationsMod
                 ScaleAndTranslate();
                 HasBeenPlaced = true;
             }
-            if (this.gameObject.name != null)
-                PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)

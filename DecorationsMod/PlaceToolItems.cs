@@ -1,6 +1,4 @@
 ﻿using DecorationsMod.Controllers;
-using SMLHelper.V2.Assets;
-using SMLHelper.V2.Crafting;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +10,7 @@ namespace DecorationsMod
         {
             { "WorldEntities/Tools/PowerCell", TechType.PowerCell },
             { "WorldEntities/Tools/Battery", TechType.Battery },
+            { "WorldEntities/Tools/lithiumionbattery", TechType.LithiumIonBattery },
             { "WorldEntities/Tools/PrecursorIonPowerCell", TechType.PrecursorIonPowerCell },
             { "WorldEntities/Tools/PrecursorIonBattery", TechType.PrecursorIonBattery }
         };
@@ -37,7 +36,7 @@ namespace DecorationsMod
             { "WorldEntities/Crafting/FirstAidKit", TechType.FirstAidKit },
         };
 
-        private static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
+        internal static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
         {
             { "WorldEntities/Crafting/Silicone", TechType.Silicone },
             { "WorldEntities/Crafting/FiberMesh", TechType.FiberMesh },
@@ -102,7 +101,7 @@ namespace DecorationsMod
             { "WorldEntities/Natural/firstaidkit", TechType.FirstAidKit },
         };
 
-        private static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
+        internal static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
         {
             { "WorldEntities/Natural/silicone", TechType.Silicone },
             { "WorldEntities/Natural/fibermesh", TechType.FiberMesh },
@@ -220,27 +219,27 @@ namespace DecorationsMod
             GameObject obj = Resources.Load<GameObject>(batteryPath);
             if (obj != null)
             {
-                if (batteryTechType == TechType.PowerCell)
-                {
-                    obj.AddComponent<CustomPlaceToolController>();
-                    obj.AddComponent<PowerCell_PT>();
-                }
-                else if (batteryTechType == TechType.Battery)
+                if (batteryTechType == TechType.Battery || batteryTechType == TechType.PrecursorIonBattery)
                 {
                     obj.AddComponent<CustomPlaceToolController>();
                     obj.AddComponent<Battery_PT>();
+                }
+                else if (batteryTechType == TechType.LithiumIonBattery)
+                {
+                    obj.AddComponent<CustomPlaceToolController>();
+                    obj.AddComponent<LithiumIonBattery_PT>();
+                }
+                else if (batteryTechType == TechType.PowerCell)
+                {
+                    obj.AddComponent<CustomPlaceToolController>();
+                    obj.AddComponent<PowerCell_PT>();
                 }
                 else if (batteryTechType == TechType.PrecursorIonPowerCell)
                 {
                     obj.AddComponent<CustomPlaceToolController>();
                     obj.AddComponent<IonPowerCell_PT>();
                 }
-                else if (batteryTechType == TechType.PrecursorIonBattery)
-                {
-                    obj.AddComponent<CustomPlaceToolController>();
-                    obj.AddComponent<IonBattery_PT>();
-                }
-                MakeItemPlaceable(batteryTechType, batteryPath);
+                MakeItemPlaceable(batteryTechType, obj);
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
