@@ -117,31 +117,6 @@ To grow plants instantly you can use command "day".<br>
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
 October 11, 2020: Updated to version 1.9.1.<br>
-October 9, 2020: Updated to version 1.9.0.<br>
-September 10, 2020: Updated to version 1.8.4.<br>
-August 6, 2020: Updated to version 1.7.9.<br>
-July 30, 2020: Updated to version 1.7.8.<br>
-July 14, 2020: Updated to version 1.7.7.<br>
-June 9, 2020: Updated to version 1.7.4.<br>
-May 17, 2020: Updated to version 1.7.3.<br>
-May 16, 2020: Updated to version 1.7.1.<br>
-February 16, 2020: Updated to version 1.6.5.<br>
-November 17, 2019: Updated to version 1.6.3.<br>
-November 15, 2019: Updated to version 1.6.2.<br>
-November 11, 2018: Updated to version 1.6.0.<br>
-October 7, 2018: Updated to version 1.5.0.<br>
-July 25, 2018: Updated to version 1.4.3.<br>
-July 24, 2018: Updated to version 1.4.<br>
-July 4, 2018: Updated to version 1.3.2.<br>
-July 1, 2018: Updated to version 1.3.1.<br>
-June 30, 2018: Updated to version 1.3.0.<br>
-June 17, 2018: Updated to version 1.2.1.<br>
-June 17, 2018: Updated to version 1.2.0.<br>
-June 11, 2018: Updated to version 1.1.0.<br>
-June 8, 2018:  Updated to version 1.0.8.<br>
-June 6, 2018:  Updated to version 1.0.7.<br>
-June 5, 2018:  Updated to version 1.0.5.<br>
-June 4, 2018:  Updated to version 1.0.4.<br>
 
 ### Translations:<br>
 Currently supported: Deutsch (DE), English (EN), Español (ES), Français (FR), Nederlands (NL), Русский (RU), Türkçe (TR).<br>
