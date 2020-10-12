@@ -635,7 +635,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SET CONFIGURATOREXPATH=$(SubnauticaDir)QMods\DecorationsMod\Configurator\
-SET CONFIGURATOREXDEBUGPATH=$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)SN\Configurator\
+SET CONFIGURATOREXDEBUGPATH=$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)\Configurator\
 echo ------ Copying "$(TargetDir)$(TargetFileName)" to "%25CONFIGURATOREXDEBUGPATH%25"
 xcopy "$(TargetDir)$(TargetFileName)" "%25CONFIGURATOREXDEBUGPATH%25" /Y
 echo ------ Copying "$(TargetDir)$(TargetFileName).manifest" to "%25CONFIGURATOREXDEBUGPATH%25"
