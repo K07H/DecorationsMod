@@ -116,6 +116,7 @@ To grow plants instantly you can use command "day".<br>
 
 ### News & updates:<br>
 Changelog available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
+October 11, 2020: Updated to version 1.9.1.<br>
 October 9, 2020: Updated to version 1.9.0.<br>
 September 10, 2020: Updated to version 1.8.4.<br>
 August 6, 2020: Updated to version 1.7.9.<br>
