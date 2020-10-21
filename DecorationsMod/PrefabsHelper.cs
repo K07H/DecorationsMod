@@ -258,7 +258,7 @@ namespace DecorationsMod
             Logger.Log("DEBUG: FIX PT-SA: goName=[" + go.name + "]");
 #endif
             foreach (KeyValuePair<string, string> placeTool in _placeToolSAFix)
-                if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture))
+                if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture) || (placeTool.Key == "Battery" && go.GetComponent<Battery>() != null))
                 {
                     GameObject model = go.FindChild(placeTool.Value);
                     if (model != null)
