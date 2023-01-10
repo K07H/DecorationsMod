@@ -123,6 +123,8 @@ Both long planters can be built indoor or outdoor (tip: you can use this to have
 To unlock every items instantly you need to change "Discovery settings" in the configuration.<br>
 To grow plants instantly you can use command "day".<br>
 
+<br>
+
 ### How to use slideshow and random modes on the customizable picture frame?<br>
 1) Launch the game and switch your customizable picture frame into slideshow or random mode. This will create a folder called "pictureframes" in your savegame folder.<br>
    By default it is located here: "[...]/Subnautica/SNAppData/SavedGames/[slotID]/DecorationsMod/pictureframes" (with [slotID] being the ID of your savegame).<br>
