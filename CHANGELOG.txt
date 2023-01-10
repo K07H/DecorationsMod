@@ -1,3 +1,6 @@
+Version 2.0.0
+Improved: Updated to latest version of the game (Living Large update).
+
 Version 1.9.1
 Fixed: A bug introduced in v1.9.0 that was preventing proper registration of batteries/powercells when "Enable batteries/powercells placing" feature was ON.
 Improved: When "Enable batteries/powercells placing" feature is ON it is no longer required to drag-n-drop the battery/powercell to the charger (a regular right-click will now work).
