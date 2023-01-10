@@ -4,19 +4,19 @@
 
 <br>
 
-### Installation instructions for **regular** version of Subnautica:
+### Installation instructions for <ins>regular</ins> version of Subnautica:
 1) Install BepInEx: https://www.nexusmods.com/subnautica/mods/1108<br>
 2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
 3) Download the latest version of this mod: https://www.nexusmods.com/subnautica/mods/102?tab=files<br>
 4) Extract the archive (it will give you a **DecorationsMod** folder, with a bunch of files in it).<br>
-5) Move folder **DecorationsMod** inside the following folder: "[...]\Subnautica\BepInEx\plugins"<br>
+5) Move folder **DecorationsMod** inside the following folder: "[...]/Subnautica/BepInEx/plugins"<br>
 
-### Installation instructions for **legacy** version of Subnautica:
+### Installation instructions for <ins>legacy</ins> version of Subnautica:
 1) Install QMods: https://www.nexusmods.com/subnautica/mods/201<br>
 2) Install **legacy version** of SMLHelper (not the regular version!): https://www.nexusmods.com/subnautica/mods/113<br>
 3) Download the **legacy version** of this mod (not the latest version!): https://www.nexusmods.com/subnautica/mods/102?tab=files<br>
 4) Extract the archive (it will give you a **DecorationsMod** folder, with a bunch of files in it).<br>
-5) Move folder **DecorationsMod** inside the following folder: "[...]\Subnautica\QMods"<br>
+5) Move folder **DecorationsMod** inside the following folder: "[...]/Subnautica/QMods"<br>
 
 <br>
 
@@ -27,10 +27,10 @@ At step 5 it will ask if you want to replace files, say **Yes**.<br>
 <br>
 
 ### Configuration instructions:
-To edit configuration, double click on the **Configurator** shortcut.
-For regular version of Subnautica it is located inside the following folder: "[...]\Subnautica\BepInEx\plugins\DecorationsMod"<br>
-For legacy version of Subnautica it is located inside the following folder: "[...]\Subnautica\QMods\DecorationsMod"<br>
-*If it does not work you can manually edit the Config text file with a text editor.*
+To edit configuration, double click on the **Configurator** shortcut.<br>
+For regular version of Subnautica it is located inside the following folder: "[...]/Subnautica/BepInEx/plugins/DecorationsMod"<br>
+For legacy version of Subnautica it is located inside the following folder: "[...]/Subnautica/QMods/DecorationsMod"<br>
+*If it does not work you can manually edit the Config text file with a text editor.*<br>
 
 <br><br>
 
@@ -131,7 +131,7 @@ Some additional information can be found in the Configurator or in the configura
 
 ### How to use slideshow and random modes on the customizable picture frame?<br>
 1) Launch the game and switch your customizable picture frame into slideshow or random mode. This will create a folder called "pictureframes" in your savegame folder.<br>
-   By default it is located here: "[...]/Subnautica/SNAppData/SavedGames/[slotID]/DecorationsMod/pictureframes" (with [slotID] being the ID of your savegame).<br>
+   By default it is located here: "[...]/Subnautica/SNAppData/SavedGames/**[slotID]**/DecorationsMod/pictureframes" (with **[slotID]** being the ID of your savegame).<br>
 2) Close the game and go inside the "pictureframes" folder. Inside this folder there will be one folder for each customizable picture frame.<br>
    - If it is your first customizable picture frame in slideshow/random mode: There will be only one folder.<br>
    - If you have multiple customizable picture frames that are in slideshow/random mode: There will be one folder for each, so you can sort folders by creation date to find the latest one. Another way is to open the Config text files that are in these folders (they contain coordinates of the customizable picture frame).<br>
