@@ -13,7 +13,7 @@
 
 ### Installation instructions for <ins>legacy</ins> version of Subnautica:
 1) Install QMods: https://www.nexusmods.com/subnautica/mods/201<br>
-2) Install **<ins>legacy version</ins>** of SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
+2) Install the **<ins>legacy version</ins>** of SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
 3) Download the **<ins>legacy version</ins>** of this mod: https://www.nexusmods.com/subnautica/mods/102?tab=files<br>
 4) Extract the archive (it will give you a **DecorationsMod** folder, with a bunch of files in it).<br>
 5) Move folder **DecorationsMod** inside the following folder: "[...]/Subnautica/QMods"<br>
