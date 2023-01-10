@@ -116,7 +116,7 @@ You can display or hide the giant cove tree eggs by clicking them (hidden by def
 Giant cove trees that you plant below 100m and have eggs displayed will spawn ghost leviathans if you enable the option in mod config.<br>
 The audio effects of the alien relics sometimes stay at their initial position so you need to save and restart Subnautica for the audio effects to take their new positions into account.<br>
 All items can be rotated and placed in any base or cyclops.<br>
-For an easier placement of items, you can temporarily enable the "Lock quickslots when placing item" feature in the "Mods" tab from options menu (it will allow you to rotate the item properly).<br>
+When you are placing an item and trying to rotate it using mousewheel, if the game switches quickslot instead of rotating it, you can enable the "Lock quickslots when placing item" feature in the configuration (it will allow you to rotate the item properly).<br>
 Note that if you place raw materials as decorations, stalkers will try to come and steal them (even if they are placed in a base).<br>
 All new flora is compatible with bioreactors and fully configurable (growth duration, health points, nutrient points, etc).<br>
 Both long planters can be built indoor or outdoor (tip: you can use this to have land plants in water or sea plants in bases/cyclops).<br>
@@ -151,7 +151,7 @@ To contribute to the Decorations mod, simply fork this repository, make your cha
 See the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
 ### Special thanks:<br>
-@[UnknownWorlds](https://unknownworlds.com/subnautica/) (for creating this awesome game and letting us do mods)<br>
+@[UnknownWorlds](https://unknownworlds.com/subnautica/)<br>
 @[AHK1221](https://github.com/ahk1221/) (for helping me to get into Subnautica modding)<br>
 @Revan (for mod testing)<br>
 @Inviscient (for mod testing)<br>
