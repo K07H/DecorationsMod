@@ -122,6 +122,7 @@ All new flora is compatible with bioreactors and fully configurable (growth dura
 Both long planters can be built indoor or outdoor (tip: you can use this to have land plants in water or sea plants in bases/cyclops).<br>
 To unlock every items instantly you need to change "Discovery settings" in the configuration.<br>
 To grow plants instantly you can use command "day".<br>
+Some additional information can be found in the Configurator or in the configuration file.<br>
 
 <br>
 
