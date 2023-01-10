@@ -142,8 +142,8 @@ Some additional information can be found in the Configurator or in the configura
 <br><br>
 
 ### News & updates:<br>
-January 10, 2023: Updated to version 2.0.0.<br>
-October 11, 2020: Updated to version 1.9.1.<br>
+January 10, 2023: Updated to version 2.0.0 (regular version).<br>
+October 11, 2020: Updated to version 1.9.1 (legacy version).<br>
 Full changelogs available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
 
 ### Translations:<br>
