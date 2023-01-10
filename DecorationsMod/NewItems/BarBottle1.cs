@@ -11,24 +11,15 @@ namespace DecorationsMod.NewItems
             this.ClassID = "BarBottle1";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barbottle01");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barbottle01");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BarBottleName"),
                                                         LanguageHelper.GetFriendlyWord("BarBottleDescription"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Quartz, 1),
-                        new Ingredient(TechType.BigFilteredWater, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -38,38 +29,53 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.BigFilteredWater, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Quartz, 1),
+                        new Ingredient(TechType.BigFilteredWater, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _barBottle1 = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("docking_bar_bottle_01").FindChild("docking_bar_bottle_01");
+                if (_barBottle1 == null)
+                    _barBottle1 = AssetsHelper.Assets.LoadAsset<GameObject>("barbottle01");
+
+                GameObject model = _barBottle1.FindChild("docking_bar_bottle_01").FindChild("docking_bar_bottle_01");
 
                 // Scale model
                 model.transform.localScale *= 22f;
                 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _barBottle1.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Set prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _barBottle1.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Set collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _barBottle1.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.07f, 0.1f, 0.07f);
 
                 // Set large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
+                var lwe = _barBottle1.AddComponent<LargeWorldEntity>();
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("docking_bar_bottles_01_normal");
-                var renderer = this.GameObject.GetComponentInChildren<Renderer>();
+                var renderer = _barBottle1.GetComponentInChildren<Renderer>();
                 renderer.material.shader = marmosetUber;
                 renderer.material.SetTexture("_BumpMap", normal);
                 Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("docking_bar_bottles_01");
@@ -80,20 +86,20 @@ namespace DecorationsMod.NewItems
                 renderer.material.EnableKeyword("_ZWRITE_ON"); // Enable Z write
 
                 // Update sky applier
-                var applier = this.GameObject.GetComponent<SkyApplier>();
+                var applier = _barBottle1.GetComponent<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
+                    applier = _barBottle1.AddComponent<SkyApplier>();
                 applier.renderers = new Renderer[] { renderer };
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _barBottle1.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _barBottle1.AddComponent<CustomPlaceToolController>();
+                var placeTool = _barBottle1.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -114,7 +120,7 @@ namespace DecorationsMod.NewItems
                 placeTool.holsterTime = 0.35f;
 
                 // We can drink this item
-                var eatable = this.GameObject.AddComponent<Eatable>();
+                var eatable = _barBottle1.AddComponent<Eatable>();
                 eatable.foodValue = 0.0f;
                 eatable.waterValue = ConfigSwitcher.BarBottle1Value;
 #if SUBNAUTICA
@@ -147,7 +153,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_barBottle1);
 
             prefab.name = this.ClassID;
 

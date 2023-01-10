@@ -47,11 +47,7 @@ namespace DecorationsMod.Controllers
 
             var reticle = HandReticle.main;
             reticle.SetIcon(HandReticle.IconType.Hand, 1f);
-#if BELOWZERO
             reticle.SetTextRaw(HandReticle.TextType.Hand, Language.main.Get("ClimbUp"));
-#else
-            reticle.SetInteractText("ClimbUp");
-#endif
         }
     }
 }

@@ -15,10 +15,10 @@ namespace DecorationsMod.Fixers
 #if DEBUG_KNIFE
                 Logger.Log("DEBUG: Entering custom purple pinecone event. techType=[" + (int)techType + "][" + techType.AsString(false) + "] purplePineConeTechType=[" + (int)purplePineConeTechType + "][" + purplePineConeTechType.AsString(false) + "]");
 #endif
-#if BELOWZERO
-                HarvestType harvestTypeFromTech = TechData.GetHarvestType(techType);
-#else
+#if SUBNAUTICA
                 HarvestType harvestTypeFromTech = CraftData.GetHarvestTypeFromTech(techType);
+#else
+                HarvestType harvestTypeFromTech = TechData.GetHarvestType(techType);
 #endif
                 if ((harvestTypeFromTech == HarvestType.DamageAlive && wasAlive) || (harvestTypeFromTech == HarvestType.DamageDead && !isAlive))
                     CraftData.AddToInventory(ConfigSwitcher.PurplePineconeDroppedResource, ConfigSwitcher.PurplePineconeDroppedResourceAmount, false, false); // This will add PurplePineconeDroppedResourceAmount of PurplePineconeDroppedResource in player's inventory

@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "ReaperLeviathanDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("ReaperLeviathan");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("ReaperLeviathan");
+            this.GameObject = new GameObject(this.ClassID);
             
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ReaperLeviathanDollName"),
@@ -23,18 +24,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.ReaperLeviathanDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.FiberMesh, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -45,37 +35,53 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.FiberMesh, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _reaperLeviathanDoll = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                if (_reaperLeviathanDoll == null)
+                    _reaperLeviathanDoll = AssetsHelper.Assets.LoadAsset<GameObject>("ReaperLeviathan");
+
                 // Scale
-                GameObject model = this.GameObject.FindChild("ReaperLeviathan");
+                GameObject model = _reaperLeviathanDoll.FindChild("ReaperLeviathan");
                 model.transform.localScale *= 0.53f;
                 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _reaperLeviathanDoll.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _reaperLeviathanDoll.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
                 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _reaperLeviathanDoll.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.8f, 0.5f, 0.5f);
 
                 // Add large world entity
-                this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                _reaperLeviathanDoll.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("Reaper_Leviathan_normal");
                 Texture spec = AssetsHelper.Assets.LoadAsset<Texture>("Reaper_Leviathan_spec");
                 Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("Reaper_Leviathan_illum");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _reaperLeviathanDoll.GetComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
@@ -103,18 +109,18 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
+                var applier = _reaperLeviathanDoll.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
                 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _reaperLeviathanDoll.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _reaperLeviathanDoll.AddComponent<CustomPlaceToolController>();
+                var placeTool = _reaperLeviathanDoll.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -158,7 +164,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_reaperLeviathanDoll);
 
             prefab.name = this.ClassID;
 

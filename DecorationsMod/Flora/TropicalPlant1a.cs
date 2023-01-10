@@ -18,32 +18,29 @@ namespace DecorationsMod.Flora
             this.ClassID = "TropicalPlant1a"; // a4be67bb-f6e1-4d15-bf08-9d9a3fae4bfa
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if BELOWZERO
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/old/Tropical Plant 1a");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Land/Tropical Plant 1a");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("TropicalPlantName"),
                                                         LanguageHelper.GetFriendlyWord("TropicalPlantDescription"),
                                                         true);
 
-#if BELOWZERO
+#if SUBNAUTICA
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
+                {
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                    }),
-            };
-#else
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                {
+                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
 #endif
@@ -66,7 +63,7 @@ namespace DecorationsMod.Flora
                 SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
 
                 // Set item bioreactor charge
-                SMLHelper.V2.Handlers.BioReactorHandler.SetBioReactorCharge(this.TechType, this.Config.Charge);
+                BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
@@ -81,9 +78,18 @@ namespace DecorationsMod.Flora
             }
         }
 
+        private static GameObject _tropicalPlant1a = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_tropicalPlant1a == null)
+#if SUBNAUTICA
+                _tropicalPlant1a = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Land/Tropical Plant 1a.prefab");
+#else
+                _tropicalPlant1a = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/old/Tropical Plant 1a.prefab");
+#endif
+
+            GameObject prefab = GameObject.Instantiate(_tropicalPlant1a);
 
             prefab.name = this.ClassID;
 
@@ -137,11 +143,7 @@ namespace DecorationsMod.Flora
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
-#if BELOWZERO
             pickupable.isLootCube = false;
-#else
-            pickupable.cubeOnPickup = false;
-#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -191,9 +193,6 @@ namespace DecorationsMod.Flora
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
-#if SUBNAUTICA
-            liveMixin.data.explodeOnDestroy = false;
-#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

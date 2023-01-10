@@ -12,7 +12,7 @@ namespace DecorationsMod.NewItems
 
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/FarmingTray");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ExteriorLongPlanterName"),
@@ -24,22 +24,22 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 2)
                     }),
             };
 #endif
@@ -66,9 +66,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _longPlanterB = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_longPlanterB == null)
+                _longPlanterB = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/FarmingTray.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_longPlanterB);
 
             prefab.name = this.ClassID;
 

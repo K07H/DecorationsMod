@@ -11,32 +11,32 @@ namespace DecorationsMod.NewItems
             this.ClassID = "2a347bb2-a20e-4902-a803-4252d9da5c30";
 
 #if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Doodads/Precursor/PrecursorKey_Blue";
+            this.PrefabFileName = "WorldEntities/Doodads/Precursor/PrecursorKey_Blue.prefab";
 #else
-            this.PrefabFileName = "WorldEntities/Precursor/Keys/PrecursorKey_Blue";
+            this.PrefabFileName = "WorldEntities/Precursor/Keys/PrecursorKey_Blue.prefab";
 #endif
 
             this.TechType = TechType.PrecursorKey_Blue;
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
             /*
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount)
                     }),
             };
 #endif
@@ -63,9 +63,15 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _alienTabletBlue = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_alienTabletBlue == null)
+                _alienTabletBlue = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_alienTabletBlue);
             prefab.name = this.ClassID;
 
             // Update TechTag

@@ -19,8 +19,8 @@ namespace DecorationsMod
 
         public Texture2D ColoredTexture = null;
 
-#if BELOWZERO
-        public RecipeData Recipe = new RecipeData()
+#if SUBNAUTICA
+        public TechData Recipe = new TechData()
         {
             craftAmount = 1,
             Ingredients = new List<Ingredient>(new Ingredient[4]
@@ -32,7 +32,7 @@ namespace DecorationsMod
             })
         };
 #else
-        public TechData Recipe = new TechData()
+        public RecipeData Recipe = new RecipeData()
         {
             craftAmount = 1,
             Ingredients = new List<Ingredient>(new Ingredient[4]
@@ -279,8 +279,11 @@ namespace DecorationsMod
 
         public override GameObject GetGameObject()
         {
+            if (Fabricator_Decorations._decorationsFabricator == null)
+                Fabricator_Decorations._decorationsFabricator = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Fabricator.prefab");
+
             // Instantiate CyclopsFabricator object
-            var fabricatorPrefab = GameObject.Instantiate(Fabricator_Decorations.OriginalFabricator);
+            var fabricatorPrefab = GameObject.Instantiate(Fabricator_Decorations._decorationsFabricator);
 
             // Update prefab name
             fabricatorPrefab.name = this.ClassID;

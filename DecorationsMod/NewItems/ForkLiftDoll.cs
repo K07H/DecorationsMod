@@ -16,7 +16,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "ForkLiftDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("forkliftdoll");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("forkliftdoll");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ForkLiftDollName"),
@@ -26,18 +27,7 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.Forklift_asBuidable)
                 this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -46,6 +36,17 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.Silicone, 1)
                     }),
             };
 #endif
@@ -89,9 +90,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _forkliftDoll = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_forkliftDoll == null)
+                _forkliftDoll = AssetsHelper.Assets.LoadAsset<GameObject>("forkliftdoll");
+
+            GameObject prefab = GameObject.Instantiate(_forkliftDoll);
 
             prefab.name = this.ClassID;
 

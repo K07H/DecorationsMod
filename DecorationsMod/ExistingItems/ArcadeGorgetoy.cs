@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Oculus.Platform;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
@@ -8,22 +9,13 @@ namespace DecorationsMod.ExistingItems
         public ArcadeGorgetoy() // Feeds abstract class
         {
             this.ClassID = "7ea4a91e-80fc-43aa-8ce3-5d52bd19e278";
-            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_arcade_gorgetoy_01";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_arcade_gorgetoy_01.prefab";
 
             this.TechType = TechType.ArcadeGorgetoy;
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.FiberMesh, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -32,12 +24,29 @@ namespace DecorationsMod.ExistingItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 2)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.FiberMesh, 2)
+                    }),
+            };
 #endif
         }
 
+        private static GameObject _arcadeGorgetoy = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_arcadeGorgetoy == null)
+                _arcadeGorgetoy = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            Logger.Log("DEBUG: ArcadeGorgetoy prefab is " + (_arcadeGorgetoy == null ? "NULL" : "NOT NULL"));
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_arcadeGorgetoy);
 
             // Add fabricating animation
             var fabricating = prefab.FindChild("descent_arcade_gorgetoy_01").AddComponent<VFXFabricating>();

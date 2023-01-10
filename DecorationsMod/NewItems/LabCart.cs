@@ -12,7 +12,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "LabCart"; //af165b07-a2a3-4d85-8ad7-0c801334c115
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_cart_01");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LabCartName"),
@@ -25,22 +25,22 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.LabCart_asBuildable)
                 this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 1)
                     }),
             };
 #endif
@@ -81,9 +81,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _labCart = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_labCart == null)
+                _labCart = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_cart_01.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_labCart);
             GameObject model = prefab.FindChild("discovery_lab_cart_01");
 
             prefab.name = this.ClassID;

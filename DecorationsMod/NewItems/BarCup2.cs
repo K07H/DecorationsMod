@@ -11,23 +11,15 @@ namespace DecorationsMod.NewItems
             this.ClassID = "BarCup2";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barcup02");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barcup02");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BarCup2Name"),
                                                         LanguageHelper.GetFriendlyWord("BarCup2Description"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -36,59 +28,73 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _barCup2 = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("docking_bar_cup_02").FindChild("docking_bar_cup_02");
+                if (_barCup2 == null)
+                    _barCup2 = AssetsHelper.Assets.LoadAsset<GameObject>("barcup02");
+
+                GameObject model = _barCup2.FindChild("docking_bar_cup_02").FindChild("docking_bar_cup_02");
 
                 // Scale model
                 model.transform.localScale *= 22f;
 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _barCup2.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Set prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _barCup2.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Set collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _barCup2.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.05f, 0.07f, 0.05f);
 
                 // Set large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
+                var lwe = _barCup2.AddComponent<LargeWorldEntity>();
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("docking_bar_bottles_01_normal");
-                var renderer = this.GameObject.GetComponentInChildren<Renderer>();
+                var renderer = _barCup2.GetComponentInChildren<Renderer>();
                 renderer.material.shader = marmosetUber;
                 renderer.material.SetTexture("_BumpMap", normal);
                 renderer.material.EnableKeyword("MARMO_NORMALMAP");
                 renderer.material.EnableKeyword("_ZWRITE_ON"); // Enable Z write
 
                 // Update sky applier
-                var applier = this.GameObject.GetComponent<SkyApplier>();
+                var applier = _barCup2.GetComponent<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
+                    applier = _barCup2.AddComponent<SkyApplier>();
                 applier.renderers = new Renderer[] { renderer };
                 applier.anchorSky = Skies.Auto;
                 applier.updaterIndex = 0;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _barCup2.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _barCup2.AddComponent<CustomPlaceToolController>();
+                var placeTool = _barCup2.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -129,7 +135,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_barCup2);
 
             prefab.name = this.ClassID;
 

@@ -9,25 +9,16 @@ namespace DecorationsMod.ExistingItems
         {
             this.ClassID = "e7f9c5e7-3906-4efd-b239-28783bce17a5";
 #if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_close_01";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_close_01.prefab";
 #else
-            this.PrefabFileName = "WorldEntities/Alterra/Base/biodome_lab_containers_close_01";
+            this.PrefabFileName = "WorldEntities/Alterra/Base/biodome_lab_containers_close_01.prefab";
 #endif
 
             this.TechType = TechType.LabContainer;
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Glass, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -36,12 +27,27 @@ namespace DecorationsMod.ExistingItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 2)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Glass, 2)
+                    }),
+            };
 #endif
         }
 
+        private static GameObject _labContainer1 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_labContainer1 == null)
+                _labContainer1 = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_labContainer1);
 
             // Add fabricating animation
             var fabricating = prefab.FindChild("biodome_lab_containers_close_01").AddComponent<VFXFabricating>();

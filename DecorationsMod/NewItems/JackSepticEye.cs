@@ -11,7 +11,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "JackSepticEyeDoll"; // 07a05a2f-de55-4c60-bfda-cedb3ab72b88
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
  
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/jacksepticeye");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("JackSepticEyeName"),
@@ -21,17 +21,7 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.JackSepticEye_asBuildable)
                 this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -39,6 +29,16 @@ namespace DecorationsMod.NewItems
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1)
                     }),
             };
 #endif
@@ -76,9 +76,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _jackSepticEye = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_jackSepticEye == null)
+                _jackSepticEye = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/jacksepticeye.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_jackSepticEye);
 
             prefab.name = this.ClassID;
 
@@ -142,7 +147,9 @@ namespace DecorationsMod.NewItems
             }
 
             // Update sky applier
-#if BELOWZERO
+#if SUBNAUTICA
+            PrefabsHelper.SetDefaultSkyApplier(prefab, null, Skies.Auto, false, true);
+#else
             BaseModuleLighting bml = prefab.AddComponent<BaseModuleLighting>();
             SkyApplier sa = prefab.GetComponent<SkyApplier>();
             if (sa == null)
@@ -151,8 +158,6 @@ namespace DecorationsMod.NewItems
                 sa = prefab.AddComponent<SkyApplier>();
             sa.renderers = prefab.GetComponentsInChildren<Renderer>();
             sa.anchorSky = Skies.Auto;
-#else
-            PrefabsHelper.SetDefaultSkyApplier(prefab, null, Skies.Auto, false, true);
 #endif
 
             return prefab;

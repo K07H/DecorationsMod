@@ -11,28 +11,14 @@ namespace DecorationsMod.NewItems
             this.ClassID = "CircuitBox2c"; // 3e4f0d4d-e8c9-4053-bada-980f442d50d1
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if SUBNAUTICA
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/circuit_box_01_02");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Alterra/Base/circuit_box_01_02");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CircuitBox2Name"),
                                                         LanguageHelper.GetFriendlyWord("CircuitBox2Description"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Copper, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -40,6 +26,16 @@ namespace DecorationsMod.NewItems
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Copper, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Copper, 1)
                     }),
             };
 #endif
@@ -68,9 +64,19 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _circuitBox2c = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_circuitBox2c == null)
+#if SUBNAUTICA
+                _circuitBox2c = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/circuit_box_01_02.prefab");
+#else
+                _circuitBox2c = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Alterra/Base/circuit_box_01_02.prefab");
+#endif
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_circuitBox2c);
 
             prefab.name = this.ClassID;
 

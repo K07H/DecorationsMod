@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "WarperPart1";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_Warper");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_Warper");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BigWarperPartName"),
@@ -25,20 +26,7 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[5]
-                    {
-                        new Ingredient(TechType.Titanium, 2),
-                        new Ingredient(TechType.Silicone, 1),
-                        new Ingredient(TechType.FiberMesh, 1),
-                        new Ingredient(TechType.Glass, 1),
-                        new Ingredient(TechType.PrecursorIonCrystal, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -51,15 +39,33 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[5]
+                    {
+                        new Ingredient(TechType.Titanium, 2),
+                        new Ingredient(TechType.Silicone, 1),
+                        new Ingredient(TechType.FiberMesh, 1),
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.PrecursorIonCrystal, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _warperPart1 = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                if (_warperPart1 == null)
+                    _warperPart1 = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_Warper");
+
                 // Get objects
-                GameObject model = this.GameObject.FindChild("Model");
+                GameObject model = _warperPart1.FindChild("Model");
 
                 // Rotate model
                 //model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x - 90f, model.transform.localEulerAngles.y, model.transform.localEulerAngles.z);
@@ -68,7 +74,7 @@ namespace DecorationsMod.NewItems
                 //model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.032f, model.transform.localPosition.z);
 
                 // Apply shaders and materials
-                var renderers = this.GameObject.GetAllComponentsInChildren<Renderer>();
+                var renderers = _warperPart1.GetAllComponentsInChildren<Renderer>();
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal1 = AssetsHelper.Assets.LoadAsset<Texture>("precursor_lab_warper_normal");
                 Texture spec1 = AssetsHelper.Assets.LoadAsset<Texture>("precursor_lab_warper_spec");
@@ -115,36 +121,34 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _warperPart1.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Add large world entity
-                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
+                PrefabsHelper.SetDefaultLargeWorldEntity(_warperPart1);
 
                 // Add tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _warperPart1.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _warperPart1.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.0075f, 0.0075f, 0.038f);
                 collider.center = new Vector3(collider.center.x, collider.center.y, collider.center.z + 0.019f);
 
                 // Add sky applier
-#if BELOWZERO
-                BaseModuleLighting bml = this.GameObject.GetComponent<BaseModuleLighting>();
+                BaseModuleLighting bml = _warperPart1.GetComponent<BaseModuleLighting>();
                 if (bml == null)
-                    bml = this.GameObject.GetComponentInChildren<BaseModuleLighting>();
+                    bml = _warperPart1.GetComponentInChildren<BaseModuleLighting>();
                 if (bml == null)
-                    bml = this.GameObject.AddComponent<BaseModuleLighting>();
-#endif
-                SkyApplier applier = this.GameObject.AddComponent<SkyApplier>();
+                    bml = _warperPart1.AddComponent<BaseModuleLighting>();
+                SkyApplier applier = _warperPart1.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
                 applier.updaterIndex = 0;
 
                 // Add contructable
-                Constructable constructable = this.GameObject.AddComponent<Constructable>();
+                Constructable constructable = _warperPart1.AddComponent<Constructable>();
                 constructable.allowedInBase = true;
                 constructable.allowedInSub = true;
                 constructable.allowedOnCeiling = true;
@@ -152,9 +156,7 @@ namespace DecorationsMod.NewItems
                 constructable.allowedOnConstructables = true;
                 constructable.allowedOutside = false;
                 constructable.allowedOnGround = false;
-#if BELOWZERO
                 constructable.allowedUnderwater = true;
-#endif
                 constructable.controlModelState = true;
                 constructable.deconstructionAllowed = true;
                 constructable.rotationEnabled = true;
@@ -164,11 +166,11 @@ namespace DecorationsMod.NewItems
                 constructable.enabled = true;
 
                 // Add constructable bounds
-                ConstructableBounds bounds = this.GameObject.AddComponent<ConstructableBounds>();
+                ConstructableBounds bounds = _warperPart1.AddComponent<ConstructableBounds>();
                 //bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.032f, bounds.bounds.position.z);
 
                 // Add warper specimen controller
-                var warperSpecimenController = this.GameObject.AddComponent<WarperSpecimenController>();
+                var warperSpecimenController = _warperPart1.AddComponent<WarperSpecimenController>();
 
                 // Define unlock conditions
                 if (ConfigSwitcher.AddItemsWhenDiscovered)
@@ -193,7 +195,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_warperPart1);
 
             prefab.name = this.ClassID;
 

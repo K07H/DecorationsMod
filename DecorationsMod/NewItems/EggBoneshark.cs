@@ -10,30 +10,30 @@ namespace DecorationsMod.NewItems
         public EggBoneshark()
         {
             this.ClassID = "43ba333e-2eb6-4b6f-ac74-6b6188e82297";
-            this.PrefabFileName = "WorldEntities/Eggs/BonesharkEgg";
+            this.PrefabFileName = "WorldEntities/Eggs/BonesharkEgg.prefab";
 
             this.TechType = TechType.BonesharkEgg;
 
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
                     }),
             };
 #endif
@@ -66,9 +66,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _eggBoneshark = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_eggBoneshark == null)
+                _eggBoneshark = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            GameObject prefab = GameObject.Instantiate(_eggBoneshark);
 
             prefab.name = this.ClassID;
 

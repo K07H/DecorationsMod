@@ -14,7 +14,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "ExosuitDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("prawnsuitdoll");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("prawnsuitdoll");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ExosuitDollName"),
@@ -26,18 +27,7 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -48,34 +38,50 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _exosuitDoll = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject aquarium = Resources.Load<GameObject>("Submarine/Build/Aquarium");
+                if (_exosuitDoll == null)
+                    _exosuitDoll = AssetsHelper.Assets.LoadAsset<GameObject>("prawnsuitdoll");
+
+                GameObject aquarium = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
 
                 // Retrieve model node
-                GameObject model = this.GameObject.FindChild("prawnsuit");
+                GameObject model = _exosuitDoll.FindChild("prawnsuit");
 
                 // Move model
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y - 0.002f, model.transform.localPosition.z);
 
                 // Add prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _exosuitDoll.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Add large world entity
-                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
+                PrefabsHelper.SetDefaultLargeWorldEntity(_exosuitDoll);
 
                 // Add tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _exosuitDoll.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add box collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _exosuitDoll.AddComponent<BoxCollider>();
                 //collider.radius = 0.0375f;
                 collider.size = new Vector3(0.04f, 0.115f, 0.04f);
                 collider.center = new Vector3(collider.center.x, collider.center.y + 0.0575f, collider.center.z);
@@ -130,7 +136,7 @@ namespace DecorationsMod.NewItems
                 Texture spec11 = AssetsHelper.Assets.LoadAsset<Texture>("submarine_engine_power_cells_01_spec");
                 Texture illum11 = AssetsHelper.Assets.LoadAsset<Texture>("submarine_engine_power_cells_01_illum");
 
-                Renderer[] renderers = this.GameObject.GetAllComponentsInChildren<Renderer>();
+                Renderer[] renderers = _exosuitDoll.GetAllComponentsInChildren<Renderer>();
                 foreach (Renderer renderer in renderers)
                 {
                     if (renderer.name.StartsWith("Exosuit_cabin_01_glass", true, CultureInfo.InvariantCulture))
@@ -342,22 +348,20 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add sky applier
-#if BELOWZERO
-                BaseModuleLighting bml = this.GameObject.GetComponent<BaseModuleLighting>();
+                BaseModuleLighting bml = _exosuitDoll.GetComponent<BaseModuleLighting>();
                 if (bml == null)
-                    bml = this.GameObject.GetComponentInChildren<BaseModuleLighting>();
+                    bml = _exosuitDoll.GetComponentInChildren<BaseModuleLighting>();
                 if (bml == null)
-                    bml = this.GameObject.AddComponent<BaseModuleLighting>();
-#endif
-                SkyApplier applier = this.GameObject.GetComponent<SkyApplier>();
+                    bml = _exosuitDoll.AddComponent<BaseModuleLighting>();
+                SkyApplier applier = _exosuitDoll.GetComponent<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.GetComponentInChildren<SkyApplier>();
+                    applier = _exosuitDoll.GetComponentInChildren<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
+                    applier = _exosuitDoll.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
                 applier.updaterIndex = 0;
-                SkyApplier[] appliers = this.GameObject.GetComponentsInChildren<SkyApplier>();
+                SkyApplier[] appliers = _exosuitDoll.GetComponentsInChildren<SkyApplier>();
                 if (appliers != null && appliers.Length > 0)
                 {
                     foreach (SkyApplier ap in appliers)
@@ -369,16 +373,14 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add contructable
-                var constructible = this.GameObject.AddComponent<Constructable>();
+                var constructible = _exosuitDoll.AddComponent<Constructable>();
                 constructible.allowedInBase = true;
                 constructible.allowedInSub = true;
                 constructible.allowedOutside = true;
                 constructible.allowedOnCeiling = false;
                 constructible.allowedOnGround = true;
                 constructible.allowedOnConstructables = true;
-#if BELOWZERO
                 constructible.allowedUnderwater = true;
-#endif
                 constructible.controlModelState = true;
                 constructible.deconstructionAllowed = true;
                 constructible.rotationEnabled = true;
@@ -388,11 +390,11 @@ namespace DecorationsMod.NewItems
                 constructible.enabled = true;
 
                 // Add constructable bounds
-                var bounds = this.GameObject.AddComponent<ConstructableBounds>();
+                var bounds = _exosuitDoll.AddComponent<ConstructableBounds>();
                 bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.002f, bounds.bounds.position.z);
 
                 // Add model controler
-                var exosuitDollControler = this.GameObject.AddComponent<ExosuitDollController>();
+                var exosuitDollControler = _exosuitDoll.AddComponent<ExosuitDollController>();
 
 #region Disable right arms (except hand arm)
 
@@ -431,7 +433,6 @@ namespace DecorationsMod.NewItems
 
                 // Disable right propulsion arm
                 rightPropulsionArm.GetComponent<Renderer>().enabled = false;
-
 #endregion
                 
 #region Disable left arms (except hand arm)
@@ -471,7 +472,6 @@ namespace DecorationsMod.NewItems
 
                 // Disable right propulsion arm
                 leftPropulsionArm.GetComponent<Renderer>().enabled = false;
-
 #endregion
                 
                 // Add new TechType to the buildables
@@ -493,7 +493,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_exosuitDoll);
 
             prefab.name = this.ClassID;
             prefab.transform.localScale *= 4.0f; // Scale prefab

@@ -39,10 +39,10 @@ namespace DecorationsMod
         public Sprite Sprite { get; set; }
 
         // The item recipe
-#if BELOWZERO
-        public SMLHelper.V2.Crafting.RecipeData Recipe { get; set; }
-#else
+#if SUBNAUTICA
         public SMLHelper.V2.Crafting.TechData Recipe { get; set; }
+#else
+        public SMLHelper.V2.Crafting.RecipeData Recipe { get; set; }
 #endif
 
         #endregion

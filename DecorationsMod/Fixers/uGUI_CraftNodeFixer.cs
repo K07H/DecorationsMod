@@ -1,30 +1,29 @@
-﻿using System.Collections.Generic;
-#if !BELOWZERO
+﻿using SMLHelper.V2.Utility;
+using System.Collections.Generic;
 using System.Reflection;
-#endif
 using UnityEngine;
 
 namespace DecorationsMod.Fixers
 {
     public class uGUI_CraftNodeFixer
     {
-#if BELOWZERO
         //private void CreateIcon(uGUI_CraftingMenu.Node node, RectTransform canvas, float size, float x, float y)
         public static void CreateIcon_Postfix(uGUI_CraftingMenu __instance, uGUI_CraftingMenu.Node node, RectTransform canvas, float size, float x, float y)
         {
-            if (node != null && node.action == TreeAction.Expand)
+            if (__instance != null && node != null && node.action == TreeAction.Expand)
             {
-                if (__instance != null && node.icon != null)
+                Logger.Log("DEBUG: uGUI_CraftNodeFixer.CreateIcon_Postfix: __instance.id=[" + (!string.IsNullOrEmpty(__instance.id) ? __instance.id : "NULL") + "] node.id=[" + (!string.IsNullOrEmpty(node.id) ? node.id : "NULL") + "]");
+                if (node.icon != null && !string.IsNullOrEmpty(node.id))
                 {
                     // If current node belongs to one of our custom fabricators
-                    if (__instance.id == "DecorationsFabricator" && DecorationNodes.Contains(node.id))
+                    if (node.id == "DecorationsFabricator" && DecorationNodes.Contains(node.id))
                         node.icon.SetBackgroundColors(DNormal, DHover, DPressed);
-                    else if (__instance.id == "FloraFabricator" && FloraNodes.Contains(node.id))
+                    else if (node.id == "FloraFabricator" && FloraNodes.Contains(node.id))
                         node.icon.SetBackgroundColors(FNormal, FHover, FPressed);
                 }
             }
         }
-#else
+        /*
         private static readonly FieldInfo _view = typeof(uGUI_CraftNode).GetField("view", BindingFlags.NonPublic | BindingFlags.Instance);
 
         //protected void CreateIcon()
@@ -43,7 +42,7 @@ namespace DecorationsMod.Fixers
                 }
             }
         }
-#endif
+        */
 
         // Decorations fabricator colors
         private static readonly Color DNormal = new Color(0.76863f, 0.23137f, 0.36863f);

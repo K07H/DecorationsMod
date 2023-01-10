@@ -13,7 +13,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "DecorativeLockerClosed"; // cd34fecd-794c-4a0c-8012-dd81b77f2840
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/submarine_locker_04");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("DecorativeLockerName"),
@@ -22,22 +22,22 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 2)
                     }),
             };
 #endif
@@ -47,8 +47,6 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                this.CargoCrateContainer = Resources.Load<GameObject>("Submarine/Build/Locker");
-
                 // Add to the custom buidables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
                 SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType, TechType.Locker);
@@ -66,9 +64,16 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _lockerClosed = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_lockerClosed == null)
+                _lockerClosed = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/submarine_locker_04.prefab");
+            if (this.CargoCrateContainer == null)
+                this.CargoCrateContainer = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Locker.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_lockerClosed);
             GameObject container = GameObject.Instantiate(this.CargoCrateContainer);
             GameObject model = prefab.FindChild("submarine_locker_04");
 
@@ -122,7 +127,9 @@ namespace DecorationsMod.NewItems
             PrefabsHelper.UpdateExistingLargeWorldEntities(prefab);
 
             // Update sky applier
-#if BELOWZERO
+#if SUBNAUTICA
+            PrefabsHelper.SetDefaultSkyApplier(prefab);
+#else
             SkyApplier[] sas = prefab.GetComponentsInChildren<SkyApplier>();
             while (prefab.GetComponentInChildren<SkyApplier>() != null)
                 GameObject.DestroyImmediate(prefab.GetComponentInChildren<SkyApplier>());
@@ -137,8 +144,6 @@ namespace DecorationsMod.NewItems
             SkyApplier sa = prefab.AddComponent<SkyApplier>();
             sa.renderers = prefab.GetComponentsInChildren<Renderer>();
             sa.anchorSky = Skies.Auto;
-#else
-            PrefabsHelper.SetDefaultSkyApplier(prefab);
 #endif
 
             // Set as constructible

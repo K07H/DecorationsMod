@@ -458,7 +458,7 @@ namespace DecorationsMod.Fixers
                             KnownTechFixer.AddNotification(techType, false, false, true);
                     }
                 }
-                if (ConfigSwitcher.AddAirSeedsWhenDiscovered)
+                else if (ConfigSwitcher.AddAirSeedsWhenDiscovered)
                 {
                     if (techType == CrafterLogicFixer.MarbleMelonTiny)
                     {

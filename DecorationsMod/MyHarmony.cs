@@ -1,6 +1,5 @@
 ﻿using DecorationsMod.Fixers;
 using HarmonyLib;
-using QModManager.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,19 +68,26 @@ namespace DecorationsMod
 #endif
             if (ConfigSwitcher.EnablePlaceItems)
             {
+                /* LEGACY
                 var getAltUseItemActionMethod = typeof(Inventory).GetMethod("GetAltUseItemAction", BindingFlags.Public | BindingFlags.Instance);
                 var getAltUseItemActionPrefix = typeof(InventoryFixer).GetMethod("GetAltUseItemAction_Prefix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(getAltUseItemActionMethod, new HarmonyMethod(getAltUseItemActionPrefix), null);
+                */
+                var getAllItemActionsMethod = typeof(Inventory).GetMethod("GetAllItemActions", BindingFlags.Public | BindingFlags.Instance);
+                var getAllItemActionsPrefix = typeof(InventoryFixer).GetMethod("GetAllItemActions_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(getAllItemActionsMethod, new HarmonyMethod(getAllItemActionsPrefix), null);
+                /* DEBUG
+                var getItemActionMethod = typeof(Inventory).GetMethod("GetItemAction", BindingFlags.Public | BindingFlags.Instance);
+                var getItemActionPrefix = typeof(InventoryFixer).GetMethod("GetItemAction_Prefix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(getItemActionMethod, new HarmonyMethod(getItemActionPrefix), null);
+                */
             }
             // Fix colors for custom fabricators icons
 #if DEBUG_HARMONY_PATCHING
             Logger.Log("DEBUG: Fixing colors for custom fabricators icons...");
 #endif
-#if BELOWZERO
             var createIconMethod = typeof(uGUI_CraftingMenu).GetMethod("CreateIcon", BindingFlags.NonPublic | BindingFlags.Instance);
-#else
-            var createIconMethod = typeof(uGUI_CraftNode).GetMethod("CreateIcon", BindingFlags.NonPublic | BindingFlags.Instance);
-#endif
+            //var createIconMethod = typeof(uGUI_CraftNode).GetMethod("CreateIcon", BindingFlags.NonPublic | BindingFlags.Instance);
             var createIconPostfix = typeof(uGUI_CraftNodeFixer).GetMethod("CreateIcon_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(createIconMethod, null, new HarmonyMethod(createIconPostfix));
             // Setup new items unlock conditions
@@ -150,12 +156,22 @@ namespace DecorationsMod
 #if DEBUG_HARMONY_PATCHING
                 Logger.Log("DEBUG: Making plants spawning as seeds...");
 #endif
+                /*
                 var onConsoleCommand_itemMethod = typeof(InventoryConsoleCommands).GetMethod("OnConsoleCommand_item", BindingFlags.NonPublic | BindingFlags.Instance);
                 var onConsoleCommand_itemPrefix = typeof(InventoryConsoleCommandsFixer).GetMethod("OnConsoleCommand_item_Prefix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(onConsoleCommand_itemMethod, new HarmonyMethod(onConsoleCommand_itemPrefix), null);
+                */
+                var ItemCmdSpawnAsyncMethod = typeof(InventoryConsoleCommands).GetMethod("ItemCmdSpawnAsync", BindingFlags.NonPublic | BindingFlags.Static);
+                var ItemCmdSpawnAsyncPostfix = typeof(InventoryConsoleCommandsFixer).GetMethod("ItemCmdSpawnAsync_Postfix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(ItemCmdSpawnAsyncMethod, null, new HarmonyMethod(ItemCmdSpawnAsyncPostfix));
+                /*
                 var onConsoleCommand_spawnMethod = typeof(SpawnConsoleCommand).GetMethod("OnConsoleCommand_spawn", BindingFlags.NonPublic | BindingFlags.Instance);
                 var onConsoleCommand_spawnPrefix = typeof(SpawnConsoleCommandFixer).GetMethod("OnConsoleCommand_spawn_Prefix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(onConsoleCommand_spawnMethod, new HarmonyMethod(onConsoleCommand_spawnPrefix), null);
+                */
+                var SpawnAsyncMethod = typeof(SpawnConsoleCommand).GetMethod("SpawnAsync", BindingFlags.NonPublic | BindingFlags.Instance);
+                var SpawnAsyncPostfix = typeof(SpawnConsoleCommandFixer).GetMethod("SpawnAsync_Postfix", BindingFlags.Public | BindingFlags.Static);
+                HarmonyInstance.Patch(SpawnAsyncMethod, null, new HarmonyMethod(SpawnAsyncPostfix));
                 // Handles pland/seed state upon drop and pickup
 #if DEBUG_HARMONY_PATCHING
                 Logger.Log("DEBUG: Setting up plants interactions...");
@@ -232,6 +248,7 @@ namespace DecorationsMod
             _patchedPictureFrame = true;
         }
 
+        /*
         private static bool _fixedAutoLoadMod = false;
         /// <summary>This wil enforce loading process when AutoLoad mod is present.</summary>
         public static void FixAutoLoadMod()
@@ -251,6 +268,7 @@ namespace DecorationsMod
             }
             _fixedAutoLoadMod = true;
         }
+        */
 
         private static bool _fixedSignInput = false;
         /// <summary>This will fix sign input loading vanilla bug.</summary>

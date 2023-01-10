@@ -11,11 +11,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "AlienPillar1"; // 78009225-a9fa-4d21-9580-8719a3368373
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if SUBNAUTICA
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Precursor/precursor_deco_props_01");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Precursor/Doodads/precursor_deco_props_01");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("AlienPillar1Name"),
@@ -27,22 +23,22 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 2)
                     }),
             };
 #endif
@@ -69,9 +65,19 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _alienPillar9 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_alienPillar9 == null)
+#if SUBNAUTICA
+                _alienPillar9 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Precursor/precursor_deco_props_01.prefab");
+#else
+                _alienPillar9 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Precursor/Doodads/precursor_deco_props_01.prefab");
+#endif
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_alienPillar9);
             prefab.name = this.ClassID;
 
             // Scale
@@ -123,13 +129,11 @@ namespace DecorationsMod.NewItems
             prefab.AddComponent<ConstructableBounds>();
 
             // Update sky applier
-#if BELOWZERO
             BaseModuleLighting bml = prefab.GetComponent<BaseModuleLighting>();
             if (bml == null)
                 bml = prefab.GetComponentInChildren<BaseModuleLighting>();
             if (bml == null)
                 bml = prefab.AddComponent<BaseModuleLighting>();
-#endif
             SkyApplier sa = prefab.GetComponent<SkyApplier>();
             if (sa == null)
                 sa = prefab.GetComponentInChildren<SkyApplier>();

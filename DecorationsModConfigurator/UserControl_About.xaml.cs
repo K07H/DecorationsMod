@@ -19,6 +19,7 @@ namespace DecorationsModConfigurator
         {
             InitializeComponent();
 
+            /*
             string configuratorFolder = Path.GetDirectoryName(Uri.UnescapeDataString(new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath));
             string modJsonFile = Uri.UnescapeDataString(new Uri(Path.Combine(configuratorFolder, "..\\mod.json")).AbsolutePath);
             string version = null;
@@ -48,6 +49,8 @@ namespace DecorationsModConfigurator
                 this.DecorationsModVersion = version;
             else
                 this.DecorationsModVersion = "ERROR: Cannot find \"mod.json\" at \"" + modJsonFile + "\".";
+            */
+            this.DecorationsModVersion = "2.0.0";
 
             string configuratorVersion = typeof(UserControl_About).Assembly.GetName().Version.ToString();
             int pos = configuratorVersion.LastIndexOf('.');
@@ -68,6 +71,8 @@ namespace DecorationsModConfigurator
         public string Config_DecorationsModVersion { get { return LanguageHelper.GetFriendlyWord("Config_DecorationsModVersion"); } set { } }
         public string Config_DecorationsModConfiguratorVersion { get { return LanguageHelper.GetFriendlyWord("Config_DecorationsModConfiguratorVersion"); } set { } }
         public string Config_DecorationsModAuthor { get { return LanguageHelper.GetFriendlyWord("Config_DecorationsModAuthor"); } set { } }
+
+        public string Config_ContactMeDescription { get { return LanguageHelper.GetFriendlyWord("Config_ContactMeDescription"); } set { } }
         public string Config_ModdingDiscordDescription { get { return LanguageHelper.GetFriendlyWord("Config_ModdingDiscordDescription"); } set { } }
         public string Config_ModdingDiscordSecondaryDescription { get { return LanguageHelper.GetFriendlyWord("Config_ModdingDiscordSecondaryDescription"); } set { } }
         public string Config_ModdingDiscordURL { get { return LanguageHelper.GetFriendlyWord("Config_ModdingDiscordURL"); } set { } }
@@ -90,6 +95,16 @@ namespace DecorationsModConfigurator
             try { Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri)); }
             catch { MessageBox.Show("Could not open URL in web browser.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
             e.Handled = true;
+        }
+
+        private void ContactMeMenuItem_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText("https://discordapp.com/users/329259830378364930");
+        }
+
+        private void ContactMeMenuItem_Open_Click(object sender, RoutedEventArgs e)
+        {
+            HL_ContactMeDiscordLink.DoClick();
         }
 
         private void PrimaryMenuItem_Copy_Click(object sender, RoutedEventArgs e)

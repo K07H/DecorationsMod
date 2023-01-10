@@ -12,24 +12,15 @@ namespace DecorationsMod.NewItems
             this.ClassID = "Clipboard";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_clipboard1");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_clipboard1");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ClipboardName"),
                                                         LanguageHelper.GetFriendlyWord("ClipboardDescription"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -39,34 +30,49 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.FiberMesh, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _clipboard = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("docking_clerical_clipboard1");
+                if (_clipboard == null)
+                    _clipboard = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_clipboard1");
+
+                GameObject model = _clipboard.FindChild("docking_clerical_clipboard1");
 
                 // Scale
                 model.transform.localScale *= 4f;
                 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _clipboard.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _clipboard.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _clipboard.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.2f, 0.01f, 0.3f);
                 //collider.center = new Vector3(collider.center.x - 0.15f, collider.center.y + 0.1f, collider.center.z);
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("docking_clerical_01_normal");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _clipboard.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in renderers)
                 {
                     foreach (Material tmpMat in rend.materials)
@@ -82,21 +88,21 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add large world entity
-                this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                _clipboard.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
+                var applier = _clipboard.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _clipboard.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _clipboard.AddComponent<CustomPlaceToolController>();
+                var placeTool = _clipboard.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -137,7 +143,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_clipboard);
 
             prefab.name = this.ClassID;
 

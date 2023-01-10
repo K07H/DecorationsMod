@@ -14,7 +14,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "CargoBox01b";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("cargobox01b");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("cargobox01b");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CargoBox1bName"),
@@ -23,16 +24,7 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -41,33 +33,47 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 2)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _cargoBox1b = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                this.CargoCrateContainer = Resources.Load<GameObject>("Submarine/Build/Locker");
+                if (_cargoBox1b == null)
+                    _cargoBox1b = AssetsHelper.Assets.LoadAsset<GameObject>("cargobox01b");
 
-                GameObject model = this.GameObject.FindChild("cargobox01b");
+                this.CargoCrateContainer = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Locker.prefab");
+
+                GameObject model = _cargoBox1b.FindChild("cargobox01b");
                 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _cargoBox1b.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _cargoBox1b.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _cargoBox1b.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.132f, 0.288f, 0.16f);
                 collider.center = new Vector3(collider.center.x, collider.center.y - 0.01f, collider.center.z - 0.04f);
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("Starship_cargo_normal");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _cargoBox1b.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in renderers)
                 {
                     foreach (Material tmpMat in rend.materials)
@@ -83,10 +89,10 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add large world entity
-                this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                _cargoBox1b.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Add contructable
-                var constructible = this.GameObject.AddComponent<Constructable>();
+                var constructible = _cargoBox1b.AddComponent<Constructable>();
                 constructible.allowedInBase = true;
                 constructible.allowedInSub = true;
                 constructible.allowedOutside = true;
@@ -102,10 +108,10 @@ namespace DecorationsMod.NewItems
                 constructible.enabled = true;
 
                 // Add constructable bounds
-                var bounds = this.GameObject.AddComponent<ConstructableBounds>();
+                var bounds = _cargoBox1b.AddComponent<ConstructableBounds>();
 
                 // Add model controler
-                var cargoBoxController = this.GameObject.AddComponent<CargoBoxController>();
+                var cargoBoxController = _cargoBox1b.AddComponent<CargoBoxController>();
 
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
@@ -126,7 +132,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_cargoBox1b);
             GameObject container = GameObject.Instantiate(this.CargoCrateContainer);
 
             prefab.name = this.ClassID;

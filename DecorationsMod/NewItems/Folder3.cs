@@ -12,24 +12,15 @@ namespace DecorationsMod.NewItems
             this.ClassID = "Folder3";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_folder3");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_folder3");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("Folder1Name") + " (2)",
                                                         LanguageHelper.GetFriendlyWord("Folder1Description"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -39,14 +30,29 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.FiberMesh, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _folder3 = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("docking_clerical_folder3");
+                if (_folder3 == null)
+                    _folder3 = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_folder3");
+
+                GameObject model = _folder3.FindChild("docking_clerical_folder3");
 
                 // Scale
                 model.transform.localScale *= 4f;
@@ -55,21 +61,21 @@ namespace DecorationsMod.NewItems
                 //model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x, model.transform.localEulerAngles.y + -25.0f, model.transform.localEulerAngles.z);
 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _folder3.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _folder3.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _folder3.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.2f, 0.01f, 0.3f);
                 //collider.center = new Vector3(collider.center.x - 0.15f, collider.center.y + 0.1f, collider.center.z);
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("docking_clerical_01_normal");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _folder3.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in renderers)
                 {
                     foreach (Material tmpMat in rend.materials)
@@ -85,21 +91,21 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add large world entity
-                this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                _folder3.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
+                var applier = _folder3.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _folder3.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _folder3.AddComponent<CustomPlaceToolController>();
+                var placeTool = _folder3.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -140,7 +146,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_folder3);
 
             prefab.name = this.ClassID;
 

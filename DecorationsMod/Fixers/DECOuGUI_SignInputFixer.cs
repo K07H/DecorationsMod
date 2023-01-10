@@ -56,7 +56,7 @@ namespace DecorationsMod.Fixers
         /// </summary>
         public void Awake()
         {
-            // If current MonoBehavour is enabled, call MyRestoreSignState next frame (we can't restore the Sign state this frame because the RectTransform property of Sign's base class uGUI_SignInput has not been set yet). 
+            // If current MonoBehavour is enabled, call DECORestoreSignState next frame (we can't restore the Sign state this frame because the RectTransform property of Sign's base class uGUI_SignInput has not been set yet). 
             if (enabled)
                 Invoke(nameof(DECORestoreSignState), 2.0f);
         }

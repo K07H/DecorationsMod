@@ -10,33 +10,33 @@ namespace DecorationsMod.NewItems
         {
             this.ClassID = "e2e5bb2d-6427-431c-ac3d-036c22083222";
 #if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Eggs/StalkerEgg";
+            this.PrefabFileName = "WorldEntities/Eggs/StalkerEgg.prefab";
 #else
-            this.PrefabFileName = "WorldEntities/Eggs/Legacy/StalkerEgg";
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/StalkerEgg.prefab";
 #endif
 
             this.TechType = TechType.StalkerEgg;
 
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
                     }),
             };
 #endif
@@ -69,9 +69,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _eggStalker = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_eggStalker == null)
+                _eggStalker = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            GameObject prefab = GameObject.Instantiate(_eggStalker);
 
             prefab.name = this.ClassID;
 

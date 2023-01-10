@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "CuddleFishDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("cuddlefish");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("cuddlefish");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CuddleFishDollName"),
@@ -23,18 +24,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.CuddleFishDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.FiberMesh, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -45,14 +35,30 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.FiberMesh, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _cuddleFishDoll = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("cutefish");
+                if (_cuddleFishDoll == null)
+                    _cuddleFishDoll = AssetsHelper.Assets.LoadAsset<GameObject>("cuddlefish");
+
+                GameObject model = _cuddleFishDoll.FindChild("cutefish");
 
                 // Scale model
                 model.transform.localScale *= 1.8f;
@@ -61,20 +67,20 @@ namespace DecorationsMod.NewItems
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.22f, model.transform.localPosition.z);
                 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _cuddleFishDoll.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Set prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _cuddleFishDoll.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Set collider
-                var collider = this.GameObject.AddComponent<SphereCollider>();
+                var collider = _cuddleFishDoll.AddComponent<SphereCollider>();
                 collider.radius = 0.2f;
                 //collider.size = new Vector3(0.4f, 0.6f, 0.4f);
 
                 // Set large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
+                var lwe = _cuddleFishDoll.AddComponent<LargeWorldEntity>();
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Set proper shaders (for crafting animation)
@@ -82,7 +88,7 @@ namespace DecorationsMod.NewItems
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("Cute_fish_normal");
                 Texture spec = AssetsHelper.Assets.LoadAsset<Texture>("Cute_fish_spec");
                 Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("Cute_fish_illum");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _cuddleFishDoll.GetComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
@@ -110,20 +116,20 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Update sky applier
-                var applier = this.GameObject.GetComponent<SkyApplier>();
+                var applier = _cuddleFishDoll.GetComponent<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
+                    applier = _cuddleFishDoll.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _cuddleFishDoll.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _cuddleFishDoll.AddComponent<CustomPlaceToolController>();
+                var placeTool = _cuddleFishDoll.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -167,7 +173,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_cuddleFishDoll);
 
             prefab.name = this.ClassID;
 

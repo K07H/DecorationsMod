@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "WarperPart2";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_Warper_chain_01");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_Warper_chain_01");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("HangingWarperPartName") + " (1)",
@@ -23,17 +24,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.WarperPart2 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -43,27 +34,42 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _warperPart2 = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                //GameObject model = this.GameObject.FindChild("Precursor_Lab_Warper_chain_01");
+                if (_warperPart2 == null)
+                    _warperPart2 = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_Warper_chain_01");
+
+                //GameObject model = _warperPart2.FindChild("Precursor_Lab_Warper_chain_01");
 
                 // Translate model
                 //model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.01f, model.transform.localPosition.z);
 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _warperPart2.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _warperPart2.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _warperPart2.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.1f, 0.1f, 0.1f);
                 collider.center = new Vector3(collider.center.x, collider.center.y - 0.05f, collider.center.z);
 
@@ -78,7 +84,7 @@ namespace DecorationsMod.NewItems
                 Texture normal3 = AssetsHelper.Assets.LoadAsset<Texture>("warper_entrails_normal");
                 Texture spec3 = AssetsHelper.Assets.LoadAsset<Texture>("warper_entrails_spec");
                 Texture illum3 = AssetsHelper.Assets.LoadAsset<Texture>("warper_entrails_illum");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _warperPart2.GetComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
@@ -131,17 +137,17 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add large world entity
-                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
+                PrefabsHelper.SetDefaultLargeWorldEntity(_warperPart2);
 
                 // Add sky applier
-                PrefabsHelper.SetDefaultSkyApplier(this.GameObject, renderers);
+                PrefabsHelper.SetDefaultSkyApplier(_warperPart2, renderers);
 
                 // We can pick this item
-                PrefabsHelper.SetDefaultPickupable(this.GameObject);
+                PrefabsHelper.SetDefaultPickupable(_warperPart2);
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _warperPart2.AddComponent<CustomPlaceToolController>();
+                var placeTool = _warperPart2.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnCeiling = true;
                 placeTool.allowedOnConstructable = true;
@@ -155,9 +161,9 @@ namespace DecorationsMod.NewItems
                 placeTool.hasAnimations = false;
                 placeTool.hasBashAnimation = false;
                 placeTool.hasFirstUseAnimation = false;
-                placeTool.ghostModelPrefab = this.GameObject;
+                placeTool.ghostModelPrefab = _warperPart2;
                 placeTool.mainCollider = collider;
-                placeTool.pickupable = this.GameObject.GetComponent<Pickupable>();
+                placeTool.pickupable = _warperPart2.GetComponent<Pickupable>();
                 placeTool.drawTime = 0.5f;
                 placeTool.dropTime = 1;
                 placeTool.holsterTime = 0.35f;
@@ -187,7 +193,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_warperPart2);
 
             prefab.name = this.ClassID;
 

@@ -1,4 +1,6 @@
 ﻿using DecorationsMod.Controllers;
+using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
@@ -42,9 +44,7 @@ namespace DecorationsMod
             pickupable.version = 0;
             pickupable.isKinematic = PickupableKinematicState.NoKinematicStateSet;
             pickupable.randomizeRotationWhenDropped = true;
-#if BELOWZERO
             pickupable.activateRigidbodyWhenDropped = true;
-#endif
             pickupable.usePackUpIcon = false;
             pickupable.hideFlags = HideFlags.None;
             pickupable.useGUILayout = true;
@@ -74,9 +74,7 @@ namespace DecorationsMod
             placeTool.allowedOnRigidBody = true;
             placeTool.allowedOnWalls = onWalls;
             placeTool.allowedOutside = ConfigSwitcher.AllowPlaceOutside;
-#if BELOWZERO
             placeTool.allowedUnderwater = true;
-#endif
             placeTool.reloadMode = PlayerTool.ReloadMode.None;
             placeTool.socket = PlayerTool.Socket.RightHand;
             placeTool.rotationEnabled = true;
@@ -179,7 +177,7 @@ namespace DecorationsMod
                 return;
             SkyApplier sa = getInChildren ? gameObj.GetComponentInChildren<SkyApplier>() : gameObj.GetComponent<SkyApplier>();
             if (sa != null)
-                Object.DestroyImmediate(sa);
+                UnityEngine.Object.DestroyImmediate(sa);
             sa = gameObj.AddComponent<SkyApplier>();
             sa.renderers = gameObj.GetComponentsInChildren<Renderer>();
             sa.anchorSky = Skies.Auto;
@@ -224,11 +222,286 @@ namespace DecorationsMod
 
         public static bool IsNear(Vector3 a, Vector3 b) => a.x > (b.x - 1.0f) && a.x < (b.x + 1.0f) && a.y > (b.y - 1.0f) && a.y < (b.y + 1.0f) && a.z > (b.z - 1.0f) && a.z < (b.z + 1.0f);
 
+        /*
+        public static void WaitCoroutine(IEnumerator func)
+        {
+            while (func.MoveNext())
+                if (func.Current != null)
+                {
+                    IEnumerator num;
+                    try { num = (IEnumerator)func.Current; }
+                    catch (InvalidCastException) { return; } // Skips WaitForSeconds, WaitForEndOfFrame and WaitForFixedUpdate.
+                    WaitCoroutine(num);
+                }
+        }
+
+        public static GameObject InstantiateFromPrefabSync(TechType techType)
+        {
+            GameObject ret = null;
+            try
+            {
+                TaskResult<GameObject> goResult = new TaskResult<GameObject>();
+                WaitCoroutine(CraftData.InstantiateFromPrefabAsync(techType, goResult, false));
+                ret = goResult.Get();
+            }
+            catch (Exception ex)
+            {
+                ret = null;
+                Logger.Log("ERROR: Exception caught while instantiating prefab for TechType [" + techType.AsString() + "][" + Convert.ToString((int)techType, System.Globalization.CultureInfo.InvariantCulture) + "]. Exception=[" + ex.ToString() + "]");
+            }
+            return ret;
+        }
+        */
+
+        public static GameObject LoadGameObjectFromFilename(string filename)
+        {
+#if DEBUG
+            if (string.IsNullOrEmpty(filename))
+                Logger.Log("WARNING: LoadGameObjectFromFilename: Provided filename is empty.");
+            if (!filename.EndsWith(".prefab"))
+                Logger.Log("WARNING: LoadGameObjectFromFilename: Provided filename \"" + filename + "\" does not ends with \".prefab\".");
+#endif
+            var cyclopsFabricatorRequest = AddressablesUtility.LoadAsync<GameObject>(filename);
+            cyclopsFabricatorRequest.WaitForCompletion();
+#if DEBUG
+            if (cyclopsFabricatorRequest.Result == null)
+                Logger.Log("WARNING: LoadGameObjectFromFilename: Unable to load game object from filename \"" + filename + "\".");
+#endif
+            return cyclopsFabricatorRequest.Result;
+        }
+
+#if DEBUG
+        private static readonly List<string> AllSubnauticaPrefabs = new List<string>()
+        {
+            "Submarine/Build/Aquarium.prefab",
+            "Submarine/Build/Bench.prefab",
+            "Submarine/Build/Eatmydiction.prefab",
+            "Submarine/Build/Fabricator.prefab",
+            "Submarine/Build/FarmingTray.prefab",
+            "Submarine/Build/Locker.prefab",
+            "Submarine/Build/Marki_01.prefab",
+            "Submarine/Build/Marki_03.prefab",
+            "Submarine/Build/PictureFrame.prefab",
+            "Submarine/Build/PlanterBox.prefab",
+            "Submarine/Build/Sign.prefab",
+            "Submarine/Build/SpecimenAnalyzer.prefab",
+            "Submarine/Build/StarshipChair.prefab",
+            "Submarine/Build/Starship_tech_box_01_01.prefab",
+            "Submarine/Build/control_terminal_01.prefab",
+            "Submarine/Build/jacksepticeye.prefab",
+            "Submarine/Build/submarine_locker_04.prefab",
+            "WorldEntities/Creatures/GhostLeviathanJuvenile.prefab",
+            "WorldEntities/Doodads/Coral_reef/CoralChunk.prefab",
+            "WorldEntities/Doodads/Coral_reef/Coral_reef_blue_coral_tubes.prefab",
+            "WorldEntities/Doodads/Coral_reef/Coral_reef_grass_01_red.prefab",
+            "WorldEntities/Doodads/Coral_reef/Coral_reef_green_reeds_01.prefab",
+            "WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_01.prefab",
+            "WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_02_short.prefab",
+            "WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_02_tall.prefab",
+            "WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_03_short.prefab",
+            "WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_03_tall.prefab",
+            "WorldEntities/Doodads/Coral_reef/Coral_reef_small_deco_03.prefab",
+            "WorldEntities/Doodads/Coral_reef/JeweledDiskPiece.prefab",
+            "WorldEntities/Doodads/Coral_reef/JeweledDiskPieceBlue.prefab",
+            "WorldEntities/Doodads/Coral_reef/JeweledDiskPieceGreen.prefab",
+            "WorldEntities/Doodads/Coral_reef/JeweledDiskPieceRed.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_brown_coral_tubes_01.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_brown_coral_tubes_02_01.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_brown_coral_tubes_02_03.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_plant_middle_11.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_10.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_11.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_13.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_14.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_15_red.prefab",
+            "WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_17_purple.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/Goldglove_car_02.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/Starship_work_desk_01_empty.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/Starship_work_desk_screen_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/Starship_work_desk_screen_01_damaged.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_close_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_close_02.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_open_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_open_02.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_open_03.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_tube_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_tube_02.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_shelf_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_tube_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/circuit_box_01_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/circuit_box_01_02.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/circuit_box_01_03.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_arcade_gorgetoy_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_02.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_03.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_cart_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_02.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_03.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/docking_luggage_01_bag4.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/submarine_locker_04_open.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/submarine_locker_05.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/wall_monitor_01_01.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/wall_monitor_01_02.prefab",
+            "WorldEntities/Doodads/Debris/Wrecks/Decoration/wall_monitor_01_03.prefab",
+            "WorldEntities/Doodads/Land/Fern 02.prefab",
+            "WorldEntities/Doodads/Land/Fern 04.prefab",
+            "WorldEntities/Doodads/Land/Jungle Tree 3a.prefab",
+            "WorldEntities/Doodads/Land/Jungle Tree 3b.prefab",
+            "WorldEntities/Doodads/Land/Land_tree_01.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 10a.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 10b.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 1a.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 1b.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 2a.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 2b.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 3a.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 3b.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 6a.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 6b.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 7a.prefab",
+            "WorldEntities/Doodads/Land/Tropical Plant 7b.prefab",
+            "WorldEntities/Doodads/Land/farming_plant_01_02.prefab",
+            "WorldEntities/Doodads/Land/land_plant_middle_06_01.prefab",
+            "WorldEntities/Doodads/Land/land_plant_middle_06_02.prefab",
+            "WorldEntities/Doodads/Land/land_plant_middle_07.prefab",
+            "WorldEntities/Doodads/Land/land_plant_middle_08.prefab",
+            "WorldEntities/Doodads/Land/land_plant_middle_09.prefab",
+            "WorldEntities/Doodads/Lost_river/lost_river_cove_tree_01.prefab",
+            "WorldEntities/Doodads/Lost_river/lost_river_pillar_01.prefab",
+            "WorldEntities/Doodads/Lost_river/lost_river_pillar_02.prefab",
+            "WorldEntities/Doodads/Lost_river/lost_river_pillar_03.prefab",
+            "WorldEntities/Doodads/Lost_river/lost_river_plant_01_01.prefab",
+            "WorldEntities/Doodads/Lost_river/lost_river_plant_01_02.prefab",
+            "WorldEntities/Doodads/Lost_river/lost_river_plant_01_03.prefab",
+            "WorldEntities/Doodads/Lost_river/lost_river_plant_02.prefab",
+            "WorldEntities/Doodads/Lost_river/lost_river_plant_04.prefab",
+            "WorldEntities/Doodads/Precursor/PrecursorKey_Blue.prefab",
+            "WorldEntities/Doodads/Precursor/PrecursorKey_Orange.prefab",
+            "WorldEntities/Doodads/Precursor/PrecursorKey_Purple.prefab",
+            "WorldEntities/Doodads/Precursor/PrecursorKey_Red.prefab",
+            "WorldEntities/Doodads/Precursor/PrecursorKey_White.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/alien_relic_01.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_02.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_03.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_04.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_05.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_06.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_07.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_08.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_10.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_11.prefab",
+            "WorldEntities/Doodads/Precursor/Prison/Relics/Alien_relic_12.prefab",
+            "WorldEntities/Doodads/Precursor/precursor_deco_props_01.prefab",
+            "WorldEntities/Eggs/BonesharkEgg.prefab",
+            "WorldEntities/Eggs/CrabSquidEgg.prefab",
+            "WorldEntities/Eggs/CrabsnakeEgg.prefab",
+            "WorldEntities/Eggs/CrashEgg.prefab",
+            "WorldEntities/Eggs/CuteEgg.prefab",
+            "WorldEntities/Eggs/EmperorEgg.prefab",
+            "WorldEntities/Eggs/GasopodEgg.prefab",
+            "WorldEntities/Eggs/JellyrayEgg.prefab",
+            "WorldEntities/Eggs/JumperEgg.prefab",
+            "WorldEntities/Eggs/LavaLizardEgg.prefab",
+            "WorldEntities/Eggs/MesmerEgg.prefab",
+            "WorldEntities/Eggs/RabbitRayEgg.prefab",
+            "WorldEntities/Eggs/ReefbackEgg.prefab",
+            "WorldEntities/Eggs/SandsharkEgg.prefab",
+            "WorldEntities/Eggs/ShockerEgg.prefab",
+            "WorldEntities/Eggs/SpadefishEgg.prefab",
+            "WorldEntities/Eggs/StalkerEgg.prefab",
+            "WorldEntities/Environment/Coral_reef_floating_stones_small_01.prefab",
+            "WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell.prefab",
+            "WorldEntities/Environment/Wrecks/Poster.prefab",
+            "WorldEntities/Environment/Wrecks/poster_aurora.prefab",
+            "WorldEntities/Environment/Wrecks/poster_exosuit_01.prefab",
+            "WorldEntities/Environment/Wrecks/poster_exosuit_02.prefab",
+            "WorldEntities/Environment/Wrecks/poster_kitty.prefab",
+            "WorldEntities/Food/BigFilteredWater.prefab",
+            "WorldEntities/Food/Coffee.prefab",
+            "WorldEntities/Food/DisinfectedWater.prefab",
+            "WorldEntities/Food/FilteredWater.prefab",
+            "WorldEntities/Food/NutrientBlock.prefab",
+            "WorldEntities/Food/Snack1.prefab",
+            "WorldEntities/Food/Snack2.prefab",
+            "WorldEntities/Food/Snack3.prefab",
+            "WorldEntities/Fragments/seamoth_fragment_01.prefab",
+            "WorldEntities/Fragments/seamoth_fragment_02.prefab",
+            "WorldEntities/Fragments/seamoth_fragment_03.prefab",
+            "WorldEntities/Fragments/seamoth_fragment_04.prefab",
+            "WorldEntities/Fragments/seamoth_fragment_05.prefab",
+            "WorldEntities/Natural/AdvancedWiringKit.prefab",
+            "WorldEntities/Natural/Bleach.prefab",
+            "WorldEntities/Natural/ComputerChip.prefab",
+            "WorldEntities/Natural/CopperWire.prefab",
+            "WorldEntities/Natural/CrashPowder.prefab",
+            "WorldEntities/Natural/EnameledGlass.prefab",
+            "WorldEntities/Natural/FiberMesh.prefab",
+            "WorldEntities/Natural/FirstAidKit.prefab",
+            "WorldEntities/Natural/Glass.prefab",
+            "WorldEntities/Natural/HatchingEnzymes.prefab",
+            "WorldEntities/Natural/Lead.prefab",
+            "WorldEntities/Natural/Lubricant.prefab",
+            "WorldEntities/Natural/PlasteelIngot.prefab",
+            "WorldEntities/Natural/PrecursorIonCrystal.prefab",
+            "WorldEntities/Natural/SeaTreaderPoop.prefab",
+            "WorldEntities/Natural/Silicone.prefab",
+            "WorldEntities/Natural/StalkerTooth.prefab",
+            "WorldEntities/Natural/Titanium.prefab",
+            "WorldEntities/Natural/TitaniumIngot.prefab",
+            "WorldEntities/Natural/WiringKit.prefab",
+            "WorldEntities/Natural/aerogel.prefab",
+            "WorldEntities/Natural/aluminumoxide.prefab",
+            "WorldEntities/Natural/aramidfibers.prefab",
+            "WorldEntities/Natural/benzene.prefab",
+            "WorldEntities/Natural/bloodoil.prefab",
+            "WorldEntities/Natural/copper.prefab",
+            "WorldEntities/Natural/diamond.prefab",
+            "WorldEntities/Natural/gold.prefab",
+            "WorldEntities/Natural/hydrochloricacid.prefab",
+            "WorldEntities/Natural/kyanite.prefab",
+            "WorldEntities/Natural/lithium.prefab",
+            "WorldEntities/Natural/magnetite.prefab",
+            "WorldEntities/Natural/nickel.prefab",
+            "WorldEntities/Natural/polyaniline.prefab",
+            "WorldEntities/Natural/quartz.prefab",
+            "WorldEntities/Natural/salt.prefab",
+            "WorldEntities/Natural/silver.prefab",
+            "WorldEntities/Natural/sulphurcrystal.prefab",
+            "WorldEntities/Natural/uraninitecrystal.prefab",
+            "WorldEntities/Seeds/FernPalmSeed.prefab",
+            "WorldEntities/Tools/Battery.prefab",
+            "WorldEntities/Tools/LithiumIonBattery.prefab",
+            "WorldEntities/Tools/PowerCell.prefab",
+            "WorldEntities/Tools/PrecursorIonBattery.prefab",
+            "WorldEntities/Tools/PrecursorIonPowerCell.prefab"
+        };
+
+        private static readonly List<string> AllBelowZeroPrefabs = new List<string>();
+
+        internal static void TestPrefabs()
+        {
+            Logger.Log("DEBUG: Testing prefabs...");
+#if SUBNAUTICA
+            foreach (string prefabPath in AllSubnauticaPrefabs)
+#else
+            foreach (string prefabPath in AllBelowZeroPrefabs)
+#endif
+            {
+                GameObject res = LoadGameObjectFromFilename(prefabPath);
+                if (res == null)
+                    Logger.Log("DEBUG: Failed to load prefab at path [" + prefabPath + "]!");
+            }
+            Logger.Log("DEBUG: Prefabs have been tested.");
+        }
+#endif
+
         #endregion
 
         #region PlaceTools sky appliers
 
-        // object name, model
+                // object name, model
         private static readonly Dictionary<string, string> _placeToolSAFix = new Dictionary<string, string>()
         {
             { "FirstAidKit", "model" },
@@ -258,7 +531,7 @@ namespace DecorationsMod
             Logger.Log("DEBUG: FIX PT-SA: goName=[" + go.name + "]");
 #endif
             foreach (KeyValuePair<string, string> placeTool in _placeToolSAFix)
-                if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture) || (placeTool.Key == "Battery" && go.GetComponent<Battery>() != null))
+                if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture))
                 {
                     GameObject model = go.FindChild(placeTool.Value);
                     if (model != null)
@@ -268,7 +541,7 @@ namespace DecorationsMod
                             sas = model.GetComponentsInParent<SkyApplier>();
                         if (sas != null && sas.Length == 1)
                         {
-                            Object.DestroyImmediate(sas[0]); // Prevent accumulation of SkyAppliers
+                            UnityEngine.Object.DestroyImmediate(sas[0]); // Prevent accumulation of SkyAppliers
                             SkyApplier sa = model.AddComponent<SkyApplier>();
                             if (sa != null)
                             {
@@ -309,7 +582,7 @@ namespace DecorationsMod
                 }
         }
 
-#endregion
+        #endregion
 
         #region Seeds/plants
 
@@ -317,7 +590,7 @@ namespace DecorationsMod
         public static bool AddNewGenericSeed(ref GameObject go)
         {
             if (_genericSeed == null)
-                _genericSeed = Resources.Load<GameObject>("WorldEntities/Seeds/fernpalmseed");
+                _genericSeed = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Seeds/FernPalmSeed.prefab");
             if (_genericSeed != null)
             {
                 GameObject newSeed = GameObject.Instantiate(_genericSeed).FindChild("Generic_plant_seed");
@@ -434,7 +707,7 @@ namespace DecorationsMod
             {
                 Logger.Log("INFO: Applying fix to aquariums lighting...");
 
-                GameObject aquariumPrefab = Resources.Load<GameObject>("Submarine/Build/Aquarium");
+                GameObject aquariumPrefab = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
 
 #if SUBNAUTICA
                 SkyApplier[] sas = aquariumPrefab.GetComponents<SkyApplier>();

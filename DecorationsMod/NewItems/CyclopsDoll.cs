@@ -1,9 +1,11 @@
 ﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 
@@ -16,8 +18,9 @@ namespace DecorationsMod.NewItems
             this.ClassID = "CyclopsDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("CyclopsDollBase");
-
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("CyclopsDollBase");
+            this.GameObject = new GameObject(this.ClassID);
+            
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CyclopsDollName"),
                                                         LanguageHelper.GetFriendlyWord("CyclopsDollDescription"),
@@ -28,17 +31,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.CyclopsDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -46,6 +39,16 @@ namespace DecorationsMod.NewItems
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1)
                     }),
             };
 #endif
@@ -66,12 +69,27 @@ namespace DecorationsMod.NewItems
         };
 
         private static Dictionary<string, Texture> normals = null;
+        private static GameObject _cyclopsDollAsset = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("CyclopsDoll");
+                if (_cyclopsDollAsset == null)
+                {
+#if DEBUG_CYCLOPS_DOLL
+                    Logger.Log("DEBUG: CyclopsDoll Loading asset. Asset bundle is " + (AssetsHelper.Assets == null ? "NULL" : "NOT NULL"));
+#endif
+                    _cyclopsDollAsset = AssetsHelper.Assets.LoadAsset<GameObject>("CyclopsDollBase");
+#if DEBUG_CYCLOPS_DOLL
+                    Logger.Log("DEBUG: CyclopsDoll Loaded asset. Result is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
+#endif
+                }
+
+#if DEBUG_CYCLOPS_DOLL
+                Logger.Log("DEBUG: CyclopsDoll Registration T1");
+#endif
+                GameObject model = _cyclopsDollAsset.FindChild("CyclopsDoll");
 
                 // Scale model
                 model.transform.localScale *= 0.12f;
@@ -80,21 +98,24 @@ namespace DecorationsMod.NewItems
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.135f, model.transform.localPosition.z);
 
                 // Add prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _cyclopsDollAsset.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Add large world entity
-                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
+                PrefabsHelper.SetDefaultLargeWorldEntity(_cyclopsDollAsset);
 
                 // Add tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _cyclopsDollAsset.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _cyclopsDollAsset.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.06f, 0.148f, 0.42f);
                 collider.center = new Vector3(collider.center.x - 0.02f, collider.center.y + 0.135f, collider.center.z - 0.105f);
 
+#if DEBUG_CYCLOPS_DOLL
+                Logger.Log("DEBUG: CyclopsDoll Registration T2");
+#endif
                 // Get shaders/textures
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 if (normals == null)
@@ -104,8 +125,12 @@ namespace DecorationsMod.NewItems
                         normals.Add(elem.Key, AssetsHelper.Assets.LoadAsset<Texture>(elem.Value));
                 }
 
+#if DEBUG_CYCLOPS_DOLL
+                Logger.Log("DEBUG: CyclopsDoll Registration T3");
+#endif
                 // Get glass material
-                GameObject aquarium = Resources.Load<GameObject>("Submarine/Build/Aquarium");
+                GameObject aquarium = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
+
                 Material glass = null;
                 Renderer[] aRenderers = aquarium.GetComponentsInChildren<Renderer>(true);
                 foreach (Renderer aRenderer in aRenderers)
@@ -122,8 +147,14 @@ namespace DecorationsMod.NewItems
                         break;
                 }
 
+#if DEBUG_CYCLOPS_DOLL
+                Logger.Log("DEBUG: CyclopsDoll Registration T4 : _cyclopsDollAsset is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
+#endif
                 // Set proper shaders/textures
-                var renderers = this.GameObject.GetAllComponentsInChildren<Renderer>();
+                var renderers = _cyclopsDollAsset.GetAllComponentsInChildren<Renderer>();
+#if DEBUG_CYCLOPS_DOLL
+                Logger.Log("DEBUG: CyclopsDoll Regsitration T4b : Renderers Cnt=" + Convert.ToString(renderers.Length));
+#endif
                 if (renderers.Length > 0)
                 {
 #if DEBUG_CYCLOPS_DOLL
@@ -174,17 +205,18 @@ namespace DecorationsMod.NewItems
                     }
                 }
 
+#if DEBUG_CYCLOPS_DOLL
+                Logger.Log("DEBUG: CyclopsDoll Registration T5");
+#endif
                 // Add contructable
-                Constructable constructable = this.GameObject.AddComponent<Constructable>();
+                Constructable constructable = _cyclopsDollAsset.AddComponent<Constructable>();
                 constructable.allowedInBase = true;
                 constructable.allowedInSub = true;
                 constructable.allowedOutside = true;
                 constructable.allowedOnCeiling = false;
                 constructable.allowedOnGround = true;
                 constructable.allowedOnConstructables = true;
-#if BELOWZERO
                 constructable.allowedUnderwater = true;
-#endif
                 constructable.controlModelState = true;
                 constructable.deconstructionAllowed = true;
                 constructable.rotationEnabled = true;
@@ -195,30 +227,34 @@ namespace DecorationsMod.NewItems
                 constructable.enabled = true;
 
                 // Add constructable bounds
-                ConstructableBounds bounds = this.GameObject.AddComponent<ConstructableBounds>();
+                ConstructableBounds bounds = _cyclopsDollAsset.AddComponent<ConstructableBounds>();
                 bounds.bounds.size *= 0.9f;
                 Vector3 pos = bounds.bounds.position;
                 bounds.bounds.position = new Vector3(pos.x - 0.02f, pos.y + 0.135f, pos.z - 0.105f);
 
-                // Add sky applier
-#if BELOWZERO
-                BaseModuleLighting bml = this.GameObject.GetComponent<BaseModuleLighting>();
-                if (bml == null)
-                    bml = this.GameObject.GetComponentInChildren<BaseModuleLighting>();
-                if (bml == null)
-                    bml = this.GameObject.AddComponent<BaseModuleLighting>();
+#if DEBUG_CYCLOPS_DOLL
+                Logger.Log("DEBUG: CyclopsDoll Registration T6");
 #endif
-                SkyApplier applier = this.GameObject.AddComponent<SkyApplier>();
+                // Add sky applier
+                BaseModuleLighting bml = _cyclopsDollAsset.GetComponent<BaseModuleLighting>();
+                if (bml == null)
+                    bml = _cyclopsDollAsset.GetComponentInChildren<BaseModuleLighting>();
+                if (bml == null)
+                    bml = _cyclopsDollAsset.AddComponent<BaseModuleLighting>();
+                SkyApplier applier = _cyclopsDollAsset.AddComponent<SkyApplier>();
                 if (applier != null)
                 {
-                    applier.renderers = renderers;
+                    applier.renderers = renderers.ToArray(); //renderers;
                     applier.anchorSky = Skies.Auto;
                     applier.updaterIndex = 0;
                 }
 
                 // Add size controler
-                CyclopsDollController controller = this.GameObject.AddComponent<CyclopsDollController>();
+                CyclopsDollController controller = _cyclopsDollAsset.AddComponent<CyclopsDollController>();
 
+#if DEBUG_CYCLOPS_DOLL
+                Logger.Log("DEBUG: CyclopsDoll Registration T7");
+#endif
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
 
@@ -232,13 +268,16 @@ namespace DecorationsMod.NewItems
                 // Set the custom sprite
                 SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.Cyclops));
 
+#if DEBUG_CYCLOPS_DOLL
+                Logger.Log("DEBUG: CyclopsDoll Registration T8");
+#endif
                 this.IsRegistered = true;
             }
         }
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_cyclopsDollAsset);
             prefab.name = this.ClassID;
             return prefab;
         }

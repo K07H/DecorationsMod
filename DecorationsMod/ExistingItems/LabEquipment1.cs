@@ -8,23 +8,13 @@ namespace DecorationsMod.ExistingItems
         public LabEquipment1() // Feeds abstract class
         {
             this.ClassID = "2cee55bc-6136-47c5-a1ed-14c8f3203856";
-            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_01";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_01.prefab";
 
             this.TechType = TechType.LabEquipment1;
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -34,12 +24,28 @@ namespace DecorationsMod.ExistingItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1)
+                    }),
+            };
 #endif
         }
 
+        private static GameObject _labEquipment1 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_labEquipment1 == null)
+                _labEquipment1 = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_labEquipment1);
 
             // Add fabricating animation
             var fabricating = prefab.FindChild("discovery_lab_props_01").AddComponent<VFXFabricating>();

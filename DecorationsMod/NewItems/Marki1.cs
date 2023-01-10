@@ -11,7 +11,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "MarkiDoll1"; // cb89366d-eac0-4011-8665-fafde75b215c
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/Marki_01");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("MarkiDollName"),
@@ -21,17 +21,7 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.MarkiDoll1_asBuildable)
                 this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.FiberMesh, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -39,6 +29,16 @@ namespace DecorationsMod.NewItems
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.FiberMesh, 1),
+                        new Ingredient(TechType.Glass, 1)
                     }),
             };
 #endif
@@ -77,9 +77,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _marki1 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_marki1 == null)
+                _marki1 = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Marki_01.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_marki1);
             GameObject model = prefab.FindChild("Marki_01");
 
             prefab.name = this.ClassID;

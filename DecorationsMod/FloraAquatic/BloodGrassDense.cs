@@ -22,49 +22,36 @@ namespace DecorationsMod.FloraAquatic
         public GameObject Plant2;
         public GameObject Plant2Tall;
         public GameObject Plant3;
-        //public GameObject Plant3Tall; -> Stored in this.GameObject
+        public GameObject Plant3Tall;
 
         public BloodGrassDense()
         {
             this.ClassID = "BloodGrassDense";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if BELOWZERO
-            this.PlantBloodGrass = Resources.Load<GameObject>("WorldEntities/flora/shared/coral_reef_grass_01_red"); // ae210dd4-68f0-4c77-9025-ef7d116948b3
-            this.PlantTiny = Resources.Load<GameObject>("WorldEntities/flora/shared/coral_reef_red_seaweed_01"); // d1dc9afd-ae78-47f5-b30c-a81258325381
-            this.Plant2 = Resources.Load<GameObject>("WorldEntities/flora/shared/coral_reef_red_seaweed_02_short"); // 269dd19e-437d-4bbe-8727-2e239f0603e9
-            this.Plant2Tall = Resources.Load<GameObject>("WorldEntities/flora/shared/coral_reef_red_seaweed_02_tall"); // 8f489a8d-e612-4ac7-86c6-fa277dd8ee62
-            this.Plant3 = Resources.Load<GameObject>("WorldEntities/flora/shared/coral_reef_red_seaweed_03_short"); // 1c8bf0ca-687f-44b9-8942-82feaa800a69
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/shared/coral_reef_red_seaweed_03_tall"); // 21df8b8f-ae64-4d0e-b838-04f55dd9d72b
-#else
-            this.PlantBloodGrass = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_grass_01_red"); // ae210dd4-68f0-4c77-9025-ef7d116948b3
-            this.PlantTiny = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_01"); // d1dc9afd-ae78-47f5-b30c-a81258325381
-            this.Plant2 = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_02_short"); // 269dd19e-437d-4bbe-8727-2e239f0603e9
-            this.Plant2Tall = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_02_tall"); // 8f489a8d-e612-4ac7-86c6-fa277dd8ee62
-            this.Plant3 = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_03_short"); // 1c8bf0ca-687f-44b9-8942-82feaa800a69
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_03_tall"); // 21df8b8f-ae64-4d0e-b838-04f55dd9d72b
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("RedGrassDenseName") + " (2)",
                                                         LanguageHelper.GetFriendlyWord("RedGrassDescription"),
                                                         true);
 
-#if BELOWZERO
+#if SUBNAUTICA
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
+                {
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                    }),
-            };
-#else
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                {
+                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
 #endif
@@ -93,7 +80,7 @@ namespace DecorationsMod.FloraAquatic
                 SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 1);
 
                 // Set item bioreactor charge
-                SMLHelper.V2.Handlers.BioReactorHandler.SetBioReactorCharge(this.TechType, this.Config.Charge);
+                BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
@@ -107,7 +94,23 @@ namespace DecorationsMod.FloraAquatic
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab3Tall = GameObject.Instantiate(this.GameObject); // Plant3Tall
+#if SUBNAUTICA
+            this.Plant3Tall = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_03_tall.prefab"); // 21df8b8f-ae64-4d0e-b838-04f55dd9d72b
+            this.PlantBloodGrass = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/Coral_reef_grass_01_red.prefab"); // ae210dd4-68f0-4c77-9025-ef7d116948b3
+            this.PlantTiny = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_01.prefab"); // d1dc9afd-ae78-47f5-b30c-a81258325381
+            this.Plant2 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_02_short.prefab"); // 269dd19e-437d-4bbe-8727-2e239f0603e9
+            this.Plant2Tall = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_02_tall.prefab"); // 8f489a8d-e612-4ac7-86c6-fa277dd8ee62
+            this.Plant3 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_03_short.prefab"); // 1c8bf0ca-687f-44b9-8942-82feaa800a69
+#else
+            this.Plant3Tall = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/shared/coral_reef_red_seaweed_03_tall.prefab"); // 21df8b8f-ae64-4d0e-b838-04f55dd9d72b
+            this.PlantBloodGrass = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/shared/coral_reef_grass_01_red.prefab"); // ae210dd4-68f0-4c77-9025-ef7d116948b3
+            this.PlantTiny = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/shared/coral_reef_red_seaweed_01.prefab"); // d1dc9afd-ae78-47f5-b30c-a81258325381
+            this.Plant2 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/shared/coral_reef_red_seaweed_02_short.prefab"); // 269dd19e-437d-4bbe-8727-2e239f0603e9
+            this.Plant2Tall = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/shared/coral_reef_red_seaweed_02_tall.prefab"); // 8f489a8d-e612-4ac7-86c6-fa277dd8ee62
+            this.Plant3 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/shared/coral_reef_red_seaweed_03_short.prefab"); // 1c8bf0ca-687f-44b9-8942-82feaa800a69
+#endif
+
+            GameObject prefab3Tall = GameObject.Instantiate(this.Plant3Tall);
             GameObject prefab3 = GameObject.Instantiate(this.Plant3);
             GameObject prefab2Tall = GameObject.Instantiate(this.Plant2Tall);
             GameObject prefab2 = GameObject.Instantiate(this.Plant2);
@@ -297,9 +300,6 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
-#if SUBNAUTICA
-            liveMixin.data.explodeOnDestroy = false;
-#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

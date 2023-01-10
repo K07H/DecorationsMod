@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "GhostLeviathanDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("ghostleviathan");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("ghostleviathan");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("GhostLeviathanDollName"),
@@ -23,18 +24,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.GhostLeviathanDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.FiberMesh, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -45,14 +35,30 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.FiberMesh, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _ghostLeviathanDoll = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("model");
+                if (_ghostLeviathanDoll == null)
+                    _ghostLeviathanDoll = AssetsHelper.Assets.LoadAsset<GameObject>("ghostleviathan");
+
+                GameObject model = _ghostLeviathanDoll.FindChild("model");
 
                 // Scale
                 model.transform.localScale *= 0.47f;
@@ -61,14 +67,14 @@ namespace DecorationsMod.NewItems
                 model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x, model.transform.localEulerAngles.y + -25.0f, model.transform.localEulerAngles.z);
                 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _ghostLeviathanDoll.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _ghostLeviathanDoll.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
                 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _ghostLeviathanDoll.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.7f, 0.08f, 0.08f);
                 collider.center = new Vector3(collider.center.x - 0.15f, collider.center.y + 0.1f, collider.center.z);
 
@@ -80,7 +86,7 @@ namespace DecorationsMod.NewItems
                 Texture normal2 = AssetsHelper.Assets.LoadAsset<Texture>("Ghost_Leviathan_shell_normal");
                 Texture spec2 = AssetsHelper.Assets.LoadAsset<Texture>("Ghost_Leviathan_shell_spec");
                 Texture illum2 = AssetsHelper.Assets.LoadAsset<Texture>("OLD_Ghost_Leviathan_shell_illum");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _ghostLeviathanDoll.GetComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
@@ -120,21 +126,21 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add large world entity
-                this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                _ghostLeviathanDoll.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
                 
                 // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
+                var applier = _ghostLeviathanDoll.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _ghostLeviathanDoll.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _ghostLeviathanDoll.AddComponent<CustomPlaceToolController>();
+                var placeTool = _ghostLeviathanDoll.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -178,7 +184,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_ghostLeviathanDoll);
 
             prefab.name = this.ClassID;
 

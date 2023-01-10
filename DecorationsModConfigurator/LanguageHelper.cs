@@ -6402,7 +6402,7 @@ namespace DecorationsModConfigurator
                         return "Warning: It is not recommended to change settings below (there's a high chance that you loose some of the items functionalities by placing them in the decorations fabricator). Tick to make the item available through the habitat builder menu and untick to make it available through the decorations fabricator.";
                 case "Config_DecorationsModVersion":
                     if (UserLanguage == CountryCode.FR)
-                        return "Version de « Decorations Mod »";
+                        return "Version du « Decorations Mod »";
                     else if (UserLanguage == CountryCode.ES)
                         return "Versión del « Decorations Mod »";
                     else if (UserLanguage == CountryCode.TR)
@@ -6417,7 +6417,7 @@ namespace DecorationsModConfigurator
                         return "Decorations Mod version";
                 case "Config_DecorationsModConfiguratorVersion":
                     if (UserLanguage == CountryCode.FR)
-                        return "Version du configurateur de « Decorations Mod »";
+                        return "Version du configurateur du « Decorations Mod »";
                     else if (UserLanguage == CountryCode.ES)
                         return "Versión del configurador de « Decorations Mod »";
                     else if (UserLanguage == CountryCode.TR)
@@ -7037,7 +7037,7 @@ namespace DecorationsModConfigurator
                     else if (UserLanguage == CountryCode.RU)
                         return "Если эта опция включена, вы сможете сделать Питательный батончик в изготовителе декораций. Обратите внимание, что для работы этой опции должна быть активирована функция « Включить новые объекты » во вкладке « Строитель ».";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Wanneer aangezet, kan je de voedingsblok maken via de decoraties fabriceerder. Je moet eerst de « Zet nieuwe objecten aan » in « Habitat bouwer » aanzetten voordat dit werkt  ";
+                    	return "Wanneer aangezet, kan je de voedingsblok maken via de decoraties fabriceerder. Je moet eerst de « Zet nieuwe objecten aan » in « Habitat bouwer » aanzetten voordat dit werkt.";
                     else
                         return "If this option is enabled, you will be able to craft the nutrient block from the decorations fabricator. Please note that you need to activate the « Enable new items » feature in « Habitat builder » tab for this option to work.";
                 case "Config_EnableDecorativeElectronicsDescription":
@@ -7055,21 +7055,36 @@ namespace DecorationsModConfigurator
                     	return "Wanneer aangezet, kan je de elektronica doos, controle terminals, en werkbureau schermen bouwen.";
                     else
                         return "If enabled, you will be able to build decorative techbox, control terminal and workdesk screens.";
+                case "Config_ContactMeDescription":
+                    if (UserLanguage == CountryCode.FR)
+                        return "Vous pouvez me contacter sur Discord";
+                    else if (UserLanguage == CountryCode.ES)
+                        return "Puedes contactarme en Discord";
+                    else if (UserLanguage == CountryCode.TR)
+                        return "Discord'dan bana ulaşabilirsiniz";
+                    else if (UserLanguage == CountryCode.DE)
+                        return "Du kannst mich auf Discord kontaktieren";
+                    else if (UserLanguage == CountryCode.RU)
+                        return "Вы можете связаться со мной в Discord";
+                    else if (UserLanguage == CountryCode.NL)
+                        return "U kunt contact met mij opnemen via Discord";
+                    else
+                        return "You can contact me on Discord";
                 case "Config_ModdingDiscordDescription":
                     if (UserLanguage == CountryCode.FR)
-                        return "Rejoignez le serveur Discord « Subnautica Modding » pour obtenir de l'aide, des informations et plus encore (en Anglais)";
+                        return "Rejoignez le serveur Discord « Subnautica Modding » pour obtenir de l'aide ou des informations (en Anglais)";
                     else if (UserLanguage == CountryCode.ES)
-                        return "Ingrese a la comunidad de « Subnautica Modding » para obtener asistencia, información y más (en inglés)";
+                        return "Únase al servidor Discord \"Subnautica Modding\" para obtener ayuda o información (en inglés)";
                     else if (UserLanguage == CountryCode.TR)
-                        return "Destek, bilgi ve daha fazlası için « Subnautica Modding » topluluğuna girin (İngilizce)";
+                        return "Yardım veya bilgi için \"Subnautica Modding\" Discord sunucusuna katılın (İngilizce)";
                     else if (UserLanguage == CountryCode.DE)
-                        return "Betreten Sie die « Subnautica Modding » Community, um Unterstützung, Informationen und mehr zu erhalten (auf Englisch)";
+                        return "Tritt dem Discord-Server \"Subnautica Modding\" bei, um Hilfe oder Informationen zu erhalten (auf Englisch)";
                     else if (UserLanguage == CountryCode.RU)
-                        return "Подключитесь к серверу Discord « Subnautica Modding », чтобы получить помощь, информацию и многое другое (на английском языке)";
+                        return "Присоединяйтесь к серверу Discord « Subnautica Modding » для получения помощи или информации (на английском)";
                     else if (UserLanguage == CountryCode.NL)
-                    	return "Join de « Subnautica Modding » community discord server voor ondersteuning, informatie, en meer (in het Engels).";
+                    	return "Join de \"Subnautica Modding\" discord server voor ondersteuning en informatie (in het Engels)";
                     else
-                        return "Enter the « Subnautica Modding » community Discord server for support, informations, and more";
+                        return "Join the \"Subnautica Modding\" Discord server for support or informations";
                 case "Config_ModdingDiscordSecondaryDescription":
                     if (UserLanguage == CountryCode.FR)
                         return "Serveur Discord « Subnautica France »";

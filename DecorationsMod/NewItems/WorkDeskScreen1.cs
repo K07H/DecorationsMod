@@ -13,11 +13,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "WorkDeskScreen1"; // 2de0fc33-0386-4b55-84d4-6ad6bffaf74f
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if BELOW_ZERO
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Alterra/Base/Starship_work_desk_screen_01");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/Starship_work_desk_screen_01");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("WorkDeskScreen1Name"),
@@ -26,17 +22,17 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2] { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.Quartz, 1) }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2] { new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1), new SMLHelper.V2.Crafting.Ingredient(TechType.Quartz, 1) }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2] { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.Quartz, 1) }),
             };
 #endif
         }
@@ -62,9 +58,18 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _workDeskScreen1 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_workDeskScreen1 == null)
+#if SUBNAUTICA
+                _workDeskScreen1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/Starship_work_desk_screen_01.prefab");
+#else
+                _workDeskScreen1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Alterra/Base/Starship_work_desk_screen_01.prefab");
+#endif
+
+            GameObject prefab = GameObject.Instantiate(_workDeskScreen1);
             prefab.name = this.ClassID;
 
             // Get model

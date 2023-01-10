@@ -18,32 +18,29 @@ namespace DecorationsMod.FloraAquatic
             this.ClassID = "BlueCoralTubes1"; // 898efb6d-b57b-41a3-9d3e-753fdc537651
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if BELOWZERO
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Flora/Shared/Coral_reef_blue_coral_tubes");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_blue_coral_tubes");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BlueCoralTubes1Name"),
                                                         LanguageHelper.GetFriendlyWord("AlienFloraSampleDescription"),
                                                         true);
 
-#if BELOWZERO
+#if SUBNAUTICA
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
+                {
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                    }),
-            };
-#else
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                {
+                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
 #endif
@@ -66,7 +63,7 @@ namespace DecorationsMod.FloraAquatic
                 SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
 
                 // Set item bioreactor charge
-                SMLHelper.V2.Handlers.BioReactorHandler.SetBioReactorCharge(this.TechType, this.Config.Charge);
+                BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Specify bonus on final cut
                 SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 1);
@@ -84,9 +81,18 @@ namespace DecorationsMod.FloraAquatic
             }
         }
 
+        private static GameObject _blueCoralTubes1 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_blueCoralTubes1 == null)
+#if SUBNAUTICA
+                _blueCoralTubes1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/Coral_reef_blue_coral_tubes.prefab");
+#else
+                _blueCoralTubes1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Flora/Shared/Coral_reef_blue_coral_tubes.prefab");
+#endif
+
+            GameObject prefab = GameObject.Instantiate(_blueCoralTubes1);
 
             prefab.name = this.ClassID;
 
@@ -142,11 +148,7 @@ namespace DecorationsMod.FloraAquatic
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
-#if BELOWZERO
             pickupable.isLootCube = false;
-#else
-            pickupable.cubeOnPickup = false;
-#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -201,9 +203,6 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
-#if SUBNAUTICA
-            liveMixin.data.explodeOnDestroy = false;
-#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

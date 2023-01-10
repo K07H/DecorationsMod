@@ -12,9 +12,10 @@ namespace DecorationsMod.NewItems
             this.ClassID = "PenHolder";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_penholder");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_penholder");
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
+#if SUBNAUTICA
             this.Sprite = AssetsHelper.Assets.LoadAsset<Sprite>("penholdericon");
 #else
             this.Sprite = AssetsHelper.Assets.LoadAsset<Sprite>("penholdericon");
@@ -26,16 +27,7 @@ namespace DecorationsMod.NewItems
                                                         this.Sprite,
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -44,15 +36,29 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _penHolder = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                if (_penHolder == null)
+                    _penHolder = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_penholder");
+
                 // Get model
-                GameObject model = this.GameObject.FindChild("docking_clerical_penholder");
+                GameObject model = _penHolder.FindChild("docking_clerical_penholder");
 
                 // Scale
                 model.transform.localScale *= 4f;
@@ -62,15 +68,15 @@ namespace DecorationsMod.NewItems
                 //model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x, model.transform.localEulerAngles.y + -25.0f, model.transform.localEulerAngles.z);
 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _penHolder.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                var pi = this.GameObject.AddComponent<PrefabIdentifier>();
+                var pi = _penHolder.AddComponent<PrefabIdentifier>();
                 pi.ClassId = this.ClassID;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _penHolder.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.1f, 0.1f, 0.1f);
                 collider.contactOffset = 0.01f;
                 //collider.center = new Vector3(collider.center.x - 0.15f, collider.center.y + 0.1f, collider.center.z);
@@ -79,7 +85,7 @@ namespace DecorationsMod.NewItems
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("docking_clerical_01_normal");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _penHolder.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in renderers)
                 {
                     foreach (Material tmpMat in rend.materials)
@@ -95,21 +101,21 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add large world entity
-                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
+                PrefabsHelper.SetDefaultLargeWorldEntity(_penHolder);
 
                 // Add rigid body
-                PrefabsHelper.SetDefaultRigidBody(this.GameObject);
-                Rigidbody rb = this.GameObject.GetComponent<Rigidbody>();
+                PrefabsHelper.SetDefaultRigidBody(_penHolder);
+                Rigidbody rb = _penHolder.GetComponent<Rigidbody>();
                 rb.mass = 0.4f;
 
                 // Add sky applier
-                PrefabsHelper.SetDefaultSkyApplier(this.GameObject, renderers);
+                PrefabsHelper.SetDefaultSkyApplier(_penHolder, renderers);
 
                 // We can pick this item
-                PrefabsHelper.SetDefaultPickupable(this.GameObject);
+                PrefabsHelper.SetDefaultPickupable(_penHolder);
 
                 // We can place this item
-                PrefabsHelper.SetDefaultPlaceTool(this.GameObject, collider);
+                PrefabsHelper.SetDefaultPlaceTool(_penHolder, collider);
 
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
@@ -132,7 +138,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_penHolder);
 
             prefab.name = this.ClassID;
 

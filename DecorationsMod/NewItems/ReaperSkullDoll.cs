@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "ReaperSkullDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("reaperskull");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("reaperskull");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ReaperSkullDollName"),
@@ -23,16 +24,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.ReaperSkullDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -41,30 +33,44 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _reaperSkullDoll = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("reaperleviathanskull");
+                if (_reaperSkullDoll == null)
+                    _reaperSkullDoll = AssetsHelper.Assets.LoadAsset<GameObject>("reaperskull");
+
+                GameObject model = _reaperSkullDoll.FindChild("reaperleviathanskull");
                 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _reaperSkullDoll.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _reaperSkullDoll.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _reaperSkullDoll.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.3f, 0.6f, 0.4f);
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("Lost_river_reaper_skeleton_skull_normal");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _reaperSkullDoll.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in renderers)
                 {
                     foreach (Material tmpMat in rend.materials)
@@ -80,21 +86,21 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add large world entity
-                this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                _reaperSkullDoll.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
+                var applier = _reaperSkullDoll.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _reaperSkullDoll.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _reaperSkullDoll.AddComponent<CustomPlaceToolController>();
+                var placeTool = _reaperSkullDoll.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -138,7 +144,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_reaperSkullDoll);
 
             prefab.name = this.ClassID;
 

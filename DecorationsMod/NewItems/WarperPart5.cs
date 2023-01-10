@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "WarperPart5";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("warper_part_5");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("warper_part_5");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("WarperPartName") + " (1)",
@@ -23,16 +24,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.WarperPart5 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -41,27 +33,41 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _warperPart5 = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("Model");
+                if (_warperPart5 == null)
+                    _warperPart5 = AssetsHelper.Assets.LoadAsset<GameObject>("warper_part_5");
+
+                GameObject model = _warperPart5.FindChild("Model");
 
                 // Translate model
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.015f, model.transform.localPosition.z);
 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _warperPart5.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _warperPart5.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _warperPart5.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.3f, 0.1f, 0.2f);
                 collider.center = new Vector3(collider.center.x, collider.center.y + 0.05f, collider.center.z);
 
@@ -76,7 +82,7 @@ namespace DecorationsMod.NewItems
                 Texture normal3 = AssetsHelper.Assets.LoadAsset<Texture>("warper_entrails_normal");
                 Texture spec3 = AssetsHelper.Assets.LoadAsset<Texture>("warper_entrails_spec");
                 Texture illum3 = AssetsHelper.Assets.LoadAsset<Texture>("warper_entrails_illum");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _warperPart5.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in renderers)
                     if (rend.materials.Length > 0)
                         foreach (Material tmpMat in rend.materials)
@@ -128,17 +134,17 @@ namespace DecorationsMod.NewItems
                         }
 
                 // Add large world entity
-                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
+                PrefabsHelper.SetDefaultLargeWorldEntity(_warperPart5);
 
                 // Add sky applier
-                PrefabsHelper.SetDefaultSkyApplier(this.GameObject, renderers);
+                PrefabsHelper.SetDefaultSkyApplier(_warperPart5, renderers);
 
                 // We can pick this item
-                PrefabsHelper.SetDefaultPickupable(this.GameObject);
+                PrefabsHelper.SetDefaultPickupable(_warperPart5);
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _warperPart5.AddComponent<CustomPlaceToolController>();
+                var placeTool = _warperPart5.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnConstructable = true;
                 placeTool.allowedOnRigidBody = true;
@@ -152,9 +158,9 @@ namespace DecorationsMod.NewItems
                 placeTool.hasAnimations = false;
                 placeTool.hasBashAnimation = false;
                 placeTool.hasFirstUseAnimation = false;
-                placeTool.ghostModelPrefab = this.GameObject;
+                placeTool.ghostModelPrefab = _warperPart5;
                 placeTool.mainCollider = collider;
-                placeTool.pickupable = this.GameObject.GetComponent<Pickupable>();
+                placeTool.pickupable = _warperPart5.GetComponent<Pickupable>();
                 placeTool.drawTime = 0.5f;
                 placeTool.dropTime = 1;
                 placeTool.holsterTime = 0.35f;
@@ -184,7 +190,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_warperPart5);
 
             prefab.name = this.ClassID;
 

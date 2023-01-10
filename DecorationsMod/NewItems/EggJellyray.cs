@@ -10,33 +10,33 @@ namespace DecorationsMod.NewItems
         {
             this.ClassID = "344b5156-838c-4054-b9bb-0f065a2488f8";
 #if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Eggs/JellyrayEgg";
+            this.PrefabFileName = "WorldEntities/Eggs/JellyrayEgg.prefab";
 #else
-            this.PrefabFileName = "WorldEntities/Eggs/Legacy/JellyrayEgg";
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/JellyrayEgg.prefab";
 #endif
 
             this.TechType = TechType.JellyrayEgg;
 
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
                     }),
             };
 #endif
@@ -69,9 +69,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _eggJellyray = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_eggJellyray == null)
+                _eggJellyray = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            GameObject prefab = GameObject.Instantiate(_eggJellyray);
 
             prefab.name = this.ClassID;
 

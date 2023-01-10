@@ -13,7 +13,7 @@ namespace DecorationsMod
         //public static CraftTree.Type DecorationsFabricatorTreeTypeID { get => _decoFabTreeTypeId; private set => _decoFabTreeTypeId = value; }
         public CraftTree.Type TreeTypeID { get; private set; }
 
-        public static GameObject OriginalFabricator = Resources.Load<GameObject>("Submarine/Build/Fabricator");
+        public static GameObject OriginalFabricator = new GameObject(DecorationsFabID);
 
         public const string DecorationsFabID = "DecorationsFabricator";
 
@@ -23,8 +23,8 @@ namespace DecorationsMod
 
         public Texture2D ColoredTexture = null;
 
-#if BELOWZERO
-        public RecipeData Recipe = new RecipeData()
+#if SUBNAUTICA
+        public TechData Recipe = new TechData()
         {
             craftAmount = 1,
             Ingredients = new List<Ingredient>(new Ingredient[4]
@@ -36,7 +36,7 @@ namespace DecorationsMod
             })
         };
 #else
-        public TechData Recipe = new TechData()
+        public RecipeData Recipe = new RecipeData()
         {
             craftAmount = 1,
             Ingredients = new List<Ingredient>(new Ingredient[4]
@@ -447,10 +447,16 @@ namespace DecorationsMod
             return rootNode;
         }
 
+        public static GameObject _decorationsFabricator = null;
+
         public override GameObject GetGameObject()
         {
+            if (_decorationsFabricator == null)
+                _decorationsFabricator = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Fabricator.prefab");
+
             // Instantiate CyclopsFabricator object
-            var fabricatorPrefab = GameObject.Instantiate(Fabricator_Decorations.OriginalFabricator);
+            //var fabricatorPrefab = GameObject.Instantiate(Fabricator_Decorations.OriginalFabricator);
+            var fabricatorPrefab = GameObject.Instantiate(_decorationsFabricator);
 
             // Update prefab name
             fabricatorPrefab.name = this.ClassID;

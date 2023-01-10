@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "LabRobotArm";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("labrobotarm");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("labrobotarm");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LabRobotArmName"),
@@ -23,16 +24,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.LabRobotArm = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -41,14 +33,28 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _labRobotArm = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("robotarm");
+                if (_labRobotArm == null)
+                    _labRobotArm = AssetsHelper.Assets.LoadAsset<GameObject>("labrobotarm");
+
+                GameObject model = _labRobotArm.FindChild("robotarm");
                 GameObject armModel = model.FindChild("biodome_Robot_Arm");
                 GameObject wallModel = model.FindChild("biodome_Robot_Arm_wall_tile");
 
@@ -56,19 +62,19 @@ namespace DecorationsMod.NewItems
                 model.transform.localScale *= 12f;
                 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _labRobotArm.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Set prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _labRobotArm.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Set collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _labRobotArm.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.3f, 0.5f, 0.7f);
 
                 // Set large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
+                var lwe = _labRobotArm.AddComponent<LargeWorldEntity>();
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Set proper shaders (for crafting animation)
@@ -76,7 +82,7 @@ namespace DecorationsMod.NewItems
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("biodome_Robot_Arm_normal");
                 Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("biodome_Robot_Arm_illum");
                 Texture normal2 = AssetsHelper.Assets.LoadAsset<Texture>("biodome_Robot_Arm_wall_normal");
-                Renderer[] renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                Renderer[] renderers = _labRobotArm.GetComponentsInChildren<Renderer>();
                 foreach (Renderer renderer in renderers)
                 {
                     foreach (Material tmpMat in renderer.materials)
@@ -101,20 +107,20 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Update sky applier
-                var applier = this.GameObject.GetComponent<SkyApplier>();
+                var applier = _labRobotArm.GetComponent<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
+                    applier = _labRobotArm.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
                 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _labRobotArm.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _labRobotArm.AddComponent<CustomPlaceToolController>();
+                var placeTool = _labRobotArm.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = true;
                 placeTool.allowedOnCeiling = false;
@@ -155,7 +161,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_labRobotArm);
 
             prefab.name = this.ClassID;
 

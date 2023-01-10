@@ -19,7 +19,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "SofaStr2";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/Bench");
+            this.GameObject = new GameObject(this.ClassID);
+
             this.newsofa = AssetsHelper.Assets.LoadAsset<GameObject>("descent_bar_sofa_str_02");
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
@@ -33,17 +34,7 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.SofaStr2_asBuidable)
                 this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 2),
-                        new Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -51,6 +42,16 @@ namespace DecorationsMod.NewItems
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 2),
+                        new Ingredient(TechType.FiberMesh, 1)
                     }),
             };
 #endif
@@ -94,9 +95,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _sofaStr2 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_sofaStr2 == null)
+                _sofaStr2 = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Bench.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_sofaStr2);
             GameObject newsofaPrefab = GameObject.Instantiate(newsofa);
 
             prefab.name = this.ClassID;

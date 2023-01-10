@@ -12,11 +12,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "SeamothFragment4"; // b9764db6-1f2a-4cfc-bda0-8a179cb7e155
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if SUBNAUTICA
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Fragments/seamoth_fragment_04");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Alterra/Fragments/seamoth_fragment_04");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SeamothFragmentName") + " (4)",
@@ -26,17 +22,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.SeamothFragment4 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -44,6 +30,16 @@ namespace DecorationsMod.NewItems
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1)
                     }),
             };
 #endif
@@ -75,9 +71,18 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _seamothFragment4 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_seamothFragment4 == null)
+#if SUBNAUTICA
+                _seamothFragment4 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Fragments/seamoth_fragment_04.prefab");
+#else
+                _seamothFragment4 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Alterra/Fragments/seamoth_fragment_04.prefab");
+#endif
+
+            GameObject prefab = GameObject.Instantiate(_seamothFragment4);
 
             prefab.name = this.ClassID;
 

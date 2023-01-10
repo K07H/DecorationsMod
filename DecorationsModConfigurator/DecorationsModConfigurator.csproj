@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>DecorationsModConfigurator</RootNamespace>
     <AssemblyName>DecorationsModConfigurator</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -29,7 +29,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <SupportUrl>https://www.nexusmods.com/subnautica/mods/102</SupportUrl>
     <ProductName>Decorations Mod Configurator</ProductName>
-    <PublisherName>OSubMarin</PublisherName>
+    <PublisherName>LC-IT S. (OSubMarin - legendarytools@gmail.com)</PublisherName>
     <WebPage>publish.htm</WebPage>
     <ApplicationRevision>34</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugSN|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -59,7 +59,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\</SubnauticaDir>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseSN|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
@@ -632,9 +632,12 @@
   <ItemGroup>
     <Resource Include="Images\Flora\covetree2icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Discord\OSubMarin.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>SET CONFIGURATOREXPATH=$(SubnauticaDir)QMods\DecorationsMod\Configurator\
+    <PostBuildEvent>SET CONFIGURATOREXPATH=$(SubnauticaDir)BepInEx\plugins\DecorationsMod\Configurator\
 SET CONFIGURATOREXDEBUGPATH=$(SolutionDir)DecorationsMod\bin\$(ConfigurationName)\Configurator\
 echo ------ Copying "$(TargetDir)$(TargetFileName)" to "%25CONFIGURATOREXDEBUGPATH%25"
 xcopy "$(TargetDir)$(TargetFileName)" "%25CONFIGURATOREXDEBUGPATH%25" /Y
@@ -661,8 +664,6 @@ xcopy "$(TargetDir)MaterialDesignThemes.Wpf.dll" "%25CONFIGURATOREXPATH%25" /Y
   <PropertyGroup>
     <PreBuildEvent>echo ------ Copying "$(SolutionDir)DecorationsMod\Config.txt" to "$(TargetDir)..\" for live debugging...
 xcopy "$(SolutionDir)DecorationsMod\Config.txt" "$(TargetDir)..\" /Y
-echo ------ Copying "$(SolutionDir)DecorationsMod\mod.json" to "$(TargetDir)..\" for live debugging...
-xcopy "$(SolutionDir)DecorationsMod\mod.json" "$(TargetDir)..\" /Y
 </PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

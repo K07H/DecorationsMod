@@ -11,33 +11,29 @@ namespace DecorationsMod.NewItems
             this.ClassID = "LabShelf"; //33acd899-72fe-4a98-85f9-b6811974fbeb
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if SUBNAUTICA
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_shelf_01");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Alterra/Base/biodome_lab_shelf_01");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LabShelfName"),
                                                         LanguageHelper.GetFriendlyWord("LabShelfDescription"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 2)
                     }),
             };
 #endif
@@ -69,9 +65,18 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _labShelf = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_labShelf == null)
+#if SUBNAUTICA
+                _labShelf = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_shelf_01.prefab");
+#else
+                _labShelf = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Alterra/Base/biodome_lab_shelf_01.prefab");
+#endif
+
+            GameObject prefab = GameObject.Instantiate(_labShelf);
 
             prefab.name = this.ClassID;
 

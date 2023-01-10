@@ -19,11 +19,7 @@ namespace DecorationsMod.FloraAquatic
             this.ClassID = "PyroCoral1"; // 9d7d3f7a-fbb9-41ab-84fa-6f40c1ed2524
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if BELOWZERO
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/environmentprops/lostriver/lost_river_pillar_01");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Lost_river/lost_river_pillar_01");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("PyroCoralName") + " (1)",
@@ -33,21 +29,22 @@ namespace DecorationsMod.FloraAquatic
             CrafterLogicFixer.PyroCoral1 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
+#if SUBNAUTICA
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
+                {
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                    }),
-            };
-#else
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                {
+                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
 #endif
@@ -70,7 +67,7 @@ namespace DecorationsMod.FloraAquatic
                 SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
 
                 // Set item bioreactor charge
-                SMLHelper.V2.Handlers.BioReactorHandler.SetBioReactorCharge(this.TechType, this.Config.Charge);
+                BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
@@ -85,9 +82,18 @@ namespace DecorationsMod.FloraAquatic
             }
         }
 
+        private static GameObject _pyroCoral1 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_pyroCoral1 == null)
+#if SUBNAUTICA
+                _pyroCoral1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Lost_river/lost_river_pillar_01.prefab");
+#else
+                _pyroCoral1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/environmentprops/lostriver/lost_river_pillar_01.prefab");
+#endif
+
+            GameObject prefab = GameObject.Instantiate(_pyroCoral1);
 
             prefab.name = this.ClassID;
 
@@ -152,11 +158,7 @@ namespace DecorationsMod.FloraAquatic
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = false;
             pickupable.destroyOnDeath = true;
-#if BELOWZERO
             pickupable.isLootCube = false;
-#else
-            pickupable.cubeOnPickup = false;
-#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -207,9 +209,6 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
-#if SUBNAUTICA
-            liveMixin.data.explodeOnDestroy = false;
-#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

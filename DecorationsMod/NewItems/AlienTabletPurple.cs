@@ -9,35 +9,34 @@ namespace DecorationsMod.NewItems
         public AlienTabletPurple()// Feeds abstract class
         {
             this.ClassID = "92fb421e-a3f6-4b0b-8542-fd4faee4202a";
-            this.PrefabFileName = "WorldEntities/Doodads/Precursor/PrecursorKey_Purple";
 
 #if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Doodads/Precursor/PrecursorKey_Purple";
+            this.PrefabFileName = "WorldEntities/Doodads/Precursor/PrecursorKey_Purple.prefab";
 #else
-            this.PrefabFileName = "WorldEntities/Precursor/Keys/PrecursorKey_Purple";
+            this.PrefabFileName = "WorldEntities/Precursor/Keys/PrecursorKey_Purple.prefab";
 #endif
 
             this.TechType = TechType.PrecursorKey_Purple;
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
             /*
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount)
                     }),
             };
 #endif
@@ -64,9 +63,15 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _alienTabletPurple = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_alienTabletPurple == null)
+                _alienTabletPurple = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_alienTabletPurple);
             prefab.name = this.ClassID;
 
             // Update TechTag

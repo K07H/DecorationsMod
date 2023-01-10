@@ -11,23 +11,15 @@ namespace DecorationsMod.NewItems
             this.ClassID = "BarNapkins";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barnapkins");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barnapkins");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BarNapkinsName"),
                                                         LanguageHelper.GetFriendlyWord("BarNapkinsDescription"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -36,58 +28,72 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.FiberMesh, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _barNapkins = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("docking_food_01_napkin_group").FindChild("docking_food_01_napkin_group");
+                if (_barNapkins == null)
+                    _barNapkins = AssetsHelper.Assets.LoadAsset<GameObject>("barnapkins");
+
+                GameObject model = _barNapkins.FindChild("docking_food_01_napkin_group").FindChild("docking_food_01_napkin_group");
 
                 // Scale model
                 model.transform.localScale *= 22f;
 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _barNapkins.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Set prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _barNapkins.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Set collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _barNapkins.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.1f, 0.07f, 0.1f);
 
                 // Set large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
+                var lwe = _barNapkins.AddComponent<LargeWorldEntity>();
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("docking_food_01_normal");
-                var renderer = this.GameObject.GetComponentInChildren<Renderer>();
+                var renderer = _barNapkins.GetComponentInChildren<Renderer>();
                 renderer.material.shader = marmosetUber;
                 renderer.material.SetTexture("_BumpMap", normal);
                 renderer.material.EnableKeyword("MARMO_NORMALMAP");
                 renderer.material.EnableKeyword("_ZWRITE_ON"); // Enable Z write
 
                 // Update sky applier
-                var applier = this.GameObject.GetComponent<SkyApplier>();
+                var applier = _barNapkins.GetComponent<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
+                    applier = _barNapkins.AddComponent<SkyApplier>();
                 applier.renderers = new Renderer[] { renderer };
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _barNapkins.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _barNapkins.AddComponent<CustomPlaceToolController>();
+                var placeTool = _barNapkins.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -128,7 +134,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_barNapkins);
 
             prefab.name = this.ClassID;
 

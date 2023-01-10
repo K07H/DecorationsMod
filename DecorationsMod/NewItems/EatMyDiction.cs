@@ -11,7 +11,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "MarlaCat"; // c96baff4-0993-4893-8345-adb8709901a7
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/Eatmydiction");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("MarlaCatName"),
@@ -21,22 +21,22 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.EatMyDiction_asBuidable)
                 this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.FiberMesh, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 2)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.FiberMesh, 2)
                     }),
             };
 #endif
@@ -74,9 +74,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _eatMyDiction = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_eatMyDiction == null)
+                _eatMyDiction = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Eatmydiction.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_eatMyDiction);
             GameObject model = prefab.FindChild("Eatmydiction");
 
             prefab.name = this.ClassID;

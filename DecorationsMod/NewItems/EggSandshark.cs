@@ -10,33 +10,33 @@ namespace DecorationsMod.NewItems
         {
             this.ClassID = "bc0f2b09-1c5c-4573-bdcb-087883677a5f";
 #if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Eggs/SandsharkEgg";
+            this.PrefabFileName = "WorldEntities/Eggs/SandsharkEgg.prefab";
 #else
-            this.PrefabFileName = "WorldEntities/Eggs/Legacy/SandsharkEgg";
+            this.PrefabFileName = "WorldEntities/Eggs/Legacy/SandsharkEgg.prefab";
 #endif
 
             this.TechType = TechType.SandsharkEgg;
 
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
                     }),
             };
 #endif
@@ -69,9 +69,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _eggSandshark = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_eggSandshark == null)
+                _eggSandshark = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            GameObject prefab = GameObject.Instantiate(_eggSandshark);
 
             prefab.name = this.ClassID;
 

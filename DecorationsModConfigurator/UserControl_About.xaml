@@ -22,30 +22,30 @@
         </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="10,0,0,0">
-        <TextBlock Text="{Binding Config_About, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="22" FontWeight="Regular" Margin="15" />
+        <TextBlock Text="{Binding Config_About, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="22" FontWeight="Regular" Margin="12" />
         <Grid Margin="0,15,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_DecorationsModVersion, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBlock Grid.Column="1" Text="{Binding DecorationsModVersion}" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="0" Text="{Binding Config_DecorationsModVersion, Mode=TwoWay}" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="{Binding DecorationsModVersion}" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_DecorationsModConfiguratorVersion, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBlock Grid.Column="1" Text="{Binding ConfiguratorVersion}" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="0" Text="{Binding Config_DecorationsModConfiguratorVersion, Mode=TwoWay}" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="{Binding ConfiguratorVersion}" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_DecorationsModAuthor, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBlock Grid.Column="1" Text="OSubMarin" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="0" Text="{Binding Config_DecorationsModAuthor, Mode=TwoWay}" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="OSubMarin" FontWeight="DemiBold" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
         <Image Source="/Images/Discord/Discord.png" Width="142" Height="40" HorizontalAlignment="Center" Margin="0,30,0,0" />
         <Grid Margin="0,15,0,0">
@@ -53,10 +53,59 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_ModdingDiscordDescription, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" />
+            <TextBlock Grid.Column="0" Text="{Binding Config_ContactMeDescription, Mode=TwoWay}" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Source="/Images/Discord/OSubMarin.png" Width="48" Height="48" />
+                <TextBlock Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Hyperlink x:Name="HL_ContactMeDiscordLink" NavigateUri="https://discordapp.com/users/329259830378364930" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Hyperlink.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Copy link" Click="ContactMeMenuItem_Copy_Click">
+                                    <MenuItem.Icon>
+                                        <materialdesign:PackIcon Kind="ContentCopy" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Header="Open link" Click="ContactMeMenuItem_Open_Click">
+                                    <MenuItem.Icon>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialdesign:PackIcon Kind="Web" Margin="-1,0,0,0" Width="14" />
+                                            <materialdesign:PackIcon Kind="ArrowUp" Margin="-6.5,-3,0,0" Width="13" />
+                                        </StackPanel>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Hyperlink.ContextMenu>
+                        <TextBlock TextDecorations="Underline" Text="OSubMarin#0460">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Trigger.Setters>
+                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                            </Trigger.Setters>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Trigger.Setters>
+                                                <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+                                            </Trigger.Setters>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Config_ModdingDiscordDescription, Mode=TwoWay}" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
                 <Image Source="/Images/Discord/SubnauticaModding.png" Width="48" Height="48" />
-                <TextBlock Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Hyperlink x:Name="HL_ModdingDiscordPrimaryLink" NavigateUri="{Binding Config_ModdingDiscordURL, Mode=TwoWay}" RequestNavigate="Hyperlink_RequestNavigate">
                         <Hyperlink.ContextMenu>
                             <ContextMenu>
@@ -102,11 +151,11 @@
                 <ColumnDefinition Width="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Config_ModdingDiscordSecondaryDescription, Mode=TwoWay}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" />
+            <TextBlock Grid.Column="0" Text="{Binding Config_ModdingDiscordSecondaryDescription, Mode=TwoWay}" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
                 <Image x:Name="IMG_SubnauticaFrance" Visibility="Collapsed" Source="/Images/Discord/SubnauticaFrance.png" Width="48" Height="48" Margin="0,0,5,0" />
                 <Image x:Name="IMG_SubnauticaWiki" Visibility="Collapsed" Source="/Images/Discord/SubnauticaWiki.png" Width="48" Height="48" Margin="0,0,5,0" />
-                <TextBlock Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Hyperlink x:Name="HL_ModdingDiscordSecondaryLink" NavigateUri="{Binding Config_ModdingDiscordSecondaryURL, Mode=TwoWay}" RequestNavigate="Hyperlink_RequestNavigate">
                         <Hyperlink.ContextMenu>
                             <ContextMenu>

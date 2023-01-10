@@ -12,24 +12,15 @@ namespace DecorationsMod.NewItems
             this.ClassID = "DecorativePDA";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("DecorativePDA");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("DecorativePDA");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("DecorativePDAName"),
                                                         LanguageHelper.GetFriendlyWord("DecorativePDADescription"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -39,27 +30,42 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _decorativePDA = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("PDA");
+                if (_decorativePDA == null)
+                    _decorativePDA = AssetsHelper.Assets.LoadAsset<GameObject>("DecorativePDA");
+
+                GameObject model = _decorativePDA.FindChild("PDA");
 
                 // Translate model
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.017f, model.transform.localPosition.z);
 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _decorativePDA.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _decorativePDA.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _decorativePDA.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.15f, 0.015f, 0.08f);
 
                 // Set proper shaders (for crafting animation)
@@ -67,7 +73,7 @@ namespace DecorationsMod.NewItems
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("PDA_normal");
                 Texture illum = AssetsHelper.Assets.LoadAsset<Texture>("PDA_illum");
                 Texture spec = AssetsHelper.Assets.LoadAsset<Texture>("PDA_spec");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _decorativePDA.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in renderers)
                 {
                     foreach (Material tmpMat in rend.materials)
@@ -89,21 +95,21 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add large world entity
-                this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                _decorativePDA.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
+                var applier = _decorativePDA.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _decorativePDA.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _decorativePDA.AddComponent<CustomPlaceToolController>();
+                var placeTool = _decorativePDA.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -117,7 +123,7 @@ namespace DecorationsMod.NewItems
                 placeTool.hasAnimations = false;
                 placeTool.hasBashAnimation = false;
                 placeTool.hasFirstUseAnimation = false;
-                placeTool.ghostModelPrefab = this.GameObject;
+                placeTool.ghostModelPrefab = _decorativePDA;
                 placeTool.mainCollider = collider;
                 placeTool.pickupable = pickupable;
                 placeTool.drawTime = 0.5f;
@@ -145,7 +151,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_decorativePDA);
 
             prefab.name = this.ClassID;
 

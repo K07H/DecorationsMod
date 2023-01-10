@@ -9,13 +9,12 @@ namespace DecorationsMod.ExistingItems
         public PosterPeng() // Feeds abstract class
         {
             this.ClassID = "73756fda-6d9e-4ce6-8d13-ba05f8824b78";
-            this.PrefabFileName = "WorldEntities/Alterra/Base/poster_peng";
+            this.PrefabFileName = "WorldEntities/Alterra/Base/poster_peng.prefab";
 
             this.TechType = TechType.PosterSpyPenguin;
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
             {
                 craftAmount = 1,
@@ -25,22 +24,17 @@ namespace DecorationsMod.ExistingItems
                         new Ingredient(TechType.FiberMesh, 1)
                     }),
             };
-#else
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
-#endif
         }
+
+        private static GameObject _posterPeng = null;
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_posterPeng == null)
+                _posterPeng = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+            
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_posterPeng);
 
             /*
             // Add fabricating animation

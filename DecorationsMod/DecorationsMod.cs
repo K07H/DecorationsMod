@@ -1,6 +1,6 @@
 ﻿using DecorationsMod.Fixers;
 using HarmonyLib;
-using QModManager.API;
+//using QModManager.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,11 +73,15 @@ namespace DecorationsMod
                 PrefabsHelper.FixAquariumSkyApplier();
             MyHarmony.FixSignInput();
             // Mods compatibility.
-            MyHarmony.FixAutoLoadMod();
+            //MyHarmony.FixAutoLoadMod();
 
             // 9) SETUP IN GAME OPTIONS MENU
-            Logger.Log("INFO: Setting up in-game options menu...");
-            SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
+            //Logger.Log("INFO: Setting up in-game options menu...");
+            //SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
+
+#if DEBUG
+            PrefabsHelper.TestPrefabs();
+#endif
         }
 
         /// <summary>Registers language strings based on user language.</summary>
@@ -87,8 +91,8 @@ namespace DecorationsMod
             foreach (string tooltip in LanguageHelper.Tooltips)
                 SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(tooltip, LanguageHelper.GetFriendlyWord(tooltip));
             // Register configuration strings
-            foreach (string configOption in ConfigOptions.LanguageStrings)
-                SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(configOption, LanguageHelper.GetFriendlyWord(configOption));
+            //foreach (string configOption in ConfigOptions.LanguageStrings)
+            //    SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(configOption, LanguageHelper.GetFriendlyWord(configOption));
         }
 
         /// <summary>Returns a list containing all new items added by this mod.</summary>
@@ -257,7 +261,16 @@ namespace DecorationsMod
         /// <param name="craftingAmount">Number of crafted items amount.</param>
         private static void RegisterRecipeForTechType(TechType techType, TechType resource, int resourceAmount = 1, int craftingAmount = 1)
         {
-#if BELOWZERO
+#if SUBNAUTICA
+            var techTypeRecipe = new SMLHelper.V2.Crafting.TechData()
+            {
+                craftAmount = craftingAmount,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
+                    new SMLHelper.V2.Crafting.Ingredient(resource, resourceAmount)
+                })
+            };
+            SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(techType, techTypeRecipe);
+#else
             SMLHelper.V2.Crafting.RecipeData techTypeRecipe = new SMLHelper.V2.Crafting.RecipeData()
             {
                 craftAmount = craftingAmount,
@@ -265,15 +278,6 @@ namespace DecorationsMod
                     {
                         new Ingredient(resource, resourceAmount)
                     }),
-            };
-            SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(techType, techTypeRecipe);
-#else
-            var techTypeRecipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = craftingAmount,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(resource, resourceAmount)
-                })
             };
             SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(techType, techTypeRecipe);
 #endif

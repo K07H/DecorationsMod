@@ -1,5 +1,6 @@
-﻿using QModManager.API;
-using SMLHelper.V2.Options;
+﻿/*
+//using QModManager.API;
+using SMLHelper.Options;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -128,3 +129,4 @@ namespace DecorationsMod
         }
     }
 }
+*/

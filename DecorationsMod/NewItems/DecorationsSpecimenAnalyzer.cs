@@ -11,8 +11,8 @@ namespace DecorationsMod.NewItems
         {
             this.ClassID = "DecorationsSpecimenAnalyzer"; // c9bdcc4d-a8c6-43c0-8f7a-f86841cd4493
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
- 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/SpecimenAnalyzer");
+
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SpecimenAnalyzerName"),
@@ -25,18 +25,7 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.SpecimenAnalyzer_asBuildable)
                 this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.WiringKit, 1),
-                        new Ingredient(TechType.ComputerChip, 1),
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -45,6 +34,17 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.WiringKit, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.ComputerChip, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.WiringKit, 1),
+                        new Ingredient(TechType.ComputerChip, 1),
+                        new Ingredient(TechType.Titanium, 2)
                     }),
             };
 #endif
@@ -85,9 +85,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _specimenAnalyzer = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_specimenAnalyzer == null)
+                _specimenAnalyzer = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/SpecimenAnalyzer.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_specimenAnalyzer);
 
             prefab.name = this.ClassID;
 

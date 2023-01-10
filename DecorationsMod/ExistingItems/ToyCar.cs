@@ -9,27 +9,16 @@ namespace DecorationsMod.ExistingItems
         {
             this.ClassID = "dfabc84e-c4c5-45d9-8b01-ca0eaeeb8e65";
 #if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/Goldglove_car_02";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/Goldglove_car_02.prefab";
 #else
-            this.PrefabFileName = "WorldEntities/Alterra/Base/Goldglove_car_02";
+            this.PrefabFileName = "WorldEntities/Alterra/Base/Goldglove_car_02.prefab";
 #endif
 
             this.TechType = TechType.ToyCar;
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -40,12 +29,29 @@ namespace DecorationsMod.ExistingItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
 
+        private static GameObject _toyCar = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_toyCar == null)
+                _toyCar = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_toyCar);
 
             // Add fabricating animation
             var fabricating = prefab.FindChild("model").AddComponent<VFXFabricating>();

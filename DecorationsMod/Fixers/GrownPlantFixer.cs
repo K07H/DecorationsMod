@@ -25,7 +25,8 @@ namespace DecorationsMod.Fixers
                                 __instance.seed.pickupable.destroyOnDeath = false;
                             SkyEnvironmentChanged.Send(__instance.seed.pickupable.gameObject, Player.main.GetSkyEnvironment());
                             UnityEngine.Object.Destroy(__instance.seed.pickupable.gameObject);
-                            CraftData.AddToInventorySync(CrafterLogicFixer.MarbleMelonTinyFruit, 1, false, false);
+                            //CraftData.AddToInventorySync(CrafterLogicFixer.MarbleMelonTinyFruit, 1, false, false);
+                            CraftData.AddToInventory(CrafterLogicFixer.MarbleMelonTinyFruit, 1, false, false);
                             hand.player.PlayGrab();
                         }
                     }
@@ -142,20 +143,12 @@ namespace DecorationsMod.Fixers
                     HandReticle.main.SetIcon(HandReticle.IconType.Hand, 1f);
                     if (!Player.main.HasInventoryRoom(1, 1))
                     {
-#if BELOWZERO
                         HandReticle.main.SetText(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord("PickupMarbleMelonTinyFruit"), false, GameInput.Button.None);
                         HandReticle.main.SetText(HandReticle.TextType.HandSubscript, "InventoryFull", true, GameInput.Button.None);
-#else
-                        HandReticle.main.SetInteractText(LanguageHelper.GetFriendlyWord("PickupMarbleMelonTinyFruit"), "InventoryFull", false, true, HandReticle.Hand.None);
-#endif
                     }
                     else
                     {
-#if BELOWZERO
                         HandReticle.main.SetText(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord("PickupMarbleMelonTinyFruit"), false, GameInput.Button.None);
-#else
-                        HandReticle.main.SetInteractText(LanguageHelper.GetFriendlyWord("PickupMarbleMelonTinyFruit"), string.Empty, false, false, HandReticle.Hand.None);
-#endif
                     }
                 }
             }

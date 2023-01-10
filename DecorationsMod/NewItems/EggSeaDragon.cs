@@ -19,28 +19,24 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.SeaDragonEgg = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell");
-#else
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_SeaDragonEggShell");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
                     }),
             };
 #endif
@@ -78,9 +74,18 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _eggSeaDragon = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_eggSeaDragon == null)
+#if SUBNAUTICA
+                _eggSeaDragon = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell.prefab");
+#else
+                _eggSeaDragon = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_SeaDragonEggShell");
+#endif
+
+            GameObject prefab = GameObject.Instantiate(_eggSeaDragon);
 
             prefab.name = this.ClassID;
 
@@ -94,7 +99,7 @@ namespace DecorationsMod.NewItems
             // Scale model
             model.transform.localScale *= 0.8f;
 
-#if BELOWZERO
+#if !SUBNAUTICA
             MeshRenderer[] renderers = model.GetComponents<MeshRenderer>();
             if (renderers != null)
                 foreach (MeshRenderer rend in renderers)

@@ -9,26 +9,16 @@ namespace DecorationsMod.ExistingItems
         {
             this.ClassID = "c0d320d2-537e-4128-90ec-ab1466cfbbc3";
 #if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir";
+            this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir.prefab";
 #else
-            this.PrefabFileName = "WorldEntities/Alterra/Base/starship_souvenir";
+            this.PrefabFileName = "WorldEntities/Alterra/Base/starship_souvenir.prefab";
 #endif
 
             this.TechType = TechType.StarshipSouvenir;
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -38,12 +28,28 @@ namespace DecorationsMod.ExistingItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1)
+                    }),
+            };
 #endif
         }
 
+        private static GameObject _starshipSouvenir = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_starshipSouvenir == null)
+                _starshipSouvenir = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_starshipSouvenir);
 
             // Add fabricating animation
             var fabricating = prefab.FindChild("starship_souvenir").AddComponent<VFXFabricating>();

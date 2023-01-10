@@ -8,139 +8,142 @@ namespace DecorationsMod
     {
         private static readonly Dictionary<string, TechType> _batteries = new Dictionary<string, TechType>
         {
-            { "WorldEntities/Tools/PowerCell", TechType.PowerCell },
-            { "WorldEntities/Tools/Battery", TechType.Battery },
-            { "WorldEntities/Tools/lithiumionbattery", TechType.LithiumIonBattery },
-            { "WorldEntities/Tools/PrecursorIonPowerCell", TechType.PrecursorIonPowerCell },
-            { "WorldEntities/Tools/PrecursorIonBattery", TechType.PrecursorIonBattery }
+            { "WorldEntities/Tools/PowerCell.prefab", TechType.PowerCell },
+            { "WorldEntities/Tools/Battery.prefab", TechType.Battery },
+            { "WorldEntities/Tools/LithiumIonBattery.prefab", TechType.LithiumIonBattery },
+            { "WorldEntities/Tools/PrecursorIonPowerCell.prefab", TechType.PrecursorIonPowerCell },
+            { "WorldEntities/Tools/PrecursorIonBattery.prefab", TechType.PrecursorIonBattery }
         };
 
-#if BELOWZERO
+#if SUBNAUTICA
         private static readonly Dictionary<string, TechType> _items = new Dictionary<string, TechType>
         {
-            { "WorldEntities/Crafting/bleach", TechType.Bleach },
-            { "WorldEntities/Crafting/lubricant", TechType.Lubricant },
-            { "WorldEntities/Crafting/polyaniline", TechType.Polyaniline },
-            { "WorldEntities/Crafting/benzene", TechType.Benzene },
-            { "WorldEntities/Crafting/hydrochloricacid", TechType.HydrochloricAcid },
-            { "WorldEntities/Crafting/HatchingEnzymes", TechType.HatchingEnzymes },
-            { "WorldEntities/Food/Coffee", TechType.Coffee },
-            { "WorldEntities/Food/BigFilteredWater", TechType.BigFilteredWater },
-            { "WorldEntities/Food/DisinfectedWater", TechType.DisinfectedWater },
-            { "WorldEntities/Food/FilteredWater", TechType.FilteredWater },
-            { "WorldEntities/Crafting/WiringKit", TechType.WiringKit },
-            { "WorldEntities/Crafting/AdvancedWiringKit", TechType.AdvancedWiringKit },
-            { "WorldEntities/EnvironmentResources/ComputerChip", TechType.ComputerChip },
-            { "WorldEntities/EnvironmentResources/PrecursorIonCrystal", TechType.PrecursorIonCrystal },
-            { "WorldEntities/EnvironmentResources/StalkerTooth", TechType.StalkerTooth },
-            { "WorldEntities/Crafting/FirstAidKit", TechType.FirstAidKit },
+            { "WorldEntities/Natural/Bleach.prefab", TechType.Bleach },
+            { "WorldEntities/Natural/Lubricant.prefab", TechType.Lubricant },
+            { "WorldEntities/Natural/polyaniline.prefab", TechType.Polyaniline },
+            { "WorldEntities/Natural/benzene.prefab", TechType.Benzene },
+            { "WorldEntities/Natural/hydrochloricacid.prefab", TechType.HydrochloricAcid },
+            { "WorldEntities/Natural/HatchingEnzymes.prefab", TechType.HatchingEnzymes },
+            { "WorldEntities/Food/Coffee.prefab", TechType.Coffee },
+            { "WorldEntities/Food/BigFilteredWater.prefab", TechType.BigFilteredWater },
+            { "WorldEntities/Food/DisinfectedWater.prefab", TechType.DisinfectedWater },
+            { "WorldEntities/Food/FilteredWater.prefab", TechType.FilteredWater },
+            { "WorldEntities/Natural/WiringKit.prefab", TechType.WiringKit },
+            { "WorldEntities/Natural/AdvancedWiringKit.prefab", TechType.AdvancedWiringKit },
+            { "WorldEntities/Natural/ComputerChip.prefab", TechType.ComputerChip },
+            { "WorldEntities/Natural/PrecursorIonCrystal.prefab", TechType.PrecursorIonCrystal },
+            { "WorldEntities/Natural/StalkerTooth.prefab", TechType.StalkerTooth },
+            { "WorldEntities/Natural/FirstAidKit.prefab", TechType.FirstAidKit },
         };
 
         internal static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
         {
-            { "WorldEntities/Crafting/Silicone", TechType.Silicone },
-            { "WorldEntities/Crafting/FiberMesh", TechType.FiberMesh },
-            { "WorldEntities/Crafting/aramidfibers", TechType.AramidFibers },
-            { "WorldEntities/Crafting/aerogel", TechType.Aerogel },
-            { "WorldEntities/Crafting/TitaniumIngot", TechType.TitaniumIngot },
-            { "WorldEntities/Crafting/PlasteelIngot", TechType.PlasteelIngot },
-            { "WorldEntities/Crafting/Glass", TechType.Glass },
-            { "WorldEntities/Crafting/EnameledGlass", TechType.EnameledGlass },
-            { "WorldEntities/Crafting/CopperWire", TechType.CopperWire },
+            { "WorldEntities/Natural/Silicone.prefab", TechType.Silicone },
+            { "WorldEntities/Natural/FiberMesh.prefab", TechType.FiberMesh },
+            { "WorldEntities/Natural/aramidfibers.prefab", TechType.AramidFibers },
+            { "WorldEntities/Natural/aerogel.prefab", TechType.Aerogel },
+            { "WorldEntities/Natural/TitaniumIngot.prefab", TechType.TitaniumIngot },
+            { "WorldEntities/Natural/PlasteelIngot.prefab", TechType.PlasteelIngot },
+            { "WorldEntities/Natural/Glass.prefab", TechType.Glass },
+            { "WorldEntities/Natural/EnameledGlass.prefab", TechType.EnameledGlass },
+            { "WorldEntities/Natural/CopperWire.prefab", TechType.CopperWire },
 
-            { "WorldEntities/EnvironmentResources/SeaTreaderPoop", TechType.SeaTreaderPoop },
-            { "WorldEntities/EnvironmentResources/titanium", TechType.Titanium },
-            { "WorldEntities/EnvironmentResources/crashpowder", TechType.CrashPowder },
-            { "WorldEntities/EnvironmentResources/copper", TechType.Copper },
-            { "WorldEntities/EnvironmentResources/sulphurcrystal", TechType.Sulphur },
-            { "WorldEntities/EnvironmentResources/diamond", TechType.Diamond },
-            { "WorldEntities/EnvironmentResources/gold", TechType.Gold },
-            { "WorldEntities/EnvironmentResources/kyanite", TechType.Kyanite },
-            { "WorldEntities/EnvironmentResources/lead", TechType.Lead },
-            { "WorldEntities/EnvironmentResources/lithium", TechType.Lithium },
-            { "WorldEntities/EnvironmentResources/magnetite", TechType.Magnetite },
-            { "WorldEntities/EnvironmentResources/nickel", TechType.Nickel },
-            { "WorldEntities/EnvironmentResources/quartz", TechType.Quartz },
-            { "WorldEntities/EnvironmentResources/aluminumoxide", TechType.AluminumOxide },
-            { "WorldEntities/EnvironmentResources/salt", TechType.Salt },
-            { "WorldEntities/EnvironmentResources/silver", TechType.Silver },
-            { "WorldEntities/EnvironmentResources/uraninitecrystal", TechType.UraniniteCrystal },
-            //{ "WorldEntities/Alterra/Supplies/metal1", TechType.ScrapMetal },
-            //{ "WorldEntities/Alterra/Supplies/metal2", TechType.ScrapMetal },
-            //{ "WorldEntities/Alterra/Supplies/metal3", TechType.ScrapMetal },
-            //{ "WorldEntities/Alterra/Supplies/metal4", TechType.ScrapMetal },
-            
-            { "WorldEntities/EnvironmentResources/bloodoil", TechType.BloodOil },
-            { "WorldEntities/Flora/Shared/JeweledDiskPiece", TechType.JeweledDiskPiece },
-            { "WorldEntities/Flora/Shared/JeweledDiskPieceBlue", TechType.BlueJeweledDisk },
-            { "WorldEntities/Flora/Shared/JeweledDiskPieceGreen", TechType.GreenJeweledDisk },
-            { "WorldEntities/Flora/Shared/JeweledDiskPieceRed", TechType.RedJeweledDisk },
-            { "WorldEntities/Flora/Shared/CoralChunk", TechType.CoralChunk },
-            //{ "WorldEntities/Seeds/CreepvineSeed", TechType.CreepvineSeedCluster },
-            //{ "WorldEntities/Seeds/PurpleBrainCoralPiece", TechType.PurpleBrainCoralPiece },
-            //{ "WorldEntities/Creatures/GasPod", TechType.GasPod },
+            { "WorldEntities/Natural/SeaTreaderPoop.prefab", TechType.SeaTreaderPoop },
+            { "WorldEntities/Natural/Titanium.prefab", TechType.Titanium },
+            { "WorldEntities/Natural/CrashPowder.prefab", TechType.CrashPowder },
+            { "WorldEntities/Natural/copper.prefab", TechType.Copper },
+            { "WorldEntities/Natural/sulphurcrystal.prefab", TechType.Sulphur },
+            { "WorldEntities/Natural/diamond.prefab", TechType.Diamond },
+            { "WorldEntities/Natural/gold.prefab", TechType.Gold },
+            { "WorldEntities/Natural/kyanite.prefab", TechType.Kyanite },
+            { "WorldEntities/Natural/Lead.prefab", TechType.Lead },
+            { "WorldEntities/Natural/lithium.prefab", TechType.Lithium },
+            { "WorldEntities/Natural/magnetite.prefab", TechType.Magnetite },
+            { "WorldEntities/Natural/nickel.prefab", TechType.Nickel },
+            { "WorldEntities/Natural/quartz.prefab", TechType.Quartz },
+            { "WorldEntities/Natural/aluminumoxide.prefab", TechType.AluminumOxide },
+            { "WorldEntities/Natural/salt.prefab", TechType.Salt },
+            { "WorldEntities/Natural/silver.prefab", TechType.Silver },
+            { "WorldEntities/Natural/uraninitecrystal.prefab", TechType.UraniniteCrystal },
+            //{ "WorldEntities/Natural/metal1.prefab", TechType.ScrapMetal },
+            //{ "WorldEntities/Natural/metal2.prefab", TechType.ScrapMetal },
+            //{ "WorldEntities/Natural/metal3.prefab", TechType.ScrapMetal },
+            //{ "WorldEntities/Natural/metal4.prefab", TechType.ScrapMetal },
+
+            { "WorldEntities/Natural/bloodoil.prefab", TechType.BloodOil },
+            { "WorldEntities/Doodads/Coral_reef/JeweledDiskPiece.prefab", TechType.JeweledDiskPiece },
+            { "WorldEntities/Doodads/Coral_reef/JeweledDiskPieceBlue.prefab", TechType.BlueJeweledDisk },
+            { "WorldEntities/Doodads/Coral_reef/JeweledDiskPieceGreen.prefab", TechType.GreenJeweledDisk },
+            { "WorldEntities/Doodads/Coral_reef/JeweledDiskPieceRed.prefab", TechType.RedJeweledDisk },
+            { "WorldEntities/Doodads/Coral_reef/CoralChunk.prefab", TechType.CoralChunk },
+            //{ "WorldEntities/Natural/creepvineseedcluster.prefab", TechType.CreepvineSeedCluster },
+            //{ "WorldEntities/seeds/purplebraincoralpiece.prefab", TechType.PurpleBrainCoralPiece },
+            //{ "WorldEntities/creatures/gaspod.prefab", TechType.GasPod },
         };
 #else
         private static readonly Dictionary<string, TechType> _items = new Dictionary<string, TechType>
         {
-            { "WorldEntities/Natural/bleach", TechType.Bleach },
-            { "WorldEntities/Natural/lubricant", TechType.Lubricant },
-            { "WorldEntities/Natural/polyaniline", TechType.Polyaniline },
-            { "WorldEntities/Natural/benzene", TechType.Benzene },
-            { "WorldEntities/Natural/hydrochloricacid", TechType.HydrochloricAcid },
-            { "WorldEntities/Natural/HatchingEnzymes", TechType.HatchingEnzymes },
-            { "WorldEntities/Food/Coffee", TechType.Coffee },
-            { "WorldEntities/Food/BigFilteredWater", TechType.BigFilteredWater },
-            { "WorldEntities/Food/DisinfectedWater", TechType.DisinfectedWater },
-            { "WorldEntities/Food/FilteredWater", TechType.FilteredWater },
-            { "WorldEntities/Natural/wiringkit", TechType.WiringKit },
-            { "WorldEntities/Natural/advancedwiringkit", TechType.AdvancedWiringKit },
-            { "WorldEntities/Natural/computerchip", TechType.ComputerChip },
-            { "WorldEntities/Natural/PrecursorIonCrystal", TechType.PrecursorIonCrystal },
-            { "WorldEntities/Natural/stalkertooth", TechType.StalkerTooth },
-            { "WorldEntities/Natural/firstaidkit", TechType.FirstAidKit },
+            { "WorldEntities/Crafting/bleach.prefab", TechType.Bleach },
+            { "WorldEntities/Crafting/lubricant.prefab", TechType.Lubricant },
+            { "WorldEntities/Crafting/polyaniline.prefab", TechType.Polyaniline },
+            { "WorldEntities/Crafting/benzene.prefab", TechType.Benzene },
+            { "WorldEntities/Crafting/hydrochloricacid.prefab", TechType.HydrochloricAcid },
+            { "WorldEntities/Crafting/HatchingEnzymes.prefab", TechType.HatchingEnzymes },
+            { "WorldEntities/Food/Coffee.prefab", TechType.Coffee },
+            { "WorldEntities/Food/BigFilteredWater.prefab", TechType.BigFilteredWater },
+            { "WorldEntities/Food/DisinfectedWater.prefab", TechType.DisinfectedWater },
+            { "WorldEntities/Food/FilteredWater.prefab", TechType.FilteredWater },
+            { "WorldEntities/Crafting/WiringKit.prefab", TechType.WiringKit },
+            { "WorldEntities/Crafting/AdvancedWiringKit.prefab", TechType.AdvancedWiringKit },
+            { "WorldEntities/EnvironmentResources/ComputerChip.prefab", TechType.ComputerChip },
+            { "WorldEntities/EnvironmentResources/PrecursorIonCrystal.prefab", TechType.PrecursorIonCrystal },
+            { "WorldEntities/EnvironmentResources/StalkerTooth.prefab", TechType.StalkerTooth },
+            { "WorldEntities/Crafting/FirstAidKit.prefab", TechType.FirstAidKit },
         };
 
         internal static readonly Dictionary<string, TechType> _materials = new Dictionary<string, TechType>
         {
-            { "WorldEntities/Natural/silicone", TechType.Silicone },
-            { "WorldEntities/Natural/fibermesh", TechType.FiberMesh },
-            { "WorldEntities/Natural/aramidfibers", TechType.AramidFibers },
-            { "WorldEntities/Natural/aerogel", TechType.Aerogel },
-            { "WorldEntities/Natural/titaniumingot", TechType.TitaniumIngot },
-            { "WorldEntities/Natural/plasteelingot", TechType.PlasteelIngot },
-            { "WorldEntities/Natural/glass", TechType.Glass },
-            { "WorldEntities/Natural/enameledglass", TechType.EnameledGlass },
-            { "WorldEntities/Natural/copperwire", TechType.CopperWire },
+            { "WorldEntities/Crafting/Silicone.prefab", TechType.Silicone },
+            { "WorldEntities/Crafting/FiberMesh.prefab", TechType.FiberMesh },
+            { "WorldEntities/Crafting/aramidfibers.prefab", TechType.AramidFibers },
+            { "WorldEntities/Crafting/aerogel.prefab", TechType.Aerogel },
+            { "WorldEntities/Crafting/TitaniumIngot.prefab", TechType.TitaniumIngot },
+            { "WorldEntities/Crafting/PlasteelIngot.prefab", TechType.PlasteelIngot },
+            { "WorldEntities/Crafting/Glass.prefab", TechType.Glass },
+            { "WorldEntities/Crafting/EnameledGlass.prefab", TechType.EnameledGlass },
+            { "WorldEntities/Crafting/CopperWire.prefab", TechType.CopperWire },
 
-            { "WorldEntities/Natural/seatreaderpoop", TechType.SeaTreaderPoop },
-            { "WorldEntities/Natural/titanium", TechType.Titanium },
-            { "WorldEntities/Natural/crashpowder", TechType.CrashPowder },
-            { "WorldEntities/Natural/copper", TechType.Copper },
-            { "WorldEntities/Natural/sulphurcrystal", TechType.Sulphur },
-            { "WorldEntities/Natural/diamond", TechType.Diamond },
-            { "WorldEntities/Natural/gold", TechType.Gold },
-            { "WorldEntities/Natural/kyanite", TechType.Kyanite },
-            { "WorldEntities/Natural/lead", TechType.Lead },
-            { "WorldEntities/Natural/lithium", TechType.Lithium },
-            { "WorldEntities/Natural/magnetite", TechType.Magnetite },
-            { "WorldEntities/Natural/nickel", TechType.Nickel },
-            { "WorldEntities/Natural/quartz", TechType.Quartz },
-            { "WorldEntities/Natural/aluminumoxide", TechType.AluminumOxide },
-            { "WorldEntities/Natural/salt", TechType.Salt },
-            { "WorldEntities/Natural/silver", TechType.Silver },
-            { "WorldEntities/Natural/uraninitecrystal", TechType.UraniniteCrystal },
-            //{ "WorldEntities/Natural/metal1", TechType.ScrapMetal },
-            //{ "WorldEntities/Natural/metal2", TechType.ScrapMetal },
-            //{ "WorldEntities/Natural/metal3", TechType.ScrapMetal },
-            //{ "WorldEntities/Natural/metal4", TechType.ScrapMetal },
-
-            { "WorldEntities/Natural/bloodoil", TechType.BloodOil },
-            { "WorldEntities/doodads/coral_reef/jeweleddiskpiece", TechType.JeweledDiskPiece },
-            { "WorldEntities/doodads/coral_reef/coralchunk", TechType.CoralChunk },
-            //{ "worldentities/Natural/creepvineseedcluster", TechType.CreepvineSeedCluster },
-            //{ "worldentities/seeds/purplebraincoralpiece", TechType.PurpleBrainCoralPiece },
-            //{ "worldentities/creatures/gaspod", TechType.GasPod },
+            { "WorldEntities/EnvironmentResources/SeaTreaderPoop.prefab", TechType.SeaTreaderPoop },
+            { "WorldEntities/EnvironmentResources/titanium.prefab", TechType.Titanium },
+            { "WorldEntities/EnvironmentResources/crashpowder.prefab", TechType.CrashPowder },
+            { "WorldEntities/EnvironmentResources/copper.prefab", TechType.Copper },
+            { "WorldEntities/EnvironmentResources/sulphurcrystal.prefab", TechType.Sulphur },
+            { "WorldEntities/EnvironmentResources/diamond.prefab", TechType.Diamond },
+            { "WorldEntities/EnvironmentResources/gold.prefab", TechType.Gold },
+            { "WorldEntities/EnvironmentResources/kyanite.prefab", TechType.Kyanite },
+            { "WorldEntities/EnvironmentResources/lead.prefab", TechType.Lead },
+            { "WorldEntities/EnvironmentResources/lithium.prefab", TechType.Lithium },
+            { "WorldEntities/EnvironmentResources/magnetite.prefab", TechType.Magnetite },
+            { "WorldEntities/EnvironmentResources/nickel.prefab", TechType.Nickel },
+            { "WorldEntities/EnvironmentResources/quartz.prefab", TechType.Quartz },
+            { "WorldEntities/EnvironmentResources/aluminumoxide.prefab", TechType.AluminumOxide },
+            { "WorldEntities/EnvironmentResources/salt.prefab", TechType.Salt },
+            { "WorldEntities/EnvironmentResources/silver.prefab", TechType.Silver },
+            { "WorldEntities/EnvironmentResources/uraninitecrystal.prefab", TechType.UraniniteCrystal },
+            //{ "WorldEntities/Alterra/Supplies/metal1.prefab", TechType.ScrapMetal },
+            //{ "WorldEntities/Alterra/Supplies/metal2.prefab", TechType.ScrapMetal },
+            //{ "WorldEntities/Alterra/Supplies/metal3.prefab", TechType.ScrapMetal },
+            //{ "WorldEntities/Alterra/Supplies/metal4.prefab", TechType.ScrapMetal },
+            
+            { "WorldEntities/EnvironmentResources/bloodoil.prefab", TechType.BloodOil },
+            { "WorldEntities/Flora/Shared/JeweledDiskPiece.prefab", TechType.JeweledDiskPiece },
+            { "WorldEntities/Flora/Shared/JeweledDiskPieceBlue.prefab", TechType.BlueJeweledDisk },
+            { "WorldEntities/Flora/Shared/JeweledDiskPieceGreen.prefab", TechType.GreenJeweledDisk },
+            { "WorldEntities/Flora/Shared/JeweledDiskPieceRed.prefab", TechType.RedJeweledDisk },
+            { "WorldEntities/Flora/Shared/CoralChunk.prefab", TechType.CoralChunk },
+            //{ "WorldEntities/Seeds/CreepvineSeed.prefab", TechType.CreepvineSeedCluster },
+            //{ "WorldEntities/Seeds/PurpleBrainCoralPiece.prefab", TechType.PurpleBrainCoralPiece },
+            //{ "WorldEntities/Creatures/GasPod.prefab", TechType.GasPod },
         };
 #endif
 
@@ -161,7 +164,7 @@ namespace DecorationsMod
 
         private static void MakeSnacksPlaceable()
         {
-            GameObject snack1 = Resources.Load<GameObject>("WorldEntities/Food/Snack1");
+            GameObject snack1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Food/Snack1.prefab");
             if (snack1 != null)
             {
                 BoxCollider snack1Collider = snack1.AddComponent<BoxCollider>();
@@ -170,9 +173,9 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type[{0}]", "WorldEntities/Food/Snack1");
+                Logger.Log("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack1");
 #endif
-            GameObject snack2 = Resources.Load<GameObject>("WorldEntities/Food/Snack2");
+            GameObject snack2 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Food/Snack2.prefab");
             if (snack2 != null)
             {
                 BoxCollider snack2Collider = snack2.AddComponent<BoxCollider>();
@@ -183,7 +186,7 @@ namespace DecorationsMod
             else
                 Logger.Log("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack2");
 #endif
-            GameObject snack3 = Resources.Load<GameObject>("WorldEntities/Food/Snack3");
+            GameObject snack3 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Food/Snack3.prefab");
             if (snack3 != null)
             {
                 BoxCollider snack3Collider = snack3.AddComponent<BoxCollider>();
@@ -216,7 +219,7 @@ namespace DecorationsMod
 
         private static void MakeBatteryPlaceable(TechType batteryTechType, string batteryPath)
         {
-            GameObject obj = Resources.Load<GameObject>(batteryPath);
+            GameObject obj = PrefabsHelper.LoadGameObjectFromFilename(batteryPath);
             if (obj != null)
             {
                 if (batteryTechType == TechType.Battery || batteryTechType == TechType.PrecursorIonBattery)
@@ -249,7 +252,7 @@ namespace DecorationsMod
 
         private static void MakeMaterialPlaceable(TechType materialTechType, string materialPath)
         {
-            GameObject mat = Resources.Load<GameObject>(materialPath);
+            GameObject mat = PrefabsHelper.LoadGameObjectFromFilename(materialPath);
             if (mat != null)
             {
                 if (materialTechType == TechType.FiberMesh)
@@ -402,7 +405,7 @@ namespace DecorationsMod
 
         private static void MakeItemPlaceable(TechType itemTechType, string itemPath)
         {
-            GameObject item = Resources.Load<GameObject>(itemPath);
+            GameObject item = PrefabsHelper.LoadGameObjectFromFilename(itemPath);
             if (item != null)
             {
                 if (itemTechType == TechType.Bleach)

@@ -37,11 +37,7 @@
                 return;
 
             HandReticle.main.SetIcon(HandReticle.IconType.Hand, 1f);
-#if BELOWZERO
             HandReticle.main.SetTextRaw(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord("OpenCustomStorage"));
-#else
-            HandReticle.main.SetInteractText("OpenCustomStorage");
-#endif
         }
     }
 }

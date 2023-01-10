@@ -13,11 +13,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "DecorativeLocker"; // bca9b19c-616d-4948-8742-9bb6f4296dc3
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if SUBNAUTICA
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/submarine_locker_04_open");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Alterra/Base/submarine_locker_04_open");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("DecorativeLockerName"),
@@ -26,22 +22,22 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 2)
                     }),
             };
 #endif
@@ -51,7 +47,7 @@ namespace DecorationsMod.NewItems
         {
             if (this.IsRegistered == false)
             {
-                this.CargoCrateContainer = Resources.Load<GameObject>("Submarine/Build/Locker");
+                this.CargoCrateContainer = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Locker.prefab");
 
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
@@ -70,9 +66,19 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _decorativeLocker = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_decorativeLocker == null)
+#if SUBNAUTICA
+                _decorativeLocker = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/submarine_locker_04_open.prefab");
+#else
+                _decorativeLocker = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Alterra/Base/submarine_locker_04_open.prefab");
+#endif
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_decorativeLocker);
             GameObject container = GameObject.Instantiate(this.CargoCrateContainer);
             GameObject model = prefab.FindChild("submarine_locker_04");
 
@@ -126,7 +132,9 @@ namespace DecorationsMod.NewItems
             PrefabsHelper.UpdateExistingLargeWorldEntities(prefab);
 
             // Update sky applier
-#if BELOWZERO
+#if SUBNAUTICA
+            PrefabsHelper.SetDefaultSkyApplier(prefab);
+#else
             SkyApplier[] sas = prefab.GetComponentsInChildren<SkyApplier>();
             while (prefab.GetComponentInChildren<SkyApplier>() != null)
                 GameObject.DestroyImmediate(prefab.GetComponentInChildren<SkyApplier>());
@@ -141,8 +149,6 @@ namespace DecorationsMod.NewItems
             SkyApplier sa = prefab.AddComponent<SkyApplier>();
             sa.renderers = prefab.GetComponentsInChildren<Renderer>();
             sa.anchorSky = Skies.Auto;
-#else
-            PrefabsHelper.SetDefaultSkyApplier(prefab);
 #endif
 
             // Set as constructible

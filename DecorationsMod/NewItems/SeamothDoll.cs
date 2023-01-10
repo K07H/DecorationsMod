@@ -14,7 +14,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "SeamothDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("seamothpuppet");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("seamothpuppet");
+            this.GameObject = new GameObject("SeamothDoll");
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SeamothDollName"),
@@ -26,18 +27,7 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -48,32 +38,48 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _seamothDoll = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject aquarium = Resources.Load<GameObject>("Submarine/Build/Aquarium");
+                if (_seamothDoll == null)
+                    _seamothDoll = AssetsHelper.Assets.LoadAsset<GameObject>("seamothpuppet");
+
+                GameObject aquarium = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
 
                 // Move model
-                GameObject model = this.GameObject.FindChild("Model");
+                GameObject model = _seamothDoll.FindChild("Model");
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.032f, model.transform.localPosition.z);
 
                 // Add prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _seamothDoll.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Add large world entity
-                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject);
+                PrefabsHelper.SetDefaultLargeWorldEntity(_seamothDoll);
 
                 // Add tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _seamothDoll.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _seamothDoll.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.07f, 0.054f, 0.07f);
                 collider.center = new Vector3(collider.center.x, collider.center.y + 0.027f, collider.center.z);
 
@@ -114,7 +120,7 @@ namespace DecorationsMod.NewItems
                 Texture normal8 = AssetsHelper.Assets.LoadAsset<Texture>("seamoth_torpedo_01_hatch_01_normal");
                 Texture spec8 = AssetsHelper.Assets.LoadAsset<Texture>("seamoth_torpedo_01_hatch_01_spec");
                 
-                var renderers = this.GameObject.GetAllComponentsInChildren<Renderer>();
+                var renderers = _seamothDoll.GetAllComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
@@ -218,16 +224,14 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add contructable
-                Constructable constructable = this.GameObject.AddComponent<Constructable>();
+                Constructable constructable = _seamothDoll.AddComponent<Constructable>();
                 constructable.allowedInBase = true;
                 constructable.allowedInSub = true;
                 constructable.allowedOutside = true;
                 constructable.allowedOnCeiling = false;
                 constructable.allowedOnGround = true;
                 constructable.allowedOnConstructables = true;
-#if BELOWZERO
                 constructable.allowedUnderwater = true;
-#endif
                 constructable.controlModelState = true;
                 constructable.deconstructionAllowed = true;
                 constructable.rotationEnabled = true;
@@ -237,26 +241,24 @@ namespace DecorationsMod.NewItems
                 constructable.enabled = true;
                 
                 // Add constructable bounds
-                ConstructableBounds bounds = this.GameObject.AddComponent<ConstructableBounds>();
+                ConstructableBounds bounds = _seamothDoll.AddComponent<ConstructableBounds>();
                 bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.032f, bounds.bounds.position.z);
 
                 // Add sky applier
-#if BELOWZERO
-                BaseModuleLighting bml = this.GameObject.GetComponent<BaseModuleLighting>();
+                BaseModuleLighting bml = _seamothDoll.GetComponent<BaseModuleLighting>();
                 if (bml == null)
-                    bml = this.GameObject.GetComponentInChildren<BaseModuleLighting>();
+                    bml = _seamothDoll.GetComponentInChildren<BaseModuleLighting>();
                 if (bml == null)
-                    bml = this.GameObject.AddComponent<BaseModuleLighting>();
-#endif
-                SkyApplier applier = this.GameObject.GetComponent<SkyApplier>();
+                    bml = _seamothDoll.AddComponent<BaseModuleLighting>();
+                SkyApplier applier = _seamothDoll.GetComponent<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.GetComponentInChildren<SkyApplier>();
+                    applier = _seamothDoll.GetComponentInChildren<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
+                    applier = _seamothDoll.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
                 applier.updaterIndex = 0;
-                SkyApplier[] appliers = this.GameObject.GetComponentsInChildren<SkyApplier>();
+                SkyApplier[] appliers = _seamothDoll.GetComponentsInChildren<SkyApplier>();
                 if (appliers != null && appliers.Length > 0)
                 {
                     foreach (SkyApplier ap in appliers)
@@ -268,7 +270,7 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add lights/model controler
-                SeamothDollController controller = this.GameObject.AddComponent<SeamothDollController>();
+                SeamothDollController controller = _seamothDoll.AddComponent<SeamothDollController>();
 
                 // Add new TechType to the buildables
                 SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
@@ -289,7 +291,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_seamothDoll);
 
             prefab.name = this.ClassID;
             prefab.transform.localScale *= 5.0f;

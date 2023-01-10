@@ -24,7 +24,7 @@ namespace DecorationsMod.Controllers
             // ClassID: 5ea36b37-300f-4f01-96fa-003ae47c61e5
             // Path: WorldEntities/Creatures/GhostLeviathanJuvenile
             if (GhostLeviatanSpawner.ghostLeviathanPrefab == null)
-                GhostLeviatanSpawner.ghostLeviathanPrefab = Resources.Load<GameObject>("WorldEntities/Creatures/GhostLeviathanJuvenile");
+                GhostLeviatanSpawner.ghostLeviathanPrefab = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Creatures/GhostLeviathanJuvenile.prefab");
             
             System.Random r = new System.Random();
             // Set spawn time ratio to 0.001f minimum, or value from Config.txt file

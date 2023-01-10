@@ -16,11 +16,7 @@ namespace DecorationsMod.Fixers
                 return;
             if (__instance.gameObject.name.StartsWith("CustomPictureFrame(Clone)", true, CultureInfo.InvariantCulture))
             {
-#if BELOWZERO
                 HandReticle.main.SetTextRaw(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip"));
-#else
-                HandReticle.main.SetInteractText(ConfigSwitcher.UseCompactTooltips ? "CustomPictureFrameTooltipCompact" : "CustomPictureFrameTooltip");
-#endif
             }
             // else, we are in regular PictureFrame
             return;

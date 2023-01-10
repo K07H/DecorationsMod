@@ -17,30 +17,14 @@ namespace DecorationsMod.NewItems
             this.ClassID = "WallMonitor1"; // 0782292e-d313-468a-8816-2adba65bfba3
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if BELOWZERO
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/alterra/base/wall_monitor_01_01");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Debris/Wrecks/Decoration/wall_monitor_01_01");
-#endif
-
-            this.SignObject = Resources.Load<GameObject>("Submarine/Build/Sign");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("WallMonitor1Name"),
                                                         LanguageHelper.GetFriendlyWord("WallMonitor1Description"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.CopperWire, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -48,6 +32,16 @@ namespace DecorationsMod.NewItems
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.CopperWire, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.CopperWire, 1),
+                        new Ingredient(TechType.Glass, 1)
                     }),
             };
 #endif
@@ -79,9 +73,20 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _wallMonitor1 = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_wallMonitor1 == null)
+#if SUBNAUTICA
+                _wallMonitor1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/wall_monitor_01_01.prefab");
+#else
+                _wallMonitor1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/alterra/base/wall_monitor_01_01.prefab");
+#endif
+            if (this.SignObject == null)
+                this.SignObject = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Sign.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_wallMonitor1);
             GameObject signPrefab = GameObject.Instantiate(this.SignObject);
 
             GameObject cube = prefab.FindChild("Cube");

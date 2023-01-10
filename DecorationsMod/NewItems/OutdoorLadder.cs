@@ -12,7 +12,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "OutdoorLadder";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("OutdoorLadder");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("OutdoorLadder");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("OutdoorLadderName"),
@@ -23,16 +24,7 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -41,32 +33,46 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(TechType.Titanium, 2)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _outdoorLadder = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                if (_outdoorLadder == null)
+                    _outdoorLadder = AssetsHelper.Assets.LoadAsset<GameObject>("OutdoorLadder");
+
                 // Get model
-                GameObject model = this.GameObject.FindChild("OutdoorLadderModel");
+                GameObject model = _outdoorLadder.FindChild("OutdoorLadderModel");
 
                 // Scale model
                 model.transform.localScale *= 100.0f;
 
                 // Add prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _outdoorLadder.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Add large world entity
-                PrefabsHelper.SetDefaultLargeWorldEntity(this.GameObject, LargeWorldEntity.CellLevel.Far);
+                PrefabsHelper.SetDefaultLargeWorldEntity(_outdoorLadder, LargeWorldEntity.CellLevel.Far);
 
                 // Add tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _outdoorLadder.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _outdoorLadder.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.3f, 2.7f, 0.07f);
                 collider.center = new Vector3(collider.center.x, collider.center.y + 0.55f, collider.center.z - 0.24f);
 
@@ -74,7 +80,7 @@ namespace DecorationsMod.NewItems
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture illum1 = AssetsHelper.Assets.LoadAsset<Texture>("base_ladder_01");
                 Texture normal1 = AssetsHelper.Assets.LoadAsset<Texture>("base_ladder_01_normal");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _outdoorLadder.GetComponentsInChildren<Renderer>();
                 if (renderers != null && renderers.Length > 0)
                     foreach (Renderer rend in renderers)
                         foreach (Material tmpMat in rend.materials)
@@ -94,7 +100,7 @@ namespace DecorationsMod.NewItems
                         }
 
                 // Add contructable
-                Constructable constructable = this.GameObject.AddComponent<Constructable>();
+                Constructable constructable = _outdoorLadder.AddComponent<Constructable>();
                 constructable.allowedInBase = false;
                 constructable.allowedInSub = false;
                 constructable.allowedOutside = true;
@@ -102,9 +108,7 @@ namespace DecorationsMod.NewItems
                 constructable.allowedOnWall = true;
                 constructable.allowedOnGround = true;
                 constructable.allowedOnConstructables = true;
-#if BELOWZERO
                 constructable.allowedUnderwater = true;
-#endif
                 constructable.controlModelState = true;
                 constructable.deconstructionAllowed = true;
                 constructable.rotationEnabled = true;
@@ -116,21 +120,19 @@ namespace DecorationsMod.NewItems
                 constructable.enabled = true;
 
                 // Add constructable bounds
-                ConstructableBounds bounds = this.GameObject.AddComponent<ConstructableBounds>();
+                ConstructableBounds bounds = _outdoorLadder.AddComponent<ConstructableBounds>();
 
                 // Add sky applier
-#if BELOWZERO
-                BaseModuleLighting bml = this.GameObject.GetComponent<BaseModuleLighting>();
+                BaseModuleLighting bml = _outdoorLadder.GetComponent<BaseModuleLighting>();
                 if (bml == null)
-                    bml = this.GameObject.GetComponentInChildren<BaseModuleLighting>();
+                    bml = _outdoorLadder.GetComponentInChildren<BaseModuleLighting>();
                 if (bml == null)
-                    bml = this.GameObject.AddComponent<BaseModuleLighting>();
-#endif
-                SkyApplier applier = this.GameObject.GetComponent<SkyApplier>();
+                    bml = _outdoorLadder.AddComponent<BaseModuleLighting>();
+                SkyApplier applier = _outdoorLadder.GetComponent<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.GetComponentInChildren<SkyApplier>();
+                    applier = _outdoorLadder.GetComponentInChildren<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
+                    applier = _outdoorLadder.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
                 applier.updaterIndex = 0;
@@ -140,7 +142,7 @@ namespace DecorationsMod.NewItems
                 applier.enabled = true;
 
                 // Add outdoor ladder controller
-                OutdoorLadderController controller = this.GameObject.AddComponent<OutdoorLadderController>();
+                OutdoorLadderController controller = _outdoorLadder.AddComponent<OutdoorLadderController>();
 
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
@@ -161,7 +163,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_outdoorLadder);
             prefab.name = this.ClassID;
             return prefab;
         }

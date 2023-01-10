@@ -14,7 +14,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "ReactorLamp";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("nuclearreactorrod_white");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("nuclearreactorrod_white");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("ReactorLampName"),
@@ -26,19 +27,7 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[4]
-                    {
-                        new Ingredient(TechType.ComputerChip, 1),
-                        new Ingredient(TechType.Glass, 1),
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Diamond, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -51,42 +40,59 @@ namespace DecorationsMod.NewItems
                         
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[4]
+                    {
+                        new Ingredient(TechType.ComputerChip, 1),
+                        new Ingredient(TechType.Glass, 1),
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Diamond, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _reactorLamp = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject aquarium = Resources.Load<GameObject>("Submarine/Build/Aquarium");
+                if (_reactorLamp == null)
+                    _reactorLamp = AssetsHelper.Assets.LoadAsset<GameObject>("nuclearreactorrod_white");
+
+                GameObject aquarium = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
 
                 // Retrieve model node
-                GameObject model = this.GameObject.FindChild("model");
+                GameObject model = _reactorLamp.FindChild("model");
                 
                 // Move model
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y - 0.04f, model.transform.localPosition.z + 0.03f);
 
                 // Disable light at start
-                var reactorRodLight = this.GameObject.GetComponentInChildren<Light>();
+                var reactorRodLight = _reactorLamp.GetComponentInChildren<Light>();
                 reactorRodLight.intensity = 1.0f;
                 reactorRodLight.range = 10.0f;
                 reactorRodLight.color = Color.white;
                 reactorRodLight.enabled = false;
 
                 // Add prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _reactorLamp.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Add large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
+                var lwe = _reactorLamp.AddComponent<LargeWorldEntity>();
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Add tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _reactorLamp.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add box collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _reactorLamp.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.18f, 0.36f, 0.18f);
                 collider.center = new Vector3(collider.center.x, collider.center.y + 0.22f, collider.center.z);
 
@@ -114,7 +120,7 @@ namespace DecorationsMod.NewItems
                 Texture illumTexture = AssetsHelper.Assets.LoadAsset<Texture>("nuclear_reactor_rod_illum_white");
 
                 List<Renderer> renderers = new List<Renderer>();
-                this.GameObject.GetComponentsInChildren<Renderer>(renderers);
+                _reactorLamp.GetComponentsInChildren<Renderer>(renderers);
                 foreach (Renderer renderer in renderers)
                 {
                     if (renderer.name == "nuclear_reactor_rod_mesh")
@@ -156,25 +162,25 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add sky applier
-#if BELOWZERO
-                BaseModuleLighting bml = this.GameObject.AddComponent<BaseModuleLighting>();
-                var skyapplier = this.GameObject.GetComponent<SkyApplier>();
+                BaseModuleLighting bml = _reactorLamp.AddComponent<BaseModuleLighting>();
+#if SUBNAUTICA
+                var skyapplier = _reactorLamp.GetComponent<SkyApplier>();
                 if (skyapplier == null)
-                    skyapplier = this.GameObject.GetComponentInChildren<SkyApplier>();
-                if (skyapplier == null)
-                    skyapplier = this.GameObject.AddComponent<SkyApplier>();
-                skyapplier.renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                    skyapplier = _reactorLamp.AddComponent<SkyApplier>();
+                skyapplier.renderers = _reactorLamp.GetComponentsInChildren<Renderer>();
                 skyapplier.anchorSky = Skies.Auto;
 #else
-                var skyapplier = this.GameObject.GetComponent<SkyApplier>();
+                var skyapplier = _reactorLamp.GetComponent<SkyApplier>();
                 if (skyapplier == null)
-                    skyapplier = this.GameObject.AddComponent<SkyApplier>();
-                skyapplier.renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                    skyapplier = _reactorLamp.GetComponentInChildren<SkyApplier>();
+                if (skyapplier == null)
+                    skyapplier = _reactorLamp.AddComponent<SkyApplier>();
+                skyapplier.renderers = _reactorLamp.GetComponentsInChildren<Renderer>();
                 skyapplier.anchorSky = Skies.Auto;
 #endif
 
                 // Add contructable
-                var constructible = this.GameObject.AddComponent<Lamp_C>();
+                var constructible = _reactorLamp.AddComponent<Lamp_C>();
                 constructible.allowedInBase = true;
                 constructible.allowedInSub = true;
                 constructible.allowedOutside = true;
@@ -182,9 +188,7 @@ namespace DecorationsMod.NewItems
                 constructible.allowedOnGround = true;
                 constructible.allowedOnConstructables = true;
                 constructible.allowedOnWall = true;
-#if BELOWZERO
                 constructible.allowedUnderwater = true;
-#endif
                 constructible.controlModelState = true;
                 constructible.deconstructionAllowed = true;
                 constructible.rotationEnabled = true;
@@ -193,11 +197,11 @@ namespace DecorationsMod.NewItems
                 constructible.enabled = true;
 
                 // Add constructable bounds
-                var bounds = this.GameObject.AddComponent<ConstructableBounds>();
+                var bounds = _reactorLamp.AddComponent<ConstructableBounds>();
                 bounds.bounds.position = new Vector3(bounds.bounds.position.x, bounds.bounds.position.y + 0.003f, bounds.bounds.position.z);
 
                 // Add lamp brightness controler
-                var lampBrightness = this.GameObject.AddComponent<ReactorLampBrightness>();
+                var lampBrightness = _reactorLamp.AddComponent<ReactorLampBrightness>();
                 
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
@@ -218,7 +222,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_reactorLamp);
             
             prefab.name = this.ClassID;
             // Scale prefab

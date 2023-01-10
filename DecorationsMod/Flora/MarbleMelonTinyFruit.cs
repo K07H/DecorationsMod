@@ -15,11 +15,7 @@ namespace DecorationsMod.Flora
             this.ClassID = "MarbleMelonTinyFruit"; // e9445fdf-fbae-49dc-a005-48c05bf9f401
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-#if BELOWZERO
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Flora/FloatingIslands/farming_plant_01_02");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Land/farming_plant_01_02");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("MarbleMelonTinyFruitName"),
@@ -28,21 +24,22 @@ namespace DecorationsMod.Flora
 
             CrafterLogicFixer.MarbleMelonTinyFruit = this.TechType;
 
-#if BELOWZERO
+#if SUBNAUTICA
+            this.Recipe = new SMLHelper.V2.Crafting.TechData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
+                {
+                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                }),
+            };
+#else
             this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                    }),
-            };
-#else
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+                {
+                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
 #endif
@@ -80,7 +77,7 @@ namespace DecorationsMod.Flora
                 SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
 
                 // Set item bioreactor charge
-                SMLHelper.V2.Handlers.BioReactorHandler.SetBioReactorCharge(this.TechType, ConfigSwitcher.config_MarbleMelonTiny.Charge);
+                BaseBioReactorHelper.SetBioReactorCharge(this.TechType, ConfigSwitcher.config_MarbleMelonTiny.Charge);
 
                 // Set the buildable prefab
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
@@ -92,9 +89,18 @@ namespace DecorationsMod.Flora
             }
         }
 
+        private static GameObject _marbleMelonTinyFruit = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_marbleMelonTinyFruit == null)
+#if SUBNAUTICA
+                _marbleMelonTinyFruit = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Land/farming_plant_01_02.prefab");
+#else
+                _marbleMelonTinyFruit = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Flora/FloatingIslands/farming_plant_01_02.prefab");
+#endif
+
+            GameObject prefab = GameObject.Instantiate(_marbleMelonTinyFruit);
             prefab.name = this.ClassID;
 
             GameObject.DestroyImmediate(prefab.GetComponent<PickPrefab>());
@@ -141,11 +147,7 @@ namespace DecorationsMod.Flora
             var pickupable = prefab.AddComponent<Pickupable>();
             pickupable.isPickupable = true;
             pickupable.destroyOnDeath = true;
-#if BELOWZERO
             pickupable.isLootCube = false;
-#else
-            pickupable.cubeOnPickup = false;
-#endif
             pickupable.randomizeRotationWhenDropped = true;
             pickupable.usePackUpIcon = false;
 
@@ -187,9 +189,6 @@ namespace DecorationsMod.Flora
             liveMixin.data.broadcastKillOnDeath = false;
             liveMixin.data.canResurrect = false;
             liveMixin.data.destroyOnDeath = true;
-#if SUBNAUTICA
-            liveMixin.data.explodeOnDestroy = false;
-#endif
             liveMixin.data.invincibleInCreative = false;
             liveMixin.data.minDamageForSound = 10.0f;
             liveMixin.data.passDamageDataOnDeath = true;

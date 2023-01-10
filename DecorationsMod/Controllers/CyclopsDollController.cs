@@ -261,11 +261,7 @@ namespace DecorationsMod.Controllers
 
             var reticle = HandReticle.main;
             reticle.SetIcon(HandReticle.IconType.Hand, 1f);
-#if BELOWZERO
             reticle.SetTextRaw(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord(ConfigSwitcher.UseCompactTooltips ? "CyclopsDollTooltipCompact" : "CyclopsDollTooltip"));
-#else
-            reticle.SetInteractText(ConfigSwitcher.UseCompactTooltips ? "CyclopsDollTooltipCompact" : "CyclopsDollTooltip");
-#endif
         }
 
         #endregion

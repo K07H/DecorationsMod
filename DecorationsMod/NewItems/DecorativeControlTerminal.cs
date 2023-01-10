@@ -11,7 +11,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "DecorativeControlTerminal"; // 6ca93e93-5209-4c27-ba60-5f68f36a95fb
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/control_terminal_01");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("DecorativeControlTerminalName"),
@@ -20,17 +20,17 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1] { new Ingredient(TechType.Titanium, 2) }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] { new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2) }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1] { new Ingredient(TechType.Titanium, 2) }),
             };
 #endif
         }
@@ -56,9 +56,14 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _controlTerminal = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_controlTerminal == null)
+                _controlTerminal = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/control_terminal_01.prefab");
+
+            GameObject prefab = GameObject.Instantiate(_controlTerminal);
             prefab.name = this.ClassID;
 
             // Get model

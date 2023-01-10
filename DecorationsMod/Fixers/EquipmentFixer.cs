@@ -8,10 +8,10 @@
             EquipmentType slotType = Equipment.GetSlotType(slot);
             if (slotType == EquipmentType.BatteryCharger && ModdedBatteriesFixer.BatteriesTechTypes().Contains(objTechType))
             {
-#if BELOWZERO
-                EquipmentType eType = TechData.GetEquipmentType(objTechType);
-#else
+#if SUBNAUTICA
                 EquipmentType eType = CraftData.GetEquipmentType(objTechType);
+#else
+                EquipmentType eType = TechData.GetEquipmentType(objTechType);
 #endif
                 if (eType == EquipmentType.Hand || eType == EquipmentType.BatteryCharger)
                 {
@@ -25,10 +25,10 @@
             }
             else if (slotType == EquipmentType.PowerCellCharger && ModdedBatteriesFixer.PowercellsTechTypes().Contains(objTechType))
             {
-#if BELOWZERO
-                EquipmentType eType = TechData.GetEquipmentType(objTechType);
-#else
+#if SUBNAUTICA
                 EquipmentType eType = CraftData.GetEquipmentType(objTechType);
+#else
+                EquipmentType eType = TechData.GetEquipmentType(objTechType);
 #endif
                 if (eType == EquipmentType.Hand || eType == EquipmentType.PowerCellCharger)
                 {

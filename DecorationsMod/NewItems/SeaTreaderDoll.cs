@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "SeaTreaderDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("seatreaderleviathan");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("seatreaderleviathan");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SeaTreaderDollName"),
@@ -23,18 +24,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.SeaTreaderDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.FiberMesh, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -45,30 +35,46 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.FiberMesh, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _seaTreaderDoll = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                if (_seaTreaderDoll == null)
+                    _seaTreaderDoll = AssetsHelper.Assets.LoadAsset<GameObject>("seatreaderleviathan");
+
                 // Scale model
-                GameObject treaderModel = this.GameObject.FindChild("Sea_Treader");
+                GameObject treaderModel = _seaTreaderDoll.FindChild("Sea_Treader");
                 treaderModel.transform.localScale *= 0.8f;
                 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _seaTreaderDoll.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _seaTreaderDoll.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
                 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _seaTreaderDoll.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.8f, 0.5f, 0.5f);
 
                 // Add large world entity
-                this.GameObject.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                _seaTreaderDoll.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
                 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
@@ -78,7 +84,7 @@ namespace DecorationsMod.NewItems
                 Texture spec2 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Treader_01_02_spec");
                 Texture illum1 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Treader_01_01_illum");
                 Texture illum2 = AssetsHelper.Assets.LoadAsset<Texture>("Sea_Treader_01_02_illum");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _seaTreaderDoll.GetComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
@@ -118,18 +124,18 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
+                var applier = _seaTreaderDoll.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
                 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _seaTreaderDoll.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _seaTreaderDoll.AddComponent<CustomPlaceToolController>();
+                var placeTool = _seaTreaderDoll.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -173,7 +179,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_seaTreaderDoll);
 
             prefab.name = this.ClassID;
 

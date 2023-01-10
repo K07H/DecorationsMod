@@ -11,25 +11,15 @@ namespace DecorationsMod.NewItems
             this.ClassID = "BarFood1";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barfood01");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("barfood01");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BarFood1Name"),
                                                         LanguageHelper.GetFriendlyWord("BarFood1Description"),
                                                         true);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.CuredPeeper, 1),
-                        new Ingredient(TechType.HangingFruit, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -40,58 +30,74 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.HangingFruit, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.CuredPeeper, 1),
+                        new Ingredient(TechType.HangingFruit, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _barFood1 = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
-                GameObject model = this.GameObject.FindChild("docking_food_01_food2").FindChild("docking_food_01_food2");
+                if (_barFood1 == null)
+                    _barFood1 = AssetsHelper.Assets.LoadAsset<GameObject>("barfood01");
+
+                GameObject model = _barFood1.FindChild("docking_food_01_food2").FindChild("docking_food_01_food2");
 
                 // Scale model
                 model.transform.localScale *= 22f;
 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _barFood1.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Set prefab identifier
-                var prefabId = this.GameObject.AddComponent<PrefabIdentifier>();
+                var prefabId = _barFood1.AddComponent<PrefabIdentifier>();
                 prefabId.ClassId = this.ClassID;
 
                 // Set collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _barFood1.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.1f, 0.05f, 0.07f);
 
                 // Set large world entity
-                var lwe = this.GameObject.AddComponent<LargeWorldEntity>();
+                var lwe = _barFood1.AddComponent<LargeWorldEntity>();
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Set proper shaders (for crafting animation)
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
                 Texture normal = AssetsHelper.Assets.LoadAsset<Texture>("docking_food_01_normal");
-                var renderer = this.GameObject.GetComponentInChildren<Renderer>();
+                var renderer = _barFood1.GetComponentInChildren<Renderer>();
                 renderer.material.shader = marmosetUber;
                 renderer.material.SetTexture("_BumpMap", normal);
                 renderer.material.EnableKeyword("MARMO_NORMALMAP");
                 renderer.material.EnableKeyword("_ZWRITE_ON"); // Enable Z write
 
                 // Update sky applier
-                var applier = this.GameObject.GetComponent<SkyApplier>();
+                var applier = _barFood1.GetComponent<SkyApplier>();
                 if (applier == null)
-                    applier = this.GameObject.AddComponent<SkyApplier>();
+                    applier = _barFood1.AddComponent<SkyApplier>();
                 applier.renderers = new Renderer[] { renderer };
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _barFood1.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _barFood1.AddComponent<CustomPlaceToolController>();
+                var placeTool = _barFood1.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -112,7 +118,7 @@ namespace DecorationsMod.NewItems
                 placeTool.holsterTime = 0.35f;
 
                 // We can eat this item
-                var eatable = this.GameObject.AddComponent<Eatable>();
+                var eatable = _barFood1.AddComponent<Eatable>();
                 eatable.foodValue = ConfigSwitcher.BarFood1FoodValue;
                 eatable.waterValue = ConfigSwitcher.BarFood1WaterValue;
 #if SUBNAUTICA
@@ -145,7 +151,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_barFood1);
 
             prefab.name = this.ClassID;
 

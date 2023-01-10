@@ -13,7 +13,8 @@ namespace DecorationsMod.NewItems
             this.ClassID = "SeaEmperorDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("seaemperor");
+            //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("seaemperor");
+            this.GameObject = new GameObject(this.ClassID);
             
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("SmallEmperorName"),
@@ -23,18 +24,7 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.SeaEmperorDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.FiberMesh, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -45,33 +35,49 @@ namespace DecorationsMod.NewItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[3]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.FiberMesh, 1),
+                        new Ingredient(TechType.Silicone, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _seaEmperorDoll = null;
 
         public override void RegisterItem()
         {
             if (this.IsRegistered == false)
             {
+                if (_seaEmperorDoll == null)
+                    _seaEmperorDoll = AssetsHelper.Assets.LoadAsset<GameObject>("seaemperor");
+
                 // Merge submeshes
-                GameObject emperorModel = this.GameObject.FindChild("emperorleviathan");
+                GameObject emperorModel = _seaEmperorDoll.FindChild("emperorleviathan");
                 Mesh emperorMesh = emperorModel.GetComponent<MeshFilter>().mesh;
                 emperorMesh.SetTriangles(emperorMesh.triangles, 0);
                 emperorMesh.subMeshCount = 1;
 
                 // Set tech tag
-                var techTag = this.GameObject.AddComponent<TechTag>();
+                var techTag = _seaEmperorDoll.AddComponent<TechTag>();
                 techTag.type = this.TechType;
 
                 // Add prefab identifier
-                this.GameObject.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
+                _seaEmperorDoll.AddComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
                 // Delete rigid body to prevent bug
-                var rb = this.GameObject.GetComponent<Rigidbody>();
+                var rb = _seaEmperorDoll.GetComponent<Rigidbody>();
                 if (rb != null)
                     GameObject.DestroyImmediate(rb);
 
                 // Add collider
-                var collider = this.GameObject.AddComponent<BoxCollider>();
+                var collider = _seaEmperorDoll.AddComponent<BoxCollider>();
                 collider.size = new Vector3(0.5f, 0.5f, 0.4f);
 
                 // Set proper shaders (for crafting animation)
@@ -82,7 +88,7 @@ namespace DecorationsMod.NewItems
                 Texture spec2 = AssetsHelper.Assets.LoadAsset<Texture>("Leviathan_01_02_spec");
                 Texture illum1 = AssetsHelper.Assets.LoadAsset<Texture>("Leviathan_01_01_illum");
                 Texture illum2 = AssetsHelper.Assets.LoadAsset<Texture>("Leviathan_01_02_illum");
-                var renderers = this.GameObject.GetComponentsInChildren<Renderer>();
+                var renderers = _seaEmperorDoll.GetComponentsInChildren<Renderer>();
                 if (renderers.Length > 0)
                 {
                     foreach (Renderer rend in renderers)
@@ -122,18 +128,18 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add sky applier
-                var applier = this.GameObject.AddComponent<SkyApplier>();
+                var applier = _seaEmperorDoll.AddComponent<SkyApplier>();
                 applier.renderers = renderers;
                 applier.anchorSky = Skies.Auto;
 
                 // We can pick this item
-                var pickupable = this.GameObject.AddComponent<Pickupable>();
+                var pickupable = _seaEmperorDoll.AddComponent<Pickupable>();
                 pickupable.isPickupable = true;
                 pickupable.randomizeRotationWhenDropped = true;
 
                 // We can place this item
-                this.GameObject.AddComponent<CustomPlaceToolController>();
-                var placeTool = this.GameObject.AddComponent<GenericPlaceTool>();
+                _seaEmperorDoll.AddComponent<CustomPlaceToolController>();
+                var placeTool = _seaEmperorDoll.AddComponent<GenericPlaceTool>();
                 placeTool.allowedInBase = true;
                 placeTool.allowedOnBase = false;
                 placeTool.allowedOnCeiling = false;
@@ -177,7 +183,7 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_seaEmperorDoll);
 
             prefab.name = this.ClassID;
 

@@ -19,7 +19,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "AquariumSmall";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/Aquarium");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("AquariumSmallName"),
@@ -28,17 +28,7 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -46,6 +36,16 @@ namespace DecorationsMod.NewItems
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 1),
+                        new Ingredient(TechType.Glass, 1)
                     }),
             };
 #endif
@@ -72,13 +72,30 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _aquariumSmall = null;
+
         public override GameObject GetGameObject()
         {
 #if DEBUG_AQUARIUM
             Logger.Log("DEBUG: A0");
 #endif
+            if (_aquariumSmall == null)
+                _aquariumSmall = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
+
+#if SUBNAUTICA
+            GameObject greenCoral = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_13.prefab");
+            GameObject blueCoral = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/Coral_reef_blue_coral_tubes.prefab");
+            GameObject brownCoral = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/coral_reef_brown_coral_tubes_02_01.prefab");
+            GameObject brownCoral1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/coral_reef_brown_coral_tubes_02_03.prefab");
+#else
+            GameObject greenCoral = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Flora/Shared/coral_reef_small_deco_13.prefab");
+            GameObject blueCoral = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Flora/Shared/Coral_reef_blue_coral_tubes.prefab");
+            GameObject brownCoral = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Flora/Shared/coral_reef_brown_coral_tubes_02_01.prefab");
+            GameObject brownCoral1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Flora/Shared/coral_reef_brown_coral_tubes_02_03.prefab");
+#endif
+
             // Instantiate root prefab
-            GameObject prefab = GameObject.Instantiate(Resources.Load<GameObject>("Submarine/Build/Aquarium"));
+            GameObject prefab = GameObject.Instantiate(_aquariumSmall);
             prefab.name = this.ClassID;
 
             // Get sub objects
@@ -118,19 +135,6 @@ namespace DecorationsMod.NewItems
             GameObject aquariumAnim1Fish2 = aquariumAnim1Root.FindChild("fish2");
             GameObject aquariumAnim1Fish3 = aquariumAnim1Root.FindChild("fish3");
             GameObject aquariumAnim1Fish4 = aquariumAnim1Root.FindChild("fish4");
-
-            // Load resources
-#if BELOWZERO
-            GameObject greenCoral = Resources.Load<GameObject>("WorldEntities/Flora/Shared/coral_reef_small_deco_13");
-            GameObject blueCoral = Resources.Load<GameObject>("WorldEntities/Flora/Shared/Coral_reef_blue_coral_tubes");
-            GameObject brownCoral = Resources.Load<GameObject>("WorldEntities/Flora/Shared/coral_reef_brown_coral_tubes_02_01");
-            GameObject brownCoral1 = Resources.Load<GameObject>("WorldEntities/Flora/Shared/coral_reef_brown_coral_tubes_02_03");
-#else
-            GameObject greenCoral = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/coral_reef_small_deco_13");
-            GameObject blueCoral = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/Coral_reef_blue_coral_tubes");
-            GameObject brownCoral = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/coral_reef_brown_coral_tubes_02_01");
-            GameObject brownCoral1 = Resources.Load<GameObject>("WorldEntities/Doodads/Coral_reef/coral_reef_brown_coral_tubes_02_03");
-#endif
 
 #if DEBUG_AQUARIUM
             Logger.Log("DEBUG: A1");
@@ -432,9 +436,7 @@ namespace DecorationsMod.NewItems
             constructable.allowedOnCeiling = false;
             constructable.allowedOnGround = true;
             constructable.allowedOnConstructables = true;
-#if BELOWZERO
             constructable.allowedUnderwater = true;
-#endif
             constructable.controlModelState = true;
             constructable.deconstructionAllowed = true;
             constructable.rotationEnabled = true;

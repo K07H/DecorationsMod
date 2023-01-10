@@ -170,11 +170,8 @@ namespace DecorationsMod.Controllers
 
             var reticle = HandReticle.main;
             reticle.SetIcon(HandReticle.IconType.Hand, 1f);
-#if BELOWZERO
             reticle.SetTextRaw(HandReticle.TextType.Hand, LanguageHelper.GetFriendlyWord("SwitchExosuitModel"));
-#else
-            reticle.SetInteractText("SwitchExosuitModel");
-#endif
+
         }
 
         public static void SetRightArm(GameObject gameObject, string arm)

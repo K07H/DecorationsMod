@@ -20,28 +20,24 @@ namespace DecorationsMod.NewItems
             CrafterLogicFixer.GhostLeviathanEggs = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if BELOWZERO
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/flora/lostriver/lost_river_cove_tree_01");
-#else
-            this.GameObject = Resources.Load<GameObject>("WorldEntities/Doodads/Lost_river/lost_river_cove_tree_01");
-#endif
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
                 Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
                     {
                         new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[1]
+                    {
+                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
                     }),
             };
 #endif
@@ -73,9 +69,18 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _eggGhostLeviathan = null;
+
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_eggGhostLeviathan == null)
+#if SUBNAUTICA
+                _eggGhostLeviathan = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Lost_river/lost_river_cove_tree_01.prefab");
+#else
+                _eggGhostLeviathan = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/lostriver/lost_river_cove_tree_01.prefab");
+#endif
+
+            GameObject prefab = GameObject.Instantiate(_eggGhostLeviathan);
             prefab.name = this.ClassID;
 
             // Get sub objects

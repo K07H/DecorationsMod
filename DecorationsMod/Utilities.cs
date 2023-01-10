@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-#if BELOWZERO
 using TMPro;
-#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
-#if SUBNAUTICA
-using UnityEngine.UI;
-#endif
+
 
 namespace DecorationsMod
 {
@@ -20,10 +17,39 @@ namespace DecorationsMod
         {
             if (args != null && args.Length > 0)
                 text = string.Format(text, args);
-            Console.WriteLine($"[DecorationsMod] {text}");
+            if (CyclopsDockingMod_EntryPoint._logger != null)
+                CyclopsDockingMod_EntryPoint._logger.LogDebug($"[DecorationsMod] {text}");
+            else
+                Console.WriteLine($"[DecorationsMod] {text}");
         }
 
 #if DEBUG
+        internal static string ItemActionToString(ItemAction action)
+        {
+            string res = "";
+            
+            if ((action & ItemAction.Assign) != ItemAction.None)
+                res += "ASSIGN ";
+            if ((action & ItemAction.Drop) != ItemAction.None)
+                res += "DROP ";
+            if ((action & ItemAction.Eat) != ItemAction.None)
+                res += "EAT ";
+            if ((action & ItemAction.Equip) != ItemAction.None)
+                res += "EQUIP ";
+            if ((action & ItemAction.Swap) != ItemAction.None)
+                res += "SWAP ";
+            if ((action & ItemAction.Switch) != ItemAction.None)
+                res += "SWITCH ";
+            if ((action & ItemAction.Unequip) != ItemAction.None)
+                res += "UNEQUIP ";
+            if ((action & ItemAction.Use) != ItemAction.None)
+                res += "USE ";
+
+            if (res.Length > 0)
+                res = res.Substring(0, res.Length - 1);
+            return res;
+        }
+
         internal static void PrintObject(System.Object o, string indent = "\t")
         {
             Type type = o.GetType();
@@ -76,7 +102,7 @@ namespace DecorationsMod
 
     internal static class FilesHelper
     {
-        public static string GetSaveFolderPath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "../../SNAppData/SavedGames/", SaveLoadManager.main.GetCurrentSlot(), "DecorationsMod")).Replace('\\', '/');
+        public static string GetSaveFolderPath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "../../../SNAppData/SavedGames/", SaveLoadManager.main.GetCurrentSlot(), "DecorationsMod")).Replace('\\', '/');
 
         public static string GetSaveFolderPath(string saveGame)
         {
@@ -228,11 +254,7 @@ namespace DecorationsMod
             object message = _getExistingMessageMethod.Invoke(main, new object[] { messageText });
             if (message == null)
             {
-#if SUBNAUTICA
-                Text entry = (Text)_getEntryMethod.Invoke(main, null);
-#else
                 TextMeshProUGUI entry = (TextMeshProUGUI)_getEntryMethod.Invoke(main, null);
-#endif
                 entry.gameObject.SetActive(true);
                 entry.text = messageText;
                 message = Activator.CreateInstance(_messageType, true);
@@ -245,11 +267,7 @@ namespace DecorationsMod
                 MenuMessageHelper.UpdateErrorMessages();
                 return;
             }
-#if SUBNAUTICA
-            Text entry2 = (Text)_messageEntryField.GetValue(message);
-#else
             TMP_Text entry2 = (TMP_Text)_messageEntryField.GetValue(message);
-#endif
             _messageTimeEndField.SetValue(message, Time.time + timeDelay + timeFadeOut + timeInvisible);
             int messageNum = ((int)_messageNumField.GetValue(message)) + 1;
             _messageNumField.SetValue(message, messageNum);
@@ -268,6 +286,18 @@ namespace DecorationsMod
                 AddMessageInternal(toPrint);
             else
                 ErrorMessage.AddMessage(toPrint);
+        }
+    }
+
+    public static class BaseBioReactorHelper
+    {
+        //private static readonly Dictionary<TechType, float> charge = new Dictionary<TechType, float>(TechTypeExtensions.sTechTypeComparer)
+        public static readonly FieldInfo _chargeField = typeof(BaseBioReactor).GetField("charge", BindingFlags.NonPublic | BindingFlags.Static);
+
+        public static void SetBioReactorCharge(TechType techType, float charge)
+        {
+            Dictionary<TechType, float> chargeDict = (Dictionary<TechType, float>)_chargeField.GetValue(null);
+            chargeDict.Add(techType, charge);
         }
     }
 }

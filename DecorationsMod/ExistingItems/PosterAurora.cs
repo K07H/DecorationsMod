@@ -9,26 +9,16 @@ namespace DecorationsMod.ExistingItems
         {
             this.ClassID = "876cbea4-b4bf-4311-8264-5118bfef291c";
 #if SUBNAUTICA
-            this.PrefabFileName = "WorldEntities/Environment/Wrecks/poster_aurora";
+            this.PrefabFileName = "WorldEntities/Environment/Wrecks/poster_aurora.prefab";
 #else
-            this.PrefabFileName = "WorldEntities/Alterra/Base/poster_aurora";
+            this.PrefabFileName = "WorldEntities/Alterra/Base/poster_aurora.prefab";
 #endif
 
             this.TechType = TechType.PosterAurora;
 
-            this.GameObject = Resources.Load<GameObject>(this.PrefabFileName);
+            this.GameObject = new GameObject(this.ClassID);
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 2),
-                        new Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -38,12 +28,28 @@ namespace DecorationsMod.ExistingItems
                         new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
                     }),
             };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.Titanium, 2),
+                        new Ingredient(TechType.FiberMesh, 1)
+                    }),
+            };
 #endif
         }
+
+        private static GameObject _posterAurora = null;
         
         public override GameObject GetGameObject()
         {
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            if (_posterAurora == null)
+                _posterAurora = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
+
+            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_posterAurora);
 
             // Add fabricating animation
             var fabricating = prefab.FindChild("model").AddComponent<VFXFabricating>();

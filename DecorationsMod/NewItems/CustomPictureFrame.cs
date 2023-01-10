@@ -19,7 +19,7 @@ namespace DecorationsMod.NewItems
             this.ClassID = "CustomPictureFrame";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.GameObject = Resources.Load<GameObject>("Submarine/Build/PictureFrame");
+            this.GameObject = new GameObject(this.ClassID);
 
             this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CustomPictureFrameName"),
@@ -31,17 +31,7 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if BELOWZERO
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.CopperWire, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
-#else
+#if SUBNAUTICA
             this.Recipe = new SMLHelper.V2.Crafting.TechData()
             {
                 craftAmount = 1,
@@ -49,6 +39,16 @@ namespace DecorationsMod.NewItems
                     {
                         new SMLHelper.V2.Crafting.Ingredient(TechType.CopperWire, 1),
                         new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
+                    }),
+            };
+#else
+            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>(new Ingredient[2]
+                    {
+                        new Ingredient(TechType.CopperWire, 1),
+                        new Ingredient(TechType.Glass, 1)
                     }),
             };
 #endif
@@ -82,10 +82,15 @@ namespace DecorationsMod.NewItems
             }
         }
 
+        private static GameObject _customPictureFrame = null;
+
         public override GameObject GetGameObject()
         {
+            if (_customPictureFrame == null)
+                _customPictureFrame = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/PictureFrame.prefab");
+
             // Instantiate prefabs
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+            GameObject prefab = GameObject.Instantiate(_customPictureFrame);
             GameObject posterPrefab = GameObject.Instantiate(this.posterMagnetObj);
 
             // Get objects
