@@ -128,7 +128,7 @@ Note that if you place raw materials as decorations, stalkers will try to come a
 All new flora is compatible with bioreactors and fully configurable (growth duration, health points, nutrient points, etc).<br>
 Both long planters can be built indoor or outdoor (tip: you can use this to have land plants in water or sea plants in bases/cyclops).<br>
 To unlock every items instantly you need to change "Discovery settings" in the configuration.<br>
-To grow plants instantly you can use command "day".<br>
+To grow plants faster you can change their settings in configuration, or use command "day".<br>
 Some additional information can be found in the Configurator or in the configuration file.<br>
 
 <br>
