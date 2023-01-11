@@ -4,6 +4,10 @@
 
 <br>
 
+*If you are searching for some support please go here because this repository is intended for actual developers: https://www.nexusmods.com/subnautica/mods/102*
+
+<br>
+
 ### Installation instructions for <ins>regular</ins> version of Subnautica:
 1) Install BepInEx: https://www.nexusmods.com/subnautica/mods/1108<br>
 2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
