@@ -172,7 +172,7 @@ See the GitHub documentation on [creating a pull request](https://help.github.co
 @[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018/2019 update fixes)<br>
 @Mrpp777 (for the fabricator categories icons)<br>
 @Jason (for some of the 3D models)<br>
-@[MasterReaver](https://github.com/MasterReaver) (for fixing a bug in Discovery settings)<br>
+@[MasterReaver](https://github.com/MasterReaver) (for fixing a Discovery setting bug)<br>
 <br>
 <br>
 <br>
