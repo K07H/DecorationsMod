@@ -1,6 +1,7 @@
 Version 2.0.1
 Changed: All items from this mod are now available from start (Discovery settings are OFF by default).
 Improved: Toy car can now be placed in more locations (on ground, underwater and so on).
+Improved: Bar bottles do now produce drinking sound when used instead of eating sound.
 Fixed: A bug with marble melon Discovery setting (thanks to Soul Reaver).
 Fixed: Now you can build the small aquarium.
 Fixed: Now you can build the alien sculpture (AlienArtefact9).

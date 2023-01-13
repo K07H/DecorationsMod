@@ -132,6 +132,7 @@ namespace DecorationsMod.NewItems
                 eatable.despawns = false;
                 eatable.kDecayRate = 0.0f;
                 eatable.despawnDelay = 0.0f;
+                CraftData.useEatSound[this.TechType] = "event:/player/drink";
 
                 // Associate recipe to the new TechType
                 SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
