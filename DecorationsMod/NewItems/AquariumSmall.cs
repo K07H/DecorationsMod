@@ -218,10 +218,7 @@ namespace DecorationsMod.NewItems
                     GameObject.DestroyImmediate(bco);
                 // Scale models
                 iBrownCoral.FindChild("coral_reef_brown_coral_tubes_02_01").transform.localScale *= 0.4f;
-                iBrownCoral.FindChild("coral_reef_brown_coral_tubes_02_01_LOD1").transform.localScale *= 0.4f;
-                iBrownCoral.FindChild("coral_reef_brown_coral_tubes_02_01_LOD2").transform.localScale *= 0.4f;
                 iBrownCoral.FindChild("coral_reef_brown_coral_tubes_02_01_LOD3").transform.localScale *= 0.4f;
-
                 var lodBrownCoral = iBrownCoral.GetComponent<LODGroup>();
                 lodBrownCoral.ForceLOD(0);
                 LOD[] lods = lodBrownCoral.GetLODs();
@@ -260,8 +257,6 @@ namespace DecorationsMod.NewItems
                     GameObject.DestroyImmediate(bco);
                 // Scale models
                 iBrownCoralB.FindChild("coral_reef_brown_coral_tubes_02_01").transform.localScale *= 0.4f;
-                iBrownCoralB.FindChild("coral_reef_brown_coral_tubes_02_01_LOD1").transform.localScale *= 0.4f;
-                iBrownCoralB.FindChild("coral_reef_brown_coral_tubes_02_01_LOD2").transform.localScale *= 0.4f;
                 iBrownCoralB.FindChild("coral_reef_brown_coral_tubes_02_01_LOD3").transform.localScale *= 0.4f;
 
                 var lodBrownCoral = iBrownCoralB.GetComponent<LODGroup>();
@@ -304,8 +299,6 @@ namespace DecorationsMod.NewItems
                     GameObject.DestroyImmediate(bco);
                 // Scale models
                 iBrownCoral1.FindChild("coral_reef_brown_coral_tubes_02_03").transform.localScale *= 0.4f;
-                iBrownCoral1.FindChild("coral_reef_brown_coral_tubes_02_03_LOD1").transform.localScale *= 0.4f;
-                iBrownCoral1.FindChild("coral_reef_brown_coral_tubes_02_03_LOD2").transform.localScale *= 0.4f;
                 iBrownCoral1.FindChild("coral_reef_brown_coral_tubes_02_03_LOD3").transform.localScale *= 0.4f;
                 // Adjust LOD
                 var lodBrownCoral = iBrownCoral1.GetComponent<LODGroup>();

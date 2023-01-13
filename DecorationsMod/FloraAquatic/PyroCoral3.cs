@@ -93,20 +93,34 @@ namespace DecorationsMod.FloraAquatic
                 _pyroCoral3 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/environmentprops/lostriver/lost_river_pillar_03.prefab");
 #endif
 
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T1");
+#endif
             GameObject prefab = GameObject.Instantiate(_pyroCoral3);
 
             prefab.name = this.ClassID;
 
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T2");
+#endif
             // Remove light
             Light light = prefab.GetComponentInChildren<Light>();
             if (light != null)
                 GameObject.DestroyImmediate(light);
 
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T3");
+            Logger.PrintTransform(prefab.transform);
+            Logger.Log("DEBUG: PyroCoral3 T3b");
+#endif
             // Scale prefab
             prefab.FindChild("lost_river_pillar_03").transform.localScale *= 0.15f;
 
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T4");
+#endif
             // Shrink colliders
             Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
             if (colliders.Length > 0)
@@ -117,8 +131,13 @@ namespace DecorationsMod.FloraAquatic
                 }
             }
 
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T5");
+#endif
             // Update rigid body
             var rb = prefab.GetComponent<Rigidbody>();
+            if (rb == null)
+                rb = prefab.AddComponent<Rigidbody>();
             rb.mass = 10.0f;
             rb.drag = 1.0f;
             rb.angularDrag = 1.0f;
@@ -128,6 +147,9 @@ namespace DecorationsMod.FloraAquatic
             rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
             rb.constraints = RigidbodyConstraints.None;
 
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T6");
+#endif
             // Add EntityTag
             var entityTag = prefab.AddComponent<EntityTag>();
             entityTag.slotType = EntitySlot.Type.Small;
@@ -136,14 +158,23 @@ namespace DecorationsMod.FloraAquatic
             var techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T7");
+#endif
             // Update prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
-            
+
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T8");
+#endif
             // Update large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T9");
+#endif
             // Add world forces
             var worldForces = prefab.AddComponent<WorldForces>();
             worldForces.handleGravity = true;
@@ -217,6 +248,9 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.maxHealth = Config.Health;
             //liveMixin.startHealthPercent = 1.0f;
 
+#if DEBUG_CORALS
+            Logger.Log("DEBUG: PyroCoral3 T10");
+#endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
 

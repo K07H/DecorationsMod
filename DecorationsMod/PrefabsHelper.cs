@@ -270,7 +270,7 @@ namespace DecorationsMod
             return cyclopsFabricatorRequest.Result;
         }
 
-#if DEBUG
+#if DEBUG_PREFABS
         private static readonly List<string> AllSubnauticaPrefabs = new List<string>()
         {
             "Submarine/Build/Aquarium.prefab",

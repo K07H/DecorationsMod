@@ -99,20 +99,20 @@ habitatBuilderItems=AlienPillar1/AquariumSmall/BarStool/BenchMedium/BenchSmall/C
 # Purple, orange and blue tablets will be available once you picked them in game.
 # Red and white tablets will be available once you picked a purple tablet in game.
 # If "false", items from this mod will be available from start (you can build/craft them immediately).
-addItemsWhenDiscovered=true
+addItemsWhenDiscovered=false
 
 # If "true", land seeds are added to the seeds fabricator only after you picked up the plant/seed in game (if the plant/seed is not pickupable you need to scan it instead).
 # This setting works for following seeds: All existing land seeds.
 # If "false", land seeds will be available from start (you can craft them in the seeds fabricator immediately).
-addAirSeedsWhenDiscovered=true
+addAirSeedsWhenDiscovered=false
 
 # If "true", water seeds are added to the seeds fabricator only after you picked up the plant/seed in game.
 # If the plant/seed is not pickupable, you will have to scan it instead (for the mushroom tree seed you need to scan a tree leech or giant mushroom tree).
 # This setting works for following seeds: All existing water seeds, floating stone seed, brine lily seed, amoeba seed, pyrocoral seeds, crab claw kelp seeds, earthen coral tubes seeds, cove tree seed and mushroom tree seed.
 # If "false", water seeds will be available from start (you can craft them in the seeds fabricator immediately).
-addWaterSeedsWhenDiscovered=true
+addWaterSeedsWhenDiscovered=false
 
-# NOTE:
+# NOTE: If you are setting the option "addEggsAtStart" to false:
 # To unlock ghost leviathans eggs you need to scan the Cove Tree.
 # To unlock eggs of sea dragon and sea emperor you need to find and scan the eggs in game (they are located in precursor bases).
 # For all other eggs, you need to hatch them in an Alien Containment unit to unlock them.
@@ -123,7 +123,7 @@ addEggsWhenCreatureScanned=false
 
 # If "true", eggs are added to the decorations fabricator from start (removes unlock conditions, you can craft them in fabricator immediately).
 # If "false", eggs are added to the decorations fabricator like explained in the NOTE above.
-addEggsAtStart=false
+addEggsAtStart=true
 
 
 # -----------------------

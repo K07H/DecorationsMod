@@ -12,21 +12,28 @@ namespace DecorationsMod
     // List of DEBUG flags:
     // DEBUG_ITEMS_REGISTRATION
     // DEBUG_HARMONY_PATCHING
+    // DEBUG_PREFABS
     // DEBUG_AQUARIUM
     // DEBUG_CARGO_CRATES
-    // DEBUG_COVE_TREE
     // DEBUG_CUSTOM_PICTURE_FRAME
     // DEBUG_DROP_ITEM
     // DEBUG_FLORA
+    // DEBUG_FLORA_CONSOLE
     // DEBUG_FLORA_ANIMATION
     // DEBUG_FLORA_ENTRY
     // DEBUG_SEEDS
+    // DEBUG_TREES
+    // DEBUG_CORALS
+    // DEBUG_COVE_TREE
+    // DEBUG_CRABCLAWKELP
     // DEBUG_KNIFE
     // DEBUG_LAMP
     // DEBUG_STOOL
     // DEBUG_SEAMOTH_FRAGMENTS
     // DEBUG_CYCLOPS_DOLL
     // DEBUG_PLACE_TOOL
+    // DEBUG_ALIENARTEFACTS
+    // DEBUG_WARPER_SPECIMEN
 
     public class DecorationsMod
     {
@@ -79,7 +86,7 @@ namespace DecorationsMod
             //Logger.Log("INFO: Setting up in-game options menu...");
             //SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
 
-#if DEBUG
+#if DEBUG_PREFABS
             PrefabsHelper.TestPrefabs();
 #endif
         }

@@ -50,8 +50,17 @@ namespace DecorationsMod.ExistingItems
             if (_toyCar == null)
                 _toyCar = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
 
-            //GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject prefab = GameObject.Instantiate(_toyCar);
+
+            // Make toy car placeable in more places.
+            var pt = prefab.GetComponent<PlaceTool>();
+            if (pt != null)
+            {
+                pt.allowedOnGround = true;
+                pt.allowedOnRigidBody = true;
+                pt.allowedOutside = true;
+                pt.allowedUnderwater = true;
+            }
 
             // Add fabricating animation
             var fabricating = prefab.FindChild("model").AddComponent<VFXFabricating>();

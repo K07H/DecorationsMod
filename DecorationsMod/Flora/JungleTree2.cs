@@ -89,14 +89,23 @@ namespace DecorationsMod.Flora
                 _jungleTree2 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/old/jungle tree 3b.prefab");
 #endif
 
+#if DEBUG_TREES
+            Logger.Log("DEBUG: JungleTree2 T1");
+#endif
             GameObject prefab = GameObject.Instantiate(_jungleTree2);
             
             prefab.name = this.ClassID;
 
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
+#if DEBUG_TREES
+            Logger.Log("DEBUG: JungleTree2 T1b");
+            Logger.PrintTransform(prefab.transform);
+            Logger.Log("DEBUG: JungleTree2 T1c");
+#endif
             // Scale model
-            prefab.FindChild("Jungle_Tree_3b").transform.localScale *= 0.045f;
+            prefab.FindChild("Jungle_Tree_3b_LOD0").transform.localScale *= 0.045f;
+            prefab.FindChild("Jungle_Tree_3b_LOD1").transform.localScale *= 0.045f;
 
             // Add rigid body
             var rb = prefab.AddComponent<Rigidbody>();
@@ -117,6 +126,9 @@ namespace DecorationsMod.Flora
             var techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
+#if DEBUG_TREES
+            Logger.Log("DEBUG: JungleTree2 T2");
+#endif
             // Update prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
@@ -125,10 +137,16 @@ namespace DecorationsMod.Flora
             var collider = prefab.AddComponent<BoxCollider>();
             collider.size = new Vector3(0.7f, 0.7f, 0.7f);
 
+#if DEBUG_TREES
+            Logger.Log("DEBUG: JungleTree2 T3");
+#endif
             // Update large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
+#if DEBUG_TREES
+            Logger.Log("DEBUG: JungleTree2 T4");
+#endif
             // Add world forces
             var worldForces = prefab.AddComponent<WorldForces>();
             worldForces.handleGravity = true;
@@ -201,6 +219,9 @@ namespace DecorationsMod.Flora
             liveMixin.data.maxHealth = Config.Health;
             //liveMixin.startHealthPercent = 1.0f;
 
+#if DEBUG_TREES
+            Logger.Log("DEBUG: JungleTree2 T5");
+#endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
 

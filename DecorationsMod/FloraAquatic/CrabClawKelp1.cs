@@ -93,15 +93,26 @@ namespace DecorationsMod.FloraAquatic
                 _crabClawKelp1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/flora/old/lost_river_plant_01_01.prefab");
 #endif
 
+#if DEBUG_CRABCLAWKELP
+            Logger.Log("DEBUG: CrabClawKelp1 T1");
+#endif
             GameObject prefab = GameObject.Instantiate(_crabClawKelp1);
 
             prefab.name = this.ClassID;
 
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
+#if DEBUG_CRABCLAWKELP
+            Logger.Log("DEBUG: CrabClawKelp1 T2");
+            Logger.PrintTransform(prefab.transform);
+            Logger.Log("DEBUG: CrabClawKelp1 T2b");
+#endif
             // Scale prefab
             prefab.FindChild("lost_river_plant_01_01").transform.localScale *= 0.2f;
 
+#if DEBUG_CRABCLAWKELP
+            Logger.Log("DEBUG: CrabClawKelp1 T3");
+#endif
             // Shrink colliders
             Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
             if (colliders.Length > 0)
@@ -112,8 +123,13 @@ namespace DecorationsMod.FloraAquatic
                 }
             }
 
+#if DEBUG_CRABCLAWKELP
+            Logger.Log("DEBUG: CrabClawKelp1 T4");
+#endif
             // Update rigid body
             var rb = prefab.GetComponent<Rigidbody>();
+            if (rb == null)
+                rb = prefab.AddComponent<Rigidbody>();
             rb.mass = 5.0f;
             rb.drag = 1.0f;
             rb.angularDrag = 1.0f;
@@ -123,6 +139,9 @@ namespace DecorationsMod.FloraAquatic
             rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
             rb.constraints = RigidbodyConstraints.None;
 
+#if DEBUG_CRABCLAWKELP
+            Logger.Log("DEBUG: CrabClawKelp1 T5");
+#endif
             // Add EntityTag
             var entityTag = prefab.AddComponent<EntityTag>();
             entityTag.slotType = EntitySlot.Type.Small;
@@ -131,14 +150,23 @@ namespace DecorationsMod.FloraAquatic
             var techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
+#if DEBUG_CRABCLAWKELP
+            Logger.Log("DEBUG: CrabClawKelp1 T6");
+#endif
             // Update prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
-            
+
+#if DEBUG_CRABCLAWKELP
+            Logger.Log("DEBUG: CrabClawKelp1 T7");
+#endif
             // Update large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
+#if DEBUG_CRABCLAWKELP
+            Logger.Log("DEBUG: CrabClawKelp1 T8");
+#endif
             // Add world forces
             var worldForces = prefab.AddComponent<WorldForces>();
             worldForces.handleGravity = true;
@@ -212,6 +240,9 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.maxHealth = Config.Health;
             //liveMixin.startHealthPercent = 1.0f;
 
+#if DEBUG_CRABCLAWKELP
+            Logger.Log("DEBUG: CrabClawKelp1 T9");
+#endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
 

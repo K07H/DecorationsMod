@@ -1,3 +1,11 @@
+Version 2.0.1
+Changed: All items from this mod are now available from start (Discovery settings are OFF by default).
+Improved: Toy car can now be placed in more locations (on ground, underwater and so on).
+Fixed: A bug with marble melon Discovery setting (thanks to Soul Reaver).
+Fixed: Now you can build the small aquarium.
+Fixed: Now you can build the alien sculpture (AlienArtefact9).
+Fixed: The following plants are now working: Perennial alien tree, rope tree beta, earthen coral tubes, crab-claw kelps and pyrocorals.
+
 Version 2.0.0
 Improved: Updated to latest version of the game (Living Large update).
 

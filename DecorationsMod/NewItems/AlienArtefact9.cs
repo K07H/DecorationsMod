@@ -77,17 +77,28 @@ namespace DecorationsMod.NewItems
                 _alienArtefact9 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Precursor/Relics/Alien_relic_10.prefab");
 #endif
 
-            //GameObject prefab = GameObject.Instantiate(this.GameObject);
-            GameObject prefab = GameObject.Instantiate(this.GameObject);
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T1");
+#endif
+            GameObject prefab = GameObject.Instantiate(_alienArtefact9);
             prefab.name = this.ClassID;
 
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T2");
+#endif
             if (!ConfigSwitcher.AlienRelic9Animation)
                 prefab.GetComponentInChildren<Animator>().enabled = false;
 
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T3");
+#endif
             // Scale
             foreach (Transform tr in prefab.transform)
                 tr.transform.localScale *= 0.6f;
 
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T4");
+#endif
             // Update TechTag
             var techTag = prefab.GetComponent<TechTag>();
             if (techTag == null)
@@ -95,6 +106,9 @@ namespace DecorationsMod.NewItems
                     techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T5");
+#endif
             // Update prefab ID
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             if (prefabId == null)
@@ -113,9 +127,15 @@ namespace DecorationsMod.NewItems
                 GameObject.DestroyImmediate(rb);
             */
 
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T6");
+#endif
             // Update sky applier
             PrefabsHelper.ReplaceSkyApplier(prefab);
 
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T7");
+#endif
             // Scale colliders
             var collider = prefab.GetComponent<CapsuleCollider>();
             collider.radius = 0.15f;
@@ -129,6 +149,9 @@ namespace DecorationsMod.NewItems
                 c.isTrigger = true;
             }
 
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T8");
+#endif
             // We can pick this item
             var pickupable = prefab.GetComponent<Pickupable>();
             if (pickupable == null)
@@ -136,6 +159,9 @@ namespace DecorationsMod.NewItems
             pickupable.isPickupable = true;
             pickupable.randomizeRotationWhenDropped = true;
 
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T9");
+#endif
             // We can place this item
             prefab.AddComponent<CustomPlaceToolController>();
             //var placeTool = prefab.GetComponent<PlaceTool>();
@@ -166,6 +192,9 @@ namespace DecorationsMod.NewItems
             fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
             fabricating.scaleFactor = 0.7f;
 
+#if DEBUG_ALIENARTEFACTS
+            Logger.Log("DEBUG: ALientArtefact9 T10");
+#endif
             return prefab;
         }
     }
