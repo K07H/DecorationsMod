@@ -5,7 +5,7 @@
 <br>
 
 *If you are searching for some support please go here because this repository is intended for actual developers: https://www.nexusmods.com/subnautica/mods/102*<br>
-*If you are a developer you can contact me on Discord directly: OSubMarin#0460*
+*You can contact me on Discord if needed: OSubMarin#0460*
 
 <br>
 
