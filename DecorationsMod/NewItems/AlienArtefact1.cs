@@ -79,8 +79,7 @@ namespace DecorationsMod.NewItems
 #else
                 _alienArtefact1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Precursor/Relics/alien_relic_01.prefab");
 #endif
-            
-            //GameObject prefab = GameObject.Instantiate(this.GameObject);
+
             GameObject prefab = GameObject.Instantiate(_alienArtefact1);
             prefab.name = this.ClassID;
 

@@ -114,7 +114,7 @@ namespace DecorationsMod.NewItems
             GameObject model = prefab.FindChild("model");
             model.transform.localScale = new Vector3(model.transform.localScale.x * 0.5f, model.transform.localScale.y, model.transform.localScale.z);
             model.transform.localPosition = new Vector3(model.transform.localPosition.x + 0.5f, model.transform.localPosition.y, model.transform.localPosition.z);
-            model.transform.localRotation = new Quaternion(model.transform.localRotation.x, model.transform.localRotation.y + 20.0f, model.transform.localRotation.z, model.transform.localRotation.w);
+            //model.transform.localRotation = new Quaternion(model.transform.localRotation.x, model.transform.localRotation.y + 20.0f, model.transform.localRotation.z, model.transform.localRotation.w);
 
             // Update grass
             GameObject tray = model.FindChild("Base_interior_Planter_Tray_01");
@@ -125,6 +125,9 @@ namespace DecorationsMod.NewItems
 
             // Translate prefab
             //prefab.transform.localPosition = new Vector3(prefab.transform.localPosition.x + 0.6f, prefab.transform.localPosition.y, prefab.transform.localPosition.z);
+
+            // Add compatibility with SnapBuilder
+            //PrefabsHelper.SnapBuilderCompatibility(model.transform, new Vector3(0f, 7f, 0f));
 
             // Update sky applier
             SkyApplier sa = prefab.GetComponent<SkyApplier>();

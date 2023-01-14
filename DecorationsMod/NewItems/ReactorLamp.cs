@@ -68,7 +68,10 @@ namespace DecorationsMod.NewItems
 
                 // Retrieve model node
                 GameObject model = _reactorLamp.FindChild("model");
-                
+
+                // Add compatibility with SnapBuilder
+                PrefabsHelper.SnapBuilderCompatibility(model.transform, new Vector3(-90f, -90f, 0f));
+
                 // Move model
                 model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y - 0.04f, model.transform.localPosition.z + 0.03f);
 

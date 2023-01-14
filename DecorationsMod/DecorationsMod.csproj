@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>DecorationsMod</AssemblyName>
 	<Description>A Subnautica mod that adds a lot of decorations with features.</Description>
-    <Version>2.0.1</Version>
+    <Version>2.0.3</Version>
     <Authors>OSubMarin (legendarytools@gmail.com)</Authors>
     <Company>LC-IT S. (OSubMarin)</Company>
     <Product>DecorationsMod</Product>

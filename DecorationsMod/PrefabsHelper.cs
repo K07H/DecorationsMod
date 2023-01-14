@@ -270,6 +270,17 @@ namespace DecorationsMod
             return cyclopsFabricatorRequest.Result;
         }
 
+        public static void SnapBuilderCompatibility(Transform parentModel, Vector3? rotation = null, Vector3? translation = null)
+        {
+            // Help SnapBuilder to understand the model.
+            var snapBuilder = new GameObject("SnapBuilder");
+            if (rotation != null && rotation.HasValue)
+                snapBuilder.transform.localEulerAngles = rotation.Value;
+            if (translation != null && rotation.HasValue)
+                snapBuilder.transform.localPosition = translation.Value;
+            snapBuilder.transform.SetParent(parentModel, false);
+        }
+
 #if DEBUG_PREFABS
         private static readonly List<string> AllSubnauticaPrefabs = new List<string>()
         {

@@ -71,6 +71,9 @@ namespace DecorationsMod.NewItems
             // Get model
             GameObject model = prefab.FindChild("Starship_tech_box_01_01");
 
+            // Add compatibility with SnapBuilder
+            PrefabsHelper.SnapBuilderCompatibility(model.transform, new Vector3(-90f, -90f, 0f));
+
             // Remove rigid body
             Rigidbody rb = prefab.GetComponent<Rigidbody>();
             if (rb != null)

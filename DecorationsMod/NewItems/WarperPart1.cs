@@ -67,6 +67,9 @@ namespace DecorationsMod.NewItems
                 // Get objects
                 GameObject model = _warperPart1.FindChild("Model");
 
+                // Add compatibility with SnapBuilder
+                PrefabsHelper.SnapBuilderCompatibility(model.transform, new Vector3(-90f, -164.5f, 0f));
+
                 // Rotate model
                 //model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x - 90f, model.transform.localEulerAngles.y, model.transform.localEulerAngles.z);
 

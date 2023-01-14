@@ -68,7 +68,10 @@ namespace DecorationsMod.NewItems
 
             // Get model
             GameObject model = prefab.FindChild("Starship_control_terminal_01");
-            
+
+            // Add compatibility with SnapBuilder
+            PrefabsHelper.SnapBuilderCompatibility(model.transform, new Vector3(-90f, -90f, 0f));
+
             // Remove rigid body
             GameObject.DestroyImmediate(prefab.GetComponent<Rigidbody>());
 

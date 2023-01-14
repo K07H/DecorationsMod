@@ -3,7 +3,7 @@ using System;
 
 namespace DecorationsMod
 {
-    [BepInPlugin("com.osubmarin.decorationsmod", "DecorationsMod", "2.0.1")]
+    [BepInPlugin("com.osubmarin.decorationsmod", "DecorationsMod", "2.0.3")]
     [BepInDependency("com.ahk1221.smlhelper")]
     [UnityEngine.DisallowMultipleComponent]
     public class CyclopsDockingMod_EntryPoint : BaseUnityPlugin

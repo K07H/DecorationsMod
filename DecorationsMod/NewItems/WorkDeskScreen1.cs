@@ -75,6 +75,9 @@ namespace DecorationsMod.NewItems
             // Get model
             GameObject model = prefab.FindChild("Starship_work_desk_screen_01");
 
+            // Add compatibility with SnapBuilder
+            PrefabsHelper.SnapBuilderCompatibility(model.transform, new Vector3(-90f, -90f, 0f));
+
             // Scale model
             model.transform.localScale *= 0.8f;
 
