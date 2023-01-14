@@ -7,9 +7,8 @@ assignees: ''
 
 ---
 
-# **<ins>IMPORTANT NOTE:</ins>** Only bug reports from actual developers will get accepted.
-<ins>If you are not a developer please go here to get support:</ins> https://www.nexusmods.com/subnautica/mods/102?tab=posts or here to report a bug: https://www.nexusmods.com/subnautica/mods/102?tab=bugs
-<br>
+# **IMPORTANT NOTE:** Only bug reports from actual developers will get accepted.
+If you are not a developer please go here to get support: https://www.nexusmods.com/subnautica/mods/102?tab=posts or here to report a bug: https://www.nexusmods.com/subnautica/mods/102?tab=bugs
 
 
 **Describe the bug**

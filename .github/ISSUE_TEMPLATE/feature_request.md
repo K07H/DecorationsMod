@@ -7,9 +7,8 @@ assignees: ''
 
 ---
 
-# **<ins>IMPORTANT NOTE:</ins>** Only feature requests from actual developers will get accepted.
-<ins>If you are not a developer please go here to get support or request a feature:</ins> https://www.nexusmods.com/subnautica/mods/102?tab=posts
-<br>
+# **IMPORTANT NOTE:** Only feature requests from actual developers will get accepted.
+If you are not a developer please go here to get support or request a feature: https://www.nexusmods.com/subnautica/mods/102?tab=posts
 
 
 **Is your feature request related to a problem? Please describe.**
