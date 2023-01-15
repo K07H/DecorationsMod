@@ -276,7 +276,7 @@ namespace DecorationsMod
             var snapBuilder = new GameObject("SnapBuilder");
             if (rotation != null && rotation.HasValue)
                 snapBuilder.transform.localEulerAngles = rotation.Value;
-            if (translation != null && rotation.HasValue)
+            if (translation != null && translation.HasValue)
                 snapBuilder.transform.localPosition = translation.Value;
             snapBuilder.transform.SetParent(parentModel, false);
         }
