@@ -28,8 +28,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public CustomPictureFrame() : base("CustomPictureFrame", "CustomPictureFrameName", "CustomPictureFrameDescription", "revertpictureframe")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public CustomPictureFrame()

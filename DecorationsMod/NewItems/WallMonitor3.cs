@@ -26,8 +26,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public WallMonitor3() : base("WallMonitor3", "WallMonitor3Name", "WallMonitor3Description", "computer3")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public WallMonitor3() // Feeds abstract class

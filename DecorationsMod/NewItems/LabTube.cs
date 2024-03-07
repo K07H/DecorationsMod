@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public LabTube() : base("DecorationLabTube", "LabTubeName", "LabTubeDescription", "labtubeicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public LabTube() // Feeds abstract class

@@ -27,8 +27,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public BlueCoralTubes1() : base("BlueCoralTubes1", "BlueCoralTubes1Name", "AlienFloraSampleDescription", "flora_bluecoraltubesicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public BlueCoralTubes1()

@@ -27,8 +27,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public SofaCorner2() : base("SofaCorner2", "SofaCorner2Name", "SofaCorner2Description", "sofacorner02icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public SofaCorner2()

@@ -38,8 +38,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public BloodGrassDense() : base("BloodGrassDense", "RedGrassDenseName", "RedGrassDescription", "bloodgrassdense2icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public BloodGrassDense()

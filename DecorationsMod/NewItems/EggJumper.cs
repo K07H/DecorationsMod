@@ -20,7 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public EggJumper() : base(new PrefabInfo("b5d6cf1a-7d42-45f2-a0f3-0e05ff707502", "WorldEntities/Eggs/JumperEgg.prefab", TechType.JumperEgg))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggJumper()
         {

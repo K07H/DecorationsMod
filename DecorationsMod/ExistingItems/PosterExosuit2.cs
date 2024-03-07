@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("d76dd251-492d-4bf9-8adb-25e59d709df2", "WorldEntities/Environment/Wrecks/poster_exosuit_02.prefab", TechType.PosterExoSuit2)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
         public PosterExosuit2() // Feeds abstract class
         {

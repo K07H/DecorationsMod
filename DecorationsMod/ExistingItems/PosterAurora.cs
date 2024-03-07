@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("876cbea4-b4bf-4311-8264-5118bfef291c", "WorldEntities/Environment/Wrecks/poster_aurora.prefab", TechType.PosterAurora)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
         public PosterAurora() // Feeds abstract class
         {

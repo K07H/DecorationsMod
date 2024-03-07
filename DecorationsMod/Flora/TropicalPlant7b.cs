@@ -27,8 +27,6 @@ namespace DecorationsMod.Flora
         [SetsRequiredMembers]
         public TropicalPlant7b() : base("TropicalPlant7b", "TropicalPlant6Name", "TropicalPlantDescription", "tropicalplant7bicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
             public TropicalPlant7b()

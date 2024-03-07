@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.GasopodEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggGasopod()
         {

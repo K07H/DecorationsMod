@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public BenchSmall() : base("BenchSmall", "BenchSmallName", "BenchDescription", "benchsmallicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public BenchSmall()

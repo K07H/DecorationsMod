@@ -28,8 +28,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public CoveTree2() : base("CoveTree2", "GiantCoveTreeName", "CoveTreeDescription", "covetree2icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public CoveTree2()

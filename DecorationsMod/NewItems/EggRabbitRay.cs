@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.RabbitrayEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggRabbitRay()
         {

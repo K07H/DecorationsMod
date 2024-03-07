@@ -196,7 +196,7 @@ namespace DecorationsMod.Controllers
 
                 BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: Initial position=[" + model.transform.localPosition.x.ToString() + ";" + model.transform.localPosition.y.ToString() + ";" + model.transform.localPosition.z.ToString() + "] colliderCenter=[" + collider.center.x.ToString() + ";" + collider.center.y.ToString() + ";" + collider.center.z.ToString() + "] scale=[" + model.transform.localScale.x.ToString() + ";" + model.transform.localScale.y.ToString() + ";" + model.transform.localScale.z.ToString() + "] colliderSize=[" + collider.size.x.ToString() + ";" + collider.size.y.ToString() + ";" + collider.size.z.ToString() + "]");
+                Logger.Debug("Initial position=[" + model.transform.localPosition.x.ToString() + ";" + model.transform.localPosition.y.ToString() + ";" + model.transform.localPosition.z.ToString() + "] colliderCenter=[" + collider.center.x.ToString() + ";" + collider.center.y.ToString() + ";" + collider.center.z.ToString() + "] scale=[" + model.transform.localScale.x.ToString() + ";" + model.transform.localScale.y.ToString() + ";" + model.transform.localScale.z.ToString() + "] colliderSize=[" + collider.size.x.ToString() + ";" + collider.size.y.ToString() + ";" + collider.size.z.ToString() + "]");
 #endif
                 if (model.transform.localScale.y > 0.0006f)
                 {

@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public LabRobotArm() : base("LabRobotArm", "LabRobotArmName", "LabRobotArmDescription", "robotarmicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public LabRobotArm()

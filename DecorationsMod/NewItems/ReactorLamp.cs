@@ -23,8 +23,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public ReactorLamp() : base("ReactorLamp", "ReactorLampName", "ReactorLampDescription", "reactorrod_white")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public ReactorLamp() // Feeds abstract class

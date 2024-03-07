@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public ReaperLeviathanDoll() : base("ReaperLeviathanDoll", "ReaperLeviathanDollName", "ReaperLeviathanDollDescription", "reaperleviathanicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public ReaperLeviathanDoll() // Feeds abstract class

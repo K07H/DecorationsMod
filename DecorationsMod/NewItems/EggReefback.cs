@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.ReefbackEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggReefback()
         {

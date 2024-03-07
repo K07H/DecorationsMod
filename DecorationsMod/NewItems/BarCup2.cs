@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public BarCup2() : base("BarCup2", "BarCup2Name", "BarCup2Description", "barcup02icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public BarCup2() // Feeds abstract class

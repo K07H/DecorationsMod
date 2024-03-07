@@ -28,8 +28,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public AquariumSmall() : base("AquariumSmall", "AquariumSmallName", "AquariumSmallDescription", "tubularaquarium3icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public AquariumSmall() // Feeds abstract class
@@ -96,7 +94,7 @@ namespace DecorationsMod.NewItems
         public override GameObject GetGameObject()
         {
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A0");
+            Logger.Debug("A0");
 #endif
             if (_aquariumSmall == null)
                 _aquariumSmall = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
@@ -156,7 +154,7 @@ namespace DecorationsMod.NewItems
             GameObject aquariumAnim1Fish4 = aquariumAnim1Root.FindChild("fish4");
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A1");
+            Logger.Debug("A1");
 #endif
             // Setup green coral
             if (greenCoral != null)
@@ -171,7 +169,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A2");
+            Logger.Debug("A2");
 #endif
             // Setup blue coral
             if (blueCoral != null)
@@ -208,7 +206,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A3");
+            Logger.Debug("A3");
 #endif
             // Setup brown coral 2
             if (brownCoral != null)
@@ -247,7 +245,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A4");
+            Logger.Debug("A4");
 #endif
             // Setup brown coral 2 bis
             if (brownCoral != null)
@@ -289,7 +287,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A5");
+            Logger.Debug("A5");
 #endif
             // Setup brown coral 1
             if (brownCoral1 != null)
@@ -332,7 +330,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A6");
+            Logger.Debug("A6");
 #endif
             // Adjust corals
             coral1.SetActive(false); // petite fougere jaune (gauche)
@@ -352,7 +350,7 @@ namespace DecorationsMod.NewItems
             coral11.transform.localPosition = new Vector3(coral11.transform.localPosition.x - 0.2f, coral11.transform.localPosition.y - 0.23f, coral11.transform.localPosition.z);
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A7");
+            Logger.Debug("A7");
 #endif
             // Adjust aquarium
             aquariumAnim2Geo.transform.localScale = new Vector3(aquariumAnim2Geo.transform.localScale.x * (1.0f / 0.239f), aquariumAnim2Geo.transform.localScale.y * (1.0f / 0.24f), aquariumAnim2Geo.transform.localScale.z * (1.0f / 0.239f));
@@ -369,13 +367,13 @@ namespace DecorationsMod.NewItems
             aquariumAnim1GeoAquarium.transform.localPosition = new Vector3(aquariumAnim1GeoAquarium.transform.localPosition.x, aquariumAnim1GeoAquarium.transform.localPosition.y, aquariumAnim1GeoAquarium.transform.localPosition.z - ((0.145f * 2.0f) * (1.0f / 0.16f)));
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A8");
+            Logger.Debug("A8");
 #endif
             // Adjust fish
             aquariumAnim2Attach4.transform.localScale = new Vector3(aquariumAnim2Attach4.transform.localScale.x * 2.2f, aquariumAnim2Attach4.transform.localScale.y * 2.2f, aquariumAnim2Attach4.transform.localScale.z * 2.2f);
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A9");
+            Logger.Debug("A9");
 #endif
             // Adjust animators
             Animator anim = aquariumAnim1.GetComponent<Animator>();
@@ -386,7 +384,7 @@ namespace DecorationsMod.NewItems
             anim2.transform.localPosition = new Vector3(anim2.transform.localPosition.x + 0.145f, anim2.transform.localPosition.y + 0.20f, anim2.transform.localPosition.z);
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A10");
+            Logger.Debug("A10");
 #endif
             // Adjust bubbles
             bubbles.transform.localScale = new Vector3(bubbles.transform.localScale.x * 0.07f, bubbles.transform.localScale.y * 0.07f, bubbles.transform.localScale.z * 0.07f);
@@ -427,7 +425,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A11");
+            Logger.Debug("A11");
 #endif
             // Adjust prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
@@ -438,7 +436,7 @@ namespace DecorationsMod.NewItems
             techTag.type = this.TechType;
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A12");
+            Logger.Debug("A12");
 #endif
             // Adjust contructable
             Constructable constructable = prefab.GetComponent<Constructable>();
@@ -458,7 +456,7 @@ namespace DecorationsMod.NewItems
             constructable.enabled = true;
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A13");
+            Logger.Debug("A13");
 #endif
             // Adjust constructable bounds
             ConstructableBounds bounds = prefab.GetComponent<ConstructableBounds>();
@@ -476,7 +474,7 @@ namespace DecorationsMod.NewItems
             aquarium.trackObjects = new GameObject[] { aquariumAnim2Attach4 };
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A14");
+            Logger.Debug("A14");
 #endif
             // Adjust rendering
 #if SUBNAUTICA
@@ -493,7 +491,7 @@ namespace DecorationsMod.NewItems
                 foreach (Renderer rend in sa.renderers)
                 {
 #if DEBUG_AQUARIUM
-                    Logger.Log("DEBUG: SkyApp " + i.ToString() + ": rend " + j.ToString() + " name=[" + rend.name + "]");
+                    Logger.Debug("SkyApp " + i.ToString() + ": rend " + j.ToString() + " name=[" + rend.name + "]");
 #endif
                     if (string.Compare(rend.name, "Aquarium", true, CultureInfo.InvariantCulture) != 0)
                     {
@@ -521,7 +519,7 @@ namespace DecorationsMod.NewItems
                 i++;
             }
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A15");
+            Logger.Debug("A15");
 #endif
 #if SUBNAUTICA
             sas[0].renderers = rendsA.ToArray();
@@ -534,7 +532,7 @@ namespace DecorationsMod.NewItems
                     rends.Add(tmpRend);
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A16");
+            Logger.Debug("A16");
 #endif
             var fixedSa = prefab.AddComponent<SkyApplier>();
             fixedSa.anchorSky = Skies.Auto;
@@ -543,14 +541,14 @@ namespace DecorationsMod.NewItems
             fixedSa.updaterIndex = 0;
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A17");
+            Logger.Debug("A17");
 #endif
             // Adjust bubbles LOD
             var lodBubbles = bubbles.GetComponent<LODGroup>();
             lodBubbles.size *= (1.0f / 0.07f);
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A18");
+            Logger.Debug("A18");
 #endif
             // Remove unwanted elements
             GameObject.DestroyImmediate(aquariumAnim2Fish1);
@@ -562,14 +560,14 @@ namespace DecorationsMod.NewItems
             GameObject.DestroyImmediate(aquariumAnim1Fish4);
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A19");
+            Logger.Debug("A19");
 #endif
             // Adjust prefab position
             foreach (Transform tr in prefab.transform)
                 tr.transform.localPosition = new Vector3(tr.transform.localPosition.x - 0.29f, tr.transform.localPosition.y, tr.transform.localPosition.z);
 
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: A20");
+            Logger.Debug("A20");
 #endif
             return prefab;
         }

@@ -36,8 +36,6 @@ namespace DecorationsMod.Flora
         [SetsRequiredMembers]
         public LandTree1() : base("LandTree1", "LandTree1Name", "LandTree1Description", "landtree1seedicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public LandTree1()
@@ -123,7 +121,7 @@ namespace DecorationsMod.Flora
         public override GameObject GetGameObject()
         {
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T1");
+            Logger.Debug("LandTree1 T1");
 #endif
             if (_landTree1 == null)
 #if SUBNAUTICA
@@ -136,16 +134,16 @@ namespace DecorationsMod.Flora
             GameObject staticPrefab = GameObject.Instantiate(this.staticPart);
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T2");
+            Logger.Debug("LandTree1 T2");
 #endif
             prefab.name = this.ClassID;
 
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T3");
+            Logger.Debug("LandTree1 T3");
             Logger.PrintTransform(prefab.transform);
-            Logger.Log("DEBUG: LandTree1 T3b");
+            Logger.Debug("LandTree1 T3b");
 #endif
             // Scale sub objects
             prefab.FindChild("Capsule").transform.localScale *= 0.34f;
@@ -154,7 +152,7 @@ namespace DecorationsMod.Flora
             prefab.FindChild("Land_tree_01_LOD2").transform.localScale *= 0.34f;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T4");
+            Logger.Debug("LandTree1 T4");
 #endif
             // Update static part of the model, border shader and normal/emission maps
             GameObject staticModel = staticPrefab.FindChild("Land_tree_01_static").FindChild("Land_tree_01_static");
@@ -193,7 +191,7 @@ namespace DecorationsMod.Flora
             }
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T5");
+            Logger.Debug("LandTree1 T5");
 #endif
             // Update rigid body
             Rigidbody rb = prefab.GetComponent<Rigidbody>();
@@ -207,7 +205,7 @@ namespace DecorationsMod.Flora
             rb.constraints = RigidbodyConstraints.None;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T6");
+            Logger.Debug("LandTree1 T6");
 #endif
             // Add box collider
             BoxCollider collider = prefab.AddComponent<BoxCollider>();
@@ -222,14 +220,14 @@ namespace DecorationsMod.Flora
             techTag.type = this.TechType;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T7");
+            Logger.Debug("LandTree1 T7");
 #endif
             // Update prefab identifier
             PrefabIdentifier prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T8");
+            Logger.Debug("LandTree1 T8");
 #endif
             // Update large world entity
             LargeWorldEntity lwe = prefab.GetComponent<LargeWorldEntity>();
@@ -246,7 +244,7 @@ namespace DecorationsMod.Flora
             worldForces.useRigidbody = rb;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T9");
+            Logger.Debug("LandTree1 T9");
 #endif
             // Add pickupable
             Pickupable pickupable = prefab.AddComponent<Pickupable>();
@@ -274,7 +272,7 @@ namespace DecorationsMod.Flora
             }
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T10");
+            Logger.Debug("LandTree1 T10");
 #endif
             // Add plantable
             Plantable plantable = prefab.AddComponent<Plantable>();
@@ -291,7 +289,7 @@ namespace DecorationsMod.Flora
             plantable.linkedGrownPlant.seedUID = "LandTree1";
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T11");
+            Logger.Debug("LandTree1 T11");
 #endif
             LandTree1Controller landTree1Controller = prefab.AddComponent<LandTree1Controller>();
             landTree1Controller.GrowthDuration = Config.GrowthDuration;
@@ -319,7 +317,7 @@ namespace DecorationsMod.Flora
             */
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T12");
+            Logger.Debug("LandTree1 T12");
 #endif
             // Add live mixin
             LiveMixin liveMixin = prefab.AddComponent<LiveMixin>();
@@ -337,7 +335,7 @@ namespace DecorationsMod.Flora
             //liveMixin.startHealthPercent = 1.0f;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T13");
+            Logger.Debug("LandTree1 T13");
 #endif
             // Configure static renderer
             staticPrefab.transform.parent = prefab.transform;
@@ -346,7 +344,7 @@ namespace DecorationsMod.Flora
             staticPrefab.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T14");
+            Logger.Debug("LandTree1 T14");
 #endif
             // Update sky applier
             SkyApplier skyApplier = prefab.GetComponent<SkyApplier>();
@@ -354,7 +352,7 @@ namespace DecorationsMod.Flora
             skyApplier.anchorSky = Skies.Auto;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T15");
+            Logger.Debug("LandTree1 T15");
 #endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);

@@ -26,7 +26,6 @@ namespace DecorationsMod.NewItems
 #endif
             TechType.PrecursorKey_Red))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public AlienTabletRed()// Feeds abstract class
         {

@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public DecorativeControlTerminal() : base("DecorativeControlTerminal", "DecorativeControlTerminalName", "DecorativeControlTerminalDescription", "control_terminal_icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public DecorativeControlTerminal() // Feeds abstract class

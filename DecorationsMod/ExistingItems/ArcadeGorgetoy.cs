@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("7ea4a91e-80fc-43aa-8ce3-5d52bd19e278", "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_arcade_gorgetoy_01.prefab", TechType.ArcadeGorgetoy)
             )
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public ArcadeGorgetoy() // Feeds abstract class
         {
@@ -63,7 +62,7 @@ namespace DecorationsMod.ExistingItems
             if (_arcadeGorgetoy == null)
                 _arcadeGorgetoy = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
 
-            Logger.Log("DEBUG: ArcadeGorgetoy prefab is " + (_arcadeGorgetoy == null ? "NULL" : "NOT NULL"));
+            Logger.Debug("ArcadeGorgetoy prefab is " + (_arcadeGorgetoy == null ? "NULL" : "NOT NULL"));
 
             //GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject prefab = GameObject.Instantiate(_arcadeGorgetoy);

@@ -32,8 +32,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public MushroomTree2() : base("MushroomTree2", "MushroomTree2Name", "MushroomTreeDescription", "mushroomtree2icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public MushroomTree2()

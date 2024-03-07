@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BepInEx.Logging;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,14 +14,44 @@ namespace DecorationsMod
 {
     internal static class Logger
     {
-        internal static void Log(string text, params object[] args)
+        internal static void Debug(string text, params object[] args)
+        {
+            Log(LogLevel.Debug, text, args);
+        }
+
+        internal static void Info(string text, params object[] args)
+        {
+            Log(LogLevel.Info, text, args);
+        }
+
+        internal static void Message(string text, params object[] args)
+        {
+            Log(LogLevel.Message, text, args);
+        }
+
+        internal static void Warning(string text, params object[] args)
+        {
+            Log(LogLevel.Warning, text, args);
+        }
+
+        internal static void Error(string text, params object[] args)
+        {
+            Log(LogLevel.Error, text, args);
+        }
+
+        internal static void Fatal(string text, params object[] args)
+        {
+            Log(LogLevel.Fatal, text, args);
+        }
+
+        internal static void Log(LogLevel level, string text, params object[] args)
         {
             if (args != null && args.Length > 0)
                 text = string.Format(text, args);
-            if (CyclopsDockingMod_EntryPoint._logger != null)
-                CyclopsDockingMod_EntryPoint._logger.LogDebug($"[DecorationsMod] {text}");
+            if (DecorationsMod_EntryPoint._logger != null)
+                DecorationsMod_EntryPoint._logger.Log(level, text);
             else
-                Console.WriteLine($"[DecorationsMod] {text}");
+                Console.WriteLine($"[DecorationsMod] {level} {text}");
         }
 
 #if DEBUG
@@ -53,30 +84,30 @@ namespace DecorationsMod
         internal static void PrintObject(System.Object o, string indent = "\t")
         {
             Type type = o.GetType();
-            string init = "DEBUG: Component [" + type.Name + "] " + indent;
-            Logger.Log(init + "Attributes:");
+            string init = "Component [" + type.Name + "] " + indent;
+            Logger.Debug(init + "Attributes:");
             FieldInfo[] fi = type.GetFields();
             if (fi == null || fi.Length <= 0)
-                Logger.Log(init + " None");
+                Logger.Debug(init + " None");
             else
                 foreach (FieldInfo f in fi)
                 {
                     string val;
                     try { val = f.GetValue(o)?.ToString(); if (val == null) val = "null"; }
                     catch { val = "?"; }
-                    Logger.Log(init + " * " + f.ToString() + " = " + val);
+                    Logger.Debug(init + " * " + f.ToString() + " = " + val);
                 }
-            Logger.Log(init + "Properties:");
+            Logger.Debug(init + "Properties:");
             PropertyInfo[] pi = type.GetProperties();
             if (pi == null || pi.Length <= 0)
-                Logger.Log(init + " None");
+                Logger.Debug(init + " None");
             else
                 foreach (PropertyInfo p in pi)
                 {
                     string val;
                     try { val = p.GetValue(o, null)?.ToString(); if (val == null) val = "null"; }
                     catch { val = "?"; }
-                    Logger.Log(init + " * " + p.ToString() + " = " + val);
+                    Logger.Debug(init + " * " + p.ToString() + " = " + val);
                 }
         }
 
@@ -84,11 +115,11 @@ namespace DecorationsMod
         {
             if (tr != null)
             {
-                Logger.Log("DEBUG: Transform " + indent + "name=[" + tr.name + "] localPos=[" + tr.localPosition.x.ToString() + ";" + tr.localPosition.y.ToString() + ";" + tr.localPosition.z.ToString() + "] localAngles=[" + tr.localEulerAngles.x.ToString() + ";" + tr.localEulerAngles.y.ToString() + ";" + tr.localEulerAngles.z.ToString() + "] localScale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "] pos=[" + tr.position.x.ToString() + ";" + tr.position.y.ToString() + ";" + tr.position.z.ToString() + "] angles=[" + tr.eulerAngles.x.ToString() + ";" + tr.eulerAngles.y.ToString() + ";" + tr.eulerAngles.z.ToString() + "]");
+                Logger.Debug("Transform " + indent + "name=[" + tr.name + "] localPos=[" + tr.localPosition.x.ToString() + ";" + tr.localPosition.y.ToString() + ";" + tr.localPosition.z.ToString() + "] localAngles=[" + tr.localEulerAngles.x.ToString() + ";" + tr.localEulerAngles.y.ToString() + ";" + tr.localEulerAngles.z.ToString() + "] localScale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "] pos=[" + tr.position.x.ToString() + ";" + tr.position.y.ToString() + ";" + tr.position.z.ToString() + "] angles=[" + tr.eulerAngles.x.ToString() + ";" + tr.eulerAngles.y.ToString() + ";" + tr.eulerAngles.z.ToString() + "]");
                 foreach (Component c in tr.GetComponents<Component>())
                     if (c.GetType() != typeof(Transform))
                     {
-                        Logger.Log("DEBUG: Transform " + indent + " => component type=[" + c.GetType().ToString() + "] name=[" + c.name + "]");
+                        Logger.Debug("Transform " + indent + " => component type=[" + c.GetType().ToString() + "] name=[" + c.name + "]");
                         if (details)
                             PrintObject(c, indent + "\t");
                     }

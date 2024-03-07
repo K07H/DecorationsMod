@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public WarperPart11() : base("WarperPart11", "WarperPartName", "WarperPartDescription", "warper_icon_11")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public WarperPart11()

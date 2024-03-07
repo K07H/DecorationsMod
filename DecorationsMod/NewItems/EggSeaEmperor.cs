@@ -21,7 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public EggSeaEmperor() : base("EggSeaEmperor", "EggSeaEmperorName", "EggSeaEmperorDescription", "seaemperoreggicon")
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggSeaEmperor()
         {

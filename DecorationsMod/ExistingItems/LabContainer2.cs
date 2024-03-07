@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("e3e00261-92fc-4f52-bad2-4f0e5802a43d", "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_close_02.prefab", TechType.LabContainer2)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
         public LabContainer2() // Feeds abstract class
         {

@@ -27,8 +27,6 @@ namespace DecorationsMod.Flora
         [SetsRequiredMembers]
         public JungleTree2() : base("JungleTree2", "JungleTree2Name", "JungleTree2Description", "jungletree2icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public JungleTree2()
@@ -110,7 +108,7 @@ namespace DecorationsMod.Flora
 #endif
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: JungleTree2 T1");
+            Logger.Debug("JungleTree2 T1");
 #endif
             GameObject prefab = GameObject.Instantiate(_jungleTree2);
             
@@ -119,9 +117,9 @@ namespace DecorationsMod.Flora
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: JungleTree2 T1b");
+            Logger.Debug("JungleTree2 T1b");
             Logger.PrintTransform(prefab.transform);
-            Logger.Log("DEBUG: JungleTree2 T1c");
+            Logger.Debug("JungleTree2 T1c");
 #endif
             // Scale model
             prefab.FindChild("Jungle_Tree_3b_LOD0").transform.localScale *= 0.045f;
@@ -147,7 +145,7 @@ namespace DecorationsMod.Flora
             techTag.type = this.TechType;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: JungleTree2 T2");
+            Logger.Debug("JungleTree2 T2");
 #endif
             // Update prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
@@ -158,14 +156,14 @@ namespace DecorationsMod.Flora
             collider.size = new Vector3(0.7f, 0.7f, 0.7f);
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: JungleTree2 T3");
+            Logger.Debug("JungleTree2 T3");
 #endif
             // Update large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: JungleTree2 T4");
+            Logger.Debug("JungleTree2 T4");
 #endif
             // Add world forces
             var worldForces = prefab.AddComponent<WorldForces>();
@@ -240,7 +238,7 @@ namespace DecorationsMod.Flora
             //liveMixin.startHealthPercent = 1.0f;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: JungleTree2 T5");
+            Logger.Debug("JungleTree2 T5");
 #endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);

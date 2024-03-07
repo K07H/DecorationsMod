@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public SeaEmperorDoll() : base("SeaEmperorDoll", "SmallEmperorName", "SmallEmperorDescription", "emperoricon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public SeaEmperorDoll() // Feeds abstract class

@@ -21,8 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public LabCart() : base("LabCart", "LabCartName", "LabCartDescription", "labcarticon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public LabCart() // Feeds abstract class

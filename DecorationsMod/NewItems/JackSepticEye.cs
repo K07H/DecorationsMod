@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public JackSepticEye() : base("JackSepticEyeDoll", "JackSepticEyeName", "JackSepticEyeDescription", SpriteManager.Get(TechType.JackSepticEye))
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public JackSepticEye()

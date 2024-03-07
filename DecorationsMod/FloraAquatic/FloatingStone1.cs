@@ -28,8 +28,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public FloatingStone1() : base("FloatingStone1", "FloatingStoneName", "FloatingStoneDescription", "floatingstone1icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public FloatingStone1()

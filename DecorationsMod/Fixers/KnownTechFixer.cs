@@ -17,17 +17,17 @@ namespace DecorationsMod.Fixers
                 if (builderNotification)
                 {
                     try { NotificationManager.main.Add(NotificationManager.Group.Builder, Convert.ToString(techTypeId, CultureInfo.InvariantCulture), 2f, 2f); }
-                    catch { Logger.Log("WARNING: Could not add builder notification for tech type [" + techType.AsString() + "]."); }
+                    catch { Logger.Warning("Could not add builder notification for tech type [" + techType.AsString() + "]."); }
                 }
                 if (blueprintsNotification)
                 {
                     try { NotificationManager.main.Add(NotificationManager.Group.Blueprints, Convert.ToString(techTypeId, CultureInfo.InvariantCulture), 3f, 3f); }
-                    catch { Logger.Log("WARNING: Could not add blueprint notification for tech type [" + techType.AsString() + "]."); }
+                    catch { Logger.Warning("Could not add blueprint notification for tech type [" + techType.AsString() + "]."); }
                 }
                 if (craftNotification)
                 {
                     try { NotificationManager.main.Add(NotificationManager.Group.CraftTree, Convert.ToString(techTypeId, CultureInfo.InvariantCulture), 3f, 3f); }
-                    catch { Logger.Log("WARNING: Could not add craft notification for tech type [" + techType.AsString() + "]."); }
+                    catch { Logger.Warning("Could not add craft notification for tech type [" + techType.AsString() + "]."); }
                 }
                 KnownTechFixer.AddedNotifications[techTypeId] = true;
                 return true;
@@ -46,7 +46,7 @@ namespace DecorationsMod.Fixers
                     string saveFile = FilesHelper.Combine(saveDir, "discovered.txt");
                     if (File.Exists(saveFile))
                     {
-                        Logger.Log("INFO: Loading discoveries from \"" + saveFile + "\".");
+                        Logger.Info("Loading discoveries from \"" + saveFile + "\".");
                         int cnt = 0;
                         string[] lines = File.ReadAllLines(saveFile, Encoding.UTF8);
                         if (lines != null && lines.Length > 0)
@@ -65,16 +65,16 @@ namespace DecorationsMod.Fixers
                                             ++cnt;
                                     }
                                 }
-                        Logger.Log("INFO: Discoveries loaded. Player made {0}/{1} discoveries ({2} remaining).", cnt, AddedNotifications.Count, AddedNotifications.Count - cnt);
+                        Logger.Info("Discoveries loaded. Player made {0}/{1} discoveries ({2} remaining).", cnt, AddedNotifications.Count, AddedNotifications.Count - cnt);
                     }
                     else
-                        Logger.Log("INFO: No discoveries saved at \"" + saveFile + "\".");
+                        Logger.Info("No discoveries saved at \"" + saveFile + "\".");
                 }
                 else
-                    Logger.Log("INFO: No save directory found for discoveries at \"" + saveDir + "\".");
+                    Logger.Info("No save directory found for discoveries at \"" + saveDir + "\".");
             }
             else
-                Logger.Log("INFO: Could not find save slot for discoveries.");
+                Logger.Info("Could not find save slot for discoveries.");
         }
 
         public static void SaveAddedNotifications()
@@ -102,7 +102,7 @@ namespace DecorationsMod.Fixers
                 string saveFile = FilesHelper.Combine(saveDir, "discovered.txt");
                 if (toLog.EndsWith(";"))
                     toLog = toLog.Substring(0, toLog.Length - 1);
-                Logger.Log("INFO: Saving {0}/{1} discoveries to \"{2}\" (Discovered TechTypes: {3}).", cnt, AddedNotifications.Count, saveFile, toLog);
+                Logger.Info("Saving {0}/{1} discoveries to \"{2}\" (Discovered TechTypes: {3}).", cnt, AddedNotifications.Count, saveFile, toLog);
                 File.WriteAllText(saveFile, toSave, Encoding.UTF8);
             }
         }

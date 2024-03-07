@@ -21,7 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public EggBoneshark() : base(new PrefabInfo("43ba333e-2eb6-4b6f-ac74-6b6188e82297", "WorldEntities/Eggs/BonesharkEgg.prefab", TechType.BonesharkEgg))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggBoneshark()
         {

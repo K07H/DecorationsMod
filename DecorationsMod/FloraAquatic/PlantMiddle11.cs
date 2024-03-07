@@ -27,8 +27,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public PlantMiddle11() : base("PlantMiddle11", "PlantMiddle11Name", "PlantMiddle11Description", "flora_plantmiddle11icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public PlantMiddle11()

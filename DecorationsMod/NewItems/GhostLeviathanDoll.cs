@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public GhostLeviathanDoll() : base("GhostLeviathanDoll", "GhostLeviathanDollName", "GhostLeviathanDollDescription", "ghostleviathanicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public GhostLeviathanDoll()

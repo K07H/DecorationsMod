@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public GenericSkeleton1() : base("GenericSkeleton1", "GenericSkeletonName", " (1)", "GenericSkeletonDescription", "genericskeleton1icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public GenericSkeleton1()

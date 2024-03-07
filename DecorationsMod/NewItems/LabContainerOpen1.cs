@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public LabContainerOpen1() : base("LabContainerOpen1", "LargeLabContainerOpenName", "LabContainerOpenDescription", "labcontaineropen1")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public LabContainerOpen1() // Feeds abstract class

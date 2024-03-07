@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.LavaLizardEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggLavaLizard()
         {

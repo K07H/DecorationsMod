@@ -10,7 +10,7 @@ namespace DecorationsMod.Fixers
         {
             var pid = aquarium?.gameObject?.GetComponent<PrefabIdentifier>();
 #if DEBUG_AQUARIUM
-            Logger.Log("DEBUG: Entering RefreshAquariumSkyAppliers for aquarium ClassID=[" + (!string.IsNullOrEmpty(pid?.ClassId) ? pid.ClassId : "?") + "]");
+            Logger.Debug("Entering RefreshAquariumSkyAppliers for aquarium ClassID=[" + (!string.IsNullOrEmpty(pid?.ClassId) ? pid.ClassId : "?") + "]");
 #endif
             // If current item is our custom aquarium (or if it's the regular aquarium and "FixAquariumLighting" is enabled).
             if (pid != null && !string.IsNullOrEmpty(pid.ClassId) &&

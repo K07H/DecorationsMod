@@ -27,8 +27,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public SmallDeco13() : base("SmallDeco13", "SmallDeco13Name", "AlienFloraSampleDescription", "flora_smalldeco13icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public SmallDeco13()

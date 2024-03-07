@@ -23,8 +23,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public CargoBox01a() : base("CargoBox01a", "CargoBox1aName", "CargoBox1aDescription", "cargobox01aicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public CargoBox01a()

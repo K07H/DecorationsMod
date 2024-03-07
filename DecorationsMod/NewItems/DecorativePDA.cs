@@ -21,8 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public DecorativePDA() : base("DecorativePDA", "DecorativePDAName", "DecorativePDADescription", "decorativepdaicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public DecorativePDA()

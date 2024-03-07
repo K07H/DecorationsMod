@@ -30,8 +30,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public RedGrass2() : base("RedGrass2", "RedGrassName", "RedGrassDescription", "redgrass1icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public RedGrass2()

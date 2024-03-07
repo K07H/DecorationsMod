@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("5884d27a-8798-4f09-82ec-c7671a604504", "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_02.prefab", TechType.Cap1)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
         public Cap1() // Feeds abstract class
         {
@@ -52,7 +51,7 @@ namespace DecorationsMod.ExistingItems
             if (_cap1 == null)
                 _cap1 = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
 
-            Logger.Log("DEBUG: Cap1 prefab is " + (_cap1 == null ? "NULL" : "NOT NULL"));
+            Logger.Debug("Cap1 prefab is " + (_cap1 == null ? "NULL" : "NOT NULL"));
 
             //GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject prefab = GameObject.Instantiate(_cap1);

@@ -23,8 +23,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public ExosuitDoll() : base("ExosuitDoll", "ExosuitDollName", "ExosuitDollDescription", SpriteManager.Get(TechType.Exosuit))
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public ExosuitDoll() // Feeds abstract class

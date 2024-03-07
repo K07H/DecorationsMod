@@ -21,8 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public PaperTrash() : base("PaperTrash", "PaperTrashName", "PaperTrashDescription", "paper1icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public PaperTrash()

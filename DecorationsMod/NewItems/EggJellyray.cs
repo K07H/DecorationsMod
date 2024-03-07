@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.JellyrayEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggJellyray()
         {

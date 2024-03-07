@@ -20,7 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public EggSeaDragon() : base("EggSeaDragon", "EggSeaDragonName", "EggSeaDragonDescription", "seadragoneggicon")
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggSeaDragon()
         {

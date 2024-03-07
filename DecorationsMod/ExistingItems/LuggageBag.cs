@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("3616e7f3-5079-443d-85b4-9ad68fcbd924", "WorldEntities/Doodads/Debris/Wrecks/Decoration/docking_luggage_01_bag4.prefab", TechType.LuggageBag)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
         public LuggageBag() // Feeds abstract class
         {

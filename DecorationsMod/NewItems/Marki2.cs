@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public Marki2() : base("MarkiDoll2", "MarkiDollName", "MarkiDollDescription", SpriteManager.Get(TechType.Marki2))
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public Marki2()

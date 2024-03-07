@@ -26,8 +26,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public BarStool() : base("BarStool", "BarStoolName", "BarStoolDescription", "bar_stool")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public BarStool()
@@ -104,21 +102,21 @@ namespace DecorationsMod.NewItems
             if (_starshipChair == null)
                 _starshipChair = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/StarshipChair.prefab");
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): A");
+            Logger.Debug("BarStool->GetGameObject(): A");
 #endif
             GameObject prefab = GameObject.Instantiate(_starshipChair);
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): B");
+            Logger.Debug("BarStool->GetGameObject(): B");
 #endif
             GameObject barstoolPrefab = GameObject.Instantiate(this.barstoolgo);
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): C");
+            Logger.Debug("BarStool->GetGameObject(): C");
 #endif
             prefab.name = this.ClassID;
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): D");
+            Logger.Debug("BarStool->GetGameObject(): D");
 #endif
             // Modify tech tag
             TechTag techTag = prefab.GetComponent<TechTag>();
@@ -131,7 +129,7 @@ namespace DecorationsMod.NewItems
             prefabId.ClassId = this.ClassID;
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): E");
+            Logger.Debug("BarStool->GetGameObject(): E");
 #endif
             // Scale
             prefab.transform.localScale *= 0.5f;
@@ -141,7 +139,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): F");
+            Logger.Debug("BarStool->GetGameObject(): F");
 #endif
             // Add large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
@@ -150,7 +148,7 @@ namespace DecorationsMod.NewItems
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): G");
+            Logger.Debug("BarStool->GetGameObject(): G");
 #endif
             // Disable renderers
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
@@ -165,14 +163,14 @@ namespace DecorationsMod.NewItems
             barstoolPrefab.SetActive(true);
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): H");
+            Logger.Debug("BarStool->GetGameObject(): H");
 #endif
             // Get bench
             var bench = prefab.GetComponent<Bench>();
             bench.cinematicController.animatedTransform.localPosition = new Vector3(bench.cinematicController.animatedTransform.localPosition.x, bench.cinematicController.animatedTransform.localPosition.y + 1.76f, bench.cinematicController.animatedTransform.localPosition.z - 0.1f);
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): I");
+            Logger.Debug("BarStool->GetGameObject(): I");
 #endif
             // Set proper shaders
             renderers = prefab.GetComponentsInChildren<Renderer>();
@@ -207,7 +205,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): J");
+            Logger.Debug("BarStool->GetGameObject(): J");
 #endif
             // Update sky applier
             var skyapplier = prefab.GetComponent<SkyApplier>();
@@ -219,7 +217,7 @@ namespace DecorationsMod.NewItems
             skyapplier.anchorSky = Skies.Auto;
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): K");
+            Logger.Debug("BarStool->GetGameObject(): K");
 #endif
             // Update contructable
             var constructible = prefab.GetComponent<Constructable>();
@@ -238,7 +236,7 @@ namespace DecorationsMod.NewItems
             constructible.enabled = true;
 
 #if DEBUG_STOOL
-            Logger.Log("DEBUG: BarStool->GetGameObject(): L");
+            Logger.Debug("BarStool->GetGameObject(): L");
 #endif
             // Update constructable bounds
             //var constructableBounds = prefab.GetComponent<ConstructableBounds>();

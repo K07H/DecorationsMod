@@ -21,8 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public AlienArtefact9() : base("AlienArtefact9", "AlienRelic9Name", "AlienRelic9Description", "relic_10_b")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public AlienArtefact9() // Feeds abstract class
@@ -98,26 +96,26 @@ namespace DecorationsMod.NewItems
 #endif
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T1");
+            Logger.Debug("ALientArtefact9 T1");
 #endif
             GameObject prefab = GameObject.Instantiate(_alienArtefact9);
             prefab.name = this.ClassID;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T2");
+            Logger.Debug("ALientArtefact9 T2");
 #endif
             if (!ConfigSwitcher.AlienRelic9Animation)
                 prefab.GetComponentInChildren<Animator>().enabled = false;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T3");
+            Logger.Debug("ALientArtefact9 T3");
 #endif
             // Scale
             foreach (Transform tr in prefab.transform)
                 tr.transform.localScale *= 0.6f;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T4");
+            Logger.Debug("ALientArtefact9 T4");
 #endif
             // Update TechTag
             var techTag = prefab.GetComponent<TechTag>();
@@ -127,7 +125,7 @@ namespace DecorationsMod.NewItems
             techTag.type = this.TechType;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T5");
+            Logger.Debug("ALientArtefact9 T5");
 #endif
             // Update prefab ID
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
@@ -148,13 +146,13 @@ namespace DecorationsMod.NewItems
             */
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T6");
+            Logger.Debug("ALientArtefact9 T6");
 #endif
             // Update sky applier
             PrefabsHelper.ReplaceSkyApplier(prefab);
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T7");
+            Logger.Debug("ALientArtefact9 T7");
 #endif
             // Scale colliders
             var collider = prefab.GetComponent<CapsuleCollider>();
@@ -170,7 +168,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T8");
+            Logger.Debug("ALientArtefact9 T8");
 #endif
             // We can pick this item
             var pickupable = prefab.GetComponent<Pickupable>();
@@ -180,7 +178,7 @@ namespace DecorationsMod.NewItems
             pickupable.randomizeRotationWhenDropped = true;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T9");
+            Logger.Debug("ALientArtefact9 T9");
 #endif
             // We can place this item
             prefab.AddComponent<CustomPlaceToolController>();
@@ -213,7 +211,7 @@ namespace DecorationsMod.NewItems
             fabricating.scaleFactor = 0.7f;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T10");
+            Logger.Debug("ALientArtefact9 T10");
 #endif
             return prefab;
         }

@@ -70,14 +70,14 @@ namespace DecorationsMod
                 PlaceToolItems.MakeItemsPlaceable();
 
             // 6) REGISTER DECORATIONS FABRICATOR
-            Logger.Log("INFO: Registering decorations fabricator...");
+            Logger.Info("Registering decorations fabricator...");
             Fabricator_Decorations decorationsFabricator = new Fabricator_Decorations();
             decorationsFabricator.RegisterDecorationsFabricator(DecorationsMod.DecorationItems);
 
             // 7) REGISTER FLORA FABRICATOR
             if (ConfigSwitcher.EnableNewFlora)
             {
-                Logger.Log("INFO: Registering seeds fabricator...");
+                Logger.Info("Registering seeds fabricator...");
                 Fabricator_Flora floraFabricator = new Fabricator_Flora();
                 floraFabricator.RegisterFloraFabricator(DecorationsMod.DecorationItems);
             }
@@ -92,7 +92,7 @@ namespace DecorationsMod
             //MyHarmony.FixAutoLoadMod();
 
             // 9) SETUP IN GAME OPTIONS MENU
-            //Logger.Log("INFO: Setting up in-game options menu...");
+            //Logger.Info("Setting up in-game options menu...");
             //OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
 
 #if DEBUG_PREFABS
@@ -114,9 +114,17 @@ namespace DecorationsMod
         /// <summary>Returns a list containing all new items added by this mod.</summary>
         private static List<IDecorationItem> RegisterNewItems()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            DecorationsMod_EntryPoint._logger.LogInfo("Logging all TechTypes...");
+            foreach (TechType t in Enum.GetValues(typeof(TechType)))
+            {
+                EnumHandler.TryGetOwnerAssembly(t, out Assembly tOwner);
+                DecorationsMod_EntryPoint._logger.LogInfo(t.AsString() + " from " + (tOwner != null ? tOwner.FullName : "unknown assembly"));
+            }
+#endif
             List<IDecorationItem> result = new List<IDecorationItem>();
 
-            Logger.Log("INFO: Registering items...");
+            Logger.Info("Registering items...");
 
             // Get the list of modified existing items
             var existingItems = from t in Assembly.GetExecutingAssembly().GetTypes()
@@ -127,7 +135,7 @@ namespace DecorationsMod
             foreach (Type existingItemType in existingItems)
             {
 #if DEBUG_ITEMS_REGISTRATION
-                Logger.Log("INFO: Trying to create item type=[{0}]", existingItemType.Name);
+                Logger.Info("Trying to create item type=[{0}]", existingItemType.Name);
 #endif
                 // Get item
                 DecorationItem existingItem = (DecorationItem)(Activator.CreateInstance(existingItemType));
@@ -142,7 +150,7 @@ namespace DecorationsMod
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Unable to create existing item type=[{0}]!", existingItemType.Name);
+                    Logger.Warning("Unable to create existing item type=[{0}]!", existingItemType.Name);
 #endif
             }
 
@@ -155,7 +163,7 @@ namespace DecorationsMod
             foreach (Type newItemType in newItems)
             {
 #if DEBUG_ITEMS_REGISTRATION
-                Logger.Log("INFO: Trying to create new item type=[{0}]", newItemType.Name);
+                Logger.Info("Trying to create new item type=[{0}]", newItemType.Name);
 #endif
                 DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
                 if (newItem.GameObject != null)
@@ -173,13 +181,13 @@ namespace DecorationsMod
                         }
 #if DEBUG_ITEMS_REGISTRATION
                         else
-                            Logger.Log("INFO: Skipping registration for item type=[{0}]", newItemType.Name);
+                            Logger.Info("Skipping registration for item type=[{0}]", newItemType.Name);
 #endif
                     }
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Unable to create new item type=[{0}]!", newItemType.Name);
+                    Logger.Warning("Unable to create new item type=[{0}]!", newItemType.Name);
 #endif
             }
 
@@ -194,7 +202,7 @@ namespace DecorationsMod
                 foreach (Type newItemType in newFlora)
                 {
 #if DEBUG_ITEMS_REGISTRATION
-                    Logger.Log("INFO: Trying to create flora item type=[{0}]", newItemType.Name);
+                    Logger.Info("Trying to create flora item type=[{0}]", newItemType.Name);
 #endif
                     DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
                     if (newItem.GameObject != null)
@@ -204,7 +212,7 @@ namespace DecorationsMod
                     }
 #if DEBUG_ITEMS_REGISTRATION
                     else
-                        Logger.Log("WARNING: Unable create flora item type=[{0}]!", newItemType.Name);
+                        Logger.Warning("Unable create flora item type=[{0}]!", newItemType.Name);
 #endif
                 }
 
@@ -216,7 +224,7 @@ namespace DecorationsMod
                 foreach (Type newItemType in newWaterFlora)
                 {
 #if DEBUG_ITEMS_REGISTRATION
-                    Logger.Log("INFO: Trying to create water flora item type=[{0}]", newItemType.Name);
+                    Logger.Info("Trying to create water flora item type=[{0}]", newItemType.Name);
 #endif
                     DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
                     if (newItem.GameObject != null)
@@ -226,7 +234,7 @@ namespace DecorationsMod
                     }
 #if DEBUG_ITEMS_REGISTRATION
                     else
-                        Logger.Log("WARNING: Unable to create water flora item type=[{0}]!", newItemType.Name);
+                        Logger.Warning("Unable to create water flora item type=[{0}]!", newItemType.Name);
 #endif
                 }
 

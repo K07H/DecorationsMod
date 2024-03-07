@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public BenchMedium() : base("BenchMedium", "BenchMediumName", "BenchDescription", "benchmediumicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public BenchMedium()

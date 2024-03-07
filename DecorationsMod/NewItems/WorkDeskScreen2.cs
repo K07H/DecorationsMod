@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public WorkDeskScreen2() : base("WorkDeskScreen2", "WorkDeskScreen2Name", "WorkDeskScreen2Description", "WorkDeskScreenDamagedIcon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public WorkDeskScreen2() // Feeds abstract class

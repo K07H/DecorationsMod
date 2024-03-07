@@ -48,7 +48,10 @@ namespace DecorationsMod
             .WithIcon(icon)) { }
 
         [SetsRequiredMembers]
-        public DecorationItem(Nautilus.Assets.PrefabInfo info) : base(info) { }
+        public DecorationItem(Nautilus.Assets.PrefabInfo info) : base(info)
+        {
+            SetGameObject(this.GetGameObject);
+        }
 #else
         public DecorationItem() : base("", "") { }
 #endif

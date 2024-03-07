@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.SandsharkEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggSandshark()
         {

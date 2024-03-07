@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public DecorativeTechBox() : base("DecorativeTechBox", "DecorativeTechBoxName", "DecorativeTechBoxDescription", "techboxicon2")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public DecorativeTechBox() // Feeds abstract class

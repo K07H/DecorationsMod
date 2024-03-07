@@ -21,7 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public EggsGhostLeviathan() : base("EggsGhostLeviathan", "EggsGhostLeviathanName", "EggsGhostLeviathanDescription", "ghost_leviathan_eggs_icon")
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggsGhostLeviathan()
         {

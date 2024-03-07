@@ -21,7 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public NutrientBlock() : base(new PrefabInfo("30373750-1292-4034-9797-387cf576d150", "WorldEntities/Food/NutrientBlock.prefab", TechType.NutrientBlock))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public NutrientBlock() // Feeds abstract class
         {
@@ -142,7 +141,7 @@ namespace DecorationsMod.NewItems
             if (eatable == null)
             {
 #if DEBUG_PLACE_TOOL
-                Logger.Log("DEBUG: Eatable component not found nutrient block. Adding it.");
+                Logger.Debug("Eatable component not found nutrient block. Adding it.");
 #endif
                 eatable = prefab.AddComponent<Eatable>();
                 eatable.foodValue = 75.0f;

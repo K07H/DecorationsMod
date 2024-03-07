@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.StalkerEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggStalker()
         {

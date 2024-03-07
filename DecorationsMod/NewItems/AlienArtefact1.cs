@@ -21,8 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public AlienArtefact1() : base("AlienArtefact1", "AlienRelic1Name", "AlienRelic1Description", "relic_01_b")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public AlienArtefact1() // Feeds abstract class

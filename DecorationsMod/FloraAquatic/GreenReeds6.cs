@@ -27,8 +27,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public GreenReeds6() : base("GreenReeds6", "GreenReedsName", "GreenReedsDescription", "spottedreedsicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public GreenReeds6()

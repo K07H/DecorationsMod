@@ -21,8 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public DecorationsEmptyDesk() : base("DecorationsEmptyDesk", "DecorationsEmptyDeskName", "DecorationsEmptyDeskDescription", "deskemptyicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public DecorationsEmptyDesk() // Feeds abstract class

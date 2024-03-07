@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.SpadefishEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggSpadefish()
         {

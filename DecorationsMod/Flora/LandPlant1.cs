@@ -27,8 +27,6 @@ namespace DecorationsMod.Flora
         [SetsRequiredMembers]
         public LandPlant1() : base("LandPlant1", "LandPlant1Name", "LandPlant1Description", "landplant1icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public LandPlant1()

@@ -27,8 +27,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public CyclopsDoll() : base("CyclopsDoll", "CyclopsDollName", "CyclopsDollDescription", SpriteManager.Get(TechType.Cyclops))
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public CyclopsDoll() // Feeds abstract class
@@ -89,16 +87,16 @@ namespace DecorationsMod.NewItems
                 if (_cyclopsDollAsset == null)
                 {
 #if DEBUG_CYCLOPS_DOLL
-                    Logger.Log("DEBUG: CyclopsDoll Loading asset. Asset bundle is " + (AssetsHelper.Assets == null ? "NULL" : "NOT NULL"));
+                    Logger.Debug("CyclopsDoll Loading asset. Asset bundle is " + (AssetsHelper.Assets == null ? "NULL" : "NOT NULL"));
 #endif
                     _cyclopsDollAsset = AssetsHelper.Assets.LoadAsset<GameObject>("CyclopsDollBase");
 #if DEBUG_CYCLOPS_DOLL
-                    Logger.Log("DEBUG: CyclopsDoll Loaded asset. Result is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
+                    Logger.Debug("CyclopsDoll Loaded asset. Result is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
 #endif
                 }
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: CyclopsDoll Registration T1");
+                Logger.Debug("CyclopsDoll Registration T1");
 #endif
                 GameObject model = _cyclopsDollAsset.FindChild("CyclopsDoll");
 
@@ -125,7 +123,7 @@ namespace DecorationsMod.NewItems
                 collider.center = new Vector3(collider.center.x - 0.02f, collider.center.y + 0.135f, collider.center.z - 0.105f);
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: CyclopsDoll Registration T2");
+                Logger.Debug("CyclopsDoll Registration T2");
 #endif
                 // Get shaders/textures
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
@@ -137,7 +135,7 @@ namespace DecorationsMod.NewItems
                 }
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: CyclopsDoll Registration T3");
+                Logger.Debug("CyclopsDoll Registration T3");
 #endif
                 // Get glass material
                 GameObject aquarium = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
@@ -159,17 +157,17 @@ namespace DecorationsMod.NewItems
                 }
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: CyclopsDoll Registration T4 : _cyclopsDollAsset is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
+                Logger.Debug("CyclopsDoll Registration T4 : _cyclopsDollAsset is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
 #endif
                 // Set proper shaders/textures
                 var renderers = _cyclopsDollAsset.GetAllComponentsInChildren<Renderer>();
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: CyclopsDoll Regsitration T4b : Renderers Cnt=" + Convert.ToString(renderers.Length));
+                Logger.Debug("CyclopsDoll Regsitration T4b : Renderers Cnt=" + Convert.ToString(renderers.Length));
 #endif
                 if (renderers.Length > 0)
                 {
 #if DEBUG_CYCLOPS_DOLL
-                    Logger.Log("DEBUG: Printing renderers:");
+                    Logger.Debug("Printing renderers:");
 #endif
                     foreach (Renderer rend in renderers)
                     {
@@ -179,12 +177,12 @@ namespace DecorationsMod.NewItems
                         else if (rend.materials.Length > 0)
                         {
 #if DEBUG_CYCLOPS_DOLL
-                            Logger.Log("DEBUG: Found renderer name=[" + rend.name + "] type=[" + rend.GetType().ToString() + "]");
+                            Logger.Debug("Found renderer name=[" + rend.name + "] type=[" + rend.GetType().ToString() + "]");
 #endif
                             foreach (Material tmpMat in rend.materials)
                             {
 #if DEBUG_CYCLOPS_DOLL
-                                Logger.Log("DEBUG: \t=> material name=[" + tmpMat.name + "]");
+                                Logger.Debug("\t=> material name=[" + tmpMat.name + "]");
 #endif
                                 tmpMat.shader = marmosetUber;
                                 if (tmpMat.name.StartsWith("cyclops_submarine_exterior_decals_01_24", false, CultureInfo.InvariantCulture))
@@ -206,7 +204,7 @@ namespace DecorationsMod.NewItems
                                             }
 #if DEBUG_CYCLOPS_DOLL
                                             else
-                                                Logger.Log("DEBUG: Warning missing cyclops texture.");
+                                                Logger.Debug("Warning missing cyclops texture.");
 #endif
                                             break;
                                         }
@@ -217,7 +215,7 @@ namespace DecorationsMod.NewItems
                 }
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: CyclopsDoll Registration T5");
+                Logger.Debug("CyclopsDoll Registration T5");
 #endif
                 // Add contructable
                 Constructable constructable = _cyclopsDollAsset.AddComponent<Constructable>();
@@ -244,7 +242,7 @@ namespace DecorationsMod.NewItems
                 bounds.bounds.position = new Vector3(pos.x - 0.02f, pos.y + 0.135f, pos.z - 0.105f);
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: CyclopsDoll Registration T6");
+                Logger.Debug("CyclopsDoll Registration T6");
 #endif
                 // Add sky applier
                 BaseModuleLighting bml = _cyclopsDollAsset.GetComponent<BaseModuleLighting>();
@@ -264,7 +262,7 @@ namespace DecorationsMod.NewItems
                 CyclopsDollController controller = _cyclopsDollAsset.AddComponent<CyclopsDollController>();
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: CyclopsDoll Registration T7");
+                Logger.Debug("CyclopsDoll Registration T7");
 #endif
                 // Associate recipe to the new TechType
 #if SUBNAUTICA_NAUTILUS
@@ -288,7 +286,7 @@ namespace DecorationsMod.NewItems
 #endif
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Log("DEBUG: CyclopsDoll Registration T8");
+                Logger.Debug("CyclopsDoll Registration T8");
 #endif
                 this.IsRegistered = true;
             }

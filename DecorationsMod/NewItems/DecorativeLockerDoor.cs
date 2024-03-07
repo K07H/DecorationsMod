@@ -23,8 +23,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public DecorativeLockerDoor() : base("DecorativeLockerDoor", "DecorativeLockerName", "DecorativeLockerDescription", "decorativelockerdooricon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public DecorativeLockerDoor() // Feeds abstract class

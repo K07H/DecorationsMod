@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public EatMyDiction() : base("MarlaCat", "MarlaCatName", "MarlaCatDescription", SpriteManager.Get(TechType.EatMyDiction))
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public EatMyDiction()

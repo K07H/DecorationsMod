@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public CuddleFishDoll() : base("CuddleFishDoll", "CuddleFishDollName", "CuddleFishDollDescription", "cuddlefishicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public CuddleFishDoll() // Feeds abstract class

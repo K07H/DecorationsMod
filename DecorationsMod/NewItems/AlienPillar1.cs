@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public AlienPillar1() : base("AlienPillar1", "AlienPillar1Name", "AlienPillar1Description", "alien_pillar_01")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public AlienPillar1() // Feeds abstract class

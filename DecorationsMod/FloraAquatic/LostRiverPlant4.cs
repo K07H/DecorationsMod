@@ -28,8 +28,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public LostRiverPlant4() : base("LostRiverPlant4", "LostRiverPlantName", "LostRiverPlantDescription", "lostriverplant5icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public LostRiverPlant4()

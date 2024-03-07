@@ -21,8 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public DecorationsSpecimenAnalyzer() : base("DecorationsSpecimenAnalyzer", "SpecimenAnalyzerName", "SpecimenAnalyzerDescription", "specimenanalyzer")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public DecorationsSpecimenAnalyzer() // Feeds abstract class

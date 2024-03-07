@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.CrabsquidEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggCrabSquid()
         {

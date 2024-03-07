@@ -19,10 +19,8 @@ namespace DecorationsMod.NewItems
     {
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public SeaDragonSkeleton() : base("SeaDragonSkeleton", "SeaDragonSkeletonName", "LeviathanSkeletonDescription", "seadragonskeletonicon")
+        public SeaDragonSkeleton() : base("SeaDragonSkeletonDecoration", "SeaDragonSkeletonName", "LeviathanSkeletonDescription", "seadragonskeletonicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public SeaDragonSkeleton()

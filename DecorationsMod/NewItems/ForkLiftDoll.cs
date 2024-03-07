@@ -24,8 +24,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public ForkLiftDoll() : base("ForkLiftDoll", "ForkLiftDollName", "ForkLiftDollDescription", "forklifticon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public ForkLiftDoll()

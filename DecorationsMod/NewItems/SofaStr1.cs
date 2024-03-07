@@ -27,8 +27,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public SofaStr1() : base("SofaStr1", "SofaStr1Name", "SofaStr1Description", "sofastr01icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public SofaStr1()

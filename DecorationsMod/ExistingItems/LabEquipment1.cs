@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("2cee55bc-6136-47c5-a1ed-14c8f3203856", "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_01.prefab", TechType.LabEquipment1)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
         public LabEquipment1() // Feeds abstract class
         {

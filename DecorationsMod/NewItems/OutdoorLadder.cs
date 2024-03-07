@@ -21,8 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public OutdoorLadder() : base("OutdoorLadder", "OutdoorLadderName", "OutdoorLadderDescription", SpriteManager.Get(TechType.BaseLadder))
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public OutdoorLadder() // Feeds abstract class

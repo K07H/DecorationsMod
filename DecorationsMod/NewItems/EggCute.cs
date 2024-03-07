@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.CutefishEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggCute()
         {

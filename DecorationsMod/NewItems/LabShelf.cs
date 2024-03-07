@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public LabShelf() : base("LabShelf", "LabShelfName", "LabShelfDescription", "labshelves")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public LabShelf() // Feeds abstract class

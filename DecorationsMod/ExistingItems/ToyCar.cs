@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("dfabc84e-c4c5-45d9-8b01-ca0eaeeb8e65", "WorldEntities/Doodads/Debris/Wrecks/Decoration/Goldglove_car_02.prefab", TechType.ToyCar)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
             public ToyCar() // Feeds abstract class
         {

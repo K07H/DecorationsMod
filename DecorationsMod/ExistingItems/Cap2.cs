@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("3dc40631-2945-4109-acdc-823a9a0a8646", "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_03.prefab", TechType.Cap2)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
         public Cap2() // Feeds abstract class
         {

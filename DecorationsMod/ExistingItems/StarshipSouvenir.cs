@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("c0d320d2-537e-4128-90ec-ab1466cfbbc3", "WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir.prefab", TechType.StarshipSouvenir)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
         public StarshipSouvenir() // Feeds abstract class
         {

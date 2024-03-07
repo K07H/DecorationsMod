@@ -27,8 +27,6 @@ namespace DecorationsMod.Flora
         [SetsRequiredMembers]
         public JungleTree1() : base("JungleTree1", "JungleTree1Name", "JungleTree1Description", "jungletree1icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public JungleTree1()
@@ -103,7 +101,7 @@ namespace DecorationsMod.Flora
         public override GameObject GetGameObject()
         {
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): A");
+            Logger.Debug("JungleTree1->GetGameObject(): A");
 #endif
             if (_jungleTree1 == null)
 #if SUBNAUTICA
@@ -115,20 +113,20 @@ namespace DecorationsMod.Flora
             GameObject prefab = GameObject.Instantiate(_jungleTree1);
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): B");
+            Logger.Debug("JungleTree1->GetGameObject(): B");
 #endif
             prefab.name = this.ClassID;
 
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): C");
+            Logger.Debug("JungleTree1->GetGameObject(): C");
 #endif
             // Scale model
             prefab.FindChild("Jungle_Tree_3a").transform.localScale *= 0.05f;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): D");
+            Logger.Debug("JungleTree1->GetGameObject(): D");
 #endif
             // Add rigid body
             var rb = prefab.AddComponent<Rigidbody>();
@@ -142,35 +140,35 @@ namespace DecorationsMod.Flora
             rb.constraints = RigidbodyConstraints.None;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): E");
+            Logger.Debug("JungleTree1->GetGameObject(): E");
 #endif
             // Add EntityTag
             var entityTag = prefab.AddComponent<EntityTag>();
             entityTag.slotType = EntitySlot.Type.Small;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): F");
+            Logger.Debug("JungleTree1->GetGameObject(): F");
 #endif
             // Add TechTag
             var techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): G");
+            Logger.Debug("JungleTree1->GetGameObject(): G");
 #endif
             // Update prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): H");
+            Logger.Debug("JungleTree1->GetGameObject(): H");
 #endif
             // Add box collider
             var collider = prefab.AddComponent<BoxCollider>();
             collider.size = new Vector3(0.7f, 0.7f, 0.7f);
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): I");
+            Logger.Debug("JungleTree1->GetGameObject(): I");
 #endif
             // Add large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
@@ -179,7 +177,7 @@ namespace DecorationsMod.Flora
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): J");
+            Logger.Debug("JungleTree1->GetGameObject(): J");
 #endif
             // Add world forces
             var worldForces = prefab.AddComponent<WorldForces>();
@@ -192,7 +190,7 @@ namespace DecorationsMod.Flora
             worldForces.useRigidbody = rb;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): K");
+            Logger.Debug("JungleTree1->GetGameObject(): K");
 #endif
             // Add pickupable
             var pickupable = prefab.AddComponent<Pickupable>();
@@ -203,7 +201,7 @@ namespace DecorationsMod.Flora
             pickupable.usePackUpIcon = false;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): L");
+            Logger.Debug("JungleTree1->GetGameObject(): L");
 #endif
 
             // Add eatable
@@ -238,7 +236,7 @@ namespace DecorationsMod.Flora
             plantable.linkedGrownPlant.seedUID = "JungleTree1";
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): M");
+            Logger.Debug("JungleTree1->GetGameObject(): M");
 #endif
             // Add tree 1 controller
             PlantGenericController landPlant1Controller = prefab.AddComponent<PlantGenericController>();
@@ -247,12 +245,12 @@ namespace DecorationsMod.Flora
             landPlant1Controller.Knifeable = Config.Knifeable;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): N");
+            Logger.Debug("JungleTree1->GetGameObject(): N");
 #endif
             CustomFloraSerializer customSerializer = prefab.AddComponent<CustomFloraSerializer>();
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): O");
+            Logger.Debug("JungleTree1->GetGameObject(): O");
 #endif
             // Add live mixin
             var liveMixin = prefab.AddComponent<LiveMixin>();
@@ -273,7 +271,7 @@ namespace DecorationsMod.Flora
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): P");
+            Logger.Debug("JungleTree1->GetGameObject(): P");
 #endif
             return prefab;
         }

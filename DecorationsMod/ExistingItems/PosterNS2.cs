@@ -19,7 +19,6 @@ namespace DecorationsMod.ExistingItems
             new PrefabInfo("72da21f9-f3e2-4183-ac57-d3679fb09122", "WorldEntities/Environment/Wrecks/Poster.prefab", TechType.Poster)
             )
         {
-            this.SetGameObject(this.GetGameObject);
 #else
         public PosterNS2() // Feeds abstract class
         {

@@ -21,8 +21,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public SeamothFragment3() : base("SeamothFragment3", "SeamothFragmentName", " (3)", "SeamothFragmentDescription", "seamothfragment3icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public SeamothFragment3() // Feeds abstract class

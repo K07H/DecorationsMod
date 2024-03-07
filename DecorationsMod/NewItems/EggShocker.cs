@@ -28,7 +28,6 @@ namespace DecorationsMod.NewItems
             TechType.ShockerEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggShocker()
         {

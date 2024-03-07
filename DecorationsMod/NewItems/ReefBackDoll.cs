@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public ReefBackDoll() : base("ReefBackDoll", "ReefBackDollName", "ReefBackDollDescription", "reefbackicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public ReefBackDoll() // Feeds abstract class

@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public BarNapkins() : base("BarNapkins", "BarNapkinsName", "BarNapkinsDescription", "barnapkinsicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public BarNapkins() // Feeds abstract class

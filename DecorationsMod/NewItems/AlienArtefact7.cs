@@ -19,10 +19,8 @@ namespace DecorationsMod.NewItems
     {
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public AlienArtefact7() : base("DecorativeTechBox", "AlienRelic7Name", "AlienRelic7Description", "relic_07_b")
+        public AlienArtefact7() : base("AlienArtefact7", "AlienRelic7Name", "AlienRelic7Description", "relic_07_b")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public AlienArtefact7() // Feeds abstract class

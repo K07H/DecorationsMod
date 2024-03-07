@@ -65,7 +65,7 @@ namespace DecorationsMod
             .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_green"))
             )
         {
-            this.SetGameObject(GetGameObject());
+            SetGameObject(this.GetGameObject);
         }
 #else
         internal Fabricator_Flora() : base("", "")

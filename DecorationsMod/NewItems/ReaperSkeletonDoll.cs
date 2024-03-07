@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public ReaperSkeletonDoll() : base("ReaperSkeletonDoll", "ReaperSkeletonDollName", "LeviathanSkeletonDescription", "reaperskeletonicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public ReaperSkeletonDoll()

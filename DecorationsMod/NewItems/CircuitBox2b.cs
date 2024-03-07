@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public CircuitBox2b() : base("CircuitBox2b", "CircuitBox2Name", "CircuitBox2Description", "circuitbox2b")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public CircuitBox2b() // Feeds abstract class

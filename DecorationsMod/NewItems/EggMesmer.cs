@@ -27,7 +27,6 @@ namespace DecorationsMod.NewItems
             TechType.MesmerEgg
             ))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggMesmer()
         {

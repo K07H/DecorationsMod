@@ -20,8 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public ALongPlanter() : base("ALongPlanter", "LongPlanterName", "LongPlanterDescription", "longplanterbox")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public ALongPlanter() // Feeds abstract class

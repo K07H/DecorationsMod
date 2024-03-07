@@ -22,8 +22,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public WarperPart1() : base("WarperPart1", "BigWarperPartName", "BigWarperPartDescription", "warper_icon_1")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public WarperPart1() // Feeds abstract class

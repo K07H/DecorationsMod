@@ -28,8 +28,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public BrownCoralTubes2() : base("BrownCoralTubes2", "BrownCoralTubesName", "BrownCoralTubesDescription", "flora_browncoraltubes0201icon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public BrownCoralTubes2()
@@ -117,7 +115,7 @@ namespace DecorationsMod.FloraAquatic
 #endif
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube2 T1");
+            Logger.Debug("BrownCoralTube2 T1");
 #endif
             GameObject prefab = GameObject.Instantiate(_brownCoralTubes2);
 
@@ -126,16 +124,16 @@ namespace DecorationsMod.FloraAquatic
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube2 T2");
+            Logger.Debug("BrownCoralTube2 T2");
             Logger.PrintTransform(prefab.transform);
-            Logger.Log("DEBUG: BrownCoralTube2 T2b");
+            Logger.Debug("BrownCoralTube2 T2b");
 #endif
             // Scale models
             prefab.FindChild("coral_reef_brown_coral_tubes_02_01").transform.localScale *= 0.4f;
             prefab.FindChild("coral_reef_brown_coral_tubes_02_01_LOD3").transform.localScale *= 0.4f;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube2 T3");
+            Logger.Debug("BrownCoralTube2 T3");
 #endif
             // Scale and shrink colliders
             BoxCollider[] colliders = prefab.GetComponentsInChildren<BoxCollider>();
@@ -149,7 +147,7 @@ namespace DecorationsMod.FloraAquatic
             }
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube2 T4");
+            Logger.Debug("BrownCoralTube2 T4");
 #endif
             // Update rigid body
             var rb = prefab.GetComponent<Rigidbody>();
@@ -163,7 +161,7 @@ namespace DecorationsMod.FloraAquatic
             rb.constraints = RigidbodyConstraints.None;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube2 T5");
+            Logger.Debug("BrownCoralTube2 T5");
 #endif
             // Add EntityTag
             var entityTag = prefab.AddComponent<EntityTag>();
@@ -174,14 +172,14 @@ namespace DecorationsMod.FloraAquatic
             techTag.type = this.TechType;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube2 T6");
+            Logger.Debug("BrownCoralTube2 T6");
 #endif
             // Update prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube2 T7");
+            Logger.Debug("BrownCoralTube2 T7");
 #endif
             // Update large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
@@ -192,7 +190,7 @@ namespace DecorationsMod.FloraAquatic
             //collider.size = new Vector3(0.2f, 0.2f, 0.2f);
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube2 T8");
+            Logger.Debug("BrownCoralTube2 T8");
 #endif
             // Add world forces
             var worldForces = prefab.AddComponent<WorldForces>();
@@ -269,7 +267,7 @@ namespace DecorationsMod.FloraAquatic
             //liveMixin.startHealthPercent = 1.0f;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube2 T9");
+            Logger.Debug("BrownCoralTube2 T9");
 #endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);

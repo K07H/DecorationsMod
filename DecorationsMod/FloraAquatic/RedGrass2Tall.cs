@@ -31,8 +31,6 @@ namespace DecorationsMod.FloraAquatic
         [SetsRequiredMembers]
         public RedGrass2Tall() : base("RedGrass2Tall", "RedGrassTallName", "RedGrassDescription", "redgrass2tallicon")
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public RedGrass2Tall()

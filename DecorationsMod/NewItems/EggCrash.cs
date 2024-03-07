@@ -20,7 +20,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public EggCrash() : base(new PrefabInfo("932fc808-9183-4f90-bee2-1eec1b30ee73", "WorldEntities/Eggs/CrashEgg.prefab", TechType.CrashEgg))
         {
-            this.SetGameObject(this.GetGameObject());
 #else
         public EggCrash()
         {

@@ -31,8 +31,6 @@ namespace DecorationsMod.Flora
         [SetsRequiredMembers]
         public MarbleMelonTiny() : base("MarbleMelonTiny", "MarbleMelonTinyName", "MarbleMelonTinyFruitDescription", SpriteManager.Get(TechType.MelonSeed))
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public MarbleMelonTiny()

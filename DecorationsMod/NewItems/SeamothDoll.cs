@@ -23,8 +23,6 @@ namespace DecorationsMod.NewItems
         [SetsRequiredMembers]
         public SeamothDoll() : base("SeamothDoll", "SeamothDollName", "SeamothDollDescription", SpriteManager.Get(TechType.Seamoth))
         {
-            this.SetGameObject(this.GetGameObject());
-
             this.GameObject = new GameObject(this.ClassID);
 #else
         public SeamothDoll() // Feeds abstract class
