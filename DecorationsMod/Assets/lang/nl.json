@@ -220,6 +220,7 @@
   "BenchDescription": "Simpele metalen relax toestel. Behoud energie tijdens rusten.",
   "DecorativePDAName": "Decoratieve PDA",
   "DecorativePDADescription": "Een alleen decoratieve PDA.",
+  "GenericSkeletons": "Skelet overblijfselen",
   "GenericSkeletonName": "Skelet overblijfselen ({0})",
   "GenericSkeletonDescription": "De skelet overblijfselen van een roofdier",
   "SeaDragonSkeletonName": "Sea dragon skelet",

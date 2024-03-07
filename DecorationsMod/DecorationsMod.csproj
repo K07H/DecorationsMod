@@ -422,5 +422,6 @@
     <Exec Command="xcopy /Y /I &quot;$(ProjectDir)Configurator.lnk&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\&quot;" />
     <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\decorationassets.assets&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\&quot;" />
     <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\decorationassets.manifest&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\&quot;" />
+    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\lang\&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\lang\&quot;" />
   </Target>
 </Project>

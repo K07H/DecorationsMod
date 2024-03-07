@@ -220,6 +220,7 @@
   "BenchDescription": "Обычное место, где можно посидеть и восстановить силы.",
   "DecorativePDAName": "Декоративный КПК",
   "DecorativePDADescription": "Просто для красивого вида.",
+  "GenericSkeletons": "Скелетные остатки",
   "GenericSkeletonName": "Скелетные остатки ({0})",
   "GenericSkeletonDescription": "Скелетные останки хищника.",
   "SeaDragonSkeletonName": "Скелет морского дракона",

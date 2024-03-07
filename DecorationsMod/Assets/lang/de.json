@@ -220,6 +220,7 @@
   "BenchDescription": "Einfaches Metall-Entspannungsmobiliar. Spart Energie beim Ausruhen.",
   "DecorativePDAName": "Dekoratives PDA",
   "DecorativePDADescription": "Ein PDA zu reinen Dekorationszwecken.",
+  "GenericSkeletons": "Skelettüberreste",
   "GenericSkeletonName": "Skelettüberreste ({0})",
   "GenericSkeletonDescription": "Die skelettierten Überreste eines Raubtiers.",
   "SeaDragonSkeletonName": "Seedrachen-Skelett",

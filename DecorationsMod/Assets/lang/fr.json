@@ -220,6 +220,7 @@
   "BenchDescription": "Simple appareil de relaxation en métal. Conserve l'énergie au repos.",
   "DecorativePDAName": "PDA décoratif",
   "DecorativePDADescription": "Un PDA purement décoratif.",
+  "GenericSkeletons": "Restes Squelettiques",
   "GenericSkeletonName": "Restes Squelettiques ({0})",
   "GenericSkeletonDescription": "Les restes squelettiques d'un prédateur.",
   "SeaDragonSkeletonName": "Squelette de dragon des mers",

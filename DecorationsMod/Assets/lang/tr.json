@@ -220,6 +220,7 @@
   "BenchDescription": "Basit metal eşya. Dinlenmeyi ve böylece enerji toplamayı sağlar.",
   "DecorativePDAName": "PDA dekoratif",
   "DecorativePDADescription": "Tamamen dekoratif bir PDA.",
+  "GenericSkeletons": "Iskelet Kalıntısı",
   "GenericSkeletonName": "Iskelet Kalıntısı ({0})",
   "GenericSkeletonDescription": "Bir yırtıcının iskelet kalıntıları.",
   "SeaDragonSkeletonName": "Deniz ejderhası iskeleti",
