@@ -29,7 +29,7 @@ namespace DecorationsMod.FloraAquatic
 
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public RedGrass2Tall() : base("RedGrass2Tall", "RedGrassTallName", "RedGrassDescription", "redgrass2tallicon")
+        public RedGrass2Tall() : base("RedGrass2Tall", "RedGrassTallName", "RedGrassDescription", "redgrass2tallicon", "1")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else

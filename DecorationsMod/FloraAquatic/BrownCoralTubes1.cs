@@ -26,7 +26,7 @@ namespace DecorationsMod.FloraAquatic
 
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public BrownCoralTubes1() : base("BrownCoralTubes1", "BrownCoralTubesName", "BrownCoralTubesDescription", "flora_browncoraltubes0203icon")
+        public BrownCoralTubes1() : base("BrownCoralTubes1", "BrownCoralTubesName", "BrownCoralTubesDescription", "flora_browncoraltubes0203icon", "1")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else

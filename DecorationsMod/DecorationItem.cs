@@ -30,20 +30,26 @@ namespace DecorationsMod
 
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public DecorationItem(string classID, string nameKey, string descKey, string icon) : this(classID, nameKey, "", descKey, icon) { }
-
-        [SetsRequiredMembers]
-        public DecorationItem(string classID, string nameKey, string nameSuffix, string descKey, string icon) : this(
-            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey) + nameSuffix, LanguageHelper.GetFriendlyWord(descKey), unlockAtStart: true)
+        public DecorationItem(string classID, string nameKey, string descKey, string icon, params object[] translationArgs) : this(
+            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey, translationArgs), LanguageHelper.GetFriendlyWord(descKey, translationArgs), unlockAtStart: true)
             .WithFileName(DefaultResourcePath + classID)
             .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>(icon))) { }
 
         [SetsRequiredMembers]
-        public DecorationItem(string classID, string nameKey, string descKey, Atlas.Sprite icon) : this(classID, nameKey, "", descKey, icon) { }
+        public DecorationItem(string classID, string nameKey, string descKey, string icon) : this(
+            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey), LanguageHelper.GetFriendlyWord(descKey), unlockAtStart: true)
+            .WithFileName(DefaultResourcePath + classID)
+            .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>(icon))) { }
 
         [SetsRequiredMembers]
-        public DecorationItem(string classID, string nameKey, string nameSuffix, string descKey, Atlas.Sprite icon) : this(
-            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey) + nameSuffix, LanguageHelper.GetFriendlyWord(descKey), unlockAtStart: true)
+        public DecorationItem(string classID, string nameKey, string descKey, Atlas.Sprite icon, params object[] translationArgs) : this(
+            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey, translationArgs), LanguageHelper.GetFriendlyWord(descKey, translationArgs), unlockAtStart: true)
+            .WithFileName(DefaultResourcePath + classID)
+            .WithIcon(icon)) { }
+
+        [SetsRequiredMembers]
+        public DecorationItem(string classID, string nameKey, string descKey, Atlas.Sprite icon) : this(
+            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey), LanguageHelper.GetFriendlyWord(descKey), unlockAtStart: true)
             .WithFileName(DefaultResourcePath + classID)
             .WithIcon(icon)) { }
 

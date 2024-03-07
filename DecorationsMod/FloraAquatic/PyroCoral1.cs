@@ -26,7 +26,7 @@ namespace DecorationsMod.FloraAquatic
 
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public PyroCoral1() : base("PyroCoral1", "PyroCoralName", "PyroCoralDescription", "pyrocoral1icon")
+        public PyroCoral1() : base("PyroCoral1", "PyroCoralName", "PyroCoralDescription", "pyrocoral1icon", "1")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else

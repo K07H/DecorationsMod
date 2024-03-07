@@ -25,7 +25,7 @@ namespace DecorationsMod.FloraAquatic
 
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public GreenReeds1() : base("GreenReeds1", "GreenReedsName", "GreenReedsDescription", "spottedreeds1icon")
+        public GreenReeds1() : base("GreenReeds1", "GreenReedsName", "GreenReedsDescription", "spottedreeds1icon", "1")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else

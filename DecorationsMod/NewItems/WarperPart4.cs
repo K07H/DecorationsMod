@@ -20,7 +20,7 @@ namespace DecorationsMod.NewItems
     {
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public WarperPart4() : base("WarperPart4", "HangingWarperPartName", "HangingWarperPartDescription", "warper_icon_4")
+        public WarperPart4() : base("WarperPart4", "HangingWarperPartName", "HangingWarperPartDescription", "warper_icon_4", "3")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else

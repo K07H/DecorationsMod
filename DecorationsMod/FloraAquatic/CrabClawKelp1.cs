@@ -26,7 +26,7 @@ namespace DecorationsMod.FloraAquatic
 
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public CrabClawKelp1() : base("CrabClawKelp1", "CrabClawKelpName", "CrabClawKelpDescription", "lostriverplant1icon")
+        public CrabClawKelp1() : base("CrabClawKelp1", "CrabClawKelpName", "CrabClawKelpDescription", "lostriverplant1icon", "2")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else

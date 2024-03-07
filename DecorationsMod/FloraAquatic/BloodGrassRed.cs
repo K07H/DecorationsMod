@@ -30,7 +30,7 @@ namespace DecorationsMod.FloraAquatic
 
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public BloodGrassRed() : base("BloodGrassRed", "RedGrassDenseName", "RedGrassDescription", "bloodgrassicon")
+        public BloodGrassRed() : base("BloodGrassRed", "RedGrassDenseName", "RedGrassDescription", "bloodgrassicon", "1")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else

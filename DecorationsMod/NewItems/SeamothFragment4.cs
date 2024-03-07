@@ -19,7 +19,7 @@ namespace DecorationsMod.NewItems
     {
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public SeamothFragment4() : base("SeamothFragment4", "SeamothFragmentName", " (4)", "SeamothFragmentDescription", "seamothfragment4icon")
+        public SeamothFragment4() : base("SeamothFragment4", "SeamothFragmentName", "SeamothFragmentDescription", "seamothfragment4icon", "4")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else

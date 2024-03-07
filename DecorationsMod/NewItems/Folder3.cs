@@ -19,7 +19,7 @@ namespace DecorationsMod.NewItems
     {
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public Folder3() : base("Folder3", "Folder1Name", " (2)", "Folder1Description", "folder3icon")
+        public Folder3() : base("Folder3", "Folder1Name", "Folder1Description", "folder3icon", "2")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else

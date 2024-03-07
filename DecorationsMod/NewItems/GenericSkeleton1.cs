@@ -20,7 +20,7 @@ namespace DecorationsMod.NewItems
     {
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public GenericSkeleton1() : base("GenericSkeleton1", "GenericSkeletonName", " (1)", "GenericSkeletonDescription", "genericskeleton1icon")
+        public GenericSkeleton1() : base("GenericSkeleton1", "GenericSkeletonName", "GenericSkeletonDescription", "genericskeleton1icon", "1")
         {
             this.GameObject = new GameObject(this.ClassID);
 #else
