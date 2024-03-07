@@ -607,7 +607,7 @@ namespace DecorationsMod
                                 Logger.Warning("\"" + configValueStr + "\" is not a valid resource amount for purple pinecone harvested resource. Default amount will be used.");
                             break;
                         case "language":
-                            if (string.Compare(configValueStr, "auto", true, CultureInfo.InvariantCulture) != 0)
+                            if (configValueStr.ToLower() == "auto")
                                 LanguageHelper.Language = CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
                             else
                                 LanguageHelper.Language = configValueStr.ToLower();
