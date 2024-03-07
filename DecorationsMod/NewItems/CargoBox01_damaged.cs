@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -9,6 +19,14 @@ namespace DecorationsMod.NewItems
     {
         private GameObject CargoCrateContainer = null;
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public CargoBox01_damaged() : base("CargoBox01_damaged", "CargoBox1DmgName", "CargoBox1DmgDescription", "cargobox01damagedicon")
+        {
+            this.SetGameObject(this.GetGameObject());
+
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public CargoBox01_damaged()
         {
             this.ClassID = "CargoBox01_damaged";
@@ -17,24 +35,19 @@ namespace DecorationsMod.NewItems
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("cargobox01_damaged");
             this.GameObject = new GameObject(this.ClassID);
             
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CargoBox1DmgName"),
                                                         LanguageHelper.GetFriendlyWord("CargoBox1DmgDescription"),
                                                         true);
+#endif
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -42,7 +55,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(TechType.Titanium, 2)
                     }),
             };
-#endif
         }
 
         private static GameObject _cargoBox1Damaged = null;
@@ -114,17 +126,25 @@ namespace DecorationsMod.NewItems
                 var cargoBoxController = _cargoBox1Damaged.AddComponent<CargoBoxController>();
 
                 // Add new TechType to the buildables
-                SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorModule, this.TechType);
+                CraftDataHandler.AddBuildable(this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorModule, this.TechType);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("cargobox01damagedicon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("cargobox01damagedicon"));
+#endif
 
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 this.IsRegistered = true;
             }

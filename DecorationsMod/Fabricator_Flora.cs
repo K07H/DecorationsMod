@@ -1,13 +1,25 @@
-﻿using SMLHelper.V2.Assets;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
+#endif
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
 namespace DecorationsMod
 {
+#if SUBNAUTICA_NAUTILUS
+    public class Fabricator_Flora : CustomPrefab
+#else
     public class Fabricator_Flora : ModPrefab
+#endif
     {
         public CraftTree.Type TreeTypeID { get; private set; }
         
@@ -18,33 +30,44 @@ namespace DecorationsMod
         public bool IsRegistered = false;
 
         public Texture2D ColoredTexture = null;
+#if SUBNAUTICA_NAUTILUS
 
-#if SUBNAUTICA
-        public TechData Recipe = new TechData()
-        {
-            craftAmount = 1,
-            Ingredients = new List<Ingredient>(new Ingredient[4]
-            {
-                new Ingredient(TechType.Titanium, 1),
-                new Ingredient(TechType.ComputerChip, 1),
-                new Ingredient(TechType.Silver, 1),
-                new Ingredient(TechType.Magnetite, 1)
-            })
-        };
-#else
-        public RecipeData Recipe = new RecipeData()
-        {
-            craftAmount = 1,
-            Ingredients = new List<Ingredient>(new Ingredient[4]
-            {
-                new Ingredient(TechType.Titanium, 1),
-                new Ingredient(TechType.ComputerChip, 1),
-                new Ingredient(TechType.Silver, 1),
-                new Ingredient(TechType.Magnetite, 1)
-            })
-        };
+        public string ClassID => Info.ClassID;
+
+        public string PrefabFileName => Info.PrefabFileName;
+
+        public TechType TechType => Info.TechType;
+
 #endif
 
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+        public TechData Recipe = new TechData()
+#else
+        public RecipeData Recipe = new RecipeData()
+#endif
+        {
+            craftAmount = 1,
+            Ingredients = new List<Ingredient>(new Ingredient[4]
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.ComputerChip, 1),
+                new Ingredient(TechType.Silver, 1),
+                new Ingredient(TechType.Magnetite, 1)
+            })
+        };
+
+#if SUBNAUTICA_NAUTILUS
+
+        [SetsRequiredMembers]
+        internal Fabricator_Flora() : base(
+            PrefabInfo.WithTechType(FloraFabID, LanguageHelper.GetFriendlyWord("FloraFabricatorName"), LanguageHelper.GetFriendlyWord("FloraFabricatorDescription"), unlockAtStart: true)
+            .WithFileName($"Submarine/Build/{FloraFabID}")
+            .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_green"))
+            )
+        {
+            this.SetGameObject(GetGameObject());
+        }
+#else
         internal Fabricator_Flora() : base("", "")
         {
             this.ClassID = FloraFabID;
@@ -54,6 +77,7 @@ namespace DecorationsMod
                     LanguageHelper.GetFriendlyWord("FloraFabricatorDescription"),
                     true);
         }
+#endif
 
         public void RegisterFloraFabricator(List<IDecorationItem> decorationItems)
         {
@@ -76,16 +100,27 @@ namespace DecorationsMod
                 KnownTechHandler.UnlockOnStart(this.TechType);
 
                 // Set the buildable prefab
+
+#if SUBNAUTICA_NAUTILUS
+
+                this.Register();
+
+#else
                 PrefabHandler.RegisterPrefab(this);
                 
                 // Register sprite
                 SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_green"));
+#endif
 
                 // Load texture
                 this.ColoredTexture = AssetsHelper.Assets.LoadAsset<Texture2D>("submarine_fabricator_green");
 
                 // Associate the recipie to the new TechType
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
                 CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
                 
                 this.IsRegistered = true;
             }
@@ -93,15 +128,23 @@ namespace DecorationsMod
 
         private ModCraftTreeRoot CreateCustomTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems)
         {
+#if SUBNAUTICA_NAUTILUS
+            craftType = EnumHandler.AddEntry<CraftTree.Type>(FloraFabID).CreateCraftTreeRoot(out ModCraftTreeRoot rootNode);
+
+            ModCraftTreeRoot plantAirTab;
+            ModCraftTreeRoot treeAirTab;
+            ModCraftTreeRoot tropicalPlantTab;
+#else
             ModCraftTreeRoot rootNode = CraftTreeHandler.CreateCustomCraftTreeAndType(FloraFabID, out craftType);
 
             ModCraftTreeTab plantAirTab;
             ModCraftTreeTab treeAirTab;
             ModCraftTreeTab tropicalPlantTab;
+#endif
             if (ConfigSwitcher.UseFlatScreenResolution)
             {
                 // Additional tab
-                ModCraftTreeTab airSeedsTab = rootNode.AddTabNode("AirSeedsTab", LanguageHelper.GetFriendlyWord("AirSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_NonHarvastableAir"));
+                var airSeedsTab = rootNode.AddTabNode("AirSeedsTab", LanguageHelper.GetFriendlyWord("AirSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_NonHarvastableAir"));
 
                 // Plant Air
                 plantAirTab = airSeedsTab.AddTabNode("PlantAirTab", LanguageHelper.GetFriendlyWord("PlantAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Plants"));
@@ -210,12 +253,17 @@ namespace DecorationsMod
                                                       TechType.KooshChunk);
             }
 
+#if SUBNAUTICA_NAUTILUS
+            ModCraftTreeRoot plantWaterTab;
+            ModCraftTreeRoot treeWaterTab;
+#else
             ModCraftTreeTab plantWaterTab;
             ModCraftTreeTab treeWaterTab;
+#endif
             if (ConfigSwitcher.UseFlatScreenResolution)
             {
                 // Additional tab
-                ModCraftTreeTab waterSeedsTab = rootNode.AddTabNode("WaterSeedsTab", LanguageHelper.GetFriendlyWord("WaterSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_NonHarvastableAqua"));
+                var waterSeedsTab = rootNode.AddTabNode("WaterSeedsTab", LanguageHelper.GetFriendlyWord("WaterSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_NonHarvastableAqua"));
 
                 // Plant Water
                 plantWaterTab = waterSeedsTab.AddTabNode("PlantWaterTab", LanguageHelper.GetFriendlyWord("PlantWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaticPlants"));
@@ -277,7 +325,11 @@ namespace DecorationsMod
             return rootNode;
         }
 
+#if SUBNAUTICA_NAUTILUS
+        public GameObject GetGameObject()
+#else
         public override GameObject GetGameObject()
+#endif
         {
             if (Fabricator_Decorations._decorationsFabricator == null)
                 Fabricator_Decorations._decorationsFabricator = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Fabricator.prefab");

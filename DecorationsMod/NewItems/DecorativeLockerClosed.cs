@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +18,14 @@ namespace DecorationsMod.NewItems
     {
         private GameObject CargoCrateContainer = null;
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public DecorativeLockerClosed() : base("DecorativeLockerClosed", "DecorativeLockerName", "DecorativeLockerDescription", "decorativelockerclosedicon")
+        {
+            this.SetGameObject(this.GetGameObject());
+
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public DecorativeLockerClosed() // Feeds abstract class
         {
             this.ClassID = "DecorativeLockerClosed"; // cd34fecd-794c-4a0c-8012-dd81b77f2840
@@ -15,24 +33,19 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("DecorativeLockerName"),
                                                         LanguageHelper.GetFriendlyWord("DecorativeLockerDescription"),
                                                         true);
+#endif
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -40,7 +53,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(TechType.Titanium, 2)
                     }),
             };
-#endif
         }
 
         public override void RegisterItem()
@@ -48,17 +60,25 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Add to the custom buidables
-                SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType, TechType.Locker);
+                CraftDataHandler.AddBuildable(this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType, TechType.Locker);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom icon
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("decorativelockerclosedicon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("decorativelockerclosedicon"));
+#endif
 
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 this.IsRegistered = true;
             }

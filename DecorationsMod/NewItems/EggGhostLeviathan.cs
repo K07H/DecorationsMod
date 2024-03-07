@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Fixers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -7,32 +17,33 @@ namespace DecorationsMod.NewItems
 {
     public class EggsGhostLeviathan : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public EggsGhostLeviathan() : base("EggsGhostLeviathan", "EggsGhostLeviathanName", "EggsGhostLeviathanDescription", "ghost_leviathan_eggs_icon")
+        {
+            this.SetGameObject(this.GetGameObject());
+#else
         public EggsGhostLeviathan()
         {
             this.ClassID = "EggsGhostLeviathan"; // 0e7cc3b9-cdf2-42d9-9c1f-c11b94277c19
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("EggsGhostLeviathanName"),
                                                         LanguageHelper.GetFriendlyWord("EggsGhostLeviathanDescription"),
                                                         true);
+#endif
 
             CrafterLogicFixer.GhostLeviathanEggs = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -40,7 +51,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
                     }),
             };
-#endif
         }
 
         public override void RegisterItem()
@@ -48,22 +58,30 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Set item occupies 4 slots
-                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to the hand-equipments
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("ghost_leviathan_eggs_icon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("ghost_leviathan_eggs_icon"));
+#endif
 
                 this.IsRegistered = true;
             }

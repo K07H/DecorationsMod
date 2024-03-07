@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using HarmonyLib;
 using System.Collections.Generic;
@@ -14,6 +24,14 @@ namespace DecorationsMod.NewItems
         private Texture normal = null;
         private Texture illum = null;
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public CustomPictureFrame() : base("CustomPictureFrame", "CustomPictureFrameName", "CustomPictureFrameDescription", "revertpictureframe")
+        {
+            this.SetGameObject(this.GetGameObject());
+
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public CustomPictureFrame()
         {
             this.ClassID = "CustomPictureFrame";
@@ -21,28 +39,22 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CustomPictureFrameName"),
                                                         LanguageHelper.GetFriendlyWord("CustomPictureFrameDescription"),
                                                         true);
+#endif
 
             CrafterLogicFixer.CustomizablePictureFrame = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.CopperWire, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[2]
@@ -51,7 +63,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(TechType.Glass, 1)
                     }),
             };
-#endif
         }
 
         public override void RegisterItem()
@@ -63,17 +74,25 @@ namespace DecorationsMod.NewItems
                 illum = AssetsHelper.Assets.LoadAsset<Texture>("poster_magnet_illum");
 
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Add new TechType to the buildables
-                SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.PictureFrame);
+                CraftDataHandler.AddBuildable(this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.PictureFrame);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe"));
+#endif
 
                 // Patch with harmony
                 MyHarmony.PatchPictureFrames();

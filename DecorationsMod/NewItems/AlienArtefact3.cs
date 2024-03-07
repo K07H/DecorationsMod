@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +17,14 @@ namespace DecorationsMod.NewItems
 {
     public class AlienArtefact3 : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public AlienArtefact3() : base("AlienArtefact3", "AlienRelic3Name", "AlienRelic3Description", "relic_04_b")
+        {
+            this.SetGameObject(this.GetGameObject());
+
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public AlienArtefact3() // Feeds abstract class
         {
             this.ClassID = "AlienArtefact3"; // b98da0ef-29d4-4571-9a82-53a6e6706153
@@ -14,25 +32,20 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("AlienRelic3Name"),
                                                         LanguageHelper.GetFriendlyWord("AlienRelic3Description"),
                                                         true);
+#endif
 
             CrafterLogicFixer.AlienArtefact3 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.RelicRecipiesResource, ConfigSwitcher.RelicRecipiesResourceAmount)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -40,7 +53,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(ConfigSwitcher.RelicRecipiesResource, ConfigSwitcher.RelicRecipiesResourceAmount)
                     }),
             };
-#endif
         }
 
         public override void RegisterItem()
@@ -48,19 +60,27 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Add the new TechType to the hand-equipments
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("relic_04_b"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("relic_04_b"));
+#endif
 
                 this.IsRegistered = true;
             }

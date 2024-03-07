@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -7,6 +17,14 @@ namespace DecorationsMod.NewItems
 {
     public class Folder3 : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public Folder3() : base("Folder3", "Folder1Name", " (2)", "Folder1Description", "folder3icon")
+        {
+            this.SetGameObject(this.GetGameObject());
+
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public Folder3()
         {
             this.ClassID = "Folder3";
@@ -15,23 +33,17 @@ namespace DecorationsMod.NewItems
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_folder3");
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("Folder1Name") + " (2)",
                                                         LanguageHelper.GetFriendlyWord("Folder1Description"),
                                                         true);
+#endif
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[2]
@@ -40,7 +52,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(TechType.FiberMesh, 1)
                     }),
             };
-#endif
         }
 
         private static GameObject _folder3 = null;
@@ -126,19 +137,27 @@ namespace DecorationsMod.NewItems
                 placeTool.holsterTime = 0.35f;
 
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Add the new TechType to Hand Equipment type.
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("folder3icon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("folder3icon"));
+#endif
 
                 this.IsRegistered = true;
             }

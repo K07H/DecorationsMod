@@ -4,7 +4,11 @@ using System;
 namespace DecorationsMod
 {
     [BepInPlugin("com.osubmarin.decorationsmod", "DecorationsMod", "2.0.3")]
+#if SUBNAUTICA_NAUTILUS
+    [BepInDependency("com.snmodding.nautilus")]
+#else
     [BepInDependency("com.ahk1221.smlhelper")]
+#endif
     [UnityEngine.DisallowMultipleComponent]
     public class CyclopsDockingMod_EntryPoint : BaseUnityPlugin
     {

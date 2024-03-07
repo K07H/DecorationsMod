@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Fixers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -12,6 +22,14 @@ namespace DecorationsMod.NewItems
         private Texture metal_normal = null;
         private Texture metal_spec = null;
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public BarStool() : base("BarStool", "BarStoolName", "BarStoolDescription", "bar_stool")
+        {
+            this.SetGameObject(this.GetGameObject());
+
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public BarStool()
         {
             // Feed DecortionItem interface
@@ -20,10 +38,11 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BarStoolName"),
                                                         LanguageHelper.GetFriendlyWord("BarStoolDescription"),
                                                         true);
+#endif
             this.barstoolgo = AssetsHelper.Assets.LoadAsset<GameObject>("bar_stool");
 
             CrafterLogicFixer.Stool = this.TechType;
@@ -31,18 +50,11 @@ namespace DecorationsMod.NewItems
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[2]
@@ -51,7 +63,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(TechType.FiberMesh, 1)
                     }),
             };
-#endif
         }
 
         public override void RegisterItem()
@@ -62,17 +73,25 @@ namespace DecorationsMod.NewItems
                 metal_normal = AssetsHelper.Assets.LoadAsset<Texture>("Stool_Metal_Normal");
 
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Add new TechType to the buildables
-                SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipChair3);
+                CraftDataHandler.AddBuildable(this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipChair3);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("bar_stool"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("bar_stool"));
+#endif
 
                 this.IsRegistered = true;
             }

@@ -1,13 +1,25 @@
-﻿using SMLHelper.V2.Assets;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
+#endif
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
 namespace DecorationsMod
 {
+#if SUBNAUTICA_NAUTILUS
+    public class Fabricator_Decorations : CustomPrefab
+#else
     public class Fabricator_Decorations : ModPrefab
+#endif
     {
         //private static CraftTree.Type _decoFabTreeTypeId = CraftTree.Type.None;
         //public static CraftTree.Type DecorationsFabricatorTreeTypeID { get => _decoFabTreeTypeId; private set => _decoFabTreeTypeId = value; }
@@ -23,32 +35,39 @@ namespace DecorationsMod
 
         public Texture2D ColoredTexture = null;
 
-#if SUBNAUTICA
-        public TechData Recipe = new TechData()
-        {
-            craftAmount = 1,
-            Ingredients = new List<Ingredient>(new Ingredient[4]
-            {
-                new Ingredient(TechType.Titanium, 1),
-                new Ingredient(TechType.ComputerChip, 1),
-                new Ingredient(TechType.Silver, 1),
-                new Ingredient(TechType.Quartz, 1)
-            })
-        };
-#else
-        public RecipeData Recipe = new RecipeData()
-        {
-            craftAmount = 1,
-            Ingredients = new List<Ingredient>(new Ingredient[4]
-            {
-                new Ingredient(TechType.Titanium, 1),
-                new Ingredient(TechType.ComputerChip, 1),
-                new Ingredient(TechType.Silver, 1),
-                new Ingredient(TechType.Quartz, 1)
-            })
-        };
+#if SUBNAUTICA_NAUTILUS
+        public string ClassID => Info.ClassID;
+        public string PrefabFileName => Info.PrefabFileName;
+        public TechType TechType => Info.TechType;
 #endif
 
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+        public TechData Recipe = new TechData()
+#else
+        public RecipeData Recipe = new RecipeData()
+#endif
+        {
+            craftAmount = 1,
+            Ingredients = new List<Ingredient>(new Ingredient[4]
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.ComputerChip, 1),
+                new Ingredient(TechType.Silver, 1),
+                new Ingredient(TechType.Quartz, 1)
+            })
+        };
+
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        internal Fabricator_Decorations() : base(
+            PrefabInfo.WithTechType(DecorationsFabID, LanguageHelper.GetFriendlyWord("DecorationsFabricatorName"), LanguageHelper.GetFriendlyWord("DecorationsFabricatorDescription"), unlockAtStart: true)
+            .WithFileName($"Submarine/Build/{DecorationsFabID}")
+            .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_purple"))
+            )
+        {
+            this.SetGameObject(GetGameObject());
+        }
+#else
         internal Fabricator_Decorations() : base("", "")
         {
             this.ClassID = DecorationsFabID;
@@ -58,6 +77,7 @@ namespace DecorationsMod
                     LanguageHelper.GetFriendlyWord("DecorationsFabricatorDescription"),
                     true);
         }
+#endif
 
         public void RegisterDecorationsFabricator(List<IDecorationItem> decorationItems) //, ModCraftTreeRoot rootNode, CraftTree.Type craftType)
         {
@@ -82,16 +102,24 @@ namespace DecorationsMod
                 KnownTechHandler.UnlockOnStart(this.TechType);
 
                 // Set the buildable prefab
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
                 PrefabHandler.RegisterPrefab(this);
 
                 // Register sprite
                 SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_purple"));
+#endif
 
                 // Register texture
                 this.ColoredTexture = AssetsHelper.Assets.LoadAsset<Texture2D>("submarine_fabricator_purple");
 
                 // Associate the recipie to the new TechType
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
                 CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
                 
                 this.IsRegistered = true;
             }
@@ -99,7 +127,11 @@ namespace DecorationsMod
 
         private ModCraftTreeRoot CreateCustomTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems) //, ModCraftTreeRoot rootNode)
         {
+#if SUBNAUTICA_NAUTILUS
+            craftType = EnumHandler.AddEntry<CraftTree.Type>(DecorationsFabID).CreateCraftTreeRoot(out ModCraftTreeRoot rootNode);
+#else
             ModCraftTreeRoot rootNode = CraftTreeHandler.CreateCustomCraftTreeAndType(DecorationsFabID, out craftType);
+#endif
 
             #region LAB ELEMENTS
 
@@ -294,7 +326,7 @@ namespace DecorationsMod
 
             #region CREATURE EGGS
 
-            ModCraftTreeTab eggsTab = rootNode.AddTabNode("EggsTab", LanguageHelper.GetFriendlyWord("EggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_CreatureEggs"));
+            var eggsTab = rootNode.AddTabNode("EggsTab", LanguageHelper.GetFriendlyWord("EggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_CreatureEggs"));
 
             // Damaging creatures
             var dmgCreatureEggsTab = eggsTab.AddTabNode("DmgCreatureEggsTab", LanguageHelper.GetFriendlyWord("DmgCreatureEggsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Aggressive"));
@@ -336,10 +368,10 @@ namespace DecorationsMod
 
             #region LEVIATHAN DOLLS & SKELETONS
 
-            ModCraftTreeTab leviathansTab = rootNode.AddTabNode("LeviathansTab", LanguageHelper.GetFriendlyWord("LeviathansTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Leviathans"));
+            var leviathansTab = rootNode.AddTabNode("LeviathansTab", LanguageHelper.GetFriendlyWord("LeviathansTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Leviathans"));
 
             // Leviathan dolls
-            ModCraftTreeTab faunaTab = leviathansTab.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Dolls"));
+            var faunaTab = leviathansTab.AddTabNode("LeviathanDolls", LanguageHelper.GetFriendlyWord("LeviathanDolls"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Dolls"));
             if (PrefabsHelper.GetTechType(decorationItems, "ReefBackDoll") != TechType.None)
                 faunaTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "ReefBackDoll"));
             if (PrefabsHelper.GetTechType(decorationItems, "SeaTreaderDoll") != TechType.None)
@@ -354,7 +386,7 @@ namespace DecorationsMod
                 faunaTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SeaEmperorDoll"));
 
             // Leviathan skeletons
-            ModCraftTreeTab skeletonsTab = leviathansTab.AddTabNode("SkeletonsParts", LanguageHelper.GetFriendlyWord("GenericSkeletonName"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Skeleton"));
+            var skeletonsTab = leviathansTab.AddTabNode("SkeletonsParts", LanguageHelper.GetFriendlyWord("GenericSkeletonName"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Skeleton"));
             if (PrefabsHelper.GetTechType(decorationItems, "GenericSkeleton1") != TechType.None)
                 skeletonsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "GenericSkeleton1"));
             if (PrefabsHelper.GetTechType(decorationItems, "GenericSkeleton2") != TechType.None)
@@ -449,7 +481,11 @@ namespace DecorationsMod
 
         public static GameObject _decorationsFabricator = null;
 
+#if SUBNAUTICA_NAUTILUS
+        public GameObject GetGameObject()
+#else
         public override GameObject GetGameObject()
+#endif
         {
             if (_decorationsFabricator == null)
                 _decorationsFabricator = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Fabricator.prefab");

@@ -1,30 +1,41 @@
-﻿using System.Collections.Generic;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+#endif
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
 {
     public class Cap2 : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public Cap2() : base(
+            new PrefabInfo("3dc40631-2945-4109-acdc-823a9a0a8646", "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_03.prefab", TechType.Cap2)
+            )
+        {
+            this.SetGameObject(this.GetGameObject);
+#else
         public Cap2() // Feeds abstract class
         {
             this.ClassID = "3dc40631-2945-4109-acdc-823a9a0a8646";
             this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_03.prefab";
 
             this.TechType = TechType.Cap2;
+#endif
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -32,7 +43,6 @@ namespace DecorationsMod.ExistingItems
                         new Ingredient(TechType.FiberMesh, 1)
                     }),
             };
-#endif
         }
 
         private static GameObject _cap2 = null;

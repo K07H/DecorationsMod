@@ -1,5 +1,14 @@
-﻿using DecorationsMod.Fixers;
+﻿#if SUBNAUTICA_NAUTILUS
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Fixers;
 using HarmonyLib;
+
 //using QModManager.API;
 using System;
 using System.Collections.Generic;
@@ -84,7 +93,7 @@ namespace DecorationsMod
 
             // 9) SETUP IN GAME OPTIONS MENU
             //Logger.Log("INFO: Setting up in-game options menu...");
-            //SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
+            //OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
 
 #if DEBUG_PREFABS
             PrefabsHelper.TestPrefabs();
@@ -96,10 +105,10 @@ namespace DecorationsMod
         {
             // Register tooltips
             foreach (string tooltip in LanguageHelper.Tooltips)
-                SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(tooltip, LanguageHelper.GetFriendlyWord(tooltip));
+                LanguageHandler.SetLanguageLine(tooltip, LanguageHelper.GetFriendlyWord(tooltip));
             // Register configuration strings
             //foreach (string configOption in ConfigOptions.LanguageStrings)
-            //    SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(configOption, LanguageHelper.GetFriendlyWord(configOption));
+            //    LanguageHandler.SetLanguageLine(configOption, LanguageHelper.GetFriendlyWord(configOption));
         }
 
         /// <summary>Returns a list containing all new items added by this mod.</summary>
@@ -127,7 +136,7 @@ namespace DecorationsMod
                     // Register item
                     existingItem.RegisterItem();
                     // Unlock item at game start
-                    SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(existingItem.TechType);
+                    KnownTechHandler.UnlockOnStart(existingItem.TechType);
                     // Store item in the list
                     result.Add(existingItem);
                 }
@@ -233,9 +242,9 @@ namespace DecorationsMod
                             processedSeeds.Add(airPlant.Value);
                         }
                         if (ConfigSwitcher.AddAirSeedsWhenDiscovered)
-                            SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(airPlant.Key, new TechType[] { airPlant.Value });
+                            KnownTechHandler.SetAnalysisTechEntry(airPlant.Key, new TechType[] { airPlant.Value });
                         else
-                            SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(airPlant.Value);
+                            KnownTechHandler.UnlockOnStart(airPlant.Value);
                     }
                 }
 
@@ -251,9 +260,9 @@ namespace DecorationsMod
                             processedSeeds.Add(waterPlant.Value);
                         }
                         if (ConfigSwitcher.AddWaterSeedsWhenDiscovered)
-                            SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(waterPlant.Key, new TechType[] { waterPlant.Value });
+                            KnownTechHandler.SetAnalysisTechEntry(waterPlant.Key, new TechType[] { waterPlant.Value });
                         else
-                            SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(waterPlant.Value);
+                            KnownTechHandler.UnlockOnStart(waterPlant.Value);
                     }
                 }
             }
@@ -268,25 +277,21 @@ namespace DecorationsMod
         /// <param name="craftingAmount">Number of crafted items amount.</param>
         private static void RegisterRecipeForTechType(TechType techType, TechType resource, int resourceAmount = 1, int craftingAmount = 1)
         {
-#if SUBNAUTICA
-            var techTypeRecipe = new SMLHelper.V2.Crafting.TechData()
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            TechData techTypeRecipe = new TechData()
+#else
+            RecipeData techTypeRecipe = new RecipeData()
+#endif
             {
                 craftAmount = craftingAmount,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(resource, resourceAmount)
+                Ingredients = new List<Ingredient>(new Ingredient[1] {
+                    new Ingredient(resource, resourceAmount)
                 })
             };
-            SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(techType, techTypeRecipe);
+#if SUBNAUTICA_NAUTILUS
+            CraftDataHandler.SetRecipeData(techType, techTypeRecipe);
 #else
-            SMLHelper.V2.Crafting.RecipeData techTypeRecipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = craftingAmount,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(resource, resourceAmount)
-                    }),
-            };
-            SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(techType, techTypeRecipe);
+            CraftDataHandler.SetTechData(techType, techTypeRecipe);
 #endif
         }
     }

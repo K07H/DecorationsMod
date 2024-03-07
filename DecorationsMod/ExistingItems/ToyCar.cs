@@ -1,11 +1,27 @@
-﻿using System.Collections.Generic;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+#endif
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
 {
     public class ToyCar : DecorationItem
     {
-        public ToyCar() // Feeds abstract class
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public ToyCar() : base(
+            new PrefabInfo("dfabc84e-c4c5-45d9-8b01-ca0eaeeb8e65", "WorldEntities/Doodads/Debris/Wrecks/Decoration/Goldglove_car_02.prefab", TechType.ToyCar)
+            )
+        {
+            this.SetGameObject(this.GetGameObject);
+#else
+            public ToyCar() // Feeds abstract class
         {
             this.ClassID = "dfabc84e-c4c5-45d9-8b01-ca0eaeeb8e65";
 #if SUBNAUTICA
@@ -15,22 +31,15 @@ namespace DecorationsMod.ExistingItems
 #endif
 
             this.TechType = TechType.ToyCar;
+#endif
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[3]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Silicone, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[3]
@@ -40,7 +49,6 @@ namespace DecorationsMod.ExistingItems
                         new Ingredient(TechType.Silicone, 1)
                     }),
             };
-#endif
         }
 
         private static GameObject _toyCar = null;
