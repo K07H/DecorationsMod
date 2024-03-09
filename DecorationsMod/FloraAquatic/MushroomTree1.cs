@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using mset;
 using System;
@@ -19,6 +29,12 @@ namespace DecorationsMod.FloraAquatic
             set => this.Config = value;
         }
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public MushroomTree1() : base("MushroomTree1", "MushroomTree1Name", "MushroomTreeDescription", "mushroomtreeicon")
+        {
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public MushroomTree1()
         {
             this.ClassID = "MushroomTree1";
@@ -27,25 +43,20 @@ namespace DecorationsMod.FloraAquatic
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("MyMushroomTree1");
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("MushroomTree1Name"),
                                                         LanguageHelper.GetFriendlyWord("MushroomTreeDescription"),
                                                         true);
+#endif
 
             CrafterLogicFixer.MushroomTree1 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount * 2)
-                }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -53,7 +64,6 @@ namespace DecorationsMod.FloraAquatic
                     new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount * 2)
                 }),
             };
-#endif
 
             this.Config = ConfigSwitcher.config_MushroomTree1;
         }
@@ -63,29 +73,37 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Set item occupies 4 slots
-                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Set item background to normal (both land & water plant)
-                SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
+                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("mushroomtreeicon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("mushroomtreeicon"));
+#endif
 
                 // Set unlock condition
-                SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(TechType.TreeMushroomPiece, new TechType[] { this.TechType });
+                KnownTechHandler.SetAnalysisTechEntry(TechType.TreeMushroomPiece, new TechType[] { this.TechType });
 
                 this.IsRegistered = true;
             }

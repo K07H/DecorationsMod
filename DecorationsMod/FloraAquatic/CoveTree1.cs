@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System;
 using System.Collections.Generic;
@@ -15,6 +25,12 @@ namespace DecorationsMod.FloraAquatic
             set => this.Config = value;
         }
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public CoveTree1() : base("CoveTree1", "CoveTreeName", "CoveTreeDescription", "covetreeicon")
+        {
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public CoveTree1()
         {
             this.ClassID = "CoveTree1"; // 0e7cc3b9-cdf2-42d9-9c1f-c11b94277c19
@@ -22,25 +38,20 @@ namespace DecorationsMod.FloraAquatic
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("CoveTreeName"),
                                                         LanguageHelper.GetFriendlyWord("CoveTreeDescription"),
                                                         true);
+#endif
 
             CrafterLogicFixer.CoveTree = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, Convert.ToInt32((float)ConfigSwitcher.FloraRecipiesResourceAmount * 1.4f))
-                }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -48,7 +59,6 @@ namespace DecorationsMod.FloraAquatic
                     new Ingredient(ConfigSwitcher.FloraRecipiesResource, Convert.ToInt32((float)ConfigSwitcher.FloraRecipiesResourceAmount * 1.4f))
                 }),
             };
-#endif
 
             this.Config = ConfigSwitcher.config_CoveTree1;
         }
@@ -58,26 +68,34 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Set item occupies 4 slots
-                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Set item background to normal (both land & water plant)
-                SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.Normal);
+                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.Normal);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("covetreeicon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("covetreeicon"));
+#endif
 
                 this.IsRegistered = true;
             }
@@ -88,7 +106,7 @@ namespace DecorationsMod.FloraAquatic
         public override GameObject GetGameObject()
         {
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T1");
+            Logger.Debug("CoveTree1 T1");
 #endif
             if (_coveTree1 == null)
 #if SUBNAUTICA
@@ -102,12 +120,12 @@ namespace DecorationsMod.FloraAquatic
             prefab.name = this.ClassID;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T2");
+            Logger.Debug("CoveTree1 T2");
 #endif
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T3");
+            Logger.Debug("CoveTree1 T3");
 #endif
             // Get sub objects
             GameObject model = prefab.FindChild("lost_river_cove_tree_01");
@@ -115,13 +133,13 @@ namespace DecorationsMod.FloraAquatic
             GameObject shells = model.FindChild("lost_river_cove_tree_01_eggs_shells");
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T4");
+            Logger.Debug("CoveTree1 T4");
 #endif
             // Scale model
             model.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T5");
+            Logger.Debug("CoveTree1 T5");
 #endif
             // Disable colliders
             Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
@@ -129,14 +147,14 @@ namespace DecorationsMod.FloraAquatic
                 collider.enabled = false;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T6");
+            Logger.Debug("CoveTree1 T6");
 #endif
             // Hide eggs
             eggs.SetActive(false);
             shells.SetActive(false);
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T7");
+            Logger.Debug("CoveTree1 T7");
 #endif
             // Now do the components dancing :^)
 
@@ -154,7 +172,7 @@ namespace DecorationsMod.FloraAquatic
             rb.constraints = RigidbodyConstraints.None;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T8");
+            Logger.Debug("CoveTree1 T8");
 #endif
             // Add EntityTag
             EntityTag entityTag = prefab.AddComponent<EntityTag>();
@@ -165,21 +183,21 @@ namespace DecorationsMod.FloraAquatic
             techTag.type = this.TechType;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T9");
+            Logger.Debug("CoveTree1 T9");
 #endif
             // Update prefab identifier
             PrefabIdentifier prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T10");
+            Logger.Debug("CoveTree1 T10");
 #endif
             // Update large world entity
             LargeWorldEntity lwe = prefab.GetComponent<LargeWorldEntity>();
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T11");
+            Logger.Debug("CoveTree1 T11");
 #endif
             // Add world forces
             WorldForces worldForces = prefab.AddComponent<WorldForces>();
@@ -217,7 +235,7 @@ namespace DecorationsMod.FloraAquatic
             }
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T12");
+            Logger.Debug("CoveTree1 T12");
 #endif
             // Add plantable
             Plantable plantable = prefab.AddComponent<Plantable>();
@@ -237,14 +255,14 @@ namespace DecorationsMod.FloraAquatic
             CoveTree1Controller coveTreeController = prefab.AddComponent<CoveTree1Controller>();
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T13");
+            Logger.Debug("CoveTree1 T13");
 #endif
             // Add ghost leviatan spawner
             if (ConfigSwitcher.GhostLeviatan_enable)
                 prefab.AddComponent<GhostLeviatanSpawner>();
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T14");
+            Logger.Debug("CoveTree1 T14");
 #endif
             // Add generic plant controller (handles animation)
             PlantGenericController plantGenericController = prefab.AddComponent<PlantGenericController>();
@@ -254,13 +272,13 @@ namespace DecorationsMod.FloraAquatic
             plantGenericController.EnableColliders = true; // Restore disabled colliders
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T15");
+            Logger.Debug("CoveTree1 T15");
 #endif
             // Handles saving/restoring cove tree state
             CustomFloraSerializer customSerializer = prefab.AddComponent<CustomFloraSerializer>();
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T16");
+            Logger.Debug("CoveTree1 T16");
 #endif
             // Add live mixin
             LiveMixin liveMixin = prefab.AddComponent<LiveMixin>();
@@ -278,7 +296,7 @@ namespace DecorationsMod.FloraAquatic
             //liveMixin.startHealthPercent = 1.0f;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T17");
+            Logger.Debug("CoveTree1 T17");
 #endif
             // Add atmosphere volume
             AtmosphereVolume aVolume = prefab.AddComponent<AtmosphereVolume>();
@@ -286,13 +304,13 @@ namespace DecorationsMod.FloraAquatic
             aVolume.affectsVisuals = true;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T18");
+            Logger.Debug("CoveTree1 T18");
 #endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: CoveTree1 T19");
+            Logger.Debug("CoveTree1 T19");
 #endif
             return prefab;
         }

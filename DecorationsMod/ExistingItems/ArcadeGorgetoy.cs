@@ -1,4 +1,11 @@
-﻿using Oculus.Platform;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+#endif
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +13,13 @@ namespace DecorationsMod.ExistingItems
 {
     public class ArcadeGorgetoy : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public ArcadeGorgetoy() : base(
+            new PrefabInfo("7ea4a91e-80fc-43aa-8ce3-5d52bd19e278", "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_arcade_gorgetoy_01.prefab", TechType.ArcadeGorgetoy)
+            )
+        {
+#else
         public ArcadeGorgetoy() // Feeds abstract class
         {
             this.ClassID = "7ea4a91e-80fc-43aa-8ce3-5d52bd19e278";
@@ -13,19 +27,24 @@ namespace DecorationsMod.ExistingItems
 
             this.TechType = TechType.ArcadeGorgetoy;
 
+#endif
             this.GameObject = new GameObject(this.ClassID);
 
 #if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
+#if SUBNAUTICA_NAUTILUS
+            this.Recipe = new RecipeData()
+#else
+            this.Recipe = new TechData()
+#endif
             {
                 craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
+                Ingredients = new List<Ingredient>(new Ingredient[1]
                     {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 2)
+                        new Ingredient(TechType.FiberMesh, 2)
                     }),
             };
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -43,7 +62,7 @@ namespace DecorationsMod.ExistingItems
             if (_arcadeGorgetoy == null)
                 _arcadeGorgetoy = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
 
-            Logger.Log("DEBUG: ArcadeGorgetoy prefab is " + (_arcadeGorgetoy == null ? "NULL" : "NOT NULL"));
+            Logger.Debug("ArcadeGorgetoy prefab is " + (_arcadeGorgetoy == null ? "NULL" : "NOT NULL"));
 
             //GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject prefab = GameObject.Instantiate(_arcadeGorgetoy);

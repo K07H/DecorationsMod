@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +16,17 @@ namespace DecorationsMod.NewItems
 {
     public class AlienTabletWhite : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public AlienTabletWhite() : base(new PrefabInfo("066e533d-f854-435d-82c6-b28ba59858e0",
+#if SUBNAUTICA
+            "WorldEntities/Doodads/Precursor/PrecursorKey_White.prefab",
+#else
+            "WorldEntities/Precursor/Keys/PrecursorKey_White.prefab", 
+#endif
+            TechType.PrecursorKey_White))
+        {
+#else
         public AlienTabletWhite()// Feeds abstract class
         {
             this.ClassID = "066e533d-f854-435d-82c6-b28ba59858e0";
@@ -17,20 +38,15 @@ namespace DecorationsMod.NewItems
 #endif
 
             this.TechType = TechType.PrecursorKey_White;
+#endif
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -38,7 +54,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount)
                     }),
             };
-#endif
         }
 
         public override void RegisterItem()
@@ -46,21 +61,29 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 if (ConfigSwitcher.AddItemsWhenDiscovered)
-                    SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorKey_Purple, new TechType[] { this.TechType });
+                    KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorKey_Purple, new TechType[] { this.TechType });
                 else
-                    SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(this.TechType);
+                    KnownTechHandler.UnlockOnStart(this.TechType);
 
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Add the new TechType to the hand-equipments
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
+#endif
 
                 this.IsRegistered = true;
             }

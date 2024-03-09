@@ -1,10 +1,25 @@
-﻿using System.Collections.Generic;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+#endif
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
 {
     public class PosterExosuit2 : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public PosterExosuit2() : base(
+            new PrefabInfo("d76dd251-492d-4bf9-8adb-25e59d709df2", "WorldEntities/Environment/Wrecks/poster_exosuit_02.prefab", TechType.PosterExoSuit2)
+            )
+        {
+#else
         public PosterExosuit2() // Feeds abstract class
         {
             this.ClassID = "d76dd251-492d-4bf9-8adb-25e59d709df2";
@@ -15,21 +30,15 @@ namespace DecorationsMod.ExistingItems
 #endif
 
             this.TechType = TechType.PosterExoSuit2;
+#endif
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[2]
@@ -38,7 +47,6 @@ namespace DecorationsMod.ExistingItems
                         new Ingredient(TechType.FiberMesh, 1)
                     }),
             };
-#endif
         }
 
         private static GameObject _posterExosuit2 = null;

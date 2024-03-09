@@ -1,6 +1,4 @@
-﻿using SMLHelper.V2.Utility;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.Fixers
@@ -12,7 +10,7 @@ namespace DecorationsMod.Fixers
         {
             if (__instance != null && node != null && node.action == TreeAction.Expand)
             {
-                Logger.Log("DEBUG: uGUI_CraftNodeFixer.CreateIcon_Postfix: __instance.id=[" + (!string.IsNullOrEmpty(__instance.id) ? __instance.id : "NULL") + "] node.id=[" + (!string.IsNullOrEmpty(node.id) ? node.id : "NULL") + "]");
+                Logger.Debug("uGUI_CraftNodeFixer.CreateIcon_Postfix: __instance.id=[" + (!string.IsNullOrEmpty(__instance.id) ? __instance.id : "NULL") + "] node.id=[" + (!string.IsNullOrEmpty(node.id) ? node.id : "NULL") + "]");
                 if (node.icon != null && !string.IsNullOrEmpty(node.id))
                 {
                     // If current node belongs to one of our custom fabricators

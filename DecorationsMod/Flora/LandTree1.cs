@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -22,6 +32,12 @@ namespace DecorationsMod.Flora
         private Texture illum2 = null;
         private Texture spec2 = null;
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public LandTree1() : base("LandTree1", "LandTree1Name", "LandTree1Description", "landtree1seedicon")
+        {
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public LandTree1()
         {
             this.ClassID = "LandTree1"; // 1cc51be0-8ea9-4730-936f-23b562a9256f
@@ -29,22 +45,17 @@ namespace DecorationsMod.Flora
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("LandTree1Name"),
                                                         LanguageHelper.GetFriendlyWord("LandTree1Description"),
                                                         true);
+#endif
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -52,7 +63,6 @@ namespace DecorationsMod.Flora
                     new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
-#endif
 
             this.Config = ConfigSwitcher.config_LandTree1;
         }
@@ -73,26 +83,34 @@ namespace DecorationsMod.Flora
                 spec2 = AssetsHelper.Assets.LoadAsset<Texture>("Land_tree_01_leaves_spec");
 
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Set item occupies 4 slots
-                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to air-plant seed
-                SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
+                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
                 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
-                
+
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("landtree1seedicon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("landtree1seedicon"));
+#endif
 
                 this.IsRegistered = true;
             }
@@ -103,7 +121,7 @@ namespace DecorationsMod.Flora
         public override GameObject GetGameObject()
         {
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T1");
+            Logger.Debug("LandTree1 T1");
 #endif
             if (_landTree1 == null)
 #if SUBNAUTICA
@@ -116,16 +134,16 @@ namespace DecorationsMod.Flora
             GameObject staticPrefab = GameObject.Instantiate(this.staticPart);
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T2");
+            Logger.Debug("LandTree1 T2");
 #endif
             prefab.name = this.ClassID;
 
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T3");
+            Logger.Debug("LandTree1 T3");
             Logger.PrintTransform(prefab.transform);
-            Logger.Log("DEBUG: LandTree1 T3b");
+            Logger.Debug("LandTree1 T3b");
 #endif
             // Scale sub objects
             prefab.FindChild("Capsule").transform.localScale *= 0.34f;
@@ -134,7 +152,7 @@ namespace DecorationsMod.Flora
             prefab.FindChild("Land_tree_01_LOD2").transform.localScale *= 0.34f;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T4");
+            Logger.Debug("LandTree1 T4");
 #endif
             // Update static part of the model, border shader and normal/emission maps
             GameObject staticModel = staticPrefab.FindChild("Land_tree_01_static").FindChild("Land_tree_01_static");
@@ -173,7 +191,7 @@ namespace DecorationsMod.Flora
             }
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T5");
+            Logger.Debug("LandTree1 T5");
 #endif
             // Update rigid body
             Rigidbody rb = prefab.GetComponent<Rigidbody>();
@@ -187,7 +205,7 @@ namespace DecorationsMod.Flora
             rb.constraints = RigidbodyConstraints.None;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T6");
+            Logger.Debug("LandTree1 T6");
 #endif
             // Add box collider
             BoxCollider collider = prefab.AddComponent<BoxCollider>();
@@ -202,14 +220,14 @@ namespace DecorationsMod.Flora
             techTag.type = this.TechType;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T7");
+            Logger.Debug("LandTree1 T7");
 #endif
             // Update prefab identifier
             PrefabIdentifier prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T8");
+            Logger.Debug("LandTree1 T8");
 #endif
             // Update large world entity
             LargeWorldEntity lwe = prefab.GetComponent<LargeWorldEntity>();
@@ -226,7 +244,7 @@ namespace DecorationsMod.Flora
             worldForces.useRigidbody = rb;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T9");
+            Logger.Debug("LandTree1 T9");
 #endif
             // Add pickupable
             Pickupable pickupable = prefab.AddComponent<Pickupable>();
@@ -254,7 +272,7 @@ namespace DecorationsMod.Flora
             }
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T10");
+            Logger.Debug("LandTree1 T10");
 #endif
             // Add plantable
             Plantable plantable = prefab.AddComponent<Plantable>();
@@ -271,7 +289,7 @@ namespace DecorationsMod.Flora
             plantable.linkedGrownPlant.seedUID = "LandTree1";
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T11");
+            Logger.Debug("LandTree1 T11");
 #endif
             LandTree1Controller landTree1Controller = prefab.AddComponent<LandTree1Controller>();
             landTree1Controller.GrowthDuration = Config.GrowthDuration;
@@ -299,7 +317,7 @@ namespace DecorationsMod.Flora
             */
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T12");
+            Logger.Debug("LandTree1 T12");
 #endif
             // Add live mixin
             LiveMixin liveMixin = prefab.AddComponent<LiveMixin>();
@@ -317,7 +335,7 @@ namespace DecorationsMod.Flora
             //liveMixin.startHealthPercent = 1.0f;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T13");
+            Logger.Debug("LandTree1 T13");
 #endif
             // Configure static renderer
             staticPrefab.transform.parent = prefab.transform;
@@ -326,7 +344,7 @@ namespace DecorationsMod.Flora
             staticPrefab.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T14");
+            Logger.Debug("LandTree1 T14");
 #endif
             // Update sky applier
             SkyApplier skyApplier = prefab.GetComponent<SkyApplier>();
@@ -334,7 +352,7 @@ namespace DecorationsMod.Flora
             skyApplier.anchorSky = Skies.Auto;
 
 #if DEBUG_TREES
-            Logger.Log("DEBUG: LandTree1 T15");
+            Logger.Debug("LandTree1 T15");
 #endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);

@@ -177,9 +177,9 @@ namespace DecorationsMod.Fixers
                         if (cpfController.Flipped)
                         {
 #if DEBUG_CUSTOM_PICTURE_FRAME
-                            Logger.Log("DEBUG: ENTERING FLIPPED");
-                            Logger.Log("DEBUG: BG BIS IS " + (bgBisRenderer.enabled ? "ENABLED" : "DISABLED"));
-                            Logger.Log("DEBUG: BG PIVOT IS " + (bgPivotRenderer.enabled ? "ENABLED" : "DISABLED"));
+                            Logger.Debug("ENTERING FLIPPED");
+                            Logger.Debug("BG BIS IS " + (bgBisRenderer.enabled ? "ENABLED" : "DISABLED"));
+                            Logger.Debug("BG PIVOT IS " + (bgPivotRenderer.enabled ? "ENABLED" : "DISABLED"));
 #endif
                             // Rotate image
                             __instance.imageRenderer.transform.localScale = new Vector3(__instance.imageRenderer.transform.localScale.y, __instance.imageRenderer.transform.localScale.x, __instance.imageRenderer.transform.localScale.z);
@@ -188,9 +188,9 @@ namespace DecorationsMod.Fixers
 #if DEBUG_CUSTOM_PICTURE_FRAME
                         else
                         {
-                            Logger.Log("DEBUG: ENTERING NOT FLIPPED");
-                            Logger.Log("DEBUG: BG BIS IS " + (bgBisRenderer.enabled ? "ENABLED" : "DISABLED"));
-                            Logger.Log("DEBUG: BG PIVOT IS " + (bgPivotRenderer.enabled ? "ENABLED" : "DISABLED"));
+                            Logger.Debug("ENTERING NOT FLIPPED");
+                            Logger.Debug("BG BIS IS " + (bgBisRenderer.enabled ? "ENABLED" : "DISABLED"));
+                            Logger.Debug("BG PIVOT IS " + (bgPivotRenderer.enabled ? "ENABLED" : "DISABLED"));
                         }
 #endif
                     }

@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +17,12 @@ namespace DecorationsMod.NewItems
 {
     public class AlienArtefact9 : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public AlienArtefact9() : base("AlienArtefact9", "AlienRelic9Name", "AlienRelic9Description", "relic_10_b")
+        {
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public AlienArtefact9() // Feeds abstract class
         {
             this.ClassID = "AlienArtefact9"; // f111c882-4ef6-4ad0-aeba-d123568ad3fc
@@ -14,25 +30,20 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("AlienRelic9Name"),
                                                         LanguageHelper.GetFriendlyWord("AlienRelic9Description"),
                                                         true);
+#endif
 
             CrafterLogicFixer.AlienArtefact9 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.RelicRecipiesResource, ConfigSwitcher.RelicRecipiesResourceAmount)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -40,7 +51,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(ConfigSwitcher.RelicRecipiesResource, ConfigSwitcher.RelicRecipiesResourceAmount)
                     }),
             };
-#endif
         }
 
         public override void RegisterItem()
@@ -48,19 +58,27 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Add the new TechType to the hand-equipments
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("relic_10_b"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("relic_10_b"));
+#endif
 
                 this.IsRegistered = true;
             }
@@ -78,26 +96,26 @@ namespace DecorationsMod.NewItems
 #endif
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T1");
+            Logger.Debug("ALientArtefact9 T1");
 #endif
             GameObject prefab = GameObject.Instantiate(_alienArtefact9);
             prefab.name = this.ClassID;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T2");
+            Logger.Debug("ALientArtefact9 T2");
 #endif
             if (!ConfigSwitcher.AlienRelic9Animation)
                 prefab.GetComponentInChildren<Animator>().enabled = false;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T3");
+            Logger.Debug("ALientArtefact9 T3");
 #endif
             // Scale
             foreach (Transform tr in prefab.transform)
                 tr.transform.localScale *= 0.6f;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T4");
+            Logger.Debug("ALientArtefact9 T4");
 #endif
             // Update TechTag
             var techTag = prefab.GetComponent<TechTag>();
@@ -107,7 +125,7 @@ namespace DecorationsMod.NewItems
             techTag.type = this.TechType;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T5");
+            Logger.Debug("ALientArtefact9 T5");
 #endif
             // Update prefab ID
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
@@ -128,13 +146,13 @@ namespace DecorationsMod.NewItems
             */
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T6");
+            Logger.Debug("ALientArtefact9 T6");
 #endif
             // Update sky applier
             PrefabsHelper.ReplaceSkyApplier(prefab);
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T7");
+            Logger.Debug("ALientArtefact9 T7");
 #endif
             // Scale colliders
             var collider = prefab.GetComponent<CapsuleCollider>();
@@ -150,7 +168,7 @@ namespace DecorationsMod.NewItems
             }
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T8");
+            Logger.Debug("ALientArtefact9 T8");
 #endif
             // We can pick this item
             var pickupable = prefab.GetComponent<Pickupable>();
@@ -160,7 +178,7 @@ namespace DecorationsMod.NewItems
             pickupable.randomizeRotationWhenDropped = true;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T9");
+            Logger.Debug("ALientArtefact9 T9");
 #endif
             // We can place this item
             prefab.AddComponent<CustomPlaceToolController>();
@@ -193,7 +211,7 @@ namespace DecorationsMod.NewItems
             fabricating.scaleFactor = 0.7f;
 
 #if DEBUG_ALIENARTEFACTS
-            Logger.Log("DEBUG: ALientArtefact9 T10");
+            Logger.Debug("ALientArtefact9 T10");
 #endif
             return prefab;
         }

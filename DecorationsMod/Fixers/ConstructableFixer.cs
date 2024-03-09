@@ -84,7 +84,7 @@ namespace DecorationsMod.Fixers
                     string saveFile = FilesHelper.Combine(saveDir, "outdoorladders.txt");
                     if (File.Exists(saveFile))
                     {
-                        Logger.Log("INFO: Loading outdoor ladder directions from \"" + saveFile + "\".");
+                        Logger.Info("Loading outdoor ladder directions from \"" + saveFile + "\".");
                         int cnt = 0;
                         string[] lines = File.ReadAllLines(saveFile, Encoding.UTF8);
                         if (lines != null && lines.Length > 0)
@@ -103,16 +103,16 @@ namespace DecorationsMod.Fixers
                                         }
                                     }
                                 }
-                        Logger.Log("INFO: {0} outdoor ladder directions were loaded.", cnt);
+                        Logger.Info("{0} outdoor ladder directions were loaded.", cnt);
                     }
                     else
-                        Logger.Log("INFO: No outdoor ladder directions saved at \"" + saveFile + "\".");
+                        Logger.Info("No outdoor ladder directions saved at \"" + saveFile + "\".");
                 }
                 else
-                    Logger.Log("INFO: No save directory found for outdoor ladders at \"" + saveDir + "\".");
+                    Logger.Info("No save directory found for outdoor ladders at \"" + saveDir + "\".");
             }
             else
-                Logger.Log("INFO: Could not find save slot for outdoor ladders.");
+                Logger.Info("Could not find save slot for outdoor ladders.");
         }
 
         public static void SaveLadderDirections()
@@ -131,7 +131,7 @@ namespace DecorationsMod.Fixers
                 if (!Directory.Exists(saveDir))
                     Directory.CreateDirectory(saveDir);
                 string saveFile = FilesHelper.Combine(saveDir, "outdoorladders.txt");
-                Logger.Log("INFO: Saving {0} outdoor ladder directions to \"{1}\".", cnt, saveFile);
+                Logger.Info("Saving {0} outdoor ladder directions to \"{1}\".", cnt, saveFile);
                 File.WriteAllText(saveFile, toSave, Encoding.UTF8);
             }
         }

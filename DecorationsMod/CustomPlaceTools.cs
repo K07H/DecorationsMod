@@ -106,7 +106,7 @@ namespace DecorationsMod
             if (model != null)
             {
 #if DEBUG_PLACE_TOOL
-                Logger.Log("DEBUG: Material_PT: Current angle for [" + this.gameObject.name + "]=[" + model.transform.localEulerAngles.x.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";" + model.transform.localEulerAngles.y.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";" + model.transform.localEulerAngles.z.ToString(System.Globalization.CultureInfo.InvariantCulture) + "]");
+                Logger.Debug("Material_PT: Current angle for [" + this.gameObject.name + "]=[" + model.transform.localEulerAngles.x.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";" + model.transform.localEulerAngles.y.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";" + model.transform.localEulerAngles.z.ToString(System.Globalization.CultureInfo.InvariantCulture) + "]");
 #endif
                 if (this.RotateX != 0.0f || this.RotateY != 0.0f || this.RotateZ != 0.0f)
                     model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x + this.RotateX, model.transform.localEulerAngles.y + this.RotateY, model.transform.localEulerAngles.z + this.RotateZ);
@@ -131,7 +131,7 @@ namespace DecorationsMod
 #if DEBUG_PLACE_TOOL
             else
             {
-                Logger.Log("DEBUG: Material_PT: OnProtoDeserialize: Model \"" + this.ModelName + "\" not found!");
+                Logger.Debug("Material_PT: OnProtoDeserialize: Model \"" + this.ModelName + "\" not found!");
                 Logger.PrintTransform(this.gameObject.transform);
             }
 #endif

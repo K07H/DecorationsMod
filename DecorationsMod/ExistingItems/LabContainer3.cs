@@ -1,10 +1,25 @@
-﻿using System.Collections.Generic;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+#endif
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
 {
     public class LabContainer3 : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public LabContainer3() : base(
+            new PrefabInfo("7f601dd4-0645-414d-bb62-5b0b62985836", "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_tube_01.prefab", TechType.LabContainer3)
+            )
+        {
+#else
         public LabContainer3() // Feeds abstract class
         {
             this.ClassID = "7f601dd4-0645-414d-bb62-5b0b62985836";
@@ -15,20 +30,15 @@ namespace DecorationsMod.ExistingItems
 #endif
 
             this.TechType = TechType.LabContainer3;
+#endif
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -36,7 +46,6 @@ namespace DecorationsMod.ExistingItems
                         new Ingredient(TechType.Glass, 1)
                     }),
             };
-#endif
         }
 
         private static GameObject _labContainer3 = null;

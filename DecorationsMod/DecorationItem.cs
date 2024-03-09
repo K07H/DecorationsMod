@@ -1,4 +1,9 @@
 ﻿using UnityEngine;
+using Nautilus.Assets;
+
+#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace DecorationsMod
 {
@@ -15,11 +20,47 @@ namespace DecorationsMod
         void RegisterItem();
     }
     
+#if SUBNAUTICA_NAUTILUS
+    public abstract class DecorationItem : Nautilus.Assets.CustomPrefab, IDecorationItem
+#else
     public abstract class DecorationItem : SMLHelper.V2.Assets.ModPrefab, IDecorationItem
+#endif
     {
         #region Constructor
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public DecorationItem(string classID, string nameKey, string descKey, string icon, params object[] translationArgs) : this(
+            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey, translationArgs), LanguageHelper.GetFriendlyWord(descKey, translationArgs), unlockAtStart: true)
+            .WithFileName(DefaultResourcePath + classID)
+            .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>(icon))) { }
+
+        [SetsRequiredMembers]
+        public DecorationItem(string classID, string nameKey, string descKey, string icon) : this(
+            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey), LanguageHelper.GetFriendlyWord(descKey), unlockAtStart: true)
+            .WithFileName(DefaultResourcePath + classID)
+            .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>(icon))) { }
+
+        [SetsRequiredMembers]
+        public DecorationItem(string classID, string nameKey, string descKey, Atlas.Sprite icon, params object[] translationArgs) : this(
+            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey, translationArgs), LanguageHelper.GetFriendlyWord(descKey, translationArgs), unlockAtStart: true)
+            .WithFileName(DefaultResourcePath + classID)
+            .WithIcon(icon)) { }
+
+        [SetsRequiredMembers]
+        public DecorationItem(string classID, string nameKey, string descKey, Atlas.Sprite icon) : this(
+            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey), LanguageHelper.GetFriendlyWord(descKey), unlockAtStart: true)
+            .WithFileName(DefaultResourcePath + classID)
+            .WithIcon(icon)) { }
+
+        [SetsRequiredMembers]
+        public DecorationItem(Nautilus.Assets.PrefabInfo info) : base(info)
+        {
+            SetGameObject(this.GetGameObject);
+        }
+#else
         public DecorationItem() : base("", "") { }
+#endif
 
         #endregion
         #region Attributes
@@ -39,7 +80,13 @@ namespace DecorationsMod
         public Sprite Sprite { get; set; }
 
         // The item recipe
-#if SUBNAUTICA
+#if SUBNAUTICA_NAUTILUS
+        public Nautilus.Crafting.RecipeData Recipe { get; set; }
+        public string ClassID => Info.ClassID;
+        public string PrefabFileName => Info.PrefabFileName;
+        public TechType TechType => Info.TechType;
+        public abstract GameObject GetGameObject();
+#elif SUBNAUTICA
         public SMLHelper.V2.Crafting.TechData Recipe { get; set; }
 #else
         public SMLHelper.V2.Crafting.RecipeData Recipe { get; set; }
@@ -56,7 +103,11 @@ namespace DecorationsMod
             {
                 // Associate new recipe
                 if (this.Recipe != null)
+#if SUBNAUTICA_NAUTILUS
+                    Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.Info.TechType, this.Recipe);
+#else
                     SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Update PlaceTool parameters
                 PrefabsHelper.SetDefaultPlaceTool(this.GameObject, null, null, false, false, true);
@@ -65,13 +116,18 @@ namespace DecorationsMod
                     placeTool = this.GameObject.GetComponent<PlaceTool>();
                 if (placeTool != null)
                 {
-                    if (this.TechType == TechType.Poster
-                        || this.TechType == TechType.PosterAurora
-                        || this.TechType == TechType.PosterExoSuit1
-                        || this.TechType == TechType.PosterExoSuit2
-                        || this.TechType == TechType.PosterKitty
+#if SUBNAUTICA_NAUTILUS
+                    TechType techType = this.Info.TechType;
+#else
+                    TechType techType = this.TechType;
+#endif
+                    if (techType == TechType.Poster
+                        || techType == TechType.PosterAurora
+                        || techType == TechType.PosterExoSuit1
+                        || techType == TechType.PosterExoSuit2
+                        || techType == TechType.PosterKitty
 #if BELOWZERO
-                        || this.TechType == TechType.PosterSpyPenguin
+                        || techType == TechType.PosterSpyPenguin
 #endif
                     )
                     {
@@ -89,7 +145,11 @@ namespace DecorationsMod
                 }
 
                 // Set the buildable prefab
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
                 SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#endif
 
                 this.IsRegistered = true;
             }

@@ -247,7 +247,7 @@ namespace DecorationsMod
             catch (Exception ex)
             {
                 ret = null;
-                Logger.Log("ERROR: Exception caught while instantiating prefab for TechType [" + techType.AsString() + "][" + Convert.ToString((int)techType, System.Globalization.CultureInfo.InvariantCulture) + "]. Exception=[" + ex.ToString() + "]");
+                Logger.Error("Exception caught while instantiating prefab for TechType [" + techType.AsString() + "][" + Convert.ToString((int)techType, System.Globalization.CultureInfo.InvariantCulture) + "]. Exception=[" + ex.ToString() + "]");
             }
             return ret;
         }
@@ -257,15 +257,15 @@ namespace DecorationsMod
         {
 #if DEBUG
             if (string.IsNullOrEmpty(filename))
-                Logger.Log("WARNING: LoadGameObjectFromFilename: Provided filename is empty.");
+                Logger.Warning("LoadGameObjectFromFilename: Provided filename is empty.");
             if (!filename.EndsWith(".prefab"))
-                Logger.Log("WARNING: LoadGameObjectFromFilename: Provided filename \"" + filename + "\" does not ends with \".prefab\".");
+                Logger.Warning("LoadGameObjectFromFilename: Provided filename \"" + filename + "\" does not ends with \".prefab\".");
 #endif
             var cyclopsFabricatorRequest = AddressablesUtility.LoadAsync<GameObject>(filename);
             cyclopsFabricatorRequest.WaitForCompletion();
 #if DEBUG
             if (cyclopsFabricatorRequest.Result == null)
-                Logger.Log("WARNING: LoadGameObjectFromFilename: Unable to load game object from filename \"" + filename + "\".");
+                Logger.Warning("LoadGameObjectFromFilename: Unable to load game object from filename \"" + filename + "\".");
 #endif
             return cyclopsFabricatorRequest.Result;
         }
@@ -493,7 +493,7 @@ namespace DecorationsMod
 
         internal static void TestPrefabs()
         {
-            Logger.Log("DEBUG: Testing prefabs...");
+            Logger.Debug("Testing prefabs...");
 #if SUBNAUTICA
             foreach (string prefabPath in AllSubnauticaPrefabs)
 #else
@@ -502,9 +502,9 @@ namespace DecorationsMod
             {
                 GameObject res = LoadGameObjectFromFilename(prefabPath);
                 if (res == null)
-                    Logger.Log("DEBUG: Failed to load prefab at path [" + prefabPath + "]!");
+                    Logger.Debug("Failed to load prefab at path [" + prefabPath + "]!");
             }
-            Logger.Log("DEBUG: Prefabs have been tested.");
+            Logger.Debug("Prefabs have been tested.");
         }
 #endif
 
@@ -539,7 +539,7 @@ namespace DecorationsMod
         public static void FixPlaceToolSkyAppliers(GameObject go)
         {
 #if DEBUG_PLACE_TOOL
-            Logger.Log("DEBUG: FIX PT-SA: goName=[" + go.name + "]");
+            Logger.Debug("FIX PT-SA: goName=[" + go.name + "]");
 #endif
             foreach (KeyValuePair<string, string> placeTool in _placeToolSAFix)
                 if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture))
@@ -571,19 +571,19 @@ namespace DecorationsMod
 #if DEBUG_PLACE_TOOL
                             else
                             {
-                                Logger.Log("DEBUG: FIX PT-SA: SkyApplier 1 do not match! sasLength=[" + (sas != null ? sas.Length.ToString() : "null") + "] goName=[" + go.name + "] modelName=[" + model.name + "]");
+                                Logger.Debug("FIX PT-SA: SkyApplier 1 do not match! sasLength=[" + (sas != null ? sas.Length.ToString() : "null") + "] goName=[" + go.name + "] modelName=[" + model.name + "]");
                                 Logger.PrintTransform(go.transform);
                             }
                         }
                         else
                         {
-                            Logger.Log("DEBUG: FIX PT-SA: SkyAppliers 2 do not match! sasLength=[" + (sas != null ? sas.Length.ToString() : "null") + "] goName=[" + go.name + "] modelName=[" + model.name + "]");
+                            Logger.Debug("FIX PT-SA: SkyAppliers 2 do not match! sasLength=[" + (sas != null ? sas.Length.ToString() : "null") + "] goName=[" + go.name + "] modelName=[" + model.name + "]");
                             Logger.PrintTransform(go.transform);
                         }
                     }
                     else
                     {
-                        Logger.Log("DEBUG: FIX PT-SA: Could not find model!");
+                        Logger.Debug("FIX PT-SA: Could not find model!");
                         Logger.PrintTransform(go.transform);
                     }
 #else
@@ -671,7 +671,7 @@ namespace DecorationsMod
         public static void HidePlantAndShowSeed(Transform transform, string classId = null)
         {
 #if DEBUG_SEEDS
-            Logger.Log("DEBUG: Entering HidePlantAndShowSeed for classId=[" + (classId ?? "?") + "]");
+            Logger.Debug("Entering HidePlantAndShowSeed for classId=[" + (classId ?? "?") + "]");
 #endif
             if (transform != null)
             {
@@ -716,7 +716,7 @@ namespace DecorationsMod
         {
             if (!PrefabsHelper._aquariumSkyApplierFixed)
             {
-                Logger.Log("INFO: Applying fix to aquariums lighting...");
+                Logger.Info("Applying fix to aquariums lighting...");
 
                 GameObject aquariumPrefab = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
 

@@ -72,7 +72,7 @@ namespace DecorationsMod
                                 catch { }
                             }
                             // Log error
-                            Logger.Log("ERROR: Unable to open configurator. Exception=[" + ex.ToString() + "]");
+                            Logger.Error("Unable to open configurator. Exception=[" + ex.ToString() + "]");
                             MenuMessageHelper.AddMessage("Could not open configurator. Try to open it from DecorationsMod folder or edit Config text file manually.", "orange", 22);
                         }
                     }

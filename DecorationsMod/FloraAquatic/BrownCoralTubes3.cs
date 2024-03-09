@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +24,12 @@ namespace DecorationsMod.FloraAquatic
             set => this.Config = value;
         }
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public BrownCoralTubes3() : base("BrownCoralTubes3", "BrownCoralTubesName", "BrownCoralTubesDescription", "flora_browncoraltubes01icon", "3")
+        {
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public BrownCoralTubes3()
         {
             this.ClassID = "BrownCoralTubes3"; // 291856e5-9d72-4cc6-b09f-ac09a5a6206e
@@ -21,25 +37,20 @@ namespace DecorationsMod.FloraAquatic
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("BrownCoralTubesName") + " (3)",
                                                         LanguageHelper.GetFriendlyWord("BrownCoralTubesDescription"),
                                                         true);
+#endif
 
             CrafterLogicFixer.BrownTubes3 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -47,7 +58,6 @@ namespace DecorationsMod.FloraAquatic
                     new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
-#endif
 
             this.Config = ConfigSwitcher.config_BrownCoralTubes3;
         }
@@ -57,29 +67,37 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Set item occupies 4 slots
-                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to water-plant seed
-                SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
+                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Specify bonus on final cut
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 1);
+                CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 1);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("flora_browncoraltubes01icon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("flora_browncoraltubes01icon"));
+#endif
 
                 this.IsRegistered = true;
             }
@@ -97,7 +115,7 @@ namespace DecorationsMod.FloraAquatic
 #endif
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube3 T1");
+            Logger.Debug("BrownCoralTube3 T1");
 #endif
             GameObject prefab = GameObject.Instantiate(_brownCoralTubes3);
 
@@ -106,16 +124,16 @@ namespace DecorationsMod.FloraAquatic
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube3 T2");
+            Logger.Debug("BrownCoralTube3 T2");
             Logger.PrintTransform(prefab.transform);
-            Logger.Log("DEBUG: BrownCoralTube3 T2b");
+            Logger.Debug("BrownCoralTube3 T2b");
 #endif
             // Scale models
             prefab.FindChild("coral_reef_brown_coral_tubes_01").transform.localScale *= 0.4f;
             prefab.FindChild("coral_reef_brown_coral_tubes_01_LOD3").transform.localScale *= 0.4f;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube3 T3");
+            Logger.Debug("BrownCoralTube3 T3");
 #endif
             // Scale and shrink colliders
             BoxCollider[] colliders = prefab.GetComponentsInChildren<BoxCollider>();
@@ -129,7 +147,7 @@ namespace DecorationsMod.FloraAquatic
             }
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube3 T4");
+            Logger.Debug("BrownCoralTube3 T4");
 #endif
             // Update rigid body
             var rb = prefab.GetComponent<Rigidbody>();
@@ -143,7 +161,7 @@ namespace DecorationsMod.FloraAquatic
             rb.constraints = RigidbodyConstraints.None;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube3 T5");
+            Logger.Debug("BrownCoralTube3 T5");
 #endif
             // Add EntityTag
             var entityTag = prefab.AddComponent<EntityTag>();
@@ -154,14 +172,14 @@ namespace DecorationsMod.FloraAquatic
             techTag.type = this.TechType;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube3 T6");
+            Logger.Debug("BrownCoralTube3 T6");
 #endif
             // Update prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube3 T7");
+            Logger.Debug("BrownCoralTube3 T7");
 #endif
             // Update large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
@@ -172,7 +190,7 @@ namespace DecorationsMod.FloraAquatic
             //collider.size = new Vector3(0.2f, 0.2f, 0.2f);
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube3 T8");
+            Logger.Debug("BrownCoralTube3 T8");
 #endif
             // Add world forces
             var worldForces = prefab.AddComponent<WorldForces>();
@@ -249,7 +267,7 @@ namespace DecorationsMod.FloraAquatic
             //liveMixin.startHealthPercent = 1.0f;
 
 #if DEBUG_CORALS
-            Logger.Log("DEBUG: BrownCoralTube3 T9");
+            Logger.Debug("BrownCoralTube3 T9");
 #endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);

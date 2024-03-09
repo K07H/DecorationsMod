@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System;
 using System.Collections.Generic;
@@ -10,6 +20,12 @@ namespace DecorationsMod.Flora
 {
     public class MarbleMelonTinyFruit : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public MarbleMelonTinyFruit() : base("MarbleMelonTinyFruit", "MarbleMelonTinyFruitName", "MarbleMelonTinyFruitDescription", SpriteManager.Get(TechType.SmallMelon))
+        {
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public MarbleMelonTinyFruit()
         {
             this.ClassID = "MarbleMelonTinyFruit"; // e9445fdf-fbae-49dc-a005-48c05bf9f401
@@ -17,24 +33,19 @@ namespace DecorationsMod.Flora
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("MarbleMelonTinyFruitName"),
                                                         LanguageHelper.GetFriendlyWord("MarbleMelonTinyFruitDescription"),
                                                         true);
+#endif
 
             CrafterLogicFixer.MarbleMelonTinyFruit = this.TechType;
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -42,7 +53,6 @@ namespace DecorationsMod.Flora
                     new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
-#endif
         }
 
         private static bool _marbleMelonTinyFruitInitialized = false;
@@ -52,7 +62,7 @@ namespace DecorationsMod.Flora
             {
                 if (marbleMelonTinyFruit != TechType.None && CrafterLogicFixer.MarbleMelonTiny != TechType.None)
                 {
-                    SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(marbleMelonTinyFruit, CrafterLogicFixer.MarbleMelonTiny);
+                    CraftDataHandler.SetHarvestOutput(marbleMelonTinyFruit, CrafterLogicFixer.MarbleMelonTiny);
                     _marbleMelonTinyFruitInitialized = true;
                 }
             }
@@ -63,27 +73,35 @@ namespace DecorationsMod.Flora
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Set item occupies 4 slots
-                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(1, 1));
+                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(1, 1));
 
                 // Add the new TechType to Harvest types
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
                 InitMarbleMelonTinyFruitHarvestOutput(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 3);
+                CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 3);
 
                 // Change item background to air-plant seed
-                SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
+                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, ConfigSwitcher.config_MarbleMelonTiny.Charge);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.SmallMelon));
+                SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.SmallMelon));
+#endif
 
                 this.IsRegistered = true;
             }

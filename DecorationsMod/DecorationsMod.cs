@@ -1,5 +1,14 @@
-﻿using DecorationsMod.Fixers;
+﻿#if SUBNAUTICA_NAUTILUS
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Fixers;
 using HarmonyLib;
+
 //using QModManager.API;
 using System;
 using System.Collections.Generic;
@@ -61,14 +70,14 @@ namespace DecorationsMod
                 PlaceToolItems.MakeItemsPlaceable();
 
             // 6) REGISTER DECORATIONS FABRICATOR
-            Logger.Log("INFO: Registering decorations fabricator...");
+            Logger.Info("Registering decorations fabricator...");
             Fabricator_Decorations decorationsFabricator = new Fabricator_Decorations();
             decorationsFabricator.RegisterDecorationsFabricator(DecorationsMod.DecorationItems);
 
             // 7) REGISTER FLORA FABRICATOR
             if (ConfigSwitcher.EnableNewFlora)
             {
-                Logger.Log("INFO: Registering seeds fabricator...");
+                Logger.Info("Registering seeds fabricator...");
                 Fabricator_Flora floraFabricator = new Fabricator_Flora();
                 floraFabricator.RegisterFloraFabricator(DecorationsMod.DecorationItems);
             }
@@ -83,8 +92,8 @@ namespace DecorationsMod
             //MyHarmony.FixAutoLoadMod();
 
             // 9) SETUP IN GAME OPTIONS MENU
-            //Logger.Log("INFO: Setting up in-game options menu...");
-            //SMLHelper.V2.Handlers.OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
+            //Logger.Info("Setting up in-game options menu...");
+            //OptionsPanelHandler.RegisterModOptions(new ConfigOptions("Decorations mod"));
 
 #if DEBUG_PREFABS
             PrefabsHelper.TestPrefabs();
@@ -96,18 +105,26 @@ namespace DecorationsMod
         {
             // Register tooltips
             foreach (string tooltip in LanguageHelper.Tooltips)
-                SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(tooltip, LanguageHelper.GetFriendlyWord(tooltip));
+                LanguageHandler.SetLanguageLine(tooltip, LanguageHelper.GetFriendlyWord(tooltip));
             // Register configuration strings
             //foreach (string configOption in ConfigOptions.LanguageStrings)
-            //    SMLHelper.V2.Handlers.LanguageHandler.SetLanguageLine(configOption, LanguageHelper.GetFriendlyWord(configOption));
+            //    LanguageHandler.SetLanguageLine(configOption, LanguageHelper.GetFriendlyWord(configOption));
         }
 
         /// <summary>Returns a list containing all new items added by this mod.</summary>
         private static List<IDecorationItem> RegisterNewItems()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            DecorationsMod_EntryPoint._logger.LogInfo("Logging all TechTypes...");
+            foreach (TechType t in Enum.GetValues(typeof(TechType)))
+            {
+                EnumHandler.TryGetOwnerAssembly(t, out Assembly tOwner);
+                DecorationsMod_EntryPoint._logger.LogInfo(t.AsString() + " from " + (tOwner != null ? tOwner.FullName : "unknown assembly"));
+            }
+#endif
             List<IDecorationItem> result = new List<IDecorationItem>();
 
-            Logger.Log("INFO: Registering items...");
+            Logger.Info("Registering items...");
 
             // Get the list of modified existing items
             var existingItems = from t in Assembly.GetExecutingAssembly().GetTypes()
@@ -118,7 +135,7 @@ namespace DecorationsMod
             foreach (Type existingItemType in existingItems)
             {
 #if DEBUG_ITEMS_REGISTRATION
-                Logger.Log("INFO: Trying to create item type=[{0}]", existingItemType.Name);
+                Logger.Info("Trying to create item type=[{0}]", existingItemType.Name);
 #endif
                 // Get item
                 DecorationItem existingItem = (DecorationItem)(Activator.CreateInstance(existingItemType));
@@ -127,13 +144,13 @@ namespace DecorationsMod
                     // Register item
                     existingItem.RegisterItem();
                     // Unlock item at game start
-                    SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(existingItem.TechType);
+                    KnownTechHandler.UnlockOnStart(existingItem.TechType);
                     // Store item in the list
                     result.Add(existingItem);
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Unable to create existing item type=[{0}]!", existingItemType.Name);
+                    Logger.Warning("Unable to create existing item type=[{0}]!", existingItemType.Name);
 #endif
             }
 
@@ -146,7 +163,7 @@ namespace DecorationsMod
             foreach (Type newItemType in newItems)
             {
 #if DEBUG_ITEMS_REGISTRATION
-                Logger.Log("INFO: Trying to create new item type=[{0}]", newItemType.Name);
+                Logger.Info("Trying to create new item type=[{0}]", newItemType.Name);
 #endif
                 DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
                 if (newItem.GameObject != null)
@@ -164,13 +181,13 @@ namespace DecorationsMod
                         }
 #if DEBUG_ITEMS_REGISTRATION
                         else
-                            Logger.Log("INFO: Skipping registration for item type=[{0}]", newItemType.Name);
+                            Logger.Info("Skipping registration for item type=[{0}]", newItemType.Name);
 #endif
                     }
                 }
 #if DEBUG_ITEMS_REGISTRATION
                 else
-                    Logger.Log("WARNING: Unable to create new item type=[{0}]!", newItemType.Name);
+                    Logger.Warning("Unable to create new item type=[{0}]!", newItemType.Name);
 #endif
             }
 
@@ -185,7 +202,7 @@ namespace DecorationsMod
                 foreach (Type newItemType in newFlora)
                 {
 #if DEBUG_ITEMS_REGISTRATION
-                    Logger.Log("INFO: Trying to create flora item type=[{0}]", newItemType.Name);
+                    Logger.Info("Trying to create flora item type=[{0}]", newItemType.Name);
 #endif
                     DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
                     if (newItem.GameObject != null)
@@ -195,7 +212,7 @@ namespace DecorationsMod
                     }
 #if DEBUG_ITEMS_REGISTRATION
                     else
-                        Logger.Log("WARNING: Unable create flora item type=[{0}]!", newItemType.Name);
+                        Logger.Warning("Unable create flora item type=[{0}]!", newItemType.Name);
 #endif
                 }
 
@@ -207,7 +224,7 @@ namespace DecorationsMod
                 foreach (Type newItemType in newWaterFlora)
                 {
 #if DEBUG_ITEMS_REGISTRATION
-                    Logger.Log("INFO: Trying to create water flora item type=[{0}]", newItemType.Name);
+                    Logger.Info("Trying to create water flora item type=[{0}]", newItemType.Name);
 #endif
                     DecorationItem newItem = (DecorationItem)(Activator.CreateInstance(newItemType));
                     if (newItem.GameObject != null)
@@ -217,7 +234,7 @@ namespace DecorationsMod
                     }
 #if DEBUG_ITEMS_REGISTRATION
                     else
-                        Logger.Log("WARNING: Unable to create water flora item type=[{0}]!", newItemType.Name);
+                        Logger.Warning("Unable to create water flora item type=[{0}]!", newItemType.Name);
 #endif
                 }
 
@@ -233,9 +250,9 @@ namespace DecorationsMod
                             processedSeeds.Add(airPlant.Value);
                         }
                         if (ConfigSwitcher.AddAirSeedsWhenDiscovered)
-                            SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(airPlant.Key, new TechType[] { airPlant.Value });
+                            KnownTechHandler.SetAnalysisTechEntry(airPlant.Key, new TechType[] { airPlant.Value });
                         else
-                            SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(airPlant.Value);
+                            KnownTechHandler.UnlockOnStart(airPlant.Value);
                     }
                 }
 
@@ -251,9 +268,9 @@ namespace DecorationsMod
                             processedSeeds.Add(waterPlant.Value);
                         }
                         if (ConfigSwitcher.AddWaterSeedsWhenDiscovered)
-                            SMLHelper.V2.Handlers.KnownTechHandler.SetAnalysisTechEntry(waterPlant.Key, new TechType[] { waterPlant.Value });
+                            KnownTechHandler.SetAnalysisTechEntry(waterPlant.Key, new TechType[] { waterPlant.Value });
                         else
-                            SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(waterPlant.Value);
+                            KnownTechHandler.UnlockOnStart(waterPlant.Value);
                     }
                 }
             }
@@ -268,25 +285,21 @@ namespace DecorationsMod
         /// <param name="craftingAmount">Number of crafted items amount.</param>
         private static void RegisterRecipeForTechType(TechType techType, TechType resource, int resourceAmount = 1, int craftingAmount = 1)
         {
-#if SUBNAUTICA
-            var techTypeRecipe = new SMLHelper.V2.Crafting.TechData()
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            TechData techTypeRecipe = new TechData()
+#else
+            RecipeData techTypeRecipe = new RecipeData()
+#endif
             {
                 craftAmount = craftingAmount,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1] {
-                    new SMLHelper.V2.Crafting.Ingredient(resource, resourceAmount)
+                Ingredients = new List<Ingredient>(new Ingredient[1] {
+                    new Ingredient(resource, resourceAmount)
                 })
             };
-            SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(techType, techTypeRecipe);
+#if SUBNAUTICA_NAUTILUS
+            CraftDataHandler.SetRecipeData(techType, techTypeRecipe);
 #else
-            SMLHelper.V2.Crafting.RecipeData techTypeRecipe = new SMLHelper.V2.Crafting.RecipeData()
-            {
-                craftAmount = craftingAmount,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(resource, resourceAmount)
-                    }),
-            };
-            SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(techType, techTypeRecipe);
+            CraftDataHandler.SetTechData(techType, techTypeRecipe);
 #endif
         }
     }
