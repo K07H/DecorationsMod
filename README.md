@@ -9,7 +9,7 @@
 
 <br>
 
-### Installation instructions for <ins>Nautilus</ins> (<ins>regular</ins> version of Subnautica):
+### Installation instructions for Nautilus (<ins>regular</ins> version of Subnautica):
 1) Install BepInEx: https://www.nexusmods.com/subnautica/mods/1108<br>
 2) Install Nautilus: https://www.nexusmods.com/subnautica/mods/1262<br>
 3) Download the latest version of this mod: https://www.nexusmods.com/subnautica/mods/102?tab=files<br>
