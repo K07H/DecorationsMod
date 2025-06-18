@@ -154,9 +154,9 @@ Some additional information can be found in the Configurator or in the configura
 <br><br>
 
 ### News & updates:<br>
-June 17, 2025: Updated to version 2.1.0 (regular version).<br>
-January 14, 2023: Updated to version 2.0.3 (regular version).<br>
-October 11, 2020: Updated to version 1.9.1 (legacy version).<br>
+June 18, 2025: Updated to version 2.1.0 (Subnautica regular version + Nautilus).<br>
+January 14, 2023: Updated to version 2.0.3 (Subnautica regular version + SML Helper).<br>
+October 11, 2020: Updated to version 1.9.1 (Subnautica legacy version + SML Helper).<br>
 Full changelogs available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
 
 ### Translations:<br>
