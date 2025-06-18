@@ -1,4 +1,9 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using Nautilus.Handlers;
+#else
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -156,10 +161,10 @@ namespace DecorationsMod
             PrefabsHelper.SetDefaultPlaceTool(item, collider);
 
             // Add TechType to the hand-equipments
-            SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(techType, EquipmentType.Hand);
+            CraftDataHandler.SetEquipmentType(techType, EquipmentType.Hand);
 
             // Set as selectable item.
-            SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(techType, QuickSlotType.Selectable);
+            CraftDataHandler.SetQuickSlotType(techType, QuickSlotType.Selectable);
         }
 
         private static void MakeSnacksPlaceable()
@@ -173,7 +178,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack1");
+                Logger.Warning("Could not load type [{0}]", "WorldEntities/Food/Snack1");
 #endif
             GameObject snack2 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Food/Snack2.prefab");
             if (snack2 != null)
@@ -184,7 +189,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack2");
+                Logger.Warning("Could not load type [{0}]", "WorldEntities/Food/Snack2");
 #endif
             GameObject snack3 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Food/Snack3.prefab");
             if (snack3 != null)
@@ -195,7 +200,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack3");
+                Logger.Warning("Could not load type [{0}]", "WorldEntities/Food/Snack3");
 #endif
 
             // Swap Snack2 and Snack3 techtypes (as tooltips do not match models)
@@ -246,7 +251,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type [{0}]", batteryPath);
+                Logger.Warning("Could not load type [{0}]", batteryPath);
 #endif
         }
 
@@ -399,7 +404,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type [{0}]", materialPath);
+                Logger.Warning("Could not load type [{0}]", materialPath);
 #endif
         }
 
@@ -452,7 +457,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Log("WARNING: Could not load type [{0}]", itemPath);
+                Logger.Warning("Could not load type [{0}]", itemPath);
 #endif
         }
 
@@ -461,7 +466,7 @@ namespace DecorationsMod
         {
             if (!_madeItemsPlaceable)
             {
-                Logger.Log("INFO: Making items placeable/pickupable...");
+                Logger.Info("Making items placeable/pickupable...");
 
                 // Decorative items
                 foreach (KeyValuePair<string, TechType> it in _items)

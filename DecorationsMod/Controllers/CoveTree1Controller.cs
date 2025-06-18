@@ -37,7 +37,7 @@ namespace DecorationsMod.Controllers
         public void OnProtoSerialize(ProtobufSerializer serializer)
         {
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: OnProtoSerialize covetree: Entry");
+            Logger.Debug("OnProtoSerialize covetree: Entry");
 #endif
             // Retrieve prefab unique ID
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
@@ -46,7 +46,7 @@ namespace DecorationsMod.Controllers
                     return;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: OnProtoSerialize covetree: Get save folder");
+            Logger.Debug("OnProtoSerialize covetree: Get save folder");
 #endif
             string saveFolder = FilesHelper.GetSaveFolderPath();
             if (!Directory.Exists(saveFolder))
@@ -60,20 +60,20 @@ namespace DecorationsMod.Controllers
             {
                 GameObject eggs = grownPlant.gameObject.FindChild("lost_river_cove_tree_01").FindChild("lost_river_cove_tree_01_eggs");
 #if DEBUG_COVE_TREE
-                Logger.Log("DEBUG: OnProtoSerialize covetree: Found grown plant. Eggs active=[" + eggs.activeSelf + "]");
+                Logger.Debug("OnProtoSerialize covetree: Found grown plant. Eggs active=[" + eggs.activeSelf + "]");
 #endif
                 File.WriteAllText(FilesHelper.Combine(saveFolder, "covetree_" + id.Id + ".txt"), eggs.activeSelf ? "1" : "0", Encoding.UTF8);
             }
 #if DEBUG_COVE_TREE
             else
-                Logger.Log("DEBUG: OnProtoSerialize covetree: Cannot find grown plant");
+                Logger.Debug("OnProtoSerialize covetree: Cannot find grown plant");
 #endif
         }
 
         public void OnProtoDeserialize(ProtobufSerializer serializer)
         {
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: OnProtoDeserialize covetree: Entry");
+            Logger.Debug("OnProtoDeserialize covetree: Entry");
 #endif
             // Retrieve prefab unique ID
             PrefabIdentifier id = GetComponentInParent<PrefabIdentifier>();
@@ -82,7 +82,7 @@ namespace DecorationsMod.Controllers
                     return;
 
 #if DEBUG_COVE_TREE
-            Logger.Log("DEBUG: OnProtoDeserialize covetree: Loading saved file");
+            Logger.Debug("OnProtoDeserialize covetree: Loading saved file");
 #endif
             string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "covetree_" + id.Id + ".txt");
             if (File.Exists(filePath))
@@ -96,7 +96,7 @@ namespace DecorationsMod.Controllers
                     // Check if we need to display eggs
                     bool showEggs = (string.Compare(covetreeparams[0], "1", false, CultureInfo.InvariantCulture) == 0);
 #if DEBUG_COVE_TREE
-                    Logger.Log("DEBUG: OnProtoDeserialize covetree: showEggs=[" + showEggs + "]");
+                    Logger.Debug("OnProtoDeserialize covetree: showEggs=[" + showEggs + "]");
 #endif
 
                     // Get eggs game objects
@@ -108,7 +108,7 @@ namespace DecorationsMod.Controllers
                     eggs.SetActive(showEggs);
                     shells.SetActive(showEggs);
 #if DEBUG_COVE_TREE
-                    Logger.Log("DEBUG: OnProtoDeserialize covetree: showEggs value has been set");
+                    Logger.Debug("OnProtoDeserialize covetree: showEggs value has been set");
 #endif
                 }
 

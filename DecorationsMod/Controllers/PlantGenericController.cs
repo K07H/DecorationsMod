@@ -44,7 +44,7 @@ namespace DecorationsMod.Controllers
                 liveMixin.data.knifeable = Knifeable;
 
 #if DEBUG_FLORA_ENTRY
-            Logger.Log("DEBUG: PlantGenericController.Awake() for gameObject name=[" + this.gameObject.name + "] controllerEnabled=[" + this.enabled + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+            Logger.Debug("PlantGenericController.Awake() for gameObject name=[" + this.gameObject.name + "] controllerEnabled=[" + this.enabled + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
             this.enabled = true;
         }
@@ -56,9 +56,9 @@ namespace DecorationsMod.Controllers
 #endif
 #if DEBUG_FLORA_ENTRY
             if (id != null)
-                Logger.Log("DEBUG: Entering PlantGenericController.Update() for gameObject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+                Logger.Debug("Entering PlantGenericController.Update() for gameObject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
             else
-                Logger.Log("DEBUG: Entering PlantGenericController.Update() for gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+                Logger.Debug("Entering PlantGenericController.Update() for gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
 
             if (_plant == null)
@@ -71,7 +71,7 @@ namespace DecorationsMod.Controllers
                 if (_plant.linkedGrownPlant != null)
                 {
 #if DEBUG_FLORA
-                    Logger.Log("DEBUG: PlantGenericController.Update() Associating grown plant in gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+                    Logger.Debug("PlantGenericController.Update() Associating grown plant in gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
                     _grownPlant = _plant.linkedGrownPlant;
                     _grownPlant.seed = _plant;
@@ -83,9 +83,9 @@ namespace DecorationsMod.Controllers
                 {
 #if DEBUG_FLORA
                     if (id != null)
-                        Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Initializing");
+                        Logger.Debug("PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Initializing");
                     else
-                        Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Initializing");
+                        Logger.Debug("PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Initializing");
 #endif
                     // Hide seed model and show plant model
                     PrefabsHelper.ShowPlantAndHideSeed(_grownPlant.gameObject.transform);
@@ -152,17 +152,17 @@ namespace DecorationsMod.Controllers
                     _progress = ((float)(DayNightCycle.main.timePassed - _initTimeValue) / GrowthDuration) + _passedProgress;
 #if DEBUG_FLORA_ANIMATION
                     if (id != null)
-                        Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
+                        Logger.Debug("PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
                     else
-                        Logger.Log("DEBUG: PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
+                        Logger.Debug("PlantGenericController.Update(): PROGRESS gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => progress=[" + _progress + "] pastProgress=[" + _passedProgress + "] originScale x=[" + _origScale.x + "] y=[" + _origScale.y + "] z=[" + _origScale.z + "]");
 #endif
                     if (_grownPlant.gameObject.transform.localPosition.x > 4500.0f && _grownPlant.gameObject.transform.localPosition.z > 4500.0f)
                     {
 #if DEBUG_FLORA
                         if (id != null)
-                            Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.gameObject.transform.localPosition.x + "] y=[" + _grownPlant.gameObject.transform.localPosition.y + "] z=[" + _grownPlant.gameObject.transform.localPosition.z + "] => Disabling animation component");
+                            Logger.Debug("PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.gameObject.transform.localPosition.x + "] y=[" + _grownPlant.gameObject.transform.localPosition.y + "] z=[" + _grownPlant.gameObject.transform.localPosition.z + "] => Disabling animation component");
                         else
-                            Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.gameObject.transform.localPosition.x + "] y=[" + _grownPlant.gameObject.transform.localPosition.y + "] z=[" + _grownPlant.gameObject.transform.localPosition.z + "] => Disabling animation component");
+                            Logger.Debug("PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.gameObject.transform.localPosition.x + "] y=[" + _grownPlant.gameObject.transform.localPosition.y + "] z=[" + _grownPlant.gameObject.transform.localPosition.z + "] => Disabling animation component");
 #endif
                         this.enabled = false;
                     }
@@ -178,9 +178,9 @@ namespace DecorationsMod.Controllers
                         {
 #if DEBUG_FLORA
                             if (id != null)
-                                Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Set final size");
+                                Logger.Debug("PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] id=[" + id.Id + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Set final size");
                             else
-                                Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Set final size");
+                                Logger.Debug("PlantGenericController.Update(): gameObject name=[" + _grownPlant.gameObject.name + "] position x=[" + _grownPlant.transform.localPosition.x + "] y=[" + _grownPlant.transform.localPosition.y + "] z=[" + _grownPlant.transform.localPosition.z + "] => Set final size");
 #endif
                             // Set final size
                             _progress = 1.0f;
@@ -217,9 +217,9 @@ namespace DecorationsMod.Controllers
             {
 #if DEBUG_FLORA
                 if (id != null)
-                    Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "] => No grown plant: Disabling controller");
+                    Logger.Debug("PlantGenericController.Update(): gameObject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "] => No grown plant: Disabling controller");
                 else
-                    Logger.Log("DEBUG: PlantGenericController.Update(): gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "] => No grown plant: Disabling controller");
+                    Logger.Debug("PlantGenericController.Update(): gameObject name=[" + this.gameObject.name + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "] => No grown plant: Disabling controller");
 #endif
                 this.enabled = false;
             }

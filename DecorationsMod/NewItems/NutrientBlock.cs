@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using System.Collections.Generic;
 using UnityEngine;
 using static OVRHaptics;
@@ -7,33 +17,27 @@ namespace DecorationsMod.NewItems
 {
     public class NutrientBlock : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public NutrientBlock() : base(new PrefabInfo("30373750-1292-4034-9797-387cf576d150", "WorldEntities/Food/NutrientBlock.prefab", TechType.NutrientBlock))
+        {
+#else
         public NutrientBlock() // Feeds abstract class
         {
             this.ClassID = "30373750-1292-4034-9797-387cf576d150";
             this.PrefabFileName = "WorldEntities/Food/NutrientBlock.prefab";
 
             this.TechType = TechType.NutrientBlock;
-            SMLHelper.V2.Handlers.KnownTechHandler.UnlockOnStart(this.TechType);
+#endif
+            KnownTechHandler.UnlockOnStart(this.TechType);
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[7]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Melon, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.HangingFruit, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.PurpleVegetable, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.BulboTreePiece, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.CreepvinePiece, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.JellyPlant, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.KooshChunk, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[7]
@@ -47,7 +51,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(TechType.KooshChunk, 1)
                     }),
             };
-#endif
         }
 
         public override void RegisterItem()
@@ -55,18 +58,26 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Add the new TechType to the hand-equipments
-                SMLHelper.V2.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
 #if !SUBNAUTICA
                 // Set quick slot type.
-                SMLHelper.V2.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 #endif
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
+#endif
 
                 this.IsRegistered = true;
             }
@@ -130,7 +141,7 @@ namespace DecorationsMod.NewItems
             if (eatable == null)
             {
 #if DEBUG_PLACE_TOOL
-                Logger.Log("DEBUG: Eatable component not found nutrient block. Adding it.");
+                Logger.Debug("Eatable component not found nutrient block. Adding it.");
 #endif
                 eatable = prefab.AddComponent<Eatable>();
                 eatable.foodValue = 75.0f;

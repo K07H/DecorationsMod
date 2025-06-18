@@ -1,10 +1,25 @@
-﻿using System.Collections.Generic;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+#endif
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
 {
     public class StarshipSouvenir : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public StarshipSouvenir() : base(
+            new PrefabInfo("c0d320d2-537e-4128-90ec-ab1466cfbbc3", "WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir.prefab", TechType.StarshipSouvenir)
+            )
+        {
+#else
         public StarshipSouvenir() // Feeds abstract class
         {
             this.ClassID = "c0d320d2-537e-4128-90ec-ab1466cfbbc3";
@@ -15,21 +30,15 @@ namespace DecorationsMod.ExistingItems
 #endif
 
             this.TechType = TechType.StarshipSouvenir;
+#endif
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[2]
@@ -38,7 +47,6 @@ namespace DecorationsMod.ExistingItems
                         new Ingredient(TechType.Glass, 1)
                     }),
             };
-#endif
         }
 
         private static GameObject _starshipSouvenir = null;

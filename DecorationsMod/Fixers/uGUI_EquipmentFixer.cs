@@ -26,7 +26,7 @@ namespace DecorationsMod.Fixers
                     if (itemInSlot == null)
                     {
 #if DEBUG_PLACE_TOOL
-                        Logger.Log("DEBUG: CanSwitchOrSwap returns SWITCH battery for " + techType.AsString(false));
+                        Logger.Debug("CanSwitchOrSwap returns SWITCH battery for " + techType.AsString(false));
 #endif
                         __result = ItemAction.Switch;
                         return false;
@@ -34,13 +34,13 @@ namespace DecorationsMod.Fixers
                     if (Inventory.CanSwap(draggedItem, itemInSlot))
                     {
 #if DEBUG_PLACE_TOOL
-                        Logger.Log("DEBUG: CanSwitchOrSwap returns SWAP battery for " + techType.AsString(false));
+                        Logger.Debug("CanSwitchOrSwap returns SWAP battery for " + techType.AsString(false));
 #endif
                         __result = ItemAction.Swap;
                         return false;
                     }
 #if DEBUG_PLACE_TOOL
-                    Logger.Log("DEBUG: CanSwitchOrSwap returns NONE battery for " + techType.AsString(false));
+                    Logger.Debug("CanSwitchOrSwap returns NONE battery for " + techType.AsString(false));
 #endif
                     __result = ItemAction.None;
                     return false;
@@ -55,7 +55,7 @@ namespace DecorationsMod.Fixers
                     if (itemInSlot == null)
                     {
 #if DEBUG_PLACE_TOOL
-                        Logger.Log("DEBUG: CanSwitchOrSwap returns SWITCH powercell for " + techType.AsString(false));
+                        Logger.Debug("CanSwitchOrSwap returns SWITCH powercell for " + techType.AsString(false));
 #endif
                         __result = ItemAction.Switch;
                         return false;
@@ -63,20 +63,20 @@ namespace DecorationsMod.Fixers
                     if (Inventory.CanSwap(draggedItem, itemInSlot))
                     {
 #if DEBUG_PLACE_TOOL
-                        Logger.Log("DEBUG: CanSwitchOrSwap returns SWAP powercell for " + techType.AsString(false));
+                        Logger.Debug("CanSwitchOrSwap returns SWAP powercell for " + techType.AsString(false));
 #endif
                         __result = ItemAction.Swap;
                         return false;
                     }
 #if DEBUG_PLACE_TOOL
-                    Logger.Log("DEBUG: CanSwitchOrSwap returns NONE powercell for " + techType.AsString(false));
+                    Logger.Debug("CanSwitchOrSwap returns NONE powercell for " + techType.AsString(false));
 #endif
                     __result = ItemAction.None;
                     return false;
                 }
             }
 #if DEBUG_PLACE_TOOL
-            Logger.Log("DEBUG: CanSwitchOrSwap returns NONE for " + techType.AsString(false) + " and origin function will get called.");
+            Logger.Debug("CanSwitchOrSwap returns NONE for " + techType.AsString(false) + " and origin function will get called.");
 #endif
             __result = ItemAction.None;
             return true;

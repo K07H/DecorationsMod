@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +23,12 @@ namespace DecorationsMod.Flora
             set => this.Config = value;
         }
 
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public JungleTree1() : base("JungleTree1", "JungleTree1Name", "JungleTree1Description", "jungletree1icon")
+        {
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public JungleTree1()
         {
             this.ClassID = "JungleTree1"; // abe4426a-5968-40b0-9d99-b06207984aa8
@@ -20,22 +36,17 @@ namespace DecorationsMod.Flora
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("JungleTree1Name"),
                                                         LanguageHelper.GetFriendlyWord("JungleTree1Description"),
                                                         true);
+#endif
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                {
-                    new SMLHelper.V2.Crafting.Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -43,7 +54,6 @@ namespace DecorationsMod.Flora
                     new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
                 }),
             };
-#endif
 
             this.Config = ConfigSwitcher.config_JungleTree1;
         }
@@ -53,26 +63,34 @@ namespace DecorationsMod.Flora
             if (this.IsRegistered == false)
             {
                 // Set item occupies 4 slots
-                SMLHelper.V2.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                SMLHelper.V2.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to air-plant seed
-                SMLHelper.V2.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
+                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("jungletree1icon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("jungletree1icon"));
+#endif
 
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 this.IsRegistered = true;
             }
@@ -83,7 +101,7 @@ namespace DecorationsMod.Flora
         public override GameObject GetGameObject()
         {
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): A");
+            Logger.Debug("JungleTree1->GetGameObject(): A");
 #endif
             if (_jungleTree1 == null)
 #if SUBNAUTICA
@@ -95,20 +113,20 @@ namespace DecorationsMod.Flora
             GameObject prefab = GameObject.Instantiate(_jungleTree1);
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): B");
+            Logger.Debug("JungleTree1->GetGameObject(): B");
 #endif
             prefab.name = this.ClassID;
 
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): C");
+            Logger.Debug("JungleTree1->GetGameObject(): C");
 #endif
             // Scale model
             prefab.FindChild("Jungle_Tree_3a").transform.localScale *= 0.05f;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): D");
+            Logger.Debug("JungleTree1->GetGameObject(): D");
 #endif
             // Add rigid body
             var rb = prefab.AddComponent<Rigidbody>();
@@ -122,35 +140,35 @@ namespace DecorationsMod.Flora
             rb.constraints = RigidbodyConstraints.None;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): E");
+            Logger.Debug("JungleTree1->GetGameObject(): E");
 #endif
             // Add EntityTag
             var entityTag = prefab.AddComponent<EntityTag>();
             entityTag.slotType = EntitySlot.Type.Small;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): F");
+            Logger.Debug("JungleTree1->GetGameObject(): F");
 #endif
             // Add TechTag
             var techTag = prefab.AddComponent<TechTag>();
             techTag.type = this.TechType;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): G");
+            Logger.Debug("JungleTree1->GetGameObject(): G");
 #endif
             // Update prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): H");
+            Logger.Debug("JungleTree1->GetGameObject(): H");
 #endif
             // Add box collider
             var collider = prefab.AddComponent<BoxCollider>();
             collider.size = new Vector3(0.7f, 0.7f, 0.7f);
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): I");
+            Logger.Debug("JungleTree1->GetGameObject(): I");
 #endif
             // Add large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
@@ -159,7 +177,7 @@ namespace DecorationsMod.Flora
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): J");
+            Logger.Debug("JungleTree1->GetGameObject(): J");
 #endif
             // Add world forces
             var worldForces = prefab.AddComponent<WorldForces>();
@@ -172,7 +190,7 @@ namespace DecorationsMod.Flora
             worldForces.useRigidbody = rb;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): K");
+            Logger.Debug("JungleTree1->GetGameObject(): K");
 #endif
             // Add pickupable
             var pickupable = prefab.AddComponent<Pickupable>();
@@ -183,7 +201,7 @@ namespace DecorationsMod.Flora
             pickupable.usePackUpIcon = false;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): L");
+            Logger.Debug("JungleTree1->GetGameObject(): L");
 #endif
 
             // Add eatable
@@ -218,7 +236,7 @@ namespace DecorationsMod.Flora
             plantable.linkedGrownPlant.seedUID = "JungleTree1";
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): M");
+            Logger.Debug("JungleTree1->GetGameObject(): M");
 #endif
             // Add tree 1 controller
             PlantGenericController landPlant1Controller = prefab.AddComponent<PlantGenericController>();
@@ -227,12 +245,12 @@ namespace DecorationsMod.Flora
             landPlant1Controller.Knifeable = Config.Knifeable;
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): N");
+            Logger.Debug("JungleTree1->GetGameObject(): N");
 #endif
             CustomFloraSerializer customSerializer = prefab.AddComponent<CustomFloraSerializer>();
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): O");
+            Logger.Debug("JungleTree1->GetGameObject(): O");
 #endif
             // Add live mixin
             var liveMixin = prefab.AddComponent<LiveMixin>();
@@ -253,7 +271,7 @@ namespace DecorationsMod.Flora
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);
 
 #if DEBUG_FLORA
-            Logger.Log("DEBUG: JungleTree1->GetGameObject(): P");
+            Logger.Debug("JungleTree1->GetGameObject(): P");
 #endif
             return prefab;
         }
