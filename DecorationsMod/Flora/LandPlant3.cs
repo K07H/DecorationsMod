@@ -1,16 +1,8 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.Flora
 {
@@ -23,37 +15,31 @@ namespace DecorationsMod.Flora
             set => this.Config = value;
         }
 
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public LandPlant3() : base("LandPlant3", "LandPlant3Name", "LandPlant3Description", "landplant3icon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public LandPlant3()
+        public LandPlant3() : base("LandPlant3", LanguageHelper.GetFriendlyWord("LandPlant3Name"), LanguageHelper.GetFriendlyWord("LandPlant3Description"), AssetsHelper.Assets.LoadAsset<Sprite>("landplant3icon"))
         {
             this.ClassID = "LandPlant3"; // 3b332e41-8d1b-4c7d-a132-3c98ab41c63d
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("LandPlant3Name"),
-                                                        LanguageHelper.GetFriendlyWord("LandPlant3Description"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                {
-                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                }),
-            };
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
 
             this.Config = ConfigSwitcher.config_LandPlant3;
         }
@@ -63,36 +49,28 @@ namespace DecorationsMod.Flora
             if (this.IsRegistered == false)
             {
                 // Set item occupies 4 slots
-                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Add the new TechType to bioreactor equipment
 
                 // Change item background to air-plant seed
-                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
+                Nautilus.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantAirSeed);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("landplant3icon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("landplant3icon"));
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -102,6 +80,9 @@ namespace DecorationsMod.Flora
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: landPlant3.GetGameObject()");
+#endif
             if (_landPlant3 == null)
 #if SUBNAUTICA
                 _landPlant3 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Land/land_plant_middle_07.prefab");

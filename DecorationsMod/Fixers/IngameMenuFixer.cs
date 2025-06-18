@@ -6,6 +6,7 @@
         {
             KnownTechFixer.SaveAddedNotifications();
             ConstructableFixer.SaveLadderDirections();
+            GenericPlaceTool_PT.SavePlacedByPlayerList();
         }
 
         public static void QuitGame_Postfix(bool quitToDesktop)
@@ -14,6 +15,7 @@
             {
                 KnownTechFixer.SaveAddedNotifications();
                 ConstructableFixer.SaveLadderDirections();
+                GenericPlaceTool_PT.SavePlacedByPlayerList();
             }
         }
     }

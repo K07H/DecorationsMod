@@ -1,28 +1,15 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class LabContainerOpen1 : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public LabContainerOpen1() : base("LabContainerOpen1", "LargeLabContainerOpenName", "LabContainerOpenDescription", "labcontaineropen1")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public LabContainerOpen1() // Feeds abstract class
+        public LabContainerOpen1() : base("LabContainerOpen1", LanguageHelper.GetFriendlyWord("LargeLabContainerOpenName"), LanguageHelper.GetFriendlyWord("LabContainerOpenDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("labcontaineropen1")) // Feeds abstract class
         {
             this.ClassID = "LabContainerOpen1"; // 1b0b7f6d-9793-469c-9872-dfe690834fee
 
@@ -30,25 +17,25 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("LargeLabContainerOpenName"),
-                                                        LanguageHelper.GetFriendlyWord("LabContainerOpenDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -56,27 +43,19 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add the new TechType to the hand-equipments
-                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("labcontaineropen1"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("labcontaineropen1"));
 
                 this.IsRegistered = true;
             }
@@ -86,6 +65,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: labContainerOpen1.GetGameObject()");
+#endif
             if (_labContainerOpen1 == null)
 #if SUBNAUTICA
                 _labContainerOpen1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_open_01.prefab");

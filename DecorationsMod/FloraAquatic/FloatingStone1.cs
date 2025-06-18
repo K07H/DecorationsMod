@@ -1,17 +1,9 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.FloraAquatic
 {
@@ -24,40 +16,34 @@ namespace DecorationsMod.FloraAquatic
             set => this.Config = value;
         }
 
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public FloatingStone1() : base("FloatingStone1", "FloatingStoneName", "FloatingStoneDescription", "floatingstone1icon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public FloatingStone1()
+        public FloatingStone1() : base("FloatingStone1", LanguageHelper.GetFriendlyWord("FloatingStoneName"), LanguageHelper.GetFriendlyWord("FloatingStoneDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("floatingstone1icon"))
         {
             this.ClassID = "FloatingStone1"; // 228e5af5-a579-4c99-9fb0-04b653f73cd3
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("FloatingStoneName"),
-                                                        LanguageHelper.GetFriendlyWord("FloatingStoneDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.FloatingStone1 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                {
-                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                }),
-            };
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
 
             this.Config = ConfigSwitcher.config_FloatingStone1;
         }
@@ -67,34 +53,26 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Set item occupies 4 slots
-                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to water-plant seed
-                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
+                Nautilus.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("floatingstone1icon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("floatingstone1icon"));
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -104,6 +82,9 @@ namespace DecorationsMod.FloraAquatic
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: floatingStone1.GetGameObject()");
+#endif
             if (_floatingStone1 == null)
 #if SUBNAUTICA
                 _floatingStone1 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Environment/Coral_reef_floating_stones_small_01.prefab");

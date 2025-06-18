@@ -1,57 +1,44 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Fixers;
+﻿using DecorationsMod.Fixers;
+using Nautilus.Assets.PrefabTemplates;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class AlienPillar1 : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public AlienPillar1() : base("AlienPillar1", "AlienPillar1Name", "AlienPillar1Description", "alien_pillar_01")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public AlienPillar1() // Feeds abstract class
+        public AlienPillar1() : base("AlienPillar1", LanguageHelper.GetFriendlyWord("AlienPillar1Name"), LanguageHelper.GetFriendlyWord("AlienPillar1Description"), AssetsHelper.Assets.LoadAsset<Sprite>("alien_pillar_01")) // Feeds abstract class
         {
             this.ClassID = "AlienPillar1"; // 78009225-a9fa-4d21-9580-8719a3368373
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("AlienPillar1Name"),
-                                                        LanguageHelper.GetFriendlyWord("AlienPillar1Description"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.AlienPillar = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 2)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 2)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -59,25 +46,14 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add to the custom buidables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
-
-                // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("alien_pillar_01"));
-#endif
 
                 this.IsRegistered = true;
             }
@@ -87,6 +63,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: alienPillar9.GetGameObject()");
+#endif
             if (_alienPillar9 == null)
 #if SUBNAUTICA
                 _alienPillar9 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Precursor/precursor_deco_props_01.prefab");
@@ -151,14 +130,8 @@ namespace DecorationsMod.NewItems
             if (bml == null)
                 bml = prefab.GetComponentInChildren<BaseModuleLighting>();
             if (bml == null)
-                bml = prefab.AddComponent<BaseModuleLighting>();
-            SkyApplier sa = prefab.GetComponent<SkyApplier>();
-            if (sa == null)
-                sa = prefab.GetComponentInChildren<SkyApplier>();
-            if (sa == null)
-                sa = prefab.AddComponent<SkyApplier>();
-            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
-            sa.anchorSky = Skies.Auto;
+                bml = prefab.EnsureComponent<BaseModuleLighting>();
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab);
 
             return prefab;
         }

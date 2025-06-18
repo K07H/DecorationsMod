@@ -1,30 +1,17 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class GenericSkeleton1 : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public GenericSkeleton1() : base("GenericSkeleton1", "GenericSkeletonName", "GenericSkeletonDescription", "genericskeleton1icon", "1")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public GenericSkeleton1()
+        public GenericSkeleton1() : base("GenericSkeleton1", LanguageHelper.GetFriendlyWord("GenericSkeletonName") + " (1)", LanguageHelper.GetFriendlyWord("GenericSkeletonDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("genericskeleton1icon"))
         {
             this.ClassID = "GenericSkeleton1";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
@@ -32,27 +19,26 @@ namespace DecorationsMod.NewItems
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("Lost_river_generic_skeleton_01");
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("GenericSkeletonName") + " (1)",
-                                                        LanguageHelper.GetFriendlyWord("GenericSkeletonDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.GenericSkeleton1 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         private static GameObject _genericSkeleton1 = null;
@@ -110,9 +96,7 @@ namespace DecorationsMod.NewItems
                 lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
                 // Add sky applier
-                var applier = _genericSkeleton1.AddComponent<SkyApplier>();
-                applier.renderers = renderers;
-                applier.anchorSky = Skies.Auto;
+                PrefabsHelper.UpdateOrAddSkyApplier(_genericSkeleton1, null, renderers);
 
                 // We can pick this item
                 var pickupable = _genericSkeleton1.AddComponent<Pickupable>();
@@ -143,30 +127,22 @@ namespace DecorationsMod.NewItems
                 placeTool.holsterTime = 0.35f;
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Set item occupies 4 slots
-                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Hand Equipment type.
-                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("genericskeleton1icon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("genericskeleton1icon"));
 
                 this.IsRegistered = true;
             }

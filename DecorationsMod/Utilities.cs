@@ -84,7 +84,7 @@ namespace DecorationsMod
         internal static void PrintObject(System.Object o, string indent = "\t")
         {
             Type type = o.GetType();
-            string init = "Component [" + type.Name + "] " + indent;
+            string init = "DEBUG: Component [" + type.Name + "] " + indent;
             Logger.Debug(init + "Attributes:");
             FieldInfo[] fi = type.GetFields();
             if (fi == null || fi.Length <= 0)
@@ -115,11 +115,11 @@ namespace DecorationsMod
         {
             if (tr != null)
             {
-                Logger.Debug("Transform " + indent + "name=[" + tr.name + "] localPos=[" + tr.localPosition.x.ToString() + ";" + tr.localPosition.y.ToString() + ";" + tr.localPosition.z.ToString() + "] localAngles=[" + tr.localEulerAngles.x.ToString() + ";" + tr.localEulerAngles.y.ToString() + ";" + tr.localEulerAngles.z.ToString() + "] localScale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "] pos=[" + tr.position.x.ToString() + ";" + tr.position.y.ToString() + ";" + tr.position.z.ToString() + "] angles=[" + tr.eulerAngles.x.ToString() + ";" + tr.eulerAngles.y.ToString() + ";" + tr.eulerAngles.z.ToString() + "]");
+                Logger.Debug("DEBUG: Transform " + indent + "name=[" + tr.name + "] localPos=[" + tr.localPosition.x.ToString() + ";" + tr.localPosition.y.ToString() + ";" + tr.localPosition.z.ToString() + "] localAngles=[" + tr.localEulerAngles.x.ToString() + ";" + tr.localEulerAngles.y.ToString() + ";" + tr.localEulerAngles.z.ToString() + "] localScale=[" + tr.localScale.x.ToString() + ";" + tr.localScale.y.ToString() + ";" + tr.localScale.z.ToString() + "] pos=[" + tr.position.x.ToString() + ";" + tr.position.y.ToString() + ";" + tr.position.z.ToString() + "] angles=[" + tr.eulerAngles.x.ToString() + ";" + tr.eulerAngles.y.ToString() + ";" + tr.eulerAngles.z.ToString() + "]");
                 foreach (Component c in tr.GetComponents<Component>())
                     if (c.GetType() != typeof(Transform))
                     {
-                        Logger.Debug("Transform " + indent + " => component type=[" + c.GetType().ToString() + "] name=[" + c.name + "]");
+                        Logger.Debug("DEBUG: Transform " + indent + " => component type=[" + c.GetType().ToString() + "] name=[" + c.name + "]");
                         if (details)
                             PrintObject(c, indent + "\t");
                     }
@@ -149,6 +149,74 @@ namespace DecorationsMod
 
         public static string Combine(string path1, string path2) => Path.Combine(path1, path2).Replace('\\', '/');
         public static string Combine(string path1, string path2, string path3) => Path.Combine(path1, path2, path3).Replace('\\', '/');
+    }
+
+    public static class RegionHelper
+    {
+        /// <summary>Supported languages.</summary>
+        public static string[] AvailableLanguages = new string[7] { "en", "fr", "es", "de", "ru", "tr", "nl" };
+
+        /// <summary>Supported country codes.</summary>
+        public enum CountryCode
+        {
+            EN = 0,
+            FR = 1,
+            ES = 2,
+            DE = 3,
+            RU = 4,
+            TR = 5,
+            NL = 6
+        };
+
+        /// <summary>Returns default country code.</summary>
+        public static CountryCode GetDefaultCountryCode() => GetCountryCodeFromLabel(CultureInfo.InstalledUICulture?.TwoLetterISOLanguageName);
+
+        /// <summary>Returns country code from language label.</summary>
+        /// <param name="label">Language label.</param>
+        /// <returns>Returns the associated country code.</returns>
+        public static CountryCode GetCountryCodeFromLabel(string label)
+        {
+            if (!string.IsNullOrEmpty(label) && label.Length == 2)
+            {
+                if (string.Compare(label, "fr", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.FR;
+                else if (string.Compare(label, "ru", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.RU;
+                else if (string.Compare(label, "tr", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.TR;
+                else if (string.Compare(label, "de", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.DE;
+                else if (string.Compare(label, "es", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.ES;
+                else if (string.Compare(label, "nl", true, CultureInfo.InvariantCulture) == 0)
+                    return CountryCode.NL;
+            }
+            return CountryCode.EN;
+        }
+
+        /// <summary>Returns language label from country code.</summary>
+        /// <param name="code">Country code.</param>
+        /// <returns>Returns the associated language label.</returns>
+        public static string GetCountryLabelFromCode(CountryCode code)
+        {
+            switch (code)
+            {
+                case CountryCode.FR:
+                    return "fr";
+                case CountryCode.DE:
+                    return "de";
+                case CountryCode.ES:
+                    return "es";
+                case CountryCode.RU:
+                    return "ru";
+                case CountryCode.TR:
+                    return "tr";
+                case CountryCode.NL:
+                    return "nl";
+                default:
+                    return "en";
+            }
+        }
     }
 
     /// <summary>Class used to display messages from menu.</summary>

@@ -12,12 +12,12 @@ namespace DecorationsMod.Fixers
                 if (techType == item.TechType) // If item being spawned is one of our decoration items.
                 {
 #if DEBUG_FLORA_CONSOLE
-                    Logger.Debug("ItemCmdSpawnAsync_Postfix: T1 TechType=[" + techType.AsString() + "][" + Convert.ToString((int)techType) + "] ClassID=[" + (item.ClassID ?? "null") + "]");
+                    Logger.Debug("DEBUG: ItemCmdSpawnAsync_Postfix: T1 TechType=[" + techType.AsString() + "][" + Convert.ToString((int)techType) + "] ClassID=[" + (item.ClassID ?? "null") + "]");
 #endif
                     if (!string.IsNullOrEmpty(item.ClassID) && CustomFlora.AllPlants.Contains(item.ClassID)) // If item being spawned is one of our new flora.
                     {
 #if DEBUG_FLORA_CONSOLE
-                        Logger.Debug("ItemCmdSpawnAsync_Postfix: T2");
+                        Logger.Debug("DEBUG: ItemCmdSpawnAsync_Postfix: T2");
 #endif
                         TaskResult<GameObject> result = new TaskResult<GameObject>();
                         for (int i = 0; i < number; i++)

@@ -1,31 +1,18 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class SeamothDoll : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public SeamothDoll() : base("SeamothDoll", "SeamothDollName", "SeamothDollDescription", SpriteManager.Get(TechType.Seamoth))
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public SeamothDoll() // Feeds abstract class
+        public SeamothDoll() : base("SeamothDoll", LanguageHelper.GetFriendlyWord("SeamothDollName"), LanguageHelper.GetFriendlyWord("SeamothDollDescription"), SpriteManager.Get(TechType.Seamoth)) // Feeds abstract class
         {
             this.ClassID = "SeamothDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
@@ -33,31 +20,32 @@ namespace DecorationsMod.NewItems
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("seamothpuppet");
             this.GameObject = new GameObject("SeamothDoll");
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("SeamothDollName"),
-                                                        LanguageHelper.GetFriendlyWord("SeamothDollDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.SeamothDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1),
-                        new Ingredient(TechType.Silicone, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Glass, 1),
+                new Ingredient(TechType.Silicone, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Glass, 1),
+                new Ingredient(TechType.Silicone, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         private static GameObject _seamothDoll = null;
@@ -257,49 +245,32 @@ namespace DecorationsMod.NewItems
                 if (bml == null)
                     bml = _seamothDoll.GetComponentInChildren<BaseModuleLighting>();
                 if (bml == null)
-                    bml = _seamothDoll.AddComponent<BaseModuleLighting>();
-                SkyApplier applier = _seamothDoll.GetComponent<SkyApplier>();
-                if (applier == null)
-                    applier = _seamothDoll.GetComponentInChildren<SkyApplier>();
-                if (applier == null)
-                    applier = _seamothDoll.AddComponent<SkyApplier>();
-                applier.renderers = renderers;
-                applier.anchorSky = Skies.Auto;
-                applier.updaterIndex = 0;
+                    bml = _seamothDoll.EnsureComponent<BaseModuleLighting>();
+
+                PrefabsHelper.UpdateOrAddSkyApplier(_seamothDoll, null, renderers);
                 SkyApplier[] appliers = _seamothDoll.GetComponentsInChildren<SkyApplier>();
                 if (appliers != null && appliers.Length > 0)
-                {
                     foreach (SkyApplier ap in appliers)
                     {
                         ap.renderers = renderers;
                         ap.anchorSky = Skies.Auto;
-                        ap.updaterIndex = 0;
                     }
-                }
 
                 // Add lights/model controler
                 SeamothDollController controller = _seamothDoll.AddComponent<SeamothDollController>();
 
                 // Add new TechType to the buildables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.Seamoth));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.Seamoth));
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }

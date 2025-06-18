@@ -1,73 +1,42 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
+﻿using Nautilus.Crafting;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class PenHolder : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
+        public static Sprite _icon = AssetsHelper.Assets.LoadAsset<Sprite>("penholdericon");
 
         [SetsRequiredMembers]
-        public PenHolder() : base("PenHolder", "PenHolderName", "PenHolderDescription", "penholdericon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public PenHolder()
+        public PenHolder() : base("PenHolder", LanguageHelper.GetFriendlyWord("PenHolderName"), LanguageHelper.GetFriendlyWord("PenHolderDescription"), _icon)
         {
             this.ClassID = "PenHolder";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("docking_clerical_penholder");
             this.GameObject = new GameObject(this.ClassID);
-#endif
+
+            this.Sprite = _icon;
+            this.TechType = this.Info.TechType;
 
 #if SUBNAUTICA
-            this.Sprite = AssetsHelper.Assets.LoadAsset<Sprite>("penholdericon");
-#else
-            this.Sprite = AssetsHelper.Assets.LoadAsset<Sprite>("penholdericon");
-#endif
-
-#if !SUBNAUTICA_NAUTILUS
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("PenHolderName"),
-                                                        LanguageHelper.GetFriendlyWord("PenHolderDescription"),
-                                                        this.Sprite,
-                                                        true);
-#endif
-
-#if SUBNAUTICA
-#if SUBNAUTICA_NAUTILUS
-            this.Recipe = new RecipeData()
-#else
-            this.Recipe = new TechData()
-#endif
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
 #else
-            this.Recipe = new RecipeData()
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
 #endif
         }
 
@@ -132,7 +101,7 @@ namespace DecorationsMod.NewItems
                 rb.mass = 0.4f;
 
                 // Add sky applier
-                PrefabsHelper.SetDefaultSkyApplier(_penHolder, renderers);
+                PrefabsHelper.UpdateOrAddSkyApplier(_penHolder, null, renderers);
 
                 // We can pick this item
                 PrefabsHelper.SetDefaultPickupable(_penHolder);
@@ -141,28 +110,19 @@ namespace DecorationsMod.NewItems
                 PrefabsHelper.SetDefaultPlaceTool(_penHolder, collider);
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add the new TechType to Hand Equipment type.
-                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
-#if SUBNAUTICA_NAUTILUS
+                // Set the custom sprite
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("penholdericon"));
+
                 // Set the buildable prefab
                 this.Register();
-#else
-                // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("penholdericon"));
-
-                // Set the buildable prefab
-                PrefabHandler.RegisterPrefab(this);
-#endif
 
                 this.IsRegistered = true;
             }

@@ -1,14 +1,54 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using Nautilus.Handlers;
-#else
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
+using Nautilus.Utility;
 using System.Collections.Generic;
 using UnityEngine;
+using static CraftData;
+using static VFXParticlesPool;
 
 namespace DecorationsMod
 {
+    public class DecoEggInfos
+    {
+        public TechType DiscoveredTechType { get; set; }
+        public TechType UndiscoveredTechType { get; set; }
+        public float ScaleFactor { get; set; }
+
+        public DecoEggInfos(TechType discoveredTechType, TechType undiscoveredTechType, float scaleFactor)
+        {
+            DiscoveredTechType = discoveredTechType;
+            UndiscoveredTechType = undiscoveredTechType;
+            ScaleFactor = scaleFactor;
+        }
+    }
+
+    public class CraftableAndPlaceableItemInfos
+    {
+        public bool MakeCratable { get; set; }
+        public bool MakePlaceable { get; set; }
+        public TechType ItemTechType { get; set; }
+        public List<Ingredient> Recipe { get; set; }
+        public string VFXChild { get; set; }
+        public float LocalMinY { get; set; }
+        public float LocalMaxY { get; set; }
+        public Vector3 PosOffset { get; set; }
+        public Vector3 EulerOffset { get; set; }
+        public float ScaleFactor { get; set; }
+
+        public CraftableAndPlaceableItemInfos(bool makeCratable, bool makePlaceable, TechType itemTechType, List<Ingredient> recipe, string vfxChild, float localMinY, float localMaxY, Vector3 posOffset, Vector3 eulerOffset, float scaleFactor)
+        {
+            MakeCratable = makeCratable;
+            MakePlaceable = makePlaceable;
+            ItemTechType = itemTechType;
+            Recipe = recipe;
+            VFXChild = vfxChild;
+            LocalMinY = localMinY;
+            LocalMaxY = localMaxY;
+            PosOffset = posOffset;
+            EulerOffset = eulerOffset;
+            ScaleFactor = scaleFactor;
+        }
+    }
+
     public static class PlaceToolItems
     {
         private static readonly Dictionary<string, TechType> _batteries = new Dictionary<string, TechType>
@@ -85,6 +125,52 @@ namespace DecorationsMod
             //{ "WorldEntities/seeds/purplebraincoralpiece.prefab", TechType.PurpleBrainCoralPiece },
             //{ "WorldEntities/creatures/gaspod.prefab", TechType.GasPod },
         };
+
+        internal static readonly Dictionary<string, DecoEggInfos> _eggs = new Dictionary<string, DecoEggInfos>
+        {
+            { "WorldEntities/Eggs/BonesharkEgg.prefab", new DecoEggInfos(TechType.BonesharkEgg, TechType.BonesharkEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/CrabsnakeEgg.prefab", new DecoEggInfos(TechType.CrabsnakeEgg, TechType.CrabsnakeEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/CrabSquidEgg.prefab", new DecoEggInfos(TechType.CrabsquidEgg, TechType.CrabsquidEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/CrashEgg.prefab", new DecoEggInfos(TechType.CrashEgg, TechType.CrashEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/CuteEgg.prefab", new DecoEggInfos(TechType.CutefishEgg, TechType.CutefishEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/GasopodEgg.prefab", new DecoEggInfos(TechType.GasopodEgg, TechType.GasopodEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/JellyrayEgg.prefab", new DecoEggInfos(TechType.JellyrayEgg, TechType.JellyrayEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/JumperEgg.prefab", new DecoEggInfos(TechType.JumperEgg, TechType.JumperEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/LavaLizardEgg.prefab", new DecoEggInfos(TechType.LavaLizardEgg, TechType.LavaLizardEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/MesmerEgg.prefab", new DecoEggInfos(TechType.MesmerEgg, TechType.MesmerEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/RabbitRayEgg.prefab", new DecoEggInfos(TechType.RabbitrayEgg, TechType.RabbitrayEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/ReefbackEgg.prefab", new DecoEggInfos(TechType.ReefbackEgg, TechType.ReefbackEggUndiscovered, 0.5f) },
+            { "WorldEntities/Eggs/SandsharkEgg.prefab", new DecoEggInfos(TechType.SandsharkEgg, TechType.SandsharkEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/ShockerEgg.prefab", new DecoEggInfos(TechType.ShockerEgg, TechType.ShockerEggUndiscovered, 1.0f) },
+            { "WorldEntities/Eggs/SpadefishEgg.prefab", new DecoEggInfos(TechType.SpadefishEgg, TechType.SpadefishEggUndiscovered, 0.65f) },
+            { "WorldEntities/Eggs/StalkerEgg.prefab", new DecoEggInfos(TechType.StalkerEgg, TechType.StalkerEggUndiscovered, 1.0f) }
+        };
+
+        internal static readonly Dictionary<string, CraftableAndPlaceableItemInfos> _craftableAndPlaceableItems = new Dictionary<string, CraftableAndPlaceableItemInfos>
+        {
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_arcade_gorgetoy_01.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.ArcadeGorgetoy, new List<Ingredient>() { new Ingredient(TechType.FiberMesh, 2) }, "descent_arcade_gorgetoy_01", -0.1f, 0.6f, new Vector3(0f, 0f, 0.04f), new Vector3(-90f, 0f, 0f), 1.0f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_02.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.Cap1, new List<Ingredient>() { new Ingredient(TechType.FiberMesh, 1) }, "descent_plaza_shelf_cap_02", -0.2f, 0.2f, new Vector3(0f, 0.06f, 0.04f), new Vector3(-90f, -90f, 0f), 1.0f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_03.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.Cap2, new List<Ingredient>() { new Ingredient(TechType.FiberMesh, 1) }, "descent_plaza_shelf_cap_03", -0.2f, 0.2f, new Vector3(0f, 0.06f, 0.04f), new Vector3(-90f, -90f, 0f), 1.0f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_close_01.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.LabContainer, new List<Ingredient>() { new Ingredient(TechType.Glass, 2) }, "biodome_lab_containers_close_01", -0.1f, 0.8f, new Vector3(0f, 0f, 0.04f), new Vector3(0f, 0f, 0f), 1.0f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_close_02.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.LabContainer2, new List<Ingredient>() { new Ingredient(TechType.Glass, 1) }, "biodome_lab_containers_close_02", -0.1f, 0.5f, new Vector3(0f, 0f, 0.04f), new Vector3(0f, 0f, 0f), 1.0f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/biodome_lab_containers_tube_01.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.LabContainer3, new List<Ingredient>() { new Ingredient(TechType.Glass, 1) }, "biodome_lab_containers_tube_01", -0.1f, 0.36f, new Vector3(0f, 0f, 0.04f), new Vector3(0f, 0f, 0f), 1.0f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_01.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.LabEquipment1, new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.Glass, 1) }, "discovery_lab_props_01", -0.2f, 0.6f, new Vector3(0f, 0f, 0.04f), new Vector3(-90f, 0f, 0f), 0.75f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_02.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.LabEquipment2, new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.Glass, 1) }, "discovery_lab_props_02", -0.2f, 0.8f, new Vector3(0f, 0f, 0.04f), new Vector3(0f, 0f, 0f), 0.75f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_03.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.LabEquipment3, new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.Glass, 1) }, "discovery_lab_props_03", -0.2f, 0.8f, new Vector3(0f, 0f, 0.04f), new Vector3(0f, 0f, 0f), 0.75f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/docking_luggage_01_bag4.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.LuggageBag, new List<Ingredient>() { new Ingredient(TechType.FiberMesh, 2), new Ingredient(TechType.Silicone, 1) }, "model", -0.2f, 0.7f, new Vector3(0f, 0f, 0.04f), new Vector3(0f, 0f, 0f), 0.8f) },
+            { "WorldEntities/Environment/Wrecks/poster_aurora.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.PosterAurora, new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.FiberMesh, 1) }, "model", -0.5f, 0.2f, new Vector3(0f, 0.4f, 0.04f), new Vector3(0f, 0f, 0f), 0.25f) },
+            { "WorldEntities/Environment/Wrecks/poster_exosuit_01.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.PosterExoSuit1, new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.FiberMesh, 1) }, "model", -0.6f, 0.2f, new Vector3(0f, 0.5f, 0.04f), new Vector3(0f, 0f, 0f), 0.25f) },
+            { "WorldEntities/Environment/Wrecks/poster_exosuit_02.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.PosterExoSuit2, new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.FiberMesh, 1) }, "model", -0.6f, 0.2f, new Vector3(0f, 0.5f, 0.04f), new Vector3(0f, 0f, 0f), 0.25f) },
+            { "WorldEntities/Environment/Wrecks/poster_kitty.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.PosterKitty, new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.FiberMesh, 1) }, "model", -0.6f, 0.2f, new Vector3(0f, 0.5f, 0.04f), new Vector3(0f, 0f, 0f), 0.25f) },
+            { "WorldEntities/Environment/Wrecks/Poster.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.Poster, new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.FiberMesh, 1) }, "model", -0.6f, 0.2f, new Vector3(0f, 0.5f, 0.04f), new Vector3(0f, 0f, 0f), 0.25f) },
+            { "WorldEntities/Doodads/Debris/Wrecks/Decoration/starship_souvenir.prefab", new CraftableAndPlaceableItemInfos(true, false, TechType.StarshipSouvenir, new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.Glass, 1) }, "starship_souvenir", -0.2f, 0.5f, new Vector3(0f, 0.1f, 0.04f), new Vector3(-90f, -90f, 0f), 1.0f) },
+            { "WorldEntities/Doodads/Precursor/PrecursorKey_Blue.prefab", new CraftableAndPlaceableItemInfos(false, true, TechType.PrecursorKey_Blue, null, null, -0.2f, 0.3f, new Vector3(0f, 0.05f, 0.04f), new Vector3(0f, 0f, 0f), 0.8f) },
+            { "WorldEntities/Doodads/Precursor/PrecursorKey_Orange.prefab", new CraftableAndPlaceableItemInfos(false, true, TechType.PrecursorKey_Orange, null, null, -0.2f, 0.3f, new Vector3(0f, 0.05f, 0.04f), new Vector3(0f, 0f, 0f), 0.8f) },
+            { "WorldEntities/Doodads/Precursor/PrecursorKey_Purple.prefab", new CraftableAndPlaceableItemInfos(false, true, TechType.PrecursorKey_Purple, null, null, -0.2f, 0.3f, new Vector3(0f, 0.05f, 0.04f), new Vector3(0f, 0f, 0f), 0.8f) },
+            { "WorldEntities/Doodads/Precursor/PrecursorKey_Red.prefab", new CraftableAndPlaceableItemInfos(true, true, TechType.PrecursorKey_Red, new List<Ingredient>() { new Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount) },  null, -0.2f, 0.3f, new Vector3(0f, 0.05f, 0.04f), new Vector3(0f, 0f, 0f), 0.8f) },
+            { "WorldEntities/Doodads/Precursor/PrecursorKey_White.prefab", new CraftableAndPlaceableItemInfos(true, true, TechType.PrecursorKey_White, new List<Ingredient>() { new Ingredient(ConfigSwitcher.PrecursorKeysResource, ConfigSwitcher.PrecursorKeysResourceAmount) },  null, -0.2f, 0.3f, new Vector3(0f, 0.05f, 0.04f), new Vector3(0f, 0f, 0f), 0.8f) }
+        };
+
 #else
         private static readonly Dictionary<string, TechType> _items = new Dictionary<string, TechType>
         {
@@ -161,10 +247,10 @@ namespace DecorationsMod
             PrefabsHelper.SetDefaultPlaceTool(item, collider);
 
             // Add TechType to the hand-equipments
-            CraftDataHandler.SetEquipmentType(techType, EquipmentType.Hand);
+            Nautilus.Handlers.CraftDataHandler.SetEquipmentType(techType, EquipmentType.Hand);
 
             // Set as selectable item.
-            CraftDataHandler.SetQuickSlotType(techType, QuickSlotType.Selectable);
+            Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(techType, QuickSlotType.Selectable);
         }
 
         private static void MakeSnacksPlaceable()
@@ -174,52 +260,59 @@ namespace DecorationsMod
             {
                 BoxCollider snack1Collider = snack1.AddComponent<BoxCollider>();
                 snack1Collider.size = new Vector3(0.17f, 0.18f, 0.8f);
+                snack1.AddComponent<CustomPlaceToolController>();
+                snack1.AddComponent<Snack1_PT>();
                 MakeItemPlaceable(TechType.Snack1, snack1, snack1Collider);
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Warning("Could not load type [{0}]", "WorldEntities/Food/Snack1");
+                Logger.Warning("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack1");
 #endif
             GameObject snack2 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Food/Snack2.prefab");
             if (snack2 != null)
             {
                 BoxCollider snack2Collider = snack2.AddComponent<BoxCollider>();
                 snack2Collider.size = new Vector3(0.17f, 0.18f, 0.8f);
+                snack2.AddComponent<CustomPlaceToolController>();
+                snack2.AddComponent<Snack2_PT>();
                 MakeItemPlaceable(TechType.Snack2, snack2, snack2Collider);
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Warning("Could not load type [{0}]", "WorldEntities/Food/Snack2");
+                Logger.Warning("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack2");
 #endif
             GameObject snack3 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Food/Snack3.prefab");
             if (snack3 != null)
             {
                 BoxCollider snack3Collider = snack3.AddComponent<BoxCollider>();
                 snack3Collider.size = new Vector3(0.17f, 0.18f, 0.8f);
+                snack3.AddComponent<CustomPlaceToolController>();
+                snack3.AddComponent<Snack3_PT>();
                 MakeItemPlaceable(TechType.Snack3, snack3, snack3Collider);
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Warning("Could not load type [{0}]", "WorldEntities/Food/Snack3");
+                Logger.Warning("WARNING: Could not load type [{0}]", "WorldEntities/Food/Snack3");
 #endif
 
-            // Swap Snack2 and Snack3 techtypes (as tooltips do not match models)
-            if (snack2 != null && snack3 != null)
-            {
-                var snack2PrefabId = snack2.GetComponent<PrefabIdentifier>();
-                var snack3PrefabId = snack3.GetComponent<PrefabIdentifier>();
-                var snack2TechTag = snack2.GetComponent<TechTag>();
-                var snack3TechTag = snack3.GetComponent<TechTag>();
-                string tmpclassid = snack2PrefabId.ClassId;
-                snack2PrefabId.ClassId = snack3PrefabId.ClassId;
-                snack3PrefabId.ClassId = tmpclassid;
-                string tmpname = snack2PrefabId.name;
-                snack2PrefabId.name = snack3PrefabId.name;
-                snack3PrefabId.name = tmpname;
-                TechType tmpTechType = snack2TechTag.type;
-                snack2TechTag.type = snack3TechTag.type;
-                snack3TechTag.type = tmpTechType;
-            }
+            // Swap Snack2 and Snack3 (as tooltips do not match models)
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Debug("DEBUG: Swapping Snack2 and Snack3 (as tooltips do not match models).");
+#endif
+            string lang = Language.main.GetCurrentLanguage();
+            string snack2Name = Language.main.Get("Snack2");
+            string snack2Tooltip = Language.main.Get("Tooltip_Snack2");
+            var snack2Icon = SpriteManager.Get(TechType.Snack2);
+            string snack3Name = Language.main.Get("Snack3");
+            string snack3Tooltip = Language.main.Get("Tooltip_Snack3");
+            var snack3Icon = SpriteManager.Get(TechType.Snack3);
+
+            Nautilus.Handlers.LanguageHandler.SetLanguageLine("Snack2", snack3Name, lang);
+            Nautilus.Handlers.LanguageHandler.SetLanguageLine("Tooltip_Snack2", snack3Tooltip, lang);
+            Nautilus.Handlers.LanguageHandler.SetLanguageLine("Snack3", snack2Name, lang);
+            Nautilus.Handlers.LanguageHandler.SetLanguageLine("Tooltip_Snack3", snack2Tooltip, lang);
+            Nautilus.Handlers.SpriteHandler.RegisterSprite(TechType.Snack2, snack3Icon);
+            Nautilus.Handlers.SpriteHandler.RegisterSprite(TechType.Snack3, snack2Icon);
         }
 
         private static void MakeBatteryPlaceable(TechType batteryTechType, string batteryPath)
@@ -251,7 +344,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Warning("Could not load type [{0}]", batteryPath);
+                Logger.Warning("WARNING: Could not load type [{0}]", batteryPath);
 #endif
         }
 
@@ -404,7 +497,7 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Warning("Could not load type [{0}]", materialPath);
+                Logger.Warning("WARNING: Could not load type [{0}]", materialPath);
 #endif
         }
 
@@ -457,8 +550,53 @@ namespace DecorationsMod
             }
 #if DEBUG_ITEMS_REGISTRATION
             else
-                Logger.Warning("Could not load type [{0}]", itemPath);
+                Logger.Warning("WARNING: Could not load type [{0}]", itemPath);
 #endif
+        }
+
+        private static void MakeEggCraftableAndPlaceable(DecoEggInfos eggInfo, string eggPath)
+        {
+            if (eggInfo == null || string.IsNullOrEmpty(eggPath))
+                return;
+            GameObject egg = PrefabsHelper.LoadGameObjectFromFilename(eggPath);
+            if (egg != null)
+            {
+                if (ConfigSwitcher.EnableRegularEggs)
+                {
+                    Logger.Info($"INFO: Making {eggInfo.DiscoveredTechType.AsString()} craftable...");
+                    // Associate recipe to the new TechType
+                    Nautilus.Crafting.RecipeData recipe = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+                    { new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount) })
+                    { craftAmount = 1 };
+                    Nautilus.Handlers.CraftDataHandler.SetRecipeData(eggInfo.DiscoveredTechType, recipe);
+                    // Set unlock conditions
+                    if (ConfigSwitcher.EnableEggsAtStart || ConfigSwitcher.EnableEggsWhenCreatureScanned)
+                        Nautilus.Handlers.KnownTechHandler.UnlockOnStart(eggInfo.DiscoveredTechType);
+                    // Add fabricating animation
+                    var fabricating = egg.GetComponent<VFXFabricating>();
+                    if (fabricating == null)
+                        fabricating = egg.AddComponent<VFXFabricating>();
+                    fabricating.localMinY = -0.2f;
+                    fabricating.localMaxY = 0.8f;
+                    fabricating.posOffset = new Vector3(0f, 0.05f, 0.04f);
+                    fabricating.eulerOffset = new Vector3(0f, 0f, 0f);
+                    fabricating.scaleFactor = eggInfo.ScaleFactor;
+                }
+                if (ConfigSwitcher.EnablePlaceItems && ConfigSwitcher.EnablePlaceEggs)
+                {
+                    Logger.Info($"INFO: Making {eggInfo.DiscoveredTechType.AsString()} placeable...");
+                    // We can place this egg
+                    PrefabsHelper.SetDefaultPlaceTool(egg);
+                    // Add undiscovered egg to the hand-equipments and set as selectable
+                    Nautilus.Handlers.CraftDataHandler.SetEquipmentType(eggInfo.UndiscoveredTechType, EquipmentType.Hand);
+                    Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(eggInfo.UndiscoveredTechType, QuickSlotType.Selectable);
+                    // Add egg to the hand-equipments and set as selectable
+                    Nautilus.Handlers.CraftDataHandler.SetEquipmentType(eggInfo.DiscoveredTechType, EquipmentType.Hand);
+                    Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(eggInfo.DiscoveredTechType, QuickSlotType.Selectable);
+                }
+            }
+            else
+                Logger.Warning($"WARNING: Could not load game object for {eggInfo.DiscoveredTechType.ToString()}.");
         }
 
         private static bool _madeItemsPlaceable = false;
@@ -466,7 +604,7 @@ namespace DecorationsMod
         {
             if (!_madeItemsPlaceable)
             {
-                Logger.Info("Making items placeable/pickupable...");
+                Logger.Info("INFO: Making items placeable/pickupable...");
 
                 // Decorative items
                 foreach (KeyValuePair<string, TechType> it in _items)
@@ -486,6 +624,289 @@ namespace DecorationsMod
                         MakeMaterialPlaceable(mat.Value, mat.Key);
 
                 _madeItemsPlaceable = true;
+            }
+        }
+
+        private static void MakeItemsCraftableAndPlaceable(CraftableAndPlaceableItemInfos itemInfos, string itemPath)
+        {
+            if (itemInfos == null || string.IsNullOrEmpty(itemPath))
+                return;
+            GameObject item = PrefabsHelper.LoadGameObjectFromFilename(itemPath);
+            if (item != null)
+            {
+                if (itemInfos.MakePlaceable)
+                {
+                    // Add the new TechType to the hand-equipments
+                    Nautilus.Handlers.CraftDataHandler.SetEquipmentType(itemInfos.ItemTechType, EquipmentType.Hand);
+                    // Set quick slot type.
+                    Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(itemInfos.ItemTechType, QuickSlotType.Selectable);
+                }
+
+                if (itemInfos.MakeCratable)
+                {
+                    if (itemInfos.Recipe != null)
+                    {
+                        // Update item recipe
+                        Nautilus.Crafting.RecipeData recipe = new Nautilus.Crafting.RecipeData(itemInfos.Recipe) { craftAmount = 1 };
+                        Nautilus.Handlers.CraftDataHandler.SetRecipeData(itemInfos.ItemTechType, recipe);
+                    }
+
+                    // Update fabricating animation
+                    VFXFabricating fabricating = null;
+                    if (itemInfos.VFXChild != null)
+                    {
+                        GameObject child = item.FindChild(itemInfos.VFXChild);
+                        if (child != null)
+                        {
+                            fabricating = child.GetComponent<VFXFabricating>();
+                            if (fabricating == null)
+                                fabricating = child.AddComponent<VFXFabricating>();
+                        }
+                    }
+                    if (fabricating == null)
+                    {
+                        fabricating = item.GetComponent<VFXFabricating>();
+                        if (fabricating == null)
+                            fabricating = item.AddComponent<VFXFabricating>();
+                    }
+                    if (fabricating != null)
+                    {
+                        fabricating.localMinY = itemInfos.LocalMinY;
+                        fabricating.localMaxY = itemInfos.LocalMaxY;
+                        fabricating.posOffset = itemInfos.PosOffset;
+                        fabricating.eulerOffset = itemInfos.EulerOffset;
+                        fabricating.scaleFactor = itemInfos.ScaleFactor;
+                        fabricating.enabled = true;
+                    }
+                }
+
+                if (itemInfos.ItemTechType == TechType.PrecursorKey_Red || itemInfos.ItemTechType == TechType.PrecursorKey_White)
+                {
+                    // We can pick this item
+                    var pickupable = item.GetComponent<Pickupable>();
+                    if (pickupable == null)
+                        pickupable = item.GetComponentInChildren<Pickupable>();
+                    if (pickupable != null)
+                    {
+                        pickupable.isPickupable = true;
+                        pickupable.randomizeRotationWhenDropped = true;
+                    }
+
+                    // Set unlock conditions
+                    if (itemInfos.MakeCratable)
+                    {
+                        if (ConfigSwitcher.AddItemsWhenDiscovered)
+                            Nautilus.Handlers.KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorKey_Purple, new TechType[] { itemInfos.ItemTechType });
+                        else
+                            Nautilus.Handlers.KnownTechHandler.UnlockOnStart(itemInfos.ItemTechType);
+                    }
+
+                    // Make placeable
+                    if (itemInfos.MakePlaceable)
+                    {
+                        // Retrieve collider
+                        Collider collider = item.GetComponent<BoxCollider>();
+                        if (collider != null)
+                            collider.isTrigger = true;
+                        // Update PlaceTool
+                        var cpt = item.GetComponent<CustomPlaceToolController>();
+                        if (cpt == null)
+                            cpt = item.AddComponent<CustomPlaceToolController>();
+                        if (itemInfos.ItemTechType == TechType.PrecursorKey_Red)
+                        {
+                            RedKey_PT placeTool = item.GetComponent<RedKey_PT>();
+                            if (placeTool == null)
+                                placeTool = item.AddComponent<RedKey_PT>();
+                            placeTool.allowedInBase = true;
+                            placeTool.allowedOnBase = true;
+                            placeTool.allowedOnCeiling = false;
+                            placeTool.allowedOnConstructable = true;
+                            placeTool.allowedOnGround = true;
+                            placeTool.allowedOnRigidBody = true;
+                            placeTool.allowedOnWalls = false;
+                            placeTool.allowedOutside = true;
+                            placeTool.rotationEnabled = true;
+                            placeTool.enabled = true;
+                            placeTool.hasAnimations = false;
+                            placeTool.hasBashAnimation = false;
+                            placeTool.hasFirstUseAnimation = false;
+                            placeTool.mainCollider = collider;
+                            placeTool.pickupable = pickupable;
+                        }
+                        else if (itemInfos.ItemTechType == TechType.PrecursorKey_White)
+                        {
+                            WhiteKey_PT placeTool = item.GetComponent<WhiteKey_PT>();
+                            if (placeTool == null)
+                                placeTool = item.AddComponent<WhiteKey_PT>();
+                            placeTool.allowedInBase = true;
+                            placeTool.allowedOnBase = true;
+                            placeTool.allowedOnCeiling = false;
+                            placeTool.allowedOnConstructable = true;
+                            placeTool.allowedOnGround = true;
+                            placeTool.allowedOnRigidBody = true;
+                            placeTool.allowedOnWalls = false;
+                            placeTool.allowedOutside = true;
+                            placeTool.rotationEnabled = true;
+                            placeTool.enabled = true;
+                            placeTool.hasAnimations = false;
+                            placeTool.hasBashAnimation = false;
+                            placeTool.hasFirstUseAnimation = false;
+                            placeTool.mainCollider = collider;
+                            placeTool.pickupable = pickupable;
+                        }
+                    }
+
+                    // Update sky applier
+                    PrefabsHelper.UpdateOrAddSkyApplier(item);
+                }
+                else if (itemInfos.ItemTechType == TechType.PrecursorKey_Blue || itemInfos.ItemTechType == TechType.PrecursorKey_Orange || itemInfos.ItemTechType == TechType.PrecursorKey_Purple)
+                {
+                    // Make placeable
+                    if (itemInfos.MakePlaceable)
+                    {
+                        // We can pick this item
+                        var pickupable = item.GetComponent<Pickupable>();
+                        if (pickupable == null)
+                            pickupable = item.GetComponentInChildren<Pickupable>();
+                        if (pickupable != null)
+                        {
+                            pickupable.isPickupable = true;
+                            pickupable.randomizeRotationWhenDropped = true;
+                        }
+                        // Retrieve collider
+                        Collider collider = item.GetComponent<BoxCollider>();
+                        if (collider != null)
+                            collider.isTrigger = true;
+                        // Update PlaceTool
+                        var cpt = item.GetComponent<CustomPlaceToolController>();
+                        if (cpt == null)
+                            cpt = item.AddComponent<CustomPlaceToolController>();
+                        if (itemInfos.ItemTechType == TechType.PrecursorKey_Blue)
+                        {
+                            BlueKey_PT placeTool = item.GetComponent<BlueKey_PT>();
+                            if (placeTool == null)
+                                placeTool = item.AddComponent<BlueKey_PT>();
+                            placeTool.allowedInBase = true;
+                            placeTool.allowedOnBase = true;
+                            placeTool.allowedOnCeiling = false;
+                            placeTool.allowedOnConstructable = true;
+                            placeTool.allowedOnGround = true;
+                            placeTool.allowedOnRigidBody = true;
+                            placeTool.allowedOnWalls = false;
+                            placeTool.allowedOutside = true;
+                            placeTool.rotationEnabled = true;
+                            placeTool.enabled = true;
+                            placeTool.hasAnimations = false;
+                            placeTool.hasBashAnimation = false;
+                            placeTool.hasFirstUseAnimation = false;
+                            placeTool.mainCollider = collider;
+                            placeTool.pickupable = pickupable;
+                        }
+                        else if (itemInfos.ItemTechType == TechType.PrecursorKey_Orange)
+                        {
+                            OrangeKey_PT placeTool = item.GetComponent<OrangeKey_PT>();
+                            if (placeTool == null)
+                                placeTool = item.AddComponent<OrangeKey_PT>();
+                            placeTool.allowedInBase = true;
+                            placeTool.allowedOnBase = true;
+                            placeTool.allowedOnCeiling = false;
+                            placeTool.allowedOnConstructable = true;
+                            placeTool.allowedOnGround = true;
+                            placeTool.allowedOnRigidBody = true;
+                            placeTool.allowedOnWalls = false;
+                            placeTool.allowedOutside = true;
+                            placeTool.rotationEnabled = true;
+                            placeTool.enabled = true;
+                            placeTool.hasAnimations = false;
+                            placeTool.hasBashAnimation = false;
+                            placeTool.hasFirstUseAnimation = false;
+                            placeTool.mainCollider = collider;
+                            placeTool.pickupable = pickupable;
+                        }
+                        else if (itemInfos.ItemTechType == TechType.PrecursorKey_Purple)
+                        {
+                            PurpleKey_PT placeTool = item.GetComponent<PurpleKey_PT>();
+                            if (placeTool == null)
+                                placeTool = item.AddComponent<PurpleKey_PT>();
+                            placeTool.allowedInBase = true;
+                            placeTool.allowedOnBase = true;
+                            placeTool.allowedOnCeiling = false;
+                            placeTool.allowedOnConstructable = true;
+                            placeTool.allowedOnGround = true;
+                            placeTool.allowedOnRigidBody = true;
+                            placeTool.allowedOnWalls = false;
+                            placeTool.allowedOutside = true;
+                            placeTool.rotationEnabled = true;
+                            placeTool.enabled = true;
+                            placeTool.hasAnimations = false;
+                            placeTool.hasBashAnimation = false;
+                            placeTool.hasFirstUseAnimation = false;
+                            placeTool.mainCollider = collider;
+                            placeTool.pickupable = pickupable;
+                        }
+                    }
+
+                    // Update sky applier
+                    PrefabsHelper.UpdateOrAddSkyApplier(item);
+                }
+                else
+                {
+                    // Unlock at start if it's not a precursor tablet
+                    if (itemInfos.MakeCratable && itemInfos.ItemTechType != TechType.NutrientBlock)
+                        Nautilus.Handlers.KnownTechHandler.UnlockOnStart(itemInfos.ItemTechType);
+
+                    // Update PlaceTool
+                    PrefabsHelper.SetDefaultPlaceTool(item, null, null, false, false, true);
+                    PlaceTool placeTool = item.GetComponent<GenericPlaceTool>();
+                    if (placeTool == null)
+                        placeTool = item.GetComponent<PlaceTool>();
+                    if (placeTool == null)
+                        placeTool = item.GetComponentInChildren<GenericPlaceTool>();
+                    if (placeTool == null)
+                        placeTool = item.GetComponentInChildren<PlaceTool>();
+                    if (placeTool != null)
+                    {
+                        if (itemInfos.ItemTechType == TechType.Poster
+                            || itemInfos.ItemTechType == TechType.PosterAurora
+                            || itemInfos.ItemTechType == TechType.PosterExoSuit1
+                            || itemInfos.ItemTechType == TechType.PosterExoSuit2
+                            || itemInfos.ItemTechType == TechType.PosterKitty
+#if BELOWZERO
+                            || itemInfos.ItemTechType == TechType.PosterSpyPenguin
+#endif
+                        )
+                        {
+                            placeTool.allowedOnGround = false;
+                            placeTool.allowedOnWalls = true;
+                            placeTool.hasAnimations = false;
+                            placeTool.hasBashAnimation = false;
+                            placeTool.hasFirstUseAnimation = false;
+                        }
+                        else
+                        {
+                            placeTool.allowedOnGround = true;
+                            placeTool.allowedOnWalls = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static bool _madeItemsCraftable = false;
+        public static void MakeItemsCraftableAndPlaceable()
+        {
+            if (!_madeItemsCraftable)
+            {
+                // Eggs
+                foreach (KeyValuePair<string, DecoEggInfos> egg in _eggs)
+                    MakeEggCraftableAndPlaceable(egg.Value, egg.Key);
+
+                // Other items
+                Logger.Info($"INFO: Making other items cratable and/or placeable...");
+                foreach (KeyValuePair<string, CraftableAndPlaceableItemInfos> item in _craftableAndPlaceableItems)
+                    MakeItemsCraftableAndPlaceable(item.Value, item.Key);
+
+                _madeItemsCraftable = true;
             }
         }
     }

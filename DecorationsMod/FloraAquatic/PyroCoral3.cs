@@ -1,17 +1,9 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.FloraAquatic
 {
@@ -24,40 +16,34 @@ namespace DecorationsMod.FloraAquatic
             set => this.Config = value;
         }
 
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public PyroCoral3() : base("PyroCoral3", "PyroCoralName", "PyroCoralDescription", "pyrocoral3icon", "3")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public PyroCoral3()
+        public PyroCoral3() : base("PyroCoral3", LanguageHelper.GetFriendlyWord("PyroCoralName") + " (3)", LanguageHelper.GetFriendlyWord("PyroCoralDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("pyrocoral3icon"))
         {
             this.ClassID = "PyroCoral3"; // 0b8388eb-4337-47f9-ad9a-1988a88da5fa
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("PyroCoralName") + " (3)",
-                                                        LanguageHelper.GetFriendlyWord("PyroCoralDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.PyroCoral3 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                {
-                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                }),
-            };
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
 
             this.Config = ConfigSwitcher.config_PyroCoral3;
         }
@@ -67,34 +53,26 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Set item occupies 4 slots
-                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to water-plant seed
-                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
+                Nautilus.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("pyrocoral3icon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("pyrocoral3icon"));
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -104,6 +82,9 @@ namespace DecorationsMod.FloraAquatic
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: pyroCoral3.GetGameObject()");
+#endif
             if (_pyroCoral3 == null)
 #if SUBNAUTICA
                 _pyroCoral3 = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Lost_river/lost_river_pillar_03.prefab");
@@ -112,7 +93,7 @@ namespace DecorationsMod.FloraAquatic
 #endif
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T1");
+            Logger.Debug("DEBUG: PyroCoral3 T1");
 #endif
             GameObject prefab = GameObject.Instantiate(_pyroCoral3);
 
@@ -121,7 +102,7 @@ namespace DecorationsMod.FloraAquatic
             PrefabsHelper.AddNewGenericSeed(ref prefab);
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T2");
+            Logger.Debug("DEBUG: PyroCoral3 T2");
 #endif
             // Remove light
             Light light = prefab.GetComponentInChildren<Light>();
@@ -129,15 +110,15 @@ namespace DecorationsMod.FloraAquatic
                 GameObject.DestroyImmediate(light);
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T3");
+            Logger.Debug("DEBUG: PyroCoral3 T3");
             Logger.PrintTransform(prefab.transform);
-            Logger.Debug("PyroCoral3 T3b");
+            Logger.Debug("DEBUG: PyroCoral3 T3b");
 #endif
             // Scale prefab
             prefab.FindChild("lost_river_pillar_03").transform.localScale *= 0.15f;
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T4");
+            Logger.Debug("DEBUG: PyroCoral3 T4");
 #endif
             // Shrink colliders
             Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
@@ -150,7 +131,7 @@ namespace DecorationsMod.FloraAquatic
             }
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T5");
+            Logger.Debug("DEBUG: PyroCoral3 T5");
 #endif
             // Update rigid body
             var rb = prefab.GetComponent<Rigidbody>();
@@ -166,7 +147,7 @@ namespace DecorationsMod.FloraAquatic
             rb.constraints = RigidbodyConstraints.None;
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T6");
+            Logger.Debug("DEBUG: PyroCoral3 T6");
 #endif
             // Add EntityTag
             var entityTag = prefab.AddComponent<EntityTag>();
@@ -177,21 +158,21 @@ namespace DecorationsMod.FloraAquatic
             techTag.type = this.TechType;
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T7");
+            Logger.Debug("DEBUG: PyroCoral3 T7");
 #endif
             // Update prefab identifier
             var prefabId = prefab.GetComponent<PrefabIdentifier>();
             prefabId.ClassId = this.ClassID;
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T8");
+            Logger.Debug("DEBUG: PyroCoral3 T8");
 #endif
             // Update large world entity
             var lwe = prefab.GetComponent<LargeWorldEntity>();
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T9");
+            Logger.Debug("DEBUG: PyroCoral3 T9");
 #endif
             // Add world forces
             var worldForces = prefab.AddComponent<WorldForces>();
@@ -267,7 +248,7 @@ namespace DecorationsMod.FloraAquatic
             //liveMixin.startHealthPercent = 1.0f;
 
 #if DEBUG_CORALS
-            Logger.Debug("PyroCoral3 T10");
+            Logger.Debug("DEBUG: PyroCoral3 T10");
 #endif
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);

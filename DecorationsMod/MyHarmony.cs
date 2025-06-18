@@ -1,4 +1,5 @@
-﻿using DecorationsMod.Fixers;
+﻿using BepInEx;
+using DecorationsMod.Fixers;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace DecorationsMod
         {
             if ((HarmonyInstance = new Harmony("com.osubmarin.decorationsmod")) == null)
             {
-                Logger.Error("Unable to initialize Harmony!");
+                Logger.Error("ERROR: Unable to initialize Harmony!");
                 return false;
             }
             return true;
@@ -31,17 +32,17 @@ namespace DecorationsMod
         {
             if (_allPatched)
                 return;
-            Logger.Info("Patching with Harmony...");
+            Logger.Info("INFO: Patching with Harmony...");
             // Fix cargo crates items-containers
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Fixing cargo crates item containers...");
+            Logger.Debug("DEBUG: Fixing cargo crates item containers...");
 #endif
             var onProtoDeserializeObjectTreeMethod = typeof(StorageContainer).GetMethod("OnProtoDeserializeObjectTree", BindingFlags.Public | BindingFlags.Instance);
             var onProtoDeserializeObjectTreePostfix = typeof(StorageContainerFixer).GetMethod("OnProtoDeserializeObjectTree_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(onProtoDeserializeObjectTreeMethod, null, new HarmonyMethod(onProtoDeserializeObjectTreePostfix));
             // Failsafe on lockers and cargo crates deconstruction + custom base parts
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Adding failsafe on lockers and cargo crates deconstruction...");
+            Logger.Debug("DEBUG: Adding failsafe on lockers and cargo crates deconstruction...");
 #endif
             var canDeconstructMethod = typeof(Constructable).GetMethod("CanDeconstruct", BindingFlags.Public | BindingFlags.Instance);
             var canDeconstructPrefix = typeof(ConstructableFixer).GetMethod("CanDeconstruct_Prefix", BindingFlags.Public | BindingFlags.Static);
@@ -54,7 +55,7 @@ namespace DecorationsMod
                 PatchBatteries();
             // Fix aquarium sky appliers
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Fixing aquarium sky appliers...");
+            Logger.Debug("DEBUG: Fixing aquarium sky appliers...");
 #endif
             var addItemMethod = typeof(Aquarium).GetMethod("AddItem", BindingFlags.NonPublic | BindingFlags.Instance);
             var addItemPostfix = typeof(AquariumFixer).GetMethod("AddItem_Postfix", BindingFlags.Public | BindingFlags.Static);
@@ -64,7 +65,7 @@ namespace DecorationsMod
             HarmonyInstance.Patch(removeItemMethod, new HarmonyMethod(removeItemPrefix), null);
             // Fix alternative use for placeable items
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Fixing alternative use for placeable items...");
+            Logger.Debug("DEBUG: Fixing alternative use for placeable items...");
 #endif
             if (ConfigSwitcher.EnablePlaceItems)
             {
@@ -84,7 +85,7 @@ namespace DecorationsMod
             }
             // Fix colors for custom fabricators icons
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Fixing colors for custom fabricators icons...");
+            Logger.Debug("DEBUG: Fixing colors for custom fabricators icons...");
 #endif
             var createIconMethod = typeof(uGUI_CraftingMenu).GetMethod("CreateIcon", BindingFlags.NonPublic | BindingFlags.Instance);
             //var createIconMethod = typeof(uGUI_CraftNode).GetMethod("CreateIcon", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -92,7 +93,7 @@ namespace DecorationsMod
             HarmonyInstance.Patch(createIconMethod, null, new HarmonyMethod(createIconPostfix));
             // Setup new items unlock conditions
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Setting up new items unlock conditions...");
+            Logger.Debug("DEBUG: Setting up new items unlock conditions...");
 #endif
             var isCraftRecipeUnlockedMethod = typeof(CrafterLogic).GetMethod("IsCraftRecipeUnlocked", BindingFlags.Public | BindingFlags.Static);
             var isCraftRecipeUnlockedPostfix = typeof(CrafterLogicFixer).GetMethod("IsCraftRecipeUnlocked_Postfix", BindingFlags.Public | BindingFlags.Static);
@@ -102,7 +103,7 @@ namespace DecorationsMod
             HarmonyInstance.Patch(getTechUnlockStateMethod, new HarmonyMethod(getTechUnlockStatePrefix), null);
             // Load added "new item" notifications and ladders positions when game loads
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Setting up data-loading for notifications and ladders...");
+            Logger.Debug("DEBUG: Setting up data-loading for notifications and ladders...");
 #endif
             var loadMostRecentSavedGameMethod = typeof(uGUI_MainMenu).GetMethod("LoadMostRecentSavedGame", BindingFlags.NonPublic | BindingFlags.Instance);
             var loadMostRecentSavedGamePrefix = typeof(uGUI_MainMenuFixer).GetMethod("LoadMostRecentSavedGame_Prefix", BindingFlags.Public | BindingFlags.Static);
@@ -115,7 +116,7 @@ namespace DecorationsMod
             HarmonyInstance.Patch(loadMethod, new HarmonyMethod(loadPrefix), null);
             // Save added "new item" notifications and ladders positions when game saves
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Setting up data-saving for notifications and ladders...");
+            Logger.Debug("DEBUG: Setting up data-saving for notifications and ladders...");
 #endif
             var saveGameMethod = typeof(IngameMenu).GetMethod("SaveGame", BindingFlags.Public | BindingFlags.Instance);
             var saveGamePostfix = typeof(IngameMenuFixer).GetMethod("SaveGame_Postfix", BindingFlags.Public | BindingFlags.Static);
@@ -128,23 +129,33 @@ namespace DecorationsMod
             //HarmonyInstance.Patch(onYesMethod, new HarmonyMethod(onYesPrefix), null);
             // Handles "Hide Degasi base (500m)" feature
 #if DEBUG_HARMONY_PATCHING
-                Logger.Debug("Adding biome checks...");
+            Logger.Debug("DEBUG: Adding biome checks...");
 #endif
             var calculateBiomeMethod = typeof(Player).GetMethod("CalculateBiome", BindingFlags.NonPublic | BindingFlags.Instance);
             var calculateBiomePostfix = typeof(PlayerFixer).GetMethod("CalculateBiome_Postfix", BindingFlags.Public | BindingFlags.Static);
             HarmonyInstance.Patch(calculateBiomeMethod, null, new HarmonyMethod(calculateBiomePostfix));
+#if DEBUG_HARMONY_PATCHING
+            Logger.Debug("DEBUG: Adding lights state management for the light switch...");
+#endif
+            var subRootOnProtoSerializeMethod = typeof(SubRoot).GetMethod(nameof(SubRoot.OnProtoSerialize), BindingFlags.Public | BindingFlags.Instance);
+            var subRootOnProtoSerializePostfix = typeof(SubRootFixer).GetMethod(nameof(SubRootFixer.OnProtoSerialize_Postfix), BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(subRootOnProtoSerializeMethod, null, new HarmonyMethod(subRootOnProtoSerializePostfix));
+            var subRootOnProtoDeserializeMethod = typeof(SubRoot).GetMethod(nameof(SubRoot.OnProtoDeserialize), BindingFlags.Public | BindingFlags.Instance);
+            var subRootOnProtoDeserializePostfix = typeof(SubRootFixer).GetMethod(nameof(SubRootFixer.OnProtoDeserialize_Postfix), BindingFlags.Public | BindingFlags.Static);
+            HarmonyInstance.Patch(subRootOnProtoDeserializeMethod, null, new HarmonyMethod(subRootOnProtoDeserializePostfix));
+
             if (ConfigSwitcher.EnableNewFlora)
             {
                 // Give salt when purple pinecone is cut
 #if DEBUG_HARMONY_PATCHING
-                Logger.Debug("Setting up purple pinecone harvested material...");
+                Logger.Debug("DEBUG: Setting up purple pinecone harvested material...");
 #endif
                 var giveResourceOnDamageMethod = typeof(Knife).GetMethod("GiveResourceOnDamage", BindingFlags.NonPublic | BindingFlags.Instance);
                 var giveResourceOnDamagePostfix = typeof(KnifeFixer).GetMethod("GiveResourceOnDamage_Postfix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(giveResourceOnDamageMethod, null, new HarmonyMethod(giveResourceOnDamagePostfix));
                 // Change custom plants tooltips
 #if DEBUG_HARMONY_PATCHING
-                Logger.Debug("Setting up plant tooltips...");
+                Logger.Debug("DEBUG: Setting up plant tooltips...");
 #endif
                 var onHandHoverMethod = typeof(GrownPlant).GetMethod("OnHandHover", BindingFlags.Public | BindingFlags.Instance);
                 var onHandHoverPostfix = typeof(GrownPlantFixer).GetMethod("OnHandHover_Postfix", BindingFlags.Public | BindingFlags.Static);
@@ -154,7 +165,7 @@ namespace DecorationsMod
                 HarmonyInstance.Patch(plant_onHandClickMethod, new HarmonyMethod(plant_onHandClickPrefix), null);
                 // Make new flora spawn as seeds when using console commands (instead of grown plants)
 #if DEBUG_HARMONY_PATCHING
-                Logger.Debug("Making plants spawning as seeds...");
+                Logger.Debug("DEBUG: Making plants spawning as seeds...");
 #endif
                 /*
                 var onConsoleCommand_itemMethod = typeof(InventoryConsoleCommands).GetMethod("OnConsoleCommand_item", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -174,7 +185,7 @@ namespace DecorationsMod
                 HarmonyInstance.Patch(SpawnAsyncMethod, null, new HarmonyMethod(SpawnAsyncPostfix));
                 // Handles pland/seed state upon drop and pickup
 #if DEBUG_HARMONY_PATCHING
-                Logger.Debug("Setting up plants interactions...");
+                Logger.Debug("DEBUG: Setting up plants interactions...");
 #endif
 #if SUBNAUTICA
                 var dropMethod = typeof(Pickupable).GetMethod("Drop", new Type[] { typeof(Vector3), typeof(Vector3), typeof(bool) });
@@ -188,10 +199,11 @@ namespace DecorationsMod
                 HarmonyInstance.Patch(onHandClickMethod, new HarmonyMethod(onHandClickPrefix), null);
 
             }
+
             if (ConfigSwitcher.EnableCustomBaseParts)
             {
 #if DEBUG_HARMONY_PATCHING
-                Logger.Debug("Setting up custom base parts...");
+                Logger.Debug("DEBUG: Setting up custom base parts...");
 #endif
                 // Handles outdoor ladder positioning
                 var setPlaceOnSurfaceMethod = typeof(Builder).GetMethod("SetPlaceOnSurface", BindingFlags.NonPublic | BindingFlags.Static);
@@ -202,6 +214,7 @@ namespace DecorationsMod
                 var checkSurfaceTypePostfix = typeof(BuilderFixer).GetMethod("CheckSurfaceType_Postfix", BindingFlags.Public | BindingFlags.Static);
                 HarmonyInstance.Patch(checkSurfaceTypeMethod, null, new HarmonyMethod(checkSurfaceTypePostfix));
             }
+
             _allPatched = true;
         }
 
@@ -212,7 +225,7 @@ namespace DecorationsMod
             if (_patchedBatteries)
                 return;
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Making batteries and powercells placeable...");
+            Logger.Debug("DEBUG: Making batteries and powercells placeable...");
 #endif
             var allowedToAddMethod = typeof(Equipment).GetMethod("AllowedToAdd", BindingFlags.Public | BindingFlags.Instance);
             var allowedToAddPrefix = typeof(EquipmentFixer).GetMethod("AllowedToAdd_Prefix", BindingFlags.Public | BindingFlags.Static);
@@ -260,7 +273,7 @@ namespace DecorationsMod
             if (autoLoadMod != null && autoLoadMod.Enable)
             {
 #if DEBUG_HARMONY_PATCHING
-                Logger.Debug("Fixing for AutoLoad mod...");
+                Logger.Debug("DEBUG: Fixing for AutoLoad mod...");
 #endif
                 var beginAsyncSceneLoadMethod = typeof(uGUI_SceneLoading).GetMethod("BeginAsyncSceneLoad", BindingFlags.Public | BindingFlags.Instance);
                 var beginAsyncSceneLoadPrefix = typeof(AutoLoadModFixer).GetMethod("BeginAsyncSceneLoad_Prefix", BindingFlags.Public | BindingFlags.Static);
@@ -277,7 +290,7 @@ namespace DecorationsMod
             if (_fixedSignInput)
                 return;
 #if DEBUG_HARMONY_PATCHING
-            Logger.Debug("Fixing uGUI_SignInput loading...");
+            Logger.Debug("DEBUG: Fixing uGUI_SignInput loading...");
 #endif
             var updateScaleMethod = typeof(uGUI_SignInput).GetMethod("UpdateScale", BindingFlags.NonPublic | BindingFlags.Instance);
             if (updateScaleMethod != null)

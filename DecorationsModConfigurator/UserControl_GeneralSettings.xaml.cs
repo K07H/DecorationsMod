@@ -28,6 +28,7 @@ namespace DecorationsModConfigurator
                 this.EnablePlaceItems = Configuration.Instance.EnablePlaceItems;
                 this.EnablePlaceMaterials = Configuration.Instance.EnablePlaceMaterials;
                 this.EnablePlaceBatteries = Configuration.Instance.EnablePlaceBatteries;
+                this.EnablePlaceEggs = Configuration.Instance.EnablePlaceEggs;
                 this.EnableNewFlora = Configuration.Instance.EnableNewFlora;
                 this.FixAquariumLighting = Configuration.Instance.FixAquariumLighting;
                 this.EnableAquariumGlassGlowing = Configuration.Instance.EnableAquariumGlassGlowing;
@@ -81,6 +82,7 @@ namespace DecorationsModConfigurator
         public bool EnablePlaceItems { get { return Configuration.Instance.EnablePlaceItems; } set { Configuration.Instance.EnablePlaceItems = value; } }
         public bool EnablePlaceMaterials { get { return Configuration.Instance.EnablePlaceMaterials; } set { Configuration.Instance.EnablePlaceMaterials = value; } }
         public bool EnablePlaceBatteries { get { return Configuration.Instance.EnablePlaceBatteries; } set { Configuration.Instance.EnablePlaceBatteries = value; } }
+        public bool EnablePlaceEggs { get { return Configuration.Instance.EnablePlaceEggs; } set { Configuration.Instance.EnablePlaceEggs = value; } }
         public bool EnableNewFlora { get { return Configuration.Instance.EnableNewFlora; } set { Configuration.Instance.EnableNewFlora = value; RefreshMenuVisibilities(); } }
         public bool FixAquariumLighting { get { return Configuration.Instance.FixAquariumLighting; } set { Configuration.Instance.FixAquariumLighting = value; } }
         public bool EnableAquariumGlassGlowing { get { return Configuration.Instance.EnableAquariumGlassGlowing; } set { Configuration.Instance.EnableAquariumGlassGlowing = value; } }
@@ -101,6 +103,8 @@ namespace DecorationsModConfigurator
         public string Config_EnablePlaceMaterialsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceMaterialsDescription"); } set { } }
         public string Config_EnablePlaceBatteries { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceBatteries"); } set { } }
         public string Config_EnablePlaceBatteriesDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceBatteriesDescription"); } set { } }
+        public string Config_EnablePlaceEggs { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceEggs"); } set { } }
+        public string Config_EnablePlaceEggsDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnablePlaceEggsDescription"); } set { } }
         public string Config_EnableNewFlora { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewFlora"); } set { } }
         public string Config_EnableNewFloraDescription { get { return LanguageHelper.GetFriendlyWord("Config_EnableNewFloraDescription"); } set { } }
         public string Config_FixAquariumLighting { get { return LanguageHelper.GetFriendlyWord("Config_FixAquariumLighting"); } set { } }
@@ -189,12 +193,14 @@ namespace DecorationsModConfigurator
         {
             GRD_EnablePlaceBatteries.Visibility = Visibility.Visible;
             GRD_EnablePlaceMaterials.Visibility = Visibility.Visible;
+            GRD_EnablePlaceEggs.Visibility = Visibility.Visible;
         }
 
         private void CB_EnablePlaceItems_Unchecked(object sender, RoutedEventArgs e)
         {
             GRD_EnablePlaceBatteries.Visibility = Visibility.Collapsed;
             GRD_EnablePlaceMaterials.Visibility = Visibility.Collapsed;
+            GRD_EnablePlaceEggs.Visibility = Visibility.Collapsed;
         }
     }
 }

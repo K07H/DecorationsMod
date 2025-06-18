@@ -1,21 +1,13 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.FloraAquatic
 {
@@ -28,13 +20,8 @@ namespace DecorationsMod.FloraAquatic
             set => this.Config = value;
         }
 
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public MushroomTree2() : base("MushroomTree2", "MushroomTree2Name", "MushroomTreeDescription", "mushroomtree2icon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public MushroomTree2()
+        public MushroomTree2() : base("MushroomTree2", LanguageHelper.GetFriendlyWord("MushroomTree2Name"), LanguageHelper.GetFriendlyWord("MushroomTreeDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("mushroomtree2icon"))
         {
             this.ClassID = "MushroomTree2";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
@@ -42,27 +29,26 @@ namespace DecorationsMod.FloraAquatic
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("MyMushroomTree1");
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("MushroomTree2Name"),
-                                                        LanguageHelper.GetFriendlyWord("MushroomTreeDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.MushroomTree2 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                {
-                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, Convert.ToInt32((float)ConfigSwitcher.FloraRecipiesResourceAmount * 1.4f))
-                }),
-            };
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, Convert.ToInt32((float)ConfigSwitcher.FloraRecipiesResourceAmount * 1.4f))
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, Convert.ToInt32((float)ConfigSwitcher.FloraRecipiesResourceAmount * 1.4f))
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
 
             this.Config = ConfigSwitcher.config_MushroomTree2;
         }
@@ -72,37 +58,29 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Set item occupies 4 slots
-                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                 // Add the new TechType to Harvest types
-                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Set item background to normal (both land & water plant)
-                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
+                Nautilus.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("mushroomtree2icon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("mushroomtree2icon"));
 
                 // Set unlock condition
-                KnownTechHandler.SetAnalysisTechEntry(TechType.TreeMushroomPiece, new TechType[] { this.TechType });
+                Nautilus.Handlers.KnownTechHandler.SetAnalysisTechEntry(TechType.TreeMushroomPiece, new TechType[] { this.TechType });
 
                 this.IsRegistered = true;
             }
@@ -112,6 +90,9 @@ namespace DecorationsMod.FloraAquatic
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: mushroomTree2.GetGameObject()");
+#endif
             if (_mushroomTree2 == null)
                 _mushroomTree2 = AssetsHelper.Assets.LoadAsset<GameObject>("MyMushroomTree1");
 
@@ -366,7 +347,7 @@ namespace DecorationsMod.FloraAquatic
             liveMixin.data.maxHealth = Config.Health;
 
             // Add sky applier
-            PrefabsHelper.SetDefaultSkyApplier(prefab, saRenderers.ToArray(), Skies.Auto, true);
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab, null, saRenderers.ToArray()); // dynamic true?
 
             // Hide plant and show seed
             PrefabsHelper.HidePlantAndShowSeed(prefab.transform, this.ClassID);

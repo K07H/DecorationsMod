@@ -3,13 +3,13 @@
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>DecorationsMod</AssemblyName>
 	<Description>A Subnautica mod that adds a lot of decorations with features.</Description>
-    <Version>2.0.3</Version>
+    <Version>2.1.0</Version>
     <Authors>OSubMarin (legendarytools@gmail.com)</Authors>
     <Company>LC-IT S. (OSubMarin)</Company>
     <Product>DecorationsMod</Product>
     <Title>DecorationsMod</Title>
     <PackageId>DecorationsMod</PackageId>
-    <Copyright>Copyright © 2019-2023. Tous droits réservés.</Copyright>
+    <Copyright>Copyright © 2019-2025. Tous droits réservés.</Copyright>
     <LangVersion>11</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -28,37 +28,37 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\DebugSN\</OutputPath>
-    <DefineConstants>$(DefineConstants);TRACE;DEBUG;SUBNAUTICA;SUBNAUTICA_NAUTILUS;DEBUG_ITEMS_REGISTRATION;DEBUG_HARMONY_PATCHING</DefineConstants>
+    <DefineConstants>$(DefineConstants);TRACE;DEBUG;SUBNAUTICA;SUBNAUTICA_NAUTILUS;DEBUG_ITEMS_REGISTRATION;DEBUG_HARMONY_PATCHING;DEBUG_ALIENARTEFACTS;DEBUG_AQUARIUM;DEBUG_CARGO_CRATES;DEBUG_CONFIG_CHANGED;DEBUG_CORALS;DEBUG_COVE_TREE;DEBUG_CRABCLAWKELP;DEBUG_CUSTOM_PICTURE_FRAME;DEBUG_CYCLOPS_DOLL;DEBUG_EGGS_TECHTYPE_SELECTOR;DEBUG_FLORA;DEBUG_FLORA_ANIMATION;DEBUG_FLORA_CONSOLE;DEBUG_FLORA_ENTRY;DEBUG_FLORA_TECHTYPE_SELECTOR;DEBUG_KNIFE;DEBUG_LAMP;DEBUG_PLACE_TOOL;DEBUG_PRECURSOR_TECHTYPE_SELECTOR;DEBUG_PREFABS;DEBUG_SEEDS;DEBUG_SKY_APPLIERS;DEBUG_STOOL;DEBUG_TECHTYPE_SELECTOR;DEBUG_TREES;DEBUG_WARPER_SPECIMEN</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <SubnauticaDir>S:\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
-    <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Modding Helper</SMLDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugSML|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\DebugSN\</OutputPath>
-    <DefineConstants>$(DefineConstants);TRACE;DEBUG;SUBNAUTICA;DEBUG_ITEMS_REGISTRATION;DEBUG_HARMONY_PATCHING</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <SubnauticaDir>S:\Steam\steamapps\common\Subnautica</SubnauticaDir>
-    <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
-    <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Modding Helper</SMLDir>
+    <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Nautilus</SMLDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugBZ|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\DebugSN\</OutputPath>
     <DefineConstants>$(DefineConstants);TRACE;DEBUG;BELOWZERO;DEBUG_ITEMS_REGISTRATION;DEBUG_HARMONY_PATCHING</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <SubnauticaDir>S:\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
+    <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Nautilus</SMLDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugSML|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\DebugSN\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE;DEBUG;SUBNAUTICA;DEBUG_ITEMS_REGISTRATION;DEBUG_HARMONY_PATCHING</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
     <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Modding Helper</SMLDir>
   </PropertyGroup>
@@ -69,20 +69,9 @@
     <DefineConstants>$(DefineConstants);SUBNAUTICA;SUBNAUTICA_NAUTILUS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
-    <SubnauticaDir>S:\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
-    <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Modding Helper</SMLDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSML|AnyCPU'">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\ReleaseSN\</OutputPath>
-    <DefineConstants>$(DefineConstants);SUBNAUTICA</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>2</WarningLevel>
-    <SubnauticaDir>S:\Steam\steamapps\common\Subnautica</SubnauticaDir>
-    <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
-    <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Modding Helper</SMLDir>
+    <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Nautilus</SMLDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBZ|AnyCPU'">
     <DebugType>none</DebugType>
@@ -91,7 +80,18 @@
     <DefineConstants>$(DefineConstants);BELOWZERO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
-    <SubnauticaDir>S:\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
+    <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Nautilus</SMLDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSML|AnyCPU'">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\ReleaseSN\</OutputPath>
+    <DefineConstants>$(DefineConstants);SUBNAUTICA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>2</WarningLevel>
+    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
     <SMLDir>$(SubnauticaDir)\BepInEx\plugins\Modding Helper</SMLDir>
   </PropertyGroup>
@@ -99,9 +99,9 @@
     <ApplicationIcon>configurator.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SMLHelper">
-      <HintPath>$(SubnauticaDir)\BepInEx\plugins\Modding Helper\SMLHelper.dll</HintPath>
-    </Reference>
+	<Reference Include="SMLHelper">
+		<HintPath>$(SubnauticaDir)\BepInEx\plugins\Modding Helper\SMLHelper.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssetsHelper.cs" />
@@ -126,11 +126,7 @@
     <Compile Include="CustomPlaceTools.cs" />
     <Compile Include="DecorationsMod.cs" />
     <Compile Include="DecorationItem.cs" />
-    <Compile Include="ExistingItems\ArcadeGorgetoy.cs" />
-    <Compile Include="ExistingItems\Cap1.cs" />
-    <Compile Include="ExistingItems\Cap2.cs" />
     <Compile Include="Controllers\ExosuitDollController.cs" />
-    <Compile Include="ExistingItems\PosterPeng.cs" />
     <Compile Include="Fixers\AquariumFixer.cs" />
     <Compile Include="Fixers\AutoLoadModFixer.cs" />
     <Compile Include="Fixers\BuilderFixer.cs" />
@@ -145,6 +141,7 @@
     <Compile Include="Fixers\PictureFrameFixer.cs" />
     <Compile Include="Fixers\PlayerFixer.cs" />
     <Compile Include="Fixers\SpawnConsoleCommandFixer.cs" />
+    <Compile Include="Fixers\SubRootFixer.cs" />
     <Compile Include="Fixers\uGUI_CraftNodeFixer.cs" />
     <Compile Include="Fixers\uGUI_MainMenuFixer.cs" />
     <Compile Include="Fixers\DECOuGUI_SignInputFixer.cs" />
@@ -165,25 +162,9 @@
     <Compile Include="NewItems\DecorativeControlTerminal.cs" />
     <Compile Include="NewItems\DecorativeTechBox.cs" />
     <Compile Include="NewItems\LongPlanterB.cs" />
-    <Compile Include="NewItems\EggCrabsnake.cs" />
-    <Compile Include="NewItems\EggBoneshark.cs" />
-    <Compile Include="NewItems\EggCrabSquid.cs" />
-    <Compile Include="NewItems\EggCrash.cs" />
-    <Compile Include="NewItems\EggCute.cs" />
-    <Compile Include="NewItems\EggGasopod.cs" />
     <Compile Include="NewItems\EggGhostLeviathan.cs" />
-    <Compile Include="NewItems\EggJellyray.cs" />
-    <Compile Include="NewItems\EggJumper.cs" />
-    <Compile Include="NewItems\EggLavaLizard.cs" />
-    <Compile Include="NewItems\EggMesmer.cs" />
-    <Compile Include="NewItems\EggRabbitRay.cs" />
-    <Compile Include="NewItems\EggReefback.cs" />
-    <Compile Include="NewItems\EggSandshark.cs" />
     <Compile Include="NewItems\EggSeaDragon.cs" />
     <Compile Include="NewItems\EggSeaEmperor.cs" />
-    <Compile Include="NewItems\EggShocker.cs" />
-    <Compile Include="NewItems\EggSpadefish.cs" />
-    <Compile Include="NewItems\EggStalker.cs" />
     <Compile Include="Fabricator_Decorations.cs" />
     <Compile Include="Fabricator_Flora.cs" />
     <Compile Include="Fixers\ConstructableFixer.cs" />
@@ -250,11 +231,6 @@
     <Compile Include="NewItems\AlienArtefact8.cs" />
     <Compile Include="NewItems\AlienArtefact9.cs" />
     <Compile Include="NewItems\AlienPillar1.cs" />
-    <Compile Include="NewItems\AlienTabletBlue.cs" />
-    <Compile Include="NewItems\AlienTabletOrange.cs" />
-    <Compile Include="NewItems\AlienTabletPurple.cs" />
-    <Compile Include="NewItems\AlienTabletRed.cs" />
-    <Compile Include="NewItems\AlienTabletWhite.cs" />
     <Compile Include="NewItems\BarBottle1.cs" />
     <Compile Include="NewItems\BarBottle2.cs" />
     <Compile Include="NewItems\BarBottle3.cs" />
@@ -292,7 +268,6 @@
     <Compile Include="Flora\LandPlant1.cs" />
     <Compile Include="Flora\LandTree1.cs" />
     <Compile Include="NewItems\LongPlanterA.cs" />
-    <Compile Include="NewItems\NutrientBlock.cs" />
     <Compile Include="NewItems\OutdoorLadder.cs" />
     <Compile Include="NewItems\PaperTrash.cs" />
     <Compile Include="NewItems\Pen.cs" />
@@ -311,18 +286,6 @@
     <Compile Include="NewItems\CircuitBox3d.cs" />
     <Compile Include="NewItems\CuddleFishDoll.cs" />
     <Compile Include="NewItems\EatMyDiction.cs" />
-    <Compile Include="ExistingItems\LabContainer1.cs" />
-    <Compile Include="ExistingItems\LabContainer2.cs" />
-    <Compile Include="ExistingItems\LabContainer3.cs" />
-    <Compile Include="ExistingItems\LabEquipment1.cs" />
-    <Compile Include="ExistingItems\LabEquipment2.cs" />
-    <Compile Include="ExistingItems\LabEquipment3.cs" />
-    <Compile Include="ExistingItems\LuggageBag.cs" />
-    <Compile Include="ExistingItems\PosterAurora.cs" />
-    <Compile Include="ExistingItems\PosterExosuit1.cs" />
-    <Compile Include="ExistingItems\PosterExosuit2.cs" />
-    <Compile Include="ExistingItems\PosterKitty.cs" />
-    <Compile Include="ExistingItems\PosterNS2.cs" />
     <Compile Include="NewItems\CircuitBox1.cs" />
     <Compile Include="NewItems\CircuitBox2.cs" />
     <Compile Include="NewItems\CircuitBox3.cs" />
@@ -346,8 +309,6 @@
     <Compile Include="NewItems\SofaStr2.cs" />
     <Compile Include="NewItems\SofaStr3.cs" />
     <Compile Include="NewItems\DecorationsSpecimenAnalyzer.cs" />
-    <Compile Include="ExistingItems\StarshipSouvenir.cs" />
-    <Compile Include="ExistingItems\ToyCar.cs" />
     <Compile Include="LanguageHelper.cs" />
     <Compile Include="NewItems\LabCart.cs" />
     <Compile Include="NewItems\LabContainer4.cs" />
@@ -371,12 +332,13 @@
     <Compile Include="NewItems\WarperPart9.cs" />
     <Compile Include="NewItems\WorkDeskScreen1.cs" />
     <Compile Include="NewItems\WorkDeskScreen2.cs" />
+    <Compile Include="OtherItems.cs" />
     <Compile Include="PlaceToolItems.cs" />
     <Compile Include="PrefabsHelper.cs" />
     <Compile Include="DecorationsMod_EntryPoint.cs" />
     <Compile Include="Controllers\SeamothDollController.cs" />
     <Compile Include="Utilities.cs" />
-	<PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="1.1.0" />
     <PackageReference Include="UnityEngine.Modules" Version="2019.4.36" IncludeAssets="compile" />
@@ -417,11 +379,13 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /Y /I &quot;$(TargetPath)&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\&quot;" />
-    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Config.txt&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\&quot;" />
-    <Exec Command="xcopy /Y /I &quot;$(ProjectDir)Configurator.lnk&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\&quot;" />
-    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\decorationassets.assets&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\&quot;" />
-    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\decorationassets.manifest&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\&quot;" />
-    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\lang\&quot; &quot;S:\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\lang\&quot;" />
+    <Exec Command="xcopy /Y /I &quot;$(TargetPath)&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\&quot;" />
+    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Config.txt&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\&quot;" />
+    <Exec Command="xcopy /Y /I &quot;$(ProjectDir)Configurator.lnk&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\&quot;" />
+    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\lightswitch.assets&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\&quot;" />
+    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\lightswitch.manifest&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\&quot;" />
+    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\lightswitch.png&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\&quot;" />
+    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\decorationassets.assets&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\&quot;" />
+    <Exec Command="xcopy /Y /I &quot;$(TargetFolder)Assets\decorationassets.manifest&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\Assets\&quot;" />
   </Target>
 </Project>

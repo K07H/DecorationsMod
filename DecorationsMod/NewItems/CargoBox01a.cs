@@ -1,17 +1,9 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
@@ -19,13 +11,8 @@ namespace DecorationsMod.NewItems
     {
         private GameObject CargoCrateContainer = null;
 
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public CargoBox01a() : base("CargoBox01a", "CargoBox1aName", "CargoBox1aDescription", "cargobox01aicon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public CargoBox01a()
+        public CargoBox01a() : base("CargoBox01a", LanguageHelper.GetFriendlyWord("CargoBox1aName"), LanguageHelper.GetFriendlyWord("CargoBox1aDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("cargobox01aicon"))
         {
             this.ClassID = "CargoBox01a";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
@@ -33,26 +20,25 @@ namespace DecorationsMod.NewItems
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("cargobox01a");
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("CargoBox1aName"),
-                                                        LanguageHelper.GetFriendlyWord("CargoBox1aDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 2)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 2)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         private static GameObject _cargoBox1a = null;
@@ -124,25 +110,17 @@ namespace DecorationsMod.NewItems
                 var cargoBoxController = _cargoBox1a.AddComponent<CargoBoxController>();
 
                 // Add new TechType to the buildables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorModule, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorModule, this.TechType);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("cargobox01aicon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("cargobox01aicon"));
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -183,13 +161,7 @@ namespace DecorationsMod.NewItems
             GameObject.DestroyImmediate(cb);
 
             // Update sky applier
-            SkyApplier sa = prefab.GetComponent<SkyApplier>();
-            if (sa == null)
-                sa = prefab.GetComponentInChildren<SkyApplier>();
-            if (sa == null)
-                sa = prefab.AddComponent<SkyApplier>();
-            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
-            sa.anchorSky = Skies.Auto;
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab);
 
             return prefab;
         }

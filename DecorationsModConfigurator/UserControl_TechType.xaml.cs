@@ -39,7 +39,7 @@ namespace DecorationsModConfigurator
                 {
                     SetValue(SelectedTechTypeProperty, value);
 #if DEBUG_TECHTYPE_SELECTOR
-                    Logger.Log("DEBUG: TechType selection updated to [{0}]", value);
+                    Logger.Debug("DEBUG: TechType selection updated to [{0}]", value);
 #endif
                     TransitionTechType = SelectedTechType;
                 }
@@ -55,7 +55,7 @@ namespace DecorationsModConfigurator
                 {
                     SetValue(CustomTechTypeProperty, value);
 #if DEBUG_TECHTYPE_SELECTOR
-                    Logger.Log("DEBUG: Custom TechType updated to [{0}]", value);
+                    Logger.Debug("DEBUG: Custom TechType updated to [{0}]", value);
 #endif
                     TransitionTechType = CustomTechType;
                 }
@@ -125,7 +125,7 @@ namespace DecorationsModConfigurator
                                     if (boxItem != null && !string.IsNullOrEmpty(boxItem.Name) && string.Compare(boxItem.Name, newTechType, true, CultureInfo.InvariantCulture) == 0)
                                     {
 #if DEBUG_TECHTYPE_SELECTOR
-                                        Logger.Log("DEBUG: Found TechType [{0}] in combobox name=[{1}].", elem.Key.AsString(), boxItem.Name);
+                                        Logger.Debug("DEBUG: Found TechType [{0}] in combobox name=[{1}].", elem.Key.AsString(), boxItem.Name);
 #endif
                                         ctrl.ComboBox_TechType.SelectedItem = boxItem;
                                         isCustom = false;
@@ -138,7 +138,7 @@ namespace DecorationsModConfigurator
                         if (isCustom)
                         {
 #if DEBUG_TECHTYPE_SELECTOR
-                            Logger.Log("DEBUG: TechType [{0}] not found in combobox, adding it as custom TechType.", newTechType);
+                            Logger.Debug("DEBUG: TechType [{0}] not found in combobox, adding it as custom TechType.", newTechType);
 #endif
                             ctrl.TB_CustomTechTypeName.Text = TryGetTechTypeNameFromId(newTechType);
                             ctrl.CustomTechType = ctrl.TB_CustomTechTypeName.Text;
@@ -155,7 +155,7 @@ namespace DecorationsModConfigurator
                                 if (boxItem != null && !string.IsNullOrEmpty(boxItem.Name) && string.Compare(boxItem.Name, AllTechTypes[techType], true, CultureInfo.InvariantCulture) == 0)
                                 {
 #if DEBUG_TECHTYPE_SELECTOR
-                                    Logger.Log("DEBUG: Found TechType [{0}] in combobox name=[{1}].", techType.AsString(), boxItem.Name);
+                                    Logger.Debug("DEBUG: Found TechType [{0}] in combobox name=[{1}].", techType.AsString(), boxItem.Name);
 #endif
                                     ctrl.ComboBox_TechType.SelectedItem = boxItem;
                                     isCustom = false;
@@ -166,7 +166,7 @@ namespace DecorationsModConfigurator
                         if (isCustom)
                         {
 #if DEBUG_TECHTYPE_SELECTOR
-                            Logger.Log("DEBUG: TechType [{0}] not found in combobox, adding it as custom TechType.", newTechType);
+                            Logger.Debug("DEBUG: TechType [{0}] not found in combobox, adding it as custom TechType.", newTechType);
 #endif
                             ctrl.TB_CustomTechTypeName.Text = TryGetTechTypeNameFromId(newTechType);
                             ctrl.CustomTechType = ctrl.TB_CustomTechTypeName.Text;
@@ -175,7 +175,7 @@ namespace DecorationsModConfigurator
                     else
                     {
 #if DEBUG_TECHTYPE_SELECTOR
-                        Logger.Log("DEBUG: TechType \"{0}\" is unknown. Using CUSTOM mode.", newTechType);
+                        Logger.Debug("DEBUG: TechType \"{0}\" is unknown. Using CUSTOM mode.", newTechType);
 #endif
                         ctrl.TB_CustomTechTypeName.Text = TryGetTechTypeNameFromId(newTechType);
                         ctrl.CustomTechType = ctrl.TB_CustomTechTypeName.Text;

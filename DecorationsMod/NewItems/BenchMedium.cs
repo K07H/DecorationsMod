@@ -1,28 +1,15 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Fixers;
+﻿using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class BenchMedium : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public BenchMedium() : base("BenchMedium", "BenchMediumName", "BenchDescription", "benchmediumicon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public BenchMedium()
+        public BenchMedium() : base("BenchMedium", LanguageHelper.GetFriendlyWord("BenchMediumName"), LanguageHelper.GetFriendlyWord("BenchDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("benchmediumicon"))
         {
             // Feed DecortionItem interface
             this.ClassID = "BenchMedium";
@@ -30,29 +17,28 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("BenchMediumName"),
-                                                        LanguageHelper.GetFriendlyWord("BenchDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.BenchMedium = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -60,25 +46,17 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add new TechType to the buildables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.Bench);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.Bench);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("benchmediumicon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("benchmediumicon"));
 
                 this.IsRegistered = true;
             }
@@ -88,6 +66,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: bench.GetGameObject()");
+#endif
             if (_bench == null)
                 _bench = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Bench.prefab");
 
@@ -125,16 +106,7 @@ namespace DecorationsMod.NewItems
             benchTile.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f); //new Vector3(99.7f, 99.7f, 99.7f);
 
             // Update sky applier
-            Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
-#if SUBNAUTICA
-            var skyapplier = prefab.GetComponent<SkyApplier>();
-            skyapplier.renderers = renderers;
-            skyapplier.anchorSky = Skies.Auto;
-#else
-            var skyapplier = model.GetComponent<SkyApplier>();
-            skyapplier.renderers = renderers;
-            skyapplier.anchorSky = Skies.Auto;
-#endif
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab);
 
             // Update contructable
             var constructible = prefab.GetComponent<Constructable>();

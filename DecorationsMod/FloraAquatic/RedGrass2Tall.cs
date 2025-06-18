@@ -1,19 +1,11 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.FloraAquatic
 {
@@ -26,38 +18,31 @@ namespace DecorationsMod.FloraAquatic
             set => this.Config = value;
         }
 
-
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public RedGrass2Tall() : base("RedGrass2Tall", "RedGrassTallName", "RedGrassDescription", "redgrass2tallicon", "1")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public RedGrass2Tall()
+        public RedGrass2Tall() : base("RedGrass2Tall", LanguageHelper.GetFriendlyWord("RedGrassTallName") + " (1)", LanguageHelper.GetFriendlyWord("RedGrassDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("redgrass2tallicon"))
         {
             this.ClassID = "RedGrass2Tall"; // 8f489a8d-e612-4ac7-86c6-fa277dd8ee62
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("RedGrassTallName") + " (1)",
-                                                        LanguageHelper.GetFriendlyWord("RedGrassDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                {
-                    new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
-                }),
-            };
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(ConfigSwitcher.FloraRecipiesResource, ConfigSwitcher.FloraRecipiesResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
 
             this.Config = ConfigSwitcher.config_RedGrass2Tall;
         }
@@ -67,37 +52,29 @@ namespace DecorationsMod.FloraAquatic
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Set item occupies 1 slot
-                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(1, 1));
+                Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(1, 1));
 
                 // Add the new TechType to Harvest types
-                CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
-                CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestType(this.TechType, HarvestType.DamageAlive);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestOutput(this.TechType, this.TechType);
 
                 // Change item background to water-plant seed
-                CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
+                Nautilus.Handlers.CraftDataHandler.SetBackgroundType(this.TechType, CraftData.BackgroundType.PlantWaterSeed);
 
                 // Specify bonus on final cut
-                CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 1);
+                Nautilus.Handlers.CraftDataHandler.SetHarvestFinalCutBonus(this.TechType, 1);
 
                 // Set item bioreactor charge
                 BaseBioReactorHelper.SetBioReactorCharge(this.TechType, this.Config.Charge);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("redgrass2tallicon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("redgrass2tallicon"));
 
                 this.IsRegistered = true;
             }
@@ -107,6 +84,9 @@ namespace DecorationsMod.FloraAquatic
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: redGrass2Tall.GetGameObject()");
+#endif
             if (_redGrass2Tall == null)
 #if SUBNAUTICA
                 _redGrass2Tall = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Coral_reef/Coral_reef_red_seaweed_02_tall.prefab");
@@ -169,7 +149,7 @@ namespace DecorationsMod.FloraAquatic
             lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
             // Set sky applier
-            PrefabsHelper.SetDefaultSkyApplier(prefab, new Renderer[] { renderer }, Skies.Auto, true);
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab, null, new Renderer[] { renderer }); // dynamic true?
 
             // Update world forces
             var worldForces = prefab.GetComponent<WorldForces>();

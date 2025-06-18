@@ -9,7 +9,8 @@
 			{
 				KnownTechFixer.LoadAddedNotifications(__instance.saveGame);
 				ConstructableFixer.LoadLadderDirections(__instance.saveGame);
-			}
+                GenericPlaceTool_PT.LoadPlacedByPlayerList(__instance.saveGame);
+            }
 			// Give back execution to origin function.
 			return true;
 		}

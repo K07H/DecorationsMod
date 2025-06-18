@@ -11,7 +11,8 @@ namespace DecorationsMod.Fixers
 			{
 				KnownTechFixer.LoadAddedNotifications(null);
 				ConstructableFixer.LoadLadderDirections(null);
-			}
+				GenericPlaceTool_PT.LoadPlacedByPlayerList(null);
+            }
 			// Give back execution to origin function.
 			return true;
         }

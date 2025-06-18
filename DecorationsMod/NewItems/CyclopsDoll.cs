@@ -1,66 +1,53 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class CyclopsDoll : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public CyclopsDoll() : base("CyclopsDoll", "CyclopsDollName", "CyclopsDollDescription", SpriteManager.Get(TechType.Cyclops))
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public CyclopsDoll() // Feeds abstract class
+        public CyclopsDoll() : base("CyclopsDoll", LanguageHelper.GetFriendlyWord("CyclopsDollName"), LanguageHelper.GetFriendlyWord("CyclopsDollDescription"), SpriteManager.Get(TechType.Cyclops)) // Feeds abstract class
         {
             this.ClassID = "CyclopsDoll";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("CyclopsDollBase");
             this.GameObject = new GameObject(this.ClassID);
-            
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("CyclopsDollName"),
-                                                        LanguageHelper.GetFriendlyWord("CyclopsDollDescription"),
-                                                        true);
-#endif
+
+            this.TechType = this.Info.TechType;
 
             this.IsHabitatBuilder = true;
 
             CrafterLogicFixer.CyclopsDoll = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         private static readonly Dictionary<string, string> normalnames = new Dictionary<string, string>()
@@ -87,16 +74,16 @@ namespace DecorationsMod.NewItems
                 if (_cyclopsDollAsset == null)
                 {
 #if DEBUG_CYCLOPS_DOLL
-                    Logger.Debug("CyclopsDoll Loading asset. Asset bundle is " + (AssetsHelper.Assets == null ? "NULL" : "NOT NULL"));
+                    Logger.Debug("DEBUG: CyclopsDoll Loading asset. Asset bundle is " + (AssetsHelper.Assets == null ? "NULL" : "NOT NULL"));
 #endif
                     _cyclopsDollAsset = AssetsHelper.Assets.LoadAsset<GameObject>("CyclopsDollBase");
 #if DEBUG_CYCLOPS_DOLL
-                    Logger.Debug("CyclopsDoll Loaded asset. Result is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
+                    Logger.Debug("DEBUG: CyclopsDoll Loaded asset. Result is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
 #endif
                 }
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Debug("CyclopsDoll Registration T1");
+                Logger.Debug("DEBUG: CyclopsDoll Registration T1");
 #endif
                 GameObject model = _cyclopsDollAsset.FindChild("CyclopsDoll");
 
@@ -123,7 +110,7 @@ namespace DecorationsMod.NewItems
                 collider.center = new Vector3(collider.center.x - 0.02f, collider.center.y + 0.135f, collider.center.z - 0.105f);
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Debug("CyclopsDoll Registration T2");
+                Logger.Debug("DEBUG: CyclopsDoll Registration T2");
 #endif
                 // Get shaders/textures
                 Shader marmosetUber = Shader.Find("MarmosetUBER");
@@ -135,7 +122,7 @@ namespace DecorationsMod.NewItems
                 }
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Debug("CyclopsDoll Registration T3");
+                Logger.Debug("DEBUG: CyclopsDoll Registration T3");
 #endif
                 // Get glass material
                 GameObject aquarium = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
@@ -157,17 +144,17 @@ namespace DecorationsMod.NewItems
                 }
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Debug("CyclopsDoll Registration T4 : _cyclopsDollAsset is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
+                Logger.Debug("DEBUG: CyclopsDoll Registration T4 : _cyclopsDollAsset is " + (_cyclopsDollAsset == null ? "NULL" : "NOT NULL"));
 #endif
                 // Set proper shaders/textures
-                var renderers = _cyclopsDollAsset.GetAllComponentsInChildren<Renderer>();
+                Renderer[] renderers = _cyclopsDollAsset.GetComponentsInChildren<Renderer>(true);
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Debug("CyclopsDoll Regsitration T4b : Renderers Cnt=" + Convert.ToString(renderers.Length));
+                Logger.Debug("DEBUG: CyclopsDoll Regsitration T4b : Renderers Cnt=" + Convert.ToString(renderers.Length));
 #endif
                 if (renderers.Length > 0)
                 {
 #if DEBUG_CYCLOPS_DOLL
-                    Logger.Debug("Printing renderers:");
+                    Logger.Debug("DEBUG: Printing renderers:");
 #endif
                     foreach (Renderer rend in renderers)
                     {
@@ -177,12 +164,12 @@ namespace DecorationsMod.NewItems
                         else if (rend.materials.Length > 0)
                         {
 #if DEBUG_CYCLOPS_DOLL
-                            Logger.Debug("Found renderer name=[" + rend.name + "] type=[" + rend.GetType().ToString() + "]");
+                            Logger.Debug("DEBUG: Found renderer name=[" + rend.name + "] type=[" + rend.GetType().ToString() + "]");
 #endif
                             foreach (Material tmpMat in rend.materials)
                             {
 #if DEBUG_CYCLOPS_DOLL
-                                Logger.Debug("\t=> material name=[" + tmpMat.name + "]");
+                                Logger.Debug("DEBUG: \t=> material name=[" + tmpMat.name + "]");
 #endif
                                 tmpMat.shader = marmosetUber;
                                 if (tmpMat.name.StartsWith("cyclops_submarine_exterior_decals_01_24", false, CultureInfo.InvariantCulture))
@@ -204,7 +191,7 @@ namespace DecorationsMod.NewItems
                                             }
 #if DEBUG_CYCLOPS_DOLL
                                             else
-                                                Logger.Debug("Warning missing cyclops texture.");
+                                                Logger.Debug("DEBUG: Warning missing cyclops texture.");
 #endif
                                             break;
                                         }
@@ -215,7 +202,7 @@ namespace DecorationsMod.NewItems
                 }
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Debug("CyclopsDoll Registration T5");
+                Logger.Debug("DEBUG: CyclopsDoll Registration T5");
 #endif
                 // Add contructable
                 Constructable constructable = _cyclopsDollAsset.AddComponent<Constructable>();
@@ -242,51 +229,37 @@ namespace DecorationsMod.NewItems
                 bounds.bounds.position = new Vector3(pos.x - 0.02f, pos.y + 0.135f, pos.z - 0.105f);
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Debug("CyclopsDoll Registration T6");
+                Logger.Debug("DEBUG: CyclopsDoll Registration T6");
 #endif
                 // Add sky applier
                 BaseModuleLighting bml = _cyclopsDollAsset.GetComponent<BaseModuleLighting>();
                 if (bml == null)
                     bml = _cyclopsDollAsset.GetComponentInChildren<BaseModuleLighting>();
                 if (bml == null)
-                    bml = _cyclopsDollAsset.AddComponent<BaseModuleLighting>();
-                SkyApplier applier = _cyclopsDollAsset.AddComponent<SkyApplier>();
-                if (applier != null)
-                {
-                    applier.renderers = renderers.ToArray(); //renderers;
-                    applier.anchorSky = Skies.Auto;
-                    applier.updaterIndex = 0;
-                }
+                    bml = _cyclopsDollAsset.EnsureComponent<BaseModuleLighting>();
+                PrefabsHelper.UpdateOrAddSkyApplier(_cyclopsDollAsset, null, renderers);
 
                 // Add size controler
                 CyclopsDollController controller = _cyclopsDollAsset.AddComponent<CyclopsDollController>();
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Debug("CyclopsDoll Registration T7");
+                Logger.Debug("DEBUG: CyclopsDoll Registration T7");
 #endif
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add new TechType to the buildables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.Cyclops));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.Cyclops));
 
 #if DEBUG_CYCLOPS_DOLL
-                Logger.Debug("CyclopsDoll Registration T8");
+                Logger.Debug("DEBUG: CyclopsDoll Registration T8");
 #endif
                 this.IsRegistered = true;
             }

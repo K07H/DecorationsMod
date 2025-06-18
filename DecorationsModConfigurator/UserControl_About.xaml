@@ -75,7 +75,7 @@
                                 </MenuItem>
                             </ContextMenu>
                         </Hyperlink.ContextMenu>
-                        <TextBlock TextDecorations="Underline" Text="OSubMarin#0460">
+                        <TextBlock TextDecorations="Underline" Text="OSubMarin">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Style.Triggers>

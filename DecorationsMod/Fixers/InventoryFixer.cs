@@ -115,50 +115,50 @@
                 }
                 if (Inventory.CanDropItemHere(item.item, false))
                 {
-                    //Logger.Debug("GetAllItemActions sets DROP for \"" + techType.AsString() + "\"");
+                    //Logger.Debug("DEBUG: GetAllItemActions sets DROP for \"" + techType.AsString() + "\"");
                     itemAction |= ItemAction.Drop;
                 }
                 if (item.isBindable)
                 {
-                    //Logger.Debug("GetAllItemActions sets ASSIGN for \"" + techType.AsString() + "\"");
+                    //Logger.Debug("DEBUG: GetAllItemActions sets ASSIGN for \"" + techType.AsString() + "\"");
                     itemAction |= ItemAction.Assign;
                 }
             }
             if (oppositeContainer != null)
             {
-                //Logger.Debug("GetAllItemActions T1 for \"" + techType.AsString() + "\"");
+                //Logger.Debug("DEBUG: GetAllItemActions T1 for \"" + techType.AsString() + "\"");
                 if (flag)
                 {
-                    //Logger.Debug("GetAllItemActions T2 for \"" + techType.AsString() + "\"");
+                    //Logger.Debug("DEBUG: GetAllItemActions T2 for \"" + techType.AsString() + "\"");
                     if (!flag2 && item.CanDrag(false) && oppositeContainer.HasRoomFor(item2, null))
                     {
-                        //Logger.Debug("GetAllItemActions sets UNEQUIP for \"" + techType.AsString() + "\"");
+                        //Logger.Debug("DEBUG: GetAllItemActions sets UNEQUIP for \"" + techType.AsString() + "\"");
                         itemAction |= ItemAction.Unequip;
                     }
                 }
                 else if (flag2)
                 {
-                    //Logger.Debug("GetAllItemActions T3 for \"" + techType.AsString() + "\". EquipmentType=[" + CraftData.GetEquipmentType(techType).ToString() + "][" + Convert.ToString((int)CraftData.GetEquipmentType(techType)) + "]");
+                    //Logger.Debug("DEBUG: GetAllItemActions T3 for \"" + techType.AsString() + "\". EquipmentType=[" + CraftData.GetEquipmentType(techType).ToString() + "][" + Convert.ToString((int)CraftData.GetEquipmentType(techType)) + "]");
                     EquipmentType equipmentType = isPowercell ? EquipmentType.PowerCellCharger : EquipmentType.BatteryCharger; //CraftData.GetEquipmentType(techType);
-                    //Logger.Debug("GetAllItemActions T3b for \"" + techType.AsString() + "\". EquipmentType=[" + equipmentType.ToString() + "][" + Convert.ToString((int)equipmentType) + "]");
+                    //Logger.Debug("DEBUG: GetAllItemActions T3b for \"" + techType.AsString() + "\". EquipmentType=[" + equipmentType.ToString() + "][" + Convert.ToString((int)equipmentType) + "]");
                     string text;
                     if (equipment.GetFreeSlot(equipmentType, out text))
                     {
-                        //Logger.Debug("GetAllItemActions sets EQUIP for \"" + techType.AsString() + "\"");
+                        //Logger.Debug("DEBUG: GetAllItemActions sets EQUIP for \"" + techType.AsString() + "\"");
                         itemAction |= ItemAction.Equip;
                     }
                     else if (equipment.GetCompatibleSlot(equipmentType, out text))
                     {
-                        //Logger.Debug("GetAllItemActions sets SWAP for \"" + techType.AsString() + "\"");
+                        //Logger.Debug("DEBUG: GetAllItemActions sets SWAP for \"" + techType.AsString() + "\"");
                         itemAction |= ItemAction.Swap;
                     }
                 }
                 else if (item.CanDrag(false) && oppositeContainer.AllowedToAdd(item.item, false))
                 {
-                    //Logger.Debug("GetAllItemActions sets SWITCH for \"" + techType.AsString() + "\"");
+                    //Logger.Debug("DEBUG: GetAllItemActions sets SWITCH for \"" + techType.AsString() + "\"");
                     itemAction |= ItemAction.Switch;
                 }
-                //Logger.Debug("GetAllItemActions T4 for \"" + techType.AsString() + "\"");
+                //Logger.Debug("DEBUG: GetAllItemActions T4 for \"" + techType.AsString() + "\"");
             }
             __result = itemAction;
             return false;
@@ -168,7 +168,7 @@
         public static bool GetItemAction_Prefix(Inventory __instance, ref ItemAction __result, InventoryItem item, int button)
         {
             ItemAction allItemActions = __instance.GetAllItemActions(item);
-            Logger.Debug("Entering GetItemAction. ItemAction=[" + Logger.ItemActionToString(allItemActions) + "]");
+            Logger.Debug("DEBUG: Entering GetItemAction. ItemAction=[" + Logger.ItemActionToString(allItemActions) + "]");
             if (button != 0)
             {
                 if (GameInput.GetPrimaryDevice() == GameInput.Device.Controller)
@@ -267,7 +267,7 @@
                     {
                         __result = ItemAction.Switch;
 #if DEBUG_PLACE_TOOL
-                        Logger.Debug("AltUse returns SWITCH for " + (item.item != null ? item.item.GetTechType().AsString(false) : "?"));
+                        Logger.Debug("DEBUG: AltUse returns SWITCH for " + (item.item != null ? item.item.GetTechType().AsString(false) : "?"));
 #endif
                         return false;
                     }
@@ -276,7 +276,7 @@
                 {
                     __result = ItemAction.Drop;
 #if DEBUG_PLACE_TOOL
-                    Logger.Debug("AltUse returns DROP for " + (item.item != null ? item.item.GetTechType().AsString(false) : "?"));
+                    Logger.Debug("DEBUG: AltUse returns DROP for " + (item.item != null ? item.item.GetTechType().AsString(false) : "?"));
 #endif
                     return false;
                 }
@@ -306,7 +306,7 @@
                             techType == TechType.Snack3)
                         {
 #if DEBUG_PLACE_TOOL
-                            Logger.Debug("AltUse returns ASSIGN 1 for " + techType.AsString(false));
+                            Logger.Debug("DEBUG: AltUse returns ASSIGN 1 for " + techType.AsString(false));
 #endif
                             __result = ItemAction.Assign;
                             return false;
@@ -314,7 +314,7 @@
                         else if (ConfigSwitcher.EnablePlaceBatteries && ModdedBatteriesFixer.Chargeable(techType))
                         {
 #if DEBUG_PLACE_TOOL
-                            Logger.Debug("AltUse returns ASSIGN 2 for " + techType.AsString(false));
+                            Logger.Debug("DEBUG: AltUse returns ASSIGN 2 for " + techType.AsString(false));
 #endif
                             __result = ItemAction.Assign;
                             return false;
@@ -324,7 +324,7 @@
                                 if (techType == it.Value)
                                 {
 #if DEBUG_PLACE_TOOL
-                                    Logger.Debug("AltUse returns ASSIGN 3 for " + techType.AsString(false));
+                                    Logger.Debug("DEBUG: AltUse returns ASSIGN 3 for " + techType.AsString(false));
 #endif
                                     __result = ItemAction.Assign;
                                     return false;
@@ -347,7 +347,7 @@
                                 if (equipment.GetFreeSlot(equipmentType, out string text))
                                 {
 #if DEBUG_PLACE_TOOL
-                                    Logger.Debug("AltUse returns EQUIP for " + techType.AsString(false));
+                                    Logger.Debug("DEBUG: AltUse returns EQUIP for " + techType.AsString(false));
 #endif
                                     __result = ItemAction.Equip;
                                     return false;
@@ -355,7 +355,7 @@
                                 if (equipment.GetCompatibleSlot(equipmentType, out text))
                                 {
 #if DEBUG_PLACE_TOOL
-                                    Logger.Debug("AltUse returns SWAP for " + techType.AsString(false));
+                                    Logger.Debug("DEBUG: AltUse returns SWAP for " + techType.AsString(false));
 #endif
                                     __result = ItemAction.Swap;
                                     return false;

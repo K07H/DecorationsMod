@@ -1,17 +1,9 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using mset;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
@@ -19,40 +11,33 @@ namespace DecorationsMod.NewItems
     {
         private GameObject CargoCrateContainer = null;
 
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public DecorativeLockerDoor() : base("DecorativeLockerDoor", "DecorativeLockerName", "DecorativeLockerDescription", "decorativelockerdooricon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public DecorativeLockerDoor() // Feeds abstract class
+        public DecorativeLockerDoor() : base("DecorativeLockerDoor", LanguageHelper.GetFriendlyWord("DecorativeLockerName"), LanguageHelper.GetFriendlyWord("DecorativeLockerDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("decorativelockerdooricon")) // Feeds abstract class
         {
             this.ClassID = "DecorativeLockerDoor"; // 078b41f8-968e-4ca3-8a7e-4e3d7d98422c
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("DecorativeLockerName"),
-                                                        LanguageHelper.GetFriendlyWord("DecorativeLockerDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             this.IsHabitatBuilder = true;
 
-
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 2)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 2)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -60,25 +45,17 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Add to the custom buidables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType, TechType.Locker);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.InteriorModules, TechCategory.InteriorModule, this.TechType, TechType.Locker);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom icon
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("decorativelockerdooricon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("decorativelockerdooricon"));
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 this.IsRegistered = true;
             }
@@ -88,6 +65,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: lockerDoor.GetGameObject()");
+#endif
             if (_lockerDoor == null)
 #if SUBNAUTICA
                 _lockerDoor = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/submarine_locker_05.prefab");
@@ -151,24 +131,14 @@ namespace DecorationsMod.NewItems
             PrefabsHelper.UpdateExistingLargeWorldEntities(prefab);
 
             // Update sky applier
-#if SUBNAUTICA
-            PrefabsHelper.SetDefaultSkyApplier(prefab);
-#else
-            SkyApplier[] sas = prefab.GetComponentsInChildren<SkyApplier>();
-            while (prefab.GetComponentInChildren<SkyApplier>() != null)
-                GameObject.DestroyImmediate(prefab.GetComponentInChildren<SkyApplier>());
-            if (prefab.GetComponent<SkyApplier>() != null)
-                GameObject.DestroyImmediate(prefab.GetComponent<SkyApplier>());
+#if !SUBNAUTICA
             while (prefab.GetComponentInChildren<BaseModuleLighting>() != null)
                 GameObject.DestroyImmediate(prefab.GetComponentInChildren<BaseModuleLighting>());
             if (prefab.GetComponent<BaseModuleLighting>() != null)
                 GameObject.DestroyImmediate(prefab.GetComponent<BaseModuleLighting>());
-
-            BaseModuleLighting bml = prefab.AddComponent<BaseModuleLighting>();
-            SkyApplier sa = prefab.AddComponent<SkyApplier>();
-            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
-            sa.anchorSky = Skies.Auto;
+            BaseModuleLighting bml = prefab.EnsureComponent<BaseModuleLighting>();
 #endif
+            PrefabsHelper.ReplaceSkyApplier(prefab); //PrefabsHelper.UpdateOrAddSkyApplier(prefab);
 
             // Set as constructible
             Constructable constructible = prefab.AddComponent<Constructable>();

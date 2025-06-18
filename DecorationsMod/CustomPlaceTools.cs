@@ -1,5 +1,11 @@
 ﻿using DecorationsMod.Controllers;
+using ProtoBuf;
+using System;
+using System.IO;
+using System.Text;
 using UnityEngine;
+using System.Collections.Generic;
+using HarmonyLib;
 
 namespace DecorationsMod
 {
@@ -106,7 +112,7 @@ namespace DecorationsMod
             if (model != null)
             {
 #if DEBUG_PLACE_TOOL
-                Logger.Debug("Material_PT: Current angle for [" + this.gameObject.name + "]=[" + model.transform.localEulerAngles.x.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";" + model.transform.localEulerAngles.y.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";" + model.transform.localEulerAngles.z.ToString(System.Globalization.CultureInfo.InvariantCulture) + "]");
+                Logger.Debug("DEBUG: Material_PT: Current angle for [" + this.gameObject.name + "]=[" + model.transform.localEulerAngles.x.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";" + model.transform.localEulerAngles.y.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";" + model.transform.localEulerAngles.z.ToString(System.Globalization.CultureInfo.InvariantCulture) + "]");
 #endif
                 if (this.RotateX != 0.0f || this.RotateY != 0.0f || this.RotateZ != 0.0f)
                     model.transform.localEulerAngles = new Vector3(model.transform.localEulerAngles.x + this.RotateX, model.transform.localEulerAngles.y + this.RotateY, model.transform.localEulerAngles.z + this.RotateZ);
@@ -131,7 +137,7 @@ namespace DecorationsMod
 #if DEBUG_PLACE_TOOL
             else
             {
-                Logger.Debug("Material_PT: OnProtoDeserialize: Model \"" + this.ModelName + "\" not found!");
+                Logger.Debug("DEBUG: Material_PT: Model \"" + this.ModelName + "\" not found!");
                 Logger.PrintTransform(this.gameObject.transform);
             }
 #endif
@@ -158,12 +164,32 @@ namespace DecorationsMod
             this.gameObject.GetComponent<CustomPlaceToolController>().Hide();
             base.OnPlace();
 
-            if (!HasBeenPlaced)
+            PrefabIdentifier pid = this.gameObject.GetComponent<PrefabIdentifier>();
+            if (pid == null)
+                pid = this.gameObject.GetComponentInChildren<PrefabIdentifier>();
+            if (pid == null)
+                pid = this.gameObject.GetComponentInParent<PrefabIdentifier>();
+
+#if DEBUG_PLACE_TOOL
+            Logger.Debug($"DEBUG: OnPlace(): Id=[{pid?.Id ?? "NULL"}] HasBeenPlaced=[{HasBeenPlaced}]");
+#endif
+
+            if (!HasBeenPlaced || (pid != null && !IsInPlacedByPlayerList(pid.ClassId, pid.Id)))
             {
+                //if (Player.main.IsInSub())
+                //{
                 if (this.BrighterIllum > 0.0f || this.BrighterColor > 0.0f)
                     SetBrighter();
                 RotateScaleTranslate();
+                if (pid != null)
+                {
+#if DEBUG_PLACE_TOOL
+                    Logger.Debug($"DEBUG: OnPlace(): Added to list!");
+#endif
+                    AddToPlacedByPlayerList(pid.ClassId, pid.Id);
+                }
                 HasBeenPlaced = true;
+                //}
             }
             if (this.gameObject.name != null)
                 PrefabsHelper.FixPlaceToolSkyAppliers(this.gameObject);
@@ -173,19 +199,107 @@ namespace DecorationsMod
         {
             if (!HasBeenPlaced)
             {
-                if (this.BrighterIllum > 0.0f || this.BrighterColor > 0.0f)
-                    SetBrighter();
-                RotateScaleTranslate();
+                PrefabIdentifier pid = this.gameObject.GetComponent<PrefabIdentifier>();
+                if (pid == null)
+                    pid = this.gameObject.GetComponentInChildren<PrefabIdentifier>();
+                if (pid == null)
+                    pid = this.gameObject.GetComponentInParent<PrefabIdentifier>();
+#if DEBUG_PLACE_TOOL
+                Logger.Debug($"DEBUG: OnProtoDeserialize(): Id=[{pid?.Id ?? "NULL"}] HasBeenPlaced=[{HasBeenPlaced}]");
+#endif
+
+                if (pid != null && IsInPlacedByPlayerList(pid.ClassId, pid.Id))
+                {
+#if DEBUG_PLACE_TOOL
+                    Logger.Debug($"DEBUG: OnProtoDeserialize(): Adjusting!");
+#endif
+                    if (this.BrighterIllum > 0.0f || this.BrighterColor > 0.0f)
+                        SetBrighter();
+                    RotateScaleTranslate();
+                }
                 HasBeenPlaced = true;
             }
         }
 
         public void OnProtoSerialize(ProtobufSerializer serializer) { }
 
+#endregion
+
+        #region Static functions
+
+        public static List<string> _placedByPlayer = new List<string>();
+
+        public static bool IsInPlacedByPlayerList(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return false;
+            return _placedByPlayer.Contains(id);
+        }
+
+        public static bool IsInPlacedByPlayerList(string classId, string prefabId)
+        {
+            if (string.IsNullOrEmpty(classId))
+                return false;
+            if (string.IsNullOrEmpty(prefabId))
+                return false;
+            return IsInPlacedByPlayerList($"{classId}+{prefabId}");
+        }
+
+        public static void AddToPlacedByPlayerList(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return;
+            if (!id.Contains("+"))
+                return;
+            if (_placedByPlayer.Contains(id))
+                return;
+            _placedByPlayer.Add(id);
+        }
+
+        public static void AddToPlacedByPlayerList(string classId, string prefabId)
+        {
+            if (string.IsNullOrEmpty(classId))
+                return;
+            if (string.IsNullOrEmpty(prefabId))
+                return;
+            AddToPlacedByPlayerList($"{classId}+{prefabId}");
+        }
+
+        public static bool SavePlacedByPlayerList()
+        {
+            string saveFolder = FilesHelper.GetSaveFolderPath();
+            if (!Directory.Exists(saveFolder))
+                Directory.CreateDirectory(saveFolder);
+
+            try { File.WriteAllText(FilesHelper.Combine(saveFolder, "placedByPlayer.txt"), _placedByPlayer.Join(null, ", "), Encoding.UTF8); return true; }
+            catch { return false; }
+        }
+
+        public static void LoadPlacedByPlayerList(string saveGame)
+        {
+            _placedByPlayer.Clear();
+            string saveDir = FilesHelper.GetSaveFolderPath(saveGame);
+            if (!string.IsNullOrEmpty(saveDir) && Directory.Exists(saveDir))
+            {
+                string filePath = Path.Combine(saveDir, "placedByPlayer.txt");
+                if (File.Exists(filePath))
+                {
+                    string placedByPlayer = File.ReadAllText(filePath, Encoding.UTF8);
+                    if (!string.IsNullOrEmpty(placedByPlayer))
+                    {
+                        string[] splitted = placedByPlayer.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+                        if (splitted != null && splitted.Length > 0)
+                            foreach (string id in splitted)
+                                AddToPlacedByPlayerList(id);
+                    }
+                }
+            }
+        }
+
         #endregion
     }
 
-    #endregion
+#endregion
 
     #region PlaceTools
 
@@ -225,6 +339,21 @@ namespace DecorationsMod
     public class NutrientBlock_PT : GenericPlaceTool_PT
     {
         public NutrientBlock_PT() : base(0.0f, 0.06f, 0.0f, "Nutrient_block") { }
+    }
+
+    public class Snack1_PT : GenericPlaceTool_PT
+    {
+        public Snack1_PT() : base(0.0f, 0.11f, 0.0f, "Snack_01") { }
+    }
+
+    public class Snack2_PT : GenericPlaceTool_PT
+    {
+        public Snack2_PT() : base(0.0f, 0.11f, 0.0f, "Snack_02") { }
+    }
+
+    public class Snack3_PT : GenericPlaceTool_PT
+    {
+        public Snack3_PT() : base(0.0f, 0.11f, 0.0f, "Snack_03") { }
     }
 
     public class Bleach_PT : GenericPlaceTool_PT

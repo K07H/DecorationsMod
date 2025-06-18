@@ -12,13 +12,13 @@ namespace DecorationsMod.Fixers
         public static void OnProtoDeserializeObjectTree_Postfix(StorageContainer __instance, ProtobufSerializer serializer)
         {
 #if DEBUG_CARGO_CRATES
-            Logger.Debug("OnProtoDeserializeObjectTree()");
+            Logger.Debug("DEBUG: OnProtoDeserializeObjectTree()");
 #endif
             PrefabIdentifier pid = __instance.gameObject.GetComponent<PrefabIdentifier>();
             if (pid != null && __instance.gameObject.transform.parent != null && __instance.gameObject.transform.parent.gameObject != null)
             {
 #if DEBUG_CARGO_CRATES
-                Logger.Debug("OnProtoDeserializeObjectTree() storageConteiner Id=[" + pid.Id + "] objName=[" + __instance.gameObject.name + "] nbItems=[" + (__instance.container != null ? Convert.ToString(__instance.container.count) : "null") + "]");
+                Logger.Debug("DEBUG: OnProtoDeserializeObjectTree() storageConteiner Id=[" + pid.Id + "] objName=[" + __instance.gameObject.name + "] nbItems=[" + (__instance.container != null ? Convert.ToString(__instance.container.count) : "null") + "]");
 #endif
                 GameObject parentGO = __instance.gameObject.transform.parent.gameObject;
                 PrefabIdentifier pid2 = parentGO.GetComponent<PrefabIdentifier>();
@@ -30,21 +30,21 @@ namespace DecorationsMod.Fixers
                                      parentGO.name.StartsWith("DecorativeLockerDoor", true, CultureInfo.InvariantCulture)))
                 {
 #if DEBUG_CARGO_CRATES
-                    Logger.Debug("OnProtoDeserializeObjectTree() parent storageConteiner Id=[" + pid2.Id + "] objName=[" + parentGO.name + "] nbItems=[" + (__instance.container != null ? Convert.ToString(__instance.container.count) : "null") + "]");
+                    Logger.Debug("DEBUG: OnProtoDeserializeObjectTree() parent storageConteiner Id=[" + pid2.Id + "] objName=[" + parentGO.name + "] nbItems=[" + (__instance.container != null ? Convert.ToString(__instance.container.count) : "null") + "]");
 #endif
                     if (_storages.ContainsKey(pid2.Id))
                     {
                         if (_storages[pid2.Id].Item2)
                         {
 #if DEBUG_CARGO_CRATES
-                            Logger.Debug("OnProtoDeserializeObjectTree() Setup A"); // Resetting
+                            Logger.Debug("DEBUG: OnProtoDeserializeObjectTree() Setup A"); // Resetting
 #endif
                             _storages[pid2.Id] = new Tuple<StorageContainer, bool>(__instance, false);
                         }
                         else
                         {
 #if DEBUG_CARGO_CRATES
-                            Logger.Debug("OnProtoDeserializeObjectTree() Setup B"); // Transfering
+                            Logger.Debug("DEBUG: OnProtoDeserializeObjectTree() Setup B"); // Transfering
 #endif
                             _storages[pid2.Id] = new Tuple<StorageContainer, bool>(_storages[pid2.Id].Item1, true);
                             StorageHelper.TransferItems(__instance.storageRoot.gameObject, _storages[pid2.Id].Item1.container);
@@ -54,7 +54,7 @@ namespace DecorationsMod.Fixers
                     else
                     {
 #if DEBUG_CARGO_CRATES
-                        Logger.Debug("OnProtoDeserializeObjectTree() Setup C"); // Registering
+                        Logger.Debug("DEBUG: OnProtoDeserializeObjectTree() Setup C"); // Registering
 #endif
                         _storages.Add(pid2.Id, new Tuple<StorageContainer, bool>(__instance, false));
                     }

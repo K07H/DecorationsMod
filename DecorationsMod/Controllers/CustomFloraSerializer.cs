@@ -17,7 +17,7 @@ namespace DecorationsMod.Controllers
                         return;
 
 #if DEBUG_FLORA
-            Logger.Debug("Entering onProtoSerialize for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+            Logger.Debug("DEBUG: Entering onProtoSerialize for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
 
             Plantable plant = this.gameObject.GetComponent<Plantable>();
@@ -32,24 +32,24 @@ namespace DecorationsMod.Controllers
                 {
                     progress = plantController._progress;
 #if DEBUG_FLORA
-                    Logger.Debug("LinkedGrownPlant) plantController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
+                    Logger.Debug("DEBUG: LinkedGrownPlant) plantController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
 #endif
                 }
                 else if (treeController != null && treeController._progress >= 0.0f)
                 {
                     progress = treeController._progress;
 #if DEBUG_FLORA
-                    Logger.Debug("LinkedGrownPlant) treeController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
+                    Logger.Debug("DEBUG: LinkedGrownPlant) treeController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
 #endif
                 }
                 else if (plantMonoTransformController != null && plantMonoTransformController._progress >= 0.0f)
                 {
                     progress = plantMonoTransformController._progress;
 #if DEBUG_FLORA
-                    Logger.Debug("LinkedGrownPlant) plantMonoTransformController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
+                    Logger.Debug("DEBUG: LinkedGrownPlant) plantMonoTransformController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
                 }
                 else
-                    Logger.Debug("LinkedGrownPlant) No controller found for gameObject name=[" + this.gameObject.name + "]");
+                    Logger.Debug("DEBUG: LinkedGrownPlant) No controller found for gameObject name=[" + this.gameObject.name + "]");
 #else
                 }
 #endif
@@ -67,13 +67,13 @@ namespace DecorationsMod.Controllers
                         File.WriteAllText(FilesHelper.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress, CultureInfo.InvariantCulture), Encoding.UTF8);
                     }
                     else
-                        Logger.Warning("Cannot save custom flora state: Save game folder path \"" + saveFolder + "\" is incorrect.");
+                        Logger.Warning("WARNING: Cannot save custom flora state: Save game folder path \"" + saveFolder + "\" is incorrect.");
                 }
             }
             else
             {
 #if DEBUG_FLORA
-                Logger.Debug("Cannot find linkedGrownPlant. this.gameObject name=[" + this.gameObject.name + "] activeSelf=[" + this.gameObject.activeSelf + "] this.gameObject.activeInHierarchy=[" + this.gameObject.activeInHierarchy + "] transform x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+                Logger.Debug("DEBUG: Cannot find linkedGrownPlant. this.gameObject name=[" + this.gameObject.name + "] activeSelf=[" + this.gameObject.activeSelf + "] this.gameObject.activeInHierarchy=[" + this.gameObject.activeInHierarchy + "] transform x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
                 GrownPlant grownPlant = GetComponent<GrownPlant>();
                 if (grownPlant != null)
@@ -87,24 +87,24 @@ namespace DecorationsMod.Controllers
                     {
                         progress = plantController._progress;
 #if DEBUG_FLORA
-                        Logger.Debug("GrownPlant) plantController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
+                        Logger.Debug("DEBUG: GrownPlant) plantController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
 #endif
                     }
                     else if (treeController != null && treeController._progress >= 0.0f)
                     {
                         progress = treeController._progress;
 #if DEBUG_FLORA
-                        Logger.Debug("GrownPlant) treeController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
+                        Logger.Debug("DEBUG: GrownPlant) treeController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
 #endif
                     }
                     else if (plantMonoTransformController != null && plantMonoTransformController._progress >= 0.0f)
                     {
                         progress = plantMonoTransformController._progress;
 #if DEBUG_FLORA
-                        Logger.Debug("GrownPlant) plantMonoTransformController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
+                        Logger.Debug("DEBUG: GrownPlant) plantMonoTransformController) Saving progress=[" + progress + "] for gameObject name=[" + this.gameObject.name + "]");
                     }
                     else
-                        Logger.Debug("GrownPlant) No controller found for gameObject name=[" + this.gameObject.name + "]");
+                        Logger.Debug("DEBUG: GrownPlant) No controller found for gameObject name=[" + this.gameObject.name + "]");
 #else
                     }
 #endif
@@ -122,12 +122,12 @@ namespace DecorationsMod.Controllers
                             File.WriteAllText(FilesHelper.Combine(saveFolder, "customflora_" + id.Id + ".txt"), Convert.ToString(progress, CultureInfo.InvariantCulture), Encoding.UTF8);
                         }
                         else
-                            Logger.Warning("Cannot save custom flora state: Save game folder path \"" + saveFolder + "\" is incorrect.");
+                            Logger.Warning("WARNING: Cannot save custom flora state: Save game folder path \"" + saveFolder + "\" is incorrect.");
                     }
                 }
 #if DEBUG_FLORA
                 else
-                    Logger.Debug("Cannot find grownPlant. gameObject name=[" + this.gameObject.name + "] activeSelf=[" + this.gameObject.activeSelf + "] this.gameObject.activeInHierarchy=[" + this.gameObject.activeInHierarchy + "] transform x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+                    Logger.Debug("DEBUG: Cannot find grownPlant. gameObject name=[" + this.gameObject.name + "] activeSelf=[" + this.gameObject.activeSelf + "] this.gameObject.activeInHierarchy=[" + this.gameObject.activeInHierarchy + "] transform x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
             }
         }
@@ -144,14 +144,14 @@ namespace DecorationsMod.Controllers
                         return;
 
 #if DEBUG_FLORA
-            Logger.Debug("Entering onProtoDeserialize for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
+            Logger.Debug("DEBUG: Entering onProtoDeserialize for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "] position x=[" + this.gameObject.transform.localPosition.x + "] y=[" + this.gameObject.transform.localPosition.y + "] z=[" + this.gameObject.transform.localPosition.z + "]");
 #endif
 
             string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "customflora_" + id.Id + ".txt");
             if (File.Exists(filePath))
             {
 #if DEBUG_FLORA
-                Logger.Debug("Saved file found for gameobject name=[" + this.gameObject.name + "]");
+                Logger.Debug("DEBUG: Saved file found for gameobject name=[" + this.gameObject.name + "]");
 #endif
                 string rawState = File.ReadAllText(filePath, Encoding.UTF8).Replace(',', '.'); // Replace , with . for backward compatibility.
                 if (rawState == null)
@@ -166,30 +166,30 @@ namespace DecorationsMod.Controllers
                         {
                             landPlantController._passedProgress = passedProgress;
 #if DEBUG_FLORA
-                            Logger.Debug("landPlantController) Setting passedProgress to [" + passedProgress + "] for gameobject name=[" + this.gameObject.name + "]");
+                            Logger.Debug("DEBUG: landPlantController) Setting passedProgress to [" + passedProgress + "] for gameobject name=[" + this.gameObject.name + "]");
 #endif
                         }
                         else if (landTreeController != null)
                         {
                             landTreeController._passedProgress = passedProgress;
 #if DEBUG_FLORA
-                            Logger.Debug("landTreeController) Setting passedProgress to [" + passedProgress + "] for gameobject name=[" + this.gameObject.name + "]");
+                            Logger.Debug("DEBUG: landTreeController) Setting passedProgress to [" + passedProgress + "] for gameobject name=[" + this.gameObject.name + "]");
 #endif
                         }
                         else if (plantMonoTransformController != null)
                         {
                             plantMonoTransformController._passedProgress = passedProgress;
 #if DEBUG_FLORA
-                            Logger.Debug("plantMonoTransformController) Setting passedProgress to [" + passedProgress + "] for gameobject name=[" + this.gameObject.name + "]");
+                            Logger.Debug("DEBUG: plantMonoTransformController) Setting passedProgress to [" + passedProgress + "] for gameobject name=[" + this.gameObject.name + "]");
                         }
                         else
-                            Logger.Debug("Controller not found for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "]");
+                            Logger.Debug("DEBUG: Controller not found for gameobject name=[" + this.gameObject.name + "] id=[" + id.Id + "]");
                     }
                     else
-                        Logger.Debug("Cannot parse passedProgress for gameobject name=[" + this.gameObject.name + "]");
+                        Logger.Debug("DEBUG: Cannot parse passedProgress for gameobject name=[" + this.gameObject.name + "]");
                 }
                 else
-                    Logger.Debug("Cannot parse saved file for gameobject name=[" + this.gameObject.name + "]");
+                    Logger.Debug("DEBUG: Cannot parse saved file for gameobject name=[" + this.gameObject.name + "]");
 #else
                         }
                     }

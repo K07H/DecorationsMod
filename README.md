@@ -4,23 +4,30 @@
 
 <br>
 
-*If you are searching for some support please go here because this repository is intended for actual developers: https://www.nexusmods.com/subnautica/mods/102*<br>
-*You can contact me on Discord if needed: OSubMarin#0460*
+*If you are searching for some player support please go here because this repository is intended for developers: https://www.nexusmods.com/subnautica/mods/102*<br>
+*You can contact me on Discord if needed: OSubMarin*
 
 <br>
 
-### Installation instructions for <ins>regular</ins> version of Subnautica:
+### Installation instructions for <ins>Nautilus</ins> (<ins>regular</ins> version of Subnautica):
 1) Install BepInEx: https://www.nexusmods.com/subnautica/mods/1108<br>
-2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
+2) Install Nautilus: https://www.nexusmods.com/subnautica/mods/1262<br>
 3) Download the latest version of this mod: https://www.nexusmods.com/subnautica/mods/102?tab=files<br>
-4) Extract the archive (it will give you a **DecorationsMod** folder, with various files in it).<br>
+4) Extract the archive (it will give you a **DecorationsMod** folder, with a bunch of files in it).<br>
 5) Move folder **DecorationsMod** inside the following folder: "[...]/Subnautica/BepInEx/plugins"<br>
 
-### Installation instructions for <ins>legacy</ins> version of Subnautica:
+### Installation instructions for SML Helper (<ins>regular</ins> version of Subnautica):
+1) Install BepInEx: https://www.nexusmods.com/subnautica/mods/1108<br>
+2) Install SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
+3) Download the <ins>version 2.0.3</ins> of this mod: https://www.nexusmods.com/subnautica/mods/102?tab=files<br>
+4) Extract the archive (it will give you a **DecorationsMod** folder, with a bunch of files in it).<br>
+5) Move folder **DecorationsMod** inside the following folder: "[...]/Subnautica/BepInEx/plugins"<br>
+
+### Installation instructions for SML Helper (<ins>legacy</ins> version of Subnautica):
 1) Install QMods: https://www.nexusmods.com/subnautica/mods/201<br>
 2) Install the **<ins>legacy version</ins>** of SMLHelper: https://www.nexusmods.com/subnautica/mods/113<br>
-3) Download the **<ins>legacy version</ins>** of this mod (version 1.9.1): https://www.nexusmods.com/subnautica/mods/102?tab=files<br>
-4) Extract the archive (it will give you a **DecorationsMod** folder, with various files in it).<br>
+3) Download the **<ins>legacy version</ins>** of this mod: https://www.nexusmods.com/subnautica/mods/102?tab=files<br>
+4) Extract the archive (it will give you a **DecorationsMod** folder, with a bunch of files in it).<br>
 5) Move folder **DecorationsMod** inside the following folder: "[...]/Subnautica/QMods"<br>
 
 <br>
@@ -147,6 +154,7 @@ Some additional information can be found in the Configurator or in the configura
 <br><br>
 
 ### News & updates:<br>
+June 17, 2025: Updated to version 2.1.0 (regular version).<br>
 January 14, 2023: Updated to version 2.0.3 (regular version).<br>
 October 11, 2020: Updated to version 1.9.1 (legacy version).<br>
 Full changelogs available here: [CHANGELOG.txt](https://github.com/K07H/DecorationsMod/blob/master/CHANGELOG.txt?raw=true)<br>
@@ -170,10 +178,11 @@ See the GitHub documentation on [creating a pull request](https://help.github.co
 @Krotobosha (for the Russian translation)<br>
 @BepsDog64 (for the Spanish translation)<br>
 @Olivier (for the Nederlands translation)<br>
-@[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018/2019 update fixes)<br>
+@[MrPurple6411](https://github.com/MrPurple6411/) (for the Unity 2018/2019 update fixes and Nautilus compatibility)<br>
 @Mrpp777 (for the fabricator categories icons)<br>
 @Jason (for some of the 3D models)<br>
 @[Soul Reaver](https://github.com/MasterReaver) (for fixing a Discovery setting bug)<br>
+@FirEmerald (for the Nautilus compatibility)<br>
 <br>
 <br>
 <br>

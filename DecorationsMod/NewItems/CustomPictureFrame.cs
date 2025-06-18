@@ -1,20 +1,12 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using HarmonyLib;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Reflection;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
@@ -24,43 +16,38 @@ namespace DecorationsMod.NewItems
         private Texture normal = null;
         private Texture illum = null;
 
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public CustomPictureFrame() : base("CustomPictureFrame", "CustomPictureFrameName", "CustomPictureFrameDescription", "revertpictureframe")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public CustomPictureFrame()
+        public CustomPictureFrame() : base("CustomPictureFrame", LanguageHelper.GetFriendlyWord("CustomPictureFrameName"), LanguageHelper.GetFriendlyWord("CustomPictureFrameDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe"))
         {
             this.ClassID = "CustomPictureFrame";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("CustomPictureFrameName"),
-                                                        LanguageHelper.GetFriendlyWord("CustomPictureFrameDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.CustomizablePictureFrame = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.CopperWire, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
+                new Ingredient(TechType.CopperWire, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.CopperWire, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -72,25 +59,17 @@ namespace DecorationsMod.NewItems
                 illum = AssetsHelper.Assets.LoadAsset<Texture>("poster_magnet_illum");
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add new TechType to the buildables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.PictureFrame);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.PictureFrame);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("revertpictureframe"));
 
                 // Patch with harmony
                 MyHarmony.PatchPictureFrames();
@@ -103,6 +82,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: customPictureFrame.GetGameObject()");
+#endif
             if (_customPictureFrame == null)
                 _customPictureFrame = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/PictureFrame.prefab");
 
@@ -201,20 +183,7 @@ namespace DecorationsMod.NewItems
             collider.center = new Vector3(collider.center.x + 0.15f, collider.center.y, collider.center.z);
 
             // Update sky appliers
-            SkyApplier skyapplier = model.GetComponent<SkyApplier>();
-            SkyApplier[] sa1 = prefab.GetComponents<SkyApplier>();
-            SkyApplier[] sa2 = prefab.GetComponentsInChildren<SkyApplier>();
-            if (sa1 != null)
-                foreach (SkyApplier sa in sa1)
-                    if (sa != skyapplier)
-                        UnityEngine.Object.Destroy(sa);
-            if (sa2 != null)
-                foreach (SkyApplier sa in sa2)
-                    if (sa != skyapplier)
-                        UnityEngine.Object.Destroy(sa);
-            skyapplier.renderers = prefab.GetComponentsInChildren<Renderer>();
-            skyapplier.anchorSky = Skies.Auto;
-            //skyapplier.updaterIndex = 0;
+            PrefabsHelper.ReplaceSkyApplier(prefab, "mesh");
             
             // Update contructable
             var constructible = prefab.GetComponent<Constructable>();

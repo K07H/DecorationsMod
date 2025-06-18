@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("DecorationsMod")]
-[assembly: AssemblyDescription("A Subnautica mod that adds a lot of decorations.")]
+[assembly: AssemblyDescription("A Subnautica mod that adds a lot of decorations with features.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("LC-IT S. (OSubMarin)")]
 [assembly: AssemblyProduct("DecorationsMod")]
-[assembly: AssemblyCopyright("Copyright © 2018-2020, Tous droits réservés")]
+[assembly: AssemblyCopyright("Copyright © 2018-2025, Tous droits réservés")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.9.1.0")]
-[assembly: AssemblyFileVersion("1.9.1.0")]
+[assembly: AssemblyVersion("2.1.0.0")]
+[assembly: AssemblyFileVersion("2.1.0.0")]

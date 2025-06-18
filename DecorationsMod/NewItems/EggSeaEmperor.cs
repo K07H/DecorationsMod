@@ -1,55 +1,42 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class EggSeaEmperor : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public EggSeaEmperor() : base("EggSeaEmperor", "EggSeaEmperorName", "EggSeaEmperorDescription", "seaemperoreggicon")
-        {
-#else
-        public EggSeaEmperor()
+        public EggSeaEmperor() : base("EggSeaEmperor", LanguageHelper.GetFriendlyWord("EggSeaEmperorName"), LanguageHelper.GetFriendlyWord("EggSeaEmperorDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("seaemperoreggicon"))
         {
             this.ClassID = "EggSeaEmperor"; // fa5327d8-1975-4e5a-93b2-9e5554907d7b
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("EggSeaEmperorName"),
-                                                        LanguageHelper.GetFriendlyWord("EggSeaEmperorDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.SeaEmperorEgg = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
-                    }),
-            };
+                new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(ConfigSwitcher.CreatureEggsResource, ConfigSwitcher.CreatureEggsResourceAmount)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -57,30 +44,22 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Set item occupies 4 slots
-                CraftDataHandler.SetItemSize(this.TechType, new Vector2int(3, 3));
+                Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(3, 3));
 
                 // Add the new TechType to the hand-equipments
-                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("seaemperoreggicon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("seaemperoreggicon"));
 
                 this.IsRegistered = true;
             }
@@ -90,6 +69,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: eggSeaEmperor.GetGameObject()");
+#endif
             if (_eggSeaEmperor == null)
                 _eggSeaEmperor = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Eggs/EmperorEgg.prefab");
 
@@ -131,7 +113,7 @@ namespace DecorationsMod.NewItems
             prefabId.ClassId = this.ClassID;
 
             // Update sky applier
-            PrefabsHelper.SetDefaultSkyApplier(prefab);
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab);
 
             // Update large world entity
             PrefabsHelper.UpdateExistingLargeWorldEntities(prefab);

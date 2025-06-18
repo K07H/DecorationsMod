@@ -16,7 +16,7 @@
                 if (eType == EquipmentType.Hand || eType == EquipmentType.BatteryCharger)
                 {
 #if DEBUG_PLACE_TOOL
-                    Logger.Debug("AllowedToAdd battery charger for " + objTechType.AsString(false));
+                    Logger.Debug("DEBUG: AllowedToAdd battery charger for " + objTechType.AsString(false));
 #endif
                     bool result = ((IItemsContainer)__instance).AllowedToAdd(pickupable, verbose);
                     __result = result;
@@ -33,7 +33,7 @@
                 if (eType == EquipmentType.Hand || eType == EquipmentType.PowerCellCharger)
                 {
 #if DEBUG_PLACE_TOOL
-                    Logger.Debug("AllowedToAdd powercell charger for " + objTechType.AsString(false));
+                    Logger.Debug("DEBUG: AllowedToAdd powercell charger for " + objTechType.AsString(false));
 #endif
                     __result = ((IItemsContainer)__instance).AllowedToAdd(pickupable, verbose);
                     return false;

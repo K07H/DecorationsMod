@@ -223,6 +223,8 @@ namespace DecorationsModConfigurator
                 changes.Add("EnablePlaceItems changed from \"" + origConfig.EnablePlaceItems.ToString() + "\" to \"" + currentConfig.EnablePlaceItems.ToString() + "\".");
             if (currentConfig.EnablePlaceBatteries != origConfig.EnablePlaceBatteries)
                 changes.Add("EnablePlaceBatteries changed from \"" + origConfig.EnablePlaceBatteries.ToString() + "\" to \"" + currentConfig.EnablePlaceBatteries.ToString() + "\".");
+            if (currentConfig.EnablePlaceEggs != origConfig.EnablePlaceEggs)
+                changes.Add("EnablePlaceEggs changed from \"" + origConfig.EnablePlaceEggs.ToString() + "\" to \"" + currentConfig.EnablePlaceEggs.ToString() + "\".");
             if (currentConfig.EnableNewFlora != origConfig.EnableNewFlora)
                 changes.Add("EnableNewFlora changed from \"" + origConfig.EnableNewFlora.ToString() + "\" to \"" + currentConfig.EnableNewFlora.ToString() + "\".");
             if (currentConfig.EnableNewItems != origConfig.EnableNewItems)

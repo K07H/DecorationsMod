@@ -11,7 +11,8 @@ namespace DecorationsMod.Fixers
 			{
 				KnownTechFixer.LoadAddedNotifications(saveGame);
 				ConstructableFixer.LoadLadderDirections(saveGame);
-			}
+                GenericPlaceTool_PT.LoadPlacedByPlayerList(saveGame);
+            }
 			// Give back execution to origin function.
 			return true;
 		}
@@ -41,7 +42,7 @@ namespace DecorationsMod.Fixers
 			}
 			catch (Exception ex)
 			{
-				Logger.Warning("Exception caught while retrieving game info. Exception=[" + ex.ToString() + "]");
+				Logger.Warning("WARNING: Exception caught while retrieving game info. Exception=[" + ex.ToString() + "]");
 				gameInfo = null;
 			}
 			// Load added notifications and outdoor ladder directions if needed.
@@ -49,7 +50,8 @@ namespace DecorationsMod.Fixers
 			{
 				KnownTechFixer.LoadAddedNotifications(slotName);
 				ConstructableFixer.LoadLadderDirections(slotName);
-			}
+                GenericPlaceTool_PT.LoadPlacedByPlayerList(slotName);
+            }
 			// Give back execution to origin function.
 			return true;
 		}

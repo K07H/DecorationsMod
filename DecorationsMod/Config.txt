@@ -7,7 +7,7 @@
 # -----------------------
 
 # Modify the line "language=auto" to change language. Possible values:
-# "auto" => default language, "de" => German, "en" => English, "es" => Español, "fr" => Français, "nl" => Nederlands, "ru" => Russian, "tr" => Türk, and any other language files found in assets/lang
+# "auto" => default language, "de" => Deutsch, "en" => English, "es" => Español, "fr" => Français, "nl" => Nederlands, "ru" => Russian, "tr" => Türk
 language=auto
 
 # If "true", tooltips of the "customizable picture frame" and "customizable light" items will be shorter.
@@ -37,6 +37,9 @@ enablePlaceMaterials=true
 
 # If "true", you will be able to place batteries, powercells, ion batteries and ion powercells where you want (note that option "enablePlaceItems" needs to be set to "true" for this to work).
 enablePlaceBatteries=true
+
+# If "true", you will be able to place eggs where you want (note that option "enablePlaceItems" needs to be set to "true" for this to work).
+enablePlaceEggs=true
 
 # If "true", you will be able to build the seeds fabricator and to craft seeds.
 # The seeds fabricator can be used to craft all existing seeds plus new ones (55 different seeds in total).

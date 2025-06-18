@@ -1,30 +1,17 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class WarperPart1 : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public WarperPart1() : base("WarperPart1", "BigWarperPartName", "BigWarperPartDescription", "warper_icon_1")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public WarperPart1() // Feeds abstract class
+        public WarperPart1() : base("WarperPart1", LanguageHelper.GetFriendlyWord("BigWarperPartName"), LanguageHelper.GetFriendlyWord("BigWarperPartDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon_1")) // Feeds abstract class
         {
             this.ClassID = "WarperPart1";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
@@ -32,33 +19,36 @@ namespace DecorationsMod.NewItems
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("Precursor_LostRiverBase_Warper");
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("BigWarperPartName"),
-                                                        LanguageHelper.GetFriendlyWord("BigWarperPartDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.WarperPart1 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[5]
-                    {
-                        new Ingredient(TechType.Titanium, 2),
-                        new Ingredient(TechType.Silicone, 1),
-                        new Ingredient(TechType.Glass, 1),
-                        new Ingredient(TechType.Lubricant, 1),
-                        new Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 2),
+                new Ingredient(TechType.Silicone, 1),
+                new Ingredient(TechType.Glass, 1),
+                new Ingredient(TechType.Lubricant, 1),
+                new Ingredient(TechType.FiberMesh, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 2),
+                new Ingredient(TechType.Silicone, 1),
+                new Ingredient(TechType.Glass, 1),
+                new Ingredient(TechType.Lubricant, 1),
+                new Ingredient(TechType.FiberMesh, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         private static GameObject _warperPart1 = null;
@@ -150,11 +140,8 @@ namespace DecorationsMod.NewItems
                 if (bml == null)
                     bml = _warperPart1.GetComponentInChildren<BaseModuleLighting>();
                 if (bml == null)
-                    bml = _warperPart1.AddComponent<BaseModuleLighting>();
-                SkyApplier applier = _warperPart1.AddComponent<SkyApplier>();
-                applier.renderers = renderers;
-                applier.anchorSky = Skies.Auto;
-                applier.updaterIndex = 0;
+                    bml = _warperPart1.EnsureComponent<BaseModuleLighting>();
+                PrefabsHelper.UpdateOrAddSkyApplier(_warperPart1, null, renderers);
 
                 // Add contructable
                 Constructable constructable = _warperPart1.AddComponent<Constructable>();
@@ -183,28 +170,20 @@ namespace DecorationsMod.NewItems
 
                 // Define unlock conditions
                 if (ConfigSwitcher.AddItemsWhenDiscovered)
-                    KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorWarper, new TechType[] { this.TechType });
+                    Nautilus.Handlers.KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorWarper, new TechType[] { this.TechType });
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add new TechType to the buildables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon_1"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon_1"));
 
                 this.IsRegistered = true;
             }

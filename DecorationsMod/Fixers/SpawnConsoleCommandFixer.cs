@@ -13,36 +13,51 @@ namespace DecorationsMod.Fixers
                 TechType techType;
                 if (UWE.Utils.TryParseEnum<TechType>(text, out techType) && techType != TechType.None)
                     if (CraftData.IsAllowed(techType))
-                        foreach (IDecorationItem item in DecorationsMod.DecorationItems)
-                            if (techType == item.TechType) // If item being spawned is one of our decoration items.
-                            {
-                                CoroutineTask<GameObject> request = CraftData.GetPrefabForTechTypeAsync(techType, true);
-                                yield return request;
-                                GameObject result = request.GetResult();
-                                if (result != null)
+                    {
+                        bool isDecorationsModItem = false;
+
+                        if (techType == OtherItems._nutrientBlockTechType || techType == OtherItems._toyCarTechType)
+                            isDecorationsModItem = true;
+                        else
+                        {
+                            foreach (IDecorationItem item in DecorationsMod.DecorationItems)
+                                if (techType == item.TechType) // If item being spawned is one of our decoration items.
                                 {
-                                    int num = 1;
-                                    int num2;
-                                    if (n.data.Count > 1 && int.TryParse((string)n.data[1], out num2))
-                                        num = num2;
-                                    float maxDist = 12f;
-                                    if (n.data.Count > 2)
-                                        maxDist = float.Parse((string)n.data[2]);
-                                    Debug.LogFormat("Spawning {0} {1}", new object[] { num, techType });
-                                    for (int i = 0; i < num; i++)
-                                    {
-                                        GameObject gameObject = global::Utils.CreatePrefab(result, maxDist, i > 0);
-                                        LargeWorldEntity.Register(gameObject);
-                                        CrafterLogic.NotifyCraftEnd(gameObject, techType);
-                                        gameObject.SendMessage("StartConstruction", SendMessageOptions.DontRequireReceiver);
-                                    }
+                                    isDecorationsModItem = true;
+                                    break;
                                 }
-                                else
-                                    ErrorMessage.AddDebug("Could not find prefab for TechType = " + techType);
-                                request = null;
-                                // Dont call origin function if item being spawned is one of our new flora.
-                                yield break;
+                        }
+
+                        if (isDecorationsModItem)
+                        {
+                            CoroutineTask<GameObject> request = CraftData.GetPrefabForTechTypeAsync(techType, true);
+                            yield return request;
+                            GameObject result = request.GetResult();
+                            if (result != null)
+                            {
+                                int num = 1;
+                                int num2;
+                                if (n.data.Count > 1 && int.TryParse((string)n.data[1], out num2))
+                                    num = num2;
+                                float maxDist = 12f;
+                                if (n.data.Count > 2)
+                                    maxDist = float.Parse((string)n.data[2]);
+                                Debug.LogFormat("Spawning {0} {1}", new object[] { num, techType });
+                                for (int i = 0; i < num; i++)
+                                {
+                                    GameObject gameObject = global::Utils.CreatePrefab(result, maxDist, i > 0);
+                                    LargeWorldEntity.Register(gameObject);
+                                    CrafterLogic.NotifyCraftEnd(gameObject, techType);
+                                    gameObject.SendMessage("StartConstruction", SendMessageOptions.DontRequireReceiver);
+                                }
                             }
+                            else
+                                ErrorMessage.AddDebug("Could not find prefab for TechType = " + techType);
+                            request = null;
+                            // Dont call origin function if item being spawned is one of our new flora.
+                            yield break;
+                        }
+                    }
             }
             // Give back execution to origin function.
             yield return values;

@@ -1,40 +1,23 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class LabCart : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public LabCart() : base("LabCart", "LabCartName", "LabCartDescription", "labcarticon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public LabCart() // Feeds abstract class
+        public LabCart() : base("LabCart", LanguageHelper.GetFriendlyWord("LabCartName"), LanguageHelper.GetFriendlyWord("LabCartDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("labcarticon")) // Feeds abstract class
         {
             this.ClassID = "LabCart"; //af165b07-a2a3-4d85-8ad7-0c801334c115
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("LabCartName"),
-                                                        LanguageHelper.GetFriendlyWord("LabCartDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.LabCart = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
@@ -42,18 +25,21 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.LabCart_asBuildable)
                 this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -61,39 +47,31 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 if (ConfigSwitcher.LabCart_asBuildable)
                 {
                     // Add to the custom buidables
-                    CraftDataHandler.AddBuildable(this.TechType);
-                    CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                    Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                    Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
                 }
                 else
                 {
                     // Set item occupies 4 slots
-                    CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                    Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                     // Add the new TechType to the hand-equipments
-                    CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                    Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                     // Set quick slot type.
-                    CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                    Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
                 }
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("labcarticon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("labcarticon"));
 
                 this.IsRegistered = true;
             }
@@ -103,6 +81,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: labCart.GetGameObject()");
+#endif
             if (_labCart == null)
                 _labCart = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_cart_01.prefab");
 
@@ -200,9 +181,7 @@ namespace DecorationsMod.NewItems
             }
 
             // Update sky applier
-            SkyApplier applier = prefab.GetComponent<SkyApplier>();
-            applier.anchorSky = Skies.Auto;
-            applier.renderers = rend;
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab, null, rend);
 
             return prefab;
         }

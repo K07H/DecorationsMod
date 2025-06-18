@@ -1,31 +1,18 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class ReactorLamp : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public ReactorLamp() : base("ReactorLamp", "ReactorLampName", "ReactorLampDescription", "reactorrod_white")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public ReactorLamp() // Feeds abstract class
+        public ReactorLamp() : base("ReactorLamp", LanguageHelper.GetFriendlyWord("ReactorLampName"), LanguageHelper.GetFriendlyWord("ReactorLampDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("reactorrod_white")) // Feeds abstract class
         {
             this.ClassID = "ReactorLamp";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
@@ -33,33 +20,34 @@ namespace DecorationsMod.NewItems
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("nuclearreactorrod_white");
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("ReactorLampName"),
-                                                        LanguageHelper.GetFriendlyWord("ReactorLampDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.ReactorLamp = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[4]
-                    {
-                        new Ingredient(TechType.ComputerChip, 1),
-                        new Ingredient(TechType.Glass, 1),
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Diamond, 1)
-                        
-                    }),
-            };
+                new Ingredient(TechType.ComputerChip, 1),
+                new Ingredient(TechType.Glass, 1),
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Diamond, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.ComputerChip, 1),
+                new Ingredient(TechType.Glass, 1),
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Diamond, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         private static GameObject _reactorLamp = null;
@@ -172,22 +160,12 @@ namespace DecorationsMod.NewItems
                 }
 
                 // Add sky applier
-                BaseModuleLighting bml = _reactorLamp.AddComponent<BaseModuleLighting>();
-#if SUBNAUTICA
-                var skyapplier = _reactorLamp.GetComponent<SkyApplier>();
-                if (skyapplier == null)
-                    skyapplier = _reactorLamp.AddComponent<SkyApplier>();
-                skyapplier.renderers = _reactorLamp.GetComponentsInChildren<Renderer>();
-                skyapplier.anchorSky = Skies.Auto;
-#else
-                var skyapplier = _reactorLamp.GetComponent<SkyApplier>();
-                if (skyapplier == null)
-                    skyapplier = _reactorLamp.GetComponentInChildren<SkyApplier>();
-                if (skyapplier == null)
-                    skyapplier = _reactorLamp.AddComponent<SkyApplier>();
-                skyapplier.renderers = _reactorLamp.GetComponentsInChildren<Renderer>();
-                skyapplier.anchorSky = Skies.Auto;
-#endif
+                BaseModuleLighting bml = _reactorLamp.GetComponent<BaseModuleLighting>();
+                if (bml == null)
+                    bml = _reactorLamp.GetComponentInChildren<BaseModuleLighting>();
+                if (bml == null)
+                    bml = _reactorLamp.EnsureComponent<BaseModuleLighting>();
+                PrefabsHelper.UpdateOrAddSkyApplier(_reactorLamp);
 
                 // Add contructable
                 var constructible = _reactorLamp.AddComponent<Lamp_C>();
@@ -212,27 +190,19 @@ namespace DecorationsMod.NewItems
 
                 // Add lamp brightness controler
                 var lampBrightness = _reactorLamp.AddComponent<ReactorLampBrightness>();
-
+                
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add new TechType to the buildables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorLight, this.TechType, TechType.Spotlight);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorLight, this.TechType, TechType.Spotlight);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
                 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("reactorrod_white"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("reactorrod_white"));
 
                 this.IsRegistered = true;
             }

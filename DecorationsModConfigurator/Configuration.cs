@@ -148,6 +148,22 @@ namespace DecorationsModConfigurator
             }
         }
 
+        private bool _enablePlaceEggs;
+        public bool EnablePlaceEggs
+        {
+            get => _enablePlaceEggs;
+            set
+            {
+                if (_enablePlaceEggs != value)
+                {
+#if DEBUG_CONFIG_CHANGED
+                    Logger.Log(LOG_CONFIG_CHANGE, nameof(EnablePlaceEggs), _enablePlaceEggs, value);
+#endif
+                    _enablePlaceEggs = value;
+                }
+            }
+        }
+
         private bool _enableNewFlora;
         public bool EnableNewFlora
         {
@@ -1690,7 +1706,8 @@ namespace DecorationsModConfigurator
             this._allowPlaceOutside = true;
             this._enablePlaceItems = true;
             this._enablePlaceMaterials = true;
-            this._enablePlaceBatteries = false;
+            this._enablePlaceBatteries = true;
+            this._enablePlaceEggs = true;
             this._enableNewFlora = true;
             this._fixAquariumLighting = true;
             this._enableAquariumGlassGlowing = false;
@@ -1705,11 +1722,11 @@ namespace DecorationsModConfigurator
             this._habitatBuilderItems = "AlienPillar1/AquariumSmall/BarStool/BenchMedium/BenchSmall/CargoBox01_damaged/CargoBox01a/CargoBox01b/CustomPictureFrame/CyclopsDoll/DecorationsEmptyDesk/DecorationsSpecimenAnalyzer/DecorativeControlTerminal/DecorativeLocker/DecorativeLockerClosed/DecorativeLockerDoor/DecorativeTechBox/MarlaCat/ExosuitDoll/ForkLiftDoll/JackSepticEyeDoll/LabCart/ALongPlanter/LongPlanterB/MarkiDoll1/MarkiDoll2/ReactorLamp/SeamothDoll/SofaCorner2/SofaStr1/SofaStr2/SofaStr3/WarperPart1/WorkDeskScreen1/WorkDeskScreen2/OutdoorLadder";
 
             // Discovery settings
-            this._addItemsWhenDiscovered = true;
-            this._addAirSeedsWhenDiscovered = true;
-            this._addWaterSeedsWhenDiscovered = true;
+            this._addItemsWhenDiscovered = false;
+            this._addAirSeedsWhenDiscovered = false;
+            this._addWaterSeedsWhenDiscovered = false;
             this._addEggsWhenCreatureScanned = false;
-            this._addEggsAtStart = false;
+            this._addEggsAtStart = true;
 
             // Precursor settings
             this._enablePrecursorTab = true;
@@ -2014,6 +2031,8 @@ namespace DecorationsModConfigurator
                     origConfig._enablePlaceMaterials = !(string.Compare(line.Substring("enablePlaceMaterials=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("enablePlaceBatteries="))
                     origConfig._enablePlaceBatteries = string.Compare(line.Substring("enablePlaceBatteries=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
+                else if (line.StartsWith("enablePlaceEggs="))
+                    origConfig._enablePlaceEggs = string.Compare(line.Substring("enablePlaceEggs=".Length), "true", true, CultureInfo.InvariantCulture) == 0;
                 else if (line.StartsWith("enableNewFlora="))
                     origConfig._enableNewFlora = !(string.Compare(line.Substring("enableNewFlora=".Length), "false", true, CultureInfo.InvariantCulture) == 0);
                 else if (line.StartsWith("enableNewItems="))
@@ -2330,6 +2349,8 @@ namespace DecorationsModConfigurator
                         ReplaceStr(ref configContent, currentConfig.EnablePlaceMaterials.ToString(CultureInfo.InvariantCulture), "\nenablePlaceMaterials=");
                     if (currentConfig.EnablePlaceBatteries != origConfig.EnablePlaceBatteries)
                         ReplaceStr(ref configContent, currentConfig.EnablePlaceBatteries.ToString(CultureInfo.InvariantCulture), "\nenablePlaceBatteries=");
+                    if (currentConfig.EnablePlaceEggs != origConfig.EnablePlaceEggs)
+                        ReplaceStr(ref configContent, currentConfig.EnablePlaceEggs.ToString(CultureInfo.InvariantCulture), "\nenablePlaceEggs=");
                     if (currentConfig.EnableNewFlora != origConfig.EnableNewFlora)
                         ReplaceStr(ref configContent, currentConfig.EnableNewFlora.ToString(CultureInfo.InvariantCulture), "\nenableNewFlora=");
                     if (currentConfig.EnableNewItems != origConfig.EnableNewItems)

@@ -1,28 +1,15 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Fixers;
+﻿using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class LongPlanterB : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public LongPlanterB() : base("LongPlanterB", "ExteriorLongPlanterName", "ExteriorLongPlanterDescription", "farmingtrayicon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public LongPlanterB() // Feeds abstract class
+        public LongPlanterB() : base("LongPlanterB", LanguageHelper.GetFriendlyWord("ExteriorLongPlanterName"), LanguageHelper.GetFriendlyWord("ExteriorLongPlanterDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("farmingtrayicon")) // Feeds abstract class
         {
             this.ClassID = "LongPlanterB"; // 87f5d3e6-e00b-4cf3-be39-0a9c7e951b84
 
@@ -30,29 +17,28 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("ExteriorLongPlanterName"),
-                                                        LanguageHelper.GetFriendlyWord("ExteriorLongPlanterDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.LongPlanterB = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 2)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 2)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 2)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -60,25 +46,17 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add to the custom buidables
-                CraftDataHandler.AddBuildable(this.TechType);
-                CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorOther, this.TechType, TechType.FarmingTray);
+                Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorOther, this.TechType, TechType.FarmingTray);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom icon
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("farmingtrayicon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("farmingtrayicon"));
 
                 this.IsRegistered = true;
             }
@@ -88,6 +66,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: longPlanterB.GetGameObject()");
+#endif
             if (_longPlanterB == null)
                 _longPlanterB = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/FarmingTray.prefab");
 
@@ -152,13 +133,7 @@ namespace DecorationsMod.NewItems
                 tr.localPosition = new Vector3(tr.localPosition.x + xPad, tr.localPosition.y + yPad, tr.localPosition.z);
 
             // Update sky applier
-            SkyApplier sa = prefab.GetComponent<SkyApplier>();
-            if (sa == null)
-                sa = prefab.GetComponentInChildren<SkyApplier>();
-            if (sa == null)
-                sa = prefab.AddComponent<SkyApplier>();
-            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
-            sa.anchorSky = Skies.Auto;
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab);
 
             return prefab;
         }

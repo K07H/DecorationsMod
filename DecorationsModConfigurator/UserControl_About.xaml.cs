@@ -50,7 +50,7 @@ namespace DecorationsModConfigurator
             else
                 this.DecorationsModVersion = "ERROR: Cannot find \"mod.json\" at \"" + modJsonFile + "\".";
             */
-            this.DecorationsModVersion = "2.0.3";
+            this.DecorationsModVersion = "2.1.0";
 
             string configuratorVersion = typeof(UserControl_About).Assembly.GetName().Version.ToString();
             int pos = configuratorVersion.LastIndexOf('.');

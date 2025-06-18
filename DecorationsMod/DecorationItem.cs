@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
-using Nautilus.Assets;
+using System.Collections;
+using System;
 
 #if SUBNAUTICA_NAUTILUS
+using Nautilus.Assets;
 using System.Diagnostics.CodeAnalysis;
 #endif
 
@@ -19,7 +21,7 @@ namespace DecorationsMod
         GameObject GetGameObject();
         void RegisterItem();
     }
-    
+
 #if SUBNAUTICA_NAUTILUS
     public abstract class DecorationItem : Nautilus.Assets.CustomPrefab, IDecorationItem
 #else
@@ -30,33 +32,33 @@ namespace DecorationsMod
 
 #if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public DecorationItem(string classID, string nameKey, string descKey, string icon, params object[] translationArgs) : this(
-            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey, translationArgs), LanguageHelper.GetFriendlyWord(descKey, translationArgs), unlockAtStart: true)
+        public DecorationItem(string classID, string name, string desc, string icon) : this(
+            PrefabInfo.WithTechType(classID, name, desc, unlockAtStart: true)
             .WithFileName(DefaultResourcePath + classID)
             .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>(icon))) { }
 
         [SetsRequiredMembers]
-        public DecorationItem(string classID, string nameKey, string descKey, string icon) : this(
-            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey), LanguageHelper.GetFriendlyWord(descKey), unlockAtStart: true)
-            .WithFileName(DefaultResourcePath + classID)
-            .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>(icon))) { }
-
-        [SetsRequiredMembers]
-        public DecorationItem(string classID, string nameKey, string descKey, Atlas.Sprite icon, params object[] translationArgs) : this(
-            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey, translationArgs), LanguageHelper.GetFriendlyWord(descKey, translationArgs), unlockAtStart: true)
+        public DecorationItem(string classID, string name, string desc, Atlas.Sprite icon) : this(
+            PrefabInfo.WithTechType(classID, name, desc, unlockAtStart: true)
             .WithFileName(DefaultResourcePath + classID)
             .WithIcon(icon)) { }
 
         [SetsRequiredMembers]
-        public DecorationItem(string classID, string nameKey, string descKey, Atlas.Sprite icon) : this(
-            PrefabInfo.WithTechType(classID, LanguageHelper.GetFriendlyWord(nameKey), LanguageHelper.GetFriendlyWord(descKey), unlockAtStart: true)
+        public DecorationItem(string classID, string name, string desc, Sprite icon) : this(
+            PrefabInfo.WithTechType(classID, name, desc, unlockAtStart: true)
             .WithFileName(DefaultResourcePath + classID)
-            .WithIcon(icon)) { }
+            .WithIcon(icon))
+        { }
+
+        [SetsRequiredMembers]
+        public DecorationItem(string classID, string prefabFileName, TechType techType) : this(
+            new PrefabInfo(classID, prefabFileName, techType))
+        { }
 
         [SetsRequiredMembers]
         public DecorationItem(Nautilus.Assets.PrefabInfo info) : base(info)
         {
-            SetGameObject(this.GetGameObject);
+            SetGameObject(this.GetGameObject); // SetGameObject(this.GetGameObjectAsync);
         }
 #else
         public DecorationItem() : base("", "") { }
@@ -73,7 +75,7 @@ namespace DecorationsMod
 
         // This is used to know if item appears in habitat builder menu
         public bool IsHabitatBuilder = false;
-        
+
         // The item root GameObject
         public GameObject GameObject { get; set; }
 
@@ -82,10 +84,23 @@ namespace DecorationsMod
         // The item recipe
 #if SUBNAUTICA_NAUTILUS
         public Nautilus.Crafting.RecipeData Recipe { get; set; }
-        public string ClassID => Info.ClassID;
-        public string PrefabFileName => Info.PrefabFileName;
-        public TechType TechType => Info.TechType;
-        public abstract GameObject GetGameObject();
+
+        public string ClassID
+        {
+            get => Info.ClassID;
+            set { var t = value; }
+        }
+        public string PrefabFileName
+        {
+            get => Info.PrefabFileName;
+            set { var t = value; }
+        }
+        public TechType TechType
+        {
+            get => Info.TechType;
+            set { var t = value; }
+        }
+
 #elif SUBNAUTICA
         public SMLHelper.V2.Crafting.TechData Recipe { get; set; }
 #else
@@ -95,7 +110,7 @@ namespace DecorationsMod
         #endregion
         #region Abstract and virtual methods
 
-        //public abstract GameObject GetGameObject();
+        public abstract GameObject GetGameObject();
 
         public virtual void RegisterItem()
         {

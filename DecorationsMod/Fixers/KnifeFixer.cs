@@ -13,7 +13,7 @@ namespace DecorationsMod.Fixers
             if ((int)techType == (int)purplePineConeTechType && purplePineConeTechType != TechType.None) // If it's our custom purple pinecone
             {
 #if DEBUG_KNIFE
-                Logger.Debug("Entering custom purple pinecone event. techType=[" + (int)techType + "][" + techType.AsString(false) + "] purplePineConeTechType=[" + (int)purplePineConeTechType + "][" + purplePineConeTechType.AsString(false) + "]");
+                Logger.Debug("DEBUG: Entering custom purple pinecone event. techType=[" + (int)techType + "][" + techType.AsString(false) + "] purplePineConeTechType=[" + (int)purplePineConeTechType + "][" + purplePineConeTechType.AsString(false) + "]");
 #endif
 #if SUBNAUTICA
                 HarvestType harvestTypeFromTech = CraftData.GetHarvestTypeFromTech(techType);

@@ -64,6 +64,10 @@ namespace DecorationsMod
             if (placeTool == null)
                 placeTool = gameObj.GetComponent<PlaceTool>();
             if (placeTool == null)
+                placeTool = gameObj.GetComponentInChildren<GenericPlaceTool>();
+            if (placeTool == null)
+                placeTool = gameObj.GetComponentInChildren<PlaceTool>();
+            if (placeTool == null)
                 placeTool = gameObj.AddComponent<GenericPlaceTool>();
 
             placeTool.allowedInBase = true;
@@ -92,6 +96,8 @@ namespace DecorationsMod
             // Try get pickupable
             if (pickupable == null)
                 pickupable = gameObj.GetComponent<Pickupable>();
+            if (pickupable == null)
+                pickupable = gameObj.GetComponentInChildren<Pickupable>();
             // Associate pickupable
             placeTool.pickupable = pickupable;
             placeTool.drawTime = 0.5f;
@@ -143,7 +149,7 @@ namespace DecorationsMod
             rigidBody.hideFlags = HideFlags.None;
         }
 
-        public static void SetDefaultLargeWorldEntity(GameObject gameObj, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Near, int updaterIndex = 0)
+        public static void SetDefaultLargeWorldEntity(GameObject gameObj, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Near)
         {
             if (gameObj == null)
                 return;
@@ -151,57 +157,20 @@ namespace DecorationsMod
             if (lwe == null)
                 lwe = gameObj.AddComponent<LargeWorldEntity>();
             lwe.cellLevel = cellLevel;
-            lwe.updaterIndex = updaterIndex;
+            //lwe.updaterIndex = 0;
             lwe.hideFlags = HideFlags.None;
             lwe.useGUILayout = true;
             lwe.enabled = true;
         }
 
-        public static void UpdateExistingLargeWorldEntities(GameObject gameObj, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Near, int updaterIndex = -1)
+        public static void UpdateExistingLargeWorldEntities(GameObject gameObj, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Near)
         {
             if (gameObj == null)
                 return;
             LargeWorldEntity[] entities = gameObj.GetComponentsInChildren<LargeWorldEntity>();
             if (entities != null)
                 foreach (LargeWorldEntity lwe in entities)
-                {
                     lwe.cellLevel = cellLevel;
-                    if (updaterIndex >= 0)
-                        lwe.updaterIndex = updaterIndex;
-                }
-        }
-
-        public static void ReplaceSkyApplier(GameObject gameObj, bool getInChildren = false)
-        {
-            if (gameObj == null)
-                return;
-            SkyApplier sa = getInChildren ? gameObj.GetComponentInChildren<SkyApplier>() : gameObj.GetComponent<SkyApplier>();
-            if (sa != null)
-                UnityEngine.Object.DestroyImmediate(sa);
-            sa = gameObj.AddComponent<SkyApplier>();
-            sa.renderers = gameObj.GetComponentsInChildren<Renderer>();
-            sa.anchorSky = Skies.Auto;
-            sa.enabled = true;
-        }
-
-        public static void SetDefaultSkyApplier(GameObject gameObj, Renderer[] renderers = null, Skies anchorSky = Skies.Auto,
-            bool dynamic = false, bool emissiveFromPower = false)
-        {
-            if (gameObj == null)
-                return;
-            SkyApplier applier = gameObj.GetComponent<SkyApplier>();
-            if (applier == null)
-                applier = gameObj.AddComponent<SkyApplier>();
-            if (renderers == null)
-                renderers = gameObj.GetComponentsInChildren<Renderer>();
-            if (renderers != null)
-                applier.renderers = renderers;
-            applier.anchorSky = anchorSky;
-            applier.dynamic = dynamic;
-            applier.emissiveFromPower = emissiveFromPower;
-            applier.hideFlags = HideFlags.None;
-            applier.useGUILayout = true;
-            applier.enabled = true;
         }
 
         private static GameObject _objPositioner = null;
@@ -247,7 +216,7 @@ namespace DecorationsMod
             catch (Exception ex)
             {
                 ret = null;
-                Logger.Error("Exception caught while instantiating prefab for TechType [" + techType.AsString() + "][" + Convert.ToString((int)techType, System.Globalization.CultureInfo.InvariantCulture) + "]. Exception=[" + ex.ToString() + "]");
+                Logger.Error("ERROR: Exception caught while instantiating prefab for TechType [" + techType.AsString() + "][" + Convert.ToString((int)techType, System.Globalization.CultureInfo.InvariantCulture) + "]. Exception=[" + ex.ToString() + "]");
             }
             return ret;
         }
@@ -255,17 +224,18 @@ namespace DecorationsMod
 
         public static GameObject LoadGameObjectFromFilename(string filename)
         {
-#if DEBUG
+#if DEBUG_ITEMS_REGISTRATION
             if (string.IsNullOrEmpty(filename))
-                Logger.Warning("LoadGameObjectFromFilename: Provided filename is empty.");
+                Logger.Warning("WARNING: LoadGameObjectFromFilename: Provided filename is empty.");
             if (!filename.EndsWith(".prefab"))
-                Logger.Warning("LoadGameObjectFromFilename: Provided filename \"" + filename + "\" does not ends with \".prefab\".");
+                Logger.Warning("WARNING: LoadGameObjectFromFilename: Provided filename \"" + filename + "\" does not ends with \".prefab\".");
+            Logger.Info($"INFO: LoadGameObjectFromFilename: Loading {filename}...");
 #endif
             var cyclopsFabricatorRequest = AddressablesUtility.LoadAsync<GameObject>(filename);
             cyclopsFabricatorRequest.WaitForCompletion();
-#if DEBUG
+#if DEBUG_ITEMS_REGISTRATION
             if (cyclopsFabricatorRequest.Result == null)
-                Logger.Warning("LoadGameObjectFromFilename: Unable to load game object from filename \"" + filename + "\".");
+                Logger.Warning("WARNING: LoadGameObjectFromFilename: Unable to load game object from filename \"" + filename + "\".");
 #endif
             return cyclopsFabricatorRequest.Result;
         }
@@ -276,7 +246,7 @@ namespace DecorationsMod
             var snapBuilder = new GameObject("SnapBuilder");
             if (rotation != null && rotation.HasValue)
                 snapBuilder.transform.localEulerAngles = rotation.Value;
-            if (translation != null && translation.HasValue)
+            if (translation != null && rotation.HasValue)
                 snapBuilder.transform.localPosition = translation.Value;
             snapBuilder.transform.SetParent(parentModel, false);
         }
@@ -493,7 +463,7 @@ namespace DecorationsMod
 
         internal static void TestPrefabs()
         {
-            Logger.Debug("Testing prefabs...");
+            Logger.Debug("DEBUG: Testing prefabs...");
 #if SUBNAUTICA
             foreach (string prefabPath in AllSubnauticaPrefabs)
 #else
@@ -502,17 +472,186 @@ namespace DecorationsMod
             {
                 GameObject res = LoadGameObjectFromFilename(prefabPath);
                 if (res == null)
-                    Logger.Debug("Failed to load prefab at path [" + prefabPath + "]!");
+                    Logger.Debug("DEBUG: Failed to load prefab at path [" + prefabPath + "]!");
             }
-            Logger.Debug("Prefabs have been tested.");
+            Logger.Debug("DEBUG: Prefabs have been tested.");
         }
 #endif
 
         #endregion
 
+        #region Sky appliers
+
+        public static void AddSkyApplier(GameObject gameObj, string attachToModel = null, Renderer[] renderers = null,
+                                         bool emissiveFromPower = false, Skies anchorSky = Skies.Auto, bool dynamic = true)
+        {
+            if (gameObj == null)
+                return;
+
+#if DEBUG_SKY_APPLIERS
+            Logger.Debug($"DEBUG: Entering PrefabsHelper.AddSkyApplier(). GameObjName=[{gameObj.name ?? "NULL"}]");
+#endif
+
+            GameObject go = (!string.IsNullOrEmpty(attachToModel) ? gameObj.FindChild(attachToModel) : gameObj);
+            if (go == null)
+                go = gameObj;
+
+            SkyApplier sa = go.EnsureComponent<SkyApplier>();
+            if (sa == null)
+                return;
+
+            sa.renderers = (renderers != null ? renderers : gameObj.GetComponentsInChildren<Renderer>(true));
+            sa.anchorSky = anchorSky;
+            sa.dynamic = dynamic;
+            sa.emissiveFromPower = emissiveFromPower;
+            sa.useGUILayout = false;
+            sa.hideFlags = HideFlags.None;
+            sa.enabled = true;
+
+#if DEBUG_SKY_APPLIERS
+            Logger.Debug($"DEBUG: Leaving PrefabsHelper.AddSkyApplier(). GameObjName=[{gameObj.name ?? "NULL"}]");
+#endif
+        }
+
+        private static void RemoveSkyAppliersRecursively(Transform tr)
+        {
+            if (tr == null)
+                return;
+
+            SkyApplier[] skyAppliers = tr.GetComponents<SkyApplier>();
+            if (skyAppliers != null && skyAppliers.Length > 0)
+                for (int i = 0; i < skyAppliers.Length; i++)
+                    if (skyAppliers[i] != null)
+                    {
+                        skyAppliers[i].enabled = false;
+                        UnityEngine.Object.DestroyImmediate(skyAppliers[i]);
+                    }
+
+            foreach (Transform child in tr)
+                if (child != null)
+                    RemoveSkyAppliersRecursively(child);
+        }
+
+        public static void RemoveAllSkyAppliers(GameObject gameObj)
+        {
+            if (gameObj == null)
+                return;
+
+#if DEBUG_SKY_APPLIERS
+            Logger.Debug($"DEBUG: Entering PrefabsHelper.RemoveAllSkyAppliers(). GameObjName=[{gameObj.name ?? "NULL"}]");
+#endif
+
+            // Remove children SkyAppliers if any
+            SkyApplier[] skyAppliers = gameObj.GetComponentsInChildren<SkyApplier>(true);
+            if (skyAppliers != null && skyAppliers.Length > 0)
+                for (int i = 0; i < skyAppliers.Length; i++)
+                    if (skyAppliers[i] != null)
+                    {
+                        skyAppliers[i].enabled = false;
+                        UnityEngine.Object.DestroyImmediate(skyAppliers[i]);
+                    }
+
+            // Remove top level SkyAppliers if any
+            skyAppliers = gameObj.GetComponents<SkyApplier>();
+            if (skyAppliers != null && skyAppliers.Length > 0)
+                for (int i = 0; i < skyAppliers.Length; i++)
+                    if (skyAppliers[i] != null)
+                    {
+                        skyAppliers[i].enabled = false;
+                        UnityEngine.Object.DestroyImmediate(skyAppliers[i]);
+                    }
+
+            // Remove SkyAppliers recursively
+            Transform tr = gameObj.transform;
+            if (tr != null)
+                RemoveSkyAppliersRecursively(tr);
+
+#if DEBUG_SKY_APPLIERS
+            Logger.Debug($"DEBUG: Leaving PrefabsHelper.RemoveAllSkyAppliers(). GameObjName=[{gameObj.name ?? "NULL"}]");
+#endif
+        }
+
+        public static void RefreshSkyApplier(GameObject gameObj)
+        {
+            if (gameObj == null)
+                return;
+
+#if DEBUG_SKY_APPLIERS
+            Logger.Debug($"DEBUG: Entering PrefabsHelper.RefreshSkyApplier(). GameObjName=[{gameObj.name ?? "NULL"}]");
+#endif
+
+            SkyApplier skyApplier = gameObj.EnsureComponent<SkyApplier>();
+            if (skyApplier == null)
+                return;
+
+            skyApplier.renderers = gameObj.GetComponentsInChildren<Renderer>(true);
+            skyApplier.anchorSky = Skies.Auto;
+            skyApplier.enabled = true;
+
+#if DEBUG_SKY_APPLIERS
+            Logger.Debug($"DEBUG: Leaving PrefabsHelper.RefreshSkyApplier(). GameObjName=[{gameObj.name ?? "NULL"}]");
+#endif
+        }
+
+        public static void ReplaceSkyApplier(GameObject gameObj, string attachToModel = null, Renderer[] renderers = null,
+            bool emissiveFromPower = false, Skies anchorSky = Skies.Auto, bool dynamic = false)
+        {
+            if (gameObj == null)
+                return;
+
+            RemoveAllSkyAppliers(gameObj);
+            AddSkyApplier(gameObj, attachToModel, renderers, emissiveFromPower, anchorSky, dynamic);
+        }
+
+        public static void UpdateOrAddSkyApplier(GameObject gameObj, string attachToModel = null, Renderer[] renderers = null,
+            bool emissiveFromPower = false, Skies anchorSky = Skies.Auto, bool dynamic = false)
+        {
+            if (gameObj == null)
+                return;
+
+#if DEBUG_SKY_APPLIERS
+            Logger.Debug($"DEBUG: Entering PrefabsHelper.UpdateOrAddSkyApplier(). GameObjName=[{gameObj.name ?? "NULL"}]");
+#endif
+
+            // Search for an existing SkyApplier
+            SkyApplier applier = gameObj.GetComponent<SkyApplier>();
+            if (applier == null)
+                applier = gameObj.GetComponentInChildren<SkyApplier>(true);
+            if (applier == null && !string.IsNullOrEmpty(attachToModel))
+            {
+                GameObject model = gameObj.FindChild(attachToModel);
+                if (model != null)
+                {
+                    applier = model.GetComponent<SkyApplier>();
+                    if (applier == null)
+                        applier = model.GetComponentInChildren<SkyApplier>(true);
+                }
+            }
+
+            // If no SkyApplier was found, create one
+            if (applier == null)
+                AddSkyApplier(gameObj, attachToModel, renderers, emissiveFromPower, anchorSky, dynamic);
+            else // Else, update SkyApplier properties
+            {
+                applier.renderers = (renderers != null ? renderers : gameObj.GetComponentsInChildren<Renderer>(true));
+                applier.anchorSky = anchorSky;
+                applier.dynamic = dynamic;
+                applier.emissiveFromPower = emissiveFromPower;
+                applier.useGUILayout = false;
+                applier.hideFlags = HideFlags.None;
+                applier.enabled = true;
+            }
+
+#if DEBUG_SKY_APPLIERS
+            Logger.Debug($"DEBUG: Leaving PrefabsHelper.UpdateOrAddSkyApplier(). GameObjName=[{gameObj.name ?? "NULL"}]");
+#endif
+        }
+
+        #endregion
+
         #region PlaceTools sky appliers
 
-                // object name, model
+        // object name, model
         private static readonly Dictionary<string, string> _placeToolSAFix = new Dictionary<string, string>()
         {
             { "FirstAidKit", "model" },
@@ -538,58 +677,19 @@ namespace DecorationsMod
 
         public static void FixPlaceToolSkyAppliers(GameObject go)
         {
+            if (go == null || string.IsNullOrEmpty(go.name))
+                return;
+
 #if DEBUG_PLACE_TOOL
-            Logger.Debug("FIX PT-SA: goName=[" + go.name + "]");
+            Logger.Debug("DEBUG: FIX PT-SA: goName=[" + go.name + "]");
 #endif
+
             foreach (KeyValuePair<string, string> placeTool in _placeToolSAFix)
                 if (go.name.StartsWith(placeTool.Key, false, CultureInfo.InvariantCulture))
                 {
-                    GameObject model = go.FindChild(placeTool.Value);
-                    if (model != null)
-                    {
-                        SkyApplier[] sas = model.GetComponents<SkyApplier>();
-                        if (sas == null || sas.Length != 1)
-                            sas = model.GetComponentsInParent<SkyApplier>();
-                        if (sas != null && sas.Length == 1)
-                        {
-                            UnityEngine.Object.DestroyImmediate(sas[0]); // Prevent accumulation of SkyAppliers
-                            SkyApplier sa = model.AddComponent<SkyApplier>();
-                            if (sa != null)
-                            {
-                                sa.anchorSky = Skies.Auto;
-                                Renderer[] rends = model.GetAllComponentsInChildren<Renderer>();
-                                if (rends == null || rends.Length <= 0)
-                                    rends = model.GetComponents<Renderer>();
-                                sa.renderers = rends;
-                                sa.dynamic = true;
-                                sa.updaterIndex = 0;
-                                if (placeTool.Key == "PlasteelIngot" || placeTool.Key == "TitaniumIngot" || placeTool.Key == "CopperWire" || placeTool.Key == "Glass" || placeTool.Key == "EnameledGlass" || placeTool.Key == "SeaTreaderPoop")
-                                    sa.emissiveFromPower = true;
-                                sa.enabled = true;
-                                sa.RefreshDirtySky();
-                            }
-#if DEBUG_PLACE_TOOL
-                            else
-                            {
-                                Logger.Debug("FIX PT-SA: SkyApplier 1 do not match! sasLength=[" + (sas != null ? sas.Length.ToString() : "null") + "] goName=[" + go.name + "] modelName=[" + model.name + "]");
-                                Logger.PrintTransform(go.transform);
-                            }
-                        }
-                        else
-                        {
-                            Logger.Debug("FIX PT-SA: SkyAppliers 2 do not match! sasLength=[" + (sas != null ? sas.Length.ToString() : "null") + "] goName=[" + go.name + "] modelName=[" + model.name + "]");
-                            Logger.PrintTransform(go.transform);
-                        }
-                    }
-                    else
-                    {
-                        Logger.Debug("FIX PT-SA: Could not find model!");
-                        Logger.PrintTransform(go.transform);
-                    }
-#else
-                        }
-                    }
-#endif
+                    bool emissiveFromPower = (placeTool.Key == "PlasteelIngot" || placeTool.Key == "TitaniumIngot" || placeTool.Key == "CopperWire" || placeTool.Key == "Glass" || placeTool.Key == "EnameledGlass" || placeTool.Key == "SeaTreaderPoop");
+                    ReplaceSkyApplier(go, placeTool.Value, null, emissiveFromPower); // dynamic true? RefreshDirtySky?
+                    break;
                 }
         }
 
@@ -671,7 +771,7 @@ namespace DecorationsMod
         public static void HidePlantAndShowSeed(Transform transform, string classId = null)
         {
 #if DEBUG_SEEDS
-            Logger.Debug("Entering HidePlantAndShowSeed for classId=[" + (classId ?? "?") + "]");
+            Logger.Debug("DEBUG: Entering HidePlantAndShowSeed for classId=[" + (classId ?? "?") + "]");
 #endif
             if (transform != null)
             {
@@ -716,7 +816,7 @@ namespace DecorationsMod
         {
             if (!PrefabsHelper._aquariumSkyApplierFixed)
             {
-                Logger.Info("Applying fix to aquariums lighting...");
+                Logger.Info("INFO: Applying fix to aquariums lighting...");
 
                 GameObject aquariumPrefab = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Aquarium.prefab");
 
@@ -775,7 +875,7 @@ namespace DecorationsMod
                 fixedSa.anchorSky = Skies.Auto;
                 fixedSa.dynamic = true;
                 fixedSa.renderers = rends.ToArray();
-                fixedSa.updaterIndex = 0;
+                //fixedSa.updaterIndex = 0;
 
                 PrefabsHelper._aquariumSkyApplierFixed = true;
             }
@@ -790,7 +890,7 @@ namespace DecorationsMod
                         if (ctr.childCount > 0 && !string.IsNullOrEmpty(ctr.name) && ctr.name.StartsWith("fish_attach", true, CultureInfo.InvariantCulture))
                         {
                             SkyApplier sa = ctr.GetComponent<SkyApplier>();
-                            if (ctr.gameObject != null)
+                            if (sa == null && ctr.gameObject != null)
                             {
                                 if (sa == null)
                                     sa = ctr.gameObject.GetComponent<SkyApplier>();
@@ -804,7 +904,7 @@ namespace DecorationsMod
                                     sa.anchorSky = Skies.Auto;
                                     sa.renderers = new Renderer[] { };
                                     sa.dynamic = true;
-                                    sa.updaterIndex = 0;
+                                    //sa.updaterIndex = 0;
                                     sa.enabled = true;
                                 }
                                 else
@@ -814,7 +914,7 @@ namespace DecorationsMod
                                     {
                                         if (fish.gameObject != null)
                                         {
-                                            Renderer[] tmpRends = fish.GetAllComponentsInChildren<Renderer>();
+                                            Renderer[] tmpRends = fish.GetComponentsInChildren<Renderer>(true);
                                             if (tmpRends != null)
                                                 foreach (Renderer tmpRend in tmpRends)
                                                     rends.Add(tmpRend);
@@ -823,7 +923,7 @@ namespace DecorationsMod
                                     sa.anchorSky = Skies.Auto;
                                     sa.renderers = rends.ToArray();
                                     sa.dynamic = true;
-                                    sa.updaterIndex = 0;
+                                    //sa.updaterIndex = 0;
                                     sa.enabled = true;
                                     sa.RefreshDirtySky();
                                 }

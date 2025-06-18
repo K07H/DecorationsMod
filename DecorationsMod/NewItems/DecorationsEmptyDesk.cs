@@ -1,40 +1,23 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class DecorationsEmptyDesk : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public DecorationsEmptyDesk() : base("DecorationsEmptyDesk", "DecorationsEmptyDeskName", "DecorationsEmptyDeskDescription", "deskemptyicon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public DecorationsEmptyDesk() // Feeds abstract class
+        public DecorationsEmptyDesk() : base("DecorationsEmptyDesk", LanguageHelper.GetFriendlyWord("DecorationsEmptyDeskName"), LanguageHelper.GetFriendlyWord("DecorationsEmptyDeskDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("deskemptyicon")) // Feeds abstract class
         {
             this.ClassID = "DecorationsEmptyDesk"; // 04a07ec0-e3f4-4285-a087-688215fdb142
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("DecorationsEmptyDeskName"),
-                                                        LanguageHelper.GetFriendlyWord("DecorationsEmptyDeskDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.EmptyDesk = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
@@ -42,18 +25,21 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.EmptyDesk_asBuildable)
                 this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[1]
-                    {
-                        new Ingredient(TechType.Titanium, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -61,39 +47,31 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 if (ConfigSwitcher.EmptyDesk_asBuildable)
                 {
                     // Add to the custom buidables
-                    CraftDataHandler.AddBuildable(this.TechType);
-                    CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipDesk);
+                    Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                    Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipDesk);
                 }
                 else
                 {
                     // Set item occupies 4 slots
-                    CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                    Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                     // Add the new TechType to the hand-equipments
-                    CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                    Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                     // Set quick slot type.
-                    CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                    Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
                 }
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom icon
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("deskemptyicon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("deskemptyicon"));
 
                 this.IsRegistered = true;
             }
@@ -103,6 +81,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: emptyDesk.GetGameObject()");
+#endif
             if (_emptyDesk == null)
 #if SUBNAUTICA
                 _emptyDesk = PrefabsHelper.LoadGameObjectFromFilename("WorldEntities/Doodads/Debris/Wrecks/Decoration/Starship_work_desk_01_empty.prefab");

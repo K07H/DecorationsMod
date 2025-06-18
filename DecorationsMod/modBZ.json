@@ -2,7 +2,7 @@
   "Id": "DecorationsMod",
   "DisplayName": "DecorationsMod",
   "Author": "OSubMarin",
-  "Version": "1.9.1",
+  "Version": "2.1.0",
   "VersionDependencies": { 
     "SMLHelper": "2.5"
   },

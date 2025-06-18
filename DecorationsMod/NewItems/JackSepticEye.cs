@@ -1,56 +1,43 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class JackSepticEye : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public JackSepticEye() : base("JackSepticEyeDoll", "JackSepticEyeName", "JackSepticEyeDescription", SpriteManager.Get(TechType.JackSepticEye))
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public JackSepticEye()
+        public JackSepticEye() : base("JackSepticEyeDoll", LanguageHelper.GetFriendlyWord("JackSepticEyeName"), LanguageHelper.GetFriendlyWord("JackSepticEyeDescription"), SpriteManager.Get(TechType.JackSepticEye))
         {
             this.ClassID = "JackSepticEyeDoll"; // 07a05a2f-de55-4c60-bfda-cedb3ab72b88
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
  
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("JackSepticEyeName"),
-                                                        LanguageHelper.GetFriendlyWord("JackSepticEyeDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             if (ConfigSwitcher.JackSepticEye_asBuildable)
                 this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Glass, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Glass, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -58,37 +45,29 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 if (ConfigSwitcher.JackSepticEye_asBuildable)
                 {
                     // Add the new TechType to the buildables
-                    CraftDataHandler.AddBuildable(this.TechType);
-                    CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                    Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                    Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
                 }
                 else
                 {
                     // Add the new TechType to the hand-equipments
-                    CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                    Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                     // Set quick slot type.
-                    CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                    Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
                 }
 
                 // Set the custom prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom icon
-                SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.JackSepticEye));
-#endif
-
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.JackSepticEye));
+                
                 this.IsRegistered = true;
             }
         }
@@ -97,6 +76,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: jackSepticEye.GetGameObject()");
+#endif
             if (_jackSepticEye == null)
                 _jackSepticEye = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/jacksepticeye.prefab");
 
@@ -164,18 +146,10 @@ namespace DecorationsMod.NewItems
             }
 
             // Update sky applier
-#if SUBNAUTICA
-            PrefabsHelper.SetDefaultSkyApplier(prefab, null, Skies.Auto, false, true);
-#else
-            BaseModuleLighting bml = prefab.AddComponent<BaseModuleLighting>();
-            SkyApplier sa = prefab.GetComponent<SkyApplier>();
-            if (sa == null)
-                sa = prefab.GetComponentInChildren<SkyApplier>();
-            if (sa == null)
-                sa = prefab.AddComponent<SkyApplier>();
-            sa.renderers = prefab.GetComponentsInChildren<Renderer>();
-            sa.anchorSky = Skies.Auto;
+#if !SUBNAUTICA
+            BaseModuleLighting bml = prefab.EnsureComponent<BaseModuleLighting>();
 #endif
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab, null, null, true);
 
             return prefab;
         }

@@ -1,30 +1,17 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
     public class WarperPart3 : DecorationItem
     {
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public WarperPart3() : base("WarperPart3", "HangingWarperPartName", "HangingWarperPartDescription", "warper_icon_3", "2")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public WarperPart3()
+        public WarperPart3() : base("WarperPart3", LanguageHelper.GetFriendlyWord("HangingWarperPartName") + " (2)", LanguageHelper.GetFriendlyWord("HangingWarperPartDescription"), AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon_3"))
         {
             this.ClassID = "WarperPart3";
             this.PrefabFileName = DecorationItem.DefaultResourcePath + this.ClassID;
@@ -32,29 +19,30 @@ namespace DecorationsMod.NewItems
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("warper_part_3");
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("HangingWarperPartName") + " (2)",
-                                                        LanguageHelper.GetFriendlyWord("HangingWarperPartDescription"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.WarperPart3 = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[3]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.Silicone, 1),
-                        new Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Silicone, 1),
+                new Ingredient(TechType.FiberMesh, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.Silicone, 1),
+                new Ingredient(TechType.FiberMesh, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         private static GameObject _warperPart3 = null;
@@ -127,7 +115,7 @@ namespace DecorationsMod.NewItems
                 PrefabsHelper.SetDefaultLargeWorldEntity(_warperPart3);
 
                 // Add sky applier
-                PrefabsHelper.SetDefaultSkyApplier(_warperPart3, renderers);
+                PrefabsHelper.UpdateOrAddSkyApplier(_warperPart3, null, renderers);
 
                 // We can pick this item
                 PrefabsHelper.SetDefaultPickupable(_warperPart3);
@@ -157,30 +145,22 @@ namespace DecorationsMod.NewItems
 
                 // Define unlock conditions
                 if (ConfigSwitcher.AddItemsWhenDiscovered)
-                    KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorLostRiverWarperParts, new TechType[] { this.TechType });
+                    Nautilus.Handlers.KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorLostRiverWarperParts, new TechType[] { this.TechType });
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 // Add the new TechType to Hand Equipment type.
-                CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                 // Set quick slot type.
-                CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon_3"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("warper_icon_3"));
 
                 this.IsRegistered = true;
             }

@@ -1,18 +1,10 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
@@ -23,13 +15,8 @@ namespace DecorationsMod.NewItems
         private Texture normal = null;
         private Texture spec = null;
 
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public SofaCorner2() : base("SofaCorner2", "SofaCorner2Name", "SofaCorner2Description", "sofacorner02icon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public SofaCorner2()
+        public SofaCorner2() : base("SofaCorner2", LanguageHelper.GetFriendlyWord("SofaCorner2Name"), LanguageHelper.GetFriendlyWord("SofaCorner2Description"), AssetsHelper.Assets.LoadAsset<Sprite>("sofacorner02icon"))
         {
             // Feed DecortionItem interface
             this.ClassID = "SofaCorner2";
@@ -37,11 +24,7 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("SofaCorner2Name"),
-                                                        LanguageHelper.GetFriendlyWord("SofaCorner2Description"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
 
             CrafterLogicFixer.SofaCorner = this.TechType;
             KnownTechFixer.AddedNotifications.Add((int)this.TechType, false);
@@ -51,19 +34,23 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.SofaCorner2_asBuidable)
                 this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.FiberMesh, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.FiberMesh, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -74,39 +61,31 @@ namespace DecorationsMod.NewItems
                 spec = AssetsHelper.Assets.LoadAsset<Texture>("descent_bar_sofa_01_spec");
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 if (ConfigSwitcher.SofaCorner2_asBuidable)
                 {
                     // Add new TechType to the buildables
-                    CraftDataHandler.AddBuildable(this.TechType);
-                    CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipChair3);
+                    Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                    Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipChair3);
                 }
                 else
                 {
                     // Set item occupies 4 slots
-                    CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                    Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                     // Add the new TechType to Hand Equipment type.
-                    CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                    Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                     // Set quick slot type.
-                    CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                    Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
                 }
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("sofacorner02icon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("sofacorner02icon"));
 
                 this.IsRegistered = true;
             }
@@ -116,6 +95,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: sofaCorner2.GetGameObject()");
+#endif
             if (_sofaCorner2 == null)
                 _sofaCorner2 = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Bench.prefab");
 
@@ -185,10 +167,7 @@ namespace DecorationsMod.NewItems
             bench.cinematicController.animatedTransform.localEulerAngles = new Vector3(bench.cinematicController.animatedTransform.localEulerAngles.x, bench.cinematicController.animatedTransform.localEulerAngles.y + 45.0f, bench.cinematicController.animatedTransform.localEulerAngles.z);
 
             // Set sky applier
-            SkyApplier sa = prefab.AddComponent<SkyApplier>();
-            sa.renderers = renderers;
-            sa.anchorSky = Skies.Auto;
-            sa.enabled = true;
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab, null, renderers);
 
             if (ConfigSwitcher.SofaCorner2_asBuidable)
             {

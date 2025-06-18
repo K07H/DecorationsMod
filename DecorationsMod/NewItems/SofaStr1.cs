@@ -1,18 +1,10 @@
-﻿#if SUBNAUTICA_NAUTILUS
-using System.Diagnostics.CodeAnalysis;
-using Nautilus.Assets;
-using Nautilus.Crafting;
-using Nautilus.Handlers;
-using static CraftData;
-#else
-using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Handlers;
-#endif
-using DecorationsMod.Controllers;
+﻿using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using UnityEngine;
+using static CraftData;
 
 namespace DecorationsMod.NewItems
 {
@@ -23,13 +15,8 @@ namespace DecorationsMod.NewItems
         private Texture normal = null;
         private Texture spec = null;
 
-#if SUBNAUTICA_NAUTILUS
         [SetsRequiredMembers]
-        public SofaStr1() : base("SofaStr1", "SofaStr1Name", "SofaStr1Description", "sofastr01icon")
-        {
-            this.GameObject = new GameObject(this.ClassID);
-#else
-        public SofaStr1()
+        public SofaStr1() : base("SofaStr1", LanguageHelper.GetFriendlyWord("SofaStr1Name"), LanguageHelper.GetFriendlyWord("SofaStr1Description"), AssetsHelper.Assets.LoadAsset<Sprite>("sofastr01icon"))
         {
             // Feed DecortionItem interface
             this.ClassID = "SofaStr1";
@@ -37,11 +24,8 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
-                                                        LanguageHelper.GetFriendlyWord("SofaStr1Name"),
-                                                        LanguageHelper.GetFriendlyWord("SofaStr1Description"),
-                                                        true);
-#endif
+            this.TechType = this.Info.TechType;
+
             this.newsofa = AssetsHelper.Assets.LoadAsset<GameObject>("descent_bar_sofa_str_01");
 
             CrafterLogicFixer.Sofa1 = this.TechType;
@@ -50,19 +34,23 @@ namespace DecorationsMod.NewItems
             if (ConfigSwitcher.SofaStr1_asBuidable)
                 this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
-            this.Recipe = new TechData()
-#else
-            this.Recipe = new RecipeData()
-#endif
+#if SUBNAUTICA
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
             {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>(new Ingredient[2]
-                    {
-                        new Ingredient(TechType.Titanium, 1),
-                        new Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.FiberMesh, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#else
+            Nautilus.Crafting.RecipeData recipeData = new Nautilus.Crafting.RecipeData(new List<Ingredient>()
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.FiberMesh, 1)
+            });
+            recipeData.craftAmount = 1;
+            this.Recipe = recipeData;
+#endif
         }
 
         public override void RegisterItem()
@@ -73,39 +61,31 @@ namespace DecorationsMod.NewItems
                 spec = AssetsHelper.Assets.LoadAsset<Texture>("descent_bar_sofa_01_spec");
 
                 // Associate recipe to the new TechType
-#if SUBNAUTICA_NAUTILUS
-                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
-#else
-                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
-#endif
+                Nautilus.Handlers.CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
 
                 if (ConfigSwitcher.SofaStr1_asBuidable)
                 {
                     // Add new TechType to the buildables
-                    CraftDataHandler.AddBuildable(this.TechType);
-                    CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipChair3);
+                    Nautilus.Handlers.CraftDataHandler.AddBuildable(this.TechType);
+                    Nautilus.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType, TechType.StarshipChair3);
                 }
                 else
                 {
                     // Set item occupies 4 slots
-                    CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
+                    Nautilus.Handlers.CraftDataHandler.SetItemSize(this.TechType, new Vector2int(2, 2));
 
                     // Add the new TechType to Hand Equipment type.
-                    CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
+                    Nautilus.Handlers.CraftDataHandler.SetEquipmentType(this.TechType, EquipmentType.Hand);
 
                     // Set quick slot type.
-                    CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
+                    Nautilus.Handlers.CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType.Selectable);
                 }
 
                 // Set the buildable prefab
-#if SUBNAUTICA_NAUTILUS
                 this.Register();
-#else
-                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("sofastr01icon"));
-#endif
+                Nautilus.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("sofastr01icon"));
 
                 this.IsRegistered = true;
             }
@@ -115,6 +95,9 @@ namespace DecorationsMod.NewItems
 
         public override GameObject GetGameObject()
         {
+#if DEBUG_ITEMS_REGISTRATION
+            Logger.Info("INFO: sofaStr1.GetGameObject()");
+#endif
             if (_sofaStr1 == null)
                 _sofaStr1 = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Bench.prefab");
 
@@ -183,10 +166,7 @@ namespace DecorationsMod.NewItems
             bench.cinematicController.animatedTransform.localPosition = new Vector3(bench.cinematicController.animatedTransform.localPosition.x, bench.cinematicController.animatedTransform.localPosition.y, bench.cinematicController.animatedTransform.localPosition.z + 0.31f);
 
             // Set sky applier
-            SkyApplier sa = prefab.AddComponent<SkyApplier>();
-            sa.renderers = renderers;
-            sa.anchorSky = Skies.Auto;
-            sa.enabled = true;
+            PrefabsHelper.UpdateOrAddSkyApplier(prefab, null, renderers);
 
             if (ConfigSwitcher.SofaStr1_asBuidable)
             {
