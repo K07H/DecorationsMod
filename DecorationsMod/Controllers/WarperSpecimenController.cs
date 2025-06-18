@@ -27,7 +27,7 @@ namespace DecorationsMod.Controllers
                 if (model.transform.localScale.y > 2.0f)
                 {
 #if DEBUG_WARPER_SPECIMEN
-                    Logger.Log("DEBUG: Resetting WarperSpecimen size to [0.5;0.5;0.5] and collider to [0.004;0.004;0.019]");
+                    Logger.Debug("Resetting WarperSpecimen size to [0.5;0.5;0.5] and collider to [0.004;0.004;0.019]");
 #endif
                     model.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     collider.size = new Vector3(0.004f, 0.004f, 0.019f);
@@ -35,16 +35,16 @@ namespace DecorationsMod.Controllers
                 else
                 {
 #if DEBUG_WARPER_SPECIMEN
-                    Logger.Log("DEBUG: Increasing WarperSpecimen size from [{0};{1};{2}].", model.transform.localScale.x.ToString("0.000", CultureInfo.InvariantCulture), model.transform.localScale.y.ToString("0.000", CultureInfo.InvariantCulture), model.transform.localScale.z.ToString("0.000", CultureInfo.InvariantCulture));
+                    Logger.Debug("Increasing WarperSpecimen size from [{0};{1};{2}].", model.transform.localScale.x.ToString("0.000", CultureInfo.InvariantCulture), model.transform.localScale.y.ToString("0.000", CultureInfo.InvariantCulture), model.transform.localScale.z.ToString("0.000", CultureInfo.InvariantCulture));
 #endif
                     model.transform.localScale *= ScaleRatio;
 #if DEBUG_WARPER_SPECIMEN
-                    Logger.Log("DEBUG: Increasing WarperSpecimen size to [{0};{1};{2}].", model.transform.localScale.x.ToString("0.000", CultureInfo.InvariantCulture), model.transform.localScale.y.ToString("0.000", CultureInfo.InvariantCulture), model.transform.localScale.z.ToString("0.000", CultureInfo.InvariantCulture));
-                    Logger.Log("DEBUG: Increasing WarperSpecimen collider from [{0};{1};{2}].", collider.size.x.ToString("0.000", CultureInfo.InvariantCulture), collider.size.y.ToString("0.000", CultureInfo.InvariantCulture), collider.size.z.ToString("0.000", CultureInfo.InvariantCulture));
+                    Logger.Debug("Increasing WarperSpecimen size to [{0};{1};{2}].", model.transform.localScale.x.ToString("0.000", CultureInfo.InvariantCulture), model.transform.localScale.y.ToString("0.000", CultureInfo.InvariantCulture), model.transform.localScale.z.ToString("0.000", CultureInfo.InvariantCulture));
+                    Logger.Debug("Increasing WarperSpecimen collider from [{0};{1};{2}].", collider.size.x.ToString("0.000", CultureInfo.InvariantCulture), collider.size.y.ToString("0.000", CultureInfo.InvariantCulture), collider.size.z.ToString("0.000", CultureInfo.InvariantCulture));
 #endif
                     collider.size *= ScaleRatio;
 #if DEBUG_WARPER_SPECIMEN
-                    Logger.Log("DEBUG: Increasing WarperSpecimen size from [{0};{1};{2}].", collider.size.x.ToString("0.000", CultureInfo.InvariantCulture), collider.size.y.ToString("0.000", CultureInfo.InvariantCulture), collider.size.z.ToString("0.000", CultureInfo.InvariantCulture));
+                    Logger.Debug("Increasing WarperSpecimen size from [{0};{1};{2}].", collider.size.x.ToString("0.000", CultureInfo.InvariantCulture), collider.size.y.ToString("0.000", CultureInfo.InvariantCulture), collider.size.z.ToString("0.000", CultureInfo.InvariantCulture));
 #endif
                 }
             }

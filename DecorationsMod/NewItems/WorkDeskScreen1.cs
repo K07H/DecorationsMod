@@ -1,4 +1,14 @@
-﻿using System;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +18,12 @@ namespace DecorationsMod.NewItems
 {
     public class WorkDeskScreen1 : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public WorkDeskScreen1() : base("WorkDeskScreen1", "WorkDeskScreen1Name", "WorkDeskScreen1Description", "WorkDeskScreenIcon")
+        {
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public WorkDeskScreen1() // Feeds abstract class
         {
             this.ClassID = "WorkDeskScreen1"; // 2de0fc33-0386-4b55-84d4-6ad6bffaf74f
@@ -15,26 +31,23 @@ namespace DecorationsMod.NewItems
 
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("WorkDeskScreen1Name"),
                                                         LanguageHelper.GetFriendlyWord("WorkDeskScreen1Description"),
                                                         true);
+#endif
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2] { new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1), new SMLHelper.V2.Crafting.Ingredient(TechType.Quartz, 1) }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[2] { new Ingredient(TechType.Titanium, 1), new Ingredient(TechType.Quartz, 1) }),
             };
-#endif
         }
 
         public override void RegisterItem()
@@ -42,17 +55,25 @@ namespace DecorationsMod.NewItems
             if (this.IsRegistered == false)
             {
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Add to the custom buidables
-                SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
+                CraftDataHandler.AddBuildable(this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.Miscellaneous, TechCategory.Misc, this.TechType);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("WorkDeskScreenIcon"));
+                SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("WorkDeskScreenIcon"));
+#endif
 
                 this.IsRegistered = true;
             }

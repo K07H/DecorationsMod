@@ -1,13 +1,25 @@
-﻿using SMLHelper.V2.Assets;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
+#endif
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
 namespace DecorationsMod
 {
+#if SUBNAUTICA_NAUTILUS
+    public class Fabricator_Flora : CustomPrefab
+#else
     public class Fabricator_Flora : ModPrefab
+#endif
     {
         public CraftTree.Type TreeTypeID { get; private set; }
         
@@ -18,33 +30,44 @@ namespace DecorationsMod
         public bool IsRegistered = false;
 
         public Texture2D ColoredTexture = null;
+#if SUBNAUTICA_NAUTILUS
 
-#if SUBNAUTICA
-        public TechData Recipe = new TechData()
-        {
-            craftAmount = 1,
-            Ingredients = new List<Ingredient>(new Ingredient[4]
-            {
-                new Ingredient(TechType.Titanium, 1),
-                new Ingredient(TechType.ComputerChip, 1),
-                new Ingredient(TechType.Silver, 1),
-                new Ingredient(TechType.Magnetite, 1)
-            })
-        };
-#else
-        public RecipeData Recipe = new RecipeData()
-        {
-            craftAmount = 1,
-            Ingredients = new List<Ingredient>(new Ingredient[4]
-            {
-                new Ingredient(TechType.Titanium, 1),
-                new Ingredient(TechType.ComputerChip, 1),
-                new Ingredient(TechType.Silver, 1),
-                new Ingredient(TechType.Magnetite, 1)
-            })
-        };
+        public string ClassID => Info.ClassID;
+
+        public string PrefabFileName => Info.PrefabFileName;
+
+        public TechType TechType => Info.TechType;
+
 #endif
 
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+        public TechData Recipe = new TechData()
+#else
+        public RecipeData Recipe = new RecipeData()
+#endif
+        {
+            craftAmount = 1,
+            Ingredients = new List<Ingredient>(new Ingredient[4]
+            {
+                new Ingredient(TechType.Titanium, 1),
+                new Ingredient(TechType.ComputerChip, 1),
+                new Ingredient(TechType.Silver, 1),
+                new Ingredient(TechType.Magnetite, 1)
+            })
+        };
+
+#if SUBNAUTICA_NAUTILUS
+
+        [SetsRequiredMembers]
+        internal Fabricator_Flora() : base(
+            PrefabInfo.WithTechType(FloraFabID, LanguageHelper.GetFriendlyWord("FloraFabricatorName"), LanguageHelper.GetFriendlyWord("FloraFabricatorDescription"), unlockAtStart: true)
+            .WithFileName($"Submarine/Build/{FloraFabID}")
+            .WithIcon(AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_green"))
+            )
+        {
+            SetGameObject(this.GetGameObject);
+        }
+#else
         internal Fabricator_Flora() : base("", "")
         {
             this.ClassID = FloraFabID;
@@ -54,6 +77,7 @@ namespace DecorationsMod
                     LanguageHelper.GetFriendlyWord("FloraFabricatorDescription"),
                     true);
         }
+#endif
 
         public void RegisterFloraFabricator(List<IDecorationItem> decorationItems)
         {
@@ -76,16 +100,27 @@ namespace DecorationsMod
                 KnownTechHandler.UnlockOnStart(this.TechType);
 
                 // Set the buildable prefab
+
+#if SUBNAUTICA_NAUTILUS
+
+                this.Register();
+
+#else
                 PrefabHandler.RegisterPrefab(this);
                 
                 // Register sprite
                 SpriteHandler.RegisterSprite(this.TechType, AssetsHelper.Assets.LoadAsset<Sprite>("fabricator_icon_green"));
+#endif
 
                 // Load texture
                 this.ColoredTexture = AssetsHelper.Assets.LoadAsset<Texture2D>("submarine_fabricator_green");
 
                 // Associate the recipie to the new TechType
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
                 CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
                 
                 this.IsRegistered = true;
             }
@@ -93,7 +128,11 @@ namespace DecorationsMod
 
         private ModCraftTreeRoot CreateCustomTree(out CraftTree.Type craftType, List<IDecorationItem> decorationItems)
         {
+#if SUBNAUTICA_NAUTILUS
+            craftType = EnumHandler.AddEntry<CraftTree.Type>(FloraFabID).CreateCraftTreeRoot(out ModCraftTreeRoot rootNode);
+#else
             ModCraftTreeRoot rootNode = CraftTreeHandler.CreateCustomCraftTreeAndType(FloraFabID, out craftType);
+#endif
 
             ModCraftTreeTab plantAirTab;
             ModCraftTreeTab treeAirTab;
@@ -101,7 +140,7 @@ namespace DecorationsMod
             if (ConfigSwitcher.UseFlatScreenResolution)
             {
                 // Additional tab
-                ModCraftTreeTab airSeedsTab = rootNode.AddTabNode("AirSeedsTab", LanguageHelper.GetFriendlyWord("AirSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_NonHarvastableAir"));
+                ModCraftTreeTab airSeedsTab = AddTabNode(rootNode, "AirSeedsTab", LanguageHelper.GetFriendlyWord("AirSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_NonHarvastableAir"));
 
                 // Plant Air
                 plantAirTab = airSeedsTab.AddTabNode("PlantAirTab", LanguageHelper.GetFriendlyWord("PlantAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Plants"));
@@ -113,11 +152,11 @@ namespace DecorationsMod
             else
             {
                 // Plant Air
-                plantAirTab = rootNode.AddTabNode("PlantAirTab", LanguageHelper.GetFriendlyWord("PlantAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Plants"));
+                plantAirTab = AddTabNode(rootNode, "PlantAirTab", LanguageHelper.GetFriendlyWord("PlantAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Plants"));
                 // Tree Air
-                treeAirTab = rootNode.AddTabNode("TreeAirTab", LanguageHelper.GetFriendlyWord("TreeAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Trees"));
+                treeAirTab = AddTabNode(rootNode, "TreeAirTab", LanguageHelper.GetFriendlyWord("TreeAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Trees"));
                 // Tropical
-                tropicalPlantTab = rootNode.AddTabNode("TropicalPlantTab", LanguageHelper.GetFriendlyWord("TropicalPlantTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_TropicalPlants"));
+                tropicalPlantTab = AddTabNode(rootNode, "TropicalPlantTab", LanguageHelper.GetFriendlyWord("TropicalPlantTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_TropicalPlants"));
             }
             // Plant Air
             plantAirTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "LandPlant1"),
@@ -148,22 +187,22 @@ namespace DecorationsMod
             // Existing air seeds from the game
             if (ConfigSwitcher.EnableRegularAirSeeds)
             {
-                var regularAirSeedsTab = rootNode.AddTabNode("RegularAirSeedsTab", LanguageHelper.GetFriendlyWord("RegularAirSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_HarvastableAir"));
+                ModCraftTreeTab regularAirSeedsTab = AddTabNode(rootNode, "RegularAirSeedsTab", LanguageHelper.GetFriendlyWord("RegularAirSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_HarvastableAir"));
                 
-                var edibleRegularAirTab = regularAirSeedsTab.AddTabNode("EdibleRegularAirTab", LanguageHelper.GetFriendlyWord("EdibleRegularAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Edibles"));
+                ModCraftTreeTab edibleRegularAirTab = regularAirSeedsTab.AddTabNode("EdibleRegularAirTab", LanguageHelper.GetFriendlyWord("EdibleRegularAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Edibles"));
                 edibleRegularAirTab.AddCraftingNode(TechType.BulboTreePiece,
                                                     TechType.PurpleVegetable,
                                                     TechType.HangingFruit,
                                                     TechType.MelonSeed,
                                                     PrefabsHelper.GetTechType(decorationItems, "MarbleMelonTiny"));
 
-                var decorativeBigAirTab = regularAirSeedsTab.AddTabNode("DecorativeBigAirTab", LanguageHelper.GetFriendlyWord("DecorativeBigAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_BigDeco"));
+                ModCraftTreeTab decorativeBigAirTab = regularAirSeedsTab.AddTabNode("DecorativeBigAirTab", LanguageHelper.GetFriendlyWord("DecorativeBigAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_BigDeco"));
                 decorativeBigAirTab.AddCraftingNode(TechType.FernPalmSeed,
                                                     TechType.OrangePetalsPlantSeed,
                                                     TechType.PurpleVasePlantSeed,
                                                     TechType.OrangeMushroomSpore);
 
-                var decorativeSmallAirTab = regularAirSeedsTab.AddTabNode("DecorativeSmallAirTab", LanguageHelper.GetFriendlyWord("DecorativeSmallAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_SmallDeco"));
+                ModCraftTreeTab decorativeSmallAirTab = regularAirSeedsTab.AddTabNode("DecorativeSmallAirTab", LanguageHelper.GetFriendlyWord("DecorativeSmallAirTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_SmallDeco"));
                 decorativeSmallAirTab.AddCraftingNode(TechType.PinkMushroomSpore,
                                                     TechType.PurpleRattleSpore,
                                                     TechType.PinkFlowerSeed);
@@ -172,21 +211,21 @@ namespace DecorationsMod
             // Existing water seeds from the game
             if (ConfigSwitcher.EnableRegularWaterSeeds)
             {
-                var regularWaterSeedsTab = rootNode.AddTabNode("RegularWaterSeedsTab", LanguageHelper.GetFriendlyWord("RegularWaterSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_HarvastableAqua"));
+                ModCraftTreeTab regularWaterSeedsTab = AddTabNode(rootNode, "RegularWaterSeedsTab", LanguageHelper.GetFriendlyWord("RegularWaterSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_HarvastableAqua"));
 
-                var decorativeBushesWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeBushesWaterTab", LanguageHelper.GetFriendlyWord("DecorativeBushesWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Bush"));
+                ModCraftTreeTab decorativeBushesWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeBushesWaterTab", LanguageHelper.GetFriendlyWord("DecorativeBushesWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Bush"));
                 decorativeBushesWaterTab.AddCraftingNode(TechType.PurpleBranchesSeed,
                                                          TechType.RedRollPlantSeed,
                                                          TechType.RedBushSeed,
                                                          TechType.PurpleStalkSeed,
                                                          TechType.SpottedLeavesPlantSeed);
 
-                var regularSmallWaterTab = regularWaterSeedsTab.AddTabNode("RegularSmallWaterTab", LanguageHelper.GetFriendlyWord("RegularSmallWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaSmall"));
+                ModCraftTreeTab regularSmallWaterTab = regularWaterSeedsTab.AddTabNode("RegularSmallWaterTab", LanguageHelper.GetFriendlyWord("RegularSmallWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaSmall"));
                 regularSmallWaterTab.AddCraftingNode(TechType.SmallFanSeed,
                                                      TechType.PurpleFanSeed,
                                                      TechType.PurpleTentacleSeed);
 
-                var decorativeBigWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeBigWaterTab", LanguageHelper.GetFriendlyWord("DecorativeBigWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Big"));
+                ModCraftTreeTab decorativeBigWaterTab = regularWaterSeedsTab.AddTabNode("DecorativeBigWaterTab", LanguageHelper.GetFriendlyWord("DecorativeBigWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Big"));
                 decorativeBigWaterTab.AddCraftingNode(TechType.SeaCrownSeed,
                                                       TechType.GabeSFeatherSeed,
                                                       TechType.RedGreenTentacleSeed,
@@ -199,7 +238,7 @@ namespace DecorationsMod
                                                       TechType.SnakeMushroomSpore,
                                                       TechType.SpikePlantSeed);
 
-                var functionalBigWaterTab = regularWaterSeedsTab.AddTabNode("FunctionalBigWaterTab", LanguageHelper.GetFriendlyWord("FunctionalBigWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Functional"));
+                ModCraftTreeTab functionalBigWaterTab = regularWaterSeedsTab.AddTabNode("FunctionalBigWaterTab", LanguageHelper.GetFriendlyWord("FunctionalBigWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Functional"));
                 functionalBigWaterTab.AddCraftingNode(TechType.AcidMushroomSpore,
                                                       TechType.WhiteMushroomSpore,
                                                       TechType.JellyPlantSeed,
@@ -215,7 +254,7 @@ namespace DecorationsMod
             if (ConfigSwitcher.UseFlatScreenResolution)
             {
                 // Additional tab
-                ModCraftTreeTab waterSeedsTab = rootNode.AddTabNode("WaterSeedsTab", LanguageHelper.GetFriendlyWord("WaterSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_NonHarvastableAqua"));
+                ModCraftTreeTab waterSeedsTab = AddTabNode(rootNode, "WaterSeedsTab", LanguageHelper.GetFriendlyWord("WaterSeedsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_NonHarvastableAqua"));
 
                 // Plant Water
                 plantWaterTab = waterSeedsTab.AddTabNode("PlantWaterTab", LanguageHelper.GetFriendlyWord("PlantWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaticPlants"));
@@ -225,9 +264,9 @@ namespace DecorationsMod
             else
             {
                 // Plant Water
-                plantWaterTab = rootNode.AddTabNode("PlantWaterTab", LanguageHelper.GetFriendlyWord("PlantWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaticPlants"));
+                plantWaterTab = AddTabNode(rootNode, "PlantWaterTab", LanguageHelper.GetFriendlyWord("PlantWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaticPlants"));
                 // Tree Water
-                treeWaterTab = rootNode.AddTabNode("TreeWaterTab", LanguageHelper.GetFriendlyWord("TreeWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaticTrees"));
+                treeWaterTab = AddTabNode(rootNode, "TreeWaterTab", LanguageHelper.GetFriendlyWord("TreeWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AquaticTrees"));
             }
             // Plant Water
             plantWaterTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "GreenReeds1"),
@@ -235,7 +274,7 @@ namespace DecorationsMod
                                           PrefabsHelper.GetTechType(decorationItems, "LostRiverPlant2"),
                                           PrefabsHelper.GetTechType(decorationItems, "LostRiverPlant4"),
                                           PrefabsHelper.GetTechType(decorationItems, "PlantMiddle11"));
-            var redGrassesTab = plantWaterTab.AddTabNode("RedGrassesTab", LanguageHelper.GetFriendlyWord("RedGrassesTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Grass"));
+            ModCraftTreeTab redGrassesTab = plantWaterTab.AddTabNode("RedGrassesTab", LanguageHelper.GetFriendlyWord("RedGrassesTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Grass"));
             redGrassesTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BloodGrassRed"),
                                           PrefabsHelper.GetTechType(decorationItems, "BloodGrassDense"),
                                           PrefabsHelper.GetTechType(decorationItems, "RedGrass1"),
@@ -256,7 +295,7 @@ namespace DecorationsMod
                                          PrefabsHelper.GetTechType(decorationItems, "FloatingStone1"));
 
             // Amphibious plants
-            var amphibiousPlantsTab = rootNode.AddTabNode("AmphibiousPlantsTab", LanguageHelper.GetFriendlyWord("AmphibiousPlantsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AmphibiousPlants"));
+            ModCraftTreeTab amphibiousPlantsTab = AddTabNode(rootNode, "AmphibiousPlantsTab", LanguageHelper.GetFriendlyWord("AmphibiousPlantsTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_AmphibiousPlants"));
             amphibiousPlantsTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "SmallDeco3"),
                                                 PrefabsHelper.GetTechType(decorationItems, "CoveTree1"),
                                                 PrefabsHelper.GetTechType(decorationItems, "CoveTree2"),
@@ -267,7 +306,7 @@ namespace DecorationsMod
                                                 PrefabsHelper.GetTechType(decorationItems, "SmallDeco17Purple"));
 
             // Coral Water
-            var coralWaterTab = rootNode.AddTabNode("CoralWaterTab", LanguageHelper.GetFriendlyWord("CoralWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Corals"));
+            ModCraftTreeTab coralWaterTab = AddTabNode(rootNode, "CoralWaterTab", LanguageHelper.GetFriendlyWord("CoralWaterTab"), AssetsHelper.Assets.LoadAsset<Sprite>("D_Corals"));
             coralWaterTab.AddCraftingNode(PrefabsHelper.GetTechType(decorationItems, "BrownCoralTubes1"),
                                           PrefabsHelper.GetTechType(decorationItems, "BrownCoralTubes2"),
                                           PrefabsHelper.GetTechType(decorationItems, "BrownCoralTubes3"),
@@ -277,7 +316,11 @@ namespace DecorationsMod
             return rootNode;
         }
 
+#if SUBNAUTICA_NAUTILUS
+        public GameObject GetGameObject()
+#else
         public override GameObject GetGameObject()
+#endif
         {
             if (Fabricator_Decorations._decorationsFabricator == null)
                 Fabricator_Decorations._decorationsFabricator = PrefabsHelper.LoadGameObjectFromFilename("Submarine/Build/Fabricator.prefab");
@@ -419,5 +462,15 @@ namespace DecorationsMod
             { TechType.HugeKoosh, TechType.KooshChunk },
             { TechType.KooshChunk, TechType.KooshChunk }
         };
+
+        internal static ModCraftTreeTab AddTabNode(ModCraftTreeLinkingNode parent, string id, string name, Sprite icon)
+        {
+#if SUBNAUTICA_NAUTILUS
+            parent.AddTabNode(id, name, icon);
+            return parent.GetTabNode(id);
+#else
+            return parent.AddTabNode(id, name, icon);
+#endif
+        }
     }
 }

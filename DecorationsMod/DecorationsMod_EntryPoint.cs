@@ -4,9 +4,13 @@ using System;
 namespace DecorationsMod
 {
     [BepInPlugin("com.osubmarin.decorationsmod", "DecorationsMod", "2.0.3")]
+#if SUBNAUTICA_NAUTILUS
+    [BepInDependency("com.snmodding.nautilus")]
+#else
     [BepInDependency("com.ahk1221.smlhelper")]
+#endif
     [UnityEngine.DisallowMultipleComponent]
-    public class CyclopsDockingMod_EntryPoint : BaseUnityPlugin
+    public class DecorationsMod_EntryPoint : BaseUnityPlugin
     {
         private static bool _initialized = false;
         private static bool _success = true;
@@ -39,7 +43,7 @@ namespace DecorationsMod
 
         public static void Patch()
         {
-            Logger.Log("INFO: Initializing Decorations mod...");
+            Logger.Info("Initializing Decorations mod...");
             try { DecorationsMod.Patch(); }
             catch (Exception e)
             {
@@ -49,9 +53,9 @@ namespace DecorationsMod
                     Logger.Log(string.Format("ERROR: Inner exception => Message=[{0}] StackTrace=[{1}]", e.InnerException.Message, e.InnerException.StackTrace));
             }
             if (_success)
-                Logger.Log("INFO: Decorations mod initialized successfully.");
+                Logger.Info("Decorations mod initialized successfully.");
             else
-                Logger.Log("ERROR: Decorations mod initialization failed.");
+                Logger.Error("Decorations mod initialization failed.");
         }
     }
     */

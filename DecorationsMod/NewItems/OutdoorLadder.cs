@@ -1,4 +1,14 @@
-﻿using DecorationsMod.Controllers;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using Nautilus.Handlers;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+#endif
+using DecorationsMod.Controllers;
 using DecorationsMod.Fixers;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +17,12 @@ namespace DecorationsMod.NewItems
 {
     public class OutdoorLadder : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public OutdoorLadder() : base("OutdoorLadder", "OutdoorLadderName", "OutdoorLadderDescription", SpriteManager.Get(TechType.BaseLadder))
+        {
+            this.GameObject = new GameObject(this.ClassID);
+#else
         public OutdoorLadder() // Feeds abstract class
         {
             this.ClassID = "OutdoorLadder";
@@ -15,26 +31,21 @@ namespace DecorationsMod.NewItems
             //this.GameObject = AssetsHelper.Assets.LoadAsset<GameObject>("OutdoorLadder");
             this.GameObject = new GameObject(this.ClassID);
 
-            this.TechType = SMLHelper.V2.Handlers.TechTypeHandler.AddTechType(this.ClassID,
+            this.TechType = TechTypeHandler.AddTechType(this.ClassID,
                                                         LanguageHelper.GetFriendlyWord("OutdoorLadderName"),
                                                         LanguageHelper.GetFriendlyWord("OutdoorLadderDescription"),
                                                         true);
+#endif
 
             CrafterLogicFixer.OutdoorLadder = this.TechType;
 
             this.IsHabitatBuilder = true;
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 2)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -42,7 +53,6 @@ namespace DecorationsMod.NewItems
                         new Ingredient(TechType.Titanium, 2)
                     }),
             };
-#endif
         }
 
         private static GameObject _outdoorLadder = null;
@@ -145,17 +155,25 @@ namespace DecorationsMod.NewItems
                 OutdoorLadderController controller = _outdoorLadder.AddComponent<OutdoorLadderController>();
 
                 // Associate recipe to the new TechType
-                SMLHelper.V2.Handlers.CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#if SUBNAUTICA_NAUTILUS
+                CraftDataHandler.SetRecipeData(this.TechType, this.Recipe);
+#else
+                CraftDataHandler.SetTechData(this.TechType, this.Recipe);
+#endif
 
                 // Add new TechType to the buildables
-                SMLHelper.V2.Handlers.CraftDataHandler.AddBuildable(this.TechType);
-                SMLHelper.V2.Handlers.CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorModule, this.TechType);
+                CraftDataHandler.AddBuildable(this.TechType);
+                CraftDataHandler.AddToGroup(TechGroup.ExteriorModules, TechCategory.ExteriorModule, this.TechType);
 
                 // Set the buildable prefab
-                SMLHelper.V2.Handlers.PrefabHandler.RegisterPrefab(this);
+#if SUBNAUTICA_NAUTILUS
+                this.Register();
+#else
+                PrefabHandler.RegisterPrefab(this);
 
                 // Set the custom sprite
-                SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.BaseLadder));
+                SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.BaseLadder));
+#endif
 
                 this.IsRegistered = true;
             }

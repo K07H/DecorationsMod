@@ -1,31 +1,40 @@
-﻿using System.Collections.Generic;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+#endif
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
 {
     public class LabEquipment3 : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public LabEquipment3() : base(
+            new PrefabInfo("3fd9050b-4baf-4a78-a883-e774c648887c", "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_03.prefab", TechType.LabEquipment3)
+            )
+        {
+#else
         public LabEquipment3() // Feeds abstract class
         {
             this.ClassID = "3fd9050b-4baf-4a78-a883-e774c648887c";
             this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/discovery_lab_props_03.prefab";
 
             this.TechType = TechType.LabEquipment3;
+#endif
 
             this.GameObject = new GameObject(this.ClassID);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[2]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Titanium, 1),
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.Glass, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[2]
@@ -34,7 +43,6 @@ namespace DecorationsMod.ExistingItems
                         new Ingredient(TechType.Glass, 1)
                     }),
             };
-#endif
         }
 
         private static GameObject _labEquipment3 = null;

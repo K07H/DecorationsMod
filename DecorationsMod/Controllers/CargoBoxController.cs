@@ -78,7 +78,7 @@ namespace DecorationsMod.Controllers
                     if ((id = this.gameObject.GetComponent<PrefabIdentifier>()) == null)
                         return;
 #if DEBUG_CARGO_CRATES
-            Logger.Log("DEBUG: Serialize(): PrefabID=[" + id.Id + "]");
+            Logger.Debug("Serialize(): PrefabID=[" + id.Id + "]");
 #endif
 
             string saveFolder = FilesHelper.GetSaveFolderPath();
@@ -97,7 +97,7 @@ namespace DecorationsMod.Controllers
             saveData += Environment.NewLine + Convert.ToString(collider.size.x, CultureInfo.InvariantCulture) + "|" + Convert.ToString(collider.size.y, CultureInfo.InvariantCulture) + "|" + Convert.ToString(collider.size.z, CultureInfo.InvariantCulture);
 
 #if DEBUG_CARGO_CRATES
-            Logger.Log("DEBUG: Serialize(): Saving cargo crates nbItems=[" + _storageContainer?.container?.count + "] size=[" + Convert.ToString(model.transform.localScale.y, CultureInfo.InvariantCulture) + "] collider x=[" + Convert.ToString(collider.size.x, CultureInfo.InvariantCulture) + "] y=[" + Convert.ToString(collider.size.y, CultureInfo.InvariantCulture) + "] z=[" + Convert.ToString(collider.size.z, CultureInfo.InvariantCulture) + "].");
+            Logger.Debug("Serialize(): Saving cargo crates nbItems=[" + _storageContainer?.container?.count + "] size=[" + Convert.ToString(model.transform.localScale.y, CultureInfo.InvariantCulture) + "] collider x=[" + Convert.ToString(collider.size.x, CultureInfo.InvariantCulture) + "] y=[" + Convert.ToString(collider.size.y, CultureInfo.InvariantCulture) + "] z=[" + Convert.ToString(collider.size.z, CultureInfo.InvariantCulture) + "].");
 #endif
             File.WriteAllText(FilesHelper.Combine(saveFolder, "cargocrate_" + id.Id + ".txt"), saveData, Encoding.UTF8);
         }
@@ -110,7 +110,7 @@ namespace DecorationsMod.Controllers
                     if ((id = this.gameObject.GetComponent<PrefabIdentifier>()) == null)
                         return;
 #if DEBUG_CARGO_CRATES
-            Logger.Log("DEBUG: Deserialize(): PrefabID=[" + id.Id + "]");
+            Logger.Debug("Deserialize(): PrefabID=[" + id.Id + "]");
 #endif
 
             string filePath = FilesHelper.Combine(FilesHelper.GetSaveFolderPath(), "cargocrate_" + id.Id + ".txt");
@@ -118,7 +118,7 @@ namespace DecorationsMod.Controllers
             {
 
 #if DEBUG_CARGO_CRATES
-                Logger.Log("DEBUG: Deserialize() A");
+                Logger.Debug("Deserialize() A");
 #endif
                 string tmpSize = File.ReadAllText(filePath, Encoding.UTF8).Replace(',', '.'); // Replace , with . for backward compatibility.
                 if (tmpSize == null)
@@ -127,7 +127,7 @@ namespace DecorationsMod.Controllers
                 if (sizes != null && sizes.Length == 2)
                 {
 #if DEBUG_CARGO_CRATES
-                    Logger.Log("DEBUG: Deserialize() B");
+                    Logger.Debug("Deserialize() B");
 #endif
                     GameObject model = this.gameObject.FindChild("cargobox01_damaged");
                     if (model == null)
@@ -139,7 +139,7 @@ namespace DecorationsMod.Controllers
                     BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
 
 #if DEBUG_CARGO_CRATES
-                    Logger.Log("DEBUG: Deserialize() C");
+                    Logger.Debug("Deserialize() C");
 #endif
                     float size = float.Parse(sizes[0], CultureInfo.InvariantCulture);
                     model.transform.localScale = new Vector3(size, size, size);
@@ -147,7 +147,7 @@ namespace DecorationsMod.Controllers
                     if (colliderSizes.Length == 3)
                     {
 #if DEBUG_CARGO_CRATES
-                        Logger.Log("DEBUG: Deserialize() D");
+                        Logger.Debug("Deserialize() D");
 #endif
                         float colliderSizeX = float.Parse(colliderSizes[0], CultureInfo.InvariantCulture);
                         float colliderSizeY = float.Parse(colliderSizes[1], CultureInfo.InvariantCulture);
@@ -160,7 +160,7 @@ namespace DecorationsMod.Controllers
                         if (float.TryParse(sizes[1], NumberStyles.Float, CultureInfo.InvariantCulture, out colliderSize))
                             collider.size = new Vector3(colliderSize * 0.4583f, colliderSize, colliderSize * 0.5555f);
 #if DEBUG_CARGO_CRATES
-                        Logger.Log("DEBUG: Deserialize() E");
+                        Logger.Debug("Deserialize() E");
 #endif
                     }
                 }

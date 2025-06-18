@@ -1,30 +1,40 @@
-﻿using System.Collections.Generic;
+﻿#if SUBNAUTICA_NAUTILUS
+using System.Diagnostics.CodeAnalysis;
+using Nautilus.Assets;
+using Nautilus.Crafting;
+using static CraftData;
+#else
+using SMLHelper.V2.Crafting;
+#endif
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecorationsMod.ExistingItems
 {
     public class Cap1 : DecorationItem
     {
+#if SUBNAUTICA_NAUTILUS
+        [SetsRequiredMembers]
+        public Cap1() : base(
+            new PrefabInfo("5884d27a-8798-4f09-82ec-c7671a604504", "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_02.prefab", TechType.Cap1)
+            )
+        {
+#else
         public Cap1() // Feeds abstract class
         {
             this.ClassID = "5884d27a-8798-4f09-82ec-c7671a604504";
             this.PrefabFileName = "WorldEntities/Doodads/Debris/Wrecks/Decoration/descent_plaza_shelf_cap_02.prefab";
 
             this.TechType = TechType.Cap1;
+#endif
 
             this.GameObject = new GameObject(this.PrefabFileName);
 
-#if SUBNAUTICA
-            this.Recipe = new SMLHelper.V2.Crafting.TechData()
-            {
-                craftAmount = 1,
-                Ingredients = new List<SMLHelper.V2.Crafting.Ingredient>(new SMLHelper.V2.Crafting.Ingredient[1]
-                    {
-                        new SMLHelper.V2.Crafting.Ingredient(TechType.FiberMesh, 1)
-                    }),
-            };
+#if SUBNAUTICA && !SUBNAUTICA_NAUTILUS
+            this.Recipe = new TechData()
 #else
-            this.Recipe = new SMLHelper.V2.Crafting.RecipeData()
+            this.Recipe = new RecipeData()
+#endif
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>(new Ingredient[1]
@@ -32,7 +42,6 @@ namespace DecorationsMod.ExistingItems
                         new Ingredient(TechType.FiberMesh, 1)
                     }),
             };
-#endif
         }
 
         private static GameObject _cap1 = null;
@@ -42,7 +51,7 @@ namespace DecorationsMod.ExistingItems
             if (_cap1 == null)
                 _cap1 = PrefabsHelper.LoadGameObjectFromFilename(this.PrefabFileName);
 
-            Logger.Log("DEBUG: Cap1 prefab is " + (_cap1 == null ? "NULL" : "NOT NULL"));
+            Logger.Debug("Cap1 prefab is " + (_cap1 == null ? "NULL" : "NOT NULL"));
 
             //GameObject prefab = GameObject.Instantiate(this.GameObject);
             GameObject prefab = GameObject.Instantiate(_cap1);

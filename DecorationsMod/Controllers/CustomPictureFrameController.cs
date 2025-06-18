@@ -142,7 +142,7 @@ namespace DecorationsMod.Controllers
             if (this._pf.fileName != null)
                 PictureFrameEnumHelper.SetStateMethod.Invoke(this._pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
             else
-                Logger.Log("INFO: Could not find a valid image inside custom picture frame images folder at \"" + folderPath + "\".");
+                Logger.Info("Could not find a valid image inside custom picture frame images folder at \"" + folderPath + "\".");
         }
 
         private void InitSlideshowMode(string folderPath)
@@ -170,10 +170,10 @@ namespace DecorationsMod.Controllers
                     PictureFrameEnumHelper.SetStateMethod.Invoke(this._pf, new object[] { PictureFrameEnumHelper.FullEnumValue });
                 }
                 else
-                    Logger.Log("INFO: Could not find any image inside custom picture frame images folder at \"" + folderPath + "\".");
+                    Logger.Info("Could not find any image inside custom picture frame images folder at \"" + folderPath + "\".");
             }
             else
-                Logger.Log("INFO: Could not find any files inside custom picture frame images folder at \"" + folderPath + "\".");
+                Logger.Info("Could not find any files inside custom picture frame images folder at \"" + folderPath + "\".");
             this.lastSlideshowChange = Time.time;
             this.Slideshow = true;
         }
@@ -185,7 +185,7 @@ namespace DecorationsMod.Controllers
             if (!Directory.Exists(rootFolderPath))
             {
                 try { Directory.CreateDirectory(rootFolderPath); }
-                catch { Logger.Log("WARNING: Could not create directory for custom picture frames at \"" + rootFolderPath + "\"."); }
+                catch { Logger.Warning("Could not create directory for custom picture frames at \"" + rootFolderPath + "\"."); }
             }
             if (Directory.Exists(rootFolderPath))
             {
@@ -194,7 +194,7 @@ namespace DecorationsMod.Controllers
                 if (!Directory.Exists(folderPath))
                 {
                     try { Directory.CreateDirectory(folderPath); }
-                    catch { Logger.Log("WARNING: Could not create images directory for custom picture frame at \"" + folderPath + "\"."); }
+                    catch { Logger.Warning("Could not create images directory for custom picture frame at \"" + folderPath + "\"."); }
                     if (Directory.Exists(folderPath))
                     {
                         try
@@ -211,9 +211,9 @@ namespace DecorationsMod.Controllers
                                 ((int)Math.Round(this.slideshowDelay, 0)).ToString());
                             File.WriteAllText(configFilePath, fileContent, System.Text.Encoding.UTF8);
                         }
-                        catch { Logger.Log("WARNING: Could not add config file into custom picture frame images folder."); }
+                        catch { Logger.Warning("Could not add config file into custom picture frame images folder."); }
                         try { Process.Start(folderPath); }
-                        catch { Logger.Log("WARNING: Could not open custom picture frame images folder at \"" + folderPath + "\"."); }
+                        catch { Logger.Warning("Could not open custom picture frame images folder at \"" + folderPath + "\"."); }
                     }
                 }
                 if (Directory.Exists(folderPath))
@@ -228,7 +228,7 @@ namespace DecorationsMod.Controllers
                                     if (line.Length > 6 && int.TryParse(line.Substring(6), NumberStyles.Integer, CultureInfo.InvariantCulture, out int delay) && delay > 0)
                                         this.slideshowDelay = delay;
                                     else
-                                        Logger.Log("WARNING: The line \"" + line + "\" does not have a correct value (must be an integer greater than 0). Default value will be used.");
+                                        Logger.Warning("The line \"" + line + "\" does not have a correct value (must be an integer greater than 0). Default value will be used.");
                                     break;
                                 }
                     }
@@ -238,7 +238,7 @@ namespace DecorationsMod.Controllers
                         InitSlideshowMode(folderPath);
                 }
                 else
-                    Logger.Log("WARNING: Could not find custom picture frame images folder at \"" + folderPath + "\".");
+                    Logger.Warning("Could not find custom picture frame images folder at \"" + folderPath + "\".");
             }
         }
 
@@ -501,7 +501,7 @@ namespace DecorationsMod.Controllers
                     this.Invoke("MySetState", 2f);
 
 #if DEBUG_CUSTOM_PICTURE_FRAME
-                    Logger.Log("DEBUG: Current image in picture frame: fileName=[" + (string.IsNullOrEmpty(pf.fileName) ? "?" : pf.fileName) + "]");
+                    Logger.Debug("Current image in picture frame: fileName=[" + (string.IsNullOrEmpty(pf.fileName) ? "?" : pf.fileName) + "]");
 #endif
                 }
             }
